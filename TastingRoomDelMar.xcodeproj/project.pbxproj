@@ -220,6 +220,7 @@
 				TargetAttributes = {
 					D7FFF7AC1C3AFB0600020D9A = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = 48ZXFZ2D47;
 					};
 					D7FFF7C01C3AFB0600020D9A = {
 						CreatedOnToolsVersion = 7.2;
@@ -473,6 +474,7 @@
 			baseConfigurationReference = D53F1940B0ECFC354F949DF6 /* Pods-TastingRoomDelMar.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = TastingRoomDelMar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tastingroomdelmar.TastingRoomDelMar;
@@ -485,6 +487,7 @@
 			baseConfigurationReference = 04B86A7B2DE721FB50D137DB /* Pods-TastingRoomDelMar.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = TastingRoomDelMar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tastingroomdelmar.TastingRoomDelMar;
