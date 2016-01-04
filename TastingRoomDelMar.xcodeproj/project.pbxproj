@@ -1,0 +1,505 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D7FFF7B11C3AFB0600020D9A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FFF7B01C3AFB0600020D9A /* AppDelegate.swift */; };
+		D7FFF7B31C3AFB0600020D9A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FFF7B21C3AFB0600020D9A /* ViewController.swift */; };
+		D7FFF7B61C3AFB0600020D9A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7FFF7B41C3AFB0600020D9A /* Main.storyboard */; };
+		D7FFF7B81C3AFB0600020D9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7FFF7B71C3AFB0600020D9A /* Assets.xcassets */; };
+		D7FFF7BB1C3AFB0600020D9A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7FFF7B91C3AFB0600020D9A /* LaunchScreen.storyboard */; };
+		D7FFF7C61C3AFB0600020D9A /* TastingRoomDelMarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FFF7C51C3AFB0600020D9A /* TastingRoomDelMarTests.swift */; };
+		D7FFF7D11C3AFB0600020D9A /* TastingRoomDelMarUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FFF7D01C3AFB0600020D9A /* TastingRoomDelMarUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D7FFF7C21C3AFB0600020D9A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D7FFF7A51C3AFB0600020D9A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D7FFF7AC1C3AFB0600020D9A;
+			remoteInfo = TastingRoomDelMar;
+		};
+		D7FFF7CD1C3AFB0600020D9A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D7FFF7A51C3AFB0600020D9A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D7FFF7AC1C3AFB0600020D9A;
+			remoteInfo = TastingRoomDelMar;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D7FFF7AD1C3AFB0600020D9A /* TastingRoomDelMar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TastingRoomDelMar.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D7FFF7B01C3AFB0600020D9A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D7FFF7B21C3AFB0600020D9A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D7FFF7B51C3AFB0600020D9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D7FFF7B71C3AFB0600020D9A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D7FFF7BA1C3AFB0600020D9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D7FFF7BC1C3AFB0600020D9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D7FFF7C11C3AFB0600020D9A /* TastingRoomDelMarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TastingRoomDelMarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D7FFF7C51C3AFB0600020D9A /* TastingRoomDelMarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TastingRoomDelMarTests.swift; sourceTree = "<group>"; };
+		D7FFF7C71C3AFB0600020D9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D7FFF7CC1C3AFB0600020D9A /* TastingRoomDelMarUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TastingRoomDelMarUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D7FFF7D01C3AFB0600020D9A /* TastingRoomDelMarUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TastingRoomDelMarUITests.swift; sourceTree = "<group>"; };
+		D7FFF7D21C3AFB0600020D9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D7FFF7AA1C3AFB0600020D9A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D7FFF7BE1C3AFB0600020D9A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D7FFF7C91C3AFB0600020D9A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D7FFF7A41C3AFB0600020D9A = {
+			isa = PBXGroup;
+			children = (
+				D7FFF7AF1C3AFB0600020D9A /* TastingRoomDelMar */,
+				D7FFF7C41C3AFB0600020D9A /* TastingRoomDelMarTests */,
+				D7FFF7CF1C3AFB0600020D9A /* TastingRoomDelMarUITests */,
+				D7FFF7AE1C3AFB0600020D9A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D7FFF7AE1C3AFB0600020D9A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D7FFF7AD1C3AFB0600020D9A /* TastingRoomDelMar.app */,
+				D7FFF7C11C3AFB0600020D9A /* TastingRoomDelMarTests.xctest */,
+				D7FFF7CC1C3AFB0600020D9A /* TastingRoomDelMarUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D7FFF7AF1C3AFB0600020D9A /* TastingRoomDelMar */ = {
+			isa = PBXGroup;
+			children = (
+				D7FFF7B01C3AFB0600020D9A /* AppDelegate.swift */,
+				D7FFF7B21C3AFB0600020D9A /* ViewController.swift */,
+				D7FFF7B41C3AFB0600020D9A /* Main.storyboard */,
+				D7FFF7B71C3AFB0600020D9A /* Assets.xcassets */,
+				D7FFF7B91C3AFB0600020D9A /* LaunchScreen.storyboard */,
+				D7FFF7BC1C3AFB0600020D9A /* Info.plist */,
+			);
+			path = TastingRoomDelMar;
+			sourceTree = "<group>";
+		};
+		D7FFF7C41C3AFB0600020D9A /* TastingRoomDelMarTests */ = {
+			isa = PBXGroup;
+			children = (
+				D7FFF7C51C3AFB0600020D9A /* TastingRoomDelMarTests.swift */,
+				D7FFF7C71C3AFB0600020D9A /* Info.plist */,
+			);
+			path = TastingRoomDelMarTests;
+			sourceTree = "<group>";
+		};
+		D7FFF7CF1C3AFB0600020D9A /* TastingRoomDelMarUITests */ = {
+			isa = PBXGroup;
+			children = (
+				D7FFF7D01C3AFB0600020D9A /* TastingRoomDelMarUITests.swift */,
+				D7FFF7D21C3AFB0600020D9A /* Info.plist */,
+			);
+			path = TastingRoomDelMarUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D7FFF7AC1C3AFB0600020D9A /* TastingRoomDelMar */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D7FFF7D51C3AFB0600020D9A /* Build configuration list for PBXNativeTarget "TastingRoomDelMar" */;
+			buildPhases = (
+				D7FFF7A91C3AFB0600020D9A /* Sources */,
+				D7FFF7AA1C3AFB0600020D9A /* Frameworks */,
+				D7FFF7AB1C3AFB0600020D9A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TastingRoomDelMar;
+			productName = TastingRoomDelMar;
+			productReference = D7FFF7AD1C3AFB0600020D9A /* TastingRoomDelMar.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D7FFF7C01C3AFB0600020D9A /* TastingRoomDelMarTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D7FFF7D81C3AFB0600020D9A /* Build configuration list for PBXNativeTarget "TastingRoomDelMarTests" */;
+			buildPhases = (
+				D7FFF7BD1C3AFB0600020D9A /* Sources */,
+				D7FFF7BE1C3AFB0600020D9A /* Frameworks */,
+				D7FFF7BF1C3AFB0600020D9A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D7FFF7C31C3AFB0600020D9A /* PBXTargetDependency */,
+			);
+			name = TastingRoomDelMarTests;
+			productName = TastingRoomDelMarTests;
+			productReference = D7FFF7C11C3AFB0600020D9A /* TastingRoomDelMarTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D7FFF7CB1C3AFB0600020D9A /* TastingRoomDelMarUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D7FFF7DB1C3AFB0600020D9A /* Build configuration list for PBXNativeTarget "TastingRoomDelMarUITests" */;
+			buildPhases = (
+				D7FFF7C81C3AFB0600020D9A /* Sources */,
+				D7FFF7C91C3AFB0600020D9A /* Frameworks */,
+				D7FFF7CA1C3AFB0600020D9A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D7FFF7CE1C3AFB0600020D9A /* PBXTargetDependency */,
+			);
+			name = TastingRoomDelMarUITests;
+			productName = TastingRoomDelMarUITests;
+			productReference = D7FFF7CC1C3AFB0600020D9A /* TastingRoomDelMarUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D7FFF7A51C3AFB0600020D9A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "Taylor 5, LLC";
+				TargetAttributes = {
+					D7FFF7AC1C3AFB0600020D9A = {
+						CreatedOnToolsVersion = 7.2;
+					};
+					D7FFF7C01C3AFB0600020D9A = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = D7FFF7AC1C3AFB0600020D9A;
+					};
+					D7FFF7CB1C3AFB0600020D9A = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = D7FFF7AC1C3AFB0600020D9A;
+					};
+				};
+			};
+			buildConfigurationList = D7FFF7A81C3AFB0600020D9A /* Build configuration list for PBXProject "TastingRoomDelMar" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D7FFF7A41C3AFB0600020D9A;
+			productRefGroup = D7FFF7AE1C3AFB0600020D9A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D7FFF7AC1C3AFB0600020D9A /* TastingRoomDelMar */,
+				D7FFF7C01C3AFB0600020D9A /* TastingRoomDelMarTests */,
+				D7FFF7CB1C3AFB0600020D9A /* TastingRoomDelMarUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D7FFF7AB1C3AFB0600020D9A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D7FFF7BB1C3AFB0600020D9A /* LaunchScreen.storyboard in Resources */,
+				D7FFF7B81C3AFB0600020D9A /* Assets.xcassets in Resources */,
+				D7FFF7B61C3AFB0600020D9A /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D7FFF7BF1C3AFB0600020D9A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D7FFF7CA1C3AFB0600020D9A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D7FFF7A91C3AFB0600020D9A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D7FFF7B31C3AFB0600020D9A /* ViewController.swift in Sources */,
+				D7FFF7B11C3AFB0600020D9A /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D7FFF7BD1C3AFB0600020D9A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D7FFF7C61C3AFB0600020D9A /* TastingRoomDelMarTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D7FFF7C81C3AFB0600020D9A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D7FFF7D11C3AFB0600020D9A /* TastingRoomDelMarUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D7FFF7C31C3AFB0600020D9A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D7FFF7AC1C3AFB0600020D9A /* TastingRoomDelMar */;
+			targetProxy = D7FFF7C21C3AFB0600020D9A /* PBXContainerItemProxy */;
+		};
+		D7FFF7CE1C3AFB0600020D9A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D7FFF7AC1C3AFB0600020D9A /* TastingRoomDelMar */;
+			targetProxy = D7FFF7CD1C3AFB0600020D9A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D7FFF7B41C3AFB0600020D9A /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D7FFF7B51C3AFB0600020D9A /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D7FFF7B91C3AFB0600020D9A /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D7FFF7BA1C3AFB0600020D9A /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D7FFF7D31C3AFB0600020D9A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		D7FFF7D41C3AFB0600020D9A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D7FFF7D61C3AFB0600020D9A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = TastingRoomDelMar/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tastingroomdelmar.TastingRoomDelMar;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		D7FFF7D71C3AFB0600020D9A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = TastingRoomDelMar/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tastingroomdelmar.TastingRoomDelMar;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		D7FFF7D91C3AFB0600020D9A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = TastingRoomDelMarTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tastingroomdelmar.TastingRoomDelMarTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TastingRoomDelMar.app/TastingRoomDelMar";
+			};
+			name = Debug;
+		};
+		D7FFF7DA1C3AFB0600020D9A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = TastingRoomDelMarTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tastingroomdelmar.TastingRoomDelMarTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TastingRoomDelMar.app/TastingRoomDelMar";
+			};
+			name = Release;
+		};
+		D7FFF7DC1C3AFB0600020D9A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = TastingRoomDelMarUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tastingroomdelmar.TastingRoomDelMarUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = TastingRoomDelMar;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		D7FFF7DD1C3AFB0600020D9A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = TastingRoomDelMarUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tastingroomdelmar.TastingRoomDelMarUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = TastingRoomDelMar;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D7FFF7A81C3AFB0600020D9A /* Build configuration list for PBXProject "TastingRoomDelMar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D7FFF7D31C3AFB0600020D9A /* Debug */,
+				D7FFF7D41C3AFB0600020D9A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D7FFF7D51C3AFB0600020D9A /* Build configuration list for PBXNativeTarget "TastingRoomDelMar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D7FFF7D61C3AFB0600020D9A /* Debug */,
+				D7FFF7D71C3AFB0600020D9A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		D7FFF7D81C3AFB0600020D9A /* Build configuration list for PBXNativeTarget "TastingRoomDelMarTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D7FFF7D91C3AFB0600020D9A /* Debug */,
+				D7FFF7DA1C3AFB0600020D9A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		D7FFF7DB1C3AFB0600020D9A /* Build configuration list for PBXNativeTarget "TastingRoomDelMarUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D7FFF7DC1C3AFB0600020D9A /* Debug */,
+				D7FFF7DD1C3AFB0600020D9A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D7FFF7A51C3AFB0600020D9A /* Project object */;
+}
