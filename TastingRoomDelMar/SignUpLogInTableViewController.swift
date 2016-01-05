@@ -10,14 +10,14 @@ import UIKit
 
 class SignUpLogInTableViewController: UITableViewController {
 
+    @IBOutlet weak var emailTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        emailTextField.becomeFirstResponder()
+        
+        tableView.scrollEnabled = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,7 +34,7 @@ class SignUpLogInTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 2
+        return 4
     }
 
     /*

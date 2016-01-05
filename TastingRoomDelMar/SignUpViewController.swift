@@ -14,7 +14,16 @@ import ParseFacebookUtilsV4
 class SignUpViewController: UIViewController {
 
     
+    override func viewDidAppear(animated: Bool) {
+        
+        let nav = self.navigationController?.navigationBar
+        
+        nav?.barStyle = UIBarStyle.Black
+        nav?.tintColor = UIColor.whiteColor()
+        nav?.titleTextAttributes = [ NSFontAttributeName: UIFont (name: "Helvetica Neue", size: 20)!]
 
+
+    }
     
     
 // ----------------------
