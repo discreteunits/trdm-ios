@@ -162,8 +162,15 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Sign Up" id="PaQ-sd-n6Y">
-                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="PLd-uT-Okp"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="PLd-uT-Okp">
+                            <connections>
+                                <segue destination="BYZ-38-t0r" kind="presentation" id="puV-4c-pc2"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="signUpButton" destination="B1a-AI-zJU" id="YFN-tq-kLu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kcB-Od-zv1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -253,7 +260,7 @@
                                             <constraints>
                                                 <constraint firstItem="kb0-RV-u0E" firstAttribute="trailing" secondItem="imZ-h3-p5n" secondAttribute="trailingMargin" id="10O-Gl-8Yz"/>
                                                 <constraint firstItem="kb0-RV-u0E" firstAttribute="leading" secondItem="U3g-cs-a9x" secondAttribute="trailing" constant="8" id="1fc-wC-dD6"/>
-                                                <constraint firstItem="U3g-cs-a9x" firstAttribute="leading" secondItem="imZ-h3-p5n" secondAttribute="leadingMargin" constant="18" id="QsR-nG-jB2"/>
+                                                <constraint firstItem="U3g-cs-a9x" firstAttribute="leading" secondItem="imZ-h3-p5n" secondAttribute="leadingMargin" constant="15" id="QsR-nG-jB2"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -276,6 +283,9 @@
                                                     <state key="normal" title="Login">
                                                         <color key="titleColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="login:" destination="sRL-ex-5Le" eventType="touchUpInside" id="xHQ-aK-TcY"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -295,6 +305,8 @@
                     </tableView>
                     <connections>
                         <outlet property="emailTextField" destination="Xkj-AE-QFf" id="D2m-39-SnW"/>
+                        <outlet property="loginButton" destination="BZH-xD-7ig" id="hTK-ee-fdA"/>
+                        <outlet property="registeredText" destination="zKd-u8-HbZ" id="KCL-C2-8rr"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wkz-mZ-dbB" userLabel="First Responder" sceneMemberID="firstResponder"/>

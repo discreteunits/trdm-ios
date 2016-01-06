@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TastingRoomDelMar/SignUpLogInTableViewController.swift"
-            timestampString = "473725313.29025"
+            timestampString = "473727602.473627"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
             landmarkName = "SignUpLogInTableViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TastingRoomDelMar/SignUpLogInTableViewController.swift"
-            timestampString = "473726669.382465"
+            timestampString = "473727602.473627"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "13"
-            endingLineNumber = "13"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
             landmarkName = "SignUpLogInTableViewController"
             landmarkType = "3">
             <Locations>

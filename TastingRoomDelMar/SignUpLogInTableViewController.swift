@@ -10,7 +10,35 @@ import UIKit
 
 class SignUpLogInTableViewController: UITableViewController {
 
+    var signupActive = true
+
+    
     @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var registeredText: UILabel!
+    @IBOutlet weak var loginButton: UIButton!
+    
+// ------------------
+// ALTERNATE LOGIN AND SIGN UP
+// ------------------
+    @IBAction func login(sender: AnyObject) {
+        
+        if signupActive == true {
+            
+//            signupButton.setTitle("Log in with Whomi", forState: UIControlState.Normal)
+            registeredText.text = "Don't have an account?"
+            loginButton.setTitle("Sign Up", forState: UIControlState.Normal)
+            signupActive = false
+            
+        } else {
+            
+//            signupButton.setTitle("Sign up with Whomi", forState: UIControlState.Normal)
+            registeredText.text = "Already Registered?"
+            loginButton.setTitle("Login", forState: UIControlState.Normal)
+            signupActive = true
+            
+        }
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

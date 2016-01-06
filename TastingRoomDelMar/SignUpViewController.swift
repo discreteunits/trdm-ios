@@ -13,6 +13,7 @@ import ParseFacebookUtilsV4
 
 class SignUpViewController: UIViewController {
 
+    @IBOutlet weak var signUpButton: UIButton!
     
     override func viewDidAppear(animated: Bool) {
         
@@ -24,6 +25,32 @@ class SignUpViewController: UIViewController {
 
 
     }
+    
+    
+// Horizontal UI Animation
+    func hideButton() {
+        
+        UIView.animateWithDuration(0.2, delay: 0.0, options: .CurveEaseInOut, animations: { () -> Void in
+            
+            self.signUpButton.transform = CGAffineTransformIdentity
+            
+            
+            }, completion: nil)
+        
+    }
+    
+    func showButton() {
+        
+        UIView.animateWithDuration(0.2, delay: 0.0, options: .CurveEaseInOut, animations: { () -> Void in
+            
+            self.signUpButton.transform = CGAffineTransformMakeTranslation(self.view.frame.width, 0)
+            
+            }, completion: nil)
+        
+    }
+    
+    
+    
     
     
 // ----------------------
@@ -101,6 +128,7 @@ class SignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
         // Do any additional setup after loading the view.
     }
 

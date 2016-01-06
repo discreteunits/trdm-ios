@@ -16,8 +16,6 @@ class ViewController: UIViewController {
     var signupActive = true
     
     @IBOutlet weak var fbLoginButton: UIButton!
-    @IBOutlet weak var registeredText: UILabel!
-    @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var signupButton: UIButton!
     
     
@@ -102,33 +100,6 @@ class ViewController: UIViewController {
     }
     
     
-// ------------------
-// ALTERNATE LOGIN AND SIGN UP
-// ------------------
-    
-    @IBAction func login(sender: AnyObject) {
-        
-        if signupActive == true {
-            
-            signupButton.setTitle("Log in with Whomi", forState: UIControlState.Normal)
-            registeredText.text = "Not Registered?"
-            loginButton.setTitle("Sign Up", forState: UIControlState.Normal)
-            fbLoginButton.setTitle("Log in with Facebook", forState: UIControlState.Normal)
-            signupActive = false
-            
-        } else {
-            
-            signupButton.setTitle("Sign up with Whomi", forState: UIControlState.Normal)
-            registeredText.text = "Already Registered?"
-            loginButton.setTitle("Login", forState: UIControlState.Normal)
-            fbLoginButton.setTitle("Sign up with Facebook", forState: UIControlState.Normal)
-            signupActive = true
-            
-        }
-        
-    }
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -142,11 +113,5 @@ class ViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
-    
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        self.view.endEditing(true)
-    }
-    
     
 }
