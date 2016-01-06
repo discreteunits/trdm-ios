@@ -100,10 +100,28 @@
             </objects>
             <point key="canvasLocation" x="565" y="479"/>
         </scene>
-        <!--Sign Up Navigation View Controller-->
+        <!--View Controller-->
+        <scene sceneID="sGu-06-uso">
+            <objects>
+                <viewController id="brH-MO-rRh" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="IKg-fU-J2a"/>
+                        <viewControllerLayoutGuide type="bottom" id="RGK-c0-pon"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="YJm-ZT-s8h">
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f01-GQ-w31" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="565" y="1204"/>
+        </scene>
+        <!--Navigation Controller-->
         <scene sceneID="PCz-rN-wSW">
             <objects>
-                <navigationController id="obe-Z9-uM6" customClass="SignUpNavigationViewController" customModule="TastingRoomDelMar" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController id="obe-Z9-uM6" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="y9s-PS-ifb">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -147,6 +165,10 @@
                                 <state key="normal" title="Sign Up">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="signup:" destination="VXj-yJ-McM" eventType="touchUpInside" id="f6C-t3-ZkY"/>
+                                    <segue destination="brH-MO-rRh" kind="show" id="9hU-IL-gHY"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -169,6 +191,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="containerView" destination="0t6-0Z-VZO" id="9Vf-jk-lVM"/>
                         <outlet property="signUpButton" destination="B1a-AI-zJU" id="YFN-tq-kLu"/>
                     </connections>
                 </viewController>
@@ -306,12 +329,13 @@
                     <connections>
                         <outlet property="emailTextField" destination="Xkj-AE-QFf" id="D2m-39-SnW"/>
                         <outlet property="loginButton" destination="BZH-xD-7ig" id="hTK-ee-fdA"/>
+                        <outlet property="passwordTextField" destination="kb0-RV-u0E" id="XFT-hn-1yM"/>
                         <outlet property="registeredText" destination="zKd-u8-HbZ" id="KCL-C2-8rr"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wkz-mZ-dbB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2621" y="315.5"/>
+            <point key="canvasLocation" x="2656" y="279"/>
         </scene>
     </scenes>
 </document>

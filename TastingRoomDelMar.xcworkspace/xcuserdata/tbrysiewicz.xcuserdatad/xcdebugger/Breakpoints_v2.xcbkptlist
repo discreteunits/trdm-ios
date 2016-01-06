@@ -10,29 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TastingRoomDelMar/SignUpLogInTableViewController.swift"
-            timestampString = "473727602.473627"
+            timestampString = "473808372.900636"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
-            landmarkName = "SignUpLogInTableViewController"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TastingRoomDelMar/SignUpLogInTableViewController.swift"
-            timestampString = "473727602.473627"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "16"
-            endingLineNumber = "16"
-            landmarkName = "SignUpLogInTableViewController"
-            landmarkType = "3">
+            startingLineNumber = "18"
+            endingLineNumber = "18">
             <Locations>
                <Location
                   shouldBeEnabled = "No"

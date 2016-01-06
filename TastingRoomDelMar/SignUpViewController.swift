@@ -10,10 +10,27 @@ import UIKit
 import Parse
 import ParseCrashReporting
 import ParseFacebookUtilsV4
+import Alamofire
+
 
 class SignUpViewController: UIViewController {
 
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var signUpButton: UIButton!
+    
+    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
+    
+    var signUpLoginTableViewControllerRef: SignUpLogInTableViewController?
+    
+    var currentUser: PFUser? {
+        didSet {
+            if currentUser!.email == NSNull() {
+                self.getUserData()
+            }
+        }
+    }
+    
+    
     
     override func viewDidAppear(animated: Bool) {
         
@@ -23,11 +40,56 @@ class SignUpViewController: UIViewController {
         nav?.tintColor = UIColor.whiteColor()
         nav?.titleTextAttributes = [ NSFontAttributeName: UIFont (name: "Helvetica Neue", size: 20)!]
 
-
     }
     
     
+// ----------------------
+// SIGNUP FUNCTION
+// ----------------------
+    @IBAction func signup(sender: AnyObject) {
+        print("signup action fired")
+        activityIndicator.startAnimating()
+        activityIndicator.hidden = false
+        self.signUpLoginTableViewControllerRef?.saveUser()
+    }
+    
+// ----------------------
+// ALERT FUNCTION
+// ----------------------
+    @available(iOS 8.0, *)
+    func displayAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        let okAction = UIAlertAction(title: "Ok", style: .Default, handler: { (action) -> Void in
+            print("Ok")
+        })
+        alert.addAction(okAction)
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+// ----------------------
+// ACTIVITY START FUNCTION
+// ----------------------
+    func activityStart() {
+        activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 50, 50))
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+        view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+        UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+    }
+    
+// ----------------------
+// ACTIVITY STOP FUNCTION
+// ----------------------
+    func activityStop() {
+        self.activityIndicator.stopAnimating()
+        UIApplication.sharedApplication().endIgnoringInteractionEvents()
+    }
+    
+// ----------------------
 // Horizontal UI Animation
+// ----------------------
     func hideButton() {
         
         UIView.animateWithDuration(0.2, delay: 0.0, options: .CurveEaseInOut, animations: { () -> Void in
@@ -140,4 +202,10 @@ class SignUpViewController: UIViewController {
 
 
 
+}
+
+extension SignUpViewController: SignUpLogInTableViewDelegate {
+    
+
+    
 }
