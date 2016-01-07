@@ -40,6 +40,9 @@ class SignUpLogInTableViewController: UITableViewController {
     
     var emailIsValid: Bool = false
     
+    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
+
+    
 // ------------------
 // ALTERNATE LOGIN AND SIGN UP
 // ------------------
@@ -61,37 +64,72 @@ class SignUpLogInTableViewController: UITableViewController {
     }
    
 // ----------------------
-// SAVE USER
+// ACTIVITY START FUNCTION
 // ----------------------
-    func saveUser() {
+    func activityStart() {
+        activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 50, 50))
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+        view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+        UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+    }
+    
+// ----------------------
+// ACTIVITY STOP FUNCTION
+// ----------------------
+    func activityStop() {
+        self.activityIndicator.stopAnimating()
+        UIApplication.sharedApplication().endIgnoringInteractionEvents()
+    }
+    
+    
+// ----------------------
+// ALERT FUNCTION
+// ----------------------
+    @available(iOS 8.0, *)
+    func displayAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        let okAction = UIAlertAction(title: "Ok", style: .Default, handler: { (action) -> Void in
+            print("Ok")
+        })
+        alert.addAction(okAction)
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+// ----------------------
+// SAVE USER DATA
+// ----------------------
+    func saveUserData() {
         
-        if let user = self.currentUser {
-            
-            if let emailRaw = emailTextField.text as String? {
-                
-                let emailLowercase = emailRaw.lowercaseString
-                let email = emailLowercase.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
-                
-                user.email = email
-                
-            }
-            
+        print("START saveUserData Funtion")
+        
+            var user = PFUser()
+        
+            user.username = emailTextField.text as String!
+            user.email = emailTextField.text as String!
             user.password = passwordTextField.text as String!
-            
-            user.saveInBackgroundWithBlock({ (succeeded: Bool, error: NSError?) -> Void in
+            print("added user data to user object")
+        
+            user.signUpInBackgroundWithBlock({ (success, error) -> Void in
                 
-                if  succeeded == true {
+                self.activityStop()
+                
+                if  error == nil {
                     
-                    print("Successfully saved user.")
-                    
+                    print("Successfully saved user data.")
+                    self.performSegueWithIdentifier("signup", sender: self)
+
                 } else {
                     
-                    print("Failed to save user.")
+                    print("Failed to save user data.")
+                    self.displayAlert("Failed Signup", message: "Failed to sign up.")
                     
                 }
+                
             })
-        }
-        
+    
     }
     
     override func viewDidLoad() {
@@ -100,10 +138,6 @@ class SignUpLogInTableViewController: UITableViewController {
         emailTextField.becomeFirstResponder()
         
         tableView.scrollEnabled = true
-        
-        if let user = PFUser.currentUser() {
-            self.currentUser = user
-        }
         
         validator.registerField(emailTextField, rules: [RequiredRule(), MinLengthRule(length: 2), MaxLengthRule(length: 14)])
         

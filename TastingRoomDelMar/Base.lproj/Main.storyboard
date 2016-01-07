@@ -152,7 +152,7 @@
                                     <constraint firstAttribute="height" constant="200" id="ENE-Qp-dcM"/>
                                 </constraints>
                                 <connections>
-                                    <segue destination="sRL-ex-5Le" kind="embed" id="WUJ-JM-vHH"/>
+                                    <segue destination="sRL-ex-5Le" kind="embed" identifier="SignUpLoginEmbeded" id="WUJ-JM-vHH"/>
                                 </connections>
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B1a-AI-zJU">
@@ -167,7 +167,6 @@
                                 </state>
                                 <connections>
                                     <action selector="signup:" destination="VXj-yJ-McM" eventType="touchUpInside" id="f6C-t3-ZkY"/>
-                                    <segue destination="brH-MO-rRh" kind="show" id="9hU-IL-gHY"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -193,6 +192,7 @@
                     <connections>
                         <outlet property="containerView" destination="0t6-0Z-VZO" id="9Vf-jk-lVM"/>
                         <outlet property="signUpButton" destination="B1a-AI-zJU" id="YFN-tq-kLu"/>
+                        <segue destination="brH-MO-rRh" kind="show" identifier="signup" id="mW0-Tb-HMf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kcB-Od-zv1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -203,7 +203,7 @@
         <scene sceneID="QS4-v8-3D3">
             <objects>
                 <tableViewController automaticallyAdjustsScrollViewInsets="NO" id="sRL-ex-5Le" customClass="SignUpLogInTableViewController" customModule="TastingRoomDelMar" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" sectionIndexMinimumDisplayRowCount="2" rowHeight="50" sectionHeaderHeight="22" sectionFooterHeight="22" id="PaL-Hm-oFV">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" sectionIndexMinimumDisplayRowCount="2" allowsSelection="NO" rowHeight="50" sectionHeaderHeight="22" sectionFooterHeight="22" id="PaL-Hm-oFV">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
