@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -17,26 +18,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Del Mar" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="afY-1F-TU6">
-                                <rect key="frame" x="20" y="272" width="560" height="97"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="TASTING ROOM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l9g-1n-xvB">
-                                <rect key="frame" x="20" y="201" width="560" height="158"/>
-                                <rect key="contentStretch" x="0.0" y="1" width="1" height="1"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="41"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="primary-logotype-05_rgb_600_600" translatesAutoresizingMaskIntoConstraints="NO" id="Rz3-yz-WBc">
+                                <rect key="frame" x="105" y="250" width="391" height="99"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="99" id="kTK-e7-YwQ"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="l9g-1n-xvB" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="9QH-D6-XiS"/>
-                            <constraint firstItem="l9g-1n-xvB" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="181" id="Nha-FQ-gE9"/>
-                            <constraint firstItem="afY-1F-TU6" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="252" id="Quo-TC-aYH"/>
-                            <constraint firstItem="afY-1F-TU6" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="gq3-wx-Npd"/>
+                            <constraint firstItem="Rz3-yz-WBc" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="20" id="Jw3-bm-Mu6"/>
+                            <constraint firstItem="Rz3-yz-WBc" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="230" id="fMX-CK-zdc"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Rz3-yz-WBc" secondAttribute="trailing" constant="20" id="lFF-pb-aTJ"/>
+                            <constraint firstItem="Rz3-yz-WBc" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="ntV-XG-1hy"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -45,4 +39,7 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="primary-logotype-05_rgb_600_600" width="600" height="184"/>
+    </resources>
 </document>

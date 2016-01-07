@@ -30,6 +30,7 @@ class SignUpLogInTableViewController: UITableViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var registeredText: UILabel!
     @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var infoText: UITextView!
     
     var delegate: SignUpLogInTableViewDelegate?
     var containerViewController: SignUpViewController?
@@ -41,97 +42,11 @@ class SignUpLogInTableViewController: UITableViewController {
     var emailIsValid: Bool = false
     
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
+    
+    var SignUpViewControllerRef: SignUpViewController?
 
-    
 // ------------------
-// ALTERNATE LOGIN AND SIGN UP
-// ------------------
-    @IBAction func login(sender: AnyObject) {
-        
-        if signupActive == true {
-            
-            registeredText.text = "Don't have an account?"
-            loginButton.setTitle("Sign Up", forState: UIControlState.Normal)
-            signupActive = false
-            
-        } else {
-            
-            registeredText.text = "Already Registered?"
-            loginButton.setTitle("Login", forState: UIControlState.Normal)
-            signupActive = true
-            
-        }
-    }
-   
-// ----------------------
-// ACTIVITY START FUNCTION
-// ----------------------
-    func activityStart() {
-        activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 50, 50))
-        activityIndicator.center = self.view.center
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
-        view.addSubview(activityIndicator)
-        activityIndicator.startAnimating()
-        UIApplication.sharedApplication().beginIgnoringInteractionEvents()
-    }
-    
-// ----------------------
-// ACTIVITY STOP FUNCTION
-// ----------------------
-    func activityStop() {
-        self.activityIndicator.stopAnimating()
-        UIApplication.sharedApplication().endIgnoringInteractionEvents()
-    }
-    
-    
-// ----------------------
-// ALERT FUNCTION
-// ----------------------
-    @available(iOS 8.0, *)
-    func displayAlert(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        let okAction = UIAlertAction(title: "Ok", style: .Default, handler: { (action) -> Void in
-            print("Ok")
-        })
-        alert.addAction(okAction)
-        self.presentViewController(alert, animated: true, completion: nil)
-    }
-    
-// ----------------------
-// SAVE USER DATA
-// ----------------------
-    func saveUserData() {
-        
-        print("START saveUserData Funtion")
-        
-            var user = PFUser()
-        
-            user.username = emailTextField.text as String!
-            user.email = emailTextField.text as String!
-            user.password = passwordTextField.text as String!
-            print("added user data to user object")
-        
-            user.signUpInBackgroundWithBlock({ (success, error) -> Void in
-                
-                self.activityStop()
-                
-                if  error == nil {
-                    
-                    print("Successfully saved user data.")
-                    self.performSegueWithIdentifier("signup", sender: self)
 
-                } else {
-                    
-                    print("Failed to save user data.")
-                    self.displayAlert("Failed Signup", message: "Failed to sign up.")
-                    
-                }
-                
-            })
-    
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -160,8 +75,96 @@ class SignUpLogInTableViewController: UITableViewController {
         return 4
     }
     
+// ----------------------
+// SAVE USER DATA
+// ----------------------
+    func saveUser() {
+        
+        let user = PFUser()
+        
+        user.username = emailTextField.text as String!
+        user.email = emailTextField.text as String!
+        user.password = passwordTextField.text as String!
+        
+        user.signUpInBackgroundWithBlock({ (success, error) -> Void in
+            
+            self.activityStop()
+            
+            if  error == nil {
+                
+                print("Successfully saved user data.")
+                self.performSegueWithIdentifier("signup", sender: self)
+                
+            } else {
+                
+                print("Failed to save user data.")
+                self.displayAlert("Failed Signup", message: "Please try again later.")
+                
+            }
+            
+        })
+        
+    }
+    
+// ------------------
+// ALTERNATE LOGIN AND SIGN UP
+// ------------------
+    @IBAction func login(sender: AnyObject) {
+        
+        if signupActive == true {
+            
+            infoText.text = "Provide your email and password below to login."
+            registeredText.text = "Don't have an account?"
+            loginButton.setTitle("Sign Up", forState: UIControlState.Normal)
+            signupActive = false
+            
+        } else {
+            
+            infoText.text = "Tell us a little bit about yourself. We'd love to get to know you!"
+            registeredText.text = "Already Registered?"
+            loginButton.setTitle("Login", forState: UIControlState.Normal)
+            signupActive = true
+            
+        }
+    }
+   
+// ----------------------
+// ACTIVITY START FUNCTION
+// ----------------------
+    func activityStart() {
+        activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 50, 50))
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+        view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+        UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+    }
+    
+// ----------------------
+// ACTIVITY STOP FUNCTION
+// ----------------------
+    func activityStop() {
+        self.activityIndicator.stopAnimating()
+        UIApplication.sharedApplication().endIgnoringInteractionEvents()
+    }
+    
+// ----------------------
+// ALERT FUNCTION
+// ----------------------
+    @available(iOS 8.0, *)
+    func displayAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        let okAction = UIAlertAction(title: "Ok", style: .Default, handler: { (action) -> Void in
+            print("Ok")
+        })
+        alert.addAction(okAction)
+        self.presentViewController(alert, animated: true, completion: nil)
+        
+    }
     
 }
+
 
 extension SignUpLogInTableViewController: ValidationDelegate {
     
@@ -184,65 +187,3 @@ extension SignUpLogInTableViewController: ValidationDelegate {
     }
     
 }
-
-
-
-
-
-
-    /*
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-

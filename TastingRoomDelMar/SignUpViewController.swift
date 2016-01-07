@@ -24,7 +24,21 @@ class SignUpViewController: UIViewController {
     
     var currentUser: PFUser?
     
+// ------------------
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        if let user = PFUser.currentUser() {
+            currentUser = user
+        }
+        
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
     
     override func viewDidAppear(animated: Bool) {
         
@@ -36,46 +50,34 @@ class SignUpViewController: UIViewController {
 
     }
     
+// ----------------------
+// SEMI-MAGICAL CONTROLLER DATA TRANSFER
+// ----------------------
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "SignUpLoginEmbeded" {
+            
+            if let SignUpLogInTableViewController = segue.destinationViewController as? SignUpLogInTableViewController {
+                
+                self.signUpLoginTableViewControllerRef = SignUpLogInTableViewController
+                
+                SignUpLogInTableViewController.containerViewController = self
+                
+            }
+        }
+    }
     
 // ----------------------
 // SIGNUP FUNCTION
 // ----------------------
     @IBAction func signup(sender: AnyObject) {
         print("signup action fired")
-//        activityIndicator.startAnimating()
-//        activityIndicator.hidden = false
+        activityIndicator.startAnimating()
+        activityIndicator.hidden = false
         print("\(signUpLoginTableViewControllerRef)")
-        self.signUpLoginTableViewControllerRef?.saveUserData()
+        self.signUpLoginTableViewControllerRef?.saveUser()
         print("signup action finished")
     }
-    
-//// ----------------------
-//// SAVE USER
-//// ----------------------
-//    func saveUser() {
-//        
-//        if let user = self.currentUser {
-//            
-//            user.saveInBackgroundWithBlock({ (succeeded: Bool, error: NSError?) -> Void in
-//                
-//                self.activityStop()
-//                
-//                if succeeded == true {
-//                    
-//                    print("User has been saved to database")
-//                    
-//                    self.performSegueWithIdentifier("signup", sender: self)
-//               
-//                } else {
-//                    
-//                    print("User has NOT been saved to the database")
-//                    
-//                    self.displayAlert("Failed Signup", message: "Failed to sign up.")
-//                    
-//                }
-//            })
-//        }
-//    }
     
 // ----------------------
 // ALERT FUNCTION
@@ -111,9 +113,6 @@ class SignUpViewController: UIViewController {
         UIApplication.sharedApplication().endIgnoringInteractionEvents()
     }
     
-    
-    
-    
 // ----------------------
 // Horizontal UI Animation
 // ----------------------
@@ -138,37 +137,7 @@ class SignUpViewController: UIViewController {
         
     }
     
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
 
-        if let user = PFUser.currentUser() {
-            currentUser = user
-        }
-        
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-// ----------------------
-// Semi-Magical
-// ----------------------
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-        if segue.identifier == "SignUpLoginEmbeded" {
-            
-            if let SignUpLogInTableViewController = segue.destinationViewController as? SignUpLogInTableViewController {
-                
-                self.signUpLoginTableViewControllerRef = SignUpLogInTableViewController
-                                
-                SignUpLogInTableViewController.containerViewController = self
-                
-            }
-        }
-    }
     
     
 

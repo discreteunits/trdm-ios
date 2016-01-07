@@ -18,46 +18,18 @@ class ViewController: UIViewController {
     @IBOutlet weak var fbLoginButton: UIButton!
     @IBOutlet weak var signupButton: UIButton!
     
-    
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
 
+// ----------------
     
-// ----------------------
-// ALERT FUNCTION
-// ----------------------
-    
-    @available(iOS 8.0, *)
-    func displayAlert(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        let okAction = UIAlertAction(title: "Ok", style: .Default, handler: { (action) -> Void in
-            print("Ok")
-        })
-        alert.addAction(okAction)
-        self.presentViewController(alert, animated: true, completion: nil)
+    override func viewDidLoad() {
+        super.viewDidLoad()
     }
     
-// ----------------------
-// ACTIVITY START FUNCTION
-// ----------------------
-    
-    func activityStart() {
-        activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 50, 50))
-        activityIndicator.center = self.view.center
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
-        view.addSubview(activityIndicator)
-        activityIndicator.startAnimating()
-        UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
     }
-    
-// ----------------------
-// ACTIVITY STOP FUNCTION
-// ----------------------
-    func activityStop() {
-        self.activityIndicator.stopAnimating()
-        UIApplication.sharedApplication().endIgnoringInteractionEvents()
-    }
-     
+
 // ----------------
 // FACEBOOK LOGIN
 // ----------------
@@ -99,19 +71,49 @@ class ViewController: UIViewController {
         })
     }
     
+// ----------------------
+// ALERT FUNCTION
+// ----------------------
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    @available(iOS 8.0, *)
+    func displayAlert(title: String, message: String) {
         
-        //        self.signupButton.layer.cornerRadius = 5
-        //        self.loginButton.layer.cornerRadius = 5
-        //        self.fbLoginButton.layer.cornerRadius = 5
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        
+        let okAction = UIAlertAction(title: "Ok", style: .Default, handler: { (action) -> Void in
+            print("Ok")
+            
+        })
+        
+        alert.addAction(okAction)
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+// ----------------------
+// ACTIVITY START FUNCTION
+// ----------------------
+    
+    func activityStart() {
+        
+        activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 50, 50))
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+        view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+        UIApplication.sharedApplication().beginIgnoringInteractionEvents()
         
     }
     
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+// ----------------------
+// ACTIVITY STOP FUNCTION
+// ----------------------
+    func activityStop() {
+        
+        self.activityIndicator.stopAnimating()
+        UIApplication.sharedApplication().endIgnoringInteractionEvents()
+        
     }
     
 }
