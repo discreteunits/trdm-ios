@@ -56,6 +56,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             application.registerForRemoteNotificationTypes(types)
         }
         
+        
+    // -------------------------------
+    // MARK: USER AUTO LOG IN
+    // -------------------------------
+//        if PFUser.currentUser() != nil {
+//            
+//            self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+//            
+//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//            
+//            let initialViewController = storyboard.instantiateViewControllerWithIdentifier("LoggedIn") as UIViewController
+//            
+//            self.window?.rootViewController = initialViewController
+//            self.window?.makeKeyAndVisible()
+//            
+//            let rootView: TierINavigationController = TierINavigationController()
+//            
+//        }
+        
         return true
     }
     

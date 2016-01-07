@@ -4,6 +4,7 @@ use_frameworks!
 
 target 'TastingRoomDelMar' do 
 	pod 'Parse'
+	pod 'ParseUI'
 	pod 'ParseCrashReporting'
 	pod 'ParseFacebookUtilsV4'
 	pod 'FBSDKCoreKit'

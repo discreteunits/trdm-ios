@@ -68,15 +68,20 @@ class SignUpViewController: UIViewController {
     }
     
 // ----------------------
-// SIGNUP FUNCTION
+// LOGIN / SIGN UP
 // ----------------------
     @IBAction func signup(sender: AnyObject) {
-        print("signup action fired")
         activityIndicator.startAnimating()
         activityIndicator.hidden = false
-        print("\(signUpLoginTableViewControllerRef)")
-        self.signUpLoginTableViewControllerRef?.saveUser()
-        print("signup action finished")
+        
+        if self.signUpLoginTableViewControllerRef?.signupActive == true {
+            self.signUpLoginTableViewControllerRef?.saveUser()
+            print("signup action finished")
+        } else {
+            self.signUpLoginTableViewControllerRef?.loginUser()
+            print("login action finished")
+        }
+
     }
     
 // ----------------------

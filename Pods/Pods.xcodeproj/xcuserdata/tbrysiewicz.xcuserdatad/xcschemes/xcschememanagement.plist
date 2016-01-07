@@ -44,6 +44,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>ParseUI.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-TastingRoomDelMar.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -72,12 +77,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0F98F85575B93F19AE698C564B266D98</key>
+		<key>0375231A3E4FB00C5068E83134A18EB4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3738855BE046EDE22CEFDE575117ACCA</key>
+		<key>0F98F85575B93F19AE698C564B266D98</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -87,12 +92,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>499DB3C51D1C87BEB8AFD7598F0D78AF</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>4A460B39776A6CC6700607B700BC8EAE</key>
+		<key>4B828BF5355D29F97B23AAAFBB04F9EC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -112,12 +112,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>876A3C6638C52FAE167ECC82731E38BE</key>
+		<key>7454625252640156937A49242478FBC3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>88BFA9BD0AC85B5D14E58F7516779EF2</key>
+		<key>9B562EE7DC15A240FAECABE07F296410</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A140C32BFACAD57C873E6B084629FDB5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -133,6 +138,11 @@
 			<true/>
 		</dict>
 		<key>F5ACF367AE3BD7A7F2AF2D430901DF7B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F710EAB41DD6932844C4A82A87A2628F</key>
 		<dict>
 			<key>primary</key>
 			<true/>

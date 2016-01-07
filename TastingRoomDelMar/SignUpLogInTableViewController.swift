@@ -76,7 +76,7 @@ class SignUpLogInTableViewController: UITableViewController {
     }
     
 // ----------------------
-// SAVE USER DATA
+// SAVE USER
 // ----------------------
     func saveUser() {
         
@@ -92,18 +92,40 @@ class SignUpLogInTableViewController: UITableViewController {
             
             if  error == nil {
                 
-                print("Successfully saved user data.")
-                self.performSegueWithIdentifier("signup", sender: self)
+                print("Successfully saved user.")
+                self.SignUpViewControllerRef?.performSegueWithIdentifier("signup", sender: self)
                 
             } else {
                 
-                print("Failed to save user data.")
-                self.displayAlert("Failed Signup", message: "Please try again later.")
+                print("Failed to save user.")
+                self.displayAlert("Sign Up Failed", message: "Please try again later.")
                 
             }
             
         })
         
+    }
+    
+// ------------------
+// LOGIN USER
+// ------------------
+    func loginUser() {
+        
+        PFUser.logInWithUsernameInBackground(emailTextField.text!, password: passwordTextField.text!, block: { ( user, error ) -> Void in
+          
+            self.activityStop()
+            
+            if user != nil {
+                
+                print("Login Successful.")
+                self.performSegueWithIdentifier("login", sender: self)
+                
+            } else {
+                
+                print("Login Failure")
+                self.displayAlert("Login Failed", message: "Please ty again later.")
+            }
+        })
     }
     
 // ------------------

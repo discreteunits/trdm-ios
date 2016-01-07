@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BB65EBD50F601E4F26BD8CFC /* Pods_TastingRoomDelMar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 258E486804D393986620D744 /* Pods_TastingRoomDelMar.framework */; };
+		D719A6301C3F26D500987525 /* TierINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D719A62F1C3F26D500987525 /* TierINavigationController.swift */; };
 		D7F4952F1C3B2DA2006E8592 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F4952E1C3B2DA2006E8592 /* SignUpViewController.swift */; };
 		D7F495311C3B38D2006E8592 /* SignUpLogInTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F495301C3B38D2006E8592 /* SignUpLogInTableViewController.swift */; };
 		D7FFF7B11C3AFB0600020D9A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FFF7B01C3AFB0600020D9A /* AppDelegate.swift */; };
@@ -40,6 +41,7 @@
 		04B86A7B2DE721FB50D137DB /* Pods-TastingRoomDelMar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TastingRoomDelMar.release.xcconfig"; path = "Pods/Target Support Files/Pods-TastingRoomDelMar/Pods-TastingRoomDelMar.release.xcconfig"; sourceTree = "<group>"; };
 		258E486804D393986620D744 /* Pods_TastingRoomDelMar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TastingRoomDelMar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D53F1940B0ECFC354F949DF6 /* Pods-TastingRoomDelMar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TastingRoomDelMar.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TastingRoomDelMar/Pods-TastingRoomDelMar.debug.xcconfig"; sourceTree = "<group>"; };
+		D719A62F1C3F26D500987525 /* TierINavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierINavigationController.swift; sourceTree = "<group>"; };
 		D7F4952E1C3B2DA2006E8592 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		D7F495301C3B38D2006E8592 /* SignUpLogInTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpLogInTableViewController.swift; sourceTree = "<group>"; };
 		D7FFF7AD1C3AFB0600020D9A /* TastingRoomDelMar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TastingRoomDelMar.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -130,6 +132,7 @@
 				D7FFF7B41C3AFB0600020D9A /* Main.storyboard */,
 				D7F4952E1C3B2DA2006E8592 /* SignUpViewController.swift */,
 				D7F495301C3B38D2006E8592 /* SignUpLogInTableViewController.swift */,
+				D719A62F1C3F26D500987525 /* TierINavigationController.swift */,
 				D7FFF7B71C3AFB0600020D9A /* Assets.xcassets */,
 				D7FFF7B91C3AFB0600020D9A /* LaunchScreen.storyboard */,
 				D7FFF7BC1C3AFB0600020D9A /* Info.plist */,
@@ -338,6 +341,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D7F4952F1C3B2DA2006E8592 /* SignUpViewController.swift in Sources */,
+				D719A6301C3F26D500987525 /* TierINavigationController.swift in Sources */,
 				D7F495311C3B38D2006E8592 /* SignUpLogInTableViewController.swift in Sources */,
 				D7FFF7B31C3AFB0600020D9A /* ViewController.swift in Sources */,
 				D7FFF7B11C3AFB0600020D9A /* AppDelegate.swift in Sources */,
