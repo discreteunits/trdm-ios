@@ -54,8 +54,7 @@ class SignUpLogInTableViewController: UITableViewController {
         
         tableView.scrollEnabled = true
         
-        validator.registerField(emailTextField, rules: [RequiredRule(), MinLengthRule(length: 2), MaxLengthRule(length: 14)])
-        
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -207,5 +206,35 @@ extension SignUpLogInTableViewController: ValidationDelegate {
         delegate?.hideSignUpButton()
         
     }
+    
+}
+
+extension SignUpLogInTableViewController: UITextFieldDelegate {
+    
+    func didChangeText(textField: UITextField) {
+        
+        let characterCount = count(textField.text)
+        
+        
+        if characterCount == 1 {
+            textField.font = UIFont(name: "HelveticaNeue-Regular", size: 18)
+        } else if characterCount == 0 {
+            textField.font = UIFont(name: "HelveticaNeue-Italic", size: 18)
+        }
+        
+        print("Text Field Did Change")
+        print(textField.text)
+        
+        validator.validate(self)
+        
+    }
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        
+        let newLength = count(UITextField) + count(string.utf16) - range.length
+        return newLength <= 14
+    }
+    
+    
     
 }
