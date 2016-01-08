@@ -19,7 +19,7 @@ import SwiftValidator
 protocol SignUpLogInTableViewDelegate {
     func showSignUpButton()
     func hideSignUpButton()
-
+    func alternateLoginSignupNav()
 }
 
 class SignUpLogInTableViewController: UITableViewController {
@@ -52,9 +52,10 @@ class SignUpLogInTableViewController: UITableViewController {
         
         emailTextField.becomeFirstResponder()
         
-        tableView.scrollEnabled = true
+        tableView.scrollEnabled = false
         
-
+//        let frameRect = emailTextField.frame.size.height = CGFloat(60)
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -128,10 +129,10 @@ class SignUpLogInTableViewController: UITableViewController {
     }
     
 // ------------------
-// ALTERNATE LOGIN AND SIGN UP
+// ALTERNATE FUNCTION
 // ------------------
-    @IBAction func login(sender: AnyObject) {
-        
+    func alternateLoginSignup() {
+
         if signupActive == true {
             
             infoText.text = "Provide your email and password below to login."
@@ -147,6 +148,17 @@ class SignUpLogInTableViewController: UITableViewController {
             signupActive = true
             
         }
+    }
+    
+// ------------------
+// ALTERNATE TRIGGER
+// ------------------
+    @IBAction func login(sender: AnyObject) {
+        
+        alternateLoginSignup()
+        delegate?.alternateLoginSignupNav()
+        print("\(delegate)")
+
     }
    
 // ----------------------
@@ -184,6 +196,29 @@ class SignUpLogInTableViewController: UITableViewController {
         
     }
     
+// ----------------------
+// TEXTFIELD DID CHANGE FUNCTION
+// ----------------------
+    @IBAction func emailDidChange(sender: AnyObject) {
+        
+        validator.validate(self)
+        print("Email did Change")
+    }
+    
+    @IBAction func passwordDidChange(sender: AnyObject) {
+        
+        validator.validate(self)
+        print("Password did change")
+        
+    }
+    
+// ----------------------
+// SEMI-MAGICAL CONTROLLER DATA TRANSFER
+// ----------------------
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+    }
+    
 }
 
 
@@ -206,35 +241,5 @@ extension SignUpLogInTableViewController: ValidationDelegate {
         delegate?.hideSignUpButton()
         
     }
-    
-}
-
-extension SignUpLogInTableViewController: UITextFieldDelegate {
-    
-    func didChangeText(textField: UITextField) {
-        
-        let characterCount = count(textField.text)
-        
-        
-        if characterCount == 1 {
-            textField.font = UIFont(name: "HelveticaNeue-Regular", size: 18)
-        } else if characterCount == 0 {
-            textField.font = UIFont(name: "HelveticaNeue-Italic", size: 18)
-        }
-        
-        print("Text Field Did Change")
-        print(textField.text)
-        
-        validator.validate(self)
-        
-    }
-    
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        
-        let newLength = count(UITextField) + count(string.utf16) - range.length
-        return newLength <= 14
-    }
-    
-    
     
 }

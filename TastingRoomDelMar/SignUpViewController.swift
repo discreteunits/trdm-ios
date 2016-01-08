@@ -11,6 +11,7 @@ import Parse
 import ParseCrashReporting
 import ParseFacebookUtilsV4
 import Alamofire
+import SwiftValidator
 
 
 class SignUpViewController: UIViewController {
@@ -24,6 +25,11 @@ class SignUpViewController: UIViewController {
     
     var currentUser: PFUser?
     
+    var nav: UINavigationBar?
+    
+    let validator = Validator()
+    
+
 // ------------------
     
     override func viewDidLoad() {
@@ -33,38 +39,43 @@ class SignUpViewController: UIViewController {
             currentUser = user
         }
         
+        if let navBar = navigationController?.navigationBar {
+            
+            nav = navBar
+            
+            nav?.topItem!.title = "Sign Up"
+            nav?.barStyle = UIBarStyle.Black
+            nav?.tintColor = UIColor.whiteColor()
+            nav?.titleTextAttributes = [ NSFontAttributeName: UIFont (name: "Helvetica Neue", size: 20)!]
+            print("\(nav)")
+            
+        }
+        
+        
+        
+        validator.styleTransformers(success:{ (validationRule) -> Void in
+            print("Validation successful style transformer")
+            // clear error label
+            validationRule.errorLabel?.hidden = true
+            validationRule.errorLabel?.text = ""
+            // validationRule.textField.layer.borderColor = UIColor.whiteColor().CGColor
+            // validationRule.textField.layer.borderWidth = 0.5
+            
+            }, error:{ (validationError) -> Void in
+                print("Validation failed style transformer")
+                validationError.errorLabel?.hidden = false
+                validationError.errorLabel?.text = validationError.errorMessage
+                // validationError.textField.layer.borderColor = UIColor.redColor().CGColor
+                // validationError.textField.layer.borderWidth = 1.0
+        })
+        
+        
+        
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        
-        let nav = self.navigationController?.navigationBar
-        
-        nav?.barStyle = UIBarStyle.Black
-        nav?.tintColor = UIColor.whiteColor()
-        nav?.titleTextAttributes = [ NSFontAttributeName: UIFont (name: "Helvetica Neue", size: 20)!]
-
-    }
-    
-// ----------------------
-// SEMI-MAGICAL CONTROLLER DATA TRANSFER
-// ----------------------
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-        if segue.identifier == "SignUpLoginEmbeded" {
-            
-            if let SignUpLogInTableViewController = segue.destinationViewController as? SignUpLogInTableViewController {
-                
-                self.signUpLoginTableViewControllerRef = SignUpLogInTableViewController
-                
-                SignUpLogInTableViewController.containerViewController = self
-                
-            }
-        }
     }
     
 // ----------------------
@@ -119,33 +130,95 @@ class SignUpViewController: UIViewController {
     }
     
 // ----------------------
-// Horizontal UI Animation
+// Vertical UI Animation
 // ----------------------
-    func hideButton() {
+
+    func hideButtonVertical() {
         
         UIView.animateWithDuration(0.2, delay: 0.0, options: .CurveEaseInOut, animations: { () -> Void in
             
             self.signUpButton.transform = CGAffineTransformIdentity
+            self.signUpButton.alpha = 0
             
-            
-            }, completion: nil)
+            }) { (succeeded: Bool) -> Void in
+                
+                if succeeded {
+                    self.signUpButton.hidden = true
+                }
+                
+        }
         
     }
     
-    func showButton() {
+    func showButtonVertical() {
+        
+        self.signUpButton.hidden = false
         
         UIView.animateWithDuration(0.2, delay: 0.0, options: .CurveEaseInOut, animations: { () -> Void in
             
-            self.signUpButton.transform = CGAffineTransformMakeTranslation(self.view.frame.width, 0)
+            self.signUpButton.transform = CGAffineTransformMakeTranslation(0, -self.signUpButton.frame.height)
+            self.signUpButton.alpha = 1
             
-            }, completion: nil)
+            }) { (succeeded: Bool) -> Void in
+                
+                if succeeded {
+                    
+                }
+                
+        }
         
     }
     
-
-    
-    
+// ----------------------
+// SEMI-MAGICAL CONTROLLER DATA TRANSFER
+// ----------------------
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "SignUpLoginEmbeded" {
+            
+            if let SignUpLogInTableViewController = segue.destinationViewController as? SignUpLogInTableViewController {
+                
+                self.signUpLoginTableViewControllerRef = SignUpLogInTableViewController
+                
+                SignUpLogInTableViewController.containerViewController = self // check if needed
+                
+                SignUpLogInTableViewController.delegate = self
+                
+            }
+        }
+    }
 
 }
 
+extension SignUpViewController: SignUpLogInTableViewDelegate {
+    func showSignUpButton() {
+        print("called showSignUpButton from SignUpLogInViewDelegate")
+        showButtonVertical()
+    }
+    func hideSignUpButton() {
+        print("called hideSignUpButton from SignUpLogInViewDelegate")
+        hideButtonVertical()
+    }
+    func alternateLoginSignupNav() {
+        print("alternateLoginSignupNav called from ViewController")
+        var signupActive = self.signUpLoginTableViewControllerRef?.signupActive
+        
+        if signupActive == true {
+            
+            nav = navigationController?.navigationBar
+            nav?.topItem!.title = "Sign Up"
+            self.signUpButton.setTitle("Sign Up", forState: UIControlState.Normal)
+            signupActive = false
+            
+        } else {
+            
+            nav = navigationController?.navigationBar
+            nav?.topItem!.title = "Login"
+            self.signUpButton.setTitle("Login", forState: UIControlState.Normal)
+            signupActive = true
+            
+        }
 
+    }
+    
+}

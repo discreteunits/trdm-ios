@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -21,15 +20,14 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="primary-logotype-05_rgb_600_600" translatesAutoresizingMaskIntoConstraints="NO" id="Rz3-yz-WBc">
                                 <rect key="frame" x="105" y="250" width="391" height="99"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="99" id="kTK-e7-YwQ"/>
+                                    <constraint firstAttribute="width" constant="300" id="KZe-sa-51Y"/>
+                                    <constraint firstAttribute="height" constant="92" id="kTK-e7-YwQ"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Rz3-yz-WBc" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="20" id="Jw3-bm-Mu6"/>
                             <constraint firstItem="Rz3-yz-WBc" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="230" id="fMX-CK-zdc"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Rz3-yz-WBc" secondAttribute="trailing" constant="20" id="lFF-pb-aTJ"/>
                             <constraint firstItem="Rz3-yz-WBc" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="ntV-XG-1hy"/>
                         </constraints>
                     </view>
