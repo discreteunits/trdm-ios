@@ -53,7 +53,7 @@ class ViewController: UIViewController {
                         
                         dispatch_async(dispatch_get_main_queue()) {
                             
-                            self.performSegueWithIdentifier("signup", sender: self)
+                            self.performSegueWithIdentifier("fbsignin", sender: self)
                             
                         }
                     } else {
@@ -62,7 +62,7 @@ class ViewController: UIViewController {
                         
                         dispatch_async(dispatch_get_main_queue()) {
                             
-                            self.performSegueWithIdentifier("login", sender: self)
+                            self.performSegueWithIdentifier("fblogin", sender: self)
                             
                         }
                     }

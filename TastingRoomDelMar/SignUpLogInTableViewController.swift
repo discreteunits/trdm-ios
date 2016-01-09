@@ -39,7 +39,6 @@ class SignUpLogInTableViewController: UITableViewController {
     
     let validator = Validator()
     
-    var emailIsValid: Bool = false
     
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     
@@ -91,9 +90,10 @@ class SignUpLogInTableViewController: UITableViewController {
             self.activityStop()
             
             if  error == nil {
-                
+
                 print("Successfully saved user.")
-                self.SignUpViewControllerRef?.performSegueWithIdentifier("signup", sender: self)
+                self.validationSuccessful()
+//                self.SignUpViewControllerRef?.performSegueWithIdentifier("signup", sender: self)
                 
             } else {
                 
@@ -157,8 +157,7 @@ class SignUpLogInTableViewController: UITableViewController {
         
         alternateLoginSignup()
         delegate?.alternateLoginSignupNav()
-        print("\(delegate)")
-
+        
     }
    
 // ----------------------
@@ -203,19 +202,13 @@ class SignUpLogInTableViewController: UITableViewController {
         
         validator.validate(self)
         print("Email did Change")
+        
     }
     
     @IBAction func passwordDidChange(sender: AnyObject) {
         
         validator.validate(self)
         print("Password did change")
-        
-    }
-    
-// ----------------------
-// SEMI-MAGICAL CONTROLLER DATA TRANSFER
-// ----------------------
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
     }
     
@@ -228,7 +221,6 @@ extension SignUpLogInTableViewController: ValidationDelegate {
         
         // submit the form 
         print("Validation Successful")
-        self.emailIsValid = true
         delegate?.showSignUpButton()
         
     }
@@ -237,7 +229,14 @@ extension SignUpLogInTableViewController: ValidationDelegate {
         
         // turn the fields to red
         print("Validation Failed")
-        self.emailIsValid = false
+        
+        for (field, error) in validator.errors {
+            field.layer.borderColor = UIColor.redColor().CGColor
+            field.layer.borderWidth = 1.0
+            error.errorLabel?.text = error.errorMessage
+            error.errorLabel?.hidden = false
+        }
+        
         delegate?.hideSignUpButton()
         
     }

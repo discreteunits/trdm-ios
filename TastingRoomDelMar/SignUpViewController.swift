@@ -214,6 +214,7 @@ extension SignUpViewController: SignUpLogInTableViewDelegate {
             
             nav = navigationController?.navigationBar
             nav?.topItem!.title = "Login"
+            self.signUpButton.backgroundColor = UIColor.lightGrayColor()
             self.signUpButton.setTitle("Login", forState: UIControlState.Normal)
             signupActive = true
             
