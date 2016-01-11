@@ -7,14 +7,22 @@
 //
 
 import UIKit
-
+import Parse
+import ParseCrashReporting
+import ParseFacebookUtilsV4
+import Alamofire
+import SwiftValidator
 
 class TierINavigationController: UINavigationController {
     
+
+// ---------------------
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 
-        // Do any additional setup after loading the view.
+
     }
 
     override func didReceiveMemoryWarning() {

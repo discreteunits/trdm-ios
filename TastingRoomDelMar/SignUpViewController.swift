@@ -47,7 +47,6 @@ class SignUpViewController: UIViewController {
             nav?.barStyle = UIBarStyle.Black
             nav?.tintColor = UIColor.whiteColor()
             nav?.titleTextAttributes = [ NSFontAttributeName: UIFont (name: "Helvetica Neue", size: 20)!]
-            print("\(nav)")
             
         }
         
