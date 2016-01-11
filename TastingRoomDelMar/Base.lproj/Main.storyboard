@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
-
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -113,24 +112,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f01-GQ-w31" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1254" y="1299"/>
-        </scene>
-        <!--Menu View Controller-->
-        <scene sceneID="nB9-sv-2Ij">
-            <objects>
-                <viewController id="BWC-fj-WcO" customClass="MenuViewController" customModule="TastingRoomDelMar" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="a3T-LX-6Mv"/>
-                        <viewControllerLayoutGuide type="bottom" id="dhE-E8-MEq"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="4gy-PA-CbZ">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="K40-8n-z87" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-213" y="1299"/>
         </scene>
         <!--TierI Navigation Controller-->
         <scene sceneID="4SG-PS-vp4">

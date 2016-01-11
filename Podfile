@@ -15,6 +15,5 @@ target 'TastingRoomDelMar' do
 	pod 'SwiftValidator', '3.0.1'
 	pod 'PureLayout'
 	pod 'Stripe'
-	pod 'SlideMenuControllerSwift'
-	
+		
 end

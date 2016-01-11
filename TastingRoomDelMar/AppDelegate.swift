@@ -10,7 +10,7 @@ import UIKit
 import Parse
 import ParseCrashReporting
 import ParseFacebookUtilsV4
-import SlideMenuControllerSwift
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,9 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        let slideMenuController = SlideMenuController(mainViewController: mainViewController, leftMenuViewController: leftViewController, rightMenuViewController: rightViewController)
-        self.window?.rootViewController = slideMenuController
-        self.window?.makeKeyAndVisible()
+
         
         
         Parse.enableLocalDatastore()
