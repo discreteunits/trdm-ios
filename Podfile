@@ -4,6 +4,7 @@ use_frameworks!
 
 target 'TastingRoomDelMar' do 
 	pod 'Parse'
+	pod 'ParseUI'
 	pod 'ParseCrashReporting'
 	pod 'ParseFacebookUtilsV4'
 	pod 'FBSDKCoreKit'
@@ -14,5 +15,6 @@ target 'TastingRoomDelMar' do
 	pod 'SwiftValidator', '3.0.1'
 	pod 'PureLayout'
 	pod 'Stripe'
-
+	pod 'SlideMenuControllerSwift'
+	
 end
