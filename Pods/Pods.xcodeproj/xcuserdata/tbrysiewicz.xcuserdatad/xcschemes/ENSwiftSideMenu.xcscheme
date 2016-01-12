@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'D7D3B3B43D111EE188EAF48E'
-               BlueprintName = 'Alamofire'
+               BlueprintIdentifier = 'A41D5F52EEE2011DAE3ED7E7'
+               BlueprintName = 'ENSwiftSideMenu'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'Alamofire.framework'>
+               BuildableName = 'ENSwiftSideMenu.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

@@ -10,19 +10,17 @@ import UIKit
 import Parse
 import ParseCrashReporting
 import ParseFacebookUtilsV4
+import SlideMenuControllerSwift
 
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-
-        
-        
+                
         Parse.enableLocalDatastore()
         
         Parse.setApplicationId("iDDFJkF2ZGnHFtfrcEMba1UYr31zt3fybMzyPM12",
