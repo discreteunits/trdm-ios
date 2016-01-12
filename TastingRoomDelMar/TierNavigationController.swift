@@ -1,5 +1,5 @@
 //
-//  TierINavigationController.swift
+//  TierNavigationController.swift
 //  TastingRoomDelMar
 //
 //  Created by Tobias Robert Brysiewicz on 1/7/16.
@@ -8,11 +8,12 @@
 
 import UIKit
 
-class TierINavigationController: ENSideMenuNavigationController, ENSideMenuDelegate {
+class TierNavigationController: ENSideMenuNavigationController, ENSideMenuDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+// FLYOUT MENU
         sideMenu = ENSideMenu(sourceView: self.view, menuViewController: MenuTableViewController(), menuPosition:.Right)
         //sideMenu?.delegate = self //optional
         sideMenu?.menuWidth = 260.0 // optional, default is 160

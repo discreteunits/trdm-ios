@@ -104,7 +104,60 @@
                     <view key="view" contentMode="scaleToFill" id="YJm-ZT-s8h">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="An2-Ge-sCE">
+                                <rect key="frame" x="0.0" y="64" width="600" height="175"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="175" id="HW5-BB-nOu"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="27"/>
+                                <state key="normal" title="Dine in">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="dineIn:" destination="brH-MO-rRh" eventType="touchUpInside" id="mJb-yJ-MwD"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ghR-H8-wp8">
+                                <rect key="frame" x="0.0" y="420" width="600" height="178"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="175" id="x9t-N5-w86"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="27"/>
+                                <state key="normal" title="Events">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="events:" destination="brH-MO-rRh" eventType="touchUpInside" id="qJg-lX-0YF"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Ut-q0-H88">
+                                <rect key="frame" x="0.0" y="242" width="600" height="178"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="27"/>
+                                <state key="normal" title="Take out">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="takeOut:" destination="brH-MO-rRh" eventType="touchUpInside" id="IvC-xs-3ZR"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="An2-Ge-sCE" firstAttribute="centerX" secondItem="YJm-ZT-s8h" secondAttribute="centerX" id="1q8-TO-oHM"/>
+                            <constraint firstItem="ghR-H8-wp8" firstAttribute="leading" secondItem="YJm-ZT-s8h" secondAttribute="leadingMargin" constant="-20" id="59V-GC-nkh"/>
+                            <constraint firstItem="8Ut-q0-H88" firstAttribute="leading" secondItem="YJm-ZT-s8h" secondAttribute="leadingMargin" constant="-20" id="Ekn-Ik-GuT"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="8Ut-q0-H88" secondAttribute="trailing" constant="-20" id="Gmj-aQ-WMw"/>
+                            <constraint firstItem="An2-Ge-sCE" firstAttribute="leading" secondItem="YJm-ZT-s8h" secondAttribute="leadingMargin" constant="-20" id="H3I-70-WbH"/>
+                            <constraint firstItem="8Ut-q0-H88" firstAttribute="top" secondItem="An2-Ge-sCE" secondAttribute="bottom" id="Ih3-je-85R"/>
+                            <constraint firstItem="RGK-c0-pon" firstAttribute="top" secondItem="ghR-H8-wp8" secondAttribute="bottom" id="R0z-bO-BaJ"/>
+                            <constraint firstItem="An2-Ge-sCE" firstAttribute="top" secondItem="IKg-fU-J2a" secondAttribute="bottom" id="R2z-v8-N3o"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="An2-Ge-sCE" secondAttribute="trailing" constant="-20" id="eJS-2H-5fd"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ghR-H8-wp8" secondAttribute="trailing" constant="-20" id="h5C-Qp-DEa"/>
+                            <constraint firstItem="ghR-H8-wp8" firstAttribute="top" secondItem="8Ut-q0-H88" secondAttribute="bottom" id="pEJ-DJ-XpT"/>
+                            <constraint firstItem="8Ut-q0-H88" firstAttribute="centerX" secondItem="YJm-ZT-s8h" secondAttribute="centerX" id="xED-p5-urn"/>
+                            <constraint firstItem="ghR-H8-wp8" firstAttribute="centerX" secondItem="YJm-ZT-s8h" secondAttribute="centerX" id="zle-AG-z0q"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="TASTING ROOM" id="Lys-zo-q9W">
                         <barButtonItem key="leftBarButtonItem" title="Del Mar" id="619-03-9t9"/>
@@ -117,15 +170,60 @@
                             <barButtonItem title="T" id="ReY-ym-yGf"/>
                         </rightBarButtonItems>
                     </navigationItem>
+                    <connections>
+                        <outlet property="dineInButton" destination="An2-Ge-sCE" id="42G-wL-Gmz"/>
+                        <outlet property="eventsButton" destination="ghR-H8-wp8" id="Bak-nl-FgC"/>
+                        <outlet property="takeOutButton" destination="8Ut-q0-H88" id="Ulj-fe-Vcd"/>
+                        <segue destination="kZY-rG-BQA" kind="show" identifier="toTierII" id="ejx-hg-doo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f01-GQ-w31" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1254" y="1299"/>
         </scene>
-        <!--TierI Navigation Controller-->
+        <!--TierII View Controller-->
+        <scene sceneID="TiA-iH-77q">
+            <objects>
+                <viewController id="kZY-rG-BQA" customClass="TierIIViewController" customModule="TastingRoomDelMar" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="MnI-qQ-Nv5"/>
+                        <viewControllerLayoutGuide type="bottom" id="4nw-dd-her"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="brA-gJ-6lg">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="yQq-Km-ylV" kind="show" id="sOs-mx-8Hf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1xy-6I-YK7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1937" y="1299"/>
+        </scene>
+        <!--TierIII View Controller-->
+        <scene sceneID="IrN-vR-HyX">
+            <objects>
+                <viewController id="yQq-Km-ylV" customClass="TierIIIViewController" customModule="TastingRoomDelMar" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="VNs-0o-m4A"/>
+                        <viewControllerLayoutGuide type="bottom" id="Lh5-Av-Ocm"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ZMz-5C-aKn">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="haf-jN-zKe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2646" y="1299"/>
+        </scene>
+        <!--Tier Navigation Controller-->
         <scene sceneID="4SG-PS-vp4">
             <objects>
-                <navigationController storyboardIdentifier="LoggedIn" id="GuM-Yy-MxH" customClass="TierINavigationController" customModule="TastingRoomDelMar" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="LoggedIn" id="GuM-Yy-MxH" customClass="TierNavigationController" customModule="TastingRoomDelMar" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="oNz-Hs-Y4Y">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

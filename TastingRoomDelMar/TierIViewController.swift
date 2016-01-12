@@ -10,6 +10,10 @@ import UIKit
 
 class TierIViewController: UIViewController, ENSideMenuDelegate {
     
+    @IBOutlet weak var dineInButton: UIButton!
+    @IBOutlet weak var takeOutButton: UIButton!
+    @IBOutlet weak var eventsButton: UIButton!
+    
     var nav: UINavigationBar?
     
 // ---------------------
@@ -23,12 +27,25 @@ class TierIViewController: UIViewController, ENSideMenuDelegate {
             
             nav = navBar
             
-            nav?.topItem!.title = "Tasting Room"
             nav?.barStyle = UIBarStyle.Black
             nav?.tintColor = UIColor.whiteColor()
             nav?.titleTextAttributes = [ NSFontAttributeName: UIFont (name: "Helvetica Neue", size: 20)!]
             
+            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+            imageView.contentMode = .ScaleAspectFit
+            let image = UIImage(named: "primary-logotype-05_rgb_600_600")
+            imageView.image = image
+            navigationItem.titleView = imageView
+            
         }
+        
+        let optionsArray = [dineInButton, takeOutButton, eventsButton]
+        
+        for index in optionsArray {
+            index.layer.borderWidth = 1;
+            index.layer.borderColor = UIColor.lightGrayColor().CGColor
+        }
+
         
     }
 
@@ -42,15 +59,16 @@ class TierIViewController: UIViewController, ENSideMenuDelegate {
         toggleSideMenuView()
 
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    @IBAction func dineIn(sender: AnyObject) {
+        self.performSegueWithIdentifier("toTierII", sender: self)
     }
-    */
+    
+    @IBAction func takeOut(sender: AnyObject) {
+        self.performSegueWithIdentifier("toTierII", sender: self)
+    }
+    @IBAction func events(sender: AnyObject) {
+        self.performSegueWithIdentifier("toTierII", sender: self)
+    }
 
 }
