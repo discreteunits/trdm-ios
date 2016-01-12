@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -107,6 +108,14 @@
                     </view>
                     <navigationItem key="navigationItem" title="TASTING ROOM" id="Lys-zo-q9W">
                         <barButtonItem key="leftBarButtonItem" title="Del Mar" id="619-03-9t9"/>
+                        <rightBarButtonItems>
+                            <barButtonItem image="ham" id="J8h-k1-3hS">
+                                <connections>
+                                    <action selector="toggleSideMenu:" destination="brH-MO-rRh" id="3eu-37-AJj"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="T" id="ReY-ym-yGf"/>
+                        </rightBarButtonItems>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f01-GQ-w31" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -387,6 +396,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ham" width="35" height="35"/>
         <image name="primary-logotype-05_rgb_600_600" width="600" height="184"/>
     </resources>
     <inferredMetricsTieBreakers>

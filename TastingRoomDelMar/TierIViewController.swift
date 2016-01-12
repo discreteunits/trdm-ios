@@ -7,15 +7,8 @@
 //
 
 import UIKit
-import Parse
-import ParseCrashReporting
-import ParseFacebookUtilsV4
-import Alamofire
-import SwiftValidator
-import SlideMenuControllerSwift
 
-
-class TierIViewController: UIViewController {
+class TierIViewController: UIViewController, ENSideMenuDelegate {
     
     var nav: UINavigationBar?
     
@@ -23,6 +16,8 @@ class TierIViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.sideMenuController()?.sideMenu?.delegate = self
 
         if let navBar = navigationController?.navigationBar {
             
@@ -42,6 +37,11 @@ class TierIViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func toggleSideMenu(sender: AnyObject) {
+        
+        toggleSideMenuView()
+
+    }
 
     /*
     // MARK: - Navigation

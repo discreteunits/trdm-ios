@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>ENSwiftSideMenu.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>FBSDKCoreKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -77,12 +82,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0375231A3E4FB00C5068E83134A18EB4</key>
+		<key>0F98F85575B93F19AE698C564B266D98</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>0F98F85575B93F19AE698C564B266D98</key>
+		<key>35B9D98090C11DC21DC881FBF6C25DDE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -92,7 +97,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4B828BF5355D29F97B23AAAFBB04F9EC</key>
+		<key>43A285A06AE68E1F725B05097E1CA431</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -112,22 +117,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7454625252640156937A49242478FBC3</key>
+		<key>5E40B80F0FA7BDA9FBB0AB7DDCD07249</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9B562EE7DC15A240FAECABE07F296410</key>
+		<key>7F84926BCF71AB6D1583273A2483D287</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A140C32BFACAD57C873E6B084629FDB5</key>
+		<key>9BE64E95D8BF42C677C171D80ABAF334</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>CE9387695D2BA7F9FC4492ACE5896A30</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D8232FF8E5AD441E6861E6FE1B0DCCAD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
