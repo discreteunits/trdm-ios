@@ -1,28 +1,26 @@
 //
-//  TierIViewController.swift
+//  TierIVViewController.swift
 //  TastingRoomDelMar
 //
-//  Created by Tobias Robert Brysiewicz on 1/11/16.
+//  Created by Tobias Robert Brysiewicz on 1/12/16.
 //  Copyright © 2016 Taylor 5, LLC. All rights reserved.
 //
 
 import UIKit
 
-class TierIViewController: UIViewController, ENSideMenuDelegate {
-    
-    @IBOutlet weak var dineInButton: UIButton!
-    @IBOutlet weak var takeOutButton: UIButton!
-    @IBOutlet weak var eventsButton: UIButton!
-    
+class TierIVViewController: UIViewController, ENSideMenuDelegate {
+
     var nav: UINavigationBar?
-    
-// ---------------------
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+// FLYOUT MENU
         
         self.sideMenuController()?.sideMenu?.delegate = self
-
+        
+// NAV BAR STYLES
+        
         if let navBar = navigationController?.navigationBar {
             
             nav = navBar
@@ -38,15 +36,6 @@ class TierIViewController: UIViewController, ENSideMenuDelegate {
             navigationItem.titleView = imageView
             
         }
-        
-//        let optionsArray = [dineInButton, takeOutButton, eventsButton]
-//        
-//        for index in optionsArray {
-//            index.layer.borderWidth = 1;
-//            index.layer.borderColor = UIColor.lightGrayColor().CGColor
-//        }
-
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -54,21 +43,19 @@ class TierIViewController: UIViewController, ENSideMenuDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+// FLYOUT TRIGGER
     @IBAction func toggleSideMenu(sender: AnyObject) {
-        
         toggleSideMenuView()
+    }
 
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
     }
-    
-    @IBAction func dineIn(sender: AnyObject) {
-        self.performSegueWithIdentifier("toTierII", sender: self)
-    }
-    
-    @IBAction func takeOut(sender: AnyObject) {
-        self.performSegueWithIdentifier("toTierII", sender: self)
-    }
-    @IBAction func events(sender: AnyObject) {
-        self.performSegueWithIdentifier("toTierII", sender: self)
-    }
+    */
 
 }
