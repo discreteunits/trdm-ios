@@ -9,12 +9,11 @@
 /* Begin PBXBuildFile section */
 		BB65EBD50F601E4F26BD8CFC /* Pods_TastingRoomDelMar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 258E486804D393986620D744 /* Pods_TastingRoomDelMar.framework */; };
 		D719A6301C3F26D500987525 /* TierNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D719A62F1C3F26D500987525 /* TierNavigationController.swift */; };
+		D729AB831C471FF90021A66E /* TierIVCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D729AB821C471FF90021A66E /* TierIVCollectionViewCell.swift */; };
 		D7734AF11C458012009286DD /* TierIIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7734AF01C458012009286DD /* TierIIViewController.swift */; };
 		D7734AF31C45887C009286DD /* TierIIIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7734AF21C45887C009286DD /* TierIIIViewController.swift */; };
 		D7734AF51C45C1D9009286DD /* TierITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7734AF41C45C1D9009286DD /* TierITableViewController.swift */; };
 		D7734AF71C45D4B3009286DD /* TierIITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7734AF61C45D4B3009286DD /* TierIITableViewController.swift */; };
-		D7734AF91C45D654009286DD /* TierIVTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7734AF81C45D654009286DD /* TierIVTableViewController.swift */; };
-		D7734AFB1C45D696009286DD /* TierIVCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7734AFA1C45D696009286DD /* TierIVCollectionViewController.swift */; };
 		D7734AFD1C45D87F009286DD /* TierIVViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7734AFC1C45D87F009286DD /* TierIVViewController.swift */; };
 		D77767921C4421CE0068334B /* TierIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77767911C4421CE0068334B /* TierIViewController.swift */; };
 		D7F4952F1C3B2DA2006E8592 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F4952E1C3B2DA2006E8592 /* SignUpViewController.swift */; };
@@ -22,6 +21,7 @@
 		D7F981101C44612800200639 /* ENSideMenuControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F9810F1C44612800200639 /* ENSideMenuControllerViewController.swift */; };
 		D7F981121C4461A300200639 /* ENSideMenuNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F981111C4461A300200639 /* ENSideMenuNavigationController.swift */; };
 		D7F981141C4461FD00200639 /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F981131C4461FD00200639 /* MenuTableViewController.swift */; };
+		D7FACCFB1C46F1EF0006F6BE /* TierIVCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FACCFA1C46F1EF0006F6BE /* TierIVCollectionViewController.swift */; };
 		D7FFF7B11C3AFB0600020D9A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FFF7B01C3AFB0600020D9A /* AppDelegate.swift */; };
 		D7FFF7B31C3AFB0600020D9A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FFF7B21C3AFB0600020D9A /* ViewController.swift */; };
 		D7FFF7B61C3AFB0600020D9A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7FFF7B41C3AFB0600020D9A /* Main.storyboard */; };
@@ -53,12 +53,11 @@
 		258E486804D393986620D744 /* Pods_TastingRoomDelMar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TastingRoomDelMar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D53F1940B0ECFC354F949DF6 /* Pods-TastingRoomDelMar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TastingRoomDelMar.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TastingRoomDelMar/Pods-TastingRoomDelMar.debug.xcconfig"; sourceTree = "<group>"; };
 		D719A62F1C3F26D500987525 /* TierNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierNavigationController.swift; sourceTree = "<group>"; };
+		D729AB821C471FF90021A66E /* TierIVCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierIVCollectionViewCell.swift; sourceTree = "<group>"; };
 		D7734AF01C458012009286DD /* TierIIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierIIViewController.swift; sourceTree = "<group>"; };
 		D7734AF21C45887C009286DD /* TierIIIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierIIIViewController.swift; sourceTree = "<group>"; };
 		D7734AF41C45C1D9009286DD /* TierITableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierITableViewController.swift; sourceTree = "<group>"; };
 		D7734AF61C45D4B3009286DD /* TierIITableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierIITableViewController.swift; sourceTree = "<group>"; };
-		D7734AF81C45D654009286DD /* TierIVTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierIVTableViewController.swift; sourceTree = "<group>"; };
-		D7734AFA1C45D696009286DD /* TierIVCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierIVCollectionViewController.swift; sourceTree = "<group>"; };
 		D7734AFC1C45D87F009286DD /* TierIVViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierIVViewController.swift; sourceTree = "<group>"; };
 		D77767911C4421CE0068334B /* TierIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierIViewController.swift; sourceTree = "<group>"; };
 		D7F4952E1C3B2DA2006E8592 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -66,6 +65,7 @@
 		D7F9810F1C44612800200639 /* ENSideMenuControllerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ENSideMenuControllerViewController.swift; sourceTree = "<group>"; };
 		D7F981111C4461A300200639 /* ENSideMenuNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ENSideMenuNavigationController.swift; sourceTree = "<group>"; };
 		D7F981131C4461FD00200639 /* MenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
+		D7FACCFA1C46F1EF0006F6BE /* TierIVCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierIVCollectionViewController.swift; sourceTree = "<group>"; };
 		D7FFF7AD1C3AFB0600020D9A /* TastingRoomDelMar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TastingRoomDelMar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7FFF7B01C3AFB0600020D9A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D7FFF7B21C3AFB0600020D9A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -172,8 +172,8 @@
 				D7734AF41C45C1D9009286DD /* TierITableViewController.swift */,
 				D7734AF61C45D4B3009286DD /* TierIITableViewController.swift */,
 				D7734AFC1C45D87F009286DD /* TierIVViewController.swift */,
-				D7734AFA1C45D696009286DD /* TierIVCollectionViewController.swift */,
-				D7734AF81C45D654009286DD /* TierIVTableViewController.swift */,
+				D7FACCFA1C46F1EF0006F6BE /* TierIVCollectionViewController.swift */,
+				D729AB821C471FF90021A66E /* TierIVCollectionViewCell.swift */,
 				D7FFF7B71C3AFB0600020D9A /* Assets.xcassets */,
 				D7FFF7B91C3AFB0600020D9A /* LaunchScreen.storyboard */,
 				D7FFF7BC1C3AFB0600020D9A /* Info.plist */,
@@ -384,9 +384,8 @@
 				D7734AF71C45D4B3009286DD /* TierIITableViewController.swift in Sources */,
 				D7F4952F1C3B2DA2006E8592 /* SignUpViewController.swift in Sources */,
 				D719A6301C3F26D500987525 /* TierNavigationController.swift in Sources */,
-				D7734AFB1C45D696009286DD /* TierIVCollectionViewController.swift in Sources */,
+				D729AB831C471FF90021A66E /* TierIVCollectionViewCell.swift in Sources */,
 				D7734AF11C458012009286DD /* TierIIViewController.swift in Sources */,
-				D7734AF91C45D654009286DD /* TierIVTableViewController.swift in Sources */,
 				D7F981141C4461FD00200639 /* MenuTableViewController.swift in Sources */,
 				D7734AFD1C45D87F009286DD /* TierIVViewController.swift in Sources */,
 				D77767921C4421CE0068334B /* TierIViewController.swift in Sources */,
@@ -395,6 +394,7 @@
 				D7734AF31C45887C009286DD /* TierIIIViewController.swift in Sources */,
 				D7F981121C4461A300200639 /* ENSideMenuNavigationController.swift in Sources */,
 				D7734AF51C45C1D9009286DD /* TierITableViewController.swift in Sources */,
+				D7FACCFB1C46F1EF0006F6BE /* TierIVCollectionViewController.swift in Sources */,
 				D7FFF7B31C3AFB0600020D9A /* ViewController.swift in Sources */,
 				D7FFF7B11C3AFB0600020D9A /* AppDelegate.swift in Sources */,
 			);

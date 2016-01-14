@@ -39,7 +39,6 @@ class SignUpLogInTableViewController: UITableViewController {
     
     let validator = Validator()
     
-    
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     
     var SignUpViewControllerRef: SignUpViewController?

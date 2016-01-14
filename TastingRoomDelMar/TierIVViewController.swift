@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import ParseUI
+import Parse
+import ParseCrashReporting
 
 class TierIVViewController: UIViewController, ENSideMenuDelegate {
 
@@ -14,7 +17,7 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
 // FLYOUT MENU
         
         self.sideMenuController()?.sideMenu?.delegate = self
@@ -48,14 +51,44 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate {
         toggleSideMenuView()
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
+// ----------------------
+// QUERY FUNCTIONS
+// ----------------------
+//    func varietalsQuery() {
+//        print("Varietal query fired")
+//        
+//    }
+//    func itemsQuery() {
+//        
+//        print("Items query fired")
+//        
+//        let query:PFQuery = PFQuery(className:"WineVarietals")
+//        query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
+//            
+//            if error == nil {
+//                
+//                // The find succeeded.
+//                print("Successfully retrieved \(objects!.count) varietals.")
+//                
+//                // Do something with the found objects
+//                for object in objects as! [PFObject]! {
+//                    print(object.objectId)
+//                    self.varietalsArray.append(object["name"] as! String)
+//                    
+//                }
+//                
+//                print("\(self.varietalsArray)")
+//                
+//            } else {
+//                
+//                // Log details of the failure
+//                print("Error: \(error!) \(error!.userInfo)")
+//                
+//            }
+//            
+//        }
+//    }
 
 }
+
