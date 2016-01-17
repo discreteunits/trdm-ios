@@ -15,8 +15,6 @@ class TierIVCollectionViewController: PFQueryCollectionViewController {
 
     var varietalsArray = [String]()
     
-//    var label = UILabel
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -77,6 +75,8 @@ class TierIVCollectionViewController: PFQueryCollectionViewController {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("varietalCell", forIndexPath: indexPath) as! TierIVCollectionViewCell
         
         cell.titleLabel?.backgroundColor = UIColor.lightGrayColor()
+        cell.titleLabel?.layer.cornerRadius = 10.0
+        cell.titleLabel?.clipsToBounds = true
         cell.titleLabel?.text = self.varietalsArray[indexPath.row]
         
         return cell

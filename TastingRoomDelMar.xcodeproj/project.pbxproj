@@ -10,6 +10,11 @@
 		BB65EBD50F601E4F26BD8CFC /* Pods_TastingRoomDelMar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 258E486804D393986620D744 /* Pods_TastingRoomDelMar.framework */; };
 		D719A6301C3F26D500987525 /* TierNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D719A62F1C3F26D500987525 /* TierNavigationController.swift */; };
 		D729AB831C471FF90021A66E /* TierIVCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D729AB821C471FF90021A66E /* TierIVCollectionViewCell.swift */; };
+		D729AB851C4736570021A66E /* TierIVTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D729AB841C4736570021A66E /* TierIVTableViewController.swift */; };
+		D72B2A4E1C49728C0090875F /* popoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72B2A4D1C49728C0090875F /* popoverViewController.swift */; };
+		D75ABF1E1C48306A00435CF1 /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75ABF1D1C48306A00435CF1 /* ItemTableViewCell.swift */; };
+		D7605ED31C4B3693002D8093 /* DetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7605ED21C4B3693002D8093 /* DetailsTableViewCell.swift */; };
+		D7605ED51C4B3CDD002D8093 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7605ED41C4B3CDD002D8093 /* TestViewController.swift */; };
 		D7734AF11C458012009286DD /* TierIIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7734AF01C458012009286DD /* TierIIViewController.swift */; };
 		D7734AF31C45887C009286DD /* TierIIIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7734AF21C45887C009286DD /* TierIIIViewController.swift */; };
 		D7734AF51C45C1D9009286DD /* TierITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7734AF41C45C1D9009286DD /* TierITableViewController.swift */; };
@@ -54,6 +59,11 @@
 		D53F1940B0ECFC354F949DF6 /* Pods-TastingRoomDelMar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TastingRoomDelMar.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TastingRoomDelMar/Pods-TastingRoomDelMar.debug.xcconfig"; sourceTree = "<group>"; };
 		D719A62F1C3F26D500987525 /* TierNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierNavigationController.swift; sourceTree = "<group>"; };
 		D729AB821C471FF90021A66E /* TierIVCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierIVCollectionViewCell.swift; sourceTree = "<group>"; };
+		D729AB841C4736570021A66E /* TierIVTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierIVTableViewController.swift; sourceTree = "<group>"; };
+		D72B2A4D1C49728C0090875F /* popoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = popoverViewController.swift; sourceTree = "<group>"; };
+		D75ABF1D1C48306A00435CF1 /* ItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
+		D7605ED21C4B3693002D8093 /* DetailsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsTableViewCell.swift; sourceTree = "<group>"; };
+		D7605ED41C4B3CDD002D8093 /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		D7734AF01C458012009286DD /* TierIIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierIIViewController.swift; sourceTree = "<group>"; };
 		D7734AF21C45887C009286DD /* TierIIIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierIIIViewController.swift; sourceTree = "<group>"; };
 		D7734AF41C45C1D9009286DD /* TierITableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierITableViewController.swift; sourceTree = "<group>"; };
@@ -165,15 +175,20 @@
 				D7734AF21C45887C009286DD /* TierIIIViewController.swift */,
 				D7F981131C4461FD00200639 /* MenuTableViewController.swift */,
 				D7F4952E1C3B2DA2006E8592 /* SignUpViewController.swift */,
-				D7F495301C3B38D2006E8592 /* SignUpLogInTableViewController.swift */,
 				D719A62F1C3F26D500987525 /* TierNavigationController.swift */,
 				D77767911C4421CE0068334B /* TierIViewController.swift */,
 				D7734AF01C458012009286DD /* TierIIViewController.swift */,
 				D7734AF41C45C1D9009286DD /* TierITableViewController.swift */,
 				D7734AF61C45D4B3009286DD /* TierIITableViewController.swift */,
 				D7734AFC1C45D87F009286DD /* TierIVViewController.swift */,
+				D7F495301C3B38D2006E8592 /* SignUpLogInTableViewController.swift */,
 				D7FACCFA1C46F1EF0006F6BE /* TierIVCollectionViewController.swift */,
 				D729AB821C471FF90021A66E /* TierIVCollectionViewCell.swift */,
+				D729AB841C4736570021A66E /* TierIVTableViewController.swift */,
+				D75ABF1D1C48306A00435CF1 /* ItemTableViewCell.swift */,
+				D72B2A4D1C49728C0090875F /* popoverViewController.swift */,
+				D7605ED21C4B3693002D8093 /* DetailsTableViewCell.swift */,
+				D7605ED41C4B3CDD002D8093 /* TestViewController.swift */,
 				D7FFF7B71C3AFB0600020D9A /* Assets.xcassets */,
 				D7FFF7B91C3AFB0600020D9A /* LaunchScreen.storyboard */,
 				D7FFF7BC1C3AFB0600020D9A /* Info.plist */,
@@ -384,16 +399,21 @@
 				D7734AF71C45D4B3009286DD /* TierIITableViewController.swift in Sources */,
 				D7F4952F1C3B2DA2006E8592 /* SignUpViewController.swift in Sources */,
 				D719A6301C3F26D500987525 /* TierNavigationController.swift in Sources */,
+				D729AB851C4736570021A66E /* TierIVTableViewController.swift in Sources */,
 				D729AB831C471FF90021A66E /* TierIVCollectionViewCell.swift in Sources */,
 				D7734AF11C458012009286DD /* TierIIViewController.swift in Sources */,
+				D7605ED31C4B3693002D8093 /* DetailsTableViewCell.swift in Sources */,
+				D7605ED51C4B3CDD002D8093 /* TestViewController.swift in Sources */,
 				D7F981141C4461FD00200639 /* MenuTableViewController.swift in Sources */,
 				D7734AFD1C45D87F009286DD /* TierIVViewController.swift in Sources */,
 				D77767921C4421CE0068334B /* TierIViewController.swift in Sources */,
 				D7F981101C44612800200639 /* ENSideMenuControllerViewController.swift in Sources */,
+				D75ABF1E1C48306A00435CF1 /* ItemTableViewCell.swift in Sources */,
 				D7F495311C3B38D2006E8592 /* SignUpLogInTableViewController.swift in Sources */,
 				D7734AF31C45887C009286DD /* TierIIIViewController.swift in Sources */,
 				D7F981121C4461A300200639 /* ENSideMenuNavigationController.swift in Sources */,
 				D7734AF51C45C1D9009286DD /* TierITableViewController.swift in Sources */,
+				D72B2A4E1C49728C0090875F /* popoverViewController.swift in Sources */,
 				D7FACCFB1C46F1EF0006F6BE /* TierIVCollectionViewController.swift in Sources */,
 				D7FFF7B31C3AFB0600020D9A /* ViewController.swift in Sources */,
 				D7FFF7B11C3AFB0600020D9A /* AppDelegate.swift in Sources */,
