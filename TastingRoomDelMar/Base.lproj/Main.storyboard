@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="UWT-mm-qs0">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="GuM-Yy-MxH">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -103,7 +103,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="K9C-KF-KVw">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="K9C-KF-KVw" id="ZVa-8f-bpS">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
@@ -144,7 +144,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="Cqr-2d-ZfF">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Cqr-2d-ZfF" id="3Fx-OI-ihR">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
@@ -168,7 +168,7 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
-                        <segue destination="qcR-Yl-ZfG" kind="show" id="aFW-0d-mLl"/>
+                        <segue destination="qcR-Yl-ZfG" kind="show" identifier="tierIII" id="aFW-0d-mLl"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gx1-oe-fYY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -178,14 +178,14 @@
         <!--Title-->
         <scene sceneID="NnG-eo-gfM">
             <objects>
-                <tableViewController id="qcR-Yl-ZfG" sceneMemberID="viewController">
+                <tableViewController id="qcR-Yl-ZfG" customClass="TierIIITableViewController" customModule="TastingRoomDelMar" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="KLS-em-d7V">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="1zu-Cc-Ifz">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="1zu-Cc-Ifz">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1zu-Cc-Ifz" id="7MZ-Mv-Pct">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
@@ -200,12 +200,17 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Title" id="YWC-Xt-HdC">
                         <rightBarButtonItems>
-                            <barButtonItem image="ham" id="UGM-xM-5BT"/>
+                            <barButtonItem image="ham" id="UGM-xM-5BT">
+                                <connections>
+                                    <action selector="toggleSideMenu:" destination="qcR-Yl-ZfG" id="u0H-a5-rTd"/>
+                                </connections>
+                            </barButtonItem>
                             <barButtonItem title="T" id="IIs-l9-xLG"/>
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
-                        <segue destination="Tcs-V0-8z7" kind="show" id="rgt-K5-YdO"/>
+                        <segue destination="Tcs-V0-8z7" kind="show" identifier="tierIV" id="rgt-K5-YdO"/>
+                        <segue destination="EVh-kB-hCB" kind="show" identifier="revTierIII" id="iPn-hY-WIv"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7UI-yM-a1E" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -263,6 +268,9 @@
                             <barButtonItem title="T" id="k5B-Z9-dxl"/>
                         </rightBarButtonItems>
                     </navigationItem>
+                    <connections>
+                        <segue destination="qcR-Yl-ZfG" kind="show" identifier="revTierIV" id="4vX-H8-eIe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hDa-tB-bWm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -328,7 +336,7 @@
             <objects>
                 <tableViewController id="WTZ-qJ-zbB" customClass="TierIVTableViewController" customModule="TastingRoomDelMar" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="97" sectionHeaderHeight="28" sectionFooterHeight="28" id="X5c-7e-CoL">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="352"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -781,6 +789,8 @@
         <image name="primary-logotype-05_rgb_600_600" width="600" height="184"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="4vX-H8-eIe"/>
+        <segue reference="iPn-hY-WIv"/>
         <segue reference="Sa6-V9-UYu"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -41,6 +41,7 @@ class TierIVCollectionViewController: PFQueryCollectionViewController {
     func varietalsQuery() {
         
         let query:PFQuery = PFQuery(className:"WineVarietals")
+            query.includeKey("tag")
         query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
             
             if error == nil {
@@ -50,7 +51,13 @@ class TierIVCollectionViewController: PFQueryCollectionViewController {
                 
                 // Do something with the found objects
                 for object in objects! as [PFObject]{
-                    self.varietalsArray.append(object["name"] as! String)
+                    
+                    if object["tag"]["state"] as! String == "active" {
+                        
+                        print(object["tag"]["state"])
+                        self.varietalsArray.append(object["name"] as! String)
+                        
+                    }
                     
                 }
                 

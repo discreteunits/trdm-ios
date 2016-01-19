@@ -19,12 +19,13 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        query()
         
-        // FLYOUT MENU
+// FLYOUT MENU
         
         self.sideMenuController()?.sideMenu?.delegate = self
         
-        // NAV BAR STYLES
+// NAV BAR STYLES
         
         if let navBar = navigationController?.navigationBar {
             
@@ -40,11 +41,28 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
             imageView.image = image
             navigationItem.titleView = imageView
             
+            
+            self.navigationItem.hidesBackButton = true
+            let newBackButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Bordered, target: self, action: "back:")
+            self.navigationItem.leftBarButtonItem = newBackButton;
+            
         }
+    }
+    
+    func back(sender: UIBarButtonItem) {
+        // Perform your custom actions
+        // ...
+        route.removeAtIndex(0)
+        print("ROUTE IS NOW: \(route)")
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+// ------
+// QUERY
+// ------
+    func query() {
         
-        
-        // QUERY
-        let query:PFQuery = PFQuery(className:"TierTwoOffering")
+        let query:PFQuery = PFQuery(className:"Tier2")
+            query.includeKey("tag")
         query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
             
             if error == nil {
@@ -53,9 +71,14 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
                 print("Successfully retrieved \(objects!.count) objects.")
                 
                 // Do something with the found objects
-                for object in objects as! [PFObject]! {
-                    print(object.objectId)
-                    self.tierIIArray.append(object["name"] as! String)
+                for object in objects! as [PFObject]! {
+                    
+                    if object["tag"]["state"] as! String == "active" {
+                        
+                        print(object["tag"]["state"])
+                        self.tierIIArray.append(object["name"] as! String)
+                        
+                    }
                     
                 }
                 
@@ -103,6 +126,15 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
         toggleSideMenuView()
 
     }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        route.append(tierIIArray[indexPath.row])
+        print("\(route)")
+        
+        self.performSegueWithIdentifier("tierIII", sender: self)
+        
+    }
 
     /*
     // Override to support conditional editing of the table view.
@@ -139,14 +171,14 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
     }
     */
 
-    /*
+
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+//
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        
+//        
+//    }
+
 
 }

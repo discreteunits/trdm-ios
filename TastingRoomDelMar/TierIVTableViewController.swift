@@ -86,9 +86,14 @@ class TierIVTableViewController: UITableViewController {
                 print("Successfully retrieved \(objects!.count) objects.")
     
                 // Do something with the found objects
-                for object in objects as! [PFObject]! {
-                    print(object.objectId)
-                    self.itemsArray.append(object as PFObject!)
+                for object in objects! as [PFObject] {
+                    
+                    if object["tag"]["state"] as! String == "active" {
+                        
+                        print(object["tag"]["state"])
+                        self.itemsArray.append(object as PFObject!)
+                        
+                    }
     
                 }
     
