@@ -17,8 +17,10 @@ class TierIVTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+
+        
 // TIER 4 TABLE QUERY
-        itemsQuery()
+        tierIVTableQuery()
         
         self.tableView.reloadData()
 
@@ -31,9 +33,9 @@ class TierIVTableViewController: UITableViewController {
     
     
 // -----------
-// ITEMS QUERY
+// TIER 4 TABLE QUERY
 // -----------
-    func itemsQuery() {
+    func tierIVTableQuery() {
         
         var query = PFQuery()
         
@@ -98,11 +100,7 @@ class TierIVTableViewController: UITableViewController {
         cell.itemNameLabel?.text = itemsArray[indexPath.row]["name"] as! String?
         cell.altNameLabel?.text = itemsArray[indexPath.row]["alternateName"] as! String?
         
-        
-        
 //       cell.varietalLabel?.text = route[2]["name"] as? String
-
-
 
         return cell
     }

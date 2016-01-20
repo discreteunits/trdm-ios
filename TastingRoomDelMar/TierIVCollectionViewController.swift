@@ -12,7 +12,7 @@ import Parse
 import ParseCrashReporting
 
 class TierIVCollectionViewController: PFQueryCollectionViewController {
-
+    
     var tierIVCollectionArray = [PFObject]()
     
     override func viewDidLoad() {
@@ -48,7 +48,7 @@ class TierIVCollectionViewController: PFQueryCollectionViewController {
         }
         
         
-        let query:PFQuery = PFQuery(className: "WineVarietals")
+        let query:PFQuery = PFQuery(className: classToBeQueried)
         query.includeKey("Tier3")
 //        query.whereKey("tier3", equalTo: "\(route[2]["name"])")
 
@@ -109,10 +109,7 @@ class TierIVCollectionViewController: PFQueryCollectionViewController {
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("tierIVCollectionCell", forIndexPath: indexPath) as! TierIVCollectionViewCell
-        
-        cell.titleLabel?.backgroundColor = UIColor.lightGrayColor()
-        cell.titleLabel?.layer.cornerRadius = 10.0
-        cell.titleLabel?.clipsToBounds = true
+
         cell.titleLabel?.text = self.tierIVCollectionArray[indexPath.row]["name"] as? String
         
         return cell
@@ -129,8 +126,24 @@ class TierIVCollectionViewController: PFQueryCollectionViewController {
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
+        let selectedCell = collectionView.cellForItemAtIndexPath(indexPath)! as! TierIVCollectionViewCell
+        selectedCell.layer.cornerRadius = 10.0
+        selectedCell.clipsToBounds = true
+        selectedCell.contentView.backgroundColor = UIColor.blackColor()
+        selectedCell.titleLabel?.textColor = UIColor.whiteColor()
+        
         route.append(tierIVCollectionArray[indexPath.row])
         print("THE ROUTE IS NOW: \(route)")
+        
+    }
+    
+    override func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
+        
+        let deselectedCell = collectionView.cellForItemAtIndexPath(indexPath)! as! TierIVCollectionViewCell
+        deselectedCell.contentView.backgroundColor = UIColor.whiteColor()
+        deselectedCell.titleLabel?.textColor = UIColor.blackColor()
+
+        route.removeAtIndex(3)
         
     }
     

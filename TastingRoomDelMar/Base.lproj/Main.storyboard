@@ -322,6 +322,9 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="parseClassName" value="WineVarietals"/>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="pullToRefreshEnabled" value="NO"/>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="collectionView" destination="2Yu-Zl-7QE" id="j5W-xc-7Oo"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rcF-dp-RjM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -343,11 +346,14 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XEU-be-Wjo">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XEU-be-Wjo">
                                             <rect key="frame" x="416" y="28" width="156" height="43"/>
                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="156" id="vYm-20-OUl"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                            <state key="normal" title="Button">
+                                            <state key="normal" title="Add to Order">
                                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
                                         </button>

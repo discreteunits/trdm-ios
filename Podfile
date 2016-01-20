@@ -17,5 +17,6 @@ target 'TastingRoomDelMar' do
 	pod 'Stripe'
 	pod 'ENSwiftSideMenu', '~> 0.1'
 	pod 'Bolts'
+	pod 'Bond', '~> 4.0'
 		
 end
