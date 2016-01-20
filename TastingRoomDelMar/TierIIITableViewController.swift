@@ -12,20 +12,21 @@ import Parse
 
 class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
     
-    var tierIIIArray = [String]()
+    var tierIIIArray = [PFObject]()
     
     var nav: UINavigationBar?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        query()
+// TIER 3 QUERY
+        tierIIIQuery()
         
-        // FLYOUT MENU
+// FLYOUT MENU
         
         self.sideMenuController()?.sideMenu?.delegate = self
         
-        // NAV BAR STYLES
+// NAV BAR STYLES
         
         if let navBar = navigationController?.navigationBar {
             
@@ -41,13 +42,27 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
             imageView.image = image
             navigationItem.titleView = imageView
             
+// SET NAV BACK BUTTON TO REMOVE LAST ITEM FROM ROUTE
+            self.navigationItem.hidesBackButton = true
+            let newBackButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Bordered, target: self, action: "back:")
+            self.navigationItem.leftBarButtonItem = newBackButton;
+            
         }
     }
+    
+// NAV BACK BUTTON ACTION
+    func back(sender: UIBarButtonItem) {
+
+        route.removeAtIndex(1)
+        print("THE ROUTE IS NOW: \(route)")
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+    
 
 // ------
-// QUERY
+// TIER 3 QUERY
 // ------
-    func query() {
+    func tierIIIQuery() {
         
         let query:PFQuery = PFQuery(className:"Tier3")
         query.includeKey("tag")
@@ -56,22 +71,22 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
             if error == nil {
                 
                 // The find succeeded.
-                print("Successfully retrieved \(objects!.count) objects.")
+                print("TierIII retrieved \(objects!.count) objects.")
                 
                 // Do something with the found objects
                 for object in objects! as [PFObject]! {
                     
                     if object["tag"]["state"] as! String == "active" {
                         
-                        print(object["tag"]["state"])
-                        self.tierIIIArray.append(object["name"] as! String)
+                        print("\(object["tag"]["state"])")
+                        self.tierIIIArray.append(object)
                         
                     }
                     
                 }
                 
                 self.tableView.reloadData()
-                print("\(self.tierIIIArray)")
+                print("TEIRIII ARRAY: \(self.tierIIIArray)")
                 
             } else {
                 
@@ -104,21 +119,20 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
         
-        cell.textLabel?.text = tierIIIArray[indexPath.row]
+        cell.textLabel?.text = tierIIIArray[indexPath.row]["name"] as? String
         
         return cell
     }
     
+// FLYOUT TRIGGER
     @IBAction func toggleSideMenu(sender: AnyObject) {
-        
         toggleSideMenuView()
-        
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         route.append(tierIIIArray[indexPath.row])
-        print("\(route)")
+        print("THE ROUTE IS NOW: \(route)")
         
         self.performSegueWithIdentifier("tierIV", sender: self)
         

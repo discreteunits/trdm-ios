@@ -16,7 +16,8 @@ class TierIVTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+// TIER 4 TABLE QUERY
         itemsQuery()
         
         self.tableView.reloadData()
@@ -27,6 +28,56 @@ class TierIVTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+// -----------
+// ITEMS QUERY
+// -----------
+    func itemsQuery() {
+        
+        var query = PFQuery()
+        
+        if route.count == 4  {
+            
+            query = PFQuery(className:"Items")
+            query.includeKey("tags")
+            query.whereKey("tags", equalTo: "\(route)")
+            print("User Has Chosen From Collection")
+            
+        } else {
+            
+            query = PFQuery(className:"Items")
+            query.includeKey("tags")
+            print("All Items Listed")
+            
+        }
+        
+        query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
+            
+            if error == nil {
+                
+                // The find succeeded.
+                print("TierIV table retrieved \(objects!.count) objects.")
+                
+                // Do something with the found objects
+                for object in objects! as [PFObject] {
+                    
+                        self.itemsArray.append(object)
+                                            
+                }
+                
+                self.tableView.reloadData()
+                print("The ITEMS ARRAY equals: \(self.itemsArray)")
+                
+            } else {
+                
+                // Log details of the failure
+                print("Error: \(error!) \(error!.userInfo)")
+                
+            }
+        }
+    }
+
 
     // MARK: - Table view data source
 
@@ -49,66 +100,13 @@ class TierIVTableViewController: UITableViewController {
         
         
         
-       cell.varietalLabel?.text = itemsArray[indexPath.row]["winevarietal"].name as String?
-        //        cell.pricingLabel?.text = itemsArray[indexPath.row].mg["modifierIds"[1]] as! Int?     query.whereKey("arrayKey", equalTo: 2)
+//       cell.varietalLabel?.text = route[2]["name"] as? String
+
 
 
         return cell
     }
  
-// -----------
-// QUERY
-// -----------
-    func itemsQuery() {
-        
-        /*
-        
-        var varietalQuery = PFQuery(className: ** ITEMS ** )
-        varietalQuery.whereKey( ** TYPE **, equalTo: ** PASS IN TIER IV COLLECTION SELECTION ** )
-        
-        var itemsQuery = PFQuery(className: "Tags")
-        
-        itemsQuery.includeKey("name")
-        itemsQuery.whereKey("WineVarietal", matchesQuery: varietalQuery)
-        
-        */
-
-        
-        let query:PFQuery = PFQuery(className:"Items")
-            query.includeKey("mg.winevarietals")
-    
-    
-        query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
-    
-            if error == nil {
-    
-                // The find succeeded.
-                print("Successfully retrieved \(objects!.count) objects.")
-    
-                // Do something with the found objects
-                for object in objects! as [PFObject] {
-                    
-                    if object["tag"]["state"] as! String == "active" {
-                        
-                        print(object["tag"]["state"])
-                        self.itemsArray.append(object as PFObject!)
-                        
-                    }
-    
-                }
-    
-                self.tableView.reloadData()
-                print("The ITEMS ARRAY equals: \(self.itemsArray)")
-    
-            } else {
-    
-                // Log details of the failure
-                print("Error: \(error!) \(error!.userInfo)")
-    
-            }
-        }
-    }
-
 
     /*
     // Override to support conditional editing of the table view.

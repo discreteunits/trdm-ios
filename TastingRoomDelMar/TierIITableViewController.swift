@@ -12,14 +12,15 @@ import Parse
 
 class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
     
-    var tierIIArray = [String]()
+    var tierIIArray = [PFObject]()
     
     var nav: UINavigationBar?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        query()
+        
+// TIER 2 QUERY
+        tierIIQuery()
         
 // FLYOUT MENU
         
@@ -41,7 +42,7 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
             imageView.image = image
             navigationItem.titleView = imageView
             
-            
+// SET NAV BACK BUTTON TO REMOVE LAST ITEM FROM ROUTE
             self.navigationItem.hidesBackButton = true
             let newBackButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Bordered, target: self, action: "back:")
             self.navigationItem.leftBarButtonItem = newBackButton;
@@ -49,41 +50,42 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
         }
     }
     
+// NAV BACK BUTTON ACTION
     func back(sender: UIBarButtonItem) {
-        // Perform your custom actions
-        // ...
+
         route.removeAtIndex(0)
         print("ROUTE IS NOW: \(route)")
         self.navigationController?.popViewControllerAnimated(true)
     }
+    
 // ------
-// QUERY
+// TIER 2 QUERY
 // ------
-    func query() {
+    func tierIIQuery() {
         
         let query:PFQuery = PFQuery(className:"Tier2")
-            query.includeKey("tag")
+        query.includeKey("tag")
         query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
             
             if error == nil {
                 
                 // The find succeeded.
-                print("Successfully retrieved \(objects!.count) objects.")
+                print("TierII retrieved \(objects!.count) objects.")
                 
                 // Do something with the found objects
                 for object in objects! as [PFObject]! {
                     
                     if object["tag"]["state"] as! String == "active" {
                         
-                        print(object["tag"]["state"])
-                        self.tierIIArray.append(object["name"] as! String)
+                        print("\(object["tag"]["state"])")
+                        self.tierIIArray.append(object)
                         
                     }
                     
                 }
                 
                 self.tableView.reloadData()
-                print("\(self.tierIIArray)")
+                print("TIERII ARRAY: \(self.tierIIArray)")
                 
             } else {
                 
@@ -101,8 +103,7 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
         // Dispose of any resources that can be recreated.
     }
 
-    // MARK: - Table view data source
-
+// MARK: - Table view data source
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -116,21 +117,21 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
 
-        cell.textLabel?.text = tierIIArray[indexPath.row]
+        cell.textLabel?.text = tierIIArray[indexPath.row]["name"] as? String
         
         return cell
     }
 
+// FLYOUT TRIGGER
     @IBAction func toggleSideMenu(sender: AnyObject) {
-        
         toggleSideMenuView()
-
     }
     
+// ADD INDEX TO ROUTE
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         route.append(tierIIArray[indexPath.row])
-        print("\(route)")
+        print("THE ROUTE HAS BEEN ADDED TO: \(route)")
         
         self.performSegueWithIdentifier("tierIII", sender: self)
         

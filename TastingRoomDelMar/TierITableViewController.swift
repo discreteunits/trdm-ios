@@ -10,25 +10,24 @@ import UIKit
 import ParseUI
 import Parse
 
-var route = [String]()
+var route = [PFObject]()
 
 class TierITableViewController: UITableViewController, ENSideMenuDelegate {
 
-    var tierIArray = [String]()
+    var tierIArray = [PFObject]()
     
     var nav: UINavigationBar?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        query()
+// TIER 1 QUERY
+        tierIQuery()
 
 // FLYOUT MENU
-        
         self.sideMenuController()?.sideMenu?.delegate = self
 
 // NAV BAR STYLES
-        
         if let navBar = navigationController?.navigationBar {
             
             nav = navBar
@@ -43,13 +42,16 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
             imageView.image = image
             navigationItem.titleView = imageView
             
+// RESET ROUTE
+            route = []
+            
         }
         
     }
 // -----
-// QUERY
+// TIER 1 QUERY
 // -----
-    func query() {
+    func tierIQuery() {
         
         let query:PFQuery = PFQuery(className:"Tier1")
         query.includeKey("tag")
@@ -58,22 +60,22 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
             if error == nil {
                 
                 // The find succeeded.
-                print("Successfully retrieved \(objects!.count) objects.")
+                print("TierI retrieved \(objects!.count) objects.")
                 
                 // Do something with the found objects
                 for object in objects! as [PFObject]! {
                     
                     if object["tag"]["state"] as! String == "active" {
                         
-                        print(object["tag"]["state"])
-                        self.tierIArray.append(object["name"] as! String)
+                        print("\(object["tag"]["state"])")
+                        self.tierIArray.append(object)
                         
                     }
                     
                 }
                 
                 self.tableView.reloadData()
-                print("\(self.tierIArray)")
+                print("TIERI ARRAY: \(self.tierIArray)")
                 
             } else {
                 
@@ -92,8 +94,7 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         // Dispose of any resources that can be recreated.
     }
 
-    // MARK: - Table view data source
-
+// MARK: - Table view data source
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -104,24 +105,24 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         return tierIArray.count
     }
 
-
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
         
-        cell.textLabel?.text = tierIArray[indexPath.row]
+        cell.textLabel?.text = tierIArray[indexPath.row]["name"] as? String
 
         return cell
     }
 
-    // FLYOUT TRIGGER
+// FLYOUT TRIGGER
     @IBAction func toggleSideMenu(sender: AnyObject) {
         toggleSideMenuView()
     }
-    
+
+// ADD INDEX TO ROUTE
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         route.append(tierIArray[indexPath.row])
-        print("\(route)")
+        print("THE ROUTE HAS BEEN ADDED TO: \(route)")
         
         self.performSegueWithIdentifier("tierII", sender: self)
 

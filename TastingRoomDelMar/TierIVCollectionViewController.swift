@@ -13,14 +13,14 @@ import ParseCrashReporting
 
 class TierIVCollectionViewController: PFQueryCollectionViewController {
 
-    var varietalsArray = [String]()
+    var tierIVCollectionArray = [PFObject]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        varietalsQuery()
+// TIER 4 COLLECTION QUERY
+        tierIVCollectionQuery()
         
-
         self.collectionView?.reloadData()
 
     }
@@ -35,33 +35,50 @@ class TierIVCollectionViewController: PFQueryCollectionViewController {
         // Dispose of any resources that can be recreated.
     }
     
-// ---------------
-// VARIETALS QUERY
-// ---------------
-    func varietalsQuery() {
+// TIER 4 COLLECTION QUERY
+    func tierIVCollectionQuery() {
         
-        let query:PFQuery = PFQuery(className:"WineVarietals")
-            query.includeKey("tag")
+        var className = String()
+        
+// COLLECTION CLASSNAME CONDITION
+        if route[1]["name"] as! String == "Vines" {
+            className = "WineVarietals"
+        } else if route[1]["name"] as! String == "Hops" {
+            className = "BeerStyles"
+        }
+        
+        
+        let query:PFQuery = PFQuery(className: className)
+        query.includeKey("tier3")
+        query.whereKey("tier3", equalTo: "\(route[2])")
         query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
             
             if error == nil {
                 
                 // The find succeeded.
-                print("Successfully retrieved \(objects!.count) varietals.")
+                print("TierIV collection retrieved \(objects!.count) objects.")
                 
                 // Do something with the found objects
-                for object in objects! as [PFObject]{
+                for object in objects! as [PFObject]!{
                     
-                    if object["tag"]["state"] as! String == "active" {
+                    if object["tag"] != nil {
                         
-                        print(object["tag"]["state"])
-                        self.varietalsArray.append(object["name"] as! String)
+                        if object["tier3"]["name"] as! String == route[2] {
+                    
+                            if object["tag"]["state"] as! String == "active" {
+                            
+                                self.tierIVCollectionArray.append(object)
+                            
+                            }
+                        
+                        }
                         
                     }
                     
                 }
                 
-                print("\(self.varietalsArray)")
+                self.collectionView?.reloadData()
+                print("TIERIV COLLECTION ARRAY: \(self.tierIVCollectionArray)")
                 
             } else {
                 
@@ -75,16 +92,16 @@ class TierIVCollectionViewController: PFQueryCollectionViewController {
     
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return varietalsArray.count
+        return tierIVCollectionArray.count
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("varietalCell", forIndexPath: indexPath) as! TierIVCollectionViewCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("tierIVCollectionCell", forIndexPath: indexPath) as! TierIVCollectionViewCell
         
         cell.titleLabel?.backgroundColor = UIColor.lightGrayColor()
         cell.titleLabel?.layer.cornerRadius = 10.0
         cell.titleLabel?.clipsToBounds = true
-        cell.titleLabel?.text = self.varietalsArray[indexPath.row]
+        cell.titleLabel?.text = self.tierIVCollectionArray[indexPath.row]["name"] as? String
         
         return cell
     }
@@ -96,6 +113,13 @@ class TierIVCollectionViewController: PFQueryCollectionViewController {
         let itemWidth = (collectionView.bounds.width / itemsPerRow) - hardCodedPadding
         let itemHeight = collectionView.bounds.height - (4 * hardCodedPadding)
         return CGSize(width: itemWidth, height: itemHeight)
+    }
+    
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
+        route.append(tierIVCollectionArray[indexPath.row])
+        print("THE ROUTE IS NOW: \(route)")
+        
     }
     
     /*
