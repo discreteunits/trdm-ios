@@ -38,19 +38,20 @@ class TierIVCollectionViewController: PFQueryCollectionViewController {
 // TIER 4 COLLECTION QUERY
     func tierIVCollectionQuery() {
         
-        var className = String()
+        var classToBeQueried = String()
         
 // COLLECTION CLASSNAME CONDITION
         if route[1]["name"] as! String == "Vines" {
-            className = "WineVarietals"
+            classToBeQueried = "WineVarietals"
         } else if route[1]["name"] as! String == "Hops" {
-            className = "BeerStyles"
+            classToBeQueried = "BeerStyles"
         }
         
         
-        let query:PFQuery = PFQuery(className: className)
-        query.includeKey("tier3")
-        query.whereKey("tier3", equalTo: "\(route[2])")
+        let query:PFQuery = PFQuery(className: "WineVarietals")
+        query.includeKey("Tier3")
+//        query.whereKey("tier3", equalTo: "\(route[2]["name"])")
+
         query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
             
             if error == nil {
@@ -58,19 +59,30 @@ class TierIVCollectionViewController: PFQueryCollectionViewController {
                 // The find succeeded.
                 print("TierIV collection retrieved \(objects!.count) objects.")
                 
+                let routeIndex = route[2]["name"] as! String
+                print("Route Index: \(routeIndex)")
+                
                 // Do something with the found objects
                 for object in objects! as [PFObject]!{
                     
-                    if object["tag"] != nil {
-                        
-                        if object["tier3"]["name"] as! String == route[2] {
+                    print("Object Name: \(object["name"])")
                     
-                            if object["tag"]["state"] as! String == "active" {
-                            
-                                self.tierIVCollectionArray.append(object)
-                            
-                            }
+                    if let objectTier3Tags = object["tier3"] {
                         
+                        print("\(object["name"])'s TIER 3 TAGS: \(objectTier3Tags)")
+                        
+                        for tag in objectTier3Tags as! [PFObject] {
+                            
+                            let objectTagName = tag["name"] as! String
+                            
+                            if objectTagName == routeIndex {
+                                
+                                print("Object Tag Name: \(objectTagName)")
+                                
+                                self.tierIVCollectionArray.append(object)
+                                
+                            }
+                            
                         }
                         
                     }
@@ -78,7 +90,7 @@ class TierIVCollectionViewController: PFQueryCollectionViewController {
                 }
                 
                 self.collectionView?.reloadData()
-                print("TIERIV COLLECTION ARRAY: \(self.tierIVCollectionArray)")
+                print("TierIV Collection Query Completed with \(self.tierIVCollectionArray.count) objects.")
                 
             } else {
                 

@@ -228,14 +228,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0We-af-mRV">
-                                <rect key="frame" x="0.0" y="248" width="600" height="352"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0We-af-mRV">
+                                <rect key="frame" x="0.0" y="133" width="600" height="467"/>
                                 <connections>
                                     <segue destination="WTZ-qJ-zbB" kind="embed" id="V7d-OS-S6K"/>
                                 </connections>
                             </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bYN-wV-cuD">
-                                <rect key="frame" x="0.0" y="73" width="600" height="177"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bYN-wV-cuD">
+                                <rect key="frame" x="0.0" y="64" width="600" height="70"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="3dV-dj-5Yg"/>
                                 </constraints>
@@ -246,13 +246,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="bYN-wV-cuD" secondAttribute="trailing" id="EXK-xL-k2s"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="0We-af-mRV" secondAttribute="trailing" id="J4U-lF-5U9"/>
-                            <constraint firstItem="bYN-wV-cuD" firstAttribute="leading" secondItem="rM1-XM-N50" secondAttribute="leading" id="Knc-JM-p6A"/>
-                            <constraint firstItem="0We-af-mRV" firstAttribute="bottom" secondItem="Ct6-qF-Wmj" secondAttribute="top" id="eqJ-ha-SGV"/>
-                            <constraint firstItem="bYN-wV-cuD" firstAttribute="leading" secondItem="0We-af-mRV" secondAttribute="leading" id="l7o-MW-Iv5"/>
-                            <constraint firstItem="0We-af-mRV" firstAttribute="top" secondItem="5O7-1q-isy" secondAttribute="bottom" constant="228" id="m7h-00-fUr"/>
-                            <constraint firstItem="bYN-wV-cuD" firstAttribute="top" secondItem="5O7-1q-isy" secondAttribute="bottom" constant="53" id="ygO-wr-8Vw"/>
+                            <constraint firstItem="0We-af-mRV" firstAttribute="leading" secondItem="rM1-XM-N50" secondAttribute="leading" id="3OA-Jh-i3f"/>
+                            <constraint firstItem="0We-af-mRV" firstAttribute="bottom" secondItem="Ct6-qF-Wmj" secondAttribute="top" id="YXn-x0-Mrn"/>
+                            <constraint firstItem="0We-af-mRV" firstAttribute="trailing" secondItem="bYN-wV-cuD" secondAttribute="trailing" id="dME-1G-pDw"/>
+                            <constraint firstItem="bYN-wV-cuD" firstAttribute="top" secondItem="5O7-1q-isy" secondAttribute="bottom" id="duQ-dD-jhq"/>
+                            <constraint firstItem="0We-af-mRV" firstAttribute="leading" secondItem="bYN-wV-cuD" secondAttribute="leading" id="h89-Ze-Smy"/>
+                            <constraint firstItem="0We-af-mRV" firstAttribute="top" secondItem="5O7-1q-isy" secondAttribute="bottom" constant="69" id="jSL-Vz-MTt"/>
+                            <constraint firstAttribute="trailing" secondItem="0We-af-mRV" secondAttribute="trailing" id="r2X-Jj-yGh"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="6Uc-Tr-5rb">
@@ -275,7 +275,7 @@
             <objects>
                 <collectionViewController id="AnT-wJ-z90" customClass="TierIVCollectionViewController" customModule="TastingRoomDelMar" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="2Yu-Zl-7QE">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="177"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="70"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="vny-6d-Zxf">
                             <size key="itemSize" width="100" height="70"/>
@@ -285,7 +285,7 @@
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="tierIVCollectionCell" id="axz-pr-q9m" customClass="TierIVCollectionViewCell" customModule="TastingRoomDelMar" customModuleProvider="target">
-                                <rect key="frame" x="5" y="5" width="100" height="70"/>
+                                <rect key="frame" x="5" y="0.0" width="100" height="70"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="100" height="70"/>
@@ -319,18 +319,19 @@
                     </collectionView>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="parseClassName" value="WineVarietals"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="pullToRefreshEnabled" value="NO"/>
                     </userDefinedRuntimeAttributes>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rcF-dp-RjM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4002" y="1087.5"/>
+            <point key="canvasLocation" x="4002" y="1034"/>
         </scene>
         <!--TierIV Table View Controller-->
         <scene sceneID="6H1-bG-vfi">
             <objects>
                 <tableViewController id="WTZ-qJ-zbB" customClass="TierIVTableViewController" customModule="TastingRoomDelMar" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="97" sectionHeaderHeight="28" sectionFooterHeight="28" id="X5c-7e-CoL">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="352"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="467"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -405,7 +406,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6vG-Ub-u96" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4002" y="1423"/>
+            <point key="canvasLocation" x="4002" y="1365.5"/>
         </scene>
         <!--Tier Navigation Controller-->
         <scene sceneID="4SG-PS-vp4">
