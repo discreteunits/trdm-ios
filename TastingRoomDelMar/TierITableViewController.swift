@@ -109,8 +109,21 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
         
         cell.textLabel?.text = tierIArray[indexPath.row]["name"] as? String
-
+        cell.textLabel?.textAlignment = NSTextAlignment.Center
+        cell.textLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 38.0)
+        
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        
+        let tableHeight = (tableView.bounds.size.height - 44.0)
+        let numberOfCells: Int = tierIArray.count
+        let numberOfCellsFloat = CGFloat(numberOfCells)
+        let cellHeight = tableHeight / numberOfCellsFloat
+        
+        return cellHeight
+        
     }
 
 // FLYOUT TRIGGER

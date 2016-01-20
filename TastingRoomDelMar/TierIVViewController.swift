@@ -39,8 +39,10 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate {
             navigationItem.titleView = imageView
             
 // SET NAV BACK BUTTON TO REMOVE LAST ITEM FROM ROUTE
+            let lastWindow = route[1]["name"]
+            
             self.navigationItem.hidesBackButton = true
-            let newBackButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Bordered, target: self, action: "back:")
+            let newBackButton = UIBarButtonItem(title: "\(lastWindow)", style: UIBarButtonItemStyle.Bordered, target: self, action: "back:")
             self.navigationItem.leftBarButtonItem = newBackButton;
             
         }

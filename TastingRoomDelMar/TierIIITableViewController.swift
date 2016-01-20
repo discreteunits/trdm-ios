@@ -43,8 +43,10 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
             navigationItem.titleView = imageView
             
 // SET NAV BACK BUTTON TO REMOVE LAST ITEM FROM ROUTE
+            let lastWindow = route[0]["name"]
+            
             self.navigationItem.hidesBackButton = true
-            let newBackButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Bordered, target: self, action: "back:")
+            let newBackButton = UIBarButtonItem(title: "\(lastWindow)", style: UIBarButtonItemStyle.Bordered, target: self, action: "back:")
             self.navigationItem.leftBarButtonItem = newBackButton;
             
         }
@@ -120,8 +122,21 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
         
         cell.textLabel?.text = tierIIIArray[indexPath.row]["name"] as? String
+        cell.textLabel?.textAlignment = NSTextAlignment.Center
+        cell.textLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 38.0)
         
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        
+        let tableHeight = (tableView.bounds.size.height - 44.0)
+        let numberOfCells: Int = tierIIIArray.count
+        let numberOfCellsFloat = CGFloat(numberOfCells)
+        let cellHeight = tableHeight / numberOfCellsFloat
+        
+        return cellHeight
+        
     }
     
 // FLYOUT TRIGGER

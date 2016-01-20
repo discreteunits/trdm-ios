@@ -44,7 +44,7 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
             
 // SET NAV BACK BUTTON TO REMOVE LAST ITEM FROM ROUTE
             self.navigationItem.hidesBackButton = true
-            let newBackButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Bordered, target: self, action: "back:")
+            let newBackButton = UIBarButtonItem(title: "Del Mar", style: UIBarButtonItemStyle.Bordered, target: self, action: "back:")
             self.navigationItem.leftBarButtonItem = newBackButton;
             
         }
@@ -118,8 +118,21 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
 
         cell.textLabel?.text = tierIIArray[indexPath.row]["name"] as? String
+        cell.textLabel?.textAlignment = NSTextAlignment.Center
+        cell.textLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 38.0)
         
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        
+        let tableHeight = (tableView.bounds.size.height - 44.0)
+        let numberOfCells: Int = tierIIArray.count
+        let numberOfCellsFloat = CGFloat(numberOfCells)
+        let cellHeight = tableHeight / numberOfCellsFloat
+        
+        return cellHeight
+        
     }
 
 // FLYOUT TRIGGER
