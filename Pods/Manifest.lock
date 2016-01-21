@@ -6,6 +6,7 @@ PODS:
   - Bolts/AppLinks (1.5.1):
     - Bolts/Tasks
   - Bolts/Tasks (1.5.1)
+  - Bond (4.3.0)
   - ENSwiftSideMenu (0.1)
   - FBSDKCoreKit (4.8.0):
     - Bolts (~> 1.1)
@@ -43,6 +44,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire (= 3.1.1)
   - Bolts
+  - Bond (~> 4.0)
   - ENSwiftSideMenu (~> 0.1)
   - FBSDKCoreKit
   - FBSDKLoginKit
@@ -68,6 +70,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Alamofire: 9b0a7188b961a03914a99304488bd226b0e46c0e
   Bolts: a12663244b1d3351c738882e71902fc74db54f64
+  Bond: ebe2364b18130690083cbceff036420b21494ae4
   ENSwiftSideMenu: 4e17a97d1d92c1a9c7267993a167e27e0a10422d
   FBSDKCoreKit: 66a935d17b6e00b6b64e604f2eb9b72c9ab7deb8
   FBSDKLoginKit: d893fcbb98d854496925e9ff73c67b896982d3c4

@@ -11,17 +11,29 @@ import ParseUI
 import Parse
 import ParseCrashReporting
 
+@objc
+protocol TierIVCollectionViewDelegate {
+    func tierIVCollectionQuery()
+    func tierIVTableQuery()
+    func tagsArrayCreation()
+}
+
 class TierIVCollectionViewController: PFQueryCollectionViewController {
     
     var tierIVCollectionArray = [PFObject]()
     
+    var TierIVViewControllerRef: TierIVViewController?
+    
+    var delegate: TierIVCollectionViewDelegate?
+    
+// ------------------
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
-// TIER 4 COLLECTION QUERY
-        tierIVCollectionQuery()
-        
         self.collectionView?.reloadData()
+        
+        print("\(tierIVCollectionArray)")
 
     }
     
@@ -34,74 +46,6 @@ class TierIVCollectionViewController: PFQueryCollectionViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-// TIER 4 COLLECTION QUERY
-    func tierIVCollectionQuery() {
-        
-        var classToBeQueried = String()
-        
-// COLLECTION CLASSNAME CONDITION
-        if route[1]["name"] as! String == "Vines" {
-            classToBeQueried = "WineVarietals"
-        } else if route[1]["name"] as! String == "Hops" {
-            classToBeQueried = "BeerStyles"
-        }
-        
-        
-        let query:PFQuery = PFQuery(className: classToBeQueried)
-        query.includeKey("Tier3")
-//        query.whereKey("tier3", equalTo: "\(route[2]["name"])")
-
-        query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
-            
-            if error == nil {
-                
-                // The find succeeded.
-                print("TierIV collection retrieved \(objects!.count) objects.")
-                
-                let routeIndex = route[2]["name"] as! String
-                print("Route Index: \(routeIndex)")
-                
-                // Do something with the found objects
-                for object in objects! as [PFObject]!{
-                    
-                    print("Object Name: \(object["name"])")
-                    
-                    if let objectTier3Tags = object["tier3"] {
-                        
-                        print("\(object["name"])'s TIER 3 TAGS: \(objectTier3Tags)")
-                        
-                        for tag in objectTier3Tags as! [PFObject] {
-                            
-                            let objectTagName = tag["name"] as! String
-                            
-                            if objectTagName == routeIndex {
-                                
-                                print("Object Tag Name: \(objectTagName)")
-                                
-                                self.tierIVCollectionArray.append(object)
-                                
-                            }
-                            
-                        }
-                        
-                    }
-                    
-                }
-                
-                self.collectionView?.reloadData()
-                print("TierIV Collection Query Completed with \(self.tierIVCollectionArray.count) objects.")
-                
-            } else {
-                
-                // Log details of the failure
-                print("Error: \(error!) \(error!.userInfo)")
-                
-            }
-            
-        }
-    }
-    
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return tierIVCollectionArray.count
@@ -135,6 +79,9 @@ class TierIVCollectionViewController: PFQueryCollectionViewController {
         route.append(tierIVCollectionArray[indexPath.row])
         print("THE ROUTE IS NOW: \(route)")
         
+        delegate?.tagsArrayCreation()
+        delegate?.tierIVTableQuery()
+        
     }
     
     override func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
@@ -146,15 +93,5 @@ class TierIVCollectionViewController: PFQueryCollectionViewController {
         route.removeAtIndex(3)
         
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

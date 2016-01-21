@@ -65,6 +65,8 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
         
         let query:PFQuery = PFQuery(className:"Tier2")
         query.includeKey("tag")
+        // RESTRICT QUERY BASED ON TIER 1 SELECTION
+        query.whereKey("tier1", equalTo: route[0])
         query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
             
             if error == nil {
@@ -77,7 +79,6 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
                     
                     if object["tag"]["state"] as! String == "active" {
                         
-                        print("\(object["tag"]["state"])")
                         self.tierIIArray.append(object)
                         
                     }
@@ -97,6 +98,12 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
         }
         
     }
+    
+    
+    
+    
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

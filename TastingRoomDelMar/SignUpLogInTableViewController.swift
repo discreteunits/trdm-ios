@@ -51,9 +51,7 @@ class SignUpLogInTableViewController: UITableViewController {
         emailTextField.becomeFirstResponder()
         
         tableView.scrollEnabled = false
-        
-//        let frameRect = emailTextField.frame.size.height = CGFloat(60)
-        
+                
     }
     
     override func didReceiveMemoryWarning() {

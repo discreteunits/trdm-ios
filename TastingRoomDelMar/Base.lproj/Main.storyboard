@@ -232,7 +232,7 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0We-af-mRV">
                                 <rect key="frame" x="0.0" y="133" width="600" height="467"/>
                                 <connections>
-                                    <segue destination="WTZ-qJ-zbB" kind="embed" id="V7d-OS-S6K"/>
+                                    <segue destination="WTZ-qJ-zbB" kind="embed" identifier="TierIVTableEmbeded" id="V7d-OS-S6K"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bYN-wV-cuD">
@@ -241,7 +241,7 @@
                                     <constraint firstAttribute="height" constant="70" id="3dV-dj-5Yg"/>
                                 </constraints>
                                 <connections>
-                                    <segue destination="AnT-wJ-z90" kind="embed" id="ec5-db-Ns7"/>
+                                    <segue destination="AnT-wJ-z90" kind="embed" identifier="TierIVCollectionEmbeded" id="ec5-db-Ns7"/>
                                 </connections>
                             </containerView>
                         </subviews>

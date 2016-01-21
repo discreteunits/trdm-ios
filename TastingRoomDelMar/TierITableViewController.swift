@@ -9,6 +9,7 @@
 import UIKit
 import ParseUI
 import Parse
+import Bond
 
 var route = [PFObject]()
 
@@ -67,7 +68,6 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
                     
                     if object["tag"]["state"] as! String == "active" {
                         
-                        print("\(object["tag"]["state"])")
                         self.tierIArray.append(object)
                         
                     }

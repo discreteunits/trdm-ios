@@ -10,17 +10,22 @@ import UIKit
 import ParseUI
 import Parse
 
-class TierIVTableViewController: UITableViewController {
+@objc
+protocol TierIVTableViewDelegate {
+    func tierIVCollectionQuery()
+    func tierIVTableQuery()
+}
 
-    var itemsArray = [PFObject]()
+class TierIVTableViewController: UITableViewController {
+    
+    var tierIVTableArray = [PFObject]()
+    
+    var TierIVViewControllerRef: TierIVViewController?
+    
+    var delegate: TierIVTableViewDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-
-        
-// TIER 4 TABLE QUERY
-        tierIVTableQuery()
         
         self.tableView.reloadData()
 
@@ -30,56 +35,6 @@ class TierIVTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
-// -----------
-// TIER 4 TABLE QUERY
-// -----------
-    func tierIVTableQuery() {
-        
-        var query = PFQuery()
-        
-        if route.count == 4  {
-            
-            query = PFQuery(className:"Items")
-            query.includeKey("tags")
-            query.whereKey("tags", equalTo: "\(route)")
-            print("User Has Chosen From Collection")
-            
-        } else {
-            
-            query = PFQuery(className:"Items")
-            query.includeKey("tags")
-            print("All Items Listed")
-            
-        }
-        
-        query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
-            
-            if error == nil {
-                
-                // The find succeeded.
-                print("TierIV table retrieved \(objects!.count) objects.")
-                
-                // Do something with the found objects
-                for object in objects! as [PFObject] {
-                    
-                        self.itemsArray.append(object)
-                                            
-                }
-                
-                self.tableView.reloadData()
-                print("The ITEMS ARRAY equals: \(self.itemsArray)")
-                
-            } else {
-                
-                // Log details of the failure
-                print("Error: \(error!) \(error!.userInfo)")
-                
-            }
-        }
-    }
-
 
     // MARK: - Table view data source
 
@@ -90,15 +45,14 @@ class TierIVTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return itemsArray.count
+        return tierIVTableArray.count
     }
 
-    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("itemCell", forIndexPath: indexPath) as! ItemTableViewCell
 
-        cell.itemNameLabel?.text = itemsArray[indexPath.row]["name"] as! String?
-        cell.altNameLabel?.text = itemsArray[indexPath.row]["alternateName"] as! String?
+        cell.itemNameLabel?.text = tierIVTableArray[indexPath.row]["name"] as! String?
+        cell.altNameLabel?.text = tierIVTableArray[indexPath.row]["alternateName"] as! String?
         
 //       cell.varietalLabel?.text = route[2]["name"] as? String
 

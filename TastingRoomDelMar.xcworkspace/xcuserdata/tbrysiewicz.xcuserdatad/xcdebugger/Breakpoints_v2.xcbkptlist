@@ -9,62 +9,14 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TastingRoomDelMar/TierIVCollectionViewController.swift"
-            timestampString = "475008733.294579"
+            filePath = "TastingRoomDelMar/TierIVViewController.swift"
+            timestampString = "475031418.373556"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
+            startingLineNumber = "158"
+            endingLineNumber = "158"
             landmarkName = "tierIVCollectionQuery()"
             landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TastingRoomDelMar/TierIVCollectionViewController.swift"
-            timestampString = "475008733.294579"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
-            landmarkName = "tierIVCollectionQuery()"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "TastingRoomDelMar.TierIVCollectionViewController.(varietalsQuery (TastingRoomDelMar.TierIVCollectionViewController) -&gt; () -&gt; ()).(closure #1)"
-                  moduleName = "TastingRoomDelMar"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/tbrysiewicz/Documents/Coding/DiscreteUnits/TastingRoomDelMar/TastingRoomDelMar/TierIVCollectionViewController.swift"
-                  timestampString = "474918560.840508"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "69"
-                  endingLineNumber = "69"
-                  offsetFromSymbolStart = "2903">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "TastingRoomDelMar.TierIVCollectionViewController.(varietalsQuery (TastingRoomDelMar.TierIVCollectionViewController) -&gt; () -&gt; ()).(closure #1)"
-                  moduleName = "TastingRoomDelMar"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/tbrysiewicz/Documents/Coding/DiscreteUnits/TastingRoomDelMar/TastingRoomDelMar/TierIVCollectionViewController.swift"
-                  timestampString = "474918560.840693"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "69"
-                  endingLineNumber = "69"
-                  offsetFromSymbolStart = "2914">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
