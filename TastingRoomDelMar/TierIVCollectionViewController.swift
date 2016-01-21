@@ -13,14 +13,16 @@ import ParseCrashReporting
 
 @objc
 protocol TierIVCollectionViewDelegate {
+    func tagsArrayCreation()
     func tierIVCollectionQuery()
     func tierIVTableQuery()
-    func tagsArrayCreation()
 }
 
-class TierIVCollectionViewController: PFQueryCollectionViewController {
+class TierIVCollectionViewController: UICollectionViewController {
     
     var tierIVCollectionArray = [PFObject]()
+    
+    var collectionContainerViewController: TierIVViewController?
     
     var TierIVViewControllerRef: TierIVViewController?
     
@@ -31,16 +33,10 @@ class TierIVCollectionViewController: PFQueryCollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.collectionView?.reloadData()
-        
-        print("\(tierIVCollectionArray)")
+        delegate?.tierIVCollectionQuery()
+        print("TierIV collection view has recieved: \(tierIVCollectionArray)")
 
     }
-    
-    override func viewDidAppear(animated: Bool) {
-        self.loadObjects()
-    }
-    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -59,7 +55,7 @@ class TierIVCollectionViewController: PFQueryCollectionViewController {
         return cell
     }
     
-    override func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         
         let itemsPerRow:CGFloat = 4
         let hardCodedPadding:CGFloat = 3

@@ -20,12 +20,17 @@ class TierIVTableViewController: UITableViewController {
     
     var tierIVTableArray = [PFObject]()
     
+    var tableContainerViewController: TierIVViewController?
+    
     var TierIVViewControllerRef: TierIVViewController?
     
     var delegate: TierIVTableViewDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("TierIV table view has recieved: \(tierIVTableArray)")
+
         
         self.tableView.reloadData()
 

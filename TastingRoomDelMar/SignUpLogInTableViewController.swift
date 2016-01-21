@@ -13,8 +13,6 @@ import ParseFacebookUtilsV4
 import Alamofire
 import SwiftValidator
 
-
-
 @objc
 protocol SignUpLogInTableViewDelegate {
     func showSignUpButton()

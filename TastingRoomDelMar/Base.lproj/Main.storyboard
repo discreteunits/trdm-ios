@@ -220,7 +220,7 @@
         <!--Title-->
         <scene sceneID="E0R-iJ-llD">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="Tcs-V0-8z7" customClass="TierIVViewController" customModule="TastingRoomDelMar" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TierIV" automaticallyAdjustsScrollViewInsets="NO" id="Tcs-V0-8z7" customClass="TierIVViewController" customModule="TastingRoomDelMar" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5O7-1q-isy"/>
                         <viewControllerLayoutGuide type="bottom" id="Ct6-qF-Wmj"/>
@@ -237,6 +237,7 @@
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bYN-wV-cuD">
                                 <rect key="frame" x="0.0" y="64" width="600" height="70"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="3dV-dj-5Yg"/>
                                 </constraints>
@@ -274,10 +275,11 @@
         <!--TierIV Collection View Controller-->
         <scene sceneID="mwL-JH-m3f">
             <objects>
-                <collectionViewController automaticallyAdjustsScrollViewInsets="NO" id="AnT-wJ-z90" customClass="TierIVCollectionViewController" customModule="TastingRoomDelMar" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="TierIVCollection" automaticallyAdjustsScrollViewInsets="NO" id="AnT-wJ-z90" customClass="TierIVCollectionViewController" customModule="TastingRoomDelMar" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="2Yu-Zl-7QE">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="70"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="vny-6d-Zxf">
                             <size key="itemSize" width="100" height="70"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -319,7 +321,6 @@
                         </connections>
                     </collectionView>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="parseClassName" value="WineVarietals"/>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="pullToRefreshEnabled" value="NO"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
@@ -333,7 +334,7 @@
         <!--TierIV Table View Controller-->
         <scene sceneID="6H1-bG-vfi">
             <objects>
-                <tableViewController automaticallyAdjustsScrollViewInsets="NO" id="WTZ-qJ-zbB" customClass="TierIVTableViewController" customModule="TastingRoomDelMar" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="TierIVTable" automaticallyAdjustsScrollViewInsets="NO" id="WTZ-qJ-zbB" customClass="TierIVTableViewController" customModule="TastingRoomDelMar" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="97" sectionHeaderHeight="28" sectionFooterHeight="28" id="X5c-7e-CoL">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="467"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

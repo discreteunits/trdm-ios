@@ -17,17 +17,15 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate {
     
     var TierIVCollectionViewControllerRef: TierIVCollectionViewController?
     var TierIVTableViewControllerRef: TierIVTableViewController?
-    
-    var tierIVCollectionArray = [PFObject]()
-    var tierIVTableArray = [PFObject]()
 
     var tagsArray = [PFObject]()
     
+// ---------------
     override func viewDidLoad() {
-        super.viewDidLoad()
         
         tagsArrayCreation()
-        tierIVCollectionQuery()
+        print("Tags Array: \(tagsArray)")
+        
         tierIVTableQuery()
         
 // FLYOUT MENU
@@ -88,22 +86,23 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate {
                 self.TierIVCollectionViewControllerRef = TierIVCollectionViewController
                 TierIVCollectionViewController.delegate = self
                 
-                TierIVCollectionViewController.tierIVCollectionArray = tierIVCollectionArray
-
+                TierIVCollectionViewController.collectionContainerViewController = self
                 
             }
             
-        } else if segue.identifier == "TierIVTableEmbeded" {
+        }
+        
+        if segue.identifier == "TierIVTableEmbeded" {
             
             if let TierIVTableViewController = segue.destinationViewController as? TierIVTableViewController {
                 
                 self.TierIVTableViewControllerRef = TierIVTableViewController
                 TierIVTableViewController.delegate = self
                 
-                TierIVTableViewController.tierIVTableArray = tierIVTableArray
+                TierIVTableViewController.tableContainerViewController = self
                 
             }
-            
+        
         }
         
     }
@@ -119,9 +118,13 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
             
             let tag = object["tag"] as! PFObject
             
-            self.tagsArray.append(tag)
-            print("LET IT BE KNOWN: \(tag)")
-            print("\(tagsArray)")
+            if !tagsArray.contains(tag) {
+                self.tagsArray.append(tag)
+                print("LET IT BE KNOWN: \(tag)")
+                print("\(tagsArray)")
+            }
+            
+
             
         }
         
@@ -148,7 +151,7 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
             if error == nil {
                 
                 // The find succeeded.
-                print("TierIV collection retrieved \(objects!.count) objects.")
+                print("TierIV collection query retrieved \(objects!.count) objects.")
                 
                 // Do something with the found objects
                 for object in objects! as [PFObject]! {
@@ -157,7 +160,7 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
                     
                         if object["tag"]["state"] as! String == "active" {
                         
-                            self.tierIVCollectionArray.append(object)
+                            self.TierIVCollectionViewControllerRef?.tierIVCollectionArray.append(object)
                         
                         }
                     
@@ -166,7 +169,7 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
                 }
                 
                 self.TierIVCollectionViewControllerRef?.collectionView?.reloadData()
-                print("TierIV Collection Query Completed with \(self.tierIVCollectionArray.count) objects.")
+                print("TierIV Collection Query Completed with \(self.TierIVCollectionViewControllerRef?.tierIVCollectionArray.count) objects.")
                 
             } else {
                 
@@ -184,24 +187,24 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
         
         let tableQuery:PFQuery = PFQuery(className:"Items")
         tableQuery.includeKey("tags")
-        tableQuery.whereKey("tags", containsAllObjectsInArray: route)
+//        tableQuery.whereKey("tags", containsAllObjectsInArray: route)
         print("All Items Listed")
         tableQuery.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
             
             if error == nil {
                 
                 // The find succeeded.
-                print("TierIV table retrieved \(objects!.count) objects.")
+                print("TierIV table query retrieved \(objects!.count) objects.")
                 
                 // Do something with the found objects
                 for object in objects! as [PFObject] {
                     
-                    self.tierIVTableArray.append(object)
+                    self.TierIVTableViewControllerRef?.tierIVTableArray.append(object)
                     
                 }
                 
                 self.TierIVTableViewControllerRef?.tableView.reloadData()
-                print("The ITEMS ARRAY equals: \(self.tierIVTableArray)")
+                print("TierIV Table Query Completed with  \(self.TierIVTableViewControllerRef?.tierIVTableArray.count) objects.")
                 
             } else {
                 
