@@ -118,13 +118,7 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
             
             let tag = object["tag"] as! PFObject
             
-            if !tagsArray.contains(tag) {
-                self.tagsArray.append(tag)
-                print("LET IT BE KNOWN: \(tag)")
-                print("\(tagsArray)")
-            }
-            
-
+            self.tagsArray.append(tag)
             
         }
         
@@ -187,7 +181,7 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
         
         let tableQuery:PFQuery = PFQuery(className:"Items")
         tableQuery.includeKey("tags")
-//        tableQuery.whereKey("tags", containsAllObjectsInArray: route)
+        tableQuery.whereKey("tags", containsAllObjectsInArray: tagsArray)
         print("All Items Listed")
         tableQuery.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
             
@@ -199,7 +193,16 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
                 // Do something with the found objects
                 for object in objects! as [PFObject] {
                     
-                    self.TierIVTableViewControllerRef?.tierIVTableArray.append(object)
+                    if !self.TierIVTableViewControllerRef!.tierIVTableArray.contains(object) {
+                        
+                        self.TierIVTableViewControllerRef?.tierIVTableArray.append(object)
+
+                    } else {
+                        
+                        print("Warning: This selection is already being filtered.")
+                        
+                    }
+                    
                     
                 }
                 

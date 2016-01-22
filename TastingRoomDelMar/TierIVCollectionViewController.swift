@@ -72,8 +72,18 @@ class TierIVCollectionViewController: UICollectionViewController {
         selectedCell.contentView.backgroundColor = UIColor.blackColor()
         selectedCell.titleLabel?.textColor = UIColor.whiteColor()
         
-        route.append(tierIVCollectionArray[indexPath.row])
-        print("THE ROUTE IS NOW: \(route)")
+        if !route.contains(tierIVCollectionArray[indexPath.row]) {
+            
+            route.append(tierIVCollectionArray[indexPath.row])
+            print("The route is now: \(route)")
+            
+        } else {
+            
+            print("Warning: This selection is already in the route.")
+            
+        }
+        
+
         
         delegate?.tagsArrayCreation()
         delegate?.tierIVTableQuery()
@@ -87,6 +97,8 @@ class TierIVCollectionViewController: UICollectionViewController {
         deselectedCell.titleLabel?.textColor = UIColor.blackColor()
 
         route.removeAtIndex(3)
+        delegate?.tagsArrayCreation()
+
         
     }
 
