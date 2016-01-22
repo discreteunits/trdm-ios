@@ -347,17 +347,6 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XEU-be-Wjo">
-                                            <rect key="frame" x="416" y="28" width="156" height="43"/>
-                                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="156" id="vYm-20-OUl"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                            <state key="normal" title="Add to Order">
-                                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            </state>
-                                        </button>
                                         <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ZaA-uY-PYe">
                                             <rect key="frame" x="0.0" y="0.0" width="79" height="84"/>
                                             <subviews>
@@ -387,6 +376,20 @@
                                                 </label>
                                             </subviews>
                                         </stackView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XEU-be-Wjo">
+                                            <rect key="frame" x="416" y="28" width="156" height="43"/>
+                                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="156" id="vYm-20-OUl"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                            <state key="normal" title="Add to Order">
+                                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="addToOrder:" destination="Ik1-QJ-zJP" eventType="touchUpInside" id="tCu-9W-Nt9"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="ZaA-uY-PYe" firstAttribute="leading" secondItem="3Ko-V1-4Ep" secondAttribute="leadingMargin" id="8DP-Ie-4fT"/>
@@ -398,7 +401,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="addToOrderButton" destination="XEU-be-Wjo" id="iy5-2O-caD"/>
+                                    <outlet property="addToOrderButton" destination="XEU-be-Wjo" id="FpW-89-aV3"/>
                                     <outlet property="altNameLabel" destination="owL-oc-pg9" id="94z-oo-8kZ"/>
                                     <outlet property="itemNameLabel" destination="66y-OS-sOL" id="1TX-LE-JhB"/>
                                     <outlet property="pricingLabel" destination="YME-Rb-W7z" id="xz1-Fp-yQJ"/>
@@ -411,6 +414,11 @@
                             <outlet property="delegate" destination="WTZ-qJ-zbB" id="UHU-MM-hNp"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="OxA-Ag-bsF" kind="popoverPresentation" identifier="itemConfigPopover" popoverAnchorView="XEU-be-Wjo" id="KAL-Cp-RTR">
+                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                        </segue>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6vG-Ub-u96" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -433,49 +441,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3eV-EW-gfX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="565" y="1299"/>
-        </scene>
-        <!--To Popover View Controller-->
-        <scene sceneID="FjZ-r9-SQ6">
-            <objects>
-                <viewController id="UWT-mm-qs0" customClass="ToPopoverViewController" customModule="TastingRoomDelMar" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="gTF-zS-yjf"/>
-                        <viewControllerLayoutGuide type="bottom" id="Ra5-Xx-r9h"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="BHY-JJ-g0x">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rLJ-dO-LBh">
-                                <rect key="frame" x="446" y="76" width="134" height="37"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="134" id="4V9-2H-ZkP"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="Add to Order">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="popover:" destination="UWT-mm-qs0" eventType="touchUpInside" id="FHd-Ci-jBc"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="rLJ-dO-LBh" firstAttribute="top" secondItem="gTF-zS-yjf" secondAttribute="bottom" constant="56" id="GPo-A4-et7"/>
-                            <constraint firstItem="rLJ-dO-LBh" firstAttribute="trailing" secondItem="BHY-JJ-g0x" secondAttribute="trailingMargin" id="sHP-0q-m2v"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <segue destination="OxA-Ag-bsF" kind="popoverPresentation" identifier="showPopover" popoverAnchorView="rLJ-dO-LBh" id="F79-zU-K7o">
-                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                        </segue>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="pAw-Iy-Wjh" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="565" y="2098"/>
         </scene>
         <!--Popover View Controller-->
         <scene sceneID="MmX-H0-KNu">
@@ -530,7 +495,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LsJ-TJ-xrK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1271" y="2098"/>
+            <point key="canvasLocation" x="4689" y="1299"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="PCz-rN-wSW">

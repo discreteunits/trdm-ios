@@ -16,6 +16,7 @@ class ItemTableViewCell: UITableViewCell {
     @IBOutlet weak var varietalLabel: UILabel!
     @IBOutlet weak var pricingLabel: UILabel!
     
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
