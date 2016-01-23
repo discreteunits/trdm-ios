@@ -24,7 +24,6 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
     var tierIVCollectionArray = [PFObject]()
     var tierIVTableArray = [PFObject]()
     
-    
 // ---------------
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,8 +36,6 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
             self.tierIVTableQuery()
         }
-
-
         
 // FLYOUT MENU
         
@@ -107,8 +104,6 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
             }
             
         }
-        
-        
 
         if segue.identifier == "TierIVTableEmbeded" {
             
@@ -117,8 +112,7 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
                 self.TierIVTableViewControllerRef = TierIVTableViewController
                 TierIVTableViewController.delegate = self
                 
-                TierIVTableViewController.tableArray = self.tierIVTableArray
-                TierIVTableViewController.collectionArray = self.tierIVCollectionArray
+
                 
             } else {
                 
@@ -242,7 +236,6 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
                         print("Warning: This selection is already being filtered.")
                         
                     }
-                    
                     
                 }
                 

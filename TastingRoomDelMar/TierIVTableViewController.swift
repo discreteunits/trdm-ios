@@ -24,31 +24,16 @@ class TierIVTableViewController: UITableViewController {
     
     var delegate: TierIVTableViewDelegate?
     
-    
-    var tierIVCollectionArray: [PFObject]!
-    var collectionArray = [PFObject]() {
-        didSet {
-            tierIVCollectionArray = collectionArray
-        }
-    }
-    
-    var tierIVTableArray: [PFObject]!
-    var tableArray = [PFObject]() {
-        didSet {
-            tierIVTableArray = tableArray
-        }
-    }
-
+    var tierIVCollectionArray = [PFObject]()
+    var tierIVTableArray = [PFObject]()
     
 // ------------
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
 // MARK: - Table view data source
@@ -94,9 +79,6 @@ class TierIVTableViewController: UITableViewController {
             
             }
         }
-        
-        
-        
         
         return cell
     }
