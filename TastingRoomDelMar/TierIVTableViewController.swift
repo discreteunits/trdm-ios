@@ -58,27 +58,37 @@ class TierIVTableViewController: UITableViewController {
             cell.altNameLabel?.text = self.tierIVTableArray[indexPath.row]["alternateName"] as! String?
             
         
-        dispatch_async(dispatch_get_main_queue()) {
+            dispatch_async(dispatch_get_main_queue()) {
 
-            if let itemTags = self.tierIVTableArray[indexPath.row]["tags"] as? [PFObject] {
-                print("ITEM TAGS IS====== \(itemTags)")
-                print("COLLECTION ARRAY IS ====== \(self.tierIVCollectionArray)")
-                for tagObject in itemTags {
+                if let itemTags = self.tierIVTableArray[indexPath.row]["tags"] as? [PFObject] {
+                    print("ITEM TAGS IS====== \(itemTags)")
+                    print("COLLECTION ARRAY IS ====== \(self.tierIVCollectionArray)")
+                    for tagObject in itemTags {
                 
-                    print("$$$$$$$$$ \(tagObject)")
+                        print("$$$$$$$$$ \(tagObject)")
                     
                     
-                    if self.tierIVCollectionArray.contains(tagObject) {
-                        print("TWO")
+                        if self.tierIVCollectionArray.contains(tagObject) {
+                            print("TWO")
 
-                        cell.varietalLabel?.text = tagObject["name"] as? String
+                            cell.varietalLabel?.text = tagObject["name"] as? String
                     
+                        }
+                
                     }
-                
-                }
             
+                }
             }
-        }
+        
+        
+        // -------
+        // SET PRICE LABEL HERE
+        // -------
+        
+        self.modQuery(  )
+        
+        cell.pricingLabel?.text =
+        
         
         return cell
     }
