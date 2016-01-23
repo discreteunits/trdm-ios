@@ -27,13 +27,16 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
     
 // ---------------
     override func viewDidLoad() {
+        super.viewDidLoad()
         
-        tagsArrayCreation()
-        print("Tags Array: \(tagsArray)")
-        tierIVCollectionQuery()
-        print("Collection Array: \(tierIVCollectionArray)")
-        tierIVTableQuery()
-        print("Table Array: \(tierIVTableArray)")
+        dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+            self.tagsArrayCreation()
+            self.tierIVCollectionQuery()
+        }
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
+            self.tierIVTableQuery()
+        }
 
 
         
@@ -105,6 +108,8 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
             
         }
         
+        
+
         if segue.identifier == "TierIVTableEmbeded" {
             
             if let TierIVTableViewController = segue.destinationViewController as? TierIVTableViewController {
@@ -112,8 +117,8 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
                 self.TierIVTableViewControllerRef = TierIVTableViewController
                 TierIVTableViewController.delegate = self
                 
-                TierIVTableViewController.tableArray = tierIVTableArray
-                TierIVTableViewController.collectionArray = tierIVCollectionArray
+                TierIVTableViewController.tableArray = self.tierIVTableArray
+                TierIVTableViewController.collectionArray = self.tierIVCollectionArray
                 
             } else {
                 
@@ -122,6 +127,7 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
             }
         
         }
+    
         
 //        if segue.identifier == "itemConfigPopover" {
 //            var vc = segue.destinationViewController as! PopoverViewController
@@ -188,6 +194,7 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
                         if object["tag"]["state"] as! String == "active" {
                         
                             self.TierIVCollectionViewControllerRef?.tierIVCollectionArray.append(object)
+                            self.TierIVTableViewControllerRef?.tierIVCollectionArray.append(object["tag"] as! PFObject)
                         
                         }
                     

@@ -36,8 +36,6 @@ class TierIVCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("TierIV collection view has recieved: \(tierIVCollectionArray)")
-
     }
 
     override func didReceiveMemoryWarning() {

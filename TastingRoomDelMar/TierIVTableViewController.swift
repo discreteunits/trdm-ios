@@ -19,12 +19,11 @@ protocol TierIVTableViewDelegate {
 
 class TierIVTableViewController: UITableViewController {
     
-    var tableContainerViewController: TierIVViewController?
-    
     var TierIVViewControllerRef: TierIVViewController?
     var TierIVCollectionViewControllerRef: TierIVCollectionViewController?
     
     var delegate: TierIVTableViewDelegate?
+    
     
     var tierIVCollectionArray: [PFObject]!
     var collectionArray = [PFObject]() {
@@ -32,6 +31,7 @@ class TierIVTableViewController: UITableViewController {
             tierIVCollectionArray = collectionArray
         }
     }
+    
     var tierIVTableArray: [PFObject]!
     var tableArray = [PFObject]() {
         didSet {
@@ -39,14 +39,11 @@ class TierIVTableViewController: UITableViewController {
         }
     }
 
-
     
 // ------------
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("TierIV table view has recieved: \(tierIVTableArray)")
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -72,56 +69,36 @@ class TierIVTableViewController: UITableViewController {
 //        cell.selectionStyle = UITableViewCellSelectionStyle.None
         
         
+            cell.itemNameLabel?.text = self.tierIVTableArray[indexPath.row]["name"] as! String?
+            cell.altNameLabel?.text = self.tierIVTableArray[indexPath.row]["alternateName"] as! String?
+            
         
-        
-        cell.itemNameLabel?.text = tierIVTableArray[indexPath.row]["name"] as! String?
-        cell.altNameLabel?.text = tierIVTableArray[indexPath.row]["alternateName"] as! String?
-        
-        
-        if let itemTags = tierIVTableArray[indexPath.row]["tags"] as? [PFObject] {
-            print("ITEM TAGS IS====== \(itemTags)")
-            print("COLLECTION ARRAY IS ====== \(collectionArray)")
-            for tagObject in itemTags {
-                
-                if collectionArray.contains(tagObject) {
-                    print("TWO")
+        dispatch_async(dispatch_get_main_queue()) {
 
-                    cell.varietalLabel?.text = tagObject["name"] as? String
-                    
-                }
+            if let itemTags = self.tierIVTableArray[indexPath.row]["tags"] as? [PFObject] {
+                print("ITEM TAGS IS====== \(itemTags)")
+                print("COLLECTION ARRAY IS ====== \(self.tierIVCollectionArray)")
+                for tagObject in itemTags {
                 
-            }
+                    print("$$$$$$$$$ \(tagObject)")
+                    
+                    
+                    if self.tierIVCollectionArray.contains(tagObject) {
+                        print("TWO")
+
+                        cell.varietalLabel?.text = tagObject["name"] as? String
+                    
+                    }
+                
+                }
             
+            }
         }
-    
+        
+        
+        
+        
         return cell
-    }
-    
-    
-// WHAT VARIETAL IS EACH ITEM ???
-    func itemVarietal(itemObject: AnyObject) -> PFObject {
-        
-        var itemVarietalObject = PFObject()
-        
-        if itemObject["tags"] != nil {
-        
-        if let itemTags = itemObject["tags"] as? [PFObject] {
-            
-            for tagObject in itemTags {
-                
-                if tierIVTableArray.contains(tagObject) {
-                    
-                    itemVarietalObject = tagObject
-                    
-                }
-                
-            }
-            
-        }
-        }
-        
-        return itemVarietalObject
-        
     }
     
     
