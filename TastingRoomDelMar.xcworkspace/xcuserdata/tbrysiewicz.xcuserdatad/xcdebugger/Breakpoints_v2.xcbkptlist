@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TastingRoomDelMar/TierIVViewController.swift"
-            timestampString = "475114297.013336"
+            timestampString = "475201898.426079"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "155"
-            endingLineNumber = "155"
+            startingLineNumber = "190"
+            endingLineNumber = "190"
             landmarkName = "tierIVCollectionQuery()"
             landmarkType = "5">
          </BreakpointContent>
@@ -25,14 +25,74 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TastingRoomDelMar/TierIVViewController.swift"
-            timestampString = "475098546.424383"
+            filePath = "TastingRoomDelMar/TierIVTableViewController.swift"
+            timestampString = "475201060.442802"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "5">
+            startingLineNumber = "14"
+            endingLineNumber = "14">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TastingRoomDelMar.TierIVTableViewController.__deallocating_deinit"
+                  moduleName = "TastingRoomDelMar"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tbrysiewicz/Documents/Coding/DiscreteUnits/TastingRoomDelMar/TastingRoomDelMar/TierIVTableViewController.swift"
+                  timestampString = "475201060.448897"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "19">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TastingRoomDelMar.TierIVTableViewController.init (TastingRoomDelMar.TierIVTableViewController.Type)(style : __C.UITableViewStyle) -&gt; TastingRoomDelMar.TierIVTableViewController"
+                  moduleName = "TastingRoomDelMar"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tbrysiewicz/Documents/Coding/DiscreteUnits/TastingRoomDelMar/TastingRoomDelMar/TierIVTableViewController.swift"
+                  timestampString = "475201060.449071"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "26">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TastingRoomDelMar.TierIVTableViewController.init (TastingRoomDelMar.TierIVTableViewController.Type)(nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.NSBundle&gt;) -&gt; TastingRoomDelMar.TierIVTableViewController"
+                  moduleName = "TastingRoomDelMar"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tbrysiewicz/Documents/Coding/DiscreteUnits/TastingRoomDelMar/TastingRoomDelMar/TierIVTableViewController.swift"
+                  timestampString = "475201060.449174"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "70">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TastingRoomDelMar.TierIVTableViewController.init (TastingRoomDelMar.TierIVTableViewController.Type)(coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;TastingRoomDelMar.TierIVTableViewController&gt;"
+                  moduleName = "TastingRoomDelMar"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tbrysiewicz/Documents/Coding/DiscreteUnits/TastingRoomDelMar/TastingRoomDelMar/TierIVTableViewController.swift"
+                  timestampString = "475201060.449277"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "27">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

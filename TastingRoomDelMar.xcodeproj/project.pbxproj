@@ -12,7 +12,7 @@
 		D729AB831C471FF90021A66E /* TierIVCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D729AB821C471FF90021A66E /* TierIVCollectionViewCell.swift */; };
 		D729AB851C4736570021A66E /* TierIVTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D729AB841C4736570021A66E /* TierIVTableViewController.swift */; };
 		D72B2A4E1C49728C0090875F /* ToPopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72B2A4D1C49728C0090875F /* ToPopoverViewController.swift */; };
-		D75ABF1E1C48306A00435CF1 /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75ABF1D1C48306A00435CF1 /* ItemTableViewCell.swift */; };
+		D75ABF1E1C48306A00435CF1 /* TierIVTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75ABF1D1C48306A00435CF1 /* TierIVTableViewCell.swift */; };
 		D75F14B11C4F13FA00315E3B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D75F14AF1C4F13FA00315E3B /* Main.storyboard */; };
 		D7734AF51C45C1D9009286DD /* TierITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7734AF41C45C1D9009286DD /* TierITableViewController.swift */; };
 		D7734AF71C45D4B3009286DD /* TierIITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7734AF61C45D4B3009286DD /* TierIITableViewController.swift */; };
@@ -59,7 +59,7 @@
 		D729AB821C471FF90021A66E /* TierIVCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierIVCollectionViewCell.swift; sourceTree = "<group>"; };
 		D729AB841C4736570021A66E /* TierIVTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierIVTableViewController.swift; sourceTree = "<group>"; };
 		D72B2A4D1C49728C0090875F /* ToPopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToPopoverViewController.swift; sourceTree = "<group>"; };
-		D75ABF1D1C48306A00435CF1 /* ItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
+		D75ABF1D1C48306A00435CF1 /* TierIVTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierIVTableViewCell.swift; sourceTree = "<group>"; };
 		D75F14B01C4F13FA00315E3B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D7734AF41C45C1D9009286DD /* TierITableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierITableViewController.swift; sourceTree = "<group>"; };
 		D7734AF61C45D4B3009286DD /* TierIITableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierIITableViewController.swift; sourceTree = "<group>"; };
@@ -179,7 +179,7 @@
 				D7FACCFA1C46F1EF0006F6BE /* TierIVCollectionViewController.swift */,
 				D729AB821C471FF90021A66E /* TierIVCollectionViewCell.swift */,
 				D729AB841C4736570021A66E /* TierIVTableViewController.swift */,
-				D75ABF1D1C48306A00435CF1 /* ItemTableViewCell.swift */,
+				D75ABF1D1C48306A00435CF1 /* TierIVTableViewCell.swift */,
 				D72B2A4D1C49728C0090875F /* ToPopoverViewController.swift */,
 				D7A8AC071C4D9626008D9A90 /* PopoverViewController.swift */,
 				D7A8AC031C4D9469008D9A90 /* PopoverTableViewCell.swift */,
@@ -399,7 +399,7 @@
 				D7F981141C4461FD00200639 /* MenuTableViewController.swift in Sources */,
 				D7734AFD1C45D87F009286DD /* TierIVViewController.swift in Sources */,
 				D7F981101C44612800200639 /* ENSideMenuControllerViewController.swift in Sources */,
-				D75ABF1E1C48306A00435CF1 /* ItemTableViewCell.swift in Sources */,
+				D75ABF1E1C48306A00435CF1 /* TierIVTableViewCell.swift in Sources */,
 				D7F495311C3B38D2006E8592 /* SignUpLogInTableViewController.swift in Sources */,
 				D7F981121C4461A300200639 /* ENSideMenuNavigationController.swift in Sources */,
 				D7734AF51C45C1D9009286DD /* TierITableViewController.swift in Sources */,

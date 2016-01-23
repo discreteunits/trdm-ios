@@ -12,21 +12,34 @@ import Parse
 
 @objc
 protocol TierIVTableViewDelegate {
+    func tagsArrayCreation()
     func tierIVCollectionQuery()
     func tierIVTableQuery()
 }
 
-class TierIVTableViewController: UITableViewController, UIPopoverPresentationControllerDelegate {
-    
-    var tierIVTableArray = [PFObject]()
+class TierIVTableViewController: UITableViewController {
     
     var tableContainerViewController: TierIVViewController?
     
     var TierIVViewControllerRef: TierIVViewController?
+    var TierIVCollectionViewControllerRef: TierIVCollectionViewController?
     
     var delegate: TierIVTableViewDelegate?
     
-    var popover: UIPopoverController?
+    var tierIVCollectionArray: [PFObject]!
+    var collectionArray = [PFObject]() {
+        didSet {
+            tierIVCollectionArray = collectionArray
+        }
+    }
+    var tierIVTableArray: [PFObject]!
+    var tableArray = [PFObject]() {
+        didSet {
+            tierIVTableArray = tableArray
+        }
+    }
+
+
     
 // ------------
     override func viewDidLoad() {
@@ -34,42 +47,11 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         
         print("TierIV table view has recieved: \(tierIVTableArray)")
 
-        self.tableView.reloadData()
-
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-
-    
-// PREPARE FOR SEGUE
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-        if segue.identifier == "itemConfigPopover" {
-            
-            let vc = segue.destinationViewController as! UIViewController
-            
-            let controller = vc.popoverPresentationController
-            
-            controller!.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
-            
-            if controller != nil {
-                
-                controller?.delegate = self
-                
-            }
-            
-        }
-        
-    }
-    
-// POPOVER DATA SOURCE
-    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
-        
-        return .None
-        
     }
 
 // MARK: - Table view data source
@@ -85,20 +67,62 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("itemCell", forIndexPath: indexPath) as! ItemTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("itemCell", forIndexPath: indexPath) as! TierIVTableViewCell
 
+//        cell.selectionStyle = UITableViewCellSelectionStyle.None
+        
+        
+        
+        
         cell.itemNameLabel?.text = tierIVTableArray[indexPath.row]["name"] as! String?
         cell.altNameLabel?.text = tierIVTableArray[indexPath.row]["alternateName"] as! String?
         
-//       cell.varietalLabel?.text = route[2]["name"] as? String
+        
+        if let itemTags = tierIVTableArray[indexPath.row]["tags"] as? [PFObject] {
+            print("ITEM TAGS IS====== \(itemTags)")
+            print("COLLECTION ARRAY IS ====== \(collectionArray)")
+            for tagObject in itemTags {
+                
+                if collectionArray.contains(tagObject) {
+                    print("TWO")
 
+                    cell.varietalLabel?.text = tagObject["name"] as? String
+                    
+                }
+                
+            }
+            
+        }
+    
         return cell
     }
- 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    
+    
+// WHAT VARIETAL IS EACH ITEM ???
+    func itemVarietal(itemObject: AnyObject) -> PFObject {
         
-        performSegueWithIdentifier("itemConfigPopover", sender: self)
-
+        var itemVarietalObject = PFObject()
+        
+        if itemObject["tags"] != nil {
+        
+        if let itemTags = itemObject["tags"] as? [PFObject] {
+            
+            for tagObject in itemTags {
+                
+                if tierIVTableArray.contains(tagObject) {
+                    
+                    itemVarietalObject = tagObject
+                    
+                }
+                
+            }
+            
+        }
+        }
+        
+        return itemVarietalObject
+        
     }
-
+    
+    
 }

@@ -20,20 +20,22 @@ protocol TierIVCollectionViewDelegate {
 
 class TierIVCollectionViewController: UICollectionViewController {
     
-    var tierIVCollectionArray = [PFObject]()
-    
-    var collectionContainerViewController: TierIVViewController?
-    
     var TierIVViewControllerRef: TierIVViewController?
     
     var delegate: TierIVCollectionViewDelegate?
+    
+    var tierIVCollectionArray: [PFObject]!
+    var collectionArray = [PFObject]() {
+        didSet {
+            tierIVCollectionArray = collectionArray
+        }
+    }
     
 // ------------------
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        delegate?.tierIVCollectionQuery()
         print("TierIV collection view has recieved: \(tierIVCollectionArray)")
 
     }
@@ -61,6 +63,7 @@ class TierIVCollectionViewController: UICollectionViewController {
         let hardCodedPadding:CGFloat = 3
         let itemWidth = (collectionView.bounds.width / itemsPerRow) - hardCodedPadding
         let itemHeight = collectionView.bounds.height - (4 * hardCodedPadding)
+        
         return CGSize(width: itemWidth, height: itemHeight)
     }
     
@@ -82,8 +85,6 @@ class TierIVCollectionViewController: UICollectionViewController {
             print("Warning: This selection is already in the route.")
             
         }
-        
-
         
         delegate?.tagsArrayCreation()
         delegate?.tierIVTableQuery()

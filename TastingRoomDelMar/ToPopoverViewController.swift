@@ -10,7 +10,6 @@ import UIKit
 
 class ToPopoverViewController: UIViewController, UIPopoverPresentationControllerDelegate {
 
-    
     var popover: UIPopoverController?
     
     @IBAction func popover(sender: AnyObject) {
@@ -18,7 +17,7 @@ class ToPopoverViewController: UIViewController, UIPopoverPresentationController
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "showPopover" {
+        if segue.identifier == "itemConfigPopover" {
             var vc = segue.destinationViewController as! UIViewController
             
             var controller = vc.popoverPresentationController
@@ -30,38 +29,19 @@ class ToPopoverViewController: UIViewController, UIPopoverPresentationController
                 controller?.delegate = self
                 
             }
-            
         }
-        
     }
     
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
-        
         return .None
-        
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

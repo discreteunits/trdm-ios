@@ -8,15 +8,14 @@
 
 import UIKit
 
-class ItemTableViewCell: UITableViewCell {
+class TierIVTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var addToOrderButton: UIButton!
     @IBOutlet weak var itemNameLabel: UILabel!
     @IBOutlet weak var altNameLabel: UILabel!
     @IBOutlet weak var varietalLabel: UILabel!
     @IBOutlet weak var pricingLabel: UILabel!
+    @IBOutlet weak var addToOrderButton: UIView!
     
-
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

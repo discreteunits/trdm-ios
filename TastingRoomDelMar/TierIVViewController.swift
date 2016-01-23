@@ -11,22 +11,31 @@ import ParseUI
 import Parse
 import ParseCrashReporting
 
-class TierIVViewController: UIViewController, ENSideMenuDelegate {
+class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPresentationControllerDelegate {
 
     var nav: UINavigationBar?
+    
+    var popover: UIPopoverPresentationController?
     
     var TierIVCollectionViewControllerRef: TierIVCollectionViewController?
     var TierIVTableViewControllerRef: TierIVTableViewController?
 
     var tagsArray = [PFObject]()
+    var tierIVCollectionArray = [PFObject]()
+    var tierIVTableArray = [PFObject]()
+    
     
 // ---------------
     override func viewDidLoad() {
         
         tagsArrayCreation()
         print("Tags Array: \(tagsArray)")
-        
+        tierIVCollectionQuery()
+        print("Collection Array: \(tierIVCollectionArray)")
         tierIVTableQuery()
+        print("Table Array: \(tierIVTableArray)")
+
+
         
 // FLYOUT MENU
         
@@ -86,7 +95,11 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate {
                 self.TierIVCollectionViewControllerRef = TierIVCollectionViewController
                 TierIVCollectionViewController.delegate = self
                 
-                TierIVCollectionViewController.collectionContainerViewController = self
+                TierIVCollectionViewController.collectionArray = tierIVCollectionArray
+                
+            } else {
+                
+                print("Collection Data NOT Passed!")
                 
             }
             
@@ -99,11 +112,31 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate {
                 self.TierIVTableViewControllerRef = TierIVTableViewController
                 TierIVTableViewController.delegate = self
                 
-                TierIVTableViewController.tableContainerViewController = self
+                TierIVTableViewController.tableArray = tierIVTableArray
+                TierIVTableViewController.collectionArray = tierIVCollectionArray
+                
+            } else {
+                
+                print("Table Data Not Passed!")
                 
             }
         
         }
+        
+//        if segue.identifier == "itemConfigPopover" {
+//            var vc = segue.destinationViewController as! PopoverViewController
+//            
+//            var controller = vc.popoverPresentationController
+//            
+//            controller!.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
+//            
+//            if controller != nil {
+//                
+//                controller?.delegate = self
+//                
+//            }
+//            
+//        }
         
     }
     
