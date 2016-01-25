@@ -7,14 +7,19 @@
 //
 
 import UIKit
+import ParseUI
+import Parse
 
 class PopoverViewController: UITableViewController {
 
+    var popoverItem: PFObject!
+    
     let model: [[UIColor]] = generateRandomData()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        print("DUDE< DUDE< DUDE \(popoverItem)")
         // Do any additional setup after loading the view.
     }
 

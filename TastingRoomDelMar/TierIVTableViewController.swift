@@ -17,7 +17,7 @@ protocol TierIVTableViewDelegate {
     func tierIVTableQuery()
 }
 
-class TierIVTableViewController: UITableViewController {
+class TierIVTableViewController: UITableViewController, UIPopoverPresentationControllerDelegate {
     
     var TierIVViewControllerRef: TierIVViewController?
     var TierIVCollectionViewControllerRef: TierIVCollectionViewController?
@@ -27,6 +27,13 @@ class TierIVTableViewController: UITableViewController {
     var tierIVCollectionArray = [PFObject]()
     var tierIVTableArray = [PFObject]()
     
+    var popover: UIPopoverController?
+    
+    var item: PFObject!
+    
+    var indexPath: NSIndexPath!
+
+
 // ------------
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,23 +60,16 @@ class TierIVTableViewController: UITableViewController {
 
 //        cell.selectionStyle = UITableViewCellSelectionStyle.None
         
-        
             cell.itemNameLabel?.text = self.tierIVTableArray[indexPath.row]["name"] as! String?
             cell.altNameLabel?.text = self.tierIVTableArray[indexPath.row]["alternateName"] as! String?
-            
         
             dispatch_async(dispatch_get_main_queue()) {
 
                 if let itemTags = self.tierIVTableArray[indexPath.row]["tags"] as? [PFObject] {
-                    print("ITEM TAGS IS====== \(itemTags)")
-                    print("COLLECTION ARRAY IS ====== \(self.tierIVCollectionArray)")
+
                     for tagObject in itemTags {
-                
-                        print("$$$$$$$$$ \(tagObject)")
-                    
                     
                         if self.tierIVCollectionArray.contains(tagObject) {
-                            print("TWO")
 
                             cell.varietalLabel?.text = tagObject["name"] as? String
                     
@@ -78,20 +78,74 @@ class TierIVTableViewController: UITableViewController {
                     }
             
                 }
+                
             }
         
-        
-        // -------
-        // SET PRICE LABEL HERE
-        // -------
-        
-        self.modQuery(  )
-        
-        cell.pricingLabel?.text =
-        
+// -------
+// SET PRICE LABEL HERE
+// -------
+//
+//        cell.pricingLabel?.text =
         
         return cell
     }
+  
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        
+    }
+    
+    
+// SEGUE TRIGGER AND PREPARATION
+    
+    @IBAction func addToOrder(sender: AnyObject) {
+        
+        
+        // ASSIGN ITEM TO OBJECT TO BE PASSED TO POPOVER
+        if let button = sender as? UIButton {
+            if let superview = button.superview {
+                if let cell = superview.superview as? TierIVTableViewCell {
+                    indexPath = tableView.indexPathForCell(cell)
+                }
+            }
+        }
+        
+        
+        item = tierIVTableArray[indexPath.row]
+        print("\(item)")
+        
+        performSegueWithIdentifier("showItemConfig", sender: self)
+
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "showItemConfig" {
+            
+            var vc = segue.destinationViewController as! PopoverViewController
+            
+            vc.popoverItem = item
+            
+            var controller = vc.popoverPresentationController
+            
+            controller!.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
+            
+            if controller != nil {
+            
+                controller?.delegate = self
+                            
+            }
+
+        }
+        
+    }
+    
+    
+// PRESENTATION CONTROLLER DATA SOURCE
+    
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .None
+    }
     
 }

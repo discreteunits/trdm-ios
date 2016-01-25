@@ -257,47 +257,6 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
             }
         }
     }
-    
-    func modQuery(itemObject: PFObject) -> [String] {
-        
-        var modifierObjects = [String]()
-        
-        let modifierGroup = itemObject["modifierGroups"]
-
-        let modQuery:PFQuery = PFQuery(className: "ModifierGroups")
-        modQuery.includeKey("modifiers")
-//        modQuery.whereKey("objectId", equalTo: modifierGroup)
-        modQuery.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
-            print("modQuery Has Returned: \(objects)")
-            if error == nil {
-                
-                // The find succeeded.
-                print("Modifiers query retrieved \(objects!.count) objects.")
-                
-                // Do something with the found objects
-                for object in objects! as [PFObject] {
-                    
-                    for mod in object["modifiers"] as! [PFObject]  {
-                        
-                        print("\(mod["price"])")
-                        modifierObjects.append(mod["price"] as! String)
-                        
-                    }
-                    
-                }
-                
-            } else {
-                
-                // Log details of the failure
-                print("Error: \(error!) \(error!.userInfo)")
-                
-            }
-            
-        }
-        
-        return modifierObjects
-        
-    }
-
+ 
 }
 

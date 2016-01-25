@@ -394,7 +394,7 @@
                                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
                                             <connections>
-                                                <action selector="addToOrder:" destination="Ik1-QJ-zJP" eventType="touchUpInside" id="fl8-1A-4PU"/>
+                                                <action selector="addToOrder:" destination="WTZ-qJ-zbB" eventType="touchUpInside" id="Ndl-D9-QVh"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -422,7 +422,9 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <segue destination="OxA-Ag-bsF" kind="show" identifier="showItemConfig" id="8vY-C7-lZ4"/>
+                        <segue destination="OxA-Ag-bsF" kind="popoverPresentation" identifier="showItemConfig" popoverAnchorView="X5c-7e-CoL" id="8vY-C7-lZ4">
+                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                        </segue>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6vG-Ub-u96" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -450,7 +452,7 @@
         <!--Popover View Controller-->
         <scene sceneID="MmX-H0-KNu">
             <objects>
-                <tableViewController id="OxA-Ag-bsF" customClass="PopoverViewController" customModule="TastingRoomDelMar" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="itemConfig" id="OxA-Ag-bsF" customClass="PopoverViewController" customModule="TastingRoomDelMar" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" id="6qP-2n-l09">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="467"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
