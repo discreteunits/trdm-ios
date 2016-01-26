@@ -14,6 +14,8 @@ class PopoverViewController: UITableViewController {
 
     var popoverItem: PFObject!
     
+    var rows: Int!
+    
     let model: [[UIColor]] = generateRandomData()
 
     override func viewDidLoad() {
@@ -30,23 +32,43 @@ class PopoverViewController: UITableViewController {
     
     override func tableView(tableView: UITableView,
         numberOfRowsInSection section: Int) -> Int {
-            return model.count
+            
+            let mg = popoverItem["modifierGroups"].count
+            rows = mg + 3
+            return rows
     }
     
     override func tableView(tableView: UITableView,
         cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
             
-            let cell = tableView.dequeueReusableCellWithIdentifier("PopoverTableCell",
-                forIndexPath: indexPath)
+            var cell: UITableViewCell!
+            
+            let quantityRow = rows - 2
+            let actionRow = rows - 1
+            
+            if indexPath.row == 0 {
+                cell = tableView.dequeueReusableCellWithIdentifier("PopoverDetailsTableCell",
+                    forIndexPath: indexPath) as! PopoverDetailsTableViewCell
+            } else if (indexPath.row > 0) && (indexPath.row < quantityRow) {
+                cell = tableView.dequeueReusableCellWithIdentifier("PopoverMGTableCell",
+                    forIndexPath: indexPath) as! PopoverMGTableViewCell
+            } else if indexPath.row == quantityRow {
+                cell = tableView.dequeueReusableCellWithIdentifier("PopoverQuantityTableCell",
+                    forIndexPath: indexPath) as! PopoverQuantityTableViewCell
+            } else if indexPath.row == actionRow {
+                cell = tableView.dequeueReusableCellWithIdentifier("PopoverActionTableCell",
+                    forIndexPath: indexPath) as! PopoverActionTableViewCell
+            }
             
             return cell
+            
     }
     
     override func tableView(tableView: UITableView,
         willDisplayCell cell: UITableViewCell,
         forRowAtIndexPath indexPath: NSIndexPath) {
             
-            guard let tableViewCell = cell as? PopoverTableViewCell else { return }
+            guard let tableViewCell = cell as? PopoverDetailsTableViewCell else { return }
             
             tableViewCell.setCollectionViewDataSourceDelegate(self, forRow: indexPath.row)
     }
@@ -83,11 +105,15 @@ extension UIColor {
     }
 }
 
+// -------------------------
+// COLLECTION DELEGATE AND DATA SOURCE
+// -------------------------
 extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(collectionView: UICollectionView,
         numberOfItemsInSection section: Int) -> Int {
             
             return model[collectionView.tag].count
+            
     }
     
     func collectionView(collectionView: UICollectionView,

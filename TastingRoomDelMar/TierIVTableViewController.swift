@@ -58,28 +58,28 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("itemCell", forIndexPath: indexPath) as! TierIVTableViewCell
 
-//        cell.selectionStyle = UITableViewCellSelectionStyle.None
+        cell.selectionStyle = UITableViewCellSelectionStyle.None
         
-            cell.itemNameLabel?.text = self.tierIVTableArray[indexPath.row]["name"] as! String?
-            cell.altNameLabel?.text = self.tierIVTableArray[indexPath.row]["alternateName"] as! String?
+        cell.itemNameLabel?.text = self.tierIVTableArray[indexPath.row]["name"] as! String?
+        cell.altNameLabel?.text = self.tierIVTableArray[indexPath.row]["alternateName"] as! String?
         
-            dispatch_async(dispatch_get_main_queue()) {
+        dispatch_async(dispatch_get_main_queue()) {
 
-                if let itemTags = self.tierIVTableArray[indexPath.row]["tags"] as? [PFObject] {
+            if let itemTags = self.tierIVTableArray[indexPath.row]["tags"] as? [PFObject] {
 
-                    for tagObject in itemTags {
+                for tagObject in itemTags {
                     
-                        if self.tierIVCollectionArray.contains(tagObject) {
+                    if self.tierIVCollectionArray.contains(tagObject) {
 
-                            cell.varietalLabel?.text = tagObject["name"] as? String
+                        cell.varietalLabel?.text = tagObject["name"] as? String
                     
-                        }
-                
                     }
-            
-                }
                 
+                }
+            
             }
+                
+        }
         
 // -------
 // SET PRICE LABEL HERE
@@ -89,18 +89,11 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         
         return cell
     }
-  
-    
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        
-    }
     
     
 // SEGUE TRIGGER AND PREPARATION
     
     @IBAction func addToOrder(sender: AnyObject) {
-        
         
         // ASSIGN ITEM TO OBJECT TO BE PASSED TO POPOVER
         if let button = sender as? UIButton {
@@ -111,9 +104,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             }
         }
         
-        
         item = tierIVTableArray[indexPath.row]
-        print("\(item)")
         
         performSegueWithIdentifier("showItemConfig", sender: self)
 
