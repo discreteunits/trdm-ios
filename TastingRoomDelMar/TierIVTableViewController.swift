@@ -30,8 +30,12 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     var popover: UIPopoverController?
     
     var item: PFObject!
+    var itemVarietal: PFObject!
     
     var indexPath: NSIndexPath!
+    
+    var popoverHeight: CGFloat!
+    var popoverWidth: CGFloat!
 
 
 // ------------
@@ -72,6 +76,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
                     if self.tierIVCollectionArray.contains(tagObject) {
 
                         cell.varietalLabel?.text = tagObject["name"] as? String
+                        self.itemVarietal = tagObject as PFObject!
                     
                     }
                 
@@ -106,6 +111,11 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         
         item = tierIVTableArray[indexPath.row]
         
+        let popoverDynamicHeight = item["modifierGroups"].count
+        let popoverHeightCalculation = ((popoverDynamicHeight + 3) * 100)
+        popoverHeight = CGFloat(popoverHeightCalculation)
+        popoverWidth = tableView.bounds.size.width
+        
         performSegueWithIdentifier("showItemConfig", sender: self)
 
     }
@@ -116,7 +126,11 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             
             var vc = segue.destinationViewController as! PopoverViewController
             
+            // Dynamically assign Popover Window Size
+            vc.preferredContentSize = CGSizeMake(popoverWidth, popoverHeight)
+            
             vc.popoverItem = item
+            vc.popoverItemVarietal = itemVarietal
             
             var controller = vc.popoverPresentationController
             

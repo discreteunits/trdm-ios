@@ -12,6 +12,7 @@ class PopoverMGTableViewCell: UITableViewCell {
 
     
     @IBOutlet weak var PopoverCollectionView: UICollectionView!
+    @IBOutlet weak var servingLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

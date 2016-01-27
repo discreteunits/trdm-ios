@@ -11,6 +11,7 @@ import UIKit
 class PopoverQuantityTableViewCell: UITableViewCell {
 
     @IBOutlet weak var PopoverCollectionView: UICollectionView!
+    @IBOutlet weak var label: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

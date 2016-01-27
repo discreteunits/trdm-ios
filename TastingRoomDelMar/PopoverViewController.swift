@@ -13,21 +13,22 @@ import Parse
 class PopoverViewController: UITableViewController {
 
     var popoverItem: PFObject!
+    var popoverItemVarietal: PFObject!
     
     var rows: Int!
+    
+    var qty = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+    var actions = ["Cancel", "Add to Order"]
     
     let model: [[UIColor]] = generateRandomData()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        print("DUDE< DUDE< DUDE \(popoverItem)")
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func tableView(tableView: UITableView,
@@ -38,26 +39,54 @@ class PopoverViewController: UITableViewController {
             return rows
     }
     
+
+    
+    
+// TABLE ROWS
+    
     override func tableView(tableView: UITableView,
         cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
             
             var cell: UITableViewCell!
-            
             let quantityRow = rows - 2
             let actionRow = rows - 1
             
             if indexPath.row == 0 {
-                cell = tableView.dequeueReusableCellWithIdentifier("PopoverDetailsTableCell",
+                var detailsCell: PopoverDetailsTableViewCell
+                detailsCell = tableView.dequeueReusableCellWithIdentifier("PopoverDetailsTableCell",
                     forIndexPath: indexPath) as! PopoverDetailsTableViewCell
+                detailsCell.contentView.tag = indexPath.row
+                detailsCell.titleLabel?.text = popoverItem["name"] as! String!
+                detailsCell.altNameLabel?.text = popoverItem["alternateName"] as! String!
+                detailsCell.varietalLabel?.text = popoverItemVarietal["name"] as! String!
+                
+                return detailsCell
+                
             } else if (indexPath.row > 0) && (indexPath.row < quantityRow) {
-                cell = tableView.dequeueReusableCellWithIdentifier("PopoverMGTableCell",
+                var mgCell: PopoverMGTableViewCell
+                mgCell = tableView.dequeueReusableCellWithIdentifier("PopoverMGTableCell",
                     forIndexPath: indexPath) as! PopoverMGTableViewCell
+                mgCell.contentView.tag = indexPath.row
+                mgCell.servingLabel.text = "serving"
+                
+                return mgCell
+                
             } else if indexPath.row == quantityRow {
-                cell = tableView.dequeueReusableCellWithIdentifier("PopoverQuantityTableCell",
+                var qtyCell: PopoverQuantityTableViewCell
+                qtyCell = tableView.dequeueReusableCellWithIdentifier("PopoverQuantityTableCell",
                     forIndexPath: indexPath) as! PopoverQuantityTableViewCell
+                qtyCell.contentView.tag = indexPath.row
+                qtyCell.label.text = "quantity"
+                
+                return qtyCell
+                
             } else if indexPath.row == actionRow {
-                cell = tableView.dequeueReusableCellWithIdentifier("PopoverActionTableCell",
+                var actionCell: PopoverActionTableViewCell
+                actionCell = tableView.dequeueReusableCellWithIdentifier("PopoverActionTableCell",
                     forIndexPath: indexPath) as! PopoverActionTableViewCell
+                actionCell.contentView.tag = indexPath.row
+    
+                return actionCell
             }
             
             return cell
@@ -68,9 +97,31 @@ class PopoverViewController: UITableViewController {
         willDisplayCell cell: UITableViewCell,
         forRowAtIndexPath indexPath: NSIndexPath) {
             
-            guard let tableViewCell = cell as? PopoverDetailsTableViewCell else { return }
+            var tableViewCell: UITableViewCell!
+            let quantityRow = rows - 2
+            let actionRow = rows - 1
             
-            tableViewCell.setCollectionViewDataSourceDelegate(self, forRow: indexPath.row)
+            if indexPath.row == 0 {
+                guard let tableViewCell = cell as? PopoverDetailsTableViewCell else { return }
+//                tableViewCell.setCollectionViewDataSourceDelegate(self, forRow: indexPath.row)
+                
+
+            } else if (indexPath.row > 0) && (indexPath.row < quantityRow ) {
+                guard let tableViewCell = cell as? PopoverMGTableViewCell else { return }
+                tableViewCell.setCollectionViewDataSourceDelegate(self, forRow: indexPath.row)
+
+            } else if indexPath.row == quantityRow {
+                guard let tableViewCell = cell as? PopoverQuantityTableViewCell else { return }
+                tableViewCell.setCollectionViewDataSourceDelegate(self, forRow: indexPath.row)
+
+            } else if indexPath.row == actionRow {
+                guard let tableViewCell = cell as? PopoverActionTableViewCell else { return }
+                tableViewCell.setCollectionViewDataSourceDelegate(self, forRow: indexPath.row)
+
+            }
+            
+            
+            
     }
     
     /*
@@ -109,21 +160,188 @@ extension UIColor {
 // COLLECTION DELEGATE AND DATA SOURCE
 // -------------------------
 extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    
+    
     func collectionView(collectionView: UICollectionView,
         numberOfItemsInSection section: Int) -> Int {
             
-            return model[collectionView.tag].count
+            let parent = collectionView.superview!.tag
+            let quantityRow = rows - 2
+            let actionRow = rows - 1
+            
+            var numberOfItems: Int!
+            
+            if parent == 0 {
+                numberOfItems = 1
+                // PARENT ZERO IS NOT A COLLECTION VIEW
+            } else if (parent > 0) && (parent < quantityRow ) {
+                numberOfItems = 3
+
+            } else if parent == quantityRow {
+                numberOfItems = qty.count
+
+            } else if parent == actionRow {
+                numberOfItems = 2
+
+            }
+            
+            return numberOfItems
             
     }
     
     func collectionView(collectionView: UICollectionView,
         cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
             
-            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("PopoverCollectionCell",
-                forIndexPath: indexPath)
+            var cell: UICollectionViewCell!
             
-            cell.backgroundColor = model[collectionView.tag][indexPath.item]
+            let parent = collectionView.superview!.tag
+            let quantityRow = rows - 2
+            let actionRow = rows - 1
+            
+            
+            if parent == 0 {
+                // PARENT ZERO IS NOT A COLLECTION VIEW
+            } else if (parent > 0) && (parent < quantityRow ) {
+                
+                var mgCollectionCell: PopoverMGCollectionViewCell
+                mgCollectionCell = collectionView.dequeueReusableCellWithReuseIdentifier("PopoverMGCollectionCell",
+                    forIndexPath: indexPath) as! PopoverMGCollectionViewCell
+                
+                mgCollectionCell.backgroundColor = UIColor.whiteColor()
+                
+//                for modifier in popoverItem["modifierGroups"] {
+//                    
+//                }
+                
+                return mgCollectionCell
+                
+            } else if parent == quantityRow {
+                
+                var quantityCollectionCell: PopoverQuantityCollectionViewCell
+                quantityCollectionCell = collectionView.dequeueReusableCellWithReuseIdentifier("PopoverQuantityCollectionCell",
+                    forIndexPath: indexPath) as! PopoverQuantityCollectionViewCell
+                
+                quantityCollectionCell.backgroundColor = UIColor.whiteColor()
+                var index = String(indexPath.row)
+                quantityCollectionCell.label.text = index
+                
+                return quantityCollectionCell
+                
+            } else if parent == actionRow {
+                
+                var actionCollectionCell: PopoverActionCollectionViewCell
+                actionCollectionCell = collectionView.dequeueReusableCellWithReuseIdentifier("PopoverActionCollectionCell",
+                    forIndexPath: indexPath) as! PopoverActionCollectionViewCell
+                
+                if indexPath.row == 0 {
+                    
+                    actionCollectionCell.backgroundColor = UIColor.grayColor()
+                    actionCollectionCell.label.textColor = UIColor.whiteColor()
+                    actionCollectionCell.label.text = "Cancel"
+                    
+                } else if indexPath.row == 1 {
+                    
+                    actionCollectionCell.backgroundColor = UIColor.blackColor()
+                    actionCollectionCell.label.textColor = UIColor.whiteColor()
+                    actionCollectionCell.label.text = "Add to Order"
+
+                }
+                
+                return actionCollectionCell
+                
+            }
+            
+            
             
             return cell
     }
+ 
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
+        let selectedCell = collectionView.cellForItemAtIndexPath(indexPath)! as! UICollectionViewCell
+        selectedCell.layer.cornerRadius = 10.0
+        selectedCell.clipsToBounds = true
+        selectedCell.contentView.backgroundColor = UIColor.blackColor()
+        
+        
+        let parent = collectionView.superview!.tag
+        let quantityRow = rows - 2
+        let actionRow = rows - 1
+        
+        if parent == 0 {
+            // PARENT ZERO IS NOT A COLLECTION VIEW
+        } else if (parent > 0) && (parent < quantityRow ) {
+            
+            let selectedCell = collectionView.cellForItemAtIndexPath(indexPath)! as! PopoverMGCollectionViewCell
+            selectedCell.label.textColor = UIColor.whiteColor()
+
+            
+        } else if parent == quantityRow {
+            
+            let selectedCell = collectionView.cellForItemAtIndexPath(indexPath)! as! PopoverQuantityCollectionViewCell
+            selectedCell.label.textColor = UIColor.whiteColor()
+            
+        } else if parent == actionRow {
+            
+            let selectedCell = collectionView.cellForItemAtIndexPath(indexPath)! as! PopoverActionCollectionViewCell
+            selectedCell.label.textColor = UIColor.greenColor()
+            
+        }
+        
+        
+        
+        
+    }
+    
+    func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
+        
+        let deselectedCell = collectionView.cellForItemAtIndexPath(indexPath)! as! UICollectionViewCell
+        deselectedCell.contentView.backgroundColor = UIColor.whiteColor()
+        
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        
+        var cellSize: CGSize!
+        let parent = collectionView.superview!.tag
+        let quantityRow = rows - 2
+        let actionRow = rows - 1
+        
+        
+        if parent == 0 {
+            // PARENT ZERO IS NOT A COLLECTION VIEW
+        } else if (parent > 0) && (parent < quantityRow ) {
+            var mgCellSize: CGSize!
+            let cellHeight = collectionView.bounds.size.height
+            let cellWidth = collectionView.bounds.size.width / 3
+            
+            mgCellSize = CGSize(width: cellWidth, height: cellHeight)
+            
+            return mgCellSize
+            
+        } else if parent == quantityRow {
+            var quantityCellSize: CGSize!
+            let cellHeight = collectionView.bounds.size.height
+            let cellWidth = collectionView.bounds.size.width / 5
+            
+            quantityCellSize = CGSize(width: cellWidth, height: cellHeight)
+            
+            return quantityCellSize
+            
+        } else if parent == actionRow {
+            var actionCellSize: CGSize!
+            let cellHeight = collectionView.bounds.size.height
+            let cellWidth = collectionView.bounds.size.width / 2
+            
+            actionCellSize = CGSize(width: cellWidth, height: cellHeight)
+            
+            return actionCellSize
+            
+        }
+        
+        
+        return cellSize
+    }
+    
 }

@@ -121,22 +121,6 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
             }
         
         }
-    
-        
-//        if segue.identifier == "itemConfigPopover" {
-//            var vc = segue.destinationViewController as! PopoverViewController
-//            
-//            var controller = vc.popoverPresentationController
-//            
-//            controller!.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
-//            
-//            if controller != nil {
-//                
-//                controller?.delegate = self
-//                
-//            }
-//            
-//        }
         
     }
     

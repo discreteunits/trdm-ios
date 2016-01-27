@@ -10,7 +10,9 @@ import UIKit
 
 class PopoverDetailsTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var PopoverCollectionView: UICollectionView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var altNameLabel: UILabel!
+    @IBOutlet weak var varietalLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,16 +23,6 @@ class PopoverDetailsTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
-    }
-
-    func setCollectionViewDataSourceDelegate
-        <D: protocol<UICollectionViewDataSource, UICollectionViewDelegate>>
-        (dataSourceDelegate: D, forRow row: Int) {
-            
-            PopoverCollectionView.delegate = dataSourceDelegate
-            PopoverCollectionView.dataSource = dataSourceDelegate
-            PopoverCollectionView.tag = row
-            PopoverCollectionView.reloadData()
     }
     
 }
