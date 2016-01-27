@@ -12,20 +12,31 @@ import Parse
 
 class PopoverViewController: UITableViewController {
 
+    // Received data based on table selection
     var popoverItem: PFObject!
     var popoverItemVarietal: PFObject!
+    var modGroups = [PFObject]()
+    
+    // Data built in this controller
+    var modifierObjects = [PFObject]()
     
     var rows: Int!
     
     var qty = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
     var actions = ["Cancel", "Add to Order"]
     
-    let model: [[UIColor]] = generateRandomData()
-
     override func viewDidLoad() {
         super.viewDidLoad()
-
+   
+        
+        let foo = modifierQuery(modGroups[0])
+        
+        print("ModifierQuery has returned: \(foo)")
+        
+        
     }
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -34,7 +45,7 @@ class PopoverViewController: UITableViewController {
     override func tableView(tableView: UITableView,
         numberOfRowsInSection section: Int) -> Int {
             
-            let mg = popoverItem["modifierGroups"].count
+            let mg = modGroups.count
             rows = mg + 3
             return rows
     }
@@ -68,7 +79,10 @@ class PopoverViewController: UITableViewController {
                 mgCell = tableView.dequeueReusableCellWithIdentifier("PopoverMGTableCell",
                     forIndexPath: indexPath) as! PopoverMGTableViewCell
                 mgCell.contentView.tag = indexPath.row
-                mgCell.servingLabel.text = "serving"
+                
+                let trueIndex = indexPath.row - 1
+                
+                mgCell.servingLabel.text = modGroups[trueIndex]["name"] as? String
                 
                 return mgCell
                 
@@ -104,9 +118,6 @@ class PopoverViewController: UITableViewController {
             
             if indexPath.row == 0 {
                 guard let tableViewCell = cell as? PopoverDetailsTableViewCell else { return }
-//                tableViewCell.setCollectionViewDataSourceDelegate(self, forRow: indexPath.row)
-                
-
             } else if (indexPath.row > 0) && (indexPath.row < quantityRow ) {
                 guard let tableViewCell = cell as? PopoverMGTableViewCell else { return }
                 tableViewCell.setCollectionViewDataSourceDelegate(self, forRow: indexPath.row)
@@ -120,11 +131,71 @@ class PopoverViewController: UITableViewController {
                 tableViewCell.setCollectionViewDataSourceDelegate(self, forRow: indexPath.row)
 
             }
-            
-            
-            
-    }
     
+    }
+
+    
+// MODIFIER  QUERY 
+    func modifierQuery(modifierGroupObject: PFObject) -> [PFObject] {
+        
+        var modifiersArray = [PFObject]()
+        
+        let modifierGroupId = modifierGroupObject["modifierGroupId"] as? String
+        
+        print("----------------")
+        print("\(modifierGroupId)")
+        print("----------------")
+        
+        let modGroupQuery:PFQuery = PFQuery(className: "Modifiers")
+        modGroupQuery.whereKey("modifierGroupId", containsString: modifierGroupId)
+        
+        
+        let modArray: [PFObject]?
+        do {
+            modArray = try modGroupQuery.findObjects() as [PFObject]
+        } catch _ {
+            modArray = nil
+        }
+        
+        
+        print("----------------")
+        print("MISS PICKLE: \(modArray!)")
+        print("----------------")
+        
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+//        modGroupQuery.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
+//            
+//            if error == nil {
+//                
+//                print("----------------")
+//                print("Modifier query has found \(objects!.count) objects")
+//                print("----------------")
+//
+//                
+//                for object in objects! {
+//                    
+//                    modifiersArray.append(object)
+//                    
+//                }
+//                
+//            }
+//            
+//        }
+//        }
+        
+        
+        print("----------------")
+        print("modifiersFound Array equals: \(modifiersArray)")
+        print("----------------")
+        
+
+//        return modifiersArray
+        
+        return modArray!
+
+        
+    }
+
     /*
     // MARK: - Navigation
 
@@ -137,32 +208,15 @@ class PopoverViewController: UITableViewController {
 
 }
 
-func generateRandomData() -> [[UIColor]] {
-    let numberOfRows = 20
-    let numberOfItemsPerRow = 15
-    
-    return (0..<numberOfRows).map { _ in
-        return (0..<numberOfItemsPerRow).map { _ in UIColor.randomColor() }
-    }
-}
-
-extension UIColor {
-    class func randomColor() -> UIColor {
-        
-        let hue = CGFloat(arc4random() % 100) / 100
-        let saturation = CGFloat(arc4random() % 100) / 100
-        let brightness = CGFloat(arc4random() % 100) / 100
-        
-        return UIColor(hue: hue, saturation: saturation, brightness: brightness, alpha: 1.0)
-    }
-}
-
 // -------------------------
 // COLLECTION DELEGATE AND DATA SOURCE
 // -------------------------
 extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
-    
+    override func viewWillAppear(animated: Bool) {
+
+    }
+
     
     func collectionView(collectionView: UICollectionView,
         numberOfItemsInSection section: Int) -> Int {
@@ -177,7 +231,12 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                 numberOfItems = 1
                 // PARENT ZERO IS NOT A COLLECTION VIEW
             } else if (parent > 0) && (parent < quantityRow ) {
-                numberOfItems = 3
+                
+                let trueIndex = parent - 1
+                
+                let modCollecitonCellCount = modGroups[trueIndex]["modifiers"].count
+                
+                numberOfItems = modCollecitonCellCount
 
             } else if parent == quantityRow {
                 numberOfItems = qty.count
@@ -211,9 +270,34 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                 
                 mgCollectionCell.backgroundColor = UIColor.whiteColor()
                 
-//                for modifier in popoverItem["modifierGroups"] {
-//                    
-//                }
+                
+                
+                let trueIndex = parent - 1
+                
+                
+                print("\(trueIndex)")
+                print("\(indexPath.row)")
+
+                
+                let itemPortion = modifierQuery(modGroups[trueIndex])
+                
+                print("\(itemPortion)")
+                
+                let itemPortionObject = itemPortion[indexPath.row]
+                let itemPortionObjectName = itemPortionObject["name"] as? String
+                let itemPortionObjectPrice = itemPortionObject["price"] as? Int
+                let itemPriceDollar = itemPortionObjectPrice! / 100
+                let itemPortionPrice = String(itemPortionObjectPrice!)
+                
+                print("----------------")
+                print("\(itemPortionObjectPrice!)")
+                print("----------------")
+
+
+                mgCollectionCell.label.text = itemPortionObjectName
+                mgCollectionCell.priceLabel.text = itemPortionPrice
+
+
                 
                 return mgCollectionCell
                 
@@ -364,7 +448,12 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
         } else if (parent > 0) && (parent < quantityRow ) {
             var mgCellSize: CGSize!
             let cellHeight = collectionView.bounds.size.height
-            let cellWidth = collectionView.bounds.size.width / 3
+            
+            let trueIndex = parent - 1
+            let numberOfModifiers = CGFloat(modGroups[trueIndex]["modifiers"].count)
+
+            
+            let cellWidth = collectionView.bounds.size.width / numberOfModifiers
             
             mgCellSize = CGSize(width: cellWidth, height: cellHeight)
             

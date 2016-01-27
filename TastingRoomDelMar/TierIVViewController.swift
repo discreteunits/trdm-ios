@@ -23,6 +23,7 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
     var tagsArray = [PFObject]()
     var tierIVCollectionArray = [PFObject]()
     var tierIVTableArray = [PFObject]()
+
     
 // ---------------
     override func viewDidLoad() {
@@ -199,6 +200,7 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
         
         let tableQuery:PFQuery = PFQuery(className:"Items")
         tableQuery.includeKey("tags")
+        tableQuery.includeKey("modifierGroups")
         tableQuery.whereKey("tags", containsAllObjectsInArray: tagsArray)
         tableQuery.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
             
@@ -213,14 +215,6 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
                     if !self.TierIVTableViewControllerRef!.tierIVTableArray.contains(object) {
                         
                         self.TierIVTableViewControllerRef?.tierIVTableArray.append(object)
-                        
-                        //-----
-                        // INSERT MOD QUERY HERE TO APPEND PRICES
-                        //-----
-                        
-//                        self.modQuery(object)
-
-                        
 
                     } else {
                         
@@ -241,6 +235,6 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
             }
         }
     }
- 
+    
 }
 

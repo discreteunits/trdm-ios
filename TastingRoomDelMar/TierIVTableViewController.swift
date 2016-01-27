@@ -26,11 +26,13 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     
     var tierIVCollectionArray = [PFObject]()
     var tierIVTableArray = [PFObject]()
+
     
     var popover: UIPopoverController?
     
     var item: PFObject!
     var itemVarietal: PFObject!
+    var modifierGroups = [PFObject]()
     
     var indexPath: NSIndexPath!
     
@@ -41,6 +43,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
 // ------------
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -96,8 +99,8 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     }
     
     
-// SEGUE TRIGGER AND PREPARATION
     
+// SEGUE TRIGGER AND PREPARATION
     @IBAction func addToOrder(sender: AnyObject) {
         
         // ASSIGN ITEM TO OBJECT TO BE PASSED TO POPOVER
@@ -124,13 +127,21 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         
         if segue.identifier == "showItemConfig" {
             
+            
             var vc = segue.destinationViewController as! PopoverViewController
             
             // Dynamically assign Popover Window Size
             vc.preferredContentSize = CGSizeMake(popoverWidth, popoverHeight)
             
+            // Build array of modifier groups based on item selection
+            for modifierGroup in item["modifierGroups"] as! [PFObject]! {
+                modifierGroups.append(modifierGroup)
+            }
+            
+            // Data to be passed to popover
             vc.popoverItem = item
             vc.popoverItemVarietal = itemVarietal
+            vc.modGroups = modifierGroups
             
             var controller = vc.popoverPresentationController
             

@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
-        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
@@ -718,17 +717,20 @@
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NPG-6U-Efk">
-                                                                <rect key="frame" x="8" y="24" width="49" height="21"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <rect key="frame" x="8" y="27" width="84" height="15"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="84" id="qrO-XE-IPo"/>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="scK-jo-QV4">
-                                                                <rect key="frame" x="69" y="24" width="23" height="21"/>
+                                                                <rect key="frame" x="8" y="41" width="84" height="21"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" constant="23" id="p3C-hh-FOO"/>
+                                                                    <constraint firstAttribute="width" constant="84" id="neM-28-RdA"/>
                                                                 </constraints>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
@@ -737,13 +739,13 @@
                                                     </view>
                                                     <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
-                                                        <constraint firstItem="scK-jo-QV4" firstAttribute="baseline" secondItem="NPG-6U-Efk" secondAttribute="baseline" id="55U-Hl-DRA"/>
-                                                        <constraint firstItem="scK-jo-QV4" firstAttribute="leading" secondItem="NPG-6U-Efk" secondAttribute="trailing" constant="12" id="Cbq-VZ-liF"/>
-                                                        <constraint firstItem="NPG-6U-Efk" firstAttribute="leading" secondItem="sdW-ca-9b9" secondAttribute="leadingMargin" id="PIf-Ip-4WR"/>
-                                                        <constraint firstItem="NPG-6U-Efk" firstAttribute="top" secondItem="sdW-ca-9b9" secondAttribute="topMargin" constant="16" id="acz-QE-Ba9"/>
-                                                        <constraint firstItem="scK-jo-QV4" firstAttribute="trailing" secondItem="sdW-ca-9b9" secondAttribute="trailingMargin" id="beb-Pq-VRa"/>
-                                                        <constraint firstItem="scK-jo-QV4" firstAttribute="centerY" secondItem="sdW-ca-9b9" secondAttribute="centerY" id="rdK-xs-Idb"/>
-                                                        <constraint firstItem="NPG-6U-Efk" firstAttribute="firstBaseline" secondItem="scK-jo-QV4" secondAttribute="firstBaseline" id="ymj-6f-dz8"/>
+                                                        <constraint firstItem="NPG-6U-Efk" firstAttribute="trailing" secondItem="scK-jo-QV4" secondAttribute="trailing" id="7CZ-E5-JIt"/>
+                                                        <constraint firstItem="scK-jo-QV4" firstAttribute="top" secondItem="sdW-ca-9b9" secondAttribute="topMargin" constant="33" id="RNJ-Bg-2oi"/>
+                                                        <constraint firstItem="scK-jo-QV4" firstAttribute="bottom" secondItem="sdW-ca-9b9" secondAttribute="bottomMargin" id="Xhg-o8-GL7"/>
+                                                        <constraint firstItem="NPG-6U-Efk" firstAttribute="top" secondItem="sdW-ca-9b9" secondAttribute="topMargin" constant="19" id="mp8-59-93R"/>
+                                                        <constraint firstItem="scK-jo-QV4" firstAttribute="leading" secondItem="NPG-6U-Efk" secondAttribute="leading" id="pM1-FT-VpK"/>
+                                                        <constraint firstItem="scK-jo-QV4" firstAttribute="leading" secondItem="sdW-ca-9b9" secondAttribute="leadingMargin" id="pep-pD-b00"/>
+                                                        <constraint firstItem="NPG-6U-Efk" firstAttribute="centerY" secondItem="sdW-ca-9b9" secondAttribute="centerY" id="wWC-BL-6uF"/>
                                                     </constraints>
                                                     <connections>
                                                         <outlet property="label" destination="NPG-6U-Efk" id="seO-Ei-4fK"/>
