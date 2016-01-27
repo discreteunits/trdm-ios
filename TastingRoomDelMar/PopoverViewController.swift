@@ -59,7 +59,8 @@ class PopoverViewController: UITableViewController {
                 detailsCell.titleLabel?.text = popoverItem["name"] as! String!
                 detailsCell.altNameLabel?.text = popoverItem["alternateName"] as! String!
                 detailsCell.varietalLabel?.text = popoverItemVarietal["name"] as! String!
-                
+                detailsCell.selectionStyle = UITableViewCellSelectionStyle.None
+
                 return detailsCell
                 
             } else if (indexPath.row > 0) && (indexPath.row < quantityRow) {
@@ -223,7 +224,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                     forIndexPath: indexPath) as! PopoverQuantityCollectionViewCell
                 
                 quantityCollectionCell.backgroundColor = UIColor.whiteColor()
-                var index = String(indexPath.row)
+                var index = String(indexPath.row + 1)
                 quantityCollectionCell.label.text = index
                 
                 return quantityCollectionCell
@@ -260,9 +261,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
         let selectedCell = collectionView.cellForItemAtIndexPath(indexPath)! as! UICollectionViewCell
-        selectedCell.layer.cornerRadius = 10.0
-        selectedCell.clipsToBounds = true
-        selectedCell.contentView.backgroundColor = UIColor.blackColor()
+        selectedCell.backgroundColor = UIColor.blackColor()
         
         
         let parent = collectionView.superview!.tag
@@ -274,18 +273,33 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
         } else if (parent > 0) && (parent < quantityRow ) {
             
             let selectedCell = collectionView.cellForItemAtIndexPath(indexPath)! as! PopoverMGCollectionViewCell
+            selectedCell.layer.cornerRadius = 10.0
+            selectedCell.clipsToBounds = true
             selectedCell.label.textColor = UIColor.whiteColor()
+            selectedCell.priceLabel.textColor = UIColor.whiteColor()
 
             
         } else if parent == quantityRow {
             
             let selectedCell = collectionView.cellForItemAtIndexPath(indexPath)! as! PopoverQuantityCollectionViewCell
+            selectedCell.layer.cornerRadius = 10.0
+            selectedCell.clipsToBounds = true
             selectedCell.label.textColor = UIColor.whiteColor()
             
         } else if parent == actionRow {
             
             let selectedCell = collectionView.cellForItemAtIndexPath(indexPath)! as! PopoverActionCollectionViewCell
-            selectedCell.label.textColor = UIColor.greenColor()
+            
+            if indexPath.row == 0 {
+
+                selectedCell.label.textColor = UIColor.blackColor()
+                selectedCell.contentView.backgroundColor = UIColor.whiteColor()
+
+            } else if indexPath.row == 1 {
+                selectedCell.label.textColor = UIColor.blackColor()
+                selectedCell.contentView.backgroundColor = UIColor.greenColor()
+
+            }
             
         }
         
@@ -298,6 +312,42 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
         
         let deselectedCell = collectionView.cellForItemAtIndexPath(indexPath)! as! UICollectionViewCell
         deselectedCell.contentView.backgroundColor = UIColor.whiteColor()
+     
+        
+        
+        let parent = collectionView.superview!.tag
+        let quantityRow = rows - 2
+        let actionRow = rows - 1
+        
+        if parent == 0 {
+            // PARENT ZERO IS NOT A COLLECTION VIEW
+        } else if (parent > 0) && (parent < quantityRow ) {
+            
+            let deselectedCell = collectionView.cellForItemAtIndexPath(indexPath)! as! PopoverMGCollectionViewCell
+            deselectedCell.label.textColor = UIColor.blackColor()
+            deselectedCell.priceLabel.textColor = UIColor.blackColor()
+            
+            
+        } else if parent == quantityRow {
+            
+            let deselectedCell = collectionView.cellForItemAtIndexPath(indexPath)! as! PopoverQuantityCollectionViewCell
+            deselectedCell.label.textColor = UIColor.blackColor()
+            
+        } else if parent == actionRow {
+            
+            let deselectedCell = collectionView.cellForItemAtIndexPath(indexPath)! as! PopoverActionCollectionViewCell
+            if indexPath.row == 0 {
+                deselectedCell.label.textColor = UIColor.blackColor()
+                deselectedCell.contentView.backgroundColor = UIColor.grayColor()
+
+            } else if indexPath.row == 1 {
+                deselectedCell.label.textColor = UIColor.whiteColor()
+                deselectedCell.contentView.backgroundColor = UIColor.blackColor()
+
+            }
+        }
+        
+        
         
     }
     
