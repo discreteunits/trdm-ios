@@ -82,6 +82,7 @@ class PopoverViewController: UITableViewController {
                 
                 let trueIndex = indexPath.row - 1
                 
+                mgCell.servingLabel.layer.zPosition = 100
                 mgCell.servingLabel.text = modGroups[trueIndex]["name"] as? String
                 
                 return mgCell
@@ -149,47 +150,12 @@ class PopoverViewController: UITableViewController {
         let modGroupQuery:PFQuery = PFQuery(className: "Modifiers")
         modGroupQuery.whereKey("modifierGroupId", containsString: modifierGroupId)
         
-        
         let modArray: [PFObject]?
         do {
             modArray = try modGroupQuery.findObjects() as [PFObject]
         } catch _ {
             modArray = nil
         }
-        
-        
-        print("----------------")
-        print("MISS PICKLE: \(modArray!)")
-        print("----------------")
-        
-//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-//        modGroupQuery.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
-//            
-//            if error == nil {
-//                
-//                print("----------------")
-//                print("Modifier query has found \(objects!.count) objects")
-//                print("----------------")
-//
-//                
-//                for object in objects! {
-//                    
-//                    modifiersArray.append(object)
-//                    
-//                }
-//                
-//            }
-//            
-//        }
-//        }
-        
-        
-        print("----------------")
-        print("modifiersFound Array equals: \(modifiersArray)")
-        print("----------------")
-        
-
-//        return modifiersArray
         
         return modArray!
 
