@@ -17,17 +17,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="primary-logotype-05_rgb_600_600" translatesAutoresizingMaskIntoConstraints="NO" id="Rz3-yz-WBc">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="secondary-logomark-white_rgb_600_600.png" translatesAutoresizingMaskIntoConstraints="NO" id="Rz3-yz-WBc">
                                 <rect key="frame" x="105" y="250" width="391" height="99"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="KZe-sa-51Y"/>
-                                    <constraint firstAttribute="height" constant="92" id="kTK-e7-YwQ"/>
+                                    <constraint firstAttribute="height" constant="300" id="kTK-e7-YwQ"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Rz3-yz-WBc" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="230" id="fMX-CK-zdc"/>
+                            <constraint firstItem="Rz3-yz-WBc" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="VN5-XA-FFf"/>
                             <constraint firstItem="Rz3-yz-WBc" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="ntV-XG-1hy"/>
                         </constraints>
                     </view>
@@ -38,6 +38,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="primary-logotype-05_rgb_600_600" width="600" height="184"/>
+        <image name="secondary-logomark-white_rgb_600_600.png" width="600" height="600"/>
     </resources>
 </document>

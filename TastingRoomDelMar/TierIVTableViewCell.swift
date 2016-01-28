@@ -14,11 +14,13 @@ class TierIVTableViewCell: UITableViewCell {
     @IBOutlet weak var altNameLabel: UILabel!
     @IBOutlet weak var varietalLabel: UILabel!
     @IBOutlet weak var pricingLabel: UILabel!
-    @IBOutlet weak var addToOrderButton: UIView!
+    @IBOutlet weak var addToOrderButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         // Initialization code
+        
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

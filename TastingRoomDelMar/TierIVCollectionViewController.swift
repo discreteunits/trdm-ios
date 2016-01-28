@@ -50,6 +50,11 @@ class TierIVCollectionViewController: UICollectionViewController {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("tierIVCollectionCell", forIndexPath: indexPath) as! TierIVCollectionViewCell
 
         cell.titleLabel?.text = self.tierIVCollectionArray[indexPath.row]["name"] as? String
+        cell.titleLabel?.font = UIFont(name: "NexaRustScriptL-00", size: 14)
+        cell.layer.borderWidth = 2
+        cell.layer.borderColor = UIColor(red: 242/255.0, green: 242/255.0, blue: 242/255.0, alpha: 1.0).CGColor
+        cell.layer.cornerRadius = 10.0
+        cell.clipsToBounds = true
         
         return cell
     }
@@ -69,6 +74,9 @@ class TierIVCollectionViewController: UICollectionViewController {
         let selectedCell = collectionView.cellForItemAtIndexPath(indexPath)! as! TierIVCollectionViewCell
         selectedCell.layer.cornerRadius = 10.0
         selectedCell.clipsToBounds = true
+        
+        
+        
         selectedCell.contentView.backgroundColor = UIColor.blackColor()
         selectedCell.titleLabel?.textColor = UIColor.whiteColor()
         

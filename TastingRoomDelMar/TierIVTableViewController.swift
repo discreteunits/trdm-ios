@@ -22,6 +22,9 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     var TierIVViewControllerRef: TierIVViewController?
     var TierIVCollectionViewControllerRef: TierIVCollectionViewController?
     
+    
+    @IBOutlet weak var addToTabButton: UIButton!
+    
     var delegate: TierIVTableViewDelegate?
     
     var tierIVCollectionArray = [PFObject]()
@@ -43,13 +46,14 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
 // ------------
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
 
+    
 // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -66,9 +70,19 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         let cell = tableView.dequeueReusableCellWithIdentifier("itemCell", forIndexPath: indexPath) as! TierIVTableViewCell
 
         cell.selectionStyle = UITableViewCellSelectionStyle.None
+
+        
+        cell.addToOrderButton.layer.cornerRadius = 6.0
+        cell.addToOrderButton.clipsToBounds = true
+        
         
         cell.itemNameLabel?.text = self.tierIVTableArray[indexPath.row]["name"] as! String?
+        cell.itemNameLabel?.font = UIFont(name: "BebasNeueRegular", size: 24)
         cell.altNameLabel?.text = self.tierIVTableArray[indexPath.row]["alternateName"] as! String?
+        cell.altNameLabel?.font = UIFont(name: "OpenSans", size: 16)
+
+        cell.pricingLabel?.font = UIFont(name: "OpenSans", size: 12)
+
         
         dispatch_async(dispatch_get_main_queue()) {
 
@@ -79,7 +93,10 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
                     if self.tierIVCollectionArray.contains(tagObject) {
 
                         cell.varietalLabel?.text = tagObject["name"] as? String
+                        cell.varietalLabel?.font = UIFont(name: "OpenSans", size: 16)
+
                         self.itemVarietal = tagObject as PFObject!
+
                     
                     }
                 
@@ -142,6 +159,9 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             vc.popoverItem = item
             vc.popoverItemVarietal = itemVarietal
             vc.modGroups = modifierGroups
+            
+            
+
             
             var controller = vc.popoverPresentationController
             

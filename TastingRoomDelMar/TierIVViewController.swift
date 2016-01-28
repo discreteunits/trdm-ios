@@ -15,6 +15,8 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
 
     var nav: UINavigationBar?
     
+    @IBOutlet weak var navigationTitle: UINavigationItem!
+    
     var popover: UIPopoverPresentationController?
     
     var TierIVCollectionViewControllerRef: TierIVCollectionViewController?
@@ -48,22 +50,18 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
             
             nav = navBar
             
+            navigationTitle.title = route[2]["name"] as! String
             nav?.barStyle = UIBarStyle.Black
             nav?.tintColor = UIColor.whiteColor()
-            nav?.titleTextAttributes = [ NSFontAttributeName: UIFont (name: "Helvetica Neue", size: 20)!]
-            
-            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
-            imageView.contentMode = .ScaleAspectFit
-            let image = UIImage(named: "primary-logotype-05_rgb_600_600")
-            imageView.image = image
-            navigationItem.titleView = imageView
+            nav?.titleTextAttributes = [ NSFontAttributeName: UIFont (name: "NexaRustScriptL-00", size: 24)!]
             
 // SET NAV BACK BUTTON TO REMOVE LAST ITEM FROM ROUTE
             let lastWindow = route[1]["name"]
             
             self.navigationItem.hidesBackButton = true
-            let newBackButton = UIBarButtonItem(title: "\(lastWindow)", style: UIBarButtonItemStyle.Bordered, target: self, action: "back:")
+            let newBackButton = UIBarButtonItem(title: "< \(lastWindow)", style: UIBarButtonItemStyle.Bordered, target: self, action: "back:")
             self.navigationItem.leftBarButtonItem = newBackButton;
+            self.navigationItem.leftBarButtonItem!.setTitleTextAttributes( [NSFontAttributeName: UIFont(name: "NexaRustScriptL-00", size: 20)!], forState: UIControlState.Normal)
             
         }
     }

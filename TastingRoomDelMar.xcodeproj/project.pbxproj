@@ -23,6 +23,15 @@
 		D7A8AC041C4D9469008D9A90 /* PopoverTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A8AC031C4D9469008D9A90 /* PopoverTableViewCell.swift */; };
 		D7A8AC081C4D9626008D9A90 /* PopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A8AC071C4D9626008D9A90 /* PopoverViewController.swift */; };
 		D7A8AC0A1C4DB600008D9A90 /* TierIIITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A8AC091C4DB600008D9A90 /* TierIIITableViewController.swift */; };
+		D7C1E0321C5A92B300143C48 /* Fontfabric - Nexa Rust Script L 00.otf in Resources */ = {isa = PBXBuildFile; fileRef = D7C1E0301C5A920E00143C48 /* Fontfabric - Nexa Rust Script L 00.otf */; };
+		D7C1E0341C5A950000143C48 /* secondary-logomark-03_rgb_600_600.png in Resources */ = {isa = PBXBuildFile; fileRef = D7C1E0331C5A950000143C48 /* secondary-logomark-03_rgb_600_600.png */; };
+		D7C1E0371C5A951300143C48 /* primary-logomark-02_rgb_600_600.png in Resources */ = {isa = PBXBuildFile; fileRef = D7C1E0351C5A951300143C48 /* primary-logomark-02_rgb_600_600.png */; };
+		D7C1E0381C5A951300143C48 /* primary-logomark-front-04_rgb_600_600.png in Resources */ = {isa = PBXBuildFile; fileRef = D7C1E0361C5A951300143C48 /* primary-logomark-front-04_rgb_600_600.png */; };
+		D7C1E03A1C5A952000143C48 /* primary-logotype-05_rgb_600_600.png in Resources */ = {isa = PBXBuildFile; fileRef = D7C1E0391C5A952000143C48 /* primary-logotype-05_rgb_600_600.png */; };
+		D7C1E03C1C5A958100143C48 /* Typographic-deconstructed_rgb_600_120.png in Resources */ = {isa = PBXBuildFile; fileRef = D7C1E03B1C5A958100143C48 /* Typographic-deconstructed_rgb_600_120.png */; };
+		D7C1E03E1C5A960600143C48 /* secondary-logomark-white_rgb_600_600.png in Resources */ = {isa = PBXBuildFile; fileRef = D7C1E03D1C5A960600143C48 /* secondary-logomark-white_rgb_600_600.png */; };
+		D7C1E0411C5AB86800143C48 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D7C1E03F1C5AB75100143C48 /* OpenSans-Regular.ttf */; };
+		D7C1E0421C5AB86E00143C48 /* BebasNeue Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = D7C1E0401C5AB76E00143C48 /* BebasNeue Regular.otf */; };
 		D7E803951C56E140003C12D9 /* PopoverDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E803941C56E140003C12D9 /* PopoverDetailsTableViewCell.swift */; };
 		D7E803971C56E152003C12D9 /* PopoverMGTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E803961C56E152003C12D9 /* PopoverMGTableViewCell.swift */; };
 		D7E803991C56E169003C12D9 /* PopoverQuantityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E803981C56E169003C12D9 /* PopoverQuantityTableViewCell.swift */; };
@@ -77,6 +86,15 @@
 		D7A8AC031C4D9469008D9A90 /* PopoverTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverTableViewCell.swift; sourceTree = "<group>"; };
 		D7A8AC071C4D9626008D9A90 /* PopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverViewController.swift; sourceTree = "<group>"; };
 		D7A8AC091C4DB600008D9A90 /* TierIIITableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierIIITableViewController.swift; sourceTree = "<group>"; };
+		D7C1E0301C5A920E00143C48 /* Fontfabric - Nexa Rust Script L 00.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Fontfabric - Nexa Rust Script L 00.otf"; sourceTree = "<group>"; };
+		D7C1E0331C5A950000143C48 /* secondary-logomark-03_rgb_600_600.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "secondary-logomark-03_rgb_600_600.png"; sourceTree = "<group>"; };
+		D7C1E0351C5A951300143C48 /* primary-logomark-02_rgb_600_600.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "primary-logomark-02_rgb_600_600.png"; sourceTree = "<group>"; };
+		D7C1E0361C5A951300143C48 /* primary-logomark-front-04_rgb_600_600.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "primary-logomark-front-04_rgb_600_600.png"; sourceTree = "<group>"; };
+		D7C1E0391C5A952000143C48 /* primary-logotype-05_rgb_600_600.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "primary-logotype-05_rgb_600_600.png"; sourceTree = "<group>"; };
+		D7C1E03B1C5A958100143C48 /* Typographic-deconstructed_rgb_600_120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Typographic-deconstructed_rgb_600_120.png"; sourceTree = "<group>"; };
+		D7C1E03D1C5A960600143C48 /* secondary-logomark-white_rgb_600_600.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "secondary-logomark-white_rgb_600_600.png"; sourceTree = "<group>"; };
+		D7C1E03F1C5AB75100143C48 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
+		D7C1E0401C5AB76E00143C48 /* BebasNeue Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BebasNeue Regular.otf"; sourceTree = "<group>"; };
 		D7E803941C56E140003C12D9 /* PopoverDetailsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverDetailsTableViewCell.swift; sourceTree = "<group>"; };
 		D7E803961C56E152003C12D9 /* PopoverMGTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverMGTableViewCell.swift; sourceTree = "<group>"; };
 		D7E803981C56E169003C12D9 /* PopoverQuantityTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverQuantityTableViewCell.swift; sourceTree = "<group>"; };
@@ -144,6 +162,22 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		D7C1E0311C5A928F00143C48 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D7C1E0301C5A920E00143C48 /* Fontfabric - Nexa Rust Script L 00.otf */,
+				D7C1E03F1C5AB75100143C48 /* OpenSans-Regular.ttf */,
+				D7C1E0401C5AB76E00143C48 /* BebasNeue Regular.otf */,
+				D7C1E0351C5A951300143C48 /* primary-logomark-02_rgb_600_600.png */,
+				D7C1E0361C5A951300143C48 /* primary-logomark-front-04_rgb_600_600.png */,
+				D7C1E0391C5A952000143C48 /* primary-logotype-05_rgb_600_600.png */,
+				D7C1E0331C5A950000143C48 /* secondary-logomark-03_rgb_600_600.png */,
+				D7C1E03D1C5A960600143C48 /* secondary-logomark-white_rgb_600_600.png */,
+				D7C1E03B1C5A958100143C48 /* Typographic-deconstructed_rgb_600_120.png */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		D7F9810E1C4460AD00200639 /* Library */ = {
 			isa = PBXGroup;
 			children = (
@@ -178,6 +212,7 @@
 		D7FFF7AF1C3AFB0600020D9A /* TastingRoomDelMar */ = {
 			isa = PBXGroup;
 			children = (
+				D7C1E0311C5A928F00143C48 /* Resources */,
 				D7F9810E1C4460AD00200639 /* Library */,
 				D7FFF7B01C3AFB0600020D9A /* AppDelegate.swift */,
 				D7FFF7B21C3AFB0600020D9A /* ViewController.swift */,
@@ -336,9 +371,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7C1E03A1C5A952000143C48 /* primary-logotype-05_rgb_600_600.png in Resources */,
+				D7C1E03C1C5A958100143C48 /* Typographic-deconstructed_rgb_600_120.png in Resources */,
+				D7C1E0341C5A950000143C48 /* secondary-logomark-03_rgb_600_600.png in Resources */,
+				D7C1E0381C5A951300143C48 /* primary-logomark-front-04_rgb_600_600.png in Resources */,
+				D7C1E03E1C5A960600143C48 /* secondary-logomark-white_rgb_600_600.png in Resources */,
+				D7C1E0371C5A951300143C48 /* primary-logomark-02_rgb_600_600.png in Resources */,
 				D75F14B11C4F13FA00315E3B /* Main.storyboard in Resources */,
 				D7FFF7BB1C3AFB0600020D9A /* LaunchScreen.storyboard in Resources */,
 				D7FFF7B81C3AFB0600020D9A /* Assets.xcassets in Resources */,
+				D7C1E0321C5A92B300143C48 /* Fontfabric - Nexa Rust Script L 00.otf in Resources */,
+				D7C1E0411C5AB86800143C48 /* OpenSans-Regular.ttf in Resources */,
+				D7C1E0421C5AB86E00143C48 /* BebasNeue Regular.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

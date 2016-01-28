@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var fbLoginButton: UIButton!
     @IBOutlet weak var signupButton: UIButton!
+    @IBOutlet weak var loginButton: UIButton!
     
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
 
@@ -28,6 +29,15 @@ class ViewController: UIViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        signupButton.layer.cornerRadius = 4.0
+        signupButton.clipsToBounds = true
+        loginButton.layer.cornerRadius = 4.0
+        loginButton.clipsToBounds = true
+        fbLoginButton.layer.cornerRadius = 4.0
+        fbLoginButton.clipsToBounds = true
     }
 
 // ----------------

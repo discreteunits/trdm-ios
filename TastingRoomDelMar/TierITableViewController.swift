@@ -19,31 +19,37 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
     
     var nav: UINavigationBar?
     
+// ------------------------------
     override func viewDidLoad() {
         super.viewDidLoad()
         
-// TIER 1 QUERY
+        // TIER 1 QUERY
         tierIQuery()
 
-// FLYOUT MENU
+        // FLYOUT MENU
         self.sideMenuController()?.sideMenu?.delegate = self
 
-// NAV BAR STYLES
+        // NAV BAR STYLES
         if let navBar = navigationController?.navigationBar {
             
             nav = navBar
             
             nav?.barStyle = UIBarStyle.Black
             nav?.tintColor = UIColor.whiteColor()
-            nav?.titleTextAttributes = [ NSFontAttributeName: UIFont (name: "Helvetica Neue", size: 20)!]
+   
+            self.navigationItem.hidesBackButton = true
+            var newBackButton = UIBarButtonItem(title: "Del Mar", style: UIBarButtonItemStyle.Plain, target: self, action: "back:")
+            self.navigationItem.leftBarButtonItem = newBackButton;
+            self.navigationItem.leftBarButtonItem!.setTitleTextAttributes( [NSFontAttributeName: UIFont(name: "NexaRustScriptL-00", size: 20)!], forState: UIControlState.Normal)
             
-            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+            // Set Tasting Room Logo As Title
+            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
             imageView.contentMode = .ScaleAspectFit
-            let image = UIImage(named: "primary-logotype-05_rgb_600_600")
+            let image = UIImage(named: "Typographic-deconstructed_rgb_600_120")
             imageView.image = image
             navigationItem.titleView = imageView
             
-// RESET ROUTE
+            // RESET ROUTE
             route = []
             
         }
@@ -110,7 +116,7 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         
         cell.textLabel?.text = tierIArray[indexPath.row]["name"] as? String
         cell.textLabel?.textAlignment = NSTextAlignment.Center
-        cell.textLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 38.0)
+        cell.textLabel?.font = UIFont(name: "NexaRustScriptL-00", size: 38.0)
         
         return cell
     }
