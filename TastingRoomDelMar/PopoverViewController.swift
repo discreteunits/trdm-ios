@@ -16,6 +16,8 @@ class PopoverViewController: UITableViewController {
     var popoverItem: PFObject!
     var popoverItemVarietal: PFObject!
     var modGroups = [PFObject]()
+    var modGroupDict = [String: [PFObject]]()
+
     
     // Data built in this controller
     var modifierObjects = [PFObject]()
@@ -39,6 +41,11 @@ class PopoverViewController: UITableViewController {
 // --------------------
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("============\(modGroupDict)=================")
+        print("============\(modGroupDict.count)=================")
+        print("============\(modGroupDict["1MAVMPTC4DQJY"])=================")
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -271,41 +278,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                 let trueIndex = parent - 1
                 var itemPortion = modifierQuery(modGroups[trueIndex])
                 
-                
-                
-                
-                
-                
-                
-                
-                print("----------------")
-                print("Modifier Objects before sorting: \(itemPortion)")
-                
-                
-       
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                    
-                
-                print("Modifier Objects has been sorted to: \(itemPortion)")
-                print("----------------")
 
-                
-                
-                
-                
-                
-                
-                
-                
-                
                 
                 let itemPortionObject = itemPortion[indexPath.row]
                 let itemPortionObjectName = itemPortionObject["name"] as? String

@@ -41,6 +41,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     var popoverHeight: CGFloat!
     var popoverWidth: CGFloat!
 
+    var modDict = [String: [PFObject]]()
 
 
 // ------------
@@ -152,15 +153,25 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             // Dynamically assign Popover Window Size
             vc.preferredContentSize = CGSizeMake(popoverWidth, popoverHeight)
             
+            
+            
             // Build array of modifier groups based on item selection
-            for modifierGroup in item["modifierGroups"] as! [PFObject]! {
-                modifierGroups.append(modifierGroup)
+            for modifierGroup in self.item["modifierGroups"] as! [PFObject]! {
+                self.modifierGroups.append(modifierGroup)
+                
+                let modifierGroupId = modifierGroup["modifierGroupId"]
+                self.modDict[modifierGroupId! as! String] = modifierQuery(modifierGroup)
+
             }
+            
+            
             
             // Data to be passed to popover
             vc.popoverItem = item
             vc.popoverItemVarietal = itemVarietal
             vc.modGroups = modifierGroups
+            vc.modGroupDict = modDict
+            
             
             
             var controller = vc.popoverPresentationController
@@ -182,6 +193,32 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
         return .None
+    }
+    
+    
+    
+    // MODIFIER  QUERY
+    func modifierQuery(modifierGroupObject: PFObject) -> [PFObject] {
+        
+        let modArray: [PFObject]?
+        
+        let modifierGroupId = modifierGroupObject["modifierGroupId"] as? String
+        
+        let modifierQuery:PFQuery = PFQuery(className: "Modifiers")
+        modifierQuery.whereKey("modifierGroupId", containsString: modifierGroupId)
+        modifierQuery.orderByAscending("price")
+
+            // Synchronously Return Modifiers
+            do {
+                modArray = try modifierQuery.findObjects() as [PFObject]
+            } catch _ {
+                modArray = nil
+            }
+            
+            print("Modifier Query Fired For Mod Group ID: \(modifierGroupId)")
+
+            return modArray!
+            
     }
     
 }
