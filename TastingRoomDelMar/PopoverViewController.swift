@@ -27,6 +27,11 @@ class PopoverViewController: UITableViewController {
     // Maximum Item Order Quantity
     var maxQuantity = 10
     
+    
+    // User Configuration
+    var modChoice: [PFObject]!
+    var quantityChoice: PFObject!
+    
 
     
 
@@ -40,6 +45,12 @@ class PopoverViewController: UITableViewController {
         super.didReceiveMemoryWarning()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        
+
+        
+    }
+    
     override func tableView(tableView: UITableView,
         numberOfRowsInSection section: Int) -> Int {
             
@@ -51,6 +62,8 @@ class PopoverViewController: UITableViewController {
             
     }
 
+
+    
     
     
 // TABLE DELEGATE AND DATA SOURCE
@@ -256,7 +269,44 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                 
                 // Find modifiers and populate cells
                 let trueIndex = parent - 1
-                let itemPortion = modifierQuery(modGroups[trueIndex])
+                var itemPortion = modifierQuery(modGroups[trueIndex])
+                
+                
+                
+                
+                
+                
+                
+                
+                print("----------------")
+                print("Modifier Objects before sorting: \(itemPortion)")
+                
+                
+       
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                    
+                
+                print("Modifier Objects has been sorted to: \(itemPortion)")
+                print("----------------")
+
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
                 let itemPortionObject = itemPortion[indexPath.row]
                 let itemPortionObjectName = itemPortionObject["name"] as? String
                 let itemPortionObjectPrice = itemPortionObject["price"] as? Int
@@ -266,7 +316,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                 mgCollectionCell.label.text = itemPortionObjectName
                 mgCollectionCell.label.font = UIFont(name: "NexaRustScriptL-00", size: 14)
                 mgCollectionCell.priceLabel.text = itemPortionPrice
-                mgCollectionCell.label.font = UIFont(name: "NexaRustScriptL-00", size: 14)
+                mgCollectionCell.priceLabel.font = UIFont(name: "NexaRustScriptL-00", size: 14)
                 
                 mgCollectionCell.layer.borderWidth = 2
                 mgCollectionCell.layer.borderColor = UIColor(red: 242/255.0, green: 242/255.0, blue: 242/255.0, alpha: 1.0).CGColor

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="GuM-Yy-MxH">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -108,6 +108,7 @@
                         <outlet property="fbLoginButton" destination="Ok6-8b-hgz" id="PpM-4l-d6c"/>
                         <outlet property="loginButton" destination="qpD-Wi-itH" id="AeJ-Wa-Lej"/>
                         <outlet property="signupButton" destination="jfi-wd-jpk" id="G8O-b5-Uuk"/>
+                        <outlet property="skipButton" destination="MAs-Ji-6uD" id="xeH-i9-hoE"/>
                         <segue destination="GuM-Yy-MxH" kind="show" identifier="fbsignin" id="iIj-ph-kZq"/>
                         <segue destination="GuM-Yy-MxH" kind="show" identifier="fblogin" id="zQy-bo-J9a"/>
                     </connections>
@@ -1196,9 +1197,11 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="emailLabel" destination="0xh-cx-YYm" id="JsO-ax-dBV"/>
                         <outlet property="emailTextField" destination="Xkj-AE-QFf" id="D2m-39-SnW"/>
                         <outlet property="infoText" destination="TBj-ap-ZRU" id="xhs-aL-YDq"/>
                         <outlet property="loginButton" destination="BZH-xD-7ig" id="hTK-ee-fdA"/>
+                        <outlet property="passwordLabel" destination="U3g-cs-a9x" id="WC5-dH-KmE"/>
                         <outlet property="passwordTextField" destination="kb0-RV-u0E" id="XFT-hn-1yM"/>
                         <outlet property="registeredText" destination="zKd-u8-HbZ" id="KCL-C2-8rr"/>
                     </connections>
@@ -1213,7 +1216,7 @@
         <image name="secondary-logomark-white_rgb_600_600.png" width="600" height="600"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="P3E-so-8y6"/>
+        <segue reference="zQy-bo-J9a"/>
         <segue reference="krO-dh-gAU"/>
     </inferredMetricsTieBreakers>
 </document>

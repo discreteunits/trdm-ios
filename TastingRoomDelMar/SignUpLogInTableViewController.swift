@@ -25,7 +25,11 @@ class SignUpLogInTableViewController: UITableViewController {
     var signupActive = true
     
     @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var emailLabel: UILabel!
+    
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var passwordLabel: UILabel!
+    
     @IBOutlet weak var registeredText: UILabel!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var infoText: UITextView!
@@ -55,6 +59,20 @@ class SignUpLogInTableViewController: UITableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        
+        emailTextField.font = UIFont(name: "BebasNeueRegular", size: 16)
+        emailLabel.font = UIFont(name: "BebasNeueRegular", size: 16)
+
+        passwordLabel.font = UIFont(name: "BebasNeueRegular", size: 16)
+        passwordTextField.font = UIFont(name: "BebasNeueRegular", size: 16)
+        
+        loginButton.titleLabel?.font = UIFont(name: "NexaRustScriptL-00", size: 16)
+        registeredText.font = UIFont(name: "NexaRustScriptL-00", size: 16)
+        
+
     }
     
     // MARK: - Table view data source

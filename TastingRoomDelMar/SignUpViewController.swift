@@ -46,7 +46,7 @@ class SignUpViewController: UIViewController {
             nav?.topItem!.title = "Sign Up"
             nav?.barStyle = UIBarStyle.Black
             nav?.tintColor = UIColor.whiteColor()
-            nav?.titleTextAttributes = [ NSFontAttributeName: UIFont (name: "Helvetica Neue", size: 20)!]
+            nav?.titleTextAttributes = [ NSFontAttributeName: UIFont (name: "NexaRustScriptL-00", size: 20)!]
             
         }
         
@@ -75,6 +75,15 @@ class SignUpViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        
+        self.signUpButton.layer.backgroundColor = UIColor(red: 9/255.0, green: 178/255.0, blue: 126/255.0, alpha: 1.0).CGColor
+        self.signUpButton.titleLabel?.textColor = UIColor.whiteColor()
+        self.signUpButton.titleLabel?.font = UIFont(name: "NexaRustScriptL-00", size: 24)
+
+        
     }
     
 // ----------------------
@@ -208,7 +217,7 @@ extension SignUpViewController: SignUpLogInTableViewDelegate {
             nav?.topItem!.title = "Sign Up"
             self.signUpButton.setTitle("Sign Up", forState: UIControlState.Normal)
             self.signUpButton.layer.backgroundColor = UIColor(red: 9/255.0, green: 178/255.0, blue: 126/255.0, alpha: 1.0).CGColor
-            self.signUpButton.titleLabel?.textColor = UIColor.whiteColor()
+            self.signUpButton.setTitleColor(UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 1.0), forState: UIControlState.Normal)
             
             signupActive = false
             
@@ -219,7 +228,7 @@ extension SignUpViewController: SignUpLogInTableViewDelegate {
             self.signUpButton.backgroundColor = UIColor.lightGrayColor()
             self.signUpButton.setTitle("Login", forState: UIControlState.Normal)
             self.signUpButton.layer.backgroundColor = UIColor(red: 230/255.0, green: 230/255.0, blue: 230/255.0, alpha: 1.0).CGColor
-            self.signUpButton.titleLabel?.textColor = UIColor(red: 153/255.0, green: 153/255.0, blue: 153/255.0, alpha: 1.0)
+            self.signUpButton.setTitleColor(UIColor(red: 153/255.0, green: 153/255.0, blue: 153/255.0, alpha: 1.0), forState: UIControlState.Normal)
             signupActive = true
             
         }
