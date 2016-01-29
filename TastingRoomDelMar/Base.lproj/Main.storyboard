@@ -43,7 +43,7 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="obe-Z9-uM6" kind="show" id="krO-dh-gAU"/>
+                                    <segue destination="obe-Z9-uM6" kind="show" identifier="startSignup" id="krO-dh-gAU"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MAs-Ji-6uD">
@@ -85,6 +85,9 @@
                                 <state key="normal" title="Login">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <segue destination="obe-Z9-uM6" kind="show" identifier="startLogin" id="Afq-vu-LwG"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -1210,6 +1213,7 @@
         <image name="secondary-logomark-white_rgb_600_600.png" width="600" height="600"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="zQy-bo-J9a"/>
+        <segue reference="P3E-so-8y6"/>
+        <segue reference="krO-dh-gAU"/>
     </inferredMetricsTieBreakers>
 </document>

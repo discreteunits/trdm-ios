@@ -28,6 +28,8 @@ class PopoverViewController: UITableViewController {
     var maxQuantity = 10
     
 
+    
+
 
 // --------------------
     override func viewDidLoad() {
@@ -49,6 +51,7 @@ class PopoverViewController: UITableViewController {
             
     }
 
+    
     
 // TABLE DELEGATE AND DATA SOURCE
     override func tableView(tableView: UITableView,
@@ -172,6 +175,7 @@ class PopoverViewController: UITableViewController {
         } catch _ {
             modArray = nil
         }
+        
         
         return modArray!
         

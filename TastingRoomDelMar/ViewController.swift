@@ -20,6 +20,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var loginButton: UIButton!
     
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
+    
 
 // ----------------
     

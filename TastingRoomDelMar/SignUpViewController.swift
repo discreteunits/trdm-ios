@@ -199,7 +199,7 @@ extension SignUpViewController: SignUpLogInTableViewDelegate {
         hideButtonVertical()
     }
     func alternateLoginSignupNav() {
-        print("alternateLoginSignupNav called from ViewController")
+        print("Alternated Signup / Login State.")
         var signupActive = self.signUpLoginTableViewControllerRef?.signupActive
         
         if signupActive == true {
@@ -207,6 +207,9 @@ extension SignUpViewController: SignUpLogInTableViewDelegate {
             nav = navigationController?.navigationBar
             nav?.topItem!.title = "Sign Up"
             self.signUpButton.setTitle("Sign Up", forState: UIControlState.Normal)
+            self.signUpButton.layer.backgroundColor = UIColor(red: 9/255.0, green: 178/255.0, blue: 126/255.0, alpha: 1.0).CGColor
+            self.signUpButton.titleLabel?.textColor = UIColor.whiteColor()
+            
             signupActive = false
             
         } else {
@@ -215,6 +218,8 @@ extension SignUpViewController: SignUpLogInTableViewDelegate {
             nav?.topItem!.title = "Login"
             self.signUpButton.backgroundColor = UIColor.lightGrayColor()
             self.signUpButton.setTitle("Login", forState: UIControlState.Normal)
+            self.signUpButton.layer.backgroundColor = UIColor(red: 230/255.0, green: 230/255.0, blue: 230/255.0, alpha: 1.0).CGColor
+            self.signUpButton.titleLabel?.textColor = UIColor(red: 153/255.0, green: 153/255.0, blue: 153/255.0, alpha: 1.0)
             signupActive = true
             
         }

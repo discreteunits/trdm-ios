@@ -30,7 +30,6 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     var tierIVCollectionArray = [PFObject]()
     var tierIVTableArray = [PFObject]()
 
-    
     var popover: UIPopoverController?
     
     var item: PFObject!
@@ -43,6 +42,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     var popoverWidth: CGFloat!
 
 
+
 // ------------
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +52,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
+    
     
 // MARK: - Table view data source
 
@@ -160,8 +160,6 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             vc.popoverItemVarietal = itemVarietal
             vc.modGroups = modifierGroups
             
-            
-
             
             var controller = vc.popoverPresentationController
             
