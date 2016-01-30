@@ -16,7 +16,7 @@ class PopoverViewController: UITableViewController {
     var popoverItem: PFObject!
     var popoverItemVarietal: PFObject!
     var modGroups = [PFObject]()
-    var modGroupDict = [String: [PFObject]]()
+    var modGroupDict = [[PFObject]]()
 
     
     // Data built in this controller
@@ -34,6 +34,8 @@ class PopoverViewController: UITableViewController {
     var modChoice: [PFObject]!
     var quantityChoice: PFObject!
     
+    // Model Row Collections
+    var model = [[PFObject]]()
 
     
 
@@ -44,7 +46,13 @@ class PopoverViewController: UITableViewController {
         
         print("============\(modGroupDict)=================")
         print("============\(modGroupDict.count)=================")
-        print("============\(modGroupDict["1MAVMPTC4DQJY"])=================")
+        print("============modGroupDict=================")
+        
+        createModels(modGroupDict)
+        
+        print("============\(model)=================")
+        print("============\(model.count)=================")
+        print("============model=================")
 
     }
     
@@ -58,6 +66,27 @@ class PopoverViewController: UITableViewController {
         
     }
     
+    func createModels(dictionary:[[PFObject]]) {
+       
+        // Details Row
+        model.append([])
+        
+        // All Modifier Group Rows
+        for var index = 0; index < modGroupDict.count; ++index {
+            
+            model.append(modGroupDict[index])
+            
+        }
+        
+        // Quantity Row
+        model.append([])
+        
+        // Action Row
+        model.append([])
+
+    }
+    
+// TABLE DELEGATE AND DATA SOURCE
     override func tableView(tableView: UITableView,
         numberOfRowsInSection section: Int) -> Int {
             
@@ -69,11 +98,6 @@ class PopoverViewController: UITableViewController {
             
     }
 
-
-    
-    
-    
-// TABLE DELEGATE AND DATA SOURCE
     override func tableView(tableView: UITableView,
         cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
             
@@ -176,31 +200,6 @@ class PopoverViewController: UITableViewController {
     
     }
 
-    
-// MODIFIER  QUERY 
-    func modifierQuery(modifierGroupObject: PFObject) -> [PFObject] {
-        
-        var modifiersArray = [PFObject]()
-        
-        let modifierGroupId = modifierGroupObject["modifierGroupId"] as? String
-        
-        let modGroupQuery:PFQuery = PFQuery(className: "Modifiers")
-        modGroupQuery.whereKey("modifierGroupId", containsString: modifierGroupId)
-        
-        let modArray: [PFObject]?
-        
-        // Synchronously Return Modifiers
-        do {
-            modArray = try modGroupQuery.findObjects() as [PFObject]
-        } catch _ {
-            modArray = nil
-        }
-        
-        
-        return modArray!
-        
-    }
-
     /*
     // MARK: - Navigation
 
@@ -275,16 +274,14 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                 mgCollectionCell.backgroundColor = UIColor.whiteColor()
                 
                 // Find modifiers and populate cells
-                let trueIndex = parent - 1
-                var itemPortion = modifierQuery(modGroups[trueIndex])
-                
+                let trueIndex = parent
+                var itemPortion = model[trueIndex]
 
-                
                 let itemPortionObject = itemPortion[indexPath.row]
                 let itemPortionObjectName = itemPortionObject["name"] as? String
                 let itemPortionObjectPrice = itemPortionObject["price"] as? Int
-                let itemPriceDollar = itemPortionObjectPrice! / 100
-                let itemPortionPrice = String(itemPortionObjectPrice!)
+                let itemPriceDollar = (itemPortionObjectPrice! / 100)
+                let itemPortionPrice = String(itemPriceDollar)
                 
                 mgCollectionCell.label.text = itemPortionObjectName
                 mgCollectionCell.label.font = UIFont(name: "NexaRustScriptL-00", size: 14)

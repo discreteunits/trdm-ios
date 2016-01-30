@@ -41,7 +41,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     var popoverHeight: CGFloat!
     var popoverWidth: CGFloat!
 
-    var modDict = [String: [PFObject]]()
+    var modDict = [[PFObject]]()
 
 
 // ------------
@@ -159,8 +159,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             for modifierGroup in self.item["modifierGroups"] as! [PFObject]! {
                 self.modifierGroups.append(modifierGroup)
                 
-                let modifierGroupId = modifierGroup["modifierGroupId"]
-                self.modDict[modifierGroupId! as! String] = modifierQuery(modifierGroup)
+                self.modDict.append(modifierQuery(modifierGroup))
 
             }
             
