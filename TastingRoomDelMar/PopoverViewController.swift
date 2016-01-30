@@ -44,15 +44,7 @@ class PopoverViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("============\(modGroupDict)=================")
-        print("============\(modGroupDict.count)=================")
-        print("============modGroupDict=================")
-        
         createModels(modGroupDict)
-        
-        print("============\(model)=================")
-        print("============\(model.count)=================")
-        print("============model=================")
 
     }
     
@@ -90,7 +82,7 @@ class PopoverViewController: UITableViewController {
     override func tableView(tableView: UITableView,
         numberOfRowsInSection section: Int) -> Int {
             
-            rows = modGroups.count + 3
+            rows = model.count + 3
             quantityRow = rows - 2
             actionRow = rows - 1
             

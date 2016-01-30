@@ -153,6 +153,8 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             // Dynamically assign Popover Window Size
             vc.preferredContentSize = CGSizeMake(popoverWidth, popoverHeight)
             
+//            let yCenterConstraint = NSLayoutConstraint(item: vc, attribute: .CenterY, relatedBy: .Equal, toItem: self.TierIVViewControllerRef, attribute: .CenterY, multiplier: 1, constant: 0)
+
             
             
             // Build array of modifier groups based on item selection
