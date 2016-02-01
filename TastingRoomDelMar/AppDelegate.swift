@@ -1,4 +1,4 @@
-    //
+//
 //  AppDelegate.swift
 //  TastingRoomDelMar
 //
@@ -20,7 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-                
         Parse.enableLocalDatastore()
         
         Parse.setApplicationId("iDDFJkF2ZGnHFtfrcEMba1UYr31zt3fybMzyPM12",

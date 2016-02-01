@@ -86,6 +86,7 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-TastingRoomDelMar/Alamofire.framework"
   install_framework "Pods-TastingRoomDelMar/Bolts.framework"
+  install_framework "Pods-TastingRoomDelMar/Bond.framework"
   install_framework "Pods-TastingRoomDelMar/ENSwiftSideMenu.framework"
   install_framework "Pods-TastingRoomDelMar/FBSDKCoreKit.framework"
   install_framework "Pods-TastingRoomDelMar/FBSDKLoginKit.framework"
@@ -102,6 +103,7 @@ fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-TastingRoomDelMar/Alamofire.framework"
   install_framework "Pods-TastingRoomDelMar/Bolts.framework"
+  install_framework "Pods-TastingRoomDelMar/Bond.framework"
   install_framework "Pods-TastingRoomDelMar/ENSwiftSideMenu.framework"
   install_framework "Pods-TastingRoomDelMar/FBSDKCoreKit.framework"
   install_framework "Pods-TastingRoomDelMar/FBSDKLoginKit.framework"

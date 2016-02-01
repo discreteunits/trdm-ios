@@ -1,14 +1,14 @@
 //
-//  SidePanelViewController.swift
+//  popoverViewController.swift
 //  
 //
-//  Created by Tobias Robert Brysiewicz on 1/11/16.
+//  Created by Tobias Robert Brysiewicz on 1/15/16.
 //
 //
 
 import UIKit
 
-class SidePanelViewController: UIViewController {
+class popoverViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
