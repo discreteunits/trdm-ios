@@ -83,11 +83,13 @@ class TierIVCollectionViewController: UICollectionViewController {
         if !route.contains(tierIVCollectionArray[indexPath.row]) {
             
             route.append(tierIVCollectionArray[indexPath.row])
-            print("The route is now: \(route)")
+            
+            print("The Route has been increased to: \(route[0]["name"]), \(route[1]["name"]), \(route[2]["name"]), \(route[3]["name"]).")
+            print("-----------------------")
             
         } else {
             
-            print("Warning: This selection is already in the route.")
+            print("This selection is already being shown.")
             
         }
         
@@ -105,7 +107,6 @@ class TierIVCollectionViewController: UICollectionViewController {
         route.removeAtIndex(3)
         delegate?.tagsArrayCreation()
 
-        
     }
 
 }

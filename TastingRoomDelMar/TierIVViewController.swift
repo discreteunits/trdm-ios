@@ -28,6 +28,10 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
 
     
 // ---------------
+    override func viewDidAppear(animated: Bool) {
+        print("------------Queries Completed------------")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -39,6 +43,8 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
             self.tierIVTableQuery()
         }
+        
+       
         
 // FLYOUT MENU
         
@@ -70,7 +76,8 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
     func back(sender: UIBarButtonItem) {
         
         route.removeAtIndex(2)
-        print("THE ROUTE IS NOW: \(route)")
+        print("The Route has been reduced to: \(route[0]["name"]), \(route[1]["name"]).")
+        print("-----------------------")
         self.navigationController?.popViewControllerAnimated(true)
     }
 
@@ -161,7 +168,7 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
             if error == nil {
                 
                 // The find succeeded.
-                print("TierIV collection query retrieved \(objects!.count) objects.")
+                print("TierIV collection query retrieved: \(objects!.count) objects.")
                 
                 // Do something with the found objects
                 for object in objects! as [PFObject]! {
@@ -180,7 +187,7 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
                 }
                 
                 self.TierIVCollectionViewControllerRef?.collectionView?.reloadData()
-                print("TierIV Collection Query Completed with \(self.TierIVCollectionViewControllerRef?.tierIVCollectionArray.count) objects.")
+                print("TierIV collection query appended: \(self.TierIVCollectionViewControllerRef!.tierIVCollectionArray.count) objects.")
                 
             } else {
                 
@@ -205,7 +212,7 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
             if error == nil {
                 
                 // The find succeeded.
-                print("TierIV table query retrieved \(objects!.count) objects.")
+                print("TierIV table query retrieved: \(objects!.count) objects.")
                 
                 // Do something with the found objects
                 for object in objects! as [PFObject] {
@@ -216,14 +223,15 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
 
                     } else {
                         
-                        print("Warning: This selection is already being filtered.")
+                        print("This selection is already being shown.")
                         
                     }
                     
                 }
                 
                 self.TierIVTableViewControllerRef?.tableView.reloadData()
-                print("TierIV Table Query Completed with  \(self.TierIVTableViewControllerRef?.tierIVTableArray.count) objects.")
+                print("TierIV table query completed with:  \(self.TierIVTableViewControllerRef!.tierIVTableArray.count) objects.")
+
                 
             } else {
                 

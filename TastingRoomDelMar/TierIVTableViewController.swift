@@ -52,6 +52,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+        
     }
     
     
@@ -86,7 +87,6 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
 
         cell.pricingLabel?.font = UIFont(name: "OpenSans", size: 12)
 
-        
         dispatch_async(dispatch_get_main_queue()) {
 
             if let itemTags = self.tierIVTableArray[indexPath.row]["tags"] as? [PFObject] {
@@ -106,8 +106,8 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
                 }
             
             }
-                
         }
+        
         
 // -------
 // SET PRICE LABEL HERE
@@ -140,6 +140,8 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         popoverWidth = tableView.bounds.size.width
         
         performSegueWithIdentifier("showItemConfig", sender: self)
+        
+        print("------------------------")
 
     }
     
@@ -192,6 +194,15 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     
 // PRESENTATION CONTROLLER DATA SOURCE
     
+    func popoverPresentationControllerDidDismissPopover(popoverPresentationController: UIPopoverPresentationController) {
+       
+        modifierGroups = []
+        
+        print("Popover closed.")
+        
+    }
+    
+    
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
         return .None
     }
@@ -216,7 +227,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
                 modArray = nil
             }
             
-            print("Modifier Query Fired For Mod Group ID: \(modifierGroupId)")
+            print("Queried modifier group: \(modifierGroupObject["name"])")
 
             return modArray!
             

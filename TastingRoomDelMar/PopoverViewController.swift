@@ -50,11 +50,10 @@ class PopoverViewController: UITableViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+        
     }
     
     override func viewWillAppear(animated: Bool) {
-        
-
         
     }
     
@@ -75,14 +74,19 @@ class PopoverViewController: UITableViewController {
         
         // Action Row
         model.append([])
+        
+        print("Model has been created.")
 
     }
+    
+
+    
     
 // TABLE DELEGATE AND DATA SOURCE
     override func tableView(tableView: UITableView,
         numberOfRowsInSection section: Int) -> Int {
             
-            rows = model.count + 3
+            rows = modGroups.count + 3
             quantityRow = rows - 2
             actionRow = rows - 1
             

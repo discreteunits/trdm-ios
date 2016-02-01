@@ -54,7 +54,8 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
     func back(sender: UIBarButtonItem) {
 
         route.removeAtIndex(1)
-        print("THE ROUTE IS NOW: \(route)")
+        print("The Route has been reduced to: \(route[0]["name"]).")
+        print("-----------------------")
         self.navigationController?.popViewControllerAnimated(true)
     }
     
@@ -87,7 +88,12 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
                 }
                 
                 self.tableView.reloadData()
-                print("TEIRIII ARRAY: \(self.tierIIIArray)")
+                for i in self.tierIIIArray {
+                    print("TierIII Array: \(i["name"])")
+                }
+                print("-----------------------")
+                
+                
                 
             } else {
                 
@@ -146,55 +152,13 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         route.append(tierIIIArray[indexPath.row])
-        print("THE ROUTE IS NOW: \(route)")
+        
+        print("The Route has been increased to: \(route[0]["name"]), \(route[1]["name"]), \(route[2]["name"]).")
+        print("-----------------------")
+
         
         self.performSegueWithIdentifier("tierIV", sender: self)
         
     }
-    
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-    // Return false if you do not want the specified item to be editable.
-    return true
-    }
-    */
-    
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-    if editingStyle == .Delete {
-    // Delete the row from the data source
-    tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-    } else if editingStyle == .Insert {
-    // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }
-    }
-    */
-    
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-    
-    }
-    */
-    
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-    // Return false if you do not want the item to be re-orderable.
-    return true
-    }
-    */
-    
-    /*
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
-    }
-    */
     
 }

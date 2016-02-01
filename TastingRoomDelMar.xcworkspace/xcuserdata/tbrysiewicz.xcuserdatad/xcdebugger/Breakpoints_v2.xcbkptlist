@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TastingRoomDelMar/TierIITableViewController.swift"
-            timestampString = "475706178.678165"
+            timestampString = "476044448.1321"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "144"
-            endingLineNumber = "144"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
             landmarkName = "toggleSideMenu(_:)"
             landmarkType = "5">
          </BreakpointContent>
