@@ -154,9 +154,9 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
         
         // COLLECTION CLASSNAME CONDITION
         if route[1]["name"] as! String == "Vines" {
-            classToBeQueried = "WineVarietals"
+            classToBeQueried = "WineVarietal"
         } else if route[1]["name"] as! String == "Hops" {
-            classToBeQueried = "BeerStyles"
+            classToBeQueried = "BeerStyle"
         }
         
         
@@ -203,7 +203,7 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
 // TIER 4 TABLE QUERY
     func tierIVTableQuery() {
         
-        let tableQuery:PFQuery = PFQuery(className:"Items")
+        let tableQuery:PFQuery = PFQuery(className:"Item")
         tableQuery.includeKey("tags")
         tableQuery.includeKey("modifierGroups")
         tableQuery.whereKey("tags", containsAllObjectsInArray: tagsArray)

@@ -218,9 +218,9 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         
         let modArray: [PFObject]?
         
-        let modifierGroupId = modifierGroupObject["modifierGroupId"] as? String
+        let modifierGroupId = modifierGroupObject["cloverId"] as? String
         
-        let modifierQuery:PFQuery = PFQuery(className: "Modifiers")
+        let modifierQuery:PFQuery = PFQuery(className: "Modifier")
         modifierQuery.whereKey("modifierGroupId", containsString: modifierGroupId)
         modifierQuery.orderByAscending("price")
 

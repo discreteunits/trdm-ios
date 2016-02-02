@@ -400,7 +400,33 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
 
             // Add to Tab
             } else if indexPath.row == 1 {
+                
+                print("popoverItem is equal to: \(popoverItem)")
+                print("popoverItem object id is: \(popoverItem.objectId)")
+                
+                if popoverItem != nil {
+                    if modChoices.count == modGroups.count {
+                        if quantityChoice != nil {
+                         
+                            var newLineItem = LineItem()
+                            newLineItem.id = popoverItem.objectId!
+                            newLineItem.cloverId = popoverItem["cloverId"] as! String
+                            newLineItem.quantity = Int(quantityChoice)!
+                            newLineItem.price = modChoices[0]["price"] as! Int
+//                            newLineItem.tax = Int(400)
+                            newLineItem.modifiers = modChoices
+                            
+                            print("New LineItem created: \(newLineItem)")
+                            
 
+                            
+                            
+                        }
+                    }
+                }
+                
+
+                
             }
             
         }
@@ -431,7 +457,6 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                 modChoices = modChoices.filter() {$0 != mod}
 
             }
-            
             
             let trueIndex = modChoices.count - 1
             let modName = mod["name"]
