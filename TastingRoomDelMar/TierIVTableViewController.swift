@@ -15,6 +15,7 @@ protocol TierIVTableViewDelegate {
     func tagsArrayCreation()
     func tierIVCollectionQuery()
     func tierIVTableQuery()
+    func opaqueWindow()
 }
 
 class TierIVTableViewController: UITableViewController, UIPopoverPresentationControllerDelegate {
@@ -154,9 +155,9 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             
             // Dynamically assign Popover Window Size
             vc.preferredContentSize = CGSizeMake(popoverWidth, popoverHeight)
-            
-//            let yCenterConstraint = NSLayoutConstraint(item: vc, attribute: .CenterY, relatedBy: .Equal, toItem: self.TierIVViewControllerRef, attribute: .CenterY, multiplier: 1, constant: 0)
 
+            
+            delegate?.opaqueWindow()
             
             
             // Build array of modifier groups based on item selection
@@ -166,7 +167,6 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
                 self.modDict.append(modifierQuery(modifierGroup))
 
             }
-            
             
             
             // Data to be passed to popover
@@ -180,6 +180,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             var controller = vc.popoverPresentationController
             
             controller!.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
+            
             
             if controller != nil {
             
@@ -197,6 +198,9 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     func popoverPresentationControllerDidDismissPopover(popoverPresentationController: UIPopoverPresentationController) {
        
         modifierGroups = []
+
+        delegate?.opaqueWindow()
+        
         
         print("Popover closed.")
         

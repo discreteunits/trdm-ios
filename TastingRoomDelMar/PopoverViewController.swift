@@ -31,8 +31,9 @@ class PopoverViewController: UITableViewController {
     
     
     // User Configuration
-    var modChoice: [PFObject]!
-    var quantityChoice: PFObject!
+    var modChoices = [PFObject]()
+    var quantityChoice: String!
+    // item to pass is popoverItem
     
     // Model Row Collections
     var model = [[PFObject]]()
@@ -270,9 +271,9 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                 mgCollectionCell.backgroundColor = UIColor.whiteColor()
                 
                 // Find modifiers and populate cells
-                let trueIndex = parent
-                var itemPortion = model[trueIndex]
-
+                let trueIndex = parent - 1
+                var itemPortion = modGroupDict[trueIndex]
+                
                 let itemPortionObject = itemPortion[indexPath.row]
                 let itemPortionObjectName = itemPortionObject["name"] as? String
                 let itemPortionObjectPrice = itemPortionObject["price"] as? Int
@@ -365,6 +366,16 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
             selectedCell.label.textColor = UIColor.whiteColor()
             selectedCell.priceLabel.textColor = UIColor.whiteColor()
             selectedCell.backgroundColor = UIColor.blackColor()
+            
+            let mod = model[parent][indexPath.row]
+            
+            // Add chosen modifier to modChoices array.
+            self.modChoices.append(mod)
+            
+            let trueIndex = modChoices.count - 1
+            let modName = modChoices[trueIndex]["name"]
+            print("User chose a modifier of: \(modName)")
+            
 
         // Quantity Table Row
         } else if parent == quantityRow {
@@ -374,6 +385,10 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
             selectedCell.clipsToBounds = true
             selectedCell.label.textColor = UIColor.whiteColor()
             selectedCell.backgroundColor = UIColor.blackColor()
+            
+            quantityChoice = selectedCell.label.text
+            print("User chose a quantity of: \(quantityChoice)")
+            
 
         // Action Table Row
         } else if parent == actionRow {
@@ -409,12 +424,29 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
             deselectedCell.priceLabel.textColor = UIColor.blackColor()
             deselectedCell.backgroundColor = UIColor.whiteColor()
             
+            let mod = model[parent][indexPath.row]
+            
+            if modChoices.contains(mod) {
+                
+                modChoices = modChoices.filter() {$0 != mod}
+
+            }
+            
+            
+            let trueIndex = modChoices.count - 1
+            let modName = mod["name"]
+            print("Modifier \(modName) has been removed from selected modifiers.")
+
+            
         // Quantity Table Row
         } else if parent == quantityRow {
             
             let deselectedCell = collectionView.cellForItemAtIndexPath(indexPath)! as! PopoverQuantityCollectionViewCell
             deselectedCell.label.textColor = UIColor.blackColor()
             deselectedCell.backgroundColor = UIColor.whiteColor()
+            
+            quantityChoice = ""
+            print("\(quantityChoice)")
           
         // Action Table Row
         } else if parent == actionRow {
@@ -482,4 +514,8 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
         return cellSize
     }
     
+    
+    
 }
+
+

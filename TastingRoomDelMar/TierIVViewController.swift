@@ -242,5 +242,31 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
         }
     }
     
+    func opaqueWindow() {
+        
+        let tierIVView = self.view
+        
+        print("self view is: \(tierIVView)")
+        
+        let windowWidth = self.view.bounds.size.width
+        let windowHeight = self.view.bounds.size.height
+        
+        let windowView = UIView(frame: CGRectMake(0, 0, windowWidth, windowHeight))
+        
+        if let viewWithTag = tierIVView.viewWithTag(21) {
+
+            windowView.backgroundColor = UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 0.5)
+            viewWithTag.removeFromSuperview()
+                
+        } else {
+
+            windowView.backgroundColor = UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 0.5)
+            windowView.tag = 21
+            tierIVView.addSubview(windowView)
+            
+        }
+        
+    }
+    
 }
 
