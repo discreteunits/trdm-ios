@@ -12,11 +12,14 @@ import ParseUI
 
 class TabManager: NSObject {
 
+    var tab = Tab()
+    var openOrder = PFObject()
+    
     override init() {
         
         // Create Tab Struct
         
-        var tab = Tab()
+        tab = Tab()
         print("New Tab Created: \(tab)")
 
         super.init()
@@ -24,6 +27,23 @@ class TabManager: NSObject {
     
     
     func syncTab() {
+        
+        if tab.id != "" {
+            
+            print("Tab found with ID.")
+            // Run query for tab with found ID
+            let potentialOrder = tabQuery(tab.id)
+            if potentialOrder != "" {
+                openOrder = potentialOrder
+            }
+            
+            
+        } else {
+            
+            tab = Tab()
+            print("Tab does not have an ID.")
+            
+        }
         
     }
     
@@ -40,6 +60,52 @@ class TabManager: NSObject {
     }
     
     func clearTab() {
+        
+    }
+    
+    func tabQuery(id: String) -> PFObject {
+        
+        var orderToReturn = PFObject()
+        
+        let tabQuery:PFQuery = PFQuery(className: "Order")
+            tabQuery.includeKey("objectId")
+            tabQuery.whereKey("objectId", equalTo: id)
+        
+        tabQuery.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
+            
+            if error == nil {
+                
+                // The find succeeded. 
+                print("tabQueried has found orders")
+
+                
+                // Do something with the found objects.
+                for object in objects! {
+                    var objectState = object["state"]! as! String
+                    if objectState == "open" {
+                        
+                        // Return OPEN order
+                        orderToReturn = object
+                        
+                    } else {
+                        
+                        print("Object found does not have a state of OPEN.")
+                        
+                    }
+                    
+                }
+                
+                
+            } else {
+                
+                // Log details of the failure
+                print("Error: \(error!) \(error!.userInfo)")
+                
+            }
+            
+        }
+        
+        return orderToReturn
         
     }
     
