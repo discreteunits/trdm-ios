@@ -8,76 +8,43 @@
 
 import UIKit
 import Parse
+import ParseUI
 
 class TabManager: NSObject {
 
+    override init() {
+        
+        // Create Tab Struct
+        
+        var tab = Tab()
+        print("New Tab Created: \(tab)")
+
+        super.init()
+    }
     
-    func checkUser() -> PFObject{
+    
+    func syncTab() {
         
-        if PFUser.currentUser() != nil {
-            
-            // Current User Exists
-            print("User Logged In")
-            
-            
-        } else {
-            
-            // No Current User
-            print("No User Found")
-            
-            PFAnonymousUtils.logInWithBlock({ (user: PFUser?, error: NSError?) -> Void in
-                
-                if error != nil || user == nil {
-                    print("Anonymous login failed.")
-                } else {
-                    print("Anonymous user logged in.")
-                }
-                
-            })
-            
-        }
+    }
+    
+    func addToTab() {
         
-        return PFUser.currentUser()!
+    }
+    
+    func removeFromTab() {
+        
+    }
+    
+    func placeOrder() {
+        
+    }
+    
+    func clearTab() {
         
     }
     
     
     
-    
-    
-//    func syncTab(user: PFUser) {
-//        
-//        if orderObject == nil {
-//            
-//            // Create New orderObject
-//            
-//        } else {
-//            
-//            if orderObject["user"] != user {
-//            
-//                print("The current orderObject stored locally is not the current users orderObject.")
-//                // Delete orderObject
-//            
-//                // Create New orderObject
-//            
-//            } else {
-//            
-//                // Run CloudCode syncTab
-//            
-//            }
-//        
-//        }
-//        
-//    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }
+
+

@@ -402,30 +402,52 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
             } else if indexPath.row == 1 {
                 
                 print("popoverItem is equal to: \(popoverItem)")
-                print("popoverItem object id is: \(popoverItem.objectId)")
                 
                 if popoverItem != nil {
                     if modChoices.count == modGroups.count {
                         if quantityChoice != nil {
                          
+                            
+                            // Create Modifiers
+                            // ------------------------------
+                            var convertedModChoices = [Modifier]()
+                            
+                            for modifier in modChoices {
+                                
+                                var newModifier = Modifier()
+                                newModifier.id = modifier.objectId!
+                                newModifier.cloverId = modifier["cloverId"] as! String
+                                
+                                convertedModChoices.append(newModifier)
+                                print("Mod convnerted to Modifier: \(newModifier)")
+                                
+                            }
+                            
+                            // Create LineItem
+                            // ------------------------------
+                            
                             var newLineItem = LineItem()
                             newLineItem.id = popoverItem.objectId!
                             newLineItem.cloverId = popoverItem["cloverId"] as! String
                             newLineItem.quantity = Int(quantityChoice)!
                             newLineItem.price = modChoices[0]["price"] as! Int
 //                            newLineItem.tax = Int(400)
-                            newLineItem.modifiers = modChoices
+                            newLineItem.modifiers = convertedModChoices
                             
                             print("New LineItem created: \(newLineItem)")
                             
-
                             
+                            // Check for Order - Create or Add to Order
+                            // ----------------------------------------
+                            
+//                            var userOrders : [String: AnyObject]
+//                            userOrders["open"] =
                             
                         }
+                        
                     }
+                    
                 }
-                
-
                 
             }
             
@@ -538,6 +560,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
         
         return cellSize
     }
+    
     
     
     
