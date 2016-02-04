@@ -13,7 +13,7 @@ struct Modifier {
     var id = String()
     var cloverId = String()
     var name = String()
-    var price = Int()
+    var price = Double()
 }
 
 struct LineItem {
@@ -22,8 +22,8 @@ struct LineItem {
     var name = String()
     var varietal = String()
     var quantity = Int()
-    var price = Int()
-    var tax = Int()
+    var price = Double()
+    var tax = Double()
     var modifiers = [Modifier]()
 }
 
@@ -35,9 +35,9 @@ struct Tab {
     var note = String()
     var table = String()
     var userId = String()
-    var subtotal = Int()
-    var totalTax = Int()
-    var grandTotal = Int()
+    var subtotal = Double()
+    var totalTax = Double()
+    var grandTotal = Double()
     
     var lines = [LineItem]()
     

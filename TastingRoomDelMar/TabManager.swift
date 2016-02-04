@@ -58,8 +58,8 @@ class TabManager: NSObject {
     
     func totalCellCalculator() {
         
-        var subtotal = Int()
-        var totalTax = Int()
+        var subtotal = Double()
+        var totalTax = Double()
         
         let lineitems = currentTab.lines
         for lineitem in lineitems {
@@ -73,7 +73,7 @@ class TabManager: NSObject {
         }
         
         // Total Calculation
-        let total = totalTax * subtotal
+        let total = totalTax + subtotal
         
         // Assignments
         currentTab.subtotal = subtotal

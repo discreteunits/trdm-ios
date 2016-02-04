@@ -419,7 +419,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                                 newModifier.cloverId = modifier["cloverId"] as! String
                                 newModifier.name = modifier["name"] as! String
                                 
-                                let modPrice = modifier["price"] as! Int
+                                let modPrice = modifier["price"] as! Double
                                 newModifier.price = modPrice / 100
                                 
                                 convertedModChoices.append(newModifier)
@@ -427,35 +427,39 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                                                                 
                             }
                             
-                            // Sum up all newModifier prices per this lineitem
-                            // AKA set the lineitem price
-
-                            
-                            
-
-                            
+     
                             // Add All Item Tax Rates Together
-                            var totalTax = Int()
+                            var totalTax = Double()
                             for taxRate in taxRates {
-                                let rate = taxRate["rate"] as! Int
-                                let rateToDollar = rate / 100000                // TAX RATE DECIMAL CONVERSION
+                                let rate = taxRate["rate"] as! Double
+                                let rateToDollar = rate / 10000000                // TAX RATE DECIMAL CONVERSION
                                 totalTax = totalTax + rateToDollar
+                                
+                                
+                                print("RATETODOLLAR: \(rateToDollar)")
+                                print("TOTALTAX: \(totalTax)")
                             }
+                            
+
+
                             
                             // Calculate Tax Expenditure
 
-                            let lineitemQuantity = Int(quantityChoice)
-                            var lineitemTax = Int()
-                            var preTaxedItem = Int()
-                            var preTaxedItemTotal = Int()
+                            let lineitemQuantity = Double(quantityChoice)
+                            var preTaxedItem = Double()
+                            var preTaxedItemTotal = Double()
+                            
                             for newModifier in convertedModChoices {
                                 preTaxedItem = newModifier.price * lineitemQuantity!
                                 preTaxedItemTotal = preTaxedItemTotal + preTaxedItem
-                                
                             }
                             
-                            var taxedItem = preTaxedItem * totalTax
+                            var lineitemTax = Double()
+                            lineitemTax = preTaxedItemTotal * totalTax
 
+                            print("LINEITEMTAX: \(lineitemTax)")
+                            print("PRETAXEDITEMTOTAL: \(preTaxedItemTotal)")
+                            print("TOTALTAX: \(totalTax)")
                             
                             // Create LineItem
                             // ------------------------------
@@ -476,7 +480,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                             
                             // Add LineItem to TabManager tab() Structure
                             TabManager.sharedInstance.currentTab.lines.append(newLineItem)
-                            print("Line Item \(newLineItem.name) has been added to currentTab")
+                            print("Line Item \(newLineItem.name) has been added to currentTab.")
                                                         
                             
                             // Revert view controllers, views, and collections back to pre-popover state
@@ -488,6 +492,9 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                                 viewWithTag.removeFromSuperview()
                             }
                             
+                            print("\(newLineItem)")
+                            
+                            // Clean Up
                             modGroups.removeAll()
                             modGroupDict.removeAll()
                             model.removeAll()
