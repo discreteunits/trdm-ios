@@ -92,6 +92,7 @@ class MenuTableViewController: UITableViewController {
         case 2:
             destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("Tab")
                 selectedMenuItem = 0
+                TabManager.sharedInstance.totalCellCalculator()
             break
         case 3:
             destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("Payment")

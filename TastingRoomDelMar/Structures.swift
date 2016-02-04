@@ -12,11 +12,14 @@ import Parse
 struct Modifier {
     var id = String()
     var cloverId = String()
+    var name = String()
 }
 
 struct LineItem {
     var id = String()
     var cloverId = String()
+    var name = String()
+    var varietal = String()
     var quantity = Int()
     var price = Int()
     var tax = Int()

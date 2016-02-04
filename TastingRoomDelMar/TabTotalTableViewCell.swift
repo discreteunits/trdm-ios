@@ -10,6 +10,17 @@ import UIKit
 
 class TabTotalTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var subtotalLabel: UILabel!
+    @IBOutlet weak var subtotalValueLabel: UILabel!
+    
+    @IBOutlet weak var taxLabel: UILabel!
+    @IBOutlet weak var taxValueLabel: UILabel!
+    
+    @IBOutlet weak var totalLabel: UILabel!
+    @IBOutlet weak var totalValueLabel: UILabel!
+    
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

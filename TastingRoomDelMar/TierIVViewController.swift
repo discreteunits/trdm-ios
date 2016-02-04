@@ -25,6 +25,7 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
     var tagsArray = [PFObject]()
     var tierIVCollectionArray = [PFObject]()
     var tierIVTableArray = [PFObject]()
+    
 
     
 // ---------------
@@ -206,6 +207,7 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
         let tableQuery:PFQuery = PFQuery(className:"Item")
         tableQuery.includeKey("tags")
         tableQuery.includeKey("modifierGroups")
+        tableQuery.includeKey("TaxRate")
         tableQuery.whereKey("tags", containsAllObjectsInArray: tagsArray)
         tableQuery.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
             
@@ -220,6 +222,8 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
                     if !self.TierIVTableViewControllerRef!.tierIVTableArray.contains(object) {
                         
                         self.TierIVTableViewControllerRef?.tierIVTableArray.append(object)
+                        
+
 
                     } else {
                         
@@ -232,6 +236,8 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
                 self.TierIVTableViewControllerRef?.tableView.reloadData()
                 print("TierIV table query completed with:  \(self.TierIVTableViewControllerRef!.tierIVTableArray.count) objects.")
 
+                
+                
                 
             } else {
                 

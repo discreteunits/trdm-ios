@@ -169,11 +169,24 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
 
             }
             
+            // Collect Tax Rates
+            var itemTaxRates = [PFObject]()
+            
+            let taxRates = item["taxRates"] as! [PFObject]
+            for taxRate in taxRates {
+                itemTaxRates.append(taxRate)
+            }
+            print("\(taxRates.count) item tax rates collected")
+            
+            
             // Data to be passed to popover
             vc.popoverItem = item
             vc.popoverItemVarietal = itemVarietal
             vc.modGroups = modifierGroups
             vc.modGroupDict = modDict
+            vc.taxRates = itemTaxRates
+            
+
             
             var controller = vc.popoverPresentationController
             

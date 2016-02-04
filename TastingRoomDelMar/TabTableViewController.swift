@@ -70,8 +70,19 @@ class TabTableViewController: UITableViewController {
         if indexPath.row == 0 && indexPath.row < totalRow {
             
             var lineitemCell: TabLineItemTableViewCell
-            
             lineitemCell = tableView.dequeueReusableCellWithIdentifier("TabLineItemTableCell", forIndexPath: indexPath) as! TabLineItemTableViewCell
+  
+            
+            lineitemCell.itemNameLabel?.text = tab.lines[indexPath.row].name as! String
+            
+            // Declare Pair for Presentation
+            let orderMod = tab.lines[indexPath.row].modifiers[indexPath.row].name as! String
+            let servingPrice = tab.lines[indexPath.row].price as! String
+            var orderAndServing = orderMod + " " + servingPrice
+            lineitemCell.orderModLabel?.text = "\(orderAndServing)"
+
+            lineitemCell.qtyLabel?.text = tab.lines[indexPath.row].quantity as! String
+            lineitemCell.priceLabel?.text = tab.lines[indexPath.row].price as! String
             
             return lineitemCell
 
@@ -79,8 +90,10 @@ class TabTableViewController: UITableViewController {
         } else if indexPath.row == totalRow {
             
             var totalCell: TabTotalTableViewCell
-            
             totalCell = tableView.dequeueReusableCellWithIdentifier("TabTotalTableCell", forIndexPath: indexPath) as! TabTotalTableViewCell
+            
+//            totalCell.subtotalLabel?.text == tab.
+            
             
             return totalCell
 

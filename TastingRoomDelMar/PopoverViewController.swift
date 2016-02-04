@@ -19,7 +19,7 @@ class PopoverViewController: UITableViewController {
     var popoverItemVarietal: PFObject!
     var modGroups = [PFObject]()
     var modGroupDict = [[PFObject]]()
-
+    var taxRates = [PFObject]()
     
     // Data built in this controller
     var modifierObjects = [PFObject]()
@@ -417,11 +417,14 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                                 var newModifier = Modifier()
                                 newModifier.id = modifier.objectId!
                                 newModifier.cloverId = modifier["cloverId"] as! String
+                                newModifier.name = modifier["name"] as! String
                                 
                                 convertedModChoices.append(newModifier)
                                 print("Mod convnerted to Modifier: \(newModifier)")
                                 
                             }
+                            
+                            
                             
                             // Create LineItem
                             // ------------------------------
@@ -429,6 +432,11 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                             var newLineItem = LineItem()
                             newLineItem.id = popoverItem.objectId!
                             newLineItem.cloverId = popoverItem["cloverId"] as! String
+                            newLineItem.name = popoverItem["name"] as! String
+                            newLineItem.varietal = popoverItemVarietal["name"] as! String
+                            newLineItem.tax = taxRates["taxRates"] as! Int
+
+
                             newLineItem.quantity = Int(quantityChoice)!
                             newLineItem.price = modChoices[0]["price"] as! Int
 //                            newLineItem.tax = Int(400)
