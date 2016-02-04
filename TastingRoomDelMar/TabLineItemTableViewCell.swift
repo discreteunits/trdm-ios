@@ -10,6 +10,11 @@ import UIKit
 
 class TabLineItemTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var itemNameLabel: UILabel!
+    @IBOutlet weak var orderModLabel: UILabel!
+    @IBOutlet weak var qtyLabel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

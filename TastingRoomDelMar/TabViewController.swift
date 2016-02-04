@@ -17,7 +17,8 @@ class TabViewController: UIViewController {
     
     @IBOutlet weak var navigationTitle: UINavigationItem!
 
-    
+    var TabTableViewControllerRef: TabTableViewController?
+
 // ---------------
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,19 +45,35 @@ class TabViewController: UIViewController {
     @IBAction func menu(sender: AnyObject) {
         
         self.presentingViewController!.dismissViewControllerAnimated(false, completion: nil)
-        
+        // Or perform a segue back?
     }
 
     
     
     
-/*
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 
-        
+        if segue.identifier == "tabTableEmbeded" {
+            
+            if let TabTableViewController = segue.destinationViewController as? TabTableViewController {
+                
+                self.TabTableViewControllerRef = TabTableViewController
+                TabTableViewController.containerViewController = self
+                TabTableViewController.delegate = self
+                
+                
+            } 
+            
+        }
         
         
     }
-*/
 
+
+}
+
+
+extension TabViewController: TabTableViewDelegate {
+    
 }

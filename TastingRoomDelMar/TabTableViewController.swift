@@ -8,17 +8,33 @@
 
 import UIKit
 
+@objc
+protocol TabTableViewDelegate {
+    
+}
+
 class TabTableViewController: UITableViewController {
 
+    // Table Cell Row Indicators
     var rows: Int!
     var totalRow: Int!
     var actionRow: Int!
 
+    //
+    let tab = TabManager.sharedInstance.currentTab
+    
+    // Protocol Delegate
+    var TabViewControllerRef: TabViewController?
+    var delegate: TabTableViewDelegate?
+    
+    
+    var containerViewController: TabViewController?
+
+    
     
 // --------------------
     override func viewDidLoad() {
         super.viewDidLoad()
-
 
     }
 
@@ -29,16 +45,16 @@ class TabTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        
-
-        
-        return 1
-    }
+//    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+//        
+//
+//        
+//        return 1
+//    }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        rows = TabManager.sharedInstance.currentTab.lines.count
+        rows = TabManager.sharedInstance.currentTab.lines.count + 3
         totalRow = rows - 2
         actionRow = rows - 1
         
@@ -51,21 +67,35 @@ class TabTableViewController: UITableViewController {
         var cell: UITableViewCell!
         
         // Line Item Table Row
-        if indexPath.row == 0 {
-            let cell = tableView.dequeueReusableCellWithIdentifier("TabLineItemTableCell", forIndexPath: indexPath)
+        if indexPath.row == 0 && indexPath.row < totalRow {
+            
+            var lineitemCell: TabLineItemTableViewCell
+            
+            lineitemCell = tableView.dequeueReusableCellWithIdentifier("TabLineItemTableCell", forIndexPath: indexPath) as! TabLineItemTableViewCell
+            
+            return lineitemCell
 
+        
         } else if indexPath.row == totalRow {
-            let cell = tableView.dequeueReusableCellWithIdentifier("TabTotalTableCell", forIndexPath: indexPath)
+            
+            var totalCell: TabTotalTableViewCell
+            
+            totalCell = tableView.dequeueReusableCellWithIdentifier("TabTotalTableCell", forIndexPath: indexPath) as! TabTotalTableViewCell
+            
+            return totalCell
 
             
         } else if indexPath.row == actionRow {
-            let cell = tableView.dequeueReusableCellWithIdentifier("TabActionTableCell", forIndexPath: indexPath)
+            
+            var actionCell: TabActionTableViewCell
+            
+            actionCell = tableView.dequeueReusableCellWithIdentifier("TabActionTableCell", forIndexPath: indexPath) as! TabActionTableViewCell
+            
+            
+            return actionCell
 
             
         }
-        
-
-        
         
         return cell
     }
