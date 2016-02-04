@@ -48,16 +48,13 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
 // ------------
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
     }
-    
-    
-    
     
 // MARK: - Table view data source
 
@@ -107,6 +104,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
                 }
             
             }
+            
         }
         
         
@@ -148,6 +146,9 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
+        modifierGroups.removeAll()
+        modDict.removeAll()
+        
         if segue.identifier == "showItemConfig" {
             
             
@@ -168,14 +169,11 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
 
             }
             
-            
             // Data to be passed to popover
             vc.popoverItem = item
             vc.popoverItemVarietal = itemVarietal
             vc.modGroups = modifierGroups
             vc.modGroupDict = modDict
-            
-            
             
             var controller = vc.popoverPresentationController
             

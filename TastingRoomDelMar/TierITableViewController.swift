@@ -23,6 +23,9 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Sync Tab - Create or Find
+        TabManager.sharedInstance.syncTab(TabManager.sharedInstance.currentTab.id)
+        
         // TIER 1 QUERY
         tierIQuery()
 

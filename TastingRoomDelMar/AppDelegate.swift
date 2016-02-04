@@ -59,9 +59,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         
-        // Initialize Tab Struct
         
-        TabManager.init()
+        
+        
         
         
         

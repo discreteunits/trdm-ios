@@ -10,38 +10,45 @@ import UIKit
 import Parse
 import ParseUI
 
+
 class TabManager: NSObject {
 
-    var tab = Tab()
-    var openOrder = PFObject()
+    static let sharedInstance = TabManager()
     
+    var currentTab = Tab()
+    
+// -------------------
     override init() {
-        
-        // Create Tab Struct
-        
-        tab = Tab()
-        print("New Tab Created: \(tab)")
-
         super.init()
+        
+        currentTab.id = "qSprPWBN6T"
+        
+        print("Current Tab id Spoofed \(currentTab)")
+        
+        
+        
+        // Find or Create Order
+//        self.syncTab()
+
     }
     
     
-    func syncTab() {
+    func syncTab(tabId: String) {
         
-        if tab.id != "" {
+        if currentTab.id != "" {
             
-            print("Tab found with ID.")
+            print("Current tab has an ID.")
+            
             // Run query for tab with found ID
-            let potentialOrder = tabQuery(tab.id)
-            if potentialOrder != "" {
-                openOrder = potentialOrder
-            }
+            tabQuery(tabId)
+            
+            print("Order found that matches tab: \(currentTab)")
             
             
         } else {
             
-            tab = Tab()
-            print("Tab does not have an ID.")
+            currentTab = Tab()
+            print("New Tab Created: \(currentTab)")
             
         }
         
@@ -63,12 +70,9 @@ class TabManager: NSObject {
         
     }
     
-    func tabQuery(id: String) -> PFObject {
-        
-        var orderToReturn = PFObject()
+    func tabQuery(id: String) {
         
         let tabQuery:PFQuery = PFQuery(className: "Order")
-            tabQuery.includeKey("objectId")
             tabQuery.whereKey("objectId", equalTo: id)
         
         tabQuery.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
@@ -76,16 +80,21 @@ class TabManager: NSObject {
             if error == nil {
                 
                 // The find succeeded. 
-                print("tabQueried has found orders")
+                print("Tab query has found \(objects!.count) orders.")
+                print("---------------------")
 
                 
                 // Do something with the found objects.
                 for object in objects! {
-                    var objectState = object["state"]! as! String
+                    
+                    let objectState = object["state"]! as! String
+                    
+                    // Check if found order is open still
                     if objectState == "open" {
                         
-                        // Return OPEN order
-                        orderToReturn = object
+                        // Do what you came here to do
+                        self.currentTab.state = object["state"] as! String
+
                         
                     } else {
                         
@@ -105,11 +114,7 @@ class TabManager: NSObject {
             
         }
         
-        return orderToReturn
-        
     }
-    
-    
     
 }
 

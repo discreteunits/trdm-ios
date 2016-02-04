@@ -30,6 +30,7 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
 // ---------------
     override func viewDidAppear(animated: Bool) {
         print("------------Queries Completed------------")
+        
     }
     
     override func viewDidLoad() {
@@ -47,7 +48,6 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
        
         
 // FLYOUT MENU
-        
         self.sideMenuController()?.sideMenu?.delegate = self
         
 // NAV BAR STYLES
@@ -241,7 +241,10 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
             }
         }
     }
-    
+
+
+
+    // TRANSPARENT BLACK BACKGROUND BEHIND MODEL
     func opaqueWindow() {
         
         let tierIVView = self.view

@@ -27,6 +27,7 @@ struct LineItem {
 struct Tab {
     var id = String()
     var cloverId = String()
+    var state = String()
     var note = String()
     var table = String()
     var userId = String()

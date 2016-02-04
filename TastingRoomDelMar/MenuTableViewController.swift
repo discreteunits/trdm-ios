@@ -47,7 +47,7 @@ class MenuTableViewController: UITableViewController {
         
         var cell = tableView.dequeueReusableCellWithIdentifier("CELL")
         
-        let menuArray = ["Menu", "Events", "My Tab", "Payment", "Settings"]
+        let menuArray = ["Menu", "Events", "Tab", "Payment", "Settings"]
         
         if (cell == nil) {
             cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "CELL")
@@ -83,17 +83,22 @@ class MenuTableViewController: UITableViewController {
         switch (indexPath.row) {
         case 0:
             destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("Menu")
+                selectedMenuItem = 0
             break
         case 1:
             destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("Events")
+                selectedMenuItem = 0
             break
         case 2:
-            destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("My Tab")
+            destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("Tab")
+                selectedMenuItem = 0
             break
         case 3:
             destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("Payment")
+                selectedMenuItem = 0
         default:
             destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("Settings")
+                selectedMenuItem = 0
             break
         }
         sideMenuController()?.setContentViewController(destViewController)

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ToPopoverViewController: UIViewController, UIPopoverPresentationControllerDelegate {
+class RawPopoverViewController: UIViewController, UIPopoverPresentationControllerDelegate {
 
     var popover: UIPopoverController?
     

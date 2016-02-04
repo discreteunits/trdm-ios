@@ -10,8 +10,10 @@ import UIKit
 import ParseUI
 import Parse
 
-class PopoverViewController: UITableViewController {
 
+
+class PopoverViewController: UITableViewController {
+    
     // Received data based on table selection
     var popoverItem: PFObject!
     var popoverItemVarietal: PFObject!
@@ -38,15 +40,13 @@ class PopoverViewController: UITableViewController {
     // Model Row Collections
     var model = [[PFObject]]()
 
-    
-
 
 // --------------------
     override func viewDidLoad() {
         super.viewDidLoad()
         
         createModels(modGroupDict)
-
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -214,6 +214,8 @@ class PopoverViewController: UITableViewController {
 // COLLECTION DELEGATE AND DATA SOURCE
 // -----------------------------------
 extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+
     
     func collectionView(collectionView: UICollectionView,
         numberOfItemsInSection section: Int) -> Int {
@@ -400,9 +402,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
 
             // Add to Tab
             } else if indexPath.row == 1 {
-                
-                print("popoverItem is equal to: \(popoverItem)")
-                
+                                
                 if popoverItem != nil {
                     if modChoices.count == modGroups.count {
                         if quantityChoice != nil {
@@ -436,12 +436,25 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                             
                             print("New LineItem created: \(newLineItem)")
                             
+                            // Add LineItem to TabManager tab() Structure
+                            TabManager.sharedInstance.currentTab.lines.append(newLineItem)
+                            print("Line Item \(newLineItem.cloverId) has been added to currentTab")
                             
-                            // Check for Order - Create or Add to Order
-                            // ----------------------------------------
+                            print("\(TabManager.sharedInstance.currentTab)")
                             
-//                            var userOrders : [String: AnyObject]
-//                            userOrders["open"] =
+                            
+                            // Revert view controllers, views, and collections back to pre-popover state
+                            self.presentingViewController!.dismissViewControllerAnimated(false, completion: nil)
+                            
+                            let tierIVView = self.presentingViewController!.view
+                            if let viewWithTag = tierIVView!.viewWithTag(21) {
+                                
+                                viewWithTag.removeFromSuperview()
+                            }
+                            
+                            modGroups.removeAll()
+                            modGroupDict.removeAll()
+                            model.removeAll()
                             
                         }
                         
@@ -561,8 +574,30 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
         return cellSize
     }
     
-    
-    
+    func opaqueWindow() {
+        
+        let tierIVView = self.view
+        
+        print("self view is: \(tierIVView)")
+        
+        let windowWidth = self.view.bounds.size.width
+        let windowHeight = self.view.bounds.size.height
+        
+        let windowView = UIView(frame: CGRectMake(0, 0, windowWidth, windowHeight))
+        
+        if let viewWithTag = tierIVView.viewWithTag(21) {
+            
+            viewWithTag.removeFromSuperview()
+            
+        } else {
+            
+            windowView.backgroundColor = UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 0.5)
+            windowView.tag = 21
+            tierIVView.addSubview(windowView)
+            
+        }
+        
+    }
     
 }
 
