@@ -43,6 +43,9 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     var popoverWidth: CGFloat!
 
     var modDict = [[PFObject]]()
+    
+    var itemTaxRates = [PFObject]()
+
 
 
 // ------------
@@ -169,14 +172,12 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
 
             }
             
-            // Collect Tax Rates
-            var itemTaxRates = [PFObject]()
-            
+            // Build array of Tax Rates based on item selection
             let taxRates = item["taxRates"] as! [PFObject]
             for taxRate in taxRates {
-                itemTaxRates.append(taxRate)
+                self.itemTaxRates.append(taxRate)
             }
-            print("\(taxRates.count) item tax rates collected")
+            print("\(taxRates.count) item tax rate(s) collected")
             
             
             // Data to be passed to popover
@@ -186,7 +187,8 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             vc.modGroupDict = modDict
             vc.taxRates = itemTaxRates
             
-
+            print("item Tax Rates are: \(itemTaxRates)")
+            
             
             var controller = vc.popoverPresentationController
             

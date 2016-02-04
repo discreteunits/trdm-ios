@@ -34,7 +34,7 @@ class PopoverViewController: UITableViewController {
     
     // User Configuration
     var modChoices = [PFObject]()
-    var quantityChoice: String!
+    var quantityChoice = String()
     // item to pass is popoverItem
     
     // Model Row Collections
@@ -388,7 +388,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
             selectedCell.label.textColor = UIColor.whiteColor()
             selectedCell.backgroundColor = UIColor.blackColor()
             
-            quantityChoice = selectedCell.label.text
+            quantityChoice = selectedCell.label.text!
             print("User chose a quantity of: \(quantityChoice)")
             
 
@@ -405,7 +405,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                                 
                 if popoverItem != nil {
                     if modChoices.count == modGroups.count {
-                        if quantityChoice != nil {
+                        if quantityChoice != "" {
                          
                             
                             // Create Modifiers
@@ -419,37 +419,65 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                                 newModifier.cloverId = modifier["cloverId"] as! String
                                 newModifier.name = modifier["name"] as! String
                                 
+                                let modPrice = modifier["price"] as! Int
+                                newModifier.price = modPrice / 100
+                                
                                 convertedModChoices.append(newModifier)
                                 print("Mod convnerted to Modifier: \(newModifier)")
+                                                                
+                            }
+                            
+                            // Sum up all newModifier prices per this lineitem
+                            // AKA set the lineitem price
+
+                            
+                            
+
+                            
+                            // Add All Item Tax Rates Together
+                            var totalTax = Int()
+                            for taxRate in taxRates {
+                                let rate = taxRate["rate"] as! Int
+                                let rateToDollar = rate / 100000                // TAX RATE DECIMAL CONVERSION
+                                totalTax = totalTax + rateToDollar
+                            }
+                            
+                            // Calculate Tax Expenditure
+
+                            let lineitemQuantity = Int(quantityChoice)
+                            var lineitemTax = Int()
+                            var preTaxedItem = Int()
+                            var preTaxedItemTotal = Int()
+                            for newModifier in convertedModChoices {
+                                preTaxedItem = newModifier.price * lineitemQuantity!
+                                preTaxedItemTotal = preTaxedItemTotal + preTaxedItem
                                 
                             }
                             
-                            
+                            var taxedItem = preTaxedItem * totalTax
+
                             
                             // Create LineItem
                             // ------------------------------
-                            
                             var newLineItem = LineItem()
                             newLineItem.id = popoverItem.objectId!
                             newLineItem.cloverId = popoverItem["cloverId"] as! String
                             newLineItem.name = popoverItem["name"] as! String
                             newLineItem.varietal = popoverItemVarietal["name"] as! String
-                            newLineItem.tax = taxRates["taxRates"] as! Int
-
-
-                            newLineItem.quantity = Int(quantityChoice)!
-                            newLineItem.price = modChoices[0]["price"] as! Int
-//                            newLineItem.tax = Int(400)
                             newLineItem.modifiers = convertedModChoices
+
+                            newLineItem.price = preTaxedItemTotal
                             
-                            print("New LineItem created: \(newLineItem)")
+                            newLineItem.quantity = Int(quantityChoice)!
+                            newLineItem.tax = lineitemTax
+                            
+                            
+                            print("New LineItem created: \(newLineItem.name)")
                             
                             // Add LineItem to TabManager tab() Structure
                             TabManager.sharedInstance.currentTab.lines.append(newLineItem)
-                            print("Line Item \(newLineItem.cloverId) has been added to currentTab")
-                            
-                            print("\(TabManager.sharedInstance.currentTab)")
-                            
+                            print("Line Item \(newLineItem.name) has been added to currentTab")
+                                                        
                             
                             // Revert view controllers, views, and collections back to pre-popover state
                             self.presentingViewController!.dismissViewControllerAnimated(false, completion: nil)

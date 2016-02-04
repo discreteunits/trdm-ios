@@ -54,7 +54,7 @@ class TabTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        rows = TabManager.sharedInstance.currentTab.lines.count + 3
+        rows = TabManager.sharedInstance.currentTab.lines.count + 2
         totalRow = rows - 2
         actionRow = rows - 1
         
@@ -73,31 +73,35 @@ class TabTableViewController: UITableViewController {
             lineitemCell = tableView.dequeueReusableCellWithIdentifier("TabLineItemTableCell", forIndexPath: indexPath) as! TabLineItemTableViewCell
   
             
-            lineitemCell.itemNameLabel?.text = tab.lines[indexPath.row].name as! String
+            lineitemCell.itemNameLabel?.text = "\(tab.lines[indexPath.row].name)" // convert to int
             
             // Declare Pair for Presentation
-            let orderMod = tab.lines[indexPath.row].modifiers[indexPath.row].name as! String
-            let servingPrice = tab.lines[indexPath.row].price as! String
-            var orderAndServing = orderMod + " " + servingPrice
+            let orderMod = tab.lines[indexPath.row].modifiers[indexPath.row].name
+            let servingPrice = "\(tab.lines[indexPath.row].modifiers[indexPath.row].price)" // convert to int
+            let orderAndServing = orderMod + " " + servingPrice
             lineitemCell.orderModLabel?.text = "\(orderAndServing)"
 
-            lineitemCell.qtyLabel?.text = tab.lines[indexPath.row].quantity as! String
-            lineitemCell.priceLabel?.text = tab.lines[indexPath.row].price as! String
+            lineitemCell.qtyLabel?.text = "\(tab.lines[indexPath.row].quantity)" // convert to int
+            lineitemCell.priceLabel?.text = "\(tab.lines[indexPath.row].price)" // convert to int
             
             return lineitemCell
 
-        
+            
+        // Total Table Row
         } else if indexPath.row == totalRow {
             
             var totalCell: TabTotalTableViewCell
             totalCell = tableView.dequeueReusableCellWithIdentifier("TabTotalTableCell", forIndexPath: indexPath) as! TabTotalTableViewCell
             
-//            totalCell.subtotalLabel?.text == tab.
+            totalCell.subtotalValueLabel?.text = "\(tab.subtotal)"
+            totalCell.taxValueLabel?.text = "\(tab.totalTax)"
+            totalCell.totalValueLabel?.text = "\(tab.grandTotal)"
             
             
             return totalCell
 
             
+        // Action Table Row
         } else if indexPath.row == actionRow {
             
             var actionCell: TabActionTableViewCell
@@ -111,6 +115,7 @@ class TabTableViewController: UITableViewController {
         }
         
         return cell
+        
     }
 
 

@@ -13,6 +13,7 @@ struct Modifier {
     var id = String()
     var cloverId = String()
     var name = String()
+    var price = Int()
 }
 
 struct LineItem {

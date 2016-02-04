@@ -55,34 +55,32 @@ class TabManager: NSObject {
     }
     
     //                            (quantity * price) * ( taxRatesTotal / 10000 )
-
-    func taxCalculator() {
-        
-        let lineitems = currentTab.lines
-        for lineitem in lineitems {
-            
-            let tax = lineitem.tax
-            for lineitem.tax
-            
-        }
-        
-        
-    }
     
     func totalCellCalculator() {
         
-        // Add Up All LineItems
-        var subtotal = 0
-        var taxTotal = 0
-        var total = subtotal + taxTotal
+        var subtotal = Int()
+        var totalTax = Int()
         
         let lineitems = currentTab.lines
         for lineitem in lineitems {
             
-            taxTotal = taxTotal + lineitem.tax
-            subtotal = subtotal + lineitem.price
+            // Tax Calculations
+            totalTax = totalTax + lineitem.tax // Already in dollars
+        
+            // Subtotal Calculations
+            subtotal = subtotal + lineitem.price // Already in dollars
             
         }
+        
+        // Total Calculation
+        let total = totalTax * subtotal
+        
+        // Assignments
+        currentTab.subtotal = subtotal
+        currentTab.totalTax = totalTax
+        currentTab.grandTotal = total
+        
+        print("Current Tab Totals Calculated: \(currentTab)")
         
     }
     

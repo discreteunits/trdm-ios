@@ -207,7 +207,7 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
         let tableQuery:PFQuery = PFQuery(className:"Item")
         tableQuery.includeKey("tags")
         tableQuery.includeKey("modifierGroups")
-        tableQuery.includeKey("TaxRate")
+        tableQuery.includeKey("taxRates")
         tableQuery.whereKey("tags", containsAllObjectsInArray: tagsArray)
         tableQuery.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
             
