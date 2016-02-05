@@ -9,10 +9,9 @@
 import UIKit
 
 class TabActionTableViewCell: UITableViewCell {
-
-    @IBOutlet weak var closeTabLabel: UILabel!
-    @IBOutlet weak var placeOrderLabel: UILabel!
     
+    @IBOutlet weak var closeOrderButton: UIButton!
+    @IBOutlet weak var placeOrderButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()

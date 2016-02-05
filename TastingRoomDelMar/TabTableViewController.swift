@@ -70,13 +70,8 @@ class TabTableViewController: UITableViewController {
         totalRow = rows - 2
         actionRow = rows - 1
         
-        print("ROWS: \(rows)")
-        print("TOTALROW: \(totalRow)")
-        print("ACTIONROW: \(actionRow)")
-
-        
-        
         return rows
+        
     }
 
 
@@ -144,18 +139,20 @@ class TabTableViewController: UITableViewController {
             var actionCell: TabActionTableViewCell
             
             actionCell = tableView.dequeueReusableCellWithIdentifier("TabActionTableCell", forIndexPath: indexPath) as! TabActionTableViewCell
-            
+
             // Styles
-            actionCell.closeTabLabel.layer.backgroundColor = UIColor(red: 224/255.0, green: 224/255.0, blue: 224/255.0, alpha: 1.0).CGColor
-            actionCell.closeTabLabel.font = UIFont(name: "NexaRustScriptL-00", size: 18)
-            actionCell.closeTabLabel.layer.cornerRadius = 6.0
-            actionCell.closeTabLabel.clipsToBounds = true
+            actionCell.closeOrderButton.layer.backgroundColor = UIColor(red: 224/255.0, green: 224/255.0, blue: 224/255.0, alpha: 1.0).CGColor
+            actionCell.closeOrderButton.titleLabel?.font = UIFont(name: "NexaRustScriptL-00", size: 18)
+            actionCell.closeOrderButton.layer.cornerRadius = 6.0
+            actionCell.closeOrderButton.clipsToBounds = true
+            actionCell.closeOrderButton.titleLabel?.textColor = UIColor.blackColor()
+
             
-            actionCell.placeOrderLabel.layer.backgroundColor = UIColor(red: 9/255.0, green: 178/255.0, blue: 126/255.0, alpha: 1.0).CGColor
-            actionCell.placeOrderLabel.font = UIFont(name: "NexaRustScriptL-00", size: 18)
-            actionCell.placeOrderLabel.layer.cornerRadius = 6.0
-            actionCell.placeOrderLabel.clipsToBounds = true
-            actionCell.placeOrderLabel.textColor = UIColor.whiteColor()
+            actionCell.placeOrderButton.layer.backgroundColor = UIColor(red: 9/255.0, green: 178/255.0, blue: 126/255.0, alpha: 1.0).CGColor
+            actionCell.placeOrderButton.titleLabel?.font = UIFont(name: "NexaRustScriptL-00", size: 18)
+            actionCell.placeOrderButton.layer.cornerRadius = 6.0
+            actionCell.placeOrderButton.clipsToBounds = true
+            actionCell.placeOrderButton.titleLabel?.textColor = UIColor.whiteColor()
             
             return actionCell
 
