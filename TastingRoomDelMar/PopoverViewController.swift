@@ -435,13 +435,9 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                                 let rateToDollar = rate / 10000000                // TAX RATE DECIMAL CONVERSION
                                 totalTax = totalTax + rateToDollar
                                 
-                                
-                                print("RATETODOLLAR: \(rateToDollar)")
-                                print("TOTALTAX: \(totalTax)")
+
                             }
                             
-
-
                             
                             // Calculate Tax Expenditure
 
@@ -457,9 +453,6 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                             var lineitemTax = Double()
                             lineitemTax = preTaxedItemTotal * totalTax
 
-                            print("LINEITEMTAX: \(lineitemTax)")
-                            print("PRETAXEDITEMTOTAL: \(preTaxedItemTotal)")
-                            print("TOTALTAX: \(totalTax)")
                             
                             // Create LineItem
                             // ------------------------------
@@ -492,7 +485,6 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                                 viewWithTag.removeFromSuperview()
                             }
                             
-                            print("\(newLineItem)")
                             
                             // Clean Up
                             modGroups.removeAll()

@@ -27,12 +27,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)
         
-         PFUser.enableAutomaticUser()
+        PFUser.enableAutomaticUser()
         
         let defaultACL = PFACL();
         
         // No one has read access to other peoples stuff
-//        defaultACL.publicReadAccess = true
+        defaultACL.publicReadAccess = false
         
         PFACL.setDefaultACL(defaultACL, withAccessForCurrentUser: true)
         

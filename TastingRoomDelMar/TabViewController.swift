@@ -44,8 +44,10 @@ class TabViewController: UIViewController {
     
     @IBAction func menu(sender: AnyObject) {
         
-        self.presentingViewController!.dismissViewControllerAnimated(false, completion: nil)
-        // Or perform a segue back?
+//        self.presentingViewController!.dismissViewControllerAnimated(false, completion: nil)
+        
+        performSegueWithIdentifier("backToMenu", sender: self)
+        
     }
 
     

@@ -39,6 +39,7 @@
 		D7C1E0411C5AB86800143C48 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D7C1E03F1C5AB75100143C48 /* OpenSans-Regular.ttf */; };
 		D7C1E0421C5AB86E00143C48 /* BebasNeue Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = D7C1E0401C5AB76E00143C48 /* BebasNeue Regular.otf */; };
 		D7C1E0441C5AE3F000143C48 /* TabManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C1E0431C5AE3F000143C48 /* TabManager.swift */; };
+		D7C448C31C641C0400CD12F8 /* TabHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C448C21C641C0400CD12F8 /* TabHeaderTableViewCell.swift */; };
 		D7E803951C56E140003C12D9 /* PopoverDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E803941C56E140003C12D9 /* PopoverDetailsTableViewCell.swift */; };
 		D7E803971C56E152003C12D9 /* PopoverMGTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E803961C56E152003C12D9 /* PopoverMGTableViewCell.swift */; };
 		D7E803991C56E169003C12D9 /* PopoverQuantityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E803981C56E169003C12D9 /* PopoverQuantityTableViewCell.swift */; };
@@ -109,6 +110,7 @@
 		D7C1E03F1C5AB75100143C48 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		D7C1E0401C5AB76E00143C48 /* BebasNeue Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BebasNeue Regular.otf"; sourceTree = "<group>"; };
 		D7C1E0431C5AE3F000143C48 /* TabManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabManager.swift; sourceTree = "<group>"; };
+		D7C448C21C641C0400CD12F8 /* TabHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		D7E803941C56E140003C12D9 /* PopoverDetailsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverDetailsTableViewCell.swift; sourceTree = "<group>"; };
 		D7E803961C56E152003C12D9 /* PopoverMGTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverMGTableViewCell.swift; sourceTree = "<group>"; };
 		D7E803981C56E169003C12D9 /* PopoverQuantityTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverQuantityTableViewCell.swift; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 				D74B1C4D1C58339E008F5A36 /* PopoverActionCollectionViewCell.swift */,
 				D7B616831C62D7C3002CF1DE /* TabViewController.swift */,
 				D7B616851C62D7DB002CF1DE /* TabTableViewController.swift */,
+				D7C448C21C641C0400CD12F8 /* TabHeaderTableViewCell.swift */,
 				D7B616871C62DCE0002CF1DE /* TabLineItemTableViewCell.swift */,
 				D7B616891C62DCEF002CF1DE /* TabTotalTableViewCell.swift */,
 				D7B6168B1C62DCFA002CF1DE /* TabActionTableViewCell.swift */,
@@ -502,6 +505,7 @@
 				D72B2A4E1C49728C0090875F /* RawPopoverViewController.swift in Sources */,
 				D7B616881C62DCE0002CF1DE /* TabLineItemTableViewCell.swift in Sources */,
 				D74B1C4E1C58339E008F5A36 /* PopoverActionCollectionViewCell.swift in Sources */,
+				D7C448C31C641C0400CD12F8 /* TabHeaderTableViewCell.swift in Sources */,
 				D7A8AC081C4D9626008D9A90 /* PopoverViewController.swift in Sources */,
 				D7B616841C62D7C3002CF1DE /* TabViewController.swift in Sources */,
 				D7B6168C1C62DCFA002CF1DE /* TabActionTableViewCell.swift in Sources */,

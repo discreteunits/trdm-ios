@@ -35,6 +35,9 @@ class TabTableViewController: UITableViewController {
 // --------------------
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.tableView.tableFooterView = UIView(frame: CGRectZero)
+        self.tableView.tableFooterView?.hidden = true
 
     }
 
@@ -43,20 +46,35 @@ class TabTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    // MARK: - Table view data source
-
-//    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-//        
-//
-//        
-//        return 1
-//    }
+    
+    
+    // Table view data source
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        
+        return 1
+    }
+    
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerCell = tableView.dequeueReusableCellWithIdentifier("TabHeaderCell") as! TabHeaderTableViewCell
+        
+        headerCell.itemLabel.font = UIFont(name: "BebasNeueRegular", size: 18)
+        headerCell.qtyLabel.font = UIFont(name: "BebasNeueRegular", size: 18)
+        headerCell.priceLabel.font = UIFont(name: "BebasNeueRegular", size: 18)
+        
+        return headerCell
+    }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
         rows = TabManager.sharedInstance.currentTab.lines.count + 2
         totalRow = rows - 2
         actionRow = rows - 1
+        
+        print("ROWS: \(rows)")
+        print("TOTALROW: \(totalRow)")
+        print("ACTIONROW: \(actionRow)")
+
+        
         
         return rows
     }
@@ -67,15 +85,17 @@ class TabTableViewController: UITableViewController {
         var cell: UITableViewCell!
         
         // Line Item Table Row
-        if indexPath.row == 0 && indexPath.row < totalRow {
+        if indexPath.row < totalRow {
             
             var lineitemCell: TabLineItemTableViewCell
             lineitemCell = tableView.dequeueReusableCellWithIdentifier("TabLineItemTableCell", forIndexPath: indexPath) as! TabLineItemTableViewCell
   
             
+            
+            // Assignments
             lineitemCell.itemNameLabel?.text = "\(tab.lines[indexPath.row].name)" // convert to int
             
-            // Declare Pair for Presentation
+                // Declare Pair for Presentation
             let orderMod = tab.lines[indexPath.row].modifiers[indexPath.row].name
             let servingPrice = "\(tab.lines[indexPath.row].modifiers[indexPath.row].price)" // convert to int
             let orderAndServing = orderMod + " " + servingPrice
@@ -83,6 +103,13 @@ class TabTableViewController: UITableViewController {
 
             lineitemCell.qtyLabel?.text = "\(tab.lines[indexPath.row].quantity)" // convert to int
             lineitemCell.priceLabel?.text = "\(tab.lines[indexPath.row].price)" // convert to int
+            
+            // Styles
+            lineitemCell.itemNameLabel.font = UIFont(name: "BebasNeueRegular", size: 24)
+            lineitemCell.orderModLabel.font = UIFont(name: "NexaRustScriptL-00", size: 18)
+            lineitemCell.qtyLabel.font = UIFont(name: "NexaRustScriptL-00", size: 18)
+            lineitemCell.priceLabel.font = UIFont(name: "NexaRustScriptL-00", size: 18)
+
             
             return lineitemCell
 
@@ -93,9 +120,19 @@ class TabTableViewController: UITableViewController {
             var totalCell: TabTotalTableViewCell
             totalCell = tableView.dequeueReusableCellWithIdentifier("TabTotalTableCell", forIndexPath: indexPath) as! TabTotalTableViewCell
             
+            // Assignments
             totalCell.subtotalValueLabel?.text = "\(tab.subtotal)"
             totalCell.taxValueLabel?.text = "\(tab.totalTax)"
             totalCell.totalValueLabel?.text = "\(tab.grandTotal)"
+            
+            // Styles
+            totalCell.subtotalLabel.font = UIFont(name: "BebasNeueRegular", size: 18)
+            totalCell.taxLabel.font = UIFont(name: "BebasNeueRegular", size: 18)
+            totalCell.totalLabel.font = UIFont(name: "BebasNeueRegular", size: 18)
+            
+            totalCell.subtotalValueLabel.font = UIFont(name: "NexaRustScriptL-00", size: 18)
+            totalCell.taxValueLabel.font = UIFont(name: "NexaRustScriptL-00", size: 18)
+            totalCell.totalValueLabel.font = UIFont(name: "NexaRustScriptL-00", size: 18)
             
             
             return totalCell
@@ -108,6 +145,17 @@ class TabTableViewController: UITableViewController {
             
             actionCell = tableView.dequeueReusableCellWithIdentifier("TabActionTableCell", forIndexPath: indexPath) as! TabActionTableViewCell
             
+            // Styles
+            actionCell.closeTabLabel.layer.backgroundColor = UIColor(red: 224/255.0, green: 224/255.0, blue: 224/255.0, alpha: 1.0).CGColor
+            actionCell.closeTabLabel.font = UIFont(name: "NexaRustScriptL-00", size: 18)
+            actionCell.closeTabLabel.layer.cornerRadius = 6.0
+            actionCell.closeTabLabel.clipsToBounds = true
+            
+            actionCell.placeOrderLabel.layer.backgroundColor = UIColor(red: 9/255.0, green: 178/255.0, blue: 126/255.0, alpha: 1.0).CGColor
+            actionCell.placeOrderLabel.font = UIFont(name: "NexaRustScriptL-00", size: 18)
+            actionCell.placeOrderLabel.layer.cornerRadius = 6.0
+            actionCell.placeOrderLabel.clipsToBounds = true
+            actionCell.placeOrderLabel.textColor = UIColor.whiteColor()
             
             return actionCell
 
