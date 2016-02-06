@@ -216,12 +216,10 @@ class PopoverViewController: UITableViewController {
 extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
 
-    
     func collectionView(collectionView: UICollectionView,
         numberOfItemsInSection section: Int) -> Int {
             
             let parent = collectionView.superview!.tag
-            
             var numberOfItems: Int!
             
             // Details Table Row

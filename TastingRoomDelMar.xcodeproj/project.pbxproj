@@ -12,6 +12,8 @@
 		D729AB831C471FF90021A66E /* TierIVCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D729AB821C471FF90021A66E /* TierIVCollectionViewCell.swift */; };
 		D729AB851C4736570021A66E /* TierIVTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D729AB841C4736570021A66E /* TierIVTableViewController.swift */; };
 		D72B2A4E1C49728C0090875F /* RawPopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72B2A4D1C49728C0090875F /* RawPopoverViewController.swift */; };
+		D73620401C65143400DD7F71 /* TabLineItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D736203F1C65143400DD7F71 /* TabLineItemCollectionViewCell.swift */; };
+		D73620421C651BE800DD7F71 /* TabLineItemServingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73620411C651BE800DD7F71 /* TabLineItemServingCollectionViewCell.swift */; };
 		D74B1C4A1C583260008F5A36 /* PopoverMGCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74B1C491C583260008F5A36 /* PopoverMGCollectionViewCell.swift */; };
 		D74B1C4C1C5832E6008F5A36 /* PopoverQuantityCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74B1C4B1C5832E6008F5A36 /* PopoverQuantityCollectionViewCell.swift */; };
 		D74B1C4E1C58339E008F5A36 /* PopoverActionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74B1C4D1C58339E008F5A36 /* PopoverActionCollectionViewCell.swift */; };
@@ -83,6 +85,8 @@
 		D729AB821C471FF90021A66E /* TierIVCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierIVCollectionViewCell.swift; sourceTree = "<group>"; };
 		D729AB841C4736570021A66E /* TierIVTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierIVTableViewController.swift; sourceTree = "<group>"; };
 		D72B2A4D1C49728C0090875F /* RawPopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RawPopoverViewController.swift; sourceTree = "<group>"; };
+		D736203F1C65143400DD7F71 /* TabLineItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabLineItemCollectionViewCell.swift; sourceTree = "<group>"; };
+		D73620411C651BE800DD7F71 /* TabLineItemServingCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabLineItemServingCollectionViewCell.swift; sourceTree = "<group>"; };
 		D74B1C491C583260008F5A36 /* PopoverMGCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverMGCollectionViewCell.swift; sourceTree = "<group>"; };
 		D74B1C4B1C5832E6008F5A36 /* PopoverQuantityCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverQuantityCollectionViewCell.swift; sourceTree = "<group>"; };
 		D74B1C4D1C58339E008F5A36 /* PopoverActionCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverActionCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -261,6 +265,8 @@
 				D7B616851C62D7DB002CF1DE /* TabTableViewController.swift */,
 				D7C448C21C641C0400CD12F8 /* TabHeaderTableViewCell.swift */,
 				D7B616871C62DCE0002CF1DE /* TabLineItemTableViewCell.swift */,
+				D73620411C651BE800DD7F71 /* TabLineItemServingCollectionViewCell.swift */,
+				D736203F1C65143400DD7F71 /* TabLineItemCollectionViewCell.swift */,
 				D7B616891C62DCEF002CF1DE /* TabTotalTableViewCell.swift */,
 				D7B6168B1C62DCFA002CF1DE /* TabActionTableViewCell.swift */,
 				D7FFF7B71C3AFB0600020D9A /* Assets.xcassets */,
@@ -359,6 +365,7 @@
 				TargetAttributes = {
 					D7FFF7AC1C3AFB0600020D9A = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = 48ZXFZ2D47;
 					};
 					D7FFF7C01C3AFB0600020D9A = {
 						CreatedOnToolsVersion = 7.2;
@@ -491,6 +498,7 @@
 				D729AB851C4736570021A66E /* TierIVTableViewController.swift in Sources */,
 				D7C1E0441C5AE3F000143C48 /* TabManager.swift in Sources */,
 				D729AB831C471FF90021A66E /* TierIVCollectionViewCell.swift in Sources */,
+				D73620421C651BE800DD7F71 /* TabLineItemServingCollectionViewCell.swift in Sources */,
 				D7F981141C4461FD00200639 /* MenuTableViewController.swift in Sources */,
 				D7734AFD1C45D87F009286DD /* TierIVViewController.swift in Sources */,
 				D7F981101C44612800200639 /* ENSideMenuControllerViewController.swift in Sources */,
@@ -506,6 +514,7 @@
 				D7B616881C62DCE0002CF1DE /* TabLineItemTableViewCell.swift in Sources */,
 				D74B1C4E1C58339E008F5A36 /* PopoverActionCollectionViewCell.swift in Sources */,
 				D7C448C31C641C0400CD12F8 /* TabHeaderTableViewCell.swift in Sources */,
+				D73620401C65143400DD7F71 /* TabLineItemCollectionViewCell.swift in Sources */,
 				D7A8AC081C4D9626008D9A90 /* PopoverViewController.swift in Sources */,
 				D7B616841C62D7C3002CF1DE /* TabViewController.swift in Sources */,
 				D7B6168C1C62DCFA002CF1DE /* TabActionTableViewCell.swift in Sources */,
@@ -653,10 +662,13 @@
 			baseConfigurationReference = D53F1940B0ECFC354F949DF6 /* Pods-TastingRoomDelMar.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = TastingRoomDelMar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tastingroomdelmar.TastingRoomDelMar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -665,10 +677,13 @@
 			baseConfigurationReference = 04B86A7B2DE721FB50D137DB /* Pods-TastingRoomDelMar.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = TastingRoomDelMar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tastingroomdelmar.TastingRoomDelMar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

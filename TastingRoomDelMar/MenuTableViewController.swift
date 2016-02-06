@@ -82,7 +82,7 @@ class MenuTableViewController: UITableViewController {
         var destViewController : UIViewController
         switch (indexPath.row) {
         case 0:
-            destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("Menu")
+            destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("TierI")
                 selectedMenuItem = 0
             break
         case 1:
@@ -91,8 +91,11 @@ class MenuTableViewController: UITableViewController {
             break
         case 2:
             destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("Tab")
+//            performSegueWithIdentifier("tab", sender: self )
+
                 selectedMenuItem = 0
                 TabManager.sharedInstance.totalCellCalculator()
+     
             break
         case 3:
             destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("Payment")
@@ -102,6 +105,8 @@ class MenuTableViewController: UITableViewController {
                 selectedMenuItem = 0
             break
         }
+        destViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
+        destViewController.modalPresentationStyle = .CurrentContext
         sideMenuController()?.setContentViewController(destViewController)
     }
     

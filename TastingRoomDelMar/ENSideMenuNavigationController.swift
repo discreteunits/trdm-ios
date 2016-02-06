@@ -48,6 +48,7 @@ public class ENSideMenuNavigationController: UINavigationController, ENSideMenuP
             break
         default:
             contentViewController.navigationItem.hidesBackButton = true
+            contentViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
             self.setViewControllers([contentViewController], animated: true)
             break
         }

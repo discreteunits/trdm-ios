@@ -10,10 +10,10 @@ import UIKit
 
 class TabLineItemTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var TabCollectionView: UICollectionView!
+
     @IBOutlet weak var itemNameLabel: UILabel!
-    @IBOutlet weak var orderModLabel: UILabel!
-    @IBOutlet weak var qtyLabel: UILabel!
-    @IBOutlet weak var priceLabel: UILabel!
+
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,6 +24,16 @@ class TabLineItemTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func setCollectionViewDataSourceDelegate
+        <D: protocol<UICollectionViewDataSource, UICollectionViewDelegate>>
+        (dataSourceDelegate: D, forRow row: Int) {
+            
+            TabCollectionView.delegate = dataSourceDelegate
+            TabCollectionView.dataSource = dataSourceDelegate
+            TabCollectionView.tag = row
+            TabCollectionView.reloadData()
     }
 
 }

@@ -38,6 +38,12 @@ class TabTableViewController: UITableViewController {
         
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
         self.tableView.tableFooterView?.hidden = true
+        
+        // Scroll to bottom of table
+        dispatch_async(dispatch_get_main_queue()) {
+            let indexPath = NSIndexPath(forRow: self.actionRow, inSection: 0)
+            self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Middle, animated: false)
+        }
 
     }
 
@@ -85,25 +91,14 @@ class TabTableViewController: UITableViewController {
             var lineitemCell: TabLineItemTableViewCell
             lineitemCell = tableView.dequeueReusableCellWithIdentifier("TabLineItemTableCell", forIndexPath: indexPath) as! TabLineItemTableViewCell
   
-            
+            // Connect Specific Table Cell With Specific Colleciton View
+            lineitemCell.contentView.tag = indexPath.row
             
             // Assignments
-            lineitemCell.itemNameLabel?.text = "\(tab.lines[indexPath.row].name)" // convert to int
-            
-                // Declare Pair for Presentation
-            let orderMod = tab.lines[indexPath.row].modifiers[indexPath.row].name
-            let servingPrice = "\(tab.lines[indexPath.row].modifiers[indexPath.row].price)" // convert to int
-            let orderAndServing = orderMod + " " + servingPrice
-            lineitemCell.orderModLabel?.text = "\(orderAndServing)"
-
-            lineitemCell.qtyLabel?.text = "\(tab.lines[indexPath.row].quantity)" // convert to int
-            lineitemCell.priceLabel?.text = "\(tab.lines[indexPath.row].price)" // convert to int
+            lineitemCell.itemNameLabel?.text = "\(tab.lines[indexPath.row].name)"
             
             // Styles
             lineitemCell.itemNameLabel.font = UIFont(name: "BebasNeueRegular", size: 24)
-            lineitemCell.orderModLabel.font = UIFont(name: "NexaRustScriptL-00", size: 18)
-            lineitemCell.qtyLabel.font = UIFont(name: "NexaRustScriptL-00", size: 18)
-            lineitemCell.priceLabel.font = UIFont(name: "NexaRustScriptL-00", size: 18)
 
             
             return lineitemCell
@@ -162,6 +157,32 @@ class TabTableViewController: UITableViewController {
         return cell
         
     }
+    
+    override func tableView(tableView: UITableView,
+        willDisplayCell cell: UITableViewCell,
+        forRowAtIndexPath indexPath: NSIndexPath) {
+            
+            var tableViewCell: UITableViewCell!
+            
+            // Lineitem Table Row
+            if indexPath.row < totalRow {
+                
+                guard let tableViewCell = cell as? TabLineItemTableViewCell else { return }
+                tableViewCell.setCollectionViewDataSourceDelegate(self, forRow: indexPath.row)
+                
+            // Total Table Row
+            } else if indexPath.row == totalRow {
+                
+                guard let tableViewCell = cell as? TabTotalTableViewCell else { return }
+                
+            // Action Table Row
+            } else if indexPath.row == actionRow {
+                
+                guard let tableViewCell = cell as? TabActionTableViewCell else { return }
+                
+            }
+            
+    }
 
 
     /*
@@ -209,4 +230,109 @@ class TabTableViewController: UITableViewController {
     }
     */
 
+}
+
+// -----------------------------------
+// COLLECTION DELEGATE AND DATA SOURCE
+// -----------------------------------
+extension TabTableViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        let parent = collectionView.superview!.tag
+        var numberOfItems: Int!
+
+        if parent < totalRow {
+            
+            let modChoices = tab.lines[0].modifiers.count
+            numberOfItems = modChoices
+            
+        }
+        
+        return numberOfItems
+        
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        
+        var cell: UICollectionViewCell!
+        let parent = collectionView.superview!.tag
+        
+        if parent < totalRow {
+            
+            // Serving Modifier Collection Row
+            if indexPath.row == 0 {
+                
+                var lineitemServingCollectionCell = collectionView.dequeueReusableCellWithReuseIdentifier("TabLineItemServingCollectionCell", forIndexPath: indexPath) as! TabLineItemServingCollectionViewCell
+
+                // Assignments
+                //// Declare Pair for Presentation
+                let orderMod = tab.lines[parent].modifiers[indexPath.row].name
+                let servingPrice = "\(Int(tab.lines[parent].modifiers[indexPath.row].price))"
+                let orderAndServing = orderMod + "   " + servingPrice
+                lineitemServingCollectionCell.servingSizeLabel?.text = "\(orderAndServing)"
+                
+                lineitemServingCollectionCell.qtyLabel?.text = "\(Int(tab.lines[parent].quantity))"
+                
+                lineitemServingCollectionCell.priceLabel?.text = "\(Int(tab.lines[parent].price))"
+
+                
+                // Styles
+                lineitemServingCollectionCell.backgroundColor = UIColor.whiteColor()
+                lineitemServingCollectionCell.servingSizeLabel.font = UIFont(name: "NexaRustScriptL-00", size: 18)
+                lineitemServingCollectionCell.qtyLabel.font = UIFont(name: "NexaRustScriptL-00", size: 18)
+                lineitemServingCollectionCell.priceLabel.font = UIFont(name: "NexaRustScriptL-00", size: 18)
+                
+                return lineitemServingCollectionCell
+                
+                
+            // All Other Modifier Colleciton Rows
+            } else {
+               
+                var lineitemCollectionCell = collectionView.dequeueReusableCellWithReuseIdentifier("TabLineItemCollectionCell", forIndexPath: indexPath) as! TabLineItemCollectionViewCell
+                
+                // Assignment
+                lineitemCollectionCell.modNameLabel?.text = "\(tab.lines[parent].modifiers[indexPath.row].name)"
+                
+                // Styles
+                lineitemCollectionCell.backgroundColor = UIColor.whiteColor()
+                lineitemCollectionCell.modNameLabel.font = UIFont(name: "NexaRustScriptL-00", size: 18)
+                
+                return lineitemCollectionCell
+                
+                
+            }
+            
+        }
+        
+        return cell
+        
+    }
+    
+//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+//        
+//        var cellSize: CGSize!
+//        let parent = collectionView.superview!.tag
+//        
+//        if parent < totalRow {
+//            // size = modifiers * (one modifier height)
+//        } else if parent == totalRow {
+//            // size = static total size (75-100?)
+//        } else if parent == actionRow {
+//            // size = static (100?)
+//        }
+//        
+//        
+//        
+//        
+//        return cellSize
+//    
+//    }
+    
+    
+    
+    
+    
+    
 }

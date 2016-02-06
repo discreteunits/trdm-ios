@@ -17,6 +17,8 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
 
     var tierIArray = [PFObject]()
     
+    @IBOutlet weak var tabIcon: UIBarButtonItem!
+    
     var nav: UINavigationBar?
     
 // ------------------------------
@@ -58,6 +60,14 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         }
         
     }
+    
+    
+    @IBAction func openTab(sender: AnyObject) {
+        
+        performSegueWithIdentifier("tab", sender: self)
+        
+    }
+    
 // -----
 // TIER 1 QUERY
 // -----
@@ -99,7 +109,6 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         }
         
     }
-    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
