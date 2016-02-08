@@ -20,10 +20,40 @@ class ViewController: UIViewController {
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var skipButton: UIButton!
     
+//    @IBOutlet weak var TRDMLogo: UIImageView!
+    
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     
 
 // ----------------
+    override func viewWillAppear(animated: Bool) {
+        
+        let screenSize: CGRect = UIScreen.mainScreen().bounds
+        let screenWidth = screenSize.width
+        let screenHeight = screenSize.height
+        
+        
+        signupButton.layer.cornerRadius = 4.0
+        signupButton.clipsToBounds = true
+        loginButton.layer.cornerRadius = 4.0
+        loginButton.clipsToBounds = true
+        fbLoginButton.layer.cornerRadius = 4.0
+        fbLoginButton.clipsToBounds = true
+        signupButton.titleLabel?.font = UIFont(name: "NexaRustScriptL-00", size: 18)
+        loginButton.titleLabel?.font = UIFont(name: "NexaRustScriptL-00", size: 18)
+        skipButton.titleLabel?.font = UIFont(name: "NexaRustScriptL-00", size: 18)
+        
+        // TRDM Logo Position
+        let TRDMLogo = "secondary-logomark-white_rgb_600_600.png"
+        let image = UIImage(named: TRDMLogo)
+        let imageView = UIImageView(image: image!)
+        imageView.frame = CGRectMake(0,0,screenWidth - 50, screenWidth - 50)
+        imageView.frame.origin.y = screenHeight / 4
+        imageView.frame.origin.x = 25
+        
+        self.view.addSubview(imageView)
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,19 +63,6 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    override func viewWillAppear(animated: Bool) {
-        signupButton.layer.cornerRadius = 4.0
-        signupButton.clipsToBounds = true
-        loginButton.layer.cornerRadius = 4.0
-        loginButton.clipsToBounds = true
-        fbLoginButton.layer.cornerRadius = 4.0
-        fbLoginButton.clipsToBounds = true
-        signupButton.titleLabel?.font = UIFont(name: "NexaRustScriptL-00", size: 16)
-        loginButton.titleLabel?.font = UIFont(name: "NexaRustScriptL-00", size: 16)
-        skipButton.titleLabel?.font = UIFont(name: "NexaRustScriptL-00", size: 16)
-
-    }
-
 // ----------------
 // FACEBOOK LOGIN
 // ----------------

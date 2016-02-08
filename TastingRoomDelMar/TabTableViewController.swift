@@ -21,7 +21,7 @@ class TabTableViewController: UITableViewController {
     var actionRow: Int!
 
     //
-    let tab = TabManager.sharedInstance.currentTab
+    var tab = TabManager.sharedInstance.currentTab
     
     // Protocol Delegate
     var TabViewControllerRef: TabViewController?
@@ -188,49 +188,62 @@ class TabTableViewController: UITableViewController {
         
         var cellSize: CGFloat!
 
-        
         if indexPath.row < totalRow {
-            // size = modifiers * (one modifier height)
+            
             let lineMods = tab.lines[indexPath.row].modifiers.count
             let lineSize = lineMods * 25 + 50
+            
             return CGFloat(lineSize)
+            
         } else if indexPath.row == totalRow {
-            // size = static total size (75-100?)
+            
             return 100
+            
         } else if indexPath.row == actionRow {
-            // size = static (100?)
+
             return 100
+            
         }
         
         return cellSize
 
     }
-    
-
-    
-    
-    
 
 
-    /*
+
+
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
 
-    /*
+        // LineItem Row
+        if indexPath.row < totalRow {
+            return true
+        // Total Row
+        } else if indexPath.row == totalRow {
+            return false
+        // Action Row
+        } else if indexPath.row == actionRow {
+            return false
+        }
+        
+        return false
+        
+    }
+
+
+
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+            tab.lines.removeAtIndex(indexPath.row)
+            self.tableView.reloadData()
+//            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            
+            
+        }
     }
-    */
+
 
     /*
     // Override to support rearranging the table view.
@@ -347,7 +360,7 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
 
             var collectionLineSize: CGSize!
             
-            let cellWidth = collectionView.bounds.size.width
+            let cellWidth = collectionView.bounds.size.width - 10
             let cellHeight = CGFloat(25)
             
             collectionLineSize = CGSize(width: cellWidth, height: cellHeight)

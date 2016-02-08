@@ -60,7 +60,17 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
     
     @IBAction func openTab(sender: AnyObject) {
         
-        // Go to tab
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main",bundle: nil)
+        var destViewController : UIViewController
+        
+        destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("Tab")
+        destViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
+        destViewController.modalPresentationStyle = .CurrentContext
+        
+        let rootVC = sideMenuController() as! UIViewController
+        rootVC.presentViewController(destViewController, animated: true, completion: nil)
+        
+        TabManager.sharedInstance.totalCellCalculator()
         
     }
     

@@ -87,6 +87,24 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
         // Dispose of any resources that can be recreated.
     }
     
+    
+    @IBAction func openTab(sender: AnyObject) {
+        
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main",bundle: nil)
+        var destViewController : UIViewController
+        
+        destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("Tab")
+        destViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
+        destViewController.modalPresentationStyle = .CurrentContext
+        
+        let rootVC = sideMenuController() as! UIViewController
+        rootVC.presentViewController(destViewController, animated: true, completion: nil)
+        
+        TabManager.sharedInstance.totalCellCalculator()
+        
+    }
+    
+    
 // FLYOUT TRIGGER
     @IBAction func toggleSideMenu(sender: AnyObject) {
         toggleSideMenuView()

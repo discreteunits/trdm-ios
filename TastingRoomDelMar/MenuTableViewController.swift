@@ -86,8 +86,16 @@ class MenuTableViewController: UITableViewController {
 
         switch (indexPath.row) {
         case 0:
-            destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("TierI")
+            destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("Menu")
+            destViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
+            destViewController.modalPresentationStyle = .CurrentContext
+            
+            // Gold
+            let rootVC = sideMenuController() as! UIViewController
+            rootVC.presentViewController(destViewController, animated: true, completion: nil)
+            
                 selectedMenuItem = 0
+                route = []
             break
         case 1:
             destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("Events")
@@ -98,6 +106,7 @@ class MenuTableViewController: UITableViewController {
             destViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
             destViewController.modalPresentationStyle = .CurrentContext
 
+            // Gold
             let rootVC = sideMenuController() as! UIViewController
             rootVC.presentViewController(destViewController, animated: true, completion: nil)
             
@@ -112,8 +121,7 @@ class MenuTableViewController: UITableViewController {
                 selectedMenuItem = 0
             break
         }
-//        destViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
-//        destViewController.modalPresentationStyle = .CurrentContext
+
         sideMenuController()?.setContentViewController(destViewController)
     }
     
