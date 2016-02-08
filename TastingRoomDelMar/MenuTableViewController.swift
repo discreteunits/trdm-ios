@@ -24,6 +24,9 @@ class MenuTableViewController: UITableViewController {
         self.clearsSelectionOnViewWillAppear = false
         
         tableView.selectRowAtIndexPath(NSIndexPath(forRow: selectedMenuItem, inSection: 0), animated: false, scrollPosition: .Middle)
+        
+        
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -80,6 +83,7 @@ class MenuTableViewController: UITableViewController {
         //Present new view controller
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main",bundle: nil)
         var destViewController : UIViewController
+
         switch (indexPath.row) {
         case 0:
             destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("TierI")
@@ -91,11 +95,14 @@ class MenuTableViewController: UITableViewController {
             break
         case 2:
             destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("Tab")
-//            performSegueWithIdentifier("tab", sender: self )
+            destViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
+            destViewController.modalPresentationStyle = .CurrentContext
 
+            let rootVC = sideMenuController() as! UIViewController
+            rootVC.presentViewController(destViewController, animated: true, completion: nil)
+            
                 selectedMenuItem = 0
                 TabManager.sharedInstance.totalCellCalculator()
-     
             break
         case 3:
             destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("Payment")
@@ -105,8 +112,8 @@ class MenuTableViewController: UITableViewController {
                 selectedMenuItem = 0
             break
         }
-        destViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
-        destViewController.modalPresentationStyle = .CurrentContext
+//        destViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
+//        destViewController.modalPresentationStyle = .CurrentContext
         sideMenuController()?.setContentViewController(destViewController)
     }
     

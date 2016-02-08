@@ -183,6 +183,33 @@ class TabTableViewController: UITableViewController {
             }
             
     }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        
+        var cellSize: CGFloat!
+
+        
+        if indexPath.row < totalRow {
+            // size = modifiers * (one modifier height)
+            let lineMods = tab.lines[indexPath.row].modifiers.count
+            let lineSize = lineMods * 25 + 50
+            return CGFloat(lineSize)
+        } else if indexPath.row == totalRow {
+            // size = static total size (75-100?)
+            return 100
+        } else if indexPath.row == actionRow {
+            // size = static (100?)
+            return 100
+        }
+        
+        return cellSize
+
+    }
+    
+
+    
+    
+    
 
 
     /*
@@ -301,7 +328,6 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
                 
                 return lineitemCollectionCell
                 
-                
             }
             
         }
@@ -310,27 +336,38 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
         
     }
     
-//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-//        
-//        var cellSize: CGSize!
-//        let parent = collectionView.superview!.tag
-//        
-//        if parent < totalRow {
-//            // size = modifiers * (one modifier height)
-//        } else if parent == totalRow {
-//            // size = static total size (75-100?)
-//        } else if parent == actionRow {
-//            // size = static (100?)
-//        }
-//        
-//        
-//        
-//        
-//        return cellSize
-//    
-//    }
     
-    
+    // Size Collection Cells
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        
+        var cellSize: CGSize!
+        let parent = collectionView.superview!.tag
+        
+        if parent < totalRow {
+
+            var collectionLineSize: CGSize!
+            
+            let cellWidth = collectionView.bounds.size.width
+            let cellHeight = CGFloat(25)
+            
+            collectionLineSize = CGSize(width: cellWidth, height: cellHeight)
+            
+            return collectionLineSize
+            
+        } else if indexPath.row == totalRow {
+            
+            // Do nothing
+            
+        } else if indexPath.row == actionRow {
+            
+            // Do nothing
+            
+        }
+        
+        return cellSize
+        
+        
+    }
     
     
     

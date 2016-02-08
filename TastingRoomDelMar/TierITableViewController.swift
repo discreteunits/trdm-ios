@@ -25,6 +25,8 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+
+        
         // Sync Tab - Create or Find
         TabManager.sharedInstance.syncTab(TabManager.sharedInstance.currentTab.id)
         
@@ -54,6 +56,8 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
             imageView.image = image
             navigationItem.titleView = imageView
             
+
+            
             // RESET ROUTE
             route = []
             
@@ -65,6 +69,7 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
     @IBAction func openTab(sender: AnyObject) {
         
         performSegueWithIdentifier("tab", sender: self)
+        TabManager.sharedInstance.totalCellCalculator()
         
     }
     

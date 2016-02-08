@@ -397,10 +397,20 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
             
             // Cancel
             if indexPath.row == 0 {
+                
+                // Revert view controllers, views, and collections back to pre-popover state
+                self.presentingViewController!.dismissViewControllerAnimated(false, completion: nil)
+                
+                let tierIVView = self.presentingViewController!.view
+                if let viewWithTag = tierIVView!.viewWithTag(21) {
+                    
+                    viewWithTag.removeFromSuperview()
+                }
+                
 
             // Add to Tab
             } else if indexPath.row == 1 {
-                                
+                
                 if popoverItem != nil {
                     if modChoices.count == modGroups.count {
                         if quantityChoice != "" {

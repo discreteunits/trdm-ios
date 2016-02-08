@@ -57,6 +57,13 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
         self.navigationController?.popViewControllerAnimated(true)
     }
     
+    
+    @IBAction func openTab(sender: AnyObject) {
+        
+        // Go to tab
+        
+    }
+    
 // ------
 // TIER 2 QUERY
 // ------

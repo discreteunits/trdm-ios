@@ -169,7 +169,7 @@
         <!--Tab-->
         <scene sceneID="pXL-U9-rPv">
             <objects>
-                <viewController storyboardIdentifier="Tab" title="Tab" automaticallyAdjustsScrollViewInsets="NO" id="ccl-KD-V3h" customClass="TabViewController" customModule="TastingRoomDelMar" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Tab" automaticallyAdjustsScrollViewInsets="NO" id="ccl-KD-V3h" customClass="TabViewController" customModule="TastingRoomDelMar" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="i1G-Xd-T7H"/>
                         <viewControllerLayoutGuide type="bottom" id="n5s-jX-l2z"/>
@@ -650,7 +650,11 @@
                                     <action selector="toggleSideMenu:" destination="EVh-kB-hCB" id="N7s-xf-8LS"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem image="tIcon" id="HnX-va-u5Y"/>
+                            <barButtonItem image="tIcon" id="HnX-va-u5Y">
+                                <connections>
+                                    <action selector="openTab:" destination="EVh-kB-hCB" id="Wv0-ma-EQ6"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
@@ -1485,7 +1489,7 @@
         <!--Navigation Controller-->
         <scene sceneID="KEl-Cs-rtF">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YvE-lD-QWX" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="Tab" automaticallyAdjustsScrollViewInsets="NO" id="YvE-lD-QWX" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Fmw-yw-enh">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

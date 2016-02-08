@@ -45,10 +45,13 @@ public class ENSideMenuNavigationController: UINavigationController, ENSideMenuP
         switch sideMenuAnimationType {
         case .None:
             self.viewControllers = [contentViewController]
+
             break
         default:
             contentViewController.navigationItem.hidesBackButton = true
             contentViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
+            contentViewController.modalPresentationStyle = .CurrentContext
+
             self.setViewControllers([contentViewController], animated: true)
             break
         }
