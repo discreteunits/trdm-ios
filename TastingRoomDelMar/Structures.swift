@@ -27,7 +27,6 @@ struct LineItem {
     var modifiers = [Modifier]()
 }
 
-
 struct Tab {
     var id = String()
     var cloverId = String()
@@ -47,3 +46,17 @@ struct Tab {
         }
     }
 }
+
+struct Card {
+    var id = String()
+    var provider = String()
+    var lastFour = String()
+}
+
+struct Customer {
+    var userId = String()
+    var stripeId = String()
+    
+    var cards = [Card]()
+}
+

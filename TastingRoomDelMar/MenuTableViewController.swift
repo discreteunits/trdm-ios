@@ -115,6 +115,14 @@ class MenuTableViewController: UITableViewController {
             break
         case 3:
             destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("Payment")
+            destViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
+            destViewController.modalPresentationStyle = .CurrentContext
+            
+            // Gold
+            let rootVC = sideMenuController() as! UIViewController
+            rootVC.presentViewController(destViewController, animated: true, completion: nil)
+            
+            
                 selectedMenuItem = 0
         default:
             destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("Settings")

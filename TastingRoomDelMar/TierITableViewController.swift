@@ -26,9 +26,12 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         super.viewDidLoad()
         
 
-        
         // Sync Tab - Create or Find
         TabManager.sharedInstance.syncTab(TabManager.sharedInstance.currentTab.id)
+        
+        // Spoof CardManager and Customer
+        CardManager.sharedInstance
+        
         
         // TIER 1 QUERY
         tierIQuery()

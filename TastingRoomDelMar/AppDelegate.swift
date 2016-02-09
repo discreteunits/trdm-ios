@@ -10,6 +10,7 @@ import UIKit
 import Parse
 import ParseCrashReporting
 import ParseFacebookUtilsV4
+import Stripe
 
 
 @UIApplicationMain
@@ -60,10 +61,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         
-        
-        
-        
-        
+        // Stripe Integration
+        Stripe.setDefaultPublishableKey("pk_test_Ks6cqeQtnXJN0MQIkEOyAmKn")
         
         
     // -------------------------------
@@ -87,6 +86,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
+
     
     // -------------------------------
     // MARK: Push Notifcations
