@@ -56,6 +56,8 @@ class PaymentTableViewController: UITableViewController {
             let cardCell = tableView.dequeueReusableCellWithIdentifier("PaymentCardTableCell", forIndexPath: indexPath)
             
             cardCell.layer.backgroundColor = UIColor(red: 242/255.0, green: 242/255.0, blue: 242/255.0, alpha: 1.0).CGColor
+            cardCell.layer.borderWidth = 1.0
+            cardCell.layer.borderColor = UIColor(red: 245/255.0, green: 245/255.0, blue: 245/255.0, alpha: 1.0).CGColor
             
             return cardCell
             
@@ -64,6 +66,8 @@ class PaymentTableViewController: UITableViewController {
             let addCell = tableView.dequeueReusableCellWithIdentifier("PaymentAddCardTableCell", forIndexPath: indexPath)
             
             addCell.layer.backgroundColor = UIColor(red: 242/255.0, green: 242/255.0, blue: 242/255.0, alpha: 1.0).CGColor
+            addCell.layer.borderWidth = 1.0
+            addCell.layer.borderColor = UIColor(red: 245/255.0, green: 245/255.0, blue: 245/255.0, alpha: 1.0).CGColor
             
             return addCell
         }

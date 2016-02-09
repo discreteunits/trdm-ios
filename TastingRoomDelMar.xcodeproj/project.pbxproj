@@ -17,6 +17,7 @@
 		D733D4621C69534400682A84 /* PaymentAddCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D733D4611C69534400682A84 /* PaymentAddCardTableViewCell.swift */; };
 		D733D4641C69555700682A84 /* PaymentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D733D4631C69555700682A84 /* PaymentTableViewController.swift */; };
 		D733D4661C69598F00682A84 /* CardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D733D4651C69598F00682A84 /* CardManager.swift */; };
+		D733D4681C69746C00682A84 /* PaymentAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D733D4671C69746C00682A84 /* PaymentAddViewController.swift */; };
 		D73620401C65143400DD7F71 /* TabLineItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D736203F1C65143400DD7F71 /* TabLineItemCollectionViewCell.swift */; };
 		D73620421C651BE800DD7F71 /* TabLineItemServingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73620411C651BE800DD7F71 /* TabLineItemServingCollectionViewCell.swift */; };
 		D74B1C4A1C583260008F5A36 /* PopoverMGCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74B1C491C583260008F5A36 /* PopoverMGCollectionViewCell.swift */; };
@@ -95,6 +96,7 @@
 		D733D4611C69534400682A84 /* PaymentAddCardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentAddCardTableViewCell.swift; sourceTree = "<group>"; };
 		D733D4631C69555700682A84 /* PaymentTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentTableViewController.swift; sourceTree = "<group>"; };
 		D733D4651C69598F00682A84 /* CardManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardManager.swift; sourceTree = "<group>"; };
+		D733D4671C69746C00682A84 /* PaymentAddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentAddViewController.swift; sourceTree = "<group>"; };
 		D736203F1C65143400DD7F71 /* TabLineItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabLineItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		D73620411C651BE800DD7F71 /* TabLineItemServingCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabLineItemServingCollectionViewCell.swift; sourceTree = "<group>"; };
 		D74B1C491C583260008F5A36 /* PopoverMGCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverMGCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -284,6 +286,7 @@
 				D733D4631C69555700682A84 /* PaymentTableViewController.swift */,
 				D733D45F1C69533A00682A84 /* PaymentCardTableViewCell.swift */,
 				D733D4611C69534400682A84 /* PaymentAddCardTableViewCell.swift */,
+				D733D4671C69746C00682A84 /* PaymentAddViewController.swift */,
 				D7FFF7B71C3AFB0600020D9A /* Assets.xcassets */,
 				D7FFF7B91C3AFB0600020D9A /* LaunchScreen.storyboard */,
 				D7FFF7BC1C3AFB0600020D9A /* Info.plist */,
@@ -540,6 +543,7 @@
 				D7B6168C1C62DCFA002CF1DE /* TabActionTableViewCell.swift in Sources */,
 				D7FACCFB1C46F1EF0006F6BE /* TierIVCollectionViewController.swift in Sources */,
 				D7E8039B1C56E17B003C12D9 /* PopoverActionTableViewCell.swift in Sources */,
+				D733D4681C69746C00682A84 /* PaymentAddViewController.swift in Sources */,
 				D7FFF7B31C3AFB0600020D9A /* ViewController.swift in Sources */,
 				D7FFF7B11C3AFB0600020D9A /* AppDelegate.swift in Sources */,
 			);

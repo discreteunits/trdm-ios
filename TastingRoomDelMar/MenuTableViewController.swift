@@ -17,6 +17,7 @@ class MenuTableViewController: UITableViewController {
         tableView.contentInset = UIEdgeInsetsMake(64.0, 0, 0, 0) //
         tableView.separatorStyle = .None
         tableView.backgroundColor = UIColor.blackColor()
+        tableView.layer.borderWidth = 0
 //        tableView.layer.zPosition = 100
         tableView.scrollsToTop = false
         
@@ -24,7 +25,23 @@ class MenuTableViewController: UITableViewController {
         self.clearsSelectionOnViewWillAppear = false
         
         tableView.selectRowAtIndexPath(NSIndexPath(forRow: selectedMenuItem, inSection: 0), animated: false, scrollPosition: .Middle)
+
         
+        let screenSize: CGRect = UIScreen.mainScreen().bounds
+        let screenWidth = screenSize.width / 2
+        let screenHeight = screenSize.height / 2
+        
+        // TRDM Logo Position
+        let TRDMLogo = "secondary-logomark-white_rgb_600_600.png"
+        let image = UIImage(named: TRDMLogo)
+        let imageView = UIImageView(image: image!)
+        imageView.frame = CGRectMake(0, 0,screenWidth, screenWidth)
+        imageView.frame.origin.y = (screenHeight * 1.20)
+        imageView.frame.origin.x = (screenWidth / 3)
+        imageView.alpha = 0.5
+        imageView.transform = CGAffineTransformMakeRotation(CGFloat(M_PI + M_PI_2 + M_PI_4))
+        
+        self.view.addSubview(imageView)
         
         
     }
@@ -55,7 +72,8 @@ class MenuTableViewController: UITableViewController {
         if (cell == nil) {
             cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "CELL")
             cell!.backgroundColor = UIColor.clearColor()
-            cell!.textLabel?.textColor = UIColor.darkGrayColor()
+            cell!.textLabel?.textColor = UIColor.whiteColor()
+            cell!.textLabel?.font = UIFont(name: "NexaRustScriptL-00", size: 24)
             let selectedBackgroundView = UIView(frame: CGRectMake(0, 0, cell!.frame.size.width, cell!.frame.size.height))
             selectedBackgroundView.backgroundColor = UIColor.grayColor().colorWithAlphaComponent(0.2)
             cell!.selectedBackgroundView = selectedBackgroundView
