@@ -24,7 +24,11 @@ class CardManager: NSObject {
         var newCard = Card()
             newCard.id = "2w0r9u"
             newCard.provider = "Visa"
-            newCard.lastFour = "3852"
+            newCard.number = "4242424242424242"
+            newCard.expiration = "12/21"
+            newCard.cvc = "034"
+        
+            newCard.lastFour = newCard.number.substringFromIndex(newCard.number.endIndex.advancedBy(-4))
         
         currentCustomer.userId = "342034"
         currentCustomer.cards.append(newCard)
@@ -35,6 +39,8 @@ class CardManager: NSObject {
         print("Current Customer: \(currentCustomer)")
         
     }
+    
+
     
     
 }

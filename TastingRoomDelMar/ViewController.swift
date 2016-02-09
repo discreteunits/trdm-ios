@@ -20,7 +20,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var skipButton: UIButton!
     
-//    @IBOutlet weak var TRDMLogo: UIImageView!
     
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     

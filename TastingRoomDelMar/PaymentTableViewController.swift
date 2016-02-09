@@ -16,6 +16,8 @@ class PaymentTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.tableView.reloadData()
+        
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
         self.tableView.tableFooterView?.hidden = true
 
@@ -23,7 +25,7 @@ class PaymentTableViewController: UITableViewController {
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+         self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,8 +55,14 @@ class PaymentTableViewController: UITableViewController {
         
         // Card Row
         if indexPath.row < addPaymentRow {
-            let cardCell = tableView.dequeueReusableCellWithIdentifier("PaymentCardTableCell", forIndexPath: indexPath)
+            let cardCell = tableView.dequeueReusableCellWithIdentifier("PaymentCardTableCell", forIndexPath: indexPath) as! PaymentCardTableViewCell
             
+            // Assignments 
+            cardCell.providerLabel.text = CardManager.sharedInstance.currentCustomer.cards[indexPath.row].provider
+            cardCell.lastFourLabel.text = CardManager.sharedInstance.currentCustomer.cards[indexPath.row].lastFour
+            
+            
+            // Styles
             cardCell.layer.backgroundColor = UIColor(red: 242/255.0, green: 242/255.0, blue: 242/255.0, alpha: 1.0).CGColor
             cardCell.layer.borderWidth = 1.0
             cardCell.layer.borderColor = UIColor(red: 245/255.0, green: 245/255.0, blue: 245/255.0, alpha: 1.0).CGColor

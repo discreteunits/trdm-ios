@@ -10,6 +10,9 @@ import UIKit
 
 class PaymentCardTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var providerLabel: UILabel!
+    @IBOutlet weak var lastFourLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

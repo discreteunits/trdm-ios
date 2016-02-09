@@ -213,14 +213,15 @@ class SignUpLogInTableViewController: UITableViewController {
 // ----------------------
     @IBAction func emailDidChange(sender: AnyObject) {
         
-        validator.validate(self)
+//        validator.validate(self)
         print("Email did Change")
+        
         
     }
     
     @IBAction func passwordDidChange(sender: AnyObject) {
         
-        validator.validate(self)
+//        validator.validate(self)
         print("Password did change")
         
     }
