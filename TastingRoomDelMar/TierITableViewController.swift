@@ -16,7 +16,7 @@ var route = [PFObject]()
 class TierITableViewController: UITableViewController, ENSideMenuDelegate {
 
     var tierIArray = [PFObject]()
-    
+        
     @IBOutlet weak var tabIcon: UIBarButtonItem!
     
     var nav: UINavigationBar?
@@ -163,6 +163,8 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         TabManager.sharedInstance.totalCellCalculator()
         
     }
+    
+
     
 // -----
 // TIER 1 QUERY
