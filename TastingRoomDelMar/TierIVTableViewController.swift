@@ -87,9 +87,19 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         cell.altNameLabel?.font = UIFont(name: "OpenSans", size: 16)
 
         cell.pricingLabel?.font = UIFont(name: "OpenSans", size: 12)
-
+        
         dispatch_async(dispatch_get_main_queue()) {
-
+            
+            
+            
+            
+            print("----------------")
+            print("\(self.tierIVTableArray[indexPath.row]["tags"])")
+            print("----------------")
+            
+            
+            
+            
             if let itemTags = self.tierIVTableArray[indexPath.row]["tags"] as? [PFObject] {
 
                 for tagObject in itemTags {
@@ -99,6 +109,8 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
                         cell.varietalLabel?.text = tagObject["name"] as? String
                         cell.varietalLabel?.font = UIFont(name: "OpenSans", size: 16)
 
+                        print("tagObject: \(tagObject)")
+                        
                         self.itemVarietal = tagObject as PFObject!
 
                     
