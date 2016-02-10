@@ -148,4 +148,27 @@ class ViewController: UIViewController {
         
     }
     
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+//        if segue.identifier == "startSignup" {
+//            
+//            var vc = segue.destinationViewController as! SignUpViewController
+//            
+//
+//        }
+        
+        if segue.identifier == "startLogin" {
+            
+//            let destinationNavigationController = segue.destinationViewController as! UINavigationController
+//            let targetController = destinationNavigationController.topViewController as! SignUpViewController
+//            
+//            targetController.alternateLoginSignupNav()
+//            targetController.signUpLoginTableViewControllerRef?.alternateLoginSignup()
+            
+        }
+        
+    }
+    
 }

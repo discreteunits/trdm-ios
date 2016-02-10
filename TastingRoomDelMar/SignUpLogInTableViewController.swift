@@ -214,15 +214,18 @@ class SignUpLogInTableViewController: UITableViewController {
     @IBAction func emailDidChange(sender: AnyObject) {
         
 //        validator.validate(self)
-        print("Email did Change")
-        
+        delegate?.showSignUpButton()
+        print("Email text field changed.")
+        if emailTextField.text == "" {
+            delegate?.hideSignUpButton()
+        }
         
     }
     
     @IBAction func passwordDidChange(sender: AnyObject) {
         
 //        validator.validate(self)
-        print("Password did change")
+        print("Password text field changed.")
         
     }
     

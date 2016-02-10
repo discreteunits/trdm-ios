@@ -39,6 +39,10 @@ class SignUpViewController: UIViewController {
             currentUser = user
         }
         
+        
+        signUpButton.hidden = true
+        
+        
         if let navBar = navigationController?.navigationBar {
             
             nav = navBar
@@ -162,9 +166,9 @@ class SignUpViewController: UIViewController {
         
         self.signUpButton.hidden = false
         
-        UIView.animateWithDuration(0.2, delay: 0.0, options: .CurveEaseInOut, animations: { () -> Void in
+        UIView.animateWithDuration(0.3, delay: 0.0, options: .CurveEaseInOut, animations: { () -> Void in
             
-            self.signUpButton.transform = CGAffineTransformMakeTranslation(0, -self.signUpButton.frame.height)
+            self.signUpButton.transform = CGAffineTransformMakeTranslation(0, -self.signUpButton.frame.height + 69)
             self.signUpButton.alpha = 1
             
             }) { (succeeded: Bool) -> Void in
