@@ -11,6 +11,5 @@ import UIKit
 class PopoverMGCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var label: UILabel!
-    @IBOutlet weak var priceLabel: UILabel!
     
 }

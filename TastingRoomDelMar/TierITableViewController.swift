@@ -48,7 +48,7 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
             nav?.tintColor = UIColor.whiteColor()
    
             self.navigationItem.hidesBackButton = true
-            var newBackButton = UIBarButtonItem(title: "Del Mar", style: UIBarButtonItemStyle.Plain, target: self, action: "back:")
+            var newBackButton = UIBarButtonItem(title: "Del Mar", style: UIBarButtonItemStyle.Plain, target: self, action: "locationFlyout:")
             self.navigationItem.leftBarButtonItem = newBackButton;
             self.navigationItem.leftBarButtonItem!.setTitleTextAttributes( [NSFontAttributeName: UIFont(name: "NexaRustScriptL-00", size: 20)!], forState: UIControlState.Normal)
             
@@ -65,6 +65,85 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
             route = []
             
         }
+        
+    }
+    
+    func locationFlyout(sender: UIBarButtonItem) {
+        
+        // Create Black Window
+        let locationFlyoutView = self.view
+        
+        let windowWidth = self.view.bounds.size.width - 20
+        let windowHeight = self.view.bounds.size.height
+        
+        let windowView = UIView(frame: CGRectMake(0, 0, windowWidth / 2, windowHeight))
+        windowView.backgroundColor = UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 1.0)
+        windowView.tag = 12
+        
+        // Create Location Title
+        var locationLabel = UILabel(frame: CGRectMake(8, 20, windowWidth / 2, 21))
+        //        locationLabel.center = CGPointMake(40, 180)
+        //        locationLabel.textAlignment = NSTextAlignment.Center
+        locationLabel.text = "Del Mar"
+        locationLabel.font = UIFont(name: "NexaRustScriptL-00", size: 20)
+        locationLabel.layer.zPosition = 9999
+        locationLabel.textColor = UIColor.whiteColor()
+        locationLabel.tag = 13
+        
+        
+        // Create Location Address
+        let addressTextView = UITextView(frame: CGRectMake(8, 40, windowWidth / 3 , 200))
+        addressTextView.text = "1435 Camino Del Mar Del Mar, CA 92014 858.232.6545"
+        addressTextView.font = UIFont(name: "BebasNeueRegular", size: 16)
+        addressTextView.textColor = UIColor.whiteColor()
+        addressTextView.backgroundColor = UIColor.blackColor()
+        addressTextView.tag = 14
+        
+        // TRDM Logo Position
+        let screenSize: CGRect = UIScreen.mainScreen().bounds
+        let screenWidth = screenSize.width / 3
+        let screenHeight = screenSize.height / 1.4
+        
+        let TRDMLogo = "secondary-logomark-white_rgb_600_600.png"
+        let image = UIImage(named: TRDMLogo)
+        let imageView = UIImageView(image: image!)
+        imageView.frame = CGRectMake(0, 0,screenWidth, screenWidth)
+        imageView.frame.origin.y = (screenHeight)
+        imageView.frame.origin.x = (screenWidth / 3)
+        imageView.alpha = 0.5
+        imageView.transform = CGAffineTransformMakeRotation(CGFloat(M_PI + M_PI_2 + M_PI_4))
+        imageView.tag = 15
+        
+        
+        
+        if let viewWithTag = locationFlyoutView.viewWithTag(12) {
+            
+            viewWithTag.removeFromSuperview()
+            
+            let subViews = self.view.subviews
+            for subview in subViews {
+                if subview.tag == 13 {
+                    subview.removeFromSuperview()
+                } else if subview.tag == 14 {
+                    subview.removeFromSuperview()
+                } else if subview.tag == 15 {
+                    subview.removeFromSuperview()
+                }
+                
+            }
+            
+            
+        } else {
+            
+            locationFlyoutView.addSubview(windowView)
+            self.view.addSubview(locationLabel)
+            self.view.addSubview(addressTextView)
+            self.view.addSubview(imageView)
+
+
+        }
+        
+
         
     }
     

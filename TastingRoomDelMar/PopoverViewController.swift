@@ -280,10 +280,12 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                 let itemPriceDollar = (itemPortionObjectPrice! / 100)
                 let itemPortionPrice = String(itemPriceDollar)
                 
-                mgCollectionCell.label.text = itemPortionObjectName
+                // Pair Modifier Name With Price
+                let orderAndServing = itemPortionObjectName! + "   " + itemPortionPrice
+                
+                mgCollectionCell.label.text = orderAndServing
                 mgCollectionCell.label.font = UIFont(name: "NexaRustScriptL-00", size: 14)
-                mgCollectionCell.priceLabel.text = itemPortionPrice
-                mgCollectionCell.priceLabel.font = UIFont(name: "NexaRustScriptL-00", size: 14)
+                
                 
                 mgCollectionCell.layer.borderWidth = 2
                 mgCollectionCell.layer.borderColor = UIColor(red: 242/255.0, green: 242/255.0, blue: 242/255.0, alpha: 1.0).CGColor
@@ -364,7 +366,6 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
             selectedCell.layer.cornerRadius = 10.0
             selectedCell.clipsToBounds = true
             selectedCell.label.textColor = UIColor.whiteColor()
-            selectedCell.priceLabel.textColor = UIColor.whiteColor()
             selectedCell.backgroundColor = UIColor.blackColor()
             
             let mod = model[parent][indexPath.row]
@@ -525,7 +526,6 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
             
             let deselectedCell = collectionView.cellForItemAtIndexPath(indexPath)! as! PopoverMGCollectionViewCell
             deselectedCell.label.textColor = UIColor.blackColor()
-            deselectedCell.priceLabel.textColor = UIColor.blackColor()
             deselectedCell.backgroundColor = UIColor.whiteColor()
             
             let mod = model[parent][indexPath.row]
@@ -582,7 +582,8 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
             var mgCellSize: CGSize!
             let numberOfModifiers = CGFloat(modGroups[trueIndex]["modifiers"].count)
 
-            let spacing = (numberOfModifiers * 20) - 20
+            let trick = (numberOfModifiers - 1) * 10
+            let spacing = (numberOfModifiers * 20) - trick
             
             let cellHeight = collectionView.bounds.size.height - 40
             let cellWidth = (collectionView.bounds.size.width - spacing) / numberOfModifiers
@@ -620,8 +621,6 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
     func opaqueWindow() {
         
         let tierIVView = self.view
-        
-        print("self view is: \(tierIVView)")
         
         let windowWidth = self.view.bounds.size.width
         let windowHeight = self.view.bounds.size.height

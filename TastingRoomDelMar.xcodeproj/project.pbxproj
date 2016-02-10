@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BB65EBD50F601E4F26BD8CFC /* Pods_TastingRoomDelMar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 258E486804D393986620D744 /* Pods_TastingRoomDelMar.framework */; };
+		D70CF00F1C6ACB0F005643A6 /* LocationFlyoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70CF00E1C6ACB0F005643A6 /* LocationFlyoutViewController.swift */; };
 		D719A6301C3F26D500987525 /* TierNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D719A62F1C3F26D500987525 /* TierNavigationController.swift */; };
 		D729AB831C471FF90021A66E /* TierIVCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D729AB821C471FF90021A66E /* TierIVCollectionViewCell.swift */; };
 		D729AB851C4736570021A66E /* TierIVTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D729AB841C4736570021A66E /* TierIVTableViewController.swift */; };
@@ -87,6 +88,7 @@
 		04B86A7B2DE721FB50D137DB /* Pods-TastingRoomDelMar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TastingRoomDelMar.release.xcconfig"; path = "Pods/Target Support Files/Pods-TastingRoomDelMar/Pods-TastingRoomDelMar.release.xcconfig"; sourceTree = "<group>"; };
 		258E486804D393986620D744 /* Pods_TastingRoomDelMar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TastingRoomDelMar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D53F1940B0ECFC354F949DF6 /* Pods-TastingRoomDelMar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TastingRoomDelMar.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TastingRoomDelMar/Pods-TastingRoomDelMar.debug.xcconfig"; sourceTree = "<group>"; };
+		D70CF00E1C6ACB0F005643A6 /* LocationFlyoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationFlyoutViewController.swift; sourceTree = "<group>"; };
 		D719A62F1C3F26D500987525 /* TierNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierNavigationController.swift; sourceTree = "<group>"; };
 		D729AB821C471FF90021A66E /* TierIVCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierIVCollectionViewCell.swift; sourceTree = "<group>"; };
 		D729AB841C4736570021A66E /* TierIVTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierIVTableViewController.swift; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 				D7FFF7B21C3AFB0600020D9A /* ViewController.swift */,
 				D7F981131C4461FD00200639 /* MenuTableViewController.swift */,
 				D7B6168D1C62E340002CF1DE /* Main.storyboard */,
+				D70CF00E1C6ACB0F005643A6 /* LocationFlyoutViewController.swift */,
 				D75AA4271C6062D200D5139B /* Structures.swift */,
 				D7C1E0431C5AE3F000143C48 /* TabManager.swift */,
 				D733D4651C69598F00682A84 /* CardManager.swift */,
@@ -510,6 +513,7 @@
 				D74B1C4C1C5832E6008F5A36 /* PopoverQuantityCollectionViewCell.swift in Sources */,
 				D75AA4281C6062D200D5139B /* Structures.swift in Sources */,
 				D7F4952F1C3B2DA2006E8592 /* SignUpViewController.swift in Sources */,
+				D70CF00F1C6ACB0F005643A6 /* LocationFlyoutViewController.swift in Sources */,
 				D719A6301C3F26D500987525 /* TierNavigationController.swift in Sources */,
 				D7A8AC041C4D9469008D9A90 /* PopoverTableViewCell.swift in Sources */,
 				D7B616861C62D7DB002CF1DE /* TabTableViewController.swift in Sources */,
