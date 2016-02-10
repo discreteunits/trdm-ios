@@ -1153,24 +1153,6 @@
             </objects>
             <point key="canvasLocation" x="4264" y="1365.5"/>
         </scene>
-        <!--Location Flyout View Controller-->
-        <scene sceneID="O6X-5j-d4m">
-            <objects>
-                <viewController id="EDg-aV-SWl" customClass="LocationFlyoutViewController" customModule="TastingRoomDelMar" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="qrL-gi-XjT"/>
-                        <viewControllerLayoutGuide type="bottom" id="BiS-be-bRX"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="2Ag-vV-AVY">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Egt-Ca-sc7" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-96" y="1298"/>
-        </scene>
         <!--Menu-->
         <scene sceneID="4SG-PS-vp4">
             <objects>
@@ -1542,7 +1524,6 @@
                     <connections>
                         <outlet property="containerView" destination="0t6-0Z-VZO" id="9Vf-jk-lVM"/>
                         <outlet property="signUpButton" destination="B1a-AI-zJU" id="YFN-tq-kLu"/>
-                        <segue destination="GuM-Yy-MxH" kind="show" identifier="login" id="Sa6-V9-UYu"/>
                         <segue destination="GuM-Yy-MxH" kind="show" identifier="signup" id="P3E-so-8y6"/>
                         <segue destination="4eK-n5-z7V" kind="show" identifier="SignUpSceneTwo" id="kO9-nE-oQH"/>
                     </connections>
@@ -1733,7 +1714,7 @@
                         <viewControllerLayoutGuide type="bottom" id="xas-Tq-0ga"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="lNy-z2-dBl">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -1807,7 +1788,7 @@
         <image name="tIcon" width="19" height="14"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="krO-dh-gAU"/>
-        <segue reference="zQy-bo-J9a"/>
+        <segue reference="Afq-vu-LwG"/>
+        <segue reference="P3E-so-8y6"/>
     </inferredMetricsTieBreakers>
 </document>

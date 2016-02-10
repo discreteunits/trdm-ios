@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import CoreData
 
 @objc
 protocol TabTableViewDelegate {
     
 }
 
-class TabTableViewController: UITableViewController {
+class TabTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
 
     // Table Cell Row Indicators
     var rows: Int!
@@ -72,12 +73,18 @@ class TabTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        rows = TabManager.sharedInstance.currentTab.lines.count + 2
-        totalRow = rows - 2
-        actionRow = rows - 1
+        rows = calculateRows()
         
         return rows
         
+    }
+    
+    func calculateRows() -> Int {
+        var numberOfRows = TabManager.sharedInstance.currentTab.lines.count + 2
+        totalRow = numberOfRows - 2
+        actionRow = numberOfRows - 1
+        
+        return numberOfRows
     }
 
 
@@ -189,11 +196,14 @@ class TabTableViewController: UITableViewController {
         var cellSize: CGFloat!
 
         if indexPath.row < totalRow {
+            if tab.lines.count > 0 {
+                let lineMods = tab.lines[indexPath.row].modifiers.count
+                let lineSize = lineMods * 25 + 50
             
-            let lineMods = tab.lines[indexPath.row].modifiers.count
-            let lineSize = lineMods * 25 + 50
+                return CGFloat(lineSize)
+            }
             
-            return CGFloat(lineSize)
+            return 0
             
         } else if indexPath.row == totalRow {
             
@@ -210,6 +220,8 @@ class TabTableViewController: UITableViewController {
     }
 
 
+    
+    
 
 
     // Override to support conditional editing of the table view.
@@ -234,31 +246,33 @@ class TabTableViewController: UITableViewController {
 
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
         if editingStyle == .Delete {
-            // Delete the row from the data source
+            
+            self.tableView.beginUpdates()
+            
+            print("rows: \(rows)")
+            print("tab.lines: \(tab.lines)")
             tab.lines.removeAtIndex(indexPath.row)
-            self.tableView.reloadData()
-//            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             
+            self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+//            rows = calculateRows()
             
+//            loadView()
+//            self.tableView.reloadData()
+            
+            print("rows updated: \(rows)")
+            print("tab.lines updated: \(tab.lines)")
+
+            self.tableView.endUpdates()
+
+   
         }
+        
+        
     }
+    
 
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
 
     /*
     // MARK: - Navigation

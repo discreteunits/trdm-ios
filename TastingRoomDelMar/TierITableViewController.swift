@@ -10,13 +10,14 @@ import UIKit
 import ParseUI
 import Parse
 import Bond
+import ParseFacebookUtilsV4
 
 var route = [PFObject]()
 
 class TierITableViewController: UITableViewController, ENSideMenuDelegate {
 
     var tierIArray = [PFObject]()
-        
+    
     @IBOutlet weak var tabIcon: UIBarButtonItem!
     
     var nav: UINavigationBar?
@@ -24,6 +25,14 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
 // ------------------------------
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Check if user is signed in with Facebook
+        if FBSDKAccessToken.currentAccessToken() != nil {
+            
+            getFBUserData()
+            print("User signed in with Facebook.")
+            
+        }
         
 
         // Sync Tab - Create or Find
@@ -68,6 +77,7 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         
     }
     
+    // Location Flyout Menu
     func locationFlyout(sender: UIBarButtonItem) {
         
         // Create Black Window
@@ -75,54 +85,66 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         
         let windowWidth = self.view.bounds.size.width - 20
         let windowHeight = self.view.bounds.size.height
-        
-        let windowView = UIView(frame: CGRectMake(0, 0, windowWidth / 2, windowHeight))
+        let windowView = UIView(frame: CGRectMake(0, 0, windowWidth * 0.78, windowHeight))
         windowView.backgroundColor = UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 1.0)
-        windowView.tag = 12
+        windowView.layer.zPosition = 99999
+        windowView.tag = 11
+        
+        // Create Location Label
+        var locationLabel = UILabel(frame: CGRectMake(8, 8, windowWidth / 2, 21))
+        locationLabel.text = "Our Locations"
+        locationLabel.font = UIFont(name: "NexaRustScriptL-00", size: 24)
+        locationLabel.layer.zPosition = 999999
+        locationLabel.textColor = UIColor.whiteColor()
+        locationLabel.tag = 12
         
         // Create Location Title
-        var locationLabel = UILabel(frame: CGRectMake(8, 20, windowWidth / 2, 21))
-        //        locationLabel.center = CGPointMake(40, 180)
-        //        locationLabel.textAlignment = NSTextAlignment.Center
-        locationLabel.text = "Del Mar"
-        locationLabel.font = UIFont(name: "NexaRustScriptL-00", size: 20)
-        locationLabel.layer.zPosition = 9999
-        locationLabel.textColor = UIColor.whiteColor()
-        locationLabel.tag = 13
+        var delMarLabel = UILabel(frame: CGRectMake(8, 40, windowWidth / 2, 21))
+        delMarLabel.text = "Del Mar"
+        delMarLabel.font = UIFont(name: "NexaRustScriptL-00", size: 20)
+        delMarLabel.layer.zPosition = 999999
+        delMarLabel.textColor = UIColor.whiteColor()
+        delMarLabel.tag = 13
         
         
         // Create Location Address
-        let addressTextView = UITextView(frame: CGRectMake(8, 40, windowWidth / 3 , 200))
+        let addressTextView = UITextView(frame: CGRectMake(8, 60, windowWidth / 3 , 200))
         addressTextView.text = "1435 Camino Del Mar Del Mar, CA 92014 858.232.6545"
+        addressTextView.userInteractionEnabled = false
+        
         addressTextView.font = UIFont(name: "BebasNeueRegular", size: 16)
         addressTextView.textColor = UIColor.whiteColor()
         addressTextView.backgroundColor = UIColor.blackColor()
+        addressTextView.layer.zPosition = 999999
         addressTextView.tag = 14
         
         // TRDM Logo Position
         let screenSize: CGRect = UIScreen.mainScreen().bounds
-        let screenWidth = screenSize.width / 3
-        let screenHeight = screenSize.height / 1.4
+        let screenWidth = screenSize.width
+        let screenHeight = screenSize.height
         
         let TRDMLogo = "secondary-logomark-white_rgb_600_600.png"
         let image = UIImage(named: TRDMLogo)
         let imageView = UIImageView(image: image!)
-        imageView.frame = CGRectMake(0, 0,screenWidth, screenWidth)
-        imageView.frame.origin.y = (screenHeight)
-        imageView.frame.origin.x = (screenWidth / 3)
+        imageView.frame = CGRectMake(0, 0,screenWidth / 2, screenWidth / 2)
+        imageView.frame.origin.y = (screenHeight / 1.6 )
+        imageView.frame.origin.x = 16
         imageView.alpha = 0.5
         imageView.transform = CGAffineTransformMakeRotation(CGFloat(M_PI + M_PI_2 + M_PI_4))
+        imageView.layer.zPosition = 999999
         imageView.tag = 15
         
         
         
-        if let viewWithTag = locationFlyoutView.viewWithTag(12) {
+        if let viewWithTag = locationFlyoutView.viewWithTag(11) {
             
             viewWithTag.removeFromSuperview()
             
             let subViews = self.view.subviews
             for subview in subViews {
-                if subview.tag == 13 {
+                if subview.tag == 12 {
+                    subview.removeFromSuperview()
+                } else if subview.tag == 13 {
                     subview.removeFromSuperview()
                 } else if subview.tag == 14 {
                     subview.removeFromSuperview()
@@ -137,6 +159,7 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
             
             locationFlyoutView.addSubview(windowView)
             self.view.addSubview(locationLabel)
+            self.view.addSubview(delMarLabel)
             self.view.addSubview(addressTextView)
             self.view.addSubview(imageView)
 
@@ -146,6 +169,9 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
 
         
     }
+    
+
+    
     
     
     @IBAction func openTab(sender: AnyObject) {
@@ -261,5 +287,67 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         self.performSegueWithIdentifier("tierII", sender: self)
 
     }
+    
+// Facebook Graph Requests
+    func getFBUserData() {
+        let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, gender, email, birthday"])
+        graphRequest.startWithCompletionHandler( { (connection, result, error) -> Void in
+    
+            if error != nil {
+                
+                print("----------------")
+                print("Graph Request Returned Error: \(error)")
+            
+            } else if let result = result {
+                
+                print("Graph Request Returned")
+                
+                // Assign Graph Request Parameters To PFUser Object
+                PFUser.currentUser()?["username"] = result["email"]
+                print("Username: \(result["email"] as! String)")
+                PFUser.currentUser()?["email"] = result["email"]
+                print("Email: \(result["email"] as! String)")
+                PFUser.currentUser()?["firstName"] = result["first_name"]
+                print("First Name: \(result["first_name"] as! String)")
+                PFUser.currentUser()?["lastName"] = result["last_name"]
+                print("Last Name: \(result["last_name"] as! String)")
+                
+//                PFUser.currentUser()?["name"] = result["name"]
+//                PFUser.currentUser()?["gender"] = result["gender"]
+//                PFUser.currentUser()?["birthday"] = result["birthday"]
+
+                PFUser.currentUser()?.saveInBackground()
+                
+                // Get and Save FB Profile Picture To Parse
+                let userId = result["id"] as! String
+                let facebookProfilePictureUrl = "https://graph.facebook.com/" + userId + "/picture?type=large"
+                
+                if let fbPicUrl = NSURL(string: facebookProfilePictureUrl) {
+                    
+                    if let data = NSData(contentsOfURL: fbPicUrl) {
+                        
+                        // Show FB Profile Pic
+//                        self.userImage.image = UIImage(data: data)
+                        
+                        let imageFile: PFFile = PFFile(data: data)!
+                        PFUser.currentUser()?["image"] = imageFile
+                        PFUser.currentUser()?.saveInBackground()
+                        
+                        print("----------------")
+
+                    }
+                
+                }
+                
+            }
+    
+        })
+    
+    }
+    
+    
+
+    
+    
 
 }

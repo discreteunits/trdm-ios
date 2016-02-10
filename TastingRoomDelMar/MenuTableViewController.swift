@@ -104,7 +104,7 @@ class MenuTableViewController: UITableViewController {
 
         switch (indexPath.row) {
         case 0:
-            destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("Menu")
+            destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("TierI")
             destViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
             destViewController.modalPresentationStyle = .CurrentContext
             

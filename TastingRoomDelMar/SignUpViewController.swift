@@ -104,6 +104,8 @@ class SignUpViewController: UIViewController {
             self.signUpLoginTableViewControllerRef?.loginUser()
             print("login action finished")
         }
+        
+        performSegueWithIdentifier("signup", sender: self)
 
     }
     
