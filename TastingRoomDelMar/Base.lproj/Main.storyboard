@@ -17,7 +17,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="TastingRoomDelMar" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Landing" id="BYZ-38-t0r" customClass="ViewController" customModule="TastingRoomDelMar" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -535,7 +535,7 @@
                                 <rect key="frame" x="0.0" y="80" width="600" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0bi-Dg-7aw" id="Grx-VU-TSE">
-                                    <rect key="frame" x="0.0" y="0.0" width="567" height="49.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="567" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="settingValueLabel" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oqx-hD-ugp">
@@ -668,11 +668,130 @@
                     </navigationItem>
                     <connections>
                         <outlet property="navigationTitle" destination="UPd-EX-YXz" id="2jb-6u-GHs"/>
+                        <segue destination="kMS-si-ZFH" kind="show" identifier="editView" id="l7T-9a-V2j"/>
+                        <segue destination="aaf-nC-io3" kind="show" identifier="textView" id="5T6-aE-qde"/>
+                        <segue destination="BYZ-38-t0r" kind="showDetail" identifier="Landing" id="v4K-CK-LPi"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TKH-Ib-cbo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1254" y="3679"/>
+        </scene>
+        <!--Settings Edit-->
+        <scene sceneID="sOo-41-GcF">
+            <objects>
+                <viewController title="Settings Edit" id="kMS-si-ZFH" customClass="SettingsEditViewController" customModule="TastingRoomDelMar" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Q9j-UW-qAo"/>
+                        <viewControllerLayoutGuide type="bottom" id="sBD-c0-8d5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jMK-pH-IhV">
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uOq-Ht-wyk">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="242"/>
+                                <connections>
+                                    <segue destination="elf-e2-t1c" kind="embed" id="1fV-5B-Ibr"/>
+                                </connections>
+                            </containerView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5VQ-JP-HNP">
+                                <rect key="frame" x="0.0" y="241" width="600" height="83"/>
+                                <color key="backgroundColor" red="0.094117647058823528" green="0.65098039215686276" blue="0.41960784313725491" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="Save">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="Meg-BV-gKN"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="S6s-Ho-VZv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1937" y="3679"/>
+        </scene>
+        <!--Settings Text-->
+        <scene sceneID="TuN-PG-sZf">
+            <objects>
+                <viewController title="Settings Text" id="aaf-nC-io3" customClass="SettingsTextViewController" customModule="TastingRoomDelMar" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vRv-Ld-sVQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="kpS-NL-P6z"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="L4W-uY-58J">
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Privacy Policy" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dBo-Ta-zFU">
+                                <rect key="frame" x="20" y="20" width="566" height="85"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="85" id="X41-6o-VUj"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="34"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="All information collected by Tasting Room Del Mar and their affiliates will be sold to the goverment at any price offered." textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BDb-kG-OME">
+                                <rect key="frame" x="20" y="113" width="566" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="dBo-Ta-zFU" firstAttribute="top" secondItem="L4W-uY-58J" secondAttribute="top" constant="20" symbolic="YES" id="0tN-g7-pjW"/>
+                            <constraint firstItem="dBo-Ta-zFU" firstAttribute="leading" secondItem="L4W-uY-58J" secondAttribute="leadingMargin" id="EOT-Cz-GfU"/>
+                            <constraint firstItem="kpS-NL-P6z" firstAttribute="top" secondItem="BDb-kG-OME" secondAttribute="bottom" constant="295" id="FxH-PK-6Bz"/>
+                            <constraint firstItem="BDb-kG-OME" firstAttribute="leading" secondItem="dBo-Ta-zFU" secondAttribute="leading" id="Gst-ms-yoN"/>
+                            <constraint firstItem="BDb-kG-OME" firstAttribute="trailing" secondItem="dBo-Ta-zFU" secondAttribute="trailing" id="csD-m1-VB8"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="dBo-Ta-zFU" secondAttribute="trailing" constant="-6" id="eV9-yy-F43"/>
+                            <constraint firstItem="BDb-kG-OME" firstAttribute="top" secondItem="dBo-Ta-zFU" secondAttribute="bottom" constant="8" symbolic="YES" id="l17-a5-fYG"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="kOw-KH-Qv3"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aO9-aq-qI2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1937" y="4433"/>
+        </scene>
+        <!--Settings Edit Table View Controller-->
+        <scene sceneID="yI5-4t-mbU">
+            <objects>
+                <tableViewController id="elf-e2-t1c" customClass="SettingsEditTableViewController" customModule="TastingRoomDelMar" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Dkh-sd-7Q6">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="242"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="DQK-rc-OUQ">
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DQK-rc-OUQ" id="NJy-Fu-mbo">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="rcW-9j-LjI">
+                                <rect key="frame" x="0.0" y="72" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rcW-9j-LjI" id="4Gu-Q1-acF">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="elf-e2-t1c" id="oaf-dt-Eoq"/>
+                            <outlet property="delegate" destination="elf-e2-t1c" id="BnK-9P-Q7I"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Ut-B2-K1J" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2646" y="3564"/>
         </scene>
         <!--Settings-->
         <scene sceneID="QBq-ZQ-cA3">
@@ -1913,7 +2032,7 @@
                         <viewControllerLayoutGuide type="bottom" id="xas-Tq-0ga"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="lNy-z2-dBl">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -1988,6 +2107,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="zQy-bo-J9a"/>
+        <segue reference="v4K-CK-LPi"/>
         <segue reference="Afq-vu-LwG"/>
     </inferredMetricsTieBreakers>
 </document>

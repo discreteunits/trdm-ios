@@ -137,6 +137,7 @@ class SettingsTableViewController: UITableViewController {
             
             let notificationCell = tableView.dequeueReusableCellWithIdentifier("SettingsSwitchTableCell", forIndexPath: indexPath) as! SettingsSwitchTableViewCell
             notificationCell.settingLabel.font = UIFont(name: "BebasNeueRegular", size: 18)
+                notificationCell.selectionStyle = UITableViewCellSelectionStyle.None
             
             if indexPath.row == 0 {
                 
@@ -194,6 +195,7 @@ class SettingsTableViewController: UITableViewController {
                 let footerCell = tableView.dequeueReusableCellWithIdentifier("SettingsFooterTableCell", forIndexPath: indexPath) as! SettingsFooterTableViewCell
                 footerCell.versionLabel.font = UIFont(name: "OpenSans", size: 14)
                 footerCell.madeInLabel.font = UIFont(name: "OpenSans", size: 8)
+                footerCell.selectionStyle = UITableViewCellSelectionStyle.None
                 
                 return footerCell
                 
@@ -205,6 +207,39 @@ class SettingsTableViewController: UITableViewController {
         return cell
     }
 
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        let selectedRow: UITableViewCell
+        
+        if indexPath.section == 0 {
+        
+        } else if indexPath.section == 1 {
+        
+        } else if indexPath.section == 2 {
+            
+            if indexPath.row == 0 {
+                
+                performSegueWithIdentifier("textView", sender: self)
+                
+            } else if indexPath.row == 1 {
+                
+                performSegueWithIdentifier("textView", sender: self)
+                
+            }
+        
+        } else if indexPath.section == 3 {
+            
+            if indexPath.row == 0 {
+                
+                PFUser.logOut()
+                performSegueWithIdentifier("Landing", sender: self)
+                
+            }
+            
+        }
+            
+    }
 
     /*
     // Override to support conditional editing of the table view.
