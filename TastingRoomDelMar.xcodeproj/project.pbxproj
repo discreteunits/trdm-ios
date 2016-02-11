@@ -32,6 +32,7 @@
 		D775CDCF1C6D0917006A3F29 /* SettingsLabelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D775CDCE1C6D0917006A3F29 /* SettingsLabelTableViewCell.swift */; };
 		D775CDD11C6D0921006A3F29 /* SettingsSwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D775CDD01C6D0921006A3F29 /* SettingsSwitchTableViewCell.swift */; };
 		D775CDD31C6D0E4D006A3F29 /* SettingsHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D775CDD21C6D0E4D006A3F29 /* SettingsHeaderTableViewCell.swift */; };
+		D775CDD71C6D3D00006A3F29 /* SettingsFooterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D775CDD61C6D3D00006A3F29 /* SettingsFooterTableViewCell.swift */; };
 		D7A8AC041C4D9469008D9A90 /* PopoverTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A8AC031C4D9469008D9A90 /* PopoverTableViewCell.swift */; };
 		D7A8AC081C4D9626008D9A90 /* PopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A8AC071C4D9626008D9A90 /* PopoverViewController.swift */; };
 		D7A8AC0A1C4DB600008D9A90 /* TierIIITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A8AC091C4DB600008D9A90 /* TierIIITableViewController.swift */; };
@@ -115,6 +116,7 @@
 		D775CDCE1C6D0917006A3F29 /* SettingsLabelTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsLabelTableViewCell.swift; sourceTree = "<group>"; };
 		D775CDD01C6D0921006A3F29 /* SettingsSwitchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsSwitchTableViewCell.swift; sourceTree = "<group>"; };
 		D775CDD21C6D0E4D006A3F29 /* SettingsHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsHeaderTableViewCell.swift; sourceTree = "<group>"; };
+		D775CDD61C6D3D00006A3F29 /* SettingsFooterTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsFooterTableViewCell.swift; sourceTree = "<group>"; };
 		D7A8AC031C4D9469008D9A90 /* PopoverTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverTableViewCell.swift; sourceTree = "<group>"; };
 		D7A8AC071C4D9626008D9A90 /* PopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverViewController.swift; sourceTree = "<group>"; };
 		D7A8AC091C4DB600008D9A90 /* TierIIITableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierIIITableViewController.swift; sourceTree = "<group>"; };
@@ -299,6 +301,7 @@
 				D775CDD21C6D0E4D006A3F29 /* SettingsHeaderTableViewCell.swift */,
 				D775CDCE1C6D0917006A3F29 /* SettingsLabelTableViewCell.swift */,
 				D775CDD01C6D0921006A3F29 /* SettingsSwitchTableViewCell.swift */,
+				D775CDD61C6D3D00006A3F29 /* SettingsFooterTableViewCell.swift */,
 				D7FFF7B71C3AFB0600020D9A /* Assets.xcassets */,
 				D7FFF7B91C3AFB0600020D9A /* LaunchScreen.storyboard */,
 				D7FFF7BC1C3AFB0600020D9A /* Info.plist */,
@@ -536,6 +539,7 @@
 				D7F981101C44612800200639 /* ENSideMenuControllerViewController.swift in Sources */,
 				D7E803971C56E152003C12D9 /* PopoverMGTableViewCell.swift in Sources */,
 				D733D4661C69598F00682A84 /* CardManager.swift in Sources */,
+				D775CDD71C6D3D00006A3F29 /* SettingsFooterTableViewCell.swift in Sources */,
 				D75ABF1E1C48306A00435CF1 /* TierIVTableViewCell.swift in Sources */,
 				D7F495311C3B38D2006E8592 /* SignUpLogInTableViewController.swift in Sources */,
 				D74B1C4A1C583260008F5A36 /* PopoverMGCollectionViewCell.swift in Sources */,

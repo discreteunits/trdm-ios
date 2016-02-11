@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Parse
+import ParseUI
 
 class SettingsTableViewController: UITableViewController {
 
@@ -22,7 +24,7 @@ class SettingsTableViewController: UITableViewController {
             
             nav = navBar
             
-            navigationTitle.title = "Settings"
+            navigationTitle.title = "App Settings"
             nav?.barStyle = UIBarStyle.Black
             nav?.tintColor = UIColor.whiteColor()
             nav?.titleTextAttributes = [ NSFontAttributeName: UIFont (name: "NexaRustScriptL-00", size: 24)!]
@@ -44,7 +46,7 @@ class SettingsTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
-
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 4
@@ -53,15 +55,16 @@ class SettingsTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         let headerCell = tableView.dequeueReusableCellWithIdentifier("SettingsHeaderTableCell") as! SettingsHeaderTableViewCell
+            headerCell.headerLabel.font = UIFont(name: "OpenSans", size: 14)
         
         if section == 0 {
-            headerCell.headerLabel.text = "My Account"
+            headerCell.headerLabel.text = "MY ACCOUNT"
         } else if section == 1 {
-            headerCell.headerLabel.text = "Notifications"
+            headerCell.headerLabel.text = "NOTIFICATIONS"
         } else if section == 2 {
-            headerCell.headerLabel.text = "More Information"
+            headerCell.headerLabel.text = "MORE INFORMATION"
         } else if section == 3 {
-            headerCell.headerLabel.text = "Account Actions"
+            headerCell.headerLabel.text = "ACCOUNT ACTIONS"
         }
         
         return headerCell
@@ -77,17 +80,128 @@ class SettingsTableViewController: UITableViewController {
         } else if section == 2 {
             return 2
         } else if section == 3 {
-            return 1
+            return 2
         }
         
         return 1
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("SettingsLabelTableCell", forIndexPath: indexPath)
 
-        // Configure the cell...
+        var cell: UITableViewCell!
 
+        if indexPath.section == 0 {
+            
+            let myAccountCell = tableView.dequeueReusableCellWithIdentifier("SettingsLabelTableCell", forIndexPath: indexPath) as! SettingsLabelTableViewCell
+            myAccountCell.settingLabel.font = UIFont(name: "BebasNeueRegular", size: 18)
+            myAccountCell.settingValueLabel.font = UIFont(name: "BebasNeueRegular", size: 18)
+            
+            if indexPath.row == 0 {
+
+                myAccountCell.settingLabel.text = "First name"
+                myAccountCell.settingValueLabel.text = PFUser.currentUser()!["firstName"] as? String
+
+                return myAccountCell
+                
+            } else if indexPath.row == 1 {
+                
+                myAccountCell.settingLabel.text = "Last name"
+                myAccountCell.settingValueLabel.text = PFUser.currentUser()!["lastName"] as! String
+                
+                return myAccountCell
+                
+            } else if indexPath.row == 2 {
+                
+                myAccountCell.settingLabel.text = "mobile number"
+                myAccountCell.settingValueLabel.text = ""
+//                myAccountCell.settingValueLabel.text = PFUser.currentUser()!["mobileNumber"] as! String
+                
+                return myAccountCell
+            } else if indexPath.row == 3 {
+                
+                myAccountCell.settingLabel.text = "email"
+                myAccountCell.settingValueLabel.text = PFUser.currentUser()!["email"] as! String
+                
+                return myAccountCell
+                
+            } else if indexPath.row == 4 {
+                
+                myAccountCell.settingLabel.text = "password"
+                myAccountCell.settingValueLabel.text = ""
+                
+                return myAccountCell
+                
+            }
+            
+        } else if indexPath.section == 1 {
+            
+            let notificationCell = tableView.dequeueReusableCellWithIdentifier("SettingsSwitchTableCell", forIndexPath: indexPath) as! SettingsSwitchTableViewCell
+            notificationCell.settingLabel.font = UIFont(name: "BebasNeueRegular", size: 18)
+            
+            if indexPath.row == 0 {
+                
+                notificationCell.settingLabel.text = "push notifications"
+                
+                return notificationCell
+                
+            } else if indexPath.row == 1 {
+                
+                notificationCell.settingLabel.text = "Newsletter"
+                
+                return notificationCell
+                
+            }
+        
+        } else if indexPath.section == 2 {
+            
+            let moreInfoCell = tableView.dequeueReusableCellWithIdentifier("SettingsLabelTableCell", forIndexPath: indexPath) as! SettingsLabelTableViewCell
+            moreInfoCell.settingLabel.font = UIFont(name: "BebasNeueRegular", size: 18)
+            moreInfoCell.settingValueLabel.font = UIFont(name: "BebasNeueRegular", size: 18)
+            
+            
+            if indexPath.row == 0 {
+                
+                moreInfoCell.settingLabel.text = "privacy policy"
+                moreInfoCell.settingValueLabel.text = ""
+                
+                return moreInfoCell
+                
+            } else if indexPath.row == 1 {
+                
+                moreInfoCell.settingLabel.text = "terms of use"
+                moreInfoCell.settingValueLabel.text = ""
+                
+                return moreInfoCell
+                
+            }
+            
+        } else if indexPath.section == 3 {
+            
+
+            
+            if indexPath.row == 0 {
+                
+                let accountActionCell = tableView.dequeueReusableCellWithIdentifier("SettingsLabelTableCell", forIndexPath: indexPath) as! SettingsLabelTableViewCell
+                accountActionCell.settingLabel.font = UIFont(name: "BebasNeueRegular", size: 18)
+                accountActionCell.settingValueLabel.text = ""
+                
+                accountActionCell.settingLabel.text = "log out"
+                
+                return accountActionCell
+                
+            } else if indexPath.row == 1 {
+                
+                let footerCell = tableView.dequeueReusableCellWithIdentifier("SettingsFooterTableCell", forIndexPath: indexPath) as! SettingsFooterTableViewCell
+                footerCell.versionLabel.font = UIFont(name: "OpenSans", size: 14)
+                footerCell.madeInLabel.font = UIFont(name: "OpenSans", size: 8)
+                
+                return footerCell
+                
+            }
+            
+        }
+        
+        
         return cell
     }
 
