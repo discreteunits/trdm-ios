@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreData
+import Parse
+import ParseUI
 
 @objc
 protocol TabTableViewDelegate {
@@ -418,11 +420,11 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
             
             return collectionLineSize
             
-        } else if indexPath.row == totalRow {
+        } else if parent == totalRow {
             
             // Do nothing
             
-        } else if indexPath.row == actionRow {
+        } else if parent == actionRow {
             
             // Do nothing
             
@@ -430,6 +432,64 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
         
         return cellSize
         
+        
+    }
+    
+    
+    // CLOUDCODE: PlaceOrder
+    func createOrder(tab: Tab) -> AnyObject {
+        
+        var result = String()
+        
+        
+        
+        
+        PFCloud.callFunctionInBackground("placeOrder", withParameters:  ) {
+            (response: AnyObject?, error: NSError?) -> Void in
+            
+            if let error = error {
+                print("\(error)")
+            } else {
+                result = String(response)
+                
+                print("Response: \(response)")
+                print("Result: \(result)")
+            }
+            
+        }
+        
+        return result
+        
+    }
+    
+    
+    
+    
+//    // Call Cloud Code Place Order
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
+        let parent = collectionView.superview!.tag
+        
+        if parent < totalRow {
+            
+        } else if parent == totalRow {
+            
+        } else if parent == actionRow {
+            
+            // Close Order Function
+            if indexPath.row == 0 {
+               
+                
+                
+            // Place Order Function
+            } else if indexPath.row == 1 {
+                
+                
+                
+                
+            }
+            
+        }
         
     }
     
