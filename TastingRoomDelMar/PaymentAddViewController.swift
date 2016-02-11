@@ -8,8 +8,12 @@
 
 import UIKit
 import Stripe
+import Parse
+import ParseUI
 
 class PaymentAddViewController: UIViewController, STPPaymentCardTextFieldDelegate {
+    
+    var params = NSMutableDictionary()
 
     let currentCustomer = CardManager.sharedInstance.currentCustomer
     
@@ -35,7 +39,7 @@ class PaymentAddViewController: UIViewController, STPPaymentCardTextFieldDelegat
 // ----------------------
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // NAV BAR STYLES
         if let navBar = navigationController?.navigationBar {
             
@@ -139,6 +143,8 @@ class PaymentAddViewController: UIViewController, STPPaymentCardTextFieldDelegat
 
 */
     
+    
+    // Ask For Token
     func performStripeOperation() {
         STPAPIClient.sharedClient().createTokenWithCard(stripeCard) { ( token, error) -> Void in
         
@@ -155,11 +161,16 @@ class PaymentAddViewController: UIViewController, STPPaymentCardTextFieldDelegat
                 
                 // Success 
                 self.activityStop()
-                print("Token Created: 4r\(token)")
+                print("Token Created: \(token!.tokenId)")
                 
-                
+                // Call CloudCode Function
+                let user = PFUser.currentUser()?.objectId
+                let confirmedUserCard: AnyObject!
+                confirmedUserCard = self.createStripeCard(user!, token: token!.tokenId)
+                print("confirmedUserCard Created: \(confirmedUserCard)")
+            
                 // Set Cloud Code Token
-                
+                    //// query ???
                 
                 // Dismiss View
                 self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
@@ -169,9 +180,11 @@ class PaymentAddViewController: UIViewController, STPPaymentCardTextFieldDelegat
         }
         
     }
+    
 
-    // Validate Card Info, Get Token
+    // Validate Card Info, Ask For Token
     @IBAction func saveCard(sender: AnyObject) {
+
 
         // Validation
         if CardNumberTextField.text?.isEmpty == false &&
@@ -180,10 +193,10 @@ class PaymentAddViewController: UIViewController, STPPaymentCardTextFieldDelegat
             CVCTextField.text?.isEmpty == false {
                 
         // Package typed in data to object
-            stripeCard.number = CardNumberTextField.text!
+            stripeCard.number = String(CardNumberTextField.text!)
             stripeCard.expMonth = UInt(ExpMonthTextField.text!)!
             stripeCard.expYear = UInt(ExpYearTextField.text!)!
-            stripeCard.cvc = CVCTextField.text!
+            stripeCard.cvc = String(CVCTextField.text!)
             print("StripeCard Created: \(stripeCard)")
                 
         } else {
@@ -199,6 +212,36 @@ class PaymentAddViewController: UIViewController, STPPaymentCardTextFieldDelegat
         
     }
     
+
+    
+    // CLOUDCODE: Create Stripe Customer
+    func createStripeCard(userId: String, token: String) -> AnyObject {
+
+        var result = String()
+        
+        params.setObject(userId, forKey: "userId")
+        params.setObject(token, forKey: "stripeToken")
+        print("Params have been set. \(params)")
+        
+        PFCloud.callFunctionInBackground("createStripeCustomer", withParameters: ["userId": userId, "stripeToken": token] ) {
+            (response: AnyObject?, error: NSError?) -> Void in
+            
+            if let error = error {
+                print("\(error)")
+            } else {
+            result = String(response)
+            
+            print("Response: \(response)")
+            print("Result: \(result)")
+            }
+
+        }
+        
+        return result
+        
+    }
+    
+
     
     /*
     // MARK: - Navigation
