@@ -10,15 +10,33 @@ import UIKit
 
 class SettingsTableViewController: UITableViewController {
 
+    var nav: UINavigationBar?
+
+    @IBOutlet weak var navigationTitle: UINavigationItem!
+    
+// -------------------
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        if let navBar = navigationController?.navigationBar {
+            
+            nav = navBar
+            
+            navigationTitle.title = "Settings"
+            nav?.barStyle = UIBarStyle.Black
+            nav?.tintColor = UIColor.whiteColor()
+            nav?.titleTextAttributes = [ NSFontAttributeName: UIFont (name: "NexaRustScriptL-00", size: 24)!]
+        
+        }
+        
     }
+    
+    @IBAction func menu(sender: AnyObject) {
+        
+        self.dismissViewControllerAnimated(true, completion: nil)
+        
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -31,23 +49,48 @@ class SettingsTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of sections
         return 4
     }
+    
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let headerCell = tableView.dequeueReusableCellWithIdentifier("SettingsHeaderTableCell") as! SettingsHeaderTableViewCell
+        
+        if section == 0 {
+            headerCell.headerLabel.text = "My Account"
+        } else if section == 1 {
+            headerCell.headerLabel.text = "Notifications"
+        } else if section == 2 {
+            headerCell.headerLabel.text = "More Information"
+        } else if section == 3 {
+            headerCell.headerLabel.text = "Account Actions"
+        }
+        
+        return headerCell
+        
+    }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
- 
+        if section == 0 {
+            return 5
+        } else if section == 1 {
+            return 2
+        } else if section == 2 {
+            return 2
+        } else if section == 3 {
+            return 1
+        }
         
-        return 0
+        return 1
     }
 
-    /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("SettingsLabelTableCell", forIndexPath: indexPath)
 
         // Configure the cell...
 
         return cell
     }
-    */
+
 
     /*
     // Override to support conditional editing of the table view.

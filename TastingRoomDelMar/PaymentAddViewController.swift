@@ -13,7 +13,6 @@ import ParseUI
 
 class PaymentAddViewController: UIViewController, STPPaymentCardTextFieldDelegate {
     
-    var params = NSMutableDictionary()
 
     let currentCustomer = CardManager.sharedInstance.currentCustomer
     
@@ -163,15 +162,16 @@ class PaymentAddViewController: UIViewController, STPPaymentCardTextFieldDelegat
                 self.activityStop()
                 print("Token Created: \(token!.tokenId)")
                 
-                // Call CloudCode Function
-                let user = PFUser.currentUser()?.objectId
-                let confirmedUserCard: AnyObject!
-                confirmedUserCard = self.createStripeCard(user!, token: token!.tokenId)
-                print("confirmedUserCard Created: \(confirmedUserCard)")
-            
-                // Set Cloud Code Token
-                    //// query ???
                 
+                // Set User Card CLOUDCODE
+                let user = PFUser.currentUser()?.objectId
+                var confirmedUserCard: AnyObject!
+
+                confirmedUserCard = CardManager.sharedInstance.setCard(user!, token: token!.tokenId)
+                print("Confirmed User Card Created: \(confirmedUserCard)")
+                print("----------------")
+
+   
                 // Dismiss View
                 self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
                 
@@ -182,7 +182,7 @@ class PaymentAddViewController: UIViewController, STPPaymentCardTextFieldDelegat
     }
     
 
-    // Validate Card Info, Ask For Token
+    // Create Customer Trigger
     @IBAction func saveCard(sender: AnyObject) {
 
 
@@ -204,6 +204,7 @@ class PaymentAddViewController: UIViewController, STPPaymentCardTextFieldDelegat
         }
         
         performStripeOperation()
+        CardManager.sharedInstance.getCards(currentCustomer.objectId, user: PFUser.currentUser()!)
         
         
 //        if validateCardInfo() {
@@ -211,36 +212,6 @@ class PaymentAddViewController: UIViewController, STPPaymentCardTextFieldDelegat
 //        }
         
     }
-    
-
-    
-    // CLOUDCODE: Create Stripe Customer
-    func createStripeCard(userId: String, token: String) -> AnyObject {
-
-        var result = String()
-        
-        params.setObject(userId, forKey: "userId")
-        params.setObject(token, forKey: "stripeToken")
-        print("Params have been set. \(params)")
-        
-        PFCloud.callFunctionInBackground("createStripeCustomer", withParameters: ["userId": userId, "stripeToken": token] ) {
-            (response: AnyObject?, error: NSError?) -> Void in
-            
-            if let error = error {
-                print("\(error)")
-            } else {
-            result = String(response)
-            
-            print("Response: \(response)")
-            print("Result: \(result)")
-            }
-
-        }
-        
-        return result
-        
-    }
-    
 
     
     /*

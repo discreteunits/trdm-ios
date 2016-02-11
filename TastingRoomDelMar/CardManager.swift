@@ -19,28 +19,68 @@ class CardManager: NSObject {
     // -----------------
     override init() {
         super.init()
-        
-        // Spoof CardManager Initilization
-        var newCard = Card()
-            newCard.id = "2w0r9u"
-            newCard.provider = "Visa"
-            newCard.number = "4242424242424242"
-            newCard.expiration = "12/21"
-            newCard.cvc = "034"
-        
-            newCard.lastFour = newCard.number.substringFromIndex(newCard.number.endIndex.advancedBy(-4))
-        
-        currentCustomer.userId = "342034"
-        currentCustomer.cards.append(newCard)
-        
-        
-        
-//        currentCustomer.userId = (PFUser.currentUser()?.objectId!)!
+ 
+        currentCustomer.userId = (PFUser.currentUser()?.objectId!)!
         print("Current Customer: \(currentCustomer)")
         
     }
     
+    
+    // Set User Cards CLOUDCODE
+    func setCard(userId: String, token: String) -> AnyObject {
+        
+        var result = String()
+
+        PFCloud.callFunctionInBackground("createStripeCustomer", withParameters: ["userId": userId, "stripeToken": token] ) {
+            (response: AnyObject?, error: NSError?) -> Void in
+            
+            if let error = error {
+                
+                // Failure
+                print("\(error)")
+            } else {
+                
+                // Success
+                result = String(response!)
+                
+                print("Response: \(response!)")
+                print("Result: \(result)")
+                
+                self.currentCustomer.objectId = String(response!)
+                print("Current Customer ID Set: \(self.currentCustomer.objectId)")
+            }
+            
+        }
+        
+        return result
+        
+    }
 
     
+    
+    // Get User Cards
+    func getCards(id: String, user: PFUser) {
+        
+        let query:PFQuery = PFQuery(className: "Customer")
+            query.includeKey("user")
+            query.whereKey("objectId", equalTo: id)
+        query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
+            
+            if error == nil {
+                
+                // The Find Succeeded
+                print("\(objects!.count) cards found for this user.")
+                
+                for object in objects! as [PFObject]! {
+                    
+                    self.currentCustomer.cards.append(object)
+                    
+                }
+                
+            }
+            
+        }
+        
+    }
     
 }

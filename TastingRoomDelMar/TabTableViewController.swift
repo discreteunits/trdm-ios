@@ -30,11 +30,9 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
     var TabViewControllerRef: TabViewController?
     var delegate: TabTableViewDelegate?
     
-    
     var containerViewController: TabViewController?
 
     @IBOutlet var tabTableView: UITableView!
-    
     
 // --------------------
     override func viewDidLoad() {
@@ -437,35 +435,30 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
     
     
     // CLOUDCODE: PlaceOrder
-    func createOrder(tab: Tab) -> AnyObject {
-        
-        var result = String()
-        
-        
-        
-        
-        PFCloud.callFunctionInBackground("placeOrder", withParameters:  ) {
-            (response: AnyObject?, error: NSError?) -> Void in
-            
-            if let error = error {
-                print("\(error)")
-            } else {
-                result = String(response)
-                
-                print("Response: \(response)")
-                print("Result: \(result)")
-            }
-            
-        }
-        
-        return result
-        
-    }
+//    func createOrder(tab: Tab) -> AnyObject {
+//        
+//        var result = String()
+//        
+//        PFCloud.callFunctionInBackground("placeOrder", withParameters: params) {
+//            (response: AnyObject?, error: NSError?) -> Void in
+//            
+//            if let error = error {
+//                print("\(error)")
+//            } else {
+//                result = String(response)
+//                
+//                print("Response: \(response)")
+//                print("Result: \(result)")
+//            }
+//            
+//        }
+//        
+//        return result
+//        
+//    }
     
     
-    
-    
-//    // Call Cloud Code Place Order
+    // Call Cloud Code Place Order
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
         let parent = collectionView.superview!.tag
@@ -484,8 +477,8 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
             // Place Order Function
             } else if indexPath.row == 1 {
                 
-                
-                
+//                let confirmedOrder = createOrder(tab)
+//                print("Confirmed Order Created: \(confirmedOrder)")
                 
             }
             

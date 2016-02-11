@@ -7,11 +7,25 @@
 //
 
 import UIKit
+import Parse
+import ParseUI
 
 class PaymentTableViewController: UITableViewController {
 
+    let currentCustomer = CardManager.sharedInstance.currentCustomer
+    
     // Table Row Indicators
     var addPaymentRow: Int!
+    
+    override func viewWillAppear(animated: Bool) {
+        
+        // Get User Cards
+        let customerObjectId = currentCustomer.objectId
+        CardManager.sharedInstance.getCards(customerObjectId, user: PFUser.currentUser()!)
+        print("getCards Fired and Returned \(self.currentCustomer.cards.count) cards.")
+        print("----------------")
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,11 +35,6 @@ class PaymentTableViewController: UITableViewController {
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
         self.tableView.tableFooterView?.hidden = true
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-         self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     override func didReceiveMemoryWarning() {
@@ -58,9 +67,9 @@ class PaymentTableViewController: UITableViewController {
             let cardCell = tableView.dequeueReusableCellWithIdentifier("PaymentCardTableCell", forIndexPath: indexPath) as! PaymentCardTableViewCell
             
             // Assignments 
-            cardCell.providerLabel.text = CardManager.sharedInstance.currentCustomer.cards[indexPath.row].provider
-            cardCell.lastFourLabel.text = CardManager.sharedInstance.currentCustomer.cards[indexPath.row].lastFour
-            
+//            cardCell.providerLabel.text = CardManager.sharedInstance.currentCustomer.cards[indexPath.row].provider
+//            cardCell.lastFourLabel.text = CardManager.sharedInstance.currentCustomer.cards[indexPath.row].lastFour
+//            
             
             // Styles
             cardCell.layer.backgroundColor = UIColor(red: 242/255.0, green: 242/255.0, blue: 242/255.0, alpha: 1.0).CGColor

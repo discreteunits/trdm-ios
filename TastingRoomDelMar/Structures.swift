@@ -47,19 +47,12 @@ struct Tab {
     }
 }
 
-struct Card {
-    var id = String()
-    var provider = String()
-    var number = String()
-    var lastFour = String()
-    var expiration = String()
-    var cvc = String()
-}
 
 struct Customer {
+    var objectId = String()
     var userId = String()
     var stripeId = String()
     
-    var cards = [Card]()
+    var cards = [PFObject]()
 }
 
