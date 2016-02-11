@@ -31,11 +31,15 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
     
     var containerViewController: TabViewController?
 
+    @IBOutlet var tabTableView: UITableView!
     
     
 // --------------------
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("tab.lines: \(tab.lines)")
+
         
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
         self.tableView.tableFooterView?.hidden = true
@@ -242,6 +246,9 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
         
     }
 
+    override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+        return .Delete
+    }
 
 
     // Override to support editing the table view.
@@ -249,27 +256,57 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
         
         if editingStyle == .Delete {
             
-            self.tableView.beginUpdates()
+            tableView.beginUpdates()
             
             print("rows: \(rows)")
+            print("rows in section: \(tableView.numberOfRowsInSection(0))")
+
             print("tab.lines: \(tab.lines)")
+            
+            
             tab.lines.removeAtIndex(indexPath.row)
+
             
-            self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-//            rows = calculateRows()
+
             
-//            loadView()
 //            self.tableView.reloadData()
+//            self.tabTableView.reloadData()
             
             print("rows updated: \(rows)")
+            print("rows in section updated: \(tableView.numberOfRowsInSection(0))")
+
             print("tab.lines updated: \(tab.lines)")
 
-            self.tableView.endUpdates()
+            tableView.endUpdates()
 
+            
    
         }
+        rows = calculateRows()
+        TabManager.sharedInstance.totalCellCalculator()
         
+    }
+    
+    func controllerWillChangeContent(controller: NSFetchedResultsController) {
+        tableView.beginUpdates()
+    }
+    
+//    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
+//        
+//        if type == .Delete {
+//            tableView.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
+//        }
+//    }
+    
+    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
         
+        if type == .Delete {
+            tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+        }
+    }
+    
+    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        tableView.endUpdates()
     }
     
 
