@@ -12,6 +12,8 @@ class SettingsEditTableViewCell: UITableViewCell {
 
     @IBOutlet weak var editValueTextField: UITextField!
     
+
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

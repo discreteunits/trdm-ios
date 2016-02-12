@@ -18,102 +18,94 @@ protocol SettingsEditTableViewDelegate {
 class SettingsEditTableViewController: UITableViewController {
     
     var delegate: SettingsEditTableViewDelegate?
-
+    
+    var passedEditType: String!
+    
+    // User Selection Values
+    var passedMessage: String!
+    var passedPlaceholder: String!
+    
+    var fieldValue: String!
+    
+    @IBOutlet weak var editMessageTextView: UITextView!
+    @IBOutlet weak var editValueTextField: UITextField!
+    
+    
+// ---------------------------
+    override func viewWillAppear(animated: Bool) {
+        print("passedEditType is equal to: \(passedEditType)")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Message
+        editMessageTextView.text = passedMessage
+        editMessageTextView.textAlignment = .Center
+        editMessageTextView.font = UIFont(name: "OpenSans", size: 12)
+        editMessageTextView.textColor = UIColor.grayColor()
+        // Text Field
+        editValueTextField.placeholder = passedPlaceholder
+        editValueTextField.textAlignment = .Left
+        editValueTextField.font = UIFont(name: "OpenSans", size: 20)
+        editValueTextField.becomeFirstResponder()
+        
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+        
+        tableView.tableFooterView = UIView(frame: CGRectZero)
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return 2
     }
+    
 
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-
-        var cell: UITableViewCell!
-
-        if indexPath.row == 0 {
-            let messageCell = tableView.dequeueReusableCellWithIdentifier("SettingsEditMessageTableCell", forIndexPath: indexPath) as! SettingsEditMessageTableViewCell
-            messageCell.editMessageTextView.text = "Ham"
+    func valueToSave() {
+        
+        if passedEditType == "First name" {
+            
+            fieldValue = editValueTextField.text
+            PFUser.currentUser()?["firstName"] = fieldValue
+            print("User changed their first name to: \(fieldValue)")
+            
+        } else if passedEditType == "Last name" {
             
             
-            return messageCell
-            
-        } else if indexPath.row == 1 {
-            let editCell = tableView.dequeueReusableCellWithIdentifier("SettingsEditTableCell", forIndexPath: indexPath) as! SettingsEditTableViewCell
-            editCell.editValueTextField.placeholder = "Butter"
+        } else if passedEditType == "mobile number" {
             
             
-            return editCell
+        } else if passedEditType == "email" {
+            
+            
+        } else if passedEditType == "password" {
+            
             
         }
         
-        return cell
     }
-
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    func saveValue() {
+        
+        print("fieldValue: \(fieldValue)")
+        valueToSave()
+        
+        print("User: \(PFUser.currentUser())")
+        
+        PFUser.currentUser()?.saveInBackground()
+        print("User has been updated successfully.")
+        
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

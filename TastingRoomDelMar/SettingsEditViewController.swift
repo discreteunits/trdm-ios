@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Parse
+import ParseUI
 
 class SettingsEditViewController: UIViewController {
 
@@ -19,6 +21,9 @@ class SettingsEditViewController: UIViewController {
     var editTitle: String!
     var editMessage: String!
     var editValue: String!
+    
+    var message: String!
+    var placeholder: String!
     
     var SettingsEditTableViewControllerRef: SettingsEditTableViewController?
 
@@ -47,13 +52,20 @@ class SettingsEditViewController: UIViewController {
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        if segue.identifier == "SettingsEditEmbeded" {
+        if segue.identifier == "SettingEditEmbeded" {
             
             if let SettingsEditTableViewController = segue.destinationViewController as? SettingsEditTableViewController {
                 
                 self.SettingsEditTableViewControllerRef = SettingsEditTableViewController
                 
                 SettingsEditTableViewController.delegate = self
+                
+                showValueToEdit()
+                SettingsEditTableViewController.passedEditType = self.passedTrigger // Sets value to edit
+                SettingsEditTableViewController.passedMessage = message
+                SettingsEditTableViewController.passedPlaceholder = placeholder
+
+                
             }
             
         }
@@ -61,18 +73,34 @@ class SettingsEditViewController: UIViewController {
     }
 
     
-    func valueToEdit() {
+    
+    @IBAction func saveEdit(sender: AnyObject) {
+        self.SettingsEditTableViewControllerRef?.saveValue()
+    }
+    
+    
+    func showValueToEdit() {
         
-        // Decide editTitle, editMessage, editValue
         if passedTrigger == "First name" {
+            message = "This is how you'll appear in notifications and emails from Tasting Room."
+            placeholder = PFUser.currentUser()!["firstName"] as! String
             
         } else if passedTrigger == "Last name" {
+            message = "This is how you'll appear in notifications and emails from Tasting Room."
+            placeholder = PFUser.currentUser()!["lastName"] as! String
             
         } else if passedTrigger == "mobile number" {
+            message = "This is how you'll receive notifications and emails from Tasting Room."
+            placeholder = PFUser.currentUser()!["mobileNumber"] as! String
             
         } else if passedTrigger == "email" {
+            message = "This is how you'll receive notifications and emails from Tasting Room."
+            placeholder = PFUser.currentUser()!["email"] as! String
             
         } else if passedTrigger == "password" {
+            message = "This is how you'll log into the Tasting Room app."
+            //            field = PFUser.currentUser()!["password"] as! String
+            placeholder = "password"
             
         }
         
@@ -81,5 +109,7 @@ class SettingsEditViewController: UIViewController {
 }
 
 extension SettingsEditViewController: SettingsEditTableViewDelegate {
+ 
+
     
 }

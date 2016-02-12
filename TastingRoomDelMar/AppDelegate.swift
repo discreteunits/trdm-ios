@@ -99,9 +99,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         PFPush.subscribeToChannelInBackground("") { (succeeded: Bool, error: NSError?) in
             if succeeded {
-                print("WhoAmI successfully subscribed to push notifications on the broadcast channel.")
+                print("Tasting Room successfully subscribed to push notifications on the broadcast channel.")
             } else {
-                print("WhoAmI failed to subscribe to push notifications on the broadcast channel with error.", error)
+                print("Tasting Room failed to subscribe to push notifications on the broadcast channel with error.", error)
             }
         }
     }
