@@ -500,7 +500,7 @@
         <scene sceneID="0jY-GX-zv3">
             <objects>
                 <tableViewController id="vhV-NN-Hgq" customClass="SettingsTableViewController" customModule="TastingRoomDelMar" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="30" sectionFooterHeight="28" id="bCq-x9-MxC">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="50" sectionHeaderHeight="30" sectionFooterHeight="28" id="bCq-x9-MxC">
                         <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -689,15 +689,18 @@
                         <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uOq-Ht-wyk">
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uOq-Ht-wyk">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="242"/>
                                 <connections>
-                                    <segue destination="elf-e2-t1c" kind="embed" id="1fV-5B-Ibr"/>
+                                    <segue destination="elf-e2-t1c" kind="embed" identifier="SettingEditEmbeded" id="1fV-5B-Ibr"/>
                                 </connections>
                             </containerView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5VQ-JP-HNP">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5VQ-JP-HNP">
                                 <rect key="frame" x="0.0" y="241" width="600" height="83"/>
                                 <color key="backgroundColor" red="0.094117647058823528" green="0.65098039215686276" blue="0.41960784313725491" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="e4v-CL-nAL"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="Save">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -705,8 +708,20 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="sBD-c0-8d5" firstAttribute="top" secondItem="uOq-Ht-wyk" secondAttribute="bottom" constant="294" id="9XB-dN-dnB"/>
+                            <constraint firstItem="5VQ-JP-HNP" firstAttribute="trailing" secondItem="uOq-Ht-wyk" secondAttribute="trailing" id="ME3-NL-fhC"/>
+                            <constraint firstAttribute="trailing" secondItem="uOq-Ht-wyk" secondAttribute="trailing" id="W5v-3D-sXz"/>
+                            <constraint firstItem="uOq-Ht-wyk" firstAttribute="leading" secondItem="5VQ-JP-HNP" secondAttribute="leading" id="rY6-UX-Cfr"/>
+                            <constraint firstItem="5VQ-JP-HNP" firstAttribute="top" secondItem="Q9j-UW-qAo" secondAttribute="bottom" constant="241" id="xxx-3S-9AQ"/>
+                            <constraint firstItem="uOq-Ht-wyk" firstAttribute="top" secondItem="Q9j-UW-qAo" secondAttribute="bottom" id="yCs-Hb-dNz"/>
+                            <constraint firstItem="uOq-Ht-wyk" firstAttribute="leading" secondItem="jMK-pH-IhV" secondAttribute="leading" id="zNf-3z-POH"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="Meg-BV-gKN"/>
+                    <connections>
+                        <outlet property="navigationTitle" destination="Meg-BV-gKN" id="68Y-Vg-HKk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S6s-Ho-VZv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -761,26 +776,58 @@
         <scene sceneID="yI5-4t-mbU">
             <objects>
                 <tableViewController id="elf-e2-t1c" customClass="SettingsEditTableViewController" customModule="TastingRoomDelMar" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Dkh-sd-7Q6">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" id="Dkh-sd-7Q6">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="242"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="DQK-rc-OUQ">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingsEditMessageTableCell" id="DQK-rc-OUQ" customClass="SettingsEditMessageTableViewCell" customModule="TastingRoomDelMar" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="600" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DQK-rc-OUQ" id="NJy-Fu-mbo">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="passedMessage" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mUL-M0-gKL">
+                                            <rect key="frame" x="8" y="0.0" width="584" height="60"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        </textView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="mUL-M0-gKL" firstAttribute="centerY" secondItem="NJy-Fu-mbo" secondAttribute="centerY" id="3hR-Mc-NOx"/>
+                                        <constraint firstItem="mUL-M0-gKL" firstAttribute="leading" secondItem="NJy-Fu-mbo" secondAttribute="leading" constant="8" id="8Xu-fX-bnW"/>
+                                        <constraint firstAttribute="trailing" secondItem="mUL-M0-gKL" secondAttribute="trailing" constant="8" id="MFA-5J-jwW"/>
+                                        <constraint firstItem="mUL-M0-gKL" firstAttribute="top" secondItem="NJy-Fu-mbo" secondAttribute="top" id="eDF-Mr-O2y"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="editMessageTextView" destination="mUL-M0-gKL" id="TMX-uE-p3c"/>
+                                </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="rcW-9j-LjI">
-                                <rect key="frame" x="0.0" y="72" width="600" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingsEditTableCell" id="rcW-9j-LjI" customClass="SettingsEditTableViewCell" customModule="TastingRoomDelMar" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="88" width="600" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rcW-9j-LjI" id="4Gu-Q1-acF">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="14q-Mg-1rD">
+                                            <rect key="frame" x="8" y="15" width="584" height="30"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="14q-Mg-1rD" firstAttribute="centerY" secondItem="4Gu-Q1-acF" secondAttribute="centerY" id="M4l-da-cu9"/>
+                                        <constraint firstItem="14q-Mg-1rD" firstAttribute="trailing" secondItem="4Gu-Q1-acF" secondAttribute="trailingMargin" id="Y95-Rt-Nug"/>
+                                        <constraint firstItem="14q-Mg-1rD" firstAttribute="leading" secondItem="4Gu-Q1-acF" secondAttribute="leadingMargin" id="eQj-Az-PWw"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="editValueTextField" destination="14q-Mg-1rD" id="efU-54-znl"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

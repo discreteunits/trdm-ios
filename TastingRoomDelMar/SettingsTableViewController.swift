@@ -13,12 +13,16 @@ import ParseUI
 class SettingsTableViewController: UITableViewController {
 
     var nav: UINavigationBar?
+    
+    var selectedValue: String!
 
     @IBOutlet weak var navigationTitle: UINavigationItem!
     
 // -------------------
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.tableView.reloadData()
 
         if let navBar = navigationController?.navigationBar {
             
@@ -213,6 +217,25 @@ class SettingsTableViewController: UITableViewController {
         let selectedRow: UITableViewCell
         
         if indexPath.section == 0 {
+            
+
+            if indexPath.row == 0 {
+                selectedValue = "First name"
+                
+            } else if indexPath.row == 1 {
+                selectedValue = "Last name"
+
+            } else if indexPath.row == 2 {
+                selectedValue = "mobile number"
+
+            } else if indexPath.row == 3 {
+                selectedValue = "email"
+
+            } else if indexPath.row == 4 {
+                selectedValue = "password"
+            }
+            
+            performSegueWithIdentifier("editView", sender: self)
         
         } else if indexPath.section == 1 {
         
@@ -276,14 +299,22 @@ class SettingsTableViewController: UITableViewController {
     }
     */
 
-    /*
+
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "editView" {
+            
+            var vc = segue.destinationViewController as! SettingsEditViewController
+            
+            vc.passedTrigger = selectedValue
+            
+        }
+        
+        
+        
     }
-    */
+
 
 }

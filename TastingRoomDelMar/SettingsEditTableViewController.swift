@@ -7,8 +7,17 @@
 //
 
 import UIKit
+import Parse
+import ParseUI
+
+@objc
+protocol SettingsEditTableViewDelegate {
+    
+}
 
 class SettingsEditTableViewController: UITableViewController {
+    
+    var delegate: SettingsEditTableViewDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,23 +38,38 @@ class SettingsEditTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return 2
     }
 
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
 
-        // Configure the cell...
+        var cell: UITableViewCell!
 
+        if indexPath.row == 0 {
+            let messageCell = tableView.dequeueReusableCellWithIdentifier("SettingsEditMessageTableCell", forIndexPath: indexPath) as! SettingsEditMessageTableViewCell
+            messageCell.editMessageTextView.text = "Ham"
+            
+            
+            return messageCell
+            
+        } else if indexPath.row == 1 {
+            let editCell = tableView.dequeueReusableCellWithIdentifier("SettingsEditTableCell", forIndexPath: indexPath) as! SettingsEditTableViewCell
+            editCell.editValueTextField.placeholder = "Butter"
+            
+            
+            return editCell
+            
+        }
+        
         return cell
     }
-    */
+
 
     /*
     // Override to support conditional editing of the table view.
