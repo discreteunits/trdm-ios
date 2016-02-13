@@ -86,7 +86,62 @@ class SignUpViewController: UIViewController {
         self.signUpButton.layer.backgroundColor = UIColor(red: 9/255.0, green: 178/255.0, blue: 126/255.0, alpha: 1.0).CGColor
         self.signUpButton.titleLabel?.textColor = UIColor.whiteColor()
         self.signUpButton.titleLabel?.font = UIFont(name: "NexaRustScriptL-00", size: 24)
+        
+        
+        
+        
+        
+        
 
+        
+        
+        // Sign Up Button
+        let screenSize: CGRect = UIScreen.mainScreen().bounds
+        
+        let screenWidth = screenSize.width
+        let screenHeight = screenSize.height
+        
+        let topOfKeyboard = screenHeight - 345
+
+        
+        let sign = UIButton(frame: CGRectMake(0, topOfKeyboard, screenWidth, 60))
+            sign.setTitle("Sign Up", forState: .Normal)
+            sign.layer.backgroundColor = UIColor(red: 9/255.0, green: 178/255.0, blue: 126/255.0, alpha: 1.0).CGColor
+            sign.titleLabel?.font = UIFont(name: "NexaRustScriptL-00", size: 24)
+            sign.addTarget(self, action: "signupAction:", forControlEvents: UIControlEvents.TouchUpInside)
+            sign.hidden = true
+        
+        self.view.addSubview(sign)
+        
+        
+        
+        
+        
+        
+//        let keyboardConstraint = NSLayoutConstraint(item: signUpButton, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: topOfKeyboard)
+        
+        
+//        self.signUpButton.frame = CGRectMake(0, 0, screenWidth, 60)
+
+        
+    }
+    
+    func signupAction(sender:UIButton!) {
+        
+        activityIndicator.hidden = false
+        activityIndicator.startAnimating()
+        
+        if self.signUpLoginTableViewControllerRef?.signupActive == true {
+            self.signUpLoginTableViewControllerRef?.saveUser()
+            print("signup action finished")
+            performSegueWithIdentifier("signup", sender: self)
+
+        } else {
+            self.signUpLoginTableViewControllerRef?.loginUser()
+            print("login action finished")
+            performSegueWithIdentifier("signup", sender: self)
+
+        }
         
     }
     
@@ -94,8 +149,9 @@ class SignUpViewController: UIViewController {
 // LOGIN / SIGN UP
 // ----------------------
     @IBAction func signup(sender: AnyObject) {
-        activityIndicator.startAnimating()
+        
         activityIndicator.hidden = false
+        activityIndicator.startAnimating()
         
         if self.signUpLoginTableViewControllerRef?.signupActive == true {
             self.signUpLoginTableViewControllerRef?.saveUser()
@@ -158,6 +214,7 @@ class SignUpViewController: UIViewController {
                 
                 if succeeded {
                     self.signUpButton.hidden = true
+
                 }
                 
         }
@@ -166,7 +223,7 @@ class SignUpViewController: UIViewController {
     
     func showButtonVertical() {
         
-        self.signUpButton.hidden = false
+
         
         UIView.animateWithDuration(0.3, delay: 0.0, options: .CurveEaseInOut, animations: { () -> Void in
             
@@ -176,6 +233,21 @@ class SignUpViewController: UIViewController {
             }) { (succeeded: Bool) -> Void in
                 
                 if succeeded {
+                    self.signUpButton.hidden = false
+                    
+                    
+                    
+                    
+                    
+                    
+                    // ADD new signup button here
+                    
+                    
+                    
+                    
+                    
+                    
+                    
                     
                 }
                 

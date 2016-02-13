@@ -59,6 +59,9 @@ class SignUpLogInTableViewController: UITableViewController, UITextFieldDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
+
+        
         emailCheckmark.hidden = true
         passwordCheckmark.hidden = true
 
@@ -272,6 +275,24 @@ class SignUpLogInTableViewController: UITableViewController, UITextFieldDelegate
         }
         
     }
+    
+    
+
+    func keyboardWillShow(notification:NSNotification) {
+        print("Keyboard Appeared")
+        
+        let userInfo:NSDictionary = notification.userInfo!
+        let keyboardFrame:NSValue = userInfo.valueForKey(UIKeyboardFrameEndUserInfoKey) as! NSValue
+        let keyboardRectangle = keyboardFrame.CGRectValue()
+        let keyboardHeight = keyboardRectangle.height
+
+        print("KeyboardHeight: \(keyboardHeight)")
+
+    }
+    
+    
+    
+    
     
 }
 
