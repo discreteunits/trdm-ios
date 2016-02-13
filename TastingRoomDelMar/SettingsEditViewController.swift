@@ -76,6 +76,8 @@ class SettingsEditViewController: UIViewController {
     
     @IBAction func saveEdit(sender: AnyObject) {
         self.SettingsEditTableViewControllerRef?.saveValue()
+        navigationController?.popViewControllerAnimated(true)
+        
     }
     
     

@@ -279,6 +279,16 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
 // ADD INDEX TO ROUTE
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
+        
+        
+        print("-----------------------")
+        print("\(tierIArray[indexPath.row])")
+        print("-----------------------")
+        
+        
+        
+        
+        
         route.append(tierIArray[indexPath.row])
         
         print("The Route has been increased to: \(route[0]["name"])")

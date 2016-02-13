@@ -147,15 +147,8 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
             actionCell = tableView.dequeueReusableCellWithIdentifier("TabActionTableCell", forIndexPath: indexPath) as! TabActionTableViewCell
 
             // Styles
-            actionCell.closeOrderButton.layer.backgroundColor = UIColor(red: 224/255.0, green: 224/255.0, blue: 224/255.0, alpha: 1.0).CGColor
-            actionCell.closeOrderButton.titleLabel?.font = UIFont(name: "NexaRustScriptL-00", size: 18)
-            actionCell.closeOrderButton.layer.cornerRadius = 6.0
-            actionCell.closeOrderButton.clipsToBounds = true
-            actionCell.closeOrderButton.titleLabel?.textColor = UIColor.blackColor()
-
-            
             actionCell.placeOrderButton.layer.backgroundColor = UIColor(red: 9/255.0, green: 178/255.0, blue: 126/255.0, alpha: 1.0).CGColor
-            actionCell.placeOrderButton.titleLabel?.font = UIFont(name: "NexaRustScriptL-00", size: 18)
+            actionCell.placeOrderButton.titleLabel?.font = UIFont(name: "NexaRustScriptL-00", size: 28)
             actionCell.placeOrderButton.layer.cornerRadius = 6.0
             actionCell.placeOrderButton.clipsToBounds = true
             actionCell.placeOrderButton.titleLabel?.textColor = UIColor.whiteColor()
@@ -477,6 +470,7 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
             // Place Order Function
             } else if indexPath.row == 1 {
                 
+
 //                let confirmedOrder = createOrder(tab)
 //                print("Confirmed Order Created: \(confirmedOrder)")
                 
@@ -488,5 +482,55 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
     
     
     
+    @IBAction func placeOrder(sender: AnyObject) {
+        
+        displayAlert("Whoops", message: "Looks like you're not logged in or  don't have an account. Login or create an account to place an order.")
+        
+    }
+    
+    
+    // ----------------------
+    // Logged In Alert
+    // ----------------------
+    @available(iOS 8.0, *)
+    func displayAlert(title: String, message: String) {
+        
+        // Create Controller
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+            alert.view.tintColor = UIColor(red: 9/255.0, green: 178/255.0, blue: 126/255.0, alpha: 1.0)
+        
+        // Create Actions
+        let loginAction = UIAlertAction(title: "Login", style: .Default, handler: { (action) -> Void in
+            self.goToLogIn()
+            print("Login Selected")
+        })
+        let createAccountAction = UIAlertAction(title: "Create Account", style: .Default , handler: { (action) -> Void in
+            self.goToLogIn()
+            print("Create Account Selected")
+        })
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action) -> Void in
+            print("Cancel Selected")
+        })
+        
+        
+        
+        // Add Actions
+        alert.addAction(loginAction)
+        alert.addAction(createAccountAction)
+        alert.addAction(cancelAction)
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    
+    func goToLogIn() {
+        
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main",bundle: nil)
+        
+        let vc = mainStoryboard.instantiateViewControllerWithIdentifier("createAccount")
+        
+        self.presentViewController(vc, animated: true, completion: nil)
+        
+    }
     
 }

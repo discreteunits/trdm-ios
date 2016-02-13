@@ -82,15 +82,27 @@ class SettingsEditTableViewController: UITableViewController {
             
         } else if passedEditType == "Last name" {
             
+            fieldValue = editValueTextField.text
+            PFUser.currentUser()?["lastName"] = fieldValue
+            print("User changed their last name to: \(fieldValue)")
             
         } else if passedEditType == "mobile number" {
             
+            fieldValue = editValueTextField.text
+            PFUser.currentUser()?["mobileNumber"] = fieldValue
+            print("User changed their mobile number to: \(fieldValue)")
             
         } else if passedEditType == "email" {
             
+            fieldValue = editValueTextField.text
+            PFUser.currentUser()?["email"] = fieldValue
+            print("User changed their email to: \(fieldValue)")
             
         } else if passedEditType == "password" {
             
+            fieldValue = editValueTextField.text
+            PFUser.currentUser()?["password"] = fieldValue
+            print("User changed their password to: \(fieldValue)")
             
         }
         
@@ -98,10 +110,7 @@ class SettingsEditTableViewController: UITableViewController {
     
     func saveValue() {
         
-        print("fieldValue: \(fieldValue)")
         valueToSave()
-        
-        print("User: \(PFUser.currentUser())")
         
         PFUser.currentUser()?.saveInBackground()
         print("User has been updated successfully.")

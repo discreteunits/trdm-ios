@@ -36,8 +36,6 @@
 		D775CDD91C6D4AAC006A3F29 /* SettingsEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D775CDD81C6D4AAC006A3F29 /* SettingsEditViewController.swift */; };
 		D775CDDB1C6D4ABA006A3F29 /* SettingsTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D775CDDA1C6D4ABA006A3F29 /* SettingsTextViewController.swift */; };
 		D775CDDD1C6D4AC7006A3F29 /* SettingsEditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D775CDDC1C6D4AC7006A3F29 /* SettingsEditTableViewController.swift */; };
-		D775CDDF1C6D5793006A3F29 /* SettingsEditMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D775CDDE1C6D5793006A3F29 /* SettingsEditMessageTableViewCell.swift */; };
-		D775CDE11C6D579F006A3F29 /* SettingsEditTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D775CDE01C6D579F006A3F29 /* SettingsEditTableViewCell.swift */; };
 		D7A8AC041C4D9469008D9A90 /* PopoverTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A8AC031C4D9469008D9A90 /* PopoverTableViewCell.swift */; };
 		D7A8AC081C4D9626008D9A90 /* PopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A8AC071C4D9626008D9A90 /* PopoverViewController.swift */; };
 		D7A8AC0A1C4DB600008D9A90 /* TierIIITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A8AC091C4DB600008D9A90 /* TierIIITableViewController.swift */; };
@@ -125,8 +123,6 @@
 		D775CDD81C6D4AAC006A3F29 /* SettingsEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsEditViewController.swift; sourceTree = "<group>"; };
 		D775CDDA1C6D4ABA006A3F29 /* SettingsTextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTextViewController.swift; sourceTree = "<group>"; };
 		D775CDDC1C6D4AC7006A3F29 /* SettingsEditTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsEditTableViewController.swift; sourceTree = "<group>"; };
-		D775CDDE1C6D5793006A3F29 /* SettingsEditMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsEditMessageTableViewCell.swift; sourceTree = "<group>"; };
-		D775CDE01C6D579F006A3F29 /* SettingsEditTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsEditTableViewCell.swift; sourceTree = "<group>"; };
 		D7A8AC031C4D9469008D9A90 /* PopoverTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverTableViewCell.swift; sourceTree = "<group>"; };
 		D7A8AC071C4D9626008D9A90 /* PopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverViewController.swift; sourceTree = "<group>"; };
 		D7A8AC091C4DB600008D9A90 /* TierIIITableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierIIITableViewController.swift; sourceTree = "<group>"; };
@@ -314,8 +310,6 @@
 				D775CDD61C6D3D00006A3F29 /* SettingsFooterTableViewCell.swift */,
 				D775CDD81C6D4AAC006A3F29 /* SettingsEditViewController.swift */,
 				D775CDDC1C6D4AC7006A3F29 /* SettingsEditTableViewController.swift */,
-				D775CDDE1C6D5793006A3F29 /* SettingsEditMessageTableViewCell.swift */,
-				D775CDE01C6D579F006A3F29 /* SettingsEditTableViewCell.swift */,
 				D775CDDA1C6D4ABA006A3F29 /* SettingsTextViewController.swift */,
 				D7FFF7B71C3AFB0600020D9A /* Assets.xcassets */,
 				D7FFF7B91C3AFB0600020D9A /* LaunchScreen.storyboard */,
@@ -570,7 +564,6 @@
 				D775CDCF1C6D0917006A3F29 /* SettingsLabelTableViewCell.swift in Sources */,
 				D74B1C4E1C58339E008F5A36 /* PopoverActionCollectionViewCell.swift in Sources */,
 				D7C448C31C641C0400CD12F8 /* TabHeaderTableViewCell.swift in Sources */,
-				D775CDDF1C6D5793006A3F29 /* SettingsEditMessageTableViewCell.swift in Sources */,
 				D775CDDD1C6D4AC7006A3F29 /* SettingsEditTableViewController.swift in Sources */,
 				D733D4621C69534400682A84 /* PaymentAddCardTableViewCell.swift in Sources */,
 				D775CDD31C6D0E4D006A3F29 /* SettingsHeaderTableViewCell.swift in Sources */,
@@ -578,7 +571,6 @@
 				D77013911C6C20C900CEB886 /* SettingsTableViewController.swift in Sources */,
 				D7A8AC081C4D9626008D9A90 /* PopoverViewController.swift in Sources */,
 				D7B616841C62D7C3002CF1DE /* TabViewController.swift in Sources */,
-				D775CDE11C6D579F006A3F29 /* SettingsEditTableViewCell.swift in Sources */,
 				D7B6168C1C62DCFA002CF1DE /* TabActionTableViewCell.swift in Sources */,
 				D7FACCFB1C46F1EF0006F6BE /* TierIVCollectionViewController.swift in Sources */,
 				D7E8039B1C56E17B003C12D9 /* PopoverActionTableViewCell.swift in Sources */,

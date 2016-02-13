@@ -19,6 +19,10 @@ class SettingsTableViewController: UITableViewController {
     @IBOutlet weak var navigationTitle: UINavigationItem!
     
 // -------------------
+    override func viewWillAppear(animated: Bool) {
+        self.tableView.reloadData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

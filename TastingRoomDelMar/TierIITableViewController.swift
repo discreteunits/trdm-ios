@@ -20,6 +20,7 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
     var nav: UINavigationBar?
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
         // TIER 2 QUERY
@@ -164,7 +165,7 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
     
 // ADD INDEX TO ROUTE
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
+ 
         route.append(tierIIArray[indexPath.row])
 
         print("The Route has been increased to: \(route[0]["name"]), \(route[1]["name"])")
