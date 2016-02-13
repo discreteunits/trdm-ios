@@ -20,7 +20,7 @@ protocol SignUpLogInTableViewDelegate {
     func alternateLoginSignupNav()
 }
 
-class SignUpLogInTableViewController: UITableViewController {
+class SignUpLogInTableViewController: UITableViewController, UITextFieldDelegate {
 
     var signupActive = true
     
@@ -33,6 +33,15 @@ class SignUpLogInTableViewController: UITableViewController {
     @IBOutlet weak var registeredText: UILabel!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var infoText: UITextView!
+    
+    // Checkmarks
+    @IBOutlet weak var emailCheckmark: UIImageView!
+    @IBOutlet weak var passwordCheckmark: UIImageView!
+    
+    @IBOutlet weak var emailValidMessage: UILabel!
+    @IBOutlet weak var passwordValidMessage: UILabel!
+    
+    
     
     var delegate: SignUpLogInTableViewDelegate?
     var containerViewController: SignUpViewController?
@@ -49,6 +58,13 @@ class SignUpLogInTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        emailCheckmark.hidden = true
+        passwordCheckmark.hidden = true
+
+        emailValidMessage.hidden = true
+        passwordValidMessage.hidden = true
+        
         
         emailTextField.becomeFirstResponder()
         
@@ -161,6 +177,7 @@ class SignUpLogInTableViewController: UITableViewController {
             signupActive = true
             
         }
+        
     }
     
 // ------------------
@@ -214,18 +231,45 @@ class SignUpLogInTableViewController: UITableViewController {
     @IBAction func emailDidChange(sender: AnyObject) {
         
 //        validator.validate(self)
+        
+        // Valid
+        if ((emailTextField.text?.rangeOfString("@")) != nil) {
+            emailCheckmark.hidden = false
+            emailValidMessage.hidden = true
+
+        // Invalid
+        } else {
+            emailValidMessage.hidden = false
+            emailCheckmark.hidden = true
+
+        }
+        
         delegate?.showSignUpButton()
-        print("Email text field changed.")
+        
         if emailTextField.text == "" {
             delegate?.hideSignUpButton()
         }
+        
+
+        
         
     }
     
     @IBAction func passwordDidChange(sender: AnyObject) {
         
 //        validator.validate(self)
-        print("Password text field changed.")
+        
+        // Invalid
+        if passwordTextField.text!.characters.count < 8 {
+            passwordValidMessage.hidden = false
+            passwordCheckmark.hidden = true
+
+        // Valid
+        } else {
+            passwordCheckmark.hidden = false
+            passwordValidMessage.hidden = true
+
+        }
         
     }
     
