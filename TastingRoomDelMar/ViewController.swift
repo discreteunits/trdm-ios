@@ -20,8 +20,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var skipButton: UIButton!
     
-    
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
+    
+    var signupOrLogin = String()
     
 
 // ----------------
@@ -30,7 +31,6 @@ class ViewController: UIViewController {
         let screenSize: CGRect = UIScreen.mainScreen().bounds
         let screenWidth = screenSize.width
         let screenHeight = screenSize.height
-        
         
         signupButton.layer.cornerRadius = 4.0
         signupButton.clipsToBounds = true
@@ -51,8 +51,8 @@ class ViewController: UIViewController {
         imageView.frame.origin.x = 25
         
         self.view.addSubview(imageView)
-    }
     
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,10 +62,12 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-// ----------------
-// FACEBOOK LOGIN
-// ----------------
+    @IBAction func loginSelected(sender: AnyObject) {
+        signupOrLogin = "login"
+        performSegueWithIdentifier("startSignup", sender: self)
+    }
     
+    // FACEBOOK LOGIN
     @available(iOS 8.0, *)
     @IBAction func loginWithFacebook(sender: AnyObject) {
         
@@ -103,10 +105,7 @@ class ViewController: UIViewController {
         })
     }
     
-// ----------------------
-// ALERT FUNCTION
-// ----------------------
-    
+    // ALERT FUNCTION
     @available(iOS 8.0, *)
     func displayAlert(title: String, message: String) {
         
@@ -122,10 +121,7 @@ class ViewController: UIViewController {
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
-// ----------------------
-// ACTIVITY START FUNCTION
-// ----------------------
-    
+    // ACTIVITY START FUNCTION
     func activityStart() {
         
         activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 50, 50))
@@ -138,35 +134,23 @@ class ViewController: UIViewController {
         
     }
     
-// ----------------------
-// ACTIVITY STOP FUNCTION
-// ----------------------
+    // ACTIVITY STOP FUNCTION
     func activityStop() {
         
         self.activityIndicator.stopAnimating()
         UIApplication.sharedApplication().endIgnoringInteractionEvents()
         
     }
-    
-    
-    
+ 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-//        if segue.identifier == "startSignup" {
-//            
-//            var vc = segue.destinationViewController as! SignUpViewController
-//            
-//
-//        }
-        
-        if segue.identifier == "startLogin" {
+        if segue.identifier == "startSignup" {
             
-//            let destinationNavigationController = segue.destinationViewController as! UINavigationController
-//            let targetController = destinationNavigationController.topViewController as! SignUpViewController
-//            
-//            targetController.alternateLoginSignupNav()
-//            targetController.signUpLoginTableViewControllerRef?.alternateLoginSignup()
-            
+            // Prepare for segue through navigation controller
+            let destinationNC = segue.destinationViewController as! UINavigationController
+            let targetController = destinationNC.topViewController as! SignUpViewController
+            targetController.passedSignupOrLogin = signupOrLogin
+
         }
         
     }

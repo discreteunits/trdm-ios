@@ -62,14 +62,14 @@ class MenuTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // Return the number of rows in the section.
-        return 6
+        return 5
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         var cell = tableView.dequeueReusableCellWithIdentifier("CELL")
         
-        let menuArray = ["Dine in", "Take out", "Events", "Tab", "Payment", "Settings"]
+        let menuArray = ["Menu", "Events", "Tab", "Payment", "Settings"]
         
         if (cell == nil) {
             cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "CELL")
@@ -106,28 +106,16 @@ class MenuTableViewController: UITableViewController {
 
         switch (indexPath.row) {
         case 0:
-            destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("TierII") // Dine In
-            destViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
-            destViewController.modalPresentationStyle = .CurrentContext
             
-            // Gold
-            let rootVC = sideMenuController() as! UIViewController
-            rootVC.presentViewController(destViewController, animated: true, completion: nil)
+            destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("TierI")
             
+//            let destNavigationController = UINavigationController() as! TierNavigationController
+//            self.presentViewController(destNavigationController, animated: true, completion: nil)
+    
                 selectedMenuItem = 0
+                route.removeAll()
             break
         case 1:
-            destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("TierII") // Take Out
-            destViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
-            destViewController.modalPresentationStyle = .CurrentContext
-            
-            // Gold
-            let rootVC = sideMenuController() as! UIViewController
-            rootVC.presentViewController(destViewController, animated: true, completion: nil)
-            
-                selectedMenuItem = 0
-            break
-        case 2:
             destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("Tab")
             destViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
             destViewController.modalPresentationStyle = .CurrentContext
@@ -136,8 +124,21 @@ class MenuTableViewController: UITableViewController {
             let rootVC = sideMenuController() as! UIViewController
             rootVC.presentViewController(destViewController, animated: true, completion: nil)
             
+            
                 selectedMenuItem = 0
                 TabManager.sharedInstance.totalCellCalculator()
+            break
+        case 2:
+            destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("Payment")
+            destViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
+            destViewController.modalPresentationStyle = .CurrentContext
+            
+            // Gold
+            let rootVC = sideMenuController() as! UIViewController
+            rootVC.presentViewController(destViewController, animated: true, completion: nil)
+            
+            
+                selectedMenuItem = 0
             break
         case 3:
             destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("Payment")
@@ -150,18 +151,6 @@ class MenuTableViewController: UITableViewController {
             
             
                 selectedMenuItem = 0
-            break
-        case 4:
-            destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("Payment")
-            destViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
-            destViewController.modalPresentationStyle = .CurrentContext
-            
-            // Gold
-            let rootVC = sideMenuController() as! UIViewController
-            rootVC.presentViewController(destViewController, animated: true, completion: nil)
-            
-            
-            selectedMenuItem = 0
             break
         default:
             destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("Settings")
@@ -178,6 +167,7 @@ class MenuTableViewController: UITableViewController {
         }
 
         sideMenuController()?.setContentViewController(destViewController)
+        
     }
     
     
@@ -190,48 +180,5 @@ class MenuTableViewController: UITableViewController {
     // Pass the selected object to the new view controller.
     }
     */
-    
-//    
-//    // Dine In and Take Out Query
-//    var dineIn = PFObject()
-//    var takeOut = PFObject()
-//    
-//    func dineTakeQuery() {
-//        
-//        let query:PFQuery = PFQuery(className:"Tier1")
-//        query.includeKey("tag")
-//        query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
-//            
-//            if error == nil {
-//                
-//                // The find succeeded.
-//                print("TierI retrieved \(objects!.count) objects.")
-//                
-//                // Do something with the found objects
-//                for object in objects! as [PFObject]! {
-//                    
-//                    if object["tag"]["state"] as! String == "active" {
-//                        
-//                        // Get Dine in and Take out objects
-//                        if object["name"] as! String == "Dine in" {
-//                            self.dineIn = object
-//                        } else if object["name"] as! String == "Take out" {
-//                            self.takeOut = object
-//                        }
-//                        
-//                    }
-//                    
-//                }
-//                
-//            } else {
-//                
-//                // Log details of the failure
-//                print("Error: \(error!) \(error!.userInfo)")
-//                
-//            }
-//            
-//        }
-//        
-//    }
     
 }

@@ -106,9 +106,7 @@ class SignUpLogInTableViewController: UITableViewController, UITextFieldDelegate
         return 4
     }
     
-// ----------------------
-// SAVE USER
-// ----------------------
+    // SAVE USER
     func saveUser() {
         
         let user = PFUser()
@@ -138,9 +136,7 @@ class SignUpLogInTableViewController: UITableViewController, UITextFieldDelegate
         
     }
     
-// ------------------
-// LOGIN USER
-// ------------------
+    // LOGIN USER
     func loginUser() {
         
         PFUser.logInWithUsernameInBackground(emailTextField.text!, password: passwordTextField.text!, block: { ( user, error ) -> Void in
@@ -160,18 +156,18 @@ class SignUpLogInTableViewController: UITableViewController, UITextFieldDelegate
         })
     }
     
-// ------------------
-// ALTERNATE FUNCTION
-// ------------------
+    // ALTERNATE FUNCTION
     func alternateLoginSignup() {
 
+        // Login State
         if signupActive == true {
             
             infoText.text = "Provide your email and password below to login."
             registeredText.text = "Don't have an account?"
             loginButton.setTitle("Sign Up", forState: UIControlState.Normal)
             signupActive = false
-            
+          
+        // Signup State
         } else {
             
             infoText.text = "Tell us a little bit about yourself. We'd love to get to know you!"
@@ -183,9 +179,7 @@ class SignUpLogInTableViewController: UITableViewController, UITextFieldDelegate
         
     }
     
-// ------------------
-// ALTERNATE TRIGGER
-// ------------------
+    // ALTERNATE TRIGGER
     @IBAction func login(sender: AnyObject) {
         
         alternateLoginSignup()
@@ -193,9 +187,7 @@ class SignUpLogInTableViewController: UITableViewController, UITextFieldDelegate
         
     }
    
-// ----------------------
-// ACTIVITY START FUNCTION
-// ----------------------
+    // ACTIVITY START FUNCTION
     func activityStart() {
         activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 50, 50))
         activityIndicator.center = self.view.center
@@ -206,17 +198,13 @@ class SignUpLogInTableViewController: UITableViewController, UITextFieldDelegate
         UIApplication.sharedApplication().beginIgnoringInteractionEvents()
     }
     
-// ----------------------
-// ACTIVITY STOP FUNCTION
-// ----------------------
+    // ACTIVITY STOP FUNCTION
     func activityStop() {
         self.activityIndicator.stopAnimating()
         UIApplication.sharedApplication().endIgnoringInteractionEvents()
     }
     
-// ----------------------
-// ALERT FUNCTION
-// ----------------------
+    // ALERT FUNCTION
     @available(iOS 8.0, *)
     func displayAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
@@ -228,9 +216,7 @@ class SignUpLogInTableViewController: UITableViewController, UITextFieldDelegate
         
     }
     
-// ----------------------
-// TEXTFIELD DID CHANGE FUNCTION
-// ----------------------
+    // TEXTFIELD DID CHANGE FUNCTION
     @IBAction func emailDidChange(sender: AnyObject) {
         
 //        validator.validate(self)
