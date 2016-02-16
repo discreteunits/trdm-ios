@@ -94,9 +94,9 @@ class MenuTableViewController: UITableViewController {
         
         print("Selected row: \(indexPath.row)")
         
-        if (indexPath.row == selectedMenuItem) {
-            return
-        }
+//        if (indexPath.row == selectedMenuItem) {
+//            return
+//        }
         
         selectedMenuItem = indexPath.row
         
@@ -106,17 +106,14 @@ class MenuTableViewController: UITableViewController {
 
         switch (indexPath.row) {
         case 0:
-            
             destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("TierI")
+
             
-//            let destNavigationController = UINavigationController() as! TierNavigationController
-//            self.presentViewController(destNavigationController, animated: true, completion: nil)
-    
                 selectedMenuItem = 0
                 route.removeAll()
             break
         case 1:
-            destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("Tab")
+            destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("Events")
             destViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
             destViewController.modalPresentationStyle = .CurrentContext
 
@@ -129,7 +126,7 @@ class MenuTableViewController: UITableViewController {
                 TabManager.sharedInstance.totalCellCalculator()
             break
         case 2:
-            destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("Payment")
+            destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("Tab")
             destViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
             destViewController.modalPresentationStyle = .CurrentContext
             
