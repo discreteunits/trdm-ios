@@ -93,8 +93,8 @@ class TabManager: NSObject {
         print("-----------------------")
 
         // OPTION 1: Create Object
-        var lines = [NSObject]()
-        var mods = [NSObject]()
+        var lines = [[String:AnyObject]]()
+        var mods = [[String:AnyObject]]()
 
         // Loop Thru LineItems
         for lineitem in tab.lines {
@@ -107,26 +107,39 @@ class TabManager: NSObject {
                 mods.append(paraMod)
             }
             
+            // Detailed Elements Container
+            let smallElements : [String:AnyObject] = [
+                "elements": mods
+            ]
+            
             // Loop Thru Items
             let paraLine : [String:AnyObject] = [
                 "id": lineitem.id,
                 "quantity": lineitem.quantity,
-                "modifiers": mods
+                "modifiers": smallElements
             ]
             
             lines.append(paraLine)
         }
-
+        
+        // Elements Container
+        let elements : [String:AnyObject] = [
+            "elements": lines
+        ]
+        
         // Build Params
         let para : [String:AnyObject] = [
             "id": tab.id,
             "note": tab.note,
             "table": tab.table,
             "userId": tab.userId,
-            "lineItems": lines
+            "lineItems": elements
         ] // end para
         
-
+        // Create Order Object
+        var order = NSObject()
+        order = para
+        print("Order Equals: \(order)")
         
         
         // OPTION 1: Convert Object To JSON
