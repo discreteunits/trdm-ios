@@ -52,6 +52,7 @@ struct Customer {
     var objectId = String()
     var userId = String()
     var stripeId = String()
+    var orderId = [String]()
     
     var card = Card()
 }

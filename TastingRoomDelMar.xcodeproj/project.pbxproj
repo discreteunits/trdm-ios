@@ -107,6 +107,7 @@
 		D733D4671C69746C00682A84 /* PaymentAddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentAddViewController.swift; sourceTree = "<group>"; };
 		D736203F1C65143400DD7F71 /* TabLineItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabLineItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		D73620411C651BE800DD7F71 /* TabLineItemServingCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabLineItemServingCollectionViewCell.swift; sourceTree = "<group>"; };
+		D736DADB1C72D70C00751307 /* secondary-logomark-03_rgb.eps */ = {isa = PBXFileReference; lastKnownFileType = file; path = "secondary-logomark-03_rgb.eps"; sourceTree = "<group>"; };
 		D74B1C491C583260008F5A36 /* PopoverMGCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverMGCollectionViewCell.swift; sourceTree = "<group>"; };
 		D74B1C4B1C5832E6008F5A36 /* PopoverQuantityCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverQuantityCollectionViewCell.swift; sourceTree = "<group>"; };
 		D74B1C4D1C58339E008F5A36 /* PopoverActionCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverActionCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -217,6 +218,7 @@
 				D7C1E03F1C5AB75100143C48 /* OpenSans-Regular.ttf */,
 				D7C1E0401C5AB76E00143C48 /* BebasNeue Regular.otf */,
 				D7C1E0351C5A951300143C48 /* primary-logomark-02_rgb_600_600.png */,
+				D736DADB1C72D70C00751307 /* secondary-logomark-03_rgb.eps */,
 				D7C1E0361C5A951300143C48 /* primary-logomark-front-04_rgb_600_600.png */,
 				D7C1E0391C5A952000143C48 /* primary-logotype-05_rgb_600_600.png */,
 				D7C1E0331C5A950000143C48 /* secondary-logomark-03_rgb_600_600.png */,

@@ -123,7 +123,7 @@ class PaymentTableViewController: UITableViewController {
         
         let card = CardManager.sharedInstance.fetchCards((PFUser.currentUser()?.objectId)!)
 
-        
+        currentCustomer.orderId.append(card as! String)
     }
 
 
