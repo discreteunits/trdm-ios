@@ -31,7 +31,7 @@ class CardManager: NSObject {
         
         var result = String()
 
-        PFCloud.callFunctionInBackground("createStripeCustomer", withParameters: ["userId": userId, "stripeToken": token] ) {
+        PFCloud.callFunctionInBackground("addOrChangePaymentMethod", withParameters: ["userId": userId, "stripeToken": token] ) {
             (response: AnyObject?, error: NSError?) -> Void in
             
             if let error = error {
@@ -55,31 +55,34 @@ class CardManager: NSObject {
         return result
         
     }
-
     
-    
-    // Get User Cards
-    func getCards(id: String, user: PFUser) {
+    // Fetch User Cards CLOUDCODE
+    func fetchCards(userId: String) -> AnyObject {
         
-        let query:PFQuery = PFQuery(className: "Customer")
-            query.includeKey("user")
-            query.whereKey("objectId", equalTo: id)
-        query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
+        var result = NSMutableDictionary()
+        
+        PFCloud.callFunctionInBackground("fetchCardForStripeCustomer", withParameters: ["userId": userId] ) {
+            (response: AnyObject?, error: NSError?) -> Void in
             
-            if error == nil {
+            if let error = error {
                 
-                // The Find Succeeded
-                print("\(objects!.count) cards found for this user.")
+                // Failure 
+                print("Error: \(error)")
                 
-                for object in objects! as [PFObject]! {
-                    
-                    self.currentCustomer.cards.append(object)
-                    
-                }
+            } else {
+                
+                // Success
+                result = response as! NSMutableDictionary
+                print("Response: \(response!)")
+                
+                CardManager.sharedInstance.currentCustomer.card.brand = result["brand"] as! String
+                CardManager.sharedInstance.currentCustomer.card.last4 = result["last4"] as! String
                 
             }
-            
+        
         }
+        
+        return result
         
     }
     

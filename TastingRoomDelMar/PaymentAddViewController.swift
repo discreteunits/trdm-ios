@@ -14,7 +14,7 @@ import ParseUI
 class PaymentAddViewController: UIViewController, STPPaymentCardTextFieldDelegate {
     
 
-    let currentCustomer = CardManager.sharedInstance.currentCustomer
+    var currentCustomer = CardManager.sharedInstance.currentCustomer
     
     var stripeCard = STPCardParams()
 
@@ -171,7 +171,8 @@ class PaymentAddViewController: UIViewController, STPPaymentCardTextFieldDelegat
                 print("Confirmed User Card Created: \(confirmedUserCard)")
                 print("----------------")
 
-   
+
+                
                 // Dismiss View
                 self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
                 
@@ -203,15 +204,19 @@ class PaymentAddViewController: UIViewController, STPPaymentCardTextFieldDelegat
             displayAlert("Required", message: "All fields are required.")
         }
         
+        // Set Card
         performStripeOperation()
-        CardManager.sharedInstance.getCards(currentCustomer.objectId, user: PFUser.currentUser()!)
         
+
+
         
 //        if validateCardInfo() {
 //            performStripeOperation()
 //        }
         
     }
+    
+
 
     
     /*

@@ -427,71 +427,29 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     
-    // CLOUDCODE: PlaceOrder
-//    func createOrder(tab: Tab) -> AnyObject {
-//        
-//        var result = String()
-//        
-//        PFCloud.callFunctionInBackground("placeOrder", withParameters: params) {
-//            (response: AnyObject?, error: NSError?) -> Void in
-//            
-//            if let error = error {
-//                print("\(error)")
-//            } else {
-//                result = String(response)
-//                
-//                print("Response: \(response)")
-//                print("Result: \(result)")
-//            }
-//            
-//        }
-//        
-//        return result
-//        
-//    }
     
     
-    // Call Cloud Code Place Order
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        
-        let parent = collectionView.superview!.tag
-        
-        if parent < totalRow {
-            
-        } else if parent == totalRow {
-            
-        } else if parent == actionRow {
-            
-            // Close Order Function
-            if indexPath.row == 0 {
-               
-                
-                
-            // Place Order Function
-            } else if indexPath.row == 1 {
-                
-
-//                let confirmedOrder = createOrder(tab)
-//                print("Confirmed Order Created: \(confirmedOrder)")
-                
-            }
-            
-        }
-        
-    }
+    
+// CLOUDCODE PLACEORDER
     
     
     
     @IBAction func placeOrder(sender: AnyObject) {
         
-        displayAlert("Whoops", message: "Looks like you're not logged in or  don't have an account. Login or create an account to place an order.")
+//        displayAlert("Whoops", message: "Looks like you're not logged in or  don't have an account. Login or create an account to place an order.")
+        
+        tab.table = "23"
+        tab.note = "Hello World"
+        
+        let result = TabManager.sharedInstance.placeOrder(tab)
+        print("Place Order, CloudCode Function Returned: \(result)")
         
     }
     
     
-    // ----------------------
+
+    
     // Logged In Alert
-    // ----------------------
     @available(iOS 8.0, *)
     func displayAlert(title: String, message: String) {
         

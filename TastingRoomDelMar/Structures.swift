@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import Stripe
 
 struct Modifier {
     var id = String()
@@ -29,9 +30,9 @@ struct LineItem {
 
 struct Tab {
     var id = String()
+    var note = String()
     var cloverId = String()
     var state = String()
-    var note = String()
     var table = String()
     var userId = String()
     var subtotal = Double()
@@ -53,6 +54,10 @@ struct Customer {
     var userId = String()
     var stripeId = String()
     
-    var cards = [PFObject]()
+    var card = Card()
 }
 
+struct Card {
+    var brand = String()
+    var last4 = String()
+}

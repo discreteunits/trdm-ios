@@ -12,18 +12,19 @@ import ParseUI
 
 class PaymentTableViewController: UITableViewController {
 
-    let currentCustomer = CardManager.sharedInstance.currentCustomer
+    var currentCustomer = CardManager.sharedInstance.currentCustomer
+    
+    var rows = Int()
     
     // Table Row Indicators
     var addPaymentRow: Int!
     
     override func viewWillAppear(animated: Bool) {
         
-        // Get User Cards
-        let customerObjectId = currentCustomer.objectId
-        CardManager.sharedInstance.getCards(customerObjectId, user: PFUser.currentUser()!)
-        print("getCards Fired and Returned \(self.currentCustomer.cards.count) cards.")
-        print("----------------")
+        dispatch_async(dispatch_get_main_queue()) {
+            self.getCards()
+            self.tableView.reloadData()
+        }
         
     }
     
@@ -34,7 +35,7 @@ class PaymentTableViewController: UITableViewController {
         
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
         self.tableView.tableFooterView?.hidden = true
-
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -51,10 +52,18 @@ class PaymentTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        var rows = CardManager.sharedInstance.currentCustomer.cards.count + 1
+        
+        
+        if currentCustomer.card.last4 != "" {
+            rows = 2
+        } else {
+            rows = 1
+        }
+        
         addPaymentRow = rows - 1
         
         return rows
+        
     }
 
 
@@ -66,10 +75,10 @@ class PaymentTableViewController: UITableViewController {
         if indexPath.row < addPaymentRow {
             let cardCell = tableView.dequeueReusableCellWithIdentifier("PaymentCardTableCell", forIndexPath: indexPath) as! PaymentCardTableViewCell
             
-            // Assignments 
-//            cardCell.providerLabel.text = CardManager.sharedInstance.currentCustomer.cards[indexPath.row].provider
-//            cardCell.lastFourLabel.text = CardManager.sharedInstance.currentCustomer.cards[indexPath.row].lastFour
-//            
+            // Assignments
+            cardCell.providerLabel.text = currentCustomer.card.brand as! String
+            cardCell.lastFourLabel.text = currentCustomer.card.last4
+            
             
             // Styles
             cardCell.layer.backgroundColor = UIColor(red: 242/255.0, green: 242/255.0, blue: 242/255.0, alpha: 1.0).CGColor
@@ -105,6 +114,15 @@ class PaymentTableViewController: UITableViewController {
             performSegueWithIdentifier("addPayment", sender: self)
             
         }
+        
+    }
+    
+    
+    // Get Card
+    func getCards() {
+        
+        let card = CardManager.sharedInstance.fetchCards((PFUser.currentUser()?.objectId)!)
+
         
     }
 

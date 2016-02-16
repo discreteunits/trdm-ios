@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Parse
+import ParseUI
+import Stripe
 
 class PaymentViewController: UIViewController {
 
@@ -15,10 +18,10 @@ class PaymentViewController: UIViewController {
     @IBOutlet weak var navigationTitle: UINavigationItem!
     
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
         // NAV BAR STYLES
         if let navBar = navigationController?.navigationBar {
             
@@ -54,6 +57,7 @@ class PaymentViewController: UIViewController {
     }
     */
     
+
 
 
 }

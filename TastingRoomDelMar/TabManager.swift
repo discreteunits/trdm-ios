@@ -84,6 +84,125 @@ class TabManager: NSObject {
         
     }
     
+    
+    // Place Order To CLOUDCODE
+    func placeOrder(tab: Tab) -> AnyObject {
+        
+        print("-----------------------")
+        print("Tab For CloudCode Order: \(tab)")
+        print("-----------------------")
+
+        // OPTION 1: Create Object
+        var lines = [NSObject]()
+        var mods = [NSObject]()
+
+        // Loop Thru LineItems
+        for lineitem in tab.lines {
+            
+            // Loop Thru Mods
+            for mod in lineitem.modifiers {
+                let paraMod : [String:AnyObject] = [
+                    "id": mod.id
+                ]
+                mods.append(paraMod)
+            }
+            
+            // Loop Thru Items
+            let paraLine : [String:AnyObject] = [
+                "id": lineitem.id,
+                "quantity": lineitem.quantity,
+                "modifiers": mods
+            ]
+            
+            lines.append(paraLine)
+        }
+
+        // Build Params
+        let para : [String:AnyObject] = [
+            "id": tab.id,
+            "note": tab.note,
+            "table": tab.table,
+            "userId": tab.userId,
+            "lineItems": lines
+        ] // end para
+        
+
+        
+        
+        // OPTION 1: Convert Object To JSON
+//        let jsonObject: NSData
+//        let aJSONString: NSString
+//        do {
+//            jsonObject = try NSJSONSerialization.dataWithJSONObject(para, options: NSJSONWritingOptions.PrettyPrinted)
+//            aJSONString = NSString(data: jsonObject, encoding: NSUTF8StringEncoding) as! String
+//        } catch _ {
+//            print("UH OHH")
+//            return "Failed"
+//        }
+        
+// --------------------
+        
+//        // OPTION 2: Create Object
+//        let params:NSMutableDictionary = NSMutableDictionary()
+//            params.setValue(tab.id, forKey: "id")
+//            params.setValue(tab.note, forKey: "note")
+//            params.setValue(tab.table, forKey: "table")
+//            params.setValue(tab.userId, forKey: "userId")
+//            params.setValue(tab.lines, forKey: "lineItems")
+//        
+//
+//        
+//        
+//        // OPTION 2: Convert Object To JSON
+//        let jsonData: NSData
+//        do {
+//            
+//            jsonData = try NSJSONSerialization.dataWithJSONObject(params, options: NSJSONWritingOptions())
+//            let jsonString = NSString(data: jsonData, encoding: NSUTF8StringEncoding) as! String
+//            print("JSON STRING: \(jsonString)")
+//        
+//        } catch _ {
+//            
+//            print("UH OH")
+//            return "Failed"
+//            
+//        }
+        
+// ---------------------
+       
+        var result = String()
+        
+        print("-----------------------")
+        print("Params Built: \(para)")
+        print("-----------------------")
+
+        
+        // Send Object To CloudCode
+        PFCloud.callFunctionInBackground("placeOrder", withParameters: para ) {
+            (response: AnyObject?, error: NSError?) -> Void in
+            
+            if let error = error {
+                
+                // Failure 
+                print("Error: \(error)")
+                
+            } else {
+                
+                // Success 
+                result = String(response!)
+                print("Response: \(response!)")
+                
+                
+            }
+            
+        }
+        
+        return result
+        
+    }
+    
+    
+    
     func addToTab() {
         
     }

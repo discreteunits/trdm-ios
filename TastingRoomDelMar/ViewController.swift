@@ -24,9 +24,11 @@ class ViewController: UIViewController {
     
     var signupOrLogin = String()
     
+    
 
 // ----------------
     override func viewWillAppear(animated: Bool) {
+        
         
         let screenSize: CGRect = UIScreen.mainScreen().bounds
         let screenWidth = screenSize.width
