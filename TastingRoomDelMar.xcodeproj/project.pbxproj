@@ -20,6 +20,8 @@
 		D733D4681C69746C00682A84 /* PaymentAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D733D4671C69746C00682A84 /* PaymentAddViewController.swift */; };
 		D73620401C65143400DD7F71 /* TabLineItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D736203F1C65143400DD7F71 /* TabLineItemCollectionViewCell.swift */; };
 		D73620421C651BE800DD7F71 /* TabLineItemServingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73620411C651BE800DD7F71 /* TabLineItemServingCollectionViewCell.swift */; };
+		D736DADD1C73906800751307 /* TableNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D736DADC1C73906800751307 /* TableNumberViewController.swift */; };
+		D736DADF1C73907A00751307 /* AddGratuityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D736DADE1C73907A00751307 /* AddGratuityViewController.swift */; };
 		D74B1C4A1C583260008F5A36 /* PopoverMGCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74B1C491C583260008F5A36 /* PopoverMGCollectionViewCell.swift */; };
 		D74B1C4C1C5832E6008F5A36 /* PopoverQuantityCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74B1C4B1C5832E6008F5A36 /* PopoverQuantityCollectionViewCell.swift */; };
 		D74B1C4E1C58339E008F5A36 /* PopoverActionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74B1C4D1C58339E008F5A36 /* PopoverActionCollectionViewCell.swift */; };
@@ -108,6 +110,8 @@
 		D736203F1C65143400DD7F71 /* TabLineItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabLineItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		D73620411C651BE800DD7F71 /* TabLineItemServingCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabLineItemServingCollectionViewCell.swift; sourceTree = "<group>"; };
 		D736DADB1C72D70C00751307 /* secondary-logomark-03_rgb.eps */ = {isa = PBXFileReference; lastKnownFileType = file; path = "secondary-logomark-03_rgb.eps"; sourceTree = "<group>"; };
+		D736DADC1C73906800751307 /* TableNumberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableNumberViewController.swift; sourceTree = "<group>"; };
+		D736DADE1C73907A00751307 /* AddGratuityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddGratuityViewController.swift; sourceTree = "<group>"; };
 		D74B1C491C583260008F5A36 /* PopoverMGCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverMGCollectionViewCell.swift; sourceTree = "<group>"; };
 		D74B1C4B1C5832E6008F5A36 /* PopoverQuantityCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverQuantityCollectionViewCell.swift; sourceTree = "<group>"; };
 		D74B1C4D1C58339E008F5A36 /* PopoverActionCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverActionCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -282,7 +286,6 @@
 				D729AB821C471FF90021A66E /* TierIVCollectionViewCell.swift */,
 				D729AB841C4736570021A66E /* TierIVTableViewController.swift */,
 				D75ABF1D1C48306A00435CF1 /* TierIVTableViewCell.swift */,
-				D72B2A4D1C49728C0090875F /* RawPopoverViewController.swift */,
 				D7A8AC071C4D9626008D9A90 /* PopoverViewController.swift */,
 				D7A8AC031C4D9469008D9A90 /* PopoverTableViewCell.swift */,
 				D7E803941C56E140003C12D9 /* PopoverDetailsTableViewCell.swift */,
@@ -313,6 +316,9 @@
 				D775CDD81C6D4AAC006A3F29 /* SettingsEditViewController.swift */,
 				D775CDDC1C6D4AC7006A3F29 /* SettingsEditTableViewController.swift */,
 				D775CDDA1C6D4ABA006A3F29 /* SettingsTextViewController.swift */,
+				D72B2A4D1C49728C0090875F /* RawPopoverViewController.swift */,
+				D736DADC1C73906800751307 /* TableNumberViewController.swift */,
+				D736DADE1C73907A00751307 /* AddGratuityViewController.swift */,
 				D7FFF7B71C3AFB0600020D9A /* Assets.xcassets */,
 				D7FFF7B91C3AFB0600020D9A /* LaunchScreen.storyboard */,
 				D7FFF7BC1C3AFB0600020D9A /* Info.plist */,
@@ -548,6 +554,7 @@
 				D7F981141C4461FD00200639 /* MenuTableViewController.swift in Sources */,
 				D7734AFD1C45D87F009286DD /* TierIVViewController.swift in Sources */,
 				D7F981101C44612800200639 /* ENSideMenuControllerViewController.swift in Sources */,
+				D736DADD1C73906800751307 /* TableNumberViewController.swift in Sources */,
 				D775CDD91C6D4AAC006A3F29 /* SettingsEditViewController.swift in Sources */,
 				D7E803971C56E152003C12D9 /* PopoverMGTableViewCell.swift in Sources */,
 				D733D4661C69598F00682A84 /* CardManager.swift in Sources */,
@@ -580,6 +587,7 @@
 				D7FFF7B31C3AFB0600020D9A /* ViewController.swift in Sources */,
 				D775CDDB1C6D4ABA006A3F29 /* SettingsTextViewController.swift in Sources */,
 				D7FFF7B11C3AFB0600020D9A /* AppDelegate.swift in Sources */,
+				D736DADF1C73907A00751307 /* AddGratuityViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

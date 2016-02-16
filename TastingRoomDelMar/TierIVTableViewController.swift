@@ -166,7 +166,6 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         
         if segue.identifier == "showItemConfig" {
             
-            
             var vc = segue.destinationViewController as! PopoverViewController
             
             // Dynamically assign Popover Window Size

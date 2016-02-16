@@ -55,7 +55,7 @@ class TabViewController: UIViewController {
             TRDMImageView.frame.origin.x = windowWidth * 0.1
             TRDMImageView.alpha = 0.1
             TRDMImageView.layer.zPosition = 99
-            // Create Message Label
+            // Create Message Text View
             let messageTextView = UITextView(frame: CGRectMake(0, 0, windowWidth * 0.7, windowWidth / 2))
             messageTextView.frame.origin.y = windowHeight * 0.65
             messageTextView.frame.origin.x = windowWidth * 0.15
@@ -73,7 +73,6 @@ class TabViewController: UIViewController {
             menuButton.layer.backgroundColor = UIColor(red: 242/255.0, green: 242/255.0, blue: 242/255.0, alpha: 1.0).CGColor
             menuButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
             menuButton.titleLabel?.font = UIFont(name: "NexaRustScriptL-00", size: 24)
-            menuButton.addTarget(self, action: "backToMenu:", forControlEvents: UIControlEvents.TouchUpInside)
             menuButton.layer.cornerRadius = 12.0
             menuButton.clipsToBounds = true
             menuButton.addTarget(self, action: "backToMenu:", forControlEvents: UIControlEvents.TouchUpInside)
