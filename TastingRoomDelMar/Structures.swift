@@ -38,6 +38,8 @@ struct Tab {
     var subtotal = Double()
     var totalTax = Double()
     var grandTotal = Double()
+    var checkoutMethod = String()
+    var gratuity = String()
     
     var lines = [LineItem]()
     

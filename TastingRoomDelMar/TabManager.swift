@@ -213,7 +213,7 @@ class TabManager: NSObject {
         return result
         
     }
-    
+
     
     
     func addToTab() {
@@ -277,6 +277,11 @@ class TabManager: NSObject {
         }
         
     }
+
+    
+    
+    
+    
     
 }
 

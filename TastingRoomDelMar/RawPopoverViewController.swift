@@ -144,7 +144,7 @@ class RawPopoverViewController: UIViewController, UIPopoverPresentationControlle
         if segue.identifier == "addGratuity" {
             let vc = segue.destinationViewController as! AddGratuityViewController
             // Size Popover Window
-            vc.preferredContentSize = CGSizeMake(screenWidth, screenHeight * 0.55)
+            vc.preferredContentSize = CGSizeMake(screenWidth, screenHeight * 0.5)
             
             // Data To Be Passed
             

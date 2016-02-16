@@ -16,7 +16,7 @@ protocol TabTableViewDelegate {
     
 }
 
-class TabTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
+class TabTableViewController: UITableViewController, NSFetchedResultsControllerDelegate, UIPopoverPresentationControllerDelegate {
 
     // Table Cell Row Indicators
     var rows: Int!
@@ -304,15 +304,53 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
     
 
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        
+        // Get Screen Size
+        let screenWidth = self.view.bounds.size.width
+        let screenHeight = self.view.bounds.size.height
+        
+        
+        // Enter Table Number Popover
+        if segue.identifier == "enterTableNumber" {
+            
+            let vc = segue.destinationViewController as! TableNumberViewController
+            // Size Popover Window
+            vc.preferredContentSize = CGSizeMake(screenWidth, screenHeight*0.35)
+            
+            // Data To Be Passed
+            
+            
+            // Set Controller
+            let controller = vc.popoverPresentationController
+            controller!.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
+            
+            if controller != nil {
+                controller?.delegate = self
+            }
+            
+        }
+        
+        // Add Gratuity Popover
+        if segue.identifier == "addGratuity" {
+            let vc = segue.destinationViewController as! AddGratuityViewController
+            // Size Popover Window
+            vc.preferredContentSize = CGSizeMake(screenWidth, screenHeight * 0.5)
+            
+            // Data To Be Passed
+            
+            
+            // Set Controller
+            let controller = vc.popoverPresentationController
+            controller!.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
+            
+            if controller != nil {
+                controller?.delegate = self
+            }
+            
+        }
+        
     }
-    */
 
 }
 
@@ -435,11 +473,41 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
     
     
     @IBAction func placeOrder(sender: AnyObject) {
-        
-//        displayAlert("Whoops", message: "Looks like you're not logged in or  don't have an account. Login or create an account to place an order.")
-        
-        tab.table = "23"
+           
+
         tab.note = "Hello World"
+        
+        // Checkout Options
+        if tab.checkoutMethod == "" {
+            checkoutOptions("Checkout Options", message: "Please select your desired checkout method below.")
+        }
+
+    }
+    
+    func stripeCheckout() {
+        
+        // Whoops Logged In
+        if tab.userId == "" {
+            whoopsLoggedInAlert("Whoops", message: "Looks like you're not logged in or don't have an account. Login or create an account to place an order.")
+        }
+        
+        // Whoops Credit Card
+        if CardManager.sharedInstance.currentCustomer.card.brand == "" {
+            whoopsCreditCardAlert("Whoops", message: "Looks like you don't have a credit card on file. Please add a card or checkout with your servers.")
+        }
+        
+        // Enter Table Number
+        if tab.table == "" {
+            performSegueWithIdentifier("enterTableNumber", sender: self)
+        }
+        
+        // Add Gratuity
+        if tab.gratuity == "" {
+            performSegueWithIdentifier("addGratuity", sender: self)
+        }
+        
+        
+        
         
         let result = TabManager.sharedInstance.placeOrder(tab)
         print("Place Order, CloudCode Function Returned: \(result)")
@@ -447,15 +515,48 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     
-
+// -----------------------
     
-    // Logged In Alert
+    //// CheckoutOptions
     @available(iOS 8.0, *)
-    func displayAlert(title: String, message: String) {
+    func checkoutOptions(title: String, message: String) {
         
         // Create Controller
         let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-            alert.view.tintColor = UIColor(red: 9/255.0, green: 178/255.0, blue: 126/255.0, alpha: 1.0)
+        alert.view.tintColor = UIColor(red: 9/255.0, green: 178/255.0, blue: 126/255.0, alpha: 1.0)
+        
+        // Create Actions
+        let loginAction = UIAlertAction(title: "Closeout now ", style: .Default, handler: { (action) -> Void in
+            self.tab.checkoutMethod = "stripe"
+            
+            // Continue Place Order
+            self.stripeCheckout()
+            
+            print("Closeout Now Selected")
+        })
+        let createAccountAction = UIAlertAction(title: "Closeout later with your Server", style: .Default , handler: { (action) -> Void in
+            self.tab.checkoutMethod = "server"
+            print("Closeout Later Selected")
+        })
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action) -> Void in
+            print("Cancel Selected")
+        })
+        
+        // Add Actions
+        alert.addAction(loginAction)
+        alert.addAction(createAccountAction)
+        alert.addAction(cancelAction)
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    //// WhoopsLoggedIn
+    @available(iOS 8.0, *)
+    func whoopsLoggedInAlert(title: String, message: String) {
+        
+        // Create Controller
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        alert.view.tintColor = UIColor(red: 9/255.0, green: 178/255.0, blue: 126/255.0, alpha: 1.0)
         
         // Create Actions
         let loginAction = UIAlertAction(title: "Login", style: .Default, handler: { (action) -> Void in
@@ -470,11 +571,34 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
             print("Cancel Selected")
         })
         
-        
-        
         // Add Actions
         alert.addAction(loginAction)
         alert.addAction(createAccountAction)
+        alert.addAction(cancelAction)
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+
+    
+    //// WhoopsCreditCard
+    @available(iOS 8.0, *)
+    func whoopsCreditCardAlert(title: String, message: String) {
+        
+        // Create Controller
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        alert.view.tintColor = UIColor(red: 9/255.0, green: 178/255.0, blue: 126/255.0, alpha: 1.0)
+        
+        // Create Actions
+        let addCardAction = UIAlertAction(title: "Add Card", style: .Default, handler: { (action) -> Void in
+            self.goToAddPayment()
+            print("Add Card Selected")
+        })
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action) -> Void in
+            print("Cancel Selected")
+        })
+        
+        // Add Actions
+        alert.addAction(addCardAction)
         alert.addAction(cancelAction)
         
         self.presentViewController(alert, animated: true, completion: nil)
@@ -486,6 +610,16 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main",bundle: nil)
         
         let vc = mainStoryboard.instantiateViewControllerWithIdentifier("createAccount")
+        
+        self.presentViewController(vc, animated: true, completion: nil)
+        
+    }
+    
+    func goToAddPayment() {
+        
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main",bundle: nil)
+        
+        let vc = mainStoryboard.instantiateViewControllerWithIdentifier("addPayment")
         
         self.presentViewController(vc, animated: true, completion: nil)
         

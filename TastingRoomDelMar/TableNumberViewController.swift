@@ -10,6 +10,9 @@ import UIKit
 
 class TableNumberViewController: UIViewController {
 
+    var tableNumberTextField: UITextField!
+    
+    var tab = TabManager.sharedInstance.currentTab
     
 // -------------------
     override func viewDidLoad() {
@@ -29,16 +32,19 @@ class TableNumberViewController: UIViewController {
         enterTableNumberLabel.textColor = UIColor.blackColor()
         enterTableNumberLabel.textAlignment = .Center
         // Create Text Field
-        let tableNumberTextField = UITextField(frame: CGRectMake(0, 0, screenWidth * 0.3, 120))
+        tableNumberTextField = UITextField(frame: CGRectMake(0, 0, screenWidth * 0.3, 100))
         tableNumberTextField.frame.origin.y = 54
-        tableNumberTextField.frame.origin.x = screenWidth * 0.38
+        tableNumberTextField.frame.origin.x = screenWidth * 0.36
         tableNumberTextField.placeholder = "23"
         tableNumberTextField.font = UIFont(name: "OpenSans", size: 72)
         tableNumberTextField.autocorrectionType = .No
         tableNumberTextField.keyboardType = .NumberPad
         tableNumberTextField.returnKeyType = .Done
-        tableNumberTextField.clearButtonMode = .WhileEditing
+        tableNumberTextField.clearButtonMode = .Never
         tableNumberTextField.contentVerticalAlignment = .Center
+        tableNumberTextField.textAlignment = .Center
+        tableNumberTextField.backgroundColor = UIColor.whiteColor()
+        tableNumberTextField.becomeFirstResponder()
         // Create Cancel Button
         let buttonWidth = (screenWidth - 24) / 2
         
@@ -48,7 +54,7 @@ class TableNumberViewController: UIViewController {
         cancelButton.setTitle("Cancel", forState: .Normal)
         cancelButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
         cancelButton.titleLabel?.font = UIFont(name: "NexaRustScriptL-00", size: 18)
-        cancelButton.layer.backgroundColor = UIColor(red: 242/255.0, green: 242/255.0, blue: 242/255.0, alpha: 1.0).CGColor
+        cancelButton.layer.backgroundColor = UIColor(red: 224/255.0, green: 224/255.0, blue: 224/255.0, alpha: 1.0).CGColor
         cancelButton.layer.cornerRadius = 12.0
         cancelButton.clipsToBounds = true
         cancelButton.addTarget(self, action: "cancelPopover:", forControlEvents: UIControlEvents.TouchUpInside)
@@ -62,7 +68,7 @@ class TableNumberViewController: UIViewController {
         placeOrderButton.layer.backgroundColor = UIColor(red: 9/255.0, green: 178/255.0, blue: 126/255.0, alpha: 1.0).CGColor
         placeOrderButton.layer.cornerRadius = 12.0
         placeOrderButton.clipsToBounds = true
-        placeOrderButton.addTarget(self, action: "placeOrder:", forControlEvents: UIControlEvents.TouchUpInside)
+        placeOrderButton.addTarget(self, action: "placeOrderSelected:", forControlEvents: UIControlEvents.TouchUpInside)
         
         // Add To View
         popoverView.addSubview(enterTableNumberLabel)
@@ -73,6 +79,25 @@ class TableNumberViewController: UIViewController {
     
     
     
+    }
+    
+    func placeOrderSelected() {
+        self.presentingViewController!.dismissViewControllerAnimated(false, completion: nil)
+        
+        
+        tab.table = tableNumberTextField.text!
+        
+        if tab.table != "" {
+            if tab.gratuity == "" {
+                self.parentViewController?.performSegueWithIdentifier("addGratuity", sender: self)
+            } else {
+                let result = TabManager.sharedInstance.placeOrder(tab)
+                print("Place Order, CloudCode Function Returned: \(result)")
+            }
+        } else {
+            addTableNumberAlert("Whoops", message: "Please enter your table number.")
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -97,4 +122,24 @@ class TableNumberViewController: UIViewController {
     }
     */
 
+    
+    //// Add Table Number
+    @available(iOS 8.0, *)
+    func addTableNumberAlert(title: String, message: String) {
+        
+        // Create Controller
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        alert.view.tintColor = UIColor(red: 9/255.0, green: 178/255.0, blue: 126/255.0, alpha: 1.0)
+        
+        // Create Actions
+        let cancelAction = UIAlertAction(title: "Ok", style: .Cancel, handler: { (action) -> Void in
+            print("Cancel Selected")
+        })
+        
+        // Add Actions
+        alert.addAction(cancelAction)
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
 }

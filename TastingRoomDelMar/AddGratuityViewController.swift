@@ -8,8 +8,12 @@
 
 import UIKit
 
-class AddGratuityViewController: UIViewController {
+class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
 
+    var gratuityCollectionView: UICollectionView!
+    
+    var selectedGratuity = String()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -81,31 +85,37 @@ class AddGratuityViewController: UIViewController {
         totalValueLabel.textAlignment = .Right
         totalValueLabel.text = "50.54"
 
-        
-        
-        
         // Collection View
+        let itemWidth = (screenWidth/5)
         
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        layout.itemSize = CGSize(width: itemWidth, height: 50)
         
-        
-        
+        gratuityCollectionView = UICollectionView(frame: CGRectMake(0, 0, screenWidth, 66), collectionViewLayout: layout)
+        gratuityCollectionView.frame.origin.y = 170
+        gratuityCollectionView.frame.origin.x = 0
+        gratuityCollectionView.backgroundColor = UIColor.clearColor()
+        gratuityCollectionView.dataSource = self
+        gratuityCollectionView.delegate = self
+        gratuityCollectionView.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
         
         // Create Cancel Button
         let buttonWidth = (screenWidth - 24) / 2
         
         let cancelButton = UIButton(frame: CGRectMake(0, 0, buttonWidth, 60))
-        cancelButton.frame.origin.y = 280
+        cancelButton.frame.origin.y = 250
         cancelButton.frame.origin.x = 8
         cancelButton.setTitle("Cancel", forState: .Normal)
         cancelButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
         cancelButton.titleLabel?.font = UIFont(name: "NexaRustScriptL-00", size: 18)
-        cancelButton.layer.backgroundColor = UIColor(red: 242/255.0, green: 242/255.0, blue: 242/255.0, alpha: 1.0).CGColor
+        cancelButton.layer.backgroundColor = UIColor(red: 224/255.0, green: 224/255.0, blue: 224/255.0, alpha: 1.0).CGColor
         cancelButton.layer.cornerRadius = 12.0
         cancelButton.clipsToBounds = true
         cancelButton.addTarget(self, action: "cancelPopover:", forControlEvents: UIControlEvents.TouchUpInside)
         // Create Place Order Button
         let placeOrderButton = UIButton(frame: CGRectMake(0, 0, buttonWidth, 60))
-        placeOrderButton.frame.origin.y = 280
+        placeOrderButton.frame.origin.y = 250
         placeOrderButton.frame.origin.x = buttonWidth + 16
         placeOrderButton.setTitle("Place Order", forState: .Normal)
         placeOrderButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
@@ -113,7 +123,7 @@ class AddGratuityViewController: UIViewController {
         placeOrderButton.layer.backgroundColor = UIColor(red: 9/255.0, green: 178/255.0, blue: 126/255.0, alpha: 1.0).CGColor
         placeOrderButton.layer.cornerRadius = 12.0
         placeOrderButton.clipsToBounds = true
-        placeOrderButton.addTarget(self, action: "placeOrder:", forControlEvents: UIControlEvents.TouchUpInside)
+        placeOrderButton.addTarget(self, action: "placeOrderWithGratuity:", forControlEvents: UIControlEvents.TouchUpInside)
         
         // Add To View
         popoverView.addSubview(addGratuityLabel)
@@ -131,23 +141,23 @@ class AddGratuityViewController: UIViewController {
         popoverView.addSubview(gratuityValueLabel)
         popoverView.addSubview(totalValueLabel)
     
+        popoverView.addSubview(gratuityCollectionView)
+
     
     
+    }
     
-    
-    
-    
-    
-    
-    
-    
+    func placeOrderWithGratuity() {
+        
+        
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
     /*
     // MARK: - Navigation
@@ -159,4 +169,39 @@ class AddGratuityViewController: UIViewController {
     }
     */
 
+    // ----------------------
+    
+    // Collection View Data Source
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 4
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        
+        var cell: UITableViewCell!
+        
+        // Cash Option
+        if indexPath.row == 0 {
+            
+            
+        // 15% Option
+        } else if indexPath.row == 1 {
+            
+            
+        // 20% Option
+        } else if indexPath.row == 2 {
+            
+            
+        // 25% Option
+        } else if indexPath.row == 3 {
+          
+            
+        }
+        
+        
+        let cell = gratuityCollectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath)
+        cell.backgroundColor = UIColor.orangeColor()
+        return cell
+    }
 }
+
