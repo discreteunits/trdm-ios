@@ -14,6 +14,8 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
     
     var selectedGratuity = String()
     
+    var tab = TabManager.sharedInstance.currentTab
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -98,7 +100,7 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
         gratuityCollectionView.backgroundColor = UIColor.clearColor()
         gratuityCollectionView.dataSource = self
         gratuityCollectionView.delegate = self
-        gratuityCollectionView.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
+//        gratuityCollectionView.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
         
         // Create Cancel Button
         let buttonWidth = (screenWidth - 24) / 2
@@ -149,7 +151,14 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
     
     func placeOrderWithGratuity() {
         
+        tab.gratuity = selectedGratuity
         
+        if tab.gratuity != "" {
+            let result = TabManager.sharedInstance.placeOrder(tab)
+            print("Place Order, CloudCode Function Returned: \(result)")
+        } else {
+            addGratuityAlert("Whoops", message: "Please selected a gratuity option.")
+        }
         
         
     }
@@ -178,30 +187,78 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
-        var cell: UITableViewCell!
-        
+        let cell = gratuityCollectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! AddGratuityCollectionViewCell
+        cell.backgroundColor = UIColor.whiteColor()
+
+
         // Cash Option
         if indexPath.row == 0 {
-            
+            cell.label.text = "Cash"
+            return cell
             
         // 15% Option
         } else if indexPath.row == 1 {
-            
+            cell.label.text = "15%"
+            return cell
             
         // 20% Option
         } else if indexPath.row == 2 {
-            
+            cell.label.text = "20%"
+            return cell
             
         // 25% Option
         } else if indexPath.row == 3 {
-          
+            cell.label.text = "25%"
+            return cell
             
         }
         
         
-        let cell = gratuityCollectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath)
-        cell.backgroundColor = UIColor.orangeColor()
+
         return cell
     }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
+        let selectedCell = collectionView.cellForItemAtIndexPath(indexPath)! as! AddGratuityCollectionViewCell
+        
+        if indexPath.row == 0 {
+            selectedGratuity = selectedCell.label.text!
+            print("User chose a gratuity of: \(selectedGratuity)")
+        } else if indexPath.row == 1 {
+            selectedGratuity = selectedCell.label.text!
+            print("User chose a gratuity of: \(selectedGratuity)")
+        } else if indexPath.row == 2 {
+            selectedGratuity = selectedCell.label.text!
+            print("User chose a gratuity of: \(selectedGratuity)")
+        } else if indexPath.row == 3 {
+            selectedGratuity = selectedCell.label.text!
+            print("User chose a gratuity of: \(selectedGratuity)")
+        }
+        
+    }
+    
+    
+    
+    //// Add Gratuity
+    @available(iOS 8.0, *)
+    func addGratuityAlert(title: String, message: String) {
+        
+        // Create Controller
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        alert.view.tintColor = UIColor(red: 9/255.0, green: 178/255.0, blue: 126/255.0, alpha: 1.0)
+        
+        // Create Actions
+        let cancelAction = UIAlertAction(title: "Ok", style: .Cancel, handler: { (action) -> Void in
+            print("Cancel Selected")
+        })
+        
+        // Add Actions
+        alert.addAction(cancelAction)
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    
 }
 

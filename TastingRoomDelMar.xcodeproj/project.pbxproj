@@ -22,6 +22,7 @@
 		D73620421C651BE800DD7F71 /* TabLineItemServingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73620411C651BE800DD7F71 /* TabLineItemServingCollectionViewCell.swift */; };
 		D736DADD1C73906800751307 /* TableNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D736DADC1C73906800751307 /* TableNumberViewController.swift */; };
 		D736DADF1C73907A00751307 /* AddGratuityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D736DADE1C73907A00751307 /* AddGratuityViewController.swift */; };
+		D736DAE11C73DACE00751307 /* AddGratuityCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D736DAE01C73DACE00751307 /* AddGratuityCollectionViewCell.swift */; };
 		D74B1C4A1C583260008F5A36 /* PopoverMGCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74B1C491C583260008F5A36 /* PopoverMGCollectionViewCell.swift */; };
 		D74B1C4C1C5832E6008F5A36 /* PopoverQuantityCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74B1C4B1C5832E6008F5A36 /* PopoverQuantityCollectionViewCell.swift */; };
 		D74B1C4E1C58339E008F5A36 /* PopoverActionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74B1C4D1C58339E008F5A36 /* PopoverActionCollectionViewCell.swift */; };
@@ -112,6 +113,7 @@
 		D736DADB1C72D70C00751307 /* secondary-logomark-03_rgb.eps */ = {isa = PBXFileReference; lastKnownFileType = file; path = "secondary-logomark-03_rgb.eps"; sourceTree = "<group>"; };
 		D736DADC1C73906800751307 /* TableNumberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableNumberViewController.swift; sourceTree = "<group>"; };
 		D736DADE1C73907A00751307 /* AddGratuityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddGratuityViewController.swift; sourceTree = "<group>"; };
+		D736DAE01C73DACE00751307 /* AddGratuityCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddGratuityCollectionViewCell.swift; sourceTree = "<group>"; };
 		D74B1C491C583260008F5A36 /* PopoverMGCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverMGCollectionViewCell.swift; sourceTree = "<group>"; };
 		D74B1C4B1C5832E6008F5A36 /* PopoverQuantityCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverQuantityCollectionViewCell.swift; sourceTree = "<group>"; };
 		D74B1C4D1C58339E008F5A36 /* PopoverActionCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverActionCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -299,6 +301,7 @@
 				D7B616851C62D7DB002CF1DE /* TabTableViewController.swift */,
 				D736DADC1C73906800751307 /* TableNumberViewController.swift */,
 				D736DADE1C73907A00751307 /* AddGratuityViewController.swift */,
+				D736DAE01C73DACE00751307 /* AddGratuityCollectionViewCell.swift */,
 				D7C448C21C641C0400CD12F8 /* TabHeaderTableViewCell.swift */,
 				D7B616871C62DCE0002CF1DE /* TabLineItemTableViewCell.swift */,
 				D73620411C651BE800DD7F71 /* TabLineItemServingCollectionViewCell.swift */,
@@ -561,6 +564,7 @@
 				D775CDD71C6D3D00006A3F29 /* SettingsFooterTableViewCell.swift in Sources */,
 				D75ABF1E1C48306A00435CF1 /* TierIVTableViewCell.swift in Sources */,
 				D7F495311C3B38D2006E8592 /* SignUpLogInTableViewController.swift in Sources */,
+				D736DAE11C73DACE00751307 /* AddGratuityCollectionViewCell.swift in Sources */,
 				D74B1C4A1C583260008F5A36 /* PopoverMGCollectionViewCell.swift in Sources */,
 				D7F981121C4461A300200639 /* ENSideMenuNavigationController.swift in Sources */,
 				D7B6168A1C62DCEF002CF1DE /* TabTotalTableViewCell.swift in Sources */,
