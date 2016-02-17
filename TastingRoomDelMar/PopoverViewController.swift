@@ -406,6 +406,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                 if let viewWithTag = tierIVView!.viewWithTag(21) {
                     
                     viewWithTag.removeFromSuperview()
+                    
                 }
                 
 

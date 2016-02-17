@@ -13,7 +13,7 @@ protocol TableNumberViewDelegate {
     func gratuitySegue()
 }
 
-class TableNumberViewController: UIViewController {
+class TableNumberViewController: UIViewController, UITextFieldDelegate {
 
     var tableNumberTextField: UITextField!
     
@@ -65,7 +65,7 @@ class TableNumberViewController: UIViewController {
         cancelButton.layer.backgroundColor = UIColor(red: 224/255.0, green: 224/255.0, blue: 224/255.0, alpha: 1.0).CGColor
         cancelButton.layer.cornerRadius = 12.0
         cancelButton.clipsToBounds = true
-        cancelButton.addTarget(self, action: "cancelPopover:", forControlEvents: UIControlEvents.TouchUpInside)
+        cancelButton.addTarget(self, action: "cancelPopover", forControlEvents: UIControlEvents.TouchUpInside)
         // Create Place Order Button
         let placeOrderButton = UIButton(frame: CGRectMake(0, 0, buttonWidth, 60))
         placeOrderButton.frame.origin.y = 160
@@ -89,31 +89,55 @@ class TableNumberViewController: UIViewController {
     
     }
     
+    
     func cancelPopover() {
         self.presentingViewController!.dismissViewControllerAnimated(false, completion: nil)
     }
     
+    
+    
     func placeOrderSelected() {
         
+        // Check if text field is empty
         if tableNumberTextField.text! != "" {
-            tab.table = String(tableNumberTextField.text!)
-            print("User entered table number: \(tab.table)")
+            
+            // Set Table Number
+                TabManager.sharedInstance.currentTab.table = String(self.tableNumberTextField.text!)
+                print("User entered table number: \(TabManager.sharedInstance.currentTab.table)")
         
-            if tab.table != "" {
-                if tab.gratuity == "" {
-                    self.presentingViewController!.dismissViewControllerAnimated(true, completion: nil)
+            // If table number was set
+            if TabManager.sharedInstance.currentTab.table != "" {
                 
+                // If gratuity is still empty, go to addGratuity
+                if TabManager.sharedInstance.currentTab.gratuity == "" {
+                    
+                    self.presentingViewController!.dismissViewControllerAnimated(true, completion: nil)
+                    
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.delegate?.gratuitySegue()
+                    }
+                
+                // If Gratuity is NOT empty, continue placing order
                 } else {
-                    let result = TabManager.sharedInstance.placeOrder(tab)
+                    
+                    let result = TabManager.sharedInstance.placeOrder(TabManager.sharedInstance.currentTab)
                     print("Continuing to place order from TableNumberViewController: \(result)")
+                    
                 }
+                
+            // If table number was NOT set
             } else {
-                addTableNumberAlert("Whoops", message: "Please enter your table number.")
+                
+                addTableNumberAlert("FUCK", message: "Please enter your table number.")
+          
             }
         
-            dispatch_async(dispatch_get_main_queue()) {
-                self.delegate?.gratuitySegue()
-            }
+
+        // If text field was empty
+        } else {
+            
+            addTableNumberAlert("Whoops", message: "Please enter your table number.")
+            
         }
 
     }

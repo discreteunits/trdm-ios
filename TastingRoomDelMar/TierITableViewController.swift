@@ -35,7 +35,9 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getCards()
+        if PFUser.currentUser()!.objectId != "" {
+            getCards()
+        }
         
         animateTable()
         
@@ -359,11 +361,15 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
     
     // Get Card CLOUDCODE FUNCTION CALL FETCH
     func getCards() {
+        
         dispatch_async(dispatch_get_main_queue()){
-            let card = CardManager.sharedInstance.fetchCards((PFUser.currentUser()?.objectId)!)
             
+            // Get User Card via User Object ID
+            let card = CardManager.sharedInstance.fetchCards(TabManager.sharedInstance.currentTab.userId)
             CardManager.sharedInstance.currentCustomer.orderId.append(String(card))
+        
         }
+        
     }
     
 // Facebook Graph Requests

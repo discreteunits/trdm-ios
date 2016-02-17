@@ -78,7 +78,7 @@ class ViewController: UIViewController {
             if(error != nil) {
                 self.displayAlert("Error", message: (error?.localizedDescription)!)
                 return
-            } else {
+            } else if FBSDKAccessToken.currentAccessToken() != nil {
                 
                 self.activityStart()
                 

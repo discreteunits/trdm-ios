@@ -44,7 +44,7 @@ struct Tab {
     var lines = [LineItem]()
     
     init() {
-        if PFUser.currentUser() != nil {
+        if PFUser.currentUser()!.objectId != nil {
             userId = PFUser.currentUser()!.objectId!
         }
     }

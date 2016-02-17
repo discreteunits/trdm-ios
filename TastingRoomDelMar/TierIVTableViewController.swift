@@ -23,7 +23,6 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     var TierIVViewControllerRef: TierIVViewController?
     var TierIVCollectionViewControllerRef: TierIVCollectionViewController?
     
-    
     @IBOutlet weak var addToTabButton: UIButton!
     
     var delegate: TierIVTableViewDelegate?
@@ -46,6 +45,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     
     var itemTaxRates = [PFObject]()
 
+    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
 
 
 // ------------
@@ -137,6 +137,8 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
 // SEGUE TRIGGER AND PREPARATION
     @IBAction func addToOrder(sender: AnyObject) {
         
+        activityStart()
+        
         // ASSIGN ITEM TO OBJECT TO BE PASSED TO POPOVER
         if let button = sender as? UIButton {
             if let superview = button.superview {
@@ -211,6 +213,8 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
                 controller?.delegate = self
                             
             }
+            
+            activityStop()
 
         }
         
@@ -259,6 +263,23 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
 
             return modArray!
             
+    }
+    
+    // ACTIVITY START FUNCTION
+    func activityStart() {
+        activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 50, 50))
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+        view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+        UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+    }
+    
+    // ACTIVITY STOP FUNCTION
+    func activityStop() {
+        self.activityIndicator.stopAnimating()
+        UIApplication.sharedApplication().endIgnoringInteractionEvents()
     }
     
 }

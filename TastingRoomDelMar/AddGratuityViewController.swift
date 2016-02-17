@@ -117,7 +117,7 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
         cancelButton.layer.backgroundColor = UIColor(red: 224/255.0, green: 224/255.0, blue: 224/255.0, alpha: 1.0).CGColor
         cancelButton.layer.cornerRadius = 12.0
         cancelButton.clipsToBounds = true
-        cancelButton.addTarget(self, action: "cancelPopover:", forControlEvents: UIControlEvents.TouchUpInside)
+        cancelButton.addTarget(self, action: "cancelPopover", forControlEvents: UIControlEvents.TouchUpInside)
         // Create Place Order Button
         let placeOrderButton = UIButton(frame: CGRectMake(0, 0, buttonWidth, 60))
         placeOrderButton.frame.origin.y = 250
@@ -167,6 +167,10 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
             
         }
         
+    }
+    
+    func cancelPopover() {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {

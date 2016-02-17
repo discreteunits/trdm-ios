@@ -221,7 +221,7 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
 
 
     
-    
+// ---------- Begin Delete LineItem
 
 
     // Override to support conditional editing of the table view.
@@ -287,6 +287,7 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
         tableView.beginUpdates()
     }
     
+    
 //    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
 //        
 //        if type == .Delete {
@@ -304,6 +305,8 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
         tableView.endUpdates()
     }
+    
+// ---------------------
     
 
 
@@ -367,11 +370,13 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
 
 }
 
+// Extension for protocol in Table Number Popover
 extension TabTableViewController: TableNumberViewDelegate {
+    
     func gratuitySegue() {
         performSegueWithIdentifier("addGratuity", sender: self)
-//        performSelector("addGratuity", withObject: nil, afterDelay: 1.0)
     }
+    
 }
 
 // -----------------------------------
@@ -493,13 +498,14 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
     
     
     @IBAction func placeOrder(sender: AnyObject) {
-           
-
-        tab.note = "Hello World"
         
         // Checkout Options
         if tab.checkoutMethod == "" {
             checkoutOptions("Checkout Options", message: "Please select your desired checkout method below.")
+        
+        // If User already selected checkout option of stripe
+        } else if tab.checkoutMethod == "stripe" {
+            self.stripeCheckout()
         }
 
     }
@@ -517,7 +523,7 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
         }
         
         // Enter Table Number
-        if tab.table == "" {
+        if TabManager.sharedInstance.currentTab.table == "" {
             performSegueWithIdentifier("enterTableNumber", sender: self)
         }
         
@@ -525,9 +531,6 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
         if tab.gratuity == "" {
             performSegueWithIdentifier("addGratuity", sender: self)
         }
-        
-        
-        
 
     }
     

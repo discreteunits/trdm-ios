@@ -36,6 +36,7 @@ class TabManager: NSObject {
     
     func syncTab(tabId: String) {
         
+        // Look for order in DB
         if currentTab.id != "" {
             
             print("Current tab has an ID.")
@@ -45,10 +46,12 @@ class TabManager: NSObject {
             
             print("Order found that matches tab: \(currentTab)")
             
-            
+        // Initialize new tab
         } else {
             
             currentTab = Tab()
+//            currentTab.table = "22"
+            currentTab.note = "Fuck You Guy."
             print("New Tab Created: \(currentTab)")
             
         }

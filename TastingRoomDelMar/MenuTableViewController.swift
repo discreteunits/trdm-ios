@@ -134,7 +134,6 @@ class MenuTableViewController: UITableViewController {
             let rootVC = sideMenuController() as! UIViewController
             rootVC.presentViewController(destViewController, animated: true, completion: nil)
             
-            
                 selectedMenuItem = 0
             break
         case 3:

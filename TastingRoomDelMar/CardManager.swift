@@ -20,7 +20,7 @@ class CardManager: NSObject {
     override init() {
         super.init()
  
-        currentCustomer.userId = (PFUser.currentUser()?.objectId!)!
+        currentCustomer.userId = TabManager.sharedInstance.currentTab.userId
         print("Current Customer: \(currentCustomer)")
         
     }
