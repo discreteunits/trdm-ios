@@ -95,22 +95,25 @@ class TableNumberViewController: UIViewController {
     
     func placeOrderSelected() {
         
-        tab.table = tableNumberTextField.text!
+        if tableNumberTextField.text! != "" {
+            tab.table = String(tableNumberTextField.text!)
+            print("User entered table number: \(tab.table)")
         
-        if tab.table != "" {
-            if tab.gratuity == "" {
-                self.presentingViewController!.dismissViewControllerAnimated(true, completion: nil)
+            if tab.table != "" {
+                if tab.gratuity == "" {
+                    self.presentingViewController!.dismissViewControllerAnimated(true, completion: nil)
                 
+                } else {
+                    let result = TabManager.sharedInstance.placeOrder(tab)
+                    print("Continuing to place order from TableNumberViewController: \(result)")
+                }
             } else {
-                let result = TabManager.sharedInstance.placeOrder(tab)
-                print("Continuing to place order from TableNumberViewController: \(result)")
+                addTableNumberAlert("Whoops", message: "Please enter your table number.")
             }
-        } else {
-            addTableNumberAlert("Whoops", message: "Please enter your table number.")
-        }
         
-        dispatch_async(dispatch_get_main_queue()) {
-            self.delegate?.gratuitySegue()
+            dispatch_async(dispatch_get_main_queue()) {
+                self.delegate?.gratuitySegue()
+            }
         }
 
     }

@@ -91,6 +91,8 @@ class TabManager: NSObject {
         print("-----------------------")
         print("Tab For CloudCode Order: \(tab)")
         print("-----------------------")
+        
+
 
         // OPTION 1: Create Object
         var lines = [[String:AnyObject]]()
@@ -186,13 +188,8 @@ class TabManager: NSObject {
        
         var result = String()
         
-        print("-----------------------")
-        print("Params Built: \(para)")
-        print("-----------------------")
-
-        
         // Send Object To CloudCode
-        PFCloud.callFunctionInBackground("placeOrder", withParameters: para ) {
+        PFCloud.callFunctionInBackground("placeOrder", withParameters: order ) {
             (response: AnyObject?, error: NSError?) -> Void in
             
             if let error = error {

@@ -528,10 +528,7 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
         
         
         
-        
-        let result = TabManager.sharedInstance.placeOrder(tab)
-        print("Place Order, CloudCode Function Returned: \(result)")
-        
+
     }
     
     

@@ -18,6 +18,9 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        TabManager.sharedInstance.currentTab.table = "12"
+//        TabManager.sharedInstance.currentTab.note = "Fuck you guy."
 
         let popoverView = self.view
         popoverView.layer.backgroundColor = UIColor(red: 246/255.0, green: 246/255.0, blue: 246/255.0, alpha: 1.0).CGColor
@@ -125,7 +128,7 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
         placeOrderButton.layer.backgroundColor = UIColor(red: 9/255.0, green: 178/255.0, blue: 126/255.0, alpha: 1.0).CGColor
         placeOrderButton.layer.cornerRadius = 12.0
         placeOrderButton.clipsToBounds = true
-        placeOrderButton.addTarget(self, action: "placeOrderWithGratuity:", forControlEvents: UIControlEvents.TouchUpInside)
+        placeOrderButton.addTarget(self, action: "placeOrderWithGratuity", forControlEvents: UIControlEvents.TouchUpInside)
         
         // Add To View
         popoverView.addSubview(addGratuityLabel)
@@ -151,15 +154,18 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
     
     func placeOrderWithGratuity() {
         
-        tab.gratuity = selectedGratuity
-        
-        if tab.gratuity != "" {
-            let result = TabManager.sharedInstance.placeOrder(tab)
-            print("Place Order, CloudCode Function Returned: \(result)")
-        } else {
-            addGratuityAlert("Whoops", message: "Please selected a gratuity option.")
+        if selectedGratuity != "" {
+            
+            tab.gratuity = selectedGratuity
+
+            if tab.gratuity != "" {
+                let result = TabManager.sharedInstance.placeOrder(tab)
+                print("Place Order, CloudCode Function Returned: \(result)")
+            } else {
+                addGratuityAlert("Whoops", message: "Please selected a gratuity option.")
+            }
+            
         }
-        
         
     }
 
@@ -189,33 +195,40 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
-        var cell: UICollectionViewCell!
+        let cell = gratuityCollectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! AddGratuityCollectionViewCell
+        
+        cell.layer.borderWidth = 2
+        cell.layer.borderColor = UIColor(red: 242/255.0, green: 242/255.0, blue: 242/255.0, alpha: 1.0).CGColor
+        cell.layer.cornerRadius = 10.0
+        cell.clipsToBounds = true
         
 
+        
         // Cash Option
         if indexPath.row == 0 {
-            let cashCell = gratuityCollectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! AddGratuityCollectionViewCell
-            cashCell.label.text = "Cash"
-            cashCell.label.textColor = UIColor.blackColor()
-            return cashCell
+
+
+            cell.label.text = "Cash"
+            cell.label.textColor = UIColor.blackColor()
+            return cell
             
         // 15% Option
         } else if indexPath.row == 1 {
-            let smallCell = gratuityCollectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! AddGratuityCollectionViewCell
-            smallCell.label.text = "15%"
-            return smallCell
+
+            cell.label.text = "15%"
+            return cell
             
         // 20% Option
         } else if indexPath.row == 2 {
-            let mediumCell = gratuityCollectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! AddGratuityCollectionViewCell
-            mediumCell.label.text = "20%"
-            return mediumCell
+
+            cell.label.text = "20%"
+            return cell
             
         // 25% Option
         } else if indexPath.row == 3 {
-            let largeCell = gratuityCollectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! AddGratuityCollectionViewCell
-            largeCell.label.text = "25%"
-            return largeCell
+
+            cell.label.text = "25%"
+            return cell
             
         }
         

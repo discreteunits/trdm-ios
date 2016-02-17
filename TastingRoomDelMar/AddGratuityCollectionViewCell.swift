@@ -14,12 +14,19 @@ class AddGratuityCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        
         label = UILabel(frame: CGRectMake(0, 0, 50, 20))
         label.frame.origin.y = 0
         label.frame.origin.x = 0
         label.textAlignment = .Center
         label.backgroundColor = UIColor.clearColor()
         label.textColor = UIColor.blackColor()
+        label.text = "Cash"
+        label.font = UIFont(name: "NexaRustScriptL-00", size: 18)
+        
+        contentView.addSubview(label)
+        
         
     }
 
