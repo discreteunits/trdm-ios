@@ -22,7 +22,7 @@ class PaymentTableViewController: UITableViewController {
     override func viewWillAppear(animated: Bool) {
         
         dispatch_async(dispatch_get_main_queue()) {
-            self.getCards()
+
             self.tableView.reloadData()
         }
         
@@ -118,13 +118,7 @@ class PaymentTableViewController: UITableViewController {
     }
     
     
-    // Get Card
-    func getCards() {
-        
-        let card = CardManager.sharedInstance.fetchCards((PFUser.currentUser()?.objectId)!)
 
-        currentCustomer.orderId.append(card as! String)
-    }
 
 
     /*

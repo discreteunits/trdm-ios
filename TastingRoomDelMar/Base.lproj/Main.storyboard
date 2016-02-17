@@ -342,7 +342,7 @@
                                     <constraint firstAttribute="height" constant="20" id="cJ2-Co-ZUW"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                 <connections>
                                     <action selector="cardNumberDidChange:" destination="ykn-Hl-hWP" eventType="editingChanged" id="w3n-S9-Opf"/>
                                 </connections>
@@ -354,7 +354,7 @@
                                     <constraint firstAttribute="height" constant="20" id="fjS-z9-HJC"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                 <connections>
                                     <action selector="cvcDidChange:" destination="ykn-Hl-hWP" eventType="editingChanged" id="AhE-OL-fIb"/>
                                 </connections>
@@ -367,7 +367,7 @@
                                     <constraint firstAttribute="height" constant="20" id="56W-zh-o1Y"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                 <connections>
                                     <action selector="expMonthDidChange:" destination="ykn-Hl-hWP" eventType="editingChanged" id="27K-ou-piS"/>
                                 </connections>
@@ -390,7 +390,7 @@
                                     <constraint firstAttribute="height" constant="20" id="upl-iQ-edX"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                 <connections>
                                     <action selector="expYearDidChange:" destination="ykn-Hl-hWP" eventType="editingChanged" id="o57-yI-ox0"/>
                                 </connections>
@@ -878,7 +878,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aSV-Of-1dO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5780" y="973"/>
+            <point key="canvasLocation" x="2646" y="2123"/>
         </scene>
         <!--Add Gratuity View Controller-->
         <scene sceneID="bad-QQ-OKz">
@@ -896,7 +896,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XC6-Wm-XRo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5780" y="1666"/>
+            <point key="canvasLocation" x="3418" y="2123"/>
         </scene>
         <!--Tab Table View Controller-->
         <scene sceneID="Iar-WF-2hF">
@@ -1236,6 +1236,12 @@
                     </tableView>
                     <connections>
                         <outlet property="tabTableView" destination="pjs-nu-jPD" id="7dT-rB-rl3"/>
+                        <segue destination="FBw-Qy-Edd" kind="popoverPresentation" identifier="enterTableNumber" popoverAnchorView="pjs-nu-jPD" id="L3H-xa-lMI">
+                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                        </segue>
+                        <segue destination="3dR-Cx-a0j" kind="popoverPresentation" identifier="addGratuity" popoverAnchorView="pjs-nu-jPD" id="7Ev-I8-oqt">
+                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                        </segue>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dhI-4K-yRy" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1394,7 +1400,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hDa-tB-bWm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3457" y="1299"/>
+            <point key="canvasLocation" x="3413" y="1299"/>
         </scene>
         <!--TierIV Collection View Controller-->
         <scene sceneID="mwL-JH-m3f">
@@ -1846,14 +1852,6 @@
                             <outlet property="delegate" destination="OxA-Ag-bsF" id="LuU-HH-qFn"/>
                         </connections>
                     </tableView>
-                    <connections>
-                        <segue destination="FBw-Qy-Edd" kind="popoverPresentation" identifier="enterTableNumber" popoverAnchorView="NHS-gU-QpA" id="Mbp-1s-Zje">
-                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                        </segue>
-                        <segue destination="3dR-Cx-a0j" kind="popoverPresentation" identifier="addGratuity" popoverAnchorView="NHS-gU-QpA" id="EpS-ad-ZKW">
-                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                        </segue>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LsJ-TJ-xrK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

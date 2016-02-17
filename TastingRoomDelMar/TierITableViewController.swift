@@ -35,6 +35,8 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        getCards()
+        
         animateTable()
         
         // Check if user is signed in with Facebook
@@ -352,6 +354,16 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         
         self.performSegueWithIdentifier("tierII", sender: self)
 
+    }
+    
+    
+    // Get Card CLOUDCODE FUNCTION CALL FETCH
+    func getCards() {
+        dispatch_async(dispatch_get_main_queue()){
+            let card = CardManager.sharedInstance.fetchCards((PFUser.currentUser()?.objectId)!)
+            
+            CardManager.sharedInstance.currentCustomer.orderId.append(String(card))
+        }
     }
     
 // Facebook Graph Requests

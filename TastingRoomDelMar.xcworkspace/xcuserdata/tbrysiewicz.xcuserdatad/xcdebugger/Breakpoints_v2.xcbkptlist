@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TastingRoomDelMar/TabManager.swift"
-            timestampString = "477284451.582747"
+            timestampString = "477371449.048313"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "194"
-            endingLineNumber = "194"
+            startingLineNumber = "195"
+            endingLineNumber = "195"
             landmarkName = "placeOrder(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -80,6 +80,113 @@
             startingLineNumber = "111"
             endingLineNumber = "111"
             landmarkName = "tableView(_:didSelectRowAtIndexPath:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TastingRoomDelMar/TableNumberViewController.swift"
+            timestampString = "477368107.075904"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "13"
+            endingLineNumber = "13">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TastingRoomDelMar.TableNumberViewController.tableNumberTextField.getter : Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.UITextField&gt;"
+                  moduleName = "TastingRoomDelMar"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tbrysiewicz/Documents/Coding/DiscreteUnits/TastingRoomDelMar/TastingRoomDelMar/TableNumberViewController.swift"
+                  timestampString = "477368107.107039"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TastingRoomDelMar.TableNumberViewController.tableNumberTextField.setter : Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.UITextField&gt;"
+                  moduleName = "TastingRoomDelMar"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tbrysiewicz/Documents/Coding/DiscreteUnits/TastingRoomDelMar/TastingRoomDelMar/TableNumberViewController.swift"
+                  timestampString = "477368107.108175"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TastingRoomDelMar.TableNumberViewController.tableNumberTextField.materializeForSet : Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.UITextField&gt;"
+                  moduleName = "TastingRoomDelMar"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tbrysiewicz/Documents/Coding/DiscreteUnits/TastingRoomDelMar/TastingRoomDelMar/TableNumberViewController.swift"
+                  timestampString = "477368107.108364"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TastingRoomDelMar.TableNumberViewController.init (TastingRoomDelMar.TableNumberViewController.Type)(nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.NSBundle&gt;) -&gt; TastingRoomDelMar.TableNumberViewController"
+                  moduleName = "TastingRoomDelMar"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tbrysiewicz/Documents/Coding/DiscreteUnits/TastingRoomDelMar/TastingRoomDelMar/TableNumberViewController.swift"
+                  timestampString = "477368107.108474"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "78">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TastingRoomDelMar.TableNumberViewController.init (TastingRoomDelMar.TableNumberViewController.Type)(coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;TastingRoomDelMar.TableNumberViewController&gt;"
+                  moduleName = "TastingRoomDelMar"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tbrysiewicz/Documents/Coding/DiscreteUnits/TastingRoomDelMar/TastingRoomDelMar/TableNumberViewController.swift"
+                  timestampString = "477368107.108588"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "40">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TastingRoomDelMar/TableNumberViewController.swift"
+            timestampString = "477370637.510294"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
+            landmarkName = "placeOrderSelected()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

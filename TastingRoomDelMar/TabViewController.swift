@@ -130,8 +130,8 @@ class TabViewController: UIViewController {
             if let TabTableViewController = segue.destinationViewController as? TabTableViewController {
                 
                 self.TabTableViewControllerRef = TabTableViewController
-                TabTableViewController.containerViewController = self
-                TabTableViewController.delegate = self
+//                TabTableViewController.containerViewController = self
+//                TabTableViewController.delegate = self
                 
                 
             } 

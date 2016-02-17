@@ -137,8 +137,9 @@ class TabManager: NSObject {
         ] // end para
         
         // Create Order Object
-        var order = NSObject()
-        order = para
+        var order : [String:AnyObject] = [
+            "order": para
+        ]
         print("Order Equals: \(order)")
         
         

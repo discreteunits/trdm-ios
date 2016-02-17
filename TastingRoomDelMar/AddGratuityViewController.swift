@@ -100,7 +100,7 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
         gratuityCollectionView.backgroundColor = UIColor.clearColor()
         gratuityCollectionView.dataSource = self
         gratuityCollectionView.delegate = self
-//        gratuityCollectionView.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
+        gratuityCollectionView.registerClass(AddGratuityCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
         
         // Create Cancel Button
         let buttonWidth = (screenWidth - 24) / 2
@@ -178,38 +178,44 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
     }
     */
 
-    // ----------------------
     
+    // ----------------------
     // Collection View Data Source
+    // ----------------------
+
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 4
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
-        let cell = gratuityCollectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! AddGratuityCollectionViewCell
-        cell.backgroundColor = UIColor.whiteColor()
-
+        var cell: UICollectionViewCell!
+        
 
         // Cash Option
         if indexPath.row == 0 {
-            cell.label.text = "Cash"
-            return cell
+            let cashCell = gratuityCollectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! AddGratuityCollectionViewCell
+            cashCell.label.text = "Cash"
+            cashCell.label.textColor = UIColor.blackColor()
+            return cashCell
             
         // 15% Option
         } else if indexPath.row == 1 {
-            cell.label.text = "15%"
-            return cell
+            let smallCell = gratuityCollectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! AddGratuityCollectionViewCell
+            smallCell.label.text = "15%"
+            return smallCell
             
         // 20% Option
         } else if indexPath.row == 2 {
-            cell.label.text = "20%"
-            return cell
+            let mediumCell = gratuityCollectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! AddGratuityCollectionViewCell
+            mediumCell.label.text = "20%"
+            return mediumCell
             
         // 25% Option
         } else if indexPath.row == 3 {
-            cell.label.text = "25%"
-            return cell
+            let largeCell = gratuityCollectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! AddGratuityCollectionViewCell
+            largeCell.label.text = "25%"
+            return largeCell
             
         }
         
@@ -250,7 +256,7 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
         
         // Create Actions
         let cancelAction = UIAlertAction(title: "Ok", style: .Cancel, handler: { (action) -> Void in
-            print("Cancel Selected")
+            print("Ok Selected")
         })
         
         // Add Actions

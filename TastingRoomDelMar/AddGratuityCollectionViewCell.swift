@@ -12,13 +12,15 @@ class AddGratuityCollectionViewCell: UICollectionViewCell {
     
     var label: UILabel!
     
-    init(frame: CGRect, title: String) {
+    override init(frame: CGRect) {
         super.init(frame: frame)
         label = UILabel(frame: CGRectMake(0, 0, 50, 20))
         label.frame.origin.y = 0
         label.frame.origin.x = 0
         label.textAlignment = .Center
-        label.text = "Cash"
+        label.backgroundColor = UIColor.clearColor()
+        label.textColor = UIColor.blackColor()
+        
     }
 
     required init?(coder aDecoder: NSCoder) {

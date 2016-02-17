@@ -26,13 +26,16 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
     //
     var tab = TabManager.sharedInstance.currentTab
     
-    // Protocol Delegate
-    var TabViewControllerRef: TabViewController?
-    var delegate: TabTableViewDelegate?
+//    
+//    // Protocol Delegate
+//    var TabViewControllerRef: TabViewController?
+//    var delegate: TabTableViewDelegate?
     
-    var containerViewController: TabViewController?
+//    var containerViewController: TabViewController?
 
     @IBOutlet var tabTableView: UITableView!
+    
+    var TableNumberViewControllerRef: TableNumberViewController?
     
 // --------------------
     override func viewDidLoad() {
@@ -316,7 +319,7 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
             
             let vc = segue.destinationViewController as! TableNumberViewController
             // Size Popover Window
-            vc.preferredContentSize = CGSizeMake(screenWidth, screenHeight*0.35)
+            vc.preferredContentSize = CGSizeMake(screenWidth, screenHeight*0.4)
             
             // Data To Be Passed
             
@@ -329,13 +332,17 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
                 controller?.delegate = self
             }
             
+            // Protocol or GratuitySegue
+            self.TableNumberViewControllerRef = vc
+            vc.delegate = self
+            
         }
         
         // Add Gratuity Popover
         if segue.identifier == "addGratuity" {
             let vc = segue.destinationViewController as! AddGratuityViewController
             // Size Popover Window
-            vc.preferredContentSize = CGSizeMake(screenWidth, screenHeight * 0.5)
+            vc.preferredContentSize = CGSizeMake(screenWidth, screenHeight * 0.55)
             
             // Data To Be Passed
             
@@ -351,7 +358,20 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
         }
         
     }
+    
 
+    
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .None
+    }
+
+}
+
+extension TabTableViewController: TableNumberViewDelegate {
+    func gratuitySegue() {
+        performSegueWithIdentifier("addGratuity", sender: self)
+//        performSelector("addGratuity", withObject: nil, afterDelay: 1.0)
+    }
 }
 
 // -----------------------------------

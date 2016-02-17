@@ -8,11 +8,19 @@
 
 import UIKit
 
+@objc
+protocol TableNumberViewDelegate {
+    func gratuitySegue()
+}
+
 class TableNumberViewController: UIViewController {
 
     var tableNumberTextField: UITextField!
     
     var tab = TabManager.sharedInstance.currentTab
+    
+    var delegate: TableNumberViewDelegate?
+    var TabTableViewControllerRef: TabTableViewController?
     
 // -------------------
     override func viewDidLoad() {
@@ -68,7 +76,7 @@ class TableNumberViewController: UIViewController {
         placeOrderButton.layer.backgroundColor = UIColor(red: 9/255.0, green: 178/255.0, blue: 126/255.0, alpha: 1.0).CGColor
         placeOrderButton.layer.cornerRadius = 12.0
         placeOrderButton.clipsToBounds = true
-        placeOrderButton.addTarget(self, action: "placeOrderSelected:", forControlEvents: UIControlEvents.TouchUpInside)
+        placeOrderButton.addTarget(self, action: "placeOrderSelected", forControlEvents: UIControlEvents.TouchUpInside)
         
         // Add To View
         popoverView.addSubview(enterTableNumberLabel)
@@ -81,23 +89,30 @@ class TableNumberViewController: UIViewController {
     
     }
     
-    func placeOrderSelected() {
+    func cancelPopover() {
         self.presentingViewController!.dismissViewControllerAnimated(false, completion: nil)
-        
+    }
+    
+    func placeOrderSelected() {
         
         tab.table = tableNumberTextField.text!
         
         if tab.table != "" {
             if tab.gratuity == "" {
-                self.parentViewController?.performSegueWithIdentifier("addGratuity", sender: self)
+                self.presentingViewController!.dismissViewControllerAnimated(true, completion: nil)
+                
             } else {
                 let result = TabManager.sharedInstance.placeOrder(tab)
-                print("Place Order, CloudCode Function Returned: \(result)")
+                print("Continuing to place order from TableNumberViewController: \(result)")
             }
         } else {
             addTableNumberAlert("Whoops", message: "Please enter your table number.")
         }
         
+        dispatch_async(dispatch_get_main_queue()) {
+            self.delegate?.gratuitySegue()
+        }
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -133,7 +148,7 @@ class TableNumberViewController: UIViewController {
         
         // Create Actions
         let cancelAction = UIAlertAction(title: "Ok", style: .Cancel, handler: { (action) -> Void in
-            print("Cancel Selected")
+            print("Ok Selected")
         })
         
         // Add Actions
