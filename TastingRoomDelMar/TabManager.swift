@@ -21,11 +21,12 @@ class TabManager: NSObject {
     override init() {
         super.init()
         
-        currentTab.id = "qSprPWBN6T"
+//        currentTab.id = "qSprPWBN6T"
+//        
+//        print("Current Tab id Spoofed \(currentTab)")
         
-        print("Current Tab id Spoofed \(currentTab)")
-        
-        
+        currentTab.table = "22"
+        currentTab.note = "Fuck You Guy."
         
         // Find or Create Order
 //        self.syncTab()

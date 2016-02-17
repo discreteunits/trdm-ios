@@ -483,22 +483,19 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                             // Add LineItem to TabManager tab() Structure
                             TabManager.sharedInstance.currentTab.lines.append(newLineItem)
                             print("Line Item \(newLineItem.name) has been added to currentTab.")
-                                                        
-                            
-                            // Revert view controllers, views, and collections back to pre-popover state
-                            self.presentingViewController!.dismissViewControllerAnimated(false, completion: nil)
-                            
-                            let tierIVView = self.presentingViewController!.view
-                            if let viewWithTag = tierIVView!.viewWithTag(21) {
-                                
-                                viewWithTag.removeFromSuperview()
-                            }
                             
                             
                             // Clean Up
                             modGroups.removeAll()
                             modGroupDict.removeAll()
                             model.removeAll()
+                            
+                            // Confirm
+                            addedSuccess("Added Successfully", message: "Order has been added to your order.")
+
+                            
+                            
+
                             
                         }
                         
@@ -640,6 +637,39 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
         }
         
     }
+    
+    //// Added Successfully
+    @available(iOS 8.0, *)
+    func addedSuccess(title: String, message: String) {
+        
+        // Create Controller
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        alert.view.tintColor = UIColor(red: 9/255.0, green: 178/255.0, blue: 126/255.0, alpha: 1.0)
+        
+        // Create Actions
+        let successAction = UIAlertAction(title: "Sounds Good", style: .Default, handler: { (action) -> Void in
+            self.confirm()
+            print("Ok Selected")
+        })
+        
+        // Add Actions
+        alert.addAction(successAction)
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func confirm() {
+        
+        // Revert view controllers, views, and collections back to pre-popover state
+        self.presentingViewController!.dismissViewControllerAnimated(false, completion: nil)
+        
+        let tierIVView = self.presentingViewController!.view
+        if let viewWithTag = tierIVView!.viewWithTag(21) {
+            
+            viewWithTag.removeFromSuperview()
+        }
+    }
+    
     
 }
 
