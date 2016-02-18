@@ -36,6 +36,9 @@ class TierIVCollectionViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -93,6 +96,7 @@ class TierIVCollectionViewController: UICollectionViewController {
         
         // Show All 
         if indexPath.row == 0 {
+                        
             if route.count == 4 {
                 route.removeAtIndex(3)
             }

@@ -35,31 +35,9 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let screenWidth = self.view.bounds.width
-        let screenHeight = self.view.bounds.height
-        
-        // Tab Quantity Indicator
-        let itemsIndicator = UILabel(frame: CGRectMake(0, 0, 16, 16))
-        itemsIndicator.frame.origin.y = 22
-        itemsIndicator.frame.origin.x = screenWidth - 82
-        itemsIndicator.text = "1"
-        itemsIndicator.font = UIFont(name: "OpenSans", size: 10)
-        itemsIndicator.layer.zPosition = 9999999999
-        itemsIndicator.backgroundColor = UIColor.redColor()
-        itemsIndicator.textColor = UIColor.whiteColor()
-        itemsIndicator.textAlignment = .Center
-        itemsIndicator.layer.borderColor = UIColor.whiteColor().CGColor
-        itemsIndicator.layer.borderWidth = 1.5
-        itemsIndicator.layer.cornerRadius = 8
-        itemsIndicator.clipsToBounds = true
-        itemsIndicator.tag = 31
-        
-        var currentWindow: UIWindow = UIApplication.sharedApplication().keyWindow!
-        currentWindow.addSubview(itemsIndicator)
+        // Items Indicator
+        TabManager.sharedInstance.itemsIndicator()
 
-        
-        
-        
         // Fetch Credit Cards
         if PFUser.currentUser()!.objectId != "" {
             getCards()

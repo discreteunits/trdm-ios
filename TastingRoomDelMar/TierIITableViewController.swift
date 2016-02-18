@@ -20,9 +20,11 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
     var nav: UINavigationBar?
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         
+        // Items Indicator
+        TabManager.sharedInstance.itemsIndicator()
+
         // TIER 2 QUERY
         tierIIQuery()
         

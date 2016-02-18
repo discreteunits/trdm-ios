@@ -254,6 +254,44 @@ class TabManager: NSObject {
         
     }
     
+    
+    func itemsIndicator() {
+        
+        let itemsInTab = TabManager.sharedInstance.currentTab.lines.count
+        let currentWindow: UIWindow = UIApplication.sharedApplication().keyWindow!
+
+        currentWindow.reloadInputViews()
+
+        // Only Show If LineItems Exist
+        if itemsInTab > 0 {
+        
+            let windowWidth = currentWindow.bounds.width
+        
+            // Tab Quantity Indicator
+            let itemsIndicator = UILabel(frame: CGRectMake(0, 0, 16, 16))
+            itemsIndicator.frame.origin.y = 22
+            itemsIndicator.frame.origin.x = windowWidth - 82
+            itemsIndicator.text = "\(itemsInTab)"
+            itemsIndicator.font = UIFont(name: "OpenSans", size: 10)
+            itemsIndicator.layer.zPosition = 0
+            itemsIndicator.backgroundColor = UIColor.redColor()
+            itemsIndicator.textColor = UIColor.whiteColor()
+            itemsIndicator.textAlignment = .Center
+            itemsIndicator.layer.borderColor = UIColor.whiteColor().CGColor
+            itemsIndicator.layer.borderWidth = 1.5
+            itemsIndicator.layer.cornerRadius = 8
+            itemsIndicator.clipsToBounds = true
+            itemsIndicator.tag = 31
+        
+            // Add itemsIndicator
+            currentWindow.addSubview(itemsIndicator)
+        
+            currentWindow.reloadInputViews()
+            
+        }
+        
+    }
+    
 }
 
 

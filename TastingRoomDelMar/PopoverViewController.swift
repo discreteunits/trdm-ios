@@ -485,6 +485,8 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                             TabManager.sharedInstance.currentTab.lines.append(newLineItem)
                             print("Line Item \(newLineItem.name) has been added to currentTab.")
                             
+                            // Items Indicator
+                            TabManager.sharedInstance.itemsIndicator()
                             
                             // Clean Up
                             modGroups.removeAll()

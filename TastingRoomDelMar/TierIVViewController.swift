@@ -37,6 +37,9 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Items Indicator
+        TabManager.sharedInstance.itemsIndicator()
+        
         dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
             self.tagsArrayCreation()
             print("tagsArrayCreation Completed")

@@ -23,14 +23,17 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-// TIER 3 QUERY
+        // Items Indicator
+        TabManager.sharedInstance.itemsIndicator()
+        
+        // TIER 3 QUERY
         tierIIIQuery()
         
-// FLYOUT MENU
+        // FLYOUT MENU
         
         self.sideMenuController()?.sideMenu?.delegate = self
         
-// NAV BAR STYLES
+        // NAV BAR STYLES
         
         if let navBar = navigationController?.navigationBar {
             
@@ -41,7 +44,7 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
             nav?.tintColor = UIColor.whiteColor()
             nav?.titleTextAttributes = [ NSFontAttributeName: UIFont (name: "NexaRustScriptL-00", size: 24)!]
             
-// SET NAV BACK BUTTON TO REMOVE LAST ITEM FROM ROUTE
+            // SET NAV BACK BUTTON TO REMOVE LAST ITEM FROM ROUTE
             let lastWindow = route[0]["name"]
             
             self.navigationItem.hidesBackButton = true
@@ -52,7 +55,7 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
         }
     }
     
-// NAV BACK BUTTON ACTION
+    // NAV BACK BUTTON ACTION
     func back(sender: UIBarButtonItem) {
 
         route.removeAtIndex(1)
@@ -82,9 +85,7 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
     }
     
 
-// ------
-// TIER 3 QUERY
-// ------
+    // TIER 3 QUERY
     func tierIIIQuery() {
         
         let query:PFQuery = PFQuery(className:"Tier3")
@@ -166,7 +167,7 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
         
     }
     
-// FLYOUT TRIGGER
+    // FLYOUT TRIGGER
     @IBAction func toggleSideMenu(sender: AnyObject) {
         toggleSideMenuView()
     }
