@@ -35,6 +35,31 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let screenWidth = self.view.bounds.width
+        let screenHeight = self.view.bounds.height
+        
+        // Tab Quantity Indicator
+        let itemsIndicator = UILabel(frame: CGRectMake(0, 0, 16, 16))
+        itemsIndicator.frame.origin.y = 22
+        itemsIndicator.frame.origin.x = screenWidth - 82
+        itemsIndicator.text = "1"
+        itemsIndicator.font = UIFont(name: "OpenSans", size: 10)
+        itemsIndicator.layer.zPosition = 9999999999
+        itemsIndicator.backgroundColor = UIColor.redColor()
+        itemsIndicator.textColor = UIColor.whiteColor()
+        itemsIndicator.textAlignment = .Center
+        itemsIndicator.layer.borderColor = UIColor.whiteColor().CGColor
+        itemsIndicator.layer.borderWidth = 1.5
+        itemsIndicator.layer.cornerRadius = 8
+        itemsIndicator.clipsToBounds = true
+        itemsIndicator.tag = 31
+        
+        var currentWindow: UIWindow = UIApplication.sharedApplication().keyWindow!
+        currentWindow.addSubview(itemsIndicator)
+
+        
+        
+        
         // Fetch Credit Cards
         if PFUser.currentUser()!.objectId != "" {
             getCards()
@@ -65,20 +90,35 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
             
             nav = navBar
             
+
+            
             nav?.barStyle = UIBarStyle.Black
             nav?.tintColor = UIColor.whiteColor()
+            nav?.layer.zPosition = 9
    
             self.navigationItem.hidesBackButton = true
             var newBackButton = UIBarButtonItem(title: "Del Mar", style: UIBarButtonItemStyle.Plain, target: self, action: "locationFlyout:")
-            self.navigationItem.leftBarButtonItem = newBackButton;
-            self.navigationItem.leftBarButtonItem!.setTitleTextAttributes( [NSFontAttributeName: UIFont(name: "NexaRustScriptL-00", size: 20)!], forState: UIControlState.Normal)
             
+            // Center Image Via
+            let fixedItem: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .FixedSpace, target: nil, action: nil)
+            fixedItem.width = 25.0
+            
+            // Set Both Left Bar Button Items
+            self.navigationItem.leftBarButtonItems = [newBackButton, fixedItem]
+            
+            
+            self.navigationItem.leftBarButtonItem!.setTitleTextAttributes( [NSFontAttributeName: UIFont(name: "NexaRustScriptL-00", size: 20)!], forState: UIControlState.Normal)
+                        
             // Set Tasting Room Logo As Title
-            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
+            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 24))
+            imageView.frame.origin.x = 0
+            
+            
             imageView.contentMode = .ScaleAspectFit
             let image = UIImage(named: "Typographic-deconstructed_rgb_600_120")
             imageView.image = image
             navigationItem.titleView = imageView
+            
             
 
             

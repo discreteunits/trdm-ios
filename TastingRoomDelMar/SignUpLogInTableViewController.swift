@@ -189,13 +189,14 @@ class SignUpLogInTableViewController: UITableViewController, UITextFieldDelegate
    
     // ACTIVITY START FUNCTION
     func activityStart() {
+        activityIndicator.hidden = false
         activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 50, 50))
         activityIndicator.center = self.view.center
         activityIndicator.hidesWhenStopped = true
-        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
-        view.addSubview(activityIndicator)
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
         activityIndicator.startAnimating()
         UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+        view.addSubview(activityIndicator)
     }
     
     // ACTIVITY STOP FUNCTION

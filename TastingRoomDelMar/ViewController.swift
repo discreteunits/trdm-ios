@@ -27,7 +27,6 @@ class ViewController: UIViewController {
 // ----------------
     override func viewWillAppear(animated: Bool) {
         
-        
         let screenSize: CGRect = UIScreen.mainScreen().bounds
         let screenWidth = screenSize.width
         let screenHeight = screenSize.height
@@ -71,6 +70,8 @@ class ViewController: UIViewController {
     @available(iOS 8.0, *)
     @IBAction func loginWithFacebook(sender: AnyObject) {
         
+        activityStart()
+        
         PFFacebookUtils.logInInBackgroundWithReadPermissions(["public_profile", "email"], block: { (user: PFUser?, error: NSError?) -> Void in
             
             if(error != nil) {
@@ -78,12 +79,9 @@ class ViewController: UIViewController {
                 return
             } else if FBSDKAccessToken.currentAccessToken() != nil {
                 
-                self.activityStart()
-                
+                // If User is new
                 if let user = user {
                     if user.isNew {
-                        
-                        self.activityStop()
                         
                         dispatch_async(dispatch_get_main_queue()) {
                         
@@ -105,12 +103,12 @@ class ViewController: UIViewController {
                                 
                             }
 
-                            
-                            
                             self.performSegueWithIdentifier("fbsignin", sender: self)
+                            self.activityStop()
                         
                         }
                         
+                    // If User already exists
                     } else {
                         
                         self.activityStop()
@@ -118,12 +116,19 @@ class ViewController: UIViewController {
                         dispatch_async(dispatch_get_main_queue()) {
                             
                             self.performSegueWithIdentifier("fblogin", sender: self)
+                            self.activityStop()
+
                             
                         }
+                        
                     }
+                    
                 }
+                
             }
+            
         })
+        
     }
     
     // Set User To Installation
@@ -160,23 +165,20 @@ class ViewController: UIViewController {
     
     // ACTIVITY START FUNCTION
     func activityStart() {
-        
+        activityIndicator.hidden = false
         activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 50, 50))
         activityIndicator.center = self.view.center
         activityIndicator.hidesWhenStopped = true
-        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
-        view.addSubview(activityIndicator)
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
         activityIndicator.startAnimating()
         UIApplication.sharedApplication().beginIgnoringInteractionEvents()
-        
+        view.addSubview(activityIndicator)
     }
     
     // ACTIVITY STOP FUNCTION
     func activityStop() {
-        
         self.activityIndicator.stopAnimating()
         UIApplication.sharedApplication().endIgnoringInteractionEvents()
-        
     }
  
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

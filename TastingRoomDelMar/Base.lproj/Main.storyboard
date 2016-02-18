@@ -134,6 +134,9 @@
                             <outlet property="delegate" destination="Egm-Ky-q2Z" id="cqU-ae-ZGr"/>
                         </connections>
                     </tableView>
+                    <toolbarItems>
+                        <barButtonItem width="60" style="plain" systemItem="fixedSpace" id="dFb-5e-1HD"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" id="Wjc-Mk-XeL">
                         <rightBarButtonItems>
                             <barButtonItem image="ham" id="Yay-A6-BHG">
@@ -148,6 +151,7 @@
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tabIcon" destination="S6M-4D-lAC" id="kqf-gX-nVc"/>
                         <segue destination="EVh-kB-hCB" kind="show" identifier="tierII" id="EYf-5m-3zV"/>

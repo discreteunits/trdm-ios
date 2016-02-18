@@ -16,6 +16,9 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
     
     var tab = TabManager.sharedInstance.currentTab
     
+    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
+
+// -------------------------
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -159,12 +162,12 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
         popoverView.addSubview(totalValueLabel)
     
         popoverView.addSubview(gratuityCollectionView)
-
-    
+        
     
     }
     
     func placeOrderWithGratuity() {
+        
         
         // If user has selected a gratuity option
         if selectedGratuity != "" {
@@ -172,11 +175,16 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
             // Calculate Gratuity Property
             TabManager.sharedInstance.gratuityCalculator(selectedGratuity)
             
-            // Confirm if gratuity was set
+            // Confirm if gratuity was set -- Not successfully checking doubleValue
             if (TabManager.sharedInstance.currentTab.gratuity.doubleValue != nil) {
                 
                 let result = TabManager.sharedInstance.placeOrder(TabManager.sharedInstance.currentTab)
                 print("Place Order, CloudCode Function Returned: \(result)")
+                self.presentingViewController!.dismissViewControllerAnimated(true, completion: nil)
+                
+                // ----
+                // RESET currentTab Object
+                // ---- 
                 
             // Gratuity was NOT set
             } else {
@@ -333,6 +341,29 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
         alert.addAction(cancelAction)
         
         self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    // ACTIVITY START FUNCTION
+    func activityStart() {
+        activityIndicator.hidden = false
+        activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 50, 50))
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
+        activityIndicator.startAnimating()
+        UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+
+        activityIndicator.layer.zPosition = 9999999
+//        var currentWindow: UIWindow = UIApplication.sharedApplication().keyWindow!
+//        currentWindow.addSubview(activityIndicator)
+        
+        self.view.addSubview(activityIndicator)
+    }
+    
+    // ACTIVITY STOP FUNCTION
+    func activityStop() {
+        self.activityIndicator.stopAnimating()
+        UIApplication.sharedApplication().endIgnoringInteractionEvents()
     }
     
     

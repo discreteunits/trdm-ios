@@ -90,15 +90,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         
         dispatch_async(dispatch_get_main_queue()) {
             
-            
-            
-            
-            print("----------------")
-            print("\(self.tierIVTableArray[indexPath.row]["tags"])")
-            print("----------------")
-            
-            
-            
+
             
             if let itemTags = self.tierIVTableArray[indexPath.row]["tags"] as? [PFObject] {
 
@@ -267,13 +259,14 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     
     // ACTIVITY START FUNCTION
     func activityStart() {
+        activityIndicator.hidden = false
         activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 50, 50))
         activityIndicator.center = self.view.center
         activityIndicator.hidesWhenStopped = true
-        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
-        view.addSubview(activityIndicator)
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
         activityIndicator.startAnimating()
         UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+        view.addSubview(activityIndicator)
     }
     
     // ACTIVITY STOP FUNCTION
