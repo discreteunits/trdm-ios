@@ -18,6 +18,8 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
     
     var nav: UINavigationBar?
     
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -54,8 +56,11 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
     func back(sender: UIBarButtonItem) {
 
         route.removeAtIndex(1)
-        print("The Route has been reduced to: \(route[0]["name"]).")
+        for var index = 0; index < route.count; ++index {
+            print("The Route has been decreased to: \(route[index]["name"]).")
+        }
         print("-----------------------")
+        
         self.navigationController?.popViewControllerAnimated(true)
     }
     
@@ -170,8 +175,12 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
         
         route.append(tierIIIArray[indexPath.row])
         
-        print("The Route has been increased to: \(route[0]["name"]), \(route[1]["name"]), \(route[2]["name"]).")
+        
+        for var index = 0; index < route.count; ++index {
+            print("The Route has been increased to: \(route[index]["name"]).")
+        }
         print("-----------------------")
+
 
         
         self.performSegueWithIdentifier("tierIV", sender: self)

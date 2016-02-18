@@ -345,7 +345,7 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
         if segue.identifier == "addGratuity" {
             let vc = segue.destinationViewController as! AddGratuityViewController
             // Size Popover Window
-            vc.preferredContentSize = CGSizeMake(screenWidth, screenHeight * 0.55)
+            vc.preferredContentSize = CGSizeMake(screenWidth, screenHeight * 0.53)
             
             // Data To Be Passed
             
@@ -494,9 +494,6 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
     
     
 // CLOUDCODE PLACEORDER
-    
-    
-    
     @IBAction func placeOrder(sender: AnyObject) {
         
         // Checkout Options
@@ -528,14 +525,14 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
         }
         
         // Add Gratuity
-        if tab.gratuity == "" {
+        if (TabManager.sharedInstance.currentTab.gratuity.doubleValue != nil) {
             performSegueWithIdentifier("addGratuity", sender: self)
         }
 
     }
     
     
-// -----------------------
+// ------------- Begin Alerts ----------
     
     //// CheckoutOptions
     @available(iOS 8.0, *)
@@ -547,7 +544,7 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
         
         // Create Actions
         let loginAction = UIAlertAction(title: "Closeout now ", style: .Default, handler: { (action) -> Void in
-            self.tab.checkoutMethod = "stripe"
+            TabManager.sharedInstance.currentTab.checkoutMethod = "stripe"
             
             // Continue Place Order
             self.stripeCheckout()

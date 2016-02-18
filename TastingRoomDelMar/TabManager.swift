@@ -10,7 +10,6 @@ import UIKit
 import Parse
 import ParseUI
 
-
 class TabManager: NSObject {
 
     static let sharedInstance = TabManager()
@@ -21,13 +20,7 @@ class TabManager: NSObject {
     override init() {
         super.init()
         
-//        currentTab.id = "qSprPWBN6T"
-//        
-//        print("Current Tab id Spoofed \(currentTab)")
-        
-        currentTab.table = "22"
-        currentTab.note = "Fuck You Guy."
-        
+
         // Find or Create Order
 //        self.syncTab()
 
@@ -50,15 +43,11 @@ class TabManager: NSObject {
         } else {
             
             currentTab = Tab()
-//            currentTab.table = "22"
-            currentTab.note = "Fuck You Guy."
             print("New Tab Created: \(currentTab)")
             
         }
         
     }
-    
-    //                            (quantity * price) * ( taxRatesTotal / 10000 )
     
     func totalCellCalculator() {
         
@@ -88,6 +77,32 @@ class TabManager: NSObject {
         
     }
     
+    func gratuityCalculator(gratuity: String) {
+        
+        // If Cash
+        if gratuity == "Cash" {
+            
+            currentTab.gratuity = 0.0
+            
+        // If NOT Cash - Convert String To Double And Calculate
+        } else {
+            
+            let gratuityDouble = Double(gratuity)! / 100
+            
+            
+            let gratuityAmount = (currentTab.grandTotal * gratuityDouble)
+            let gratuityTotal = currentTab.grandTotal + (currentTab.grandTotal * gratuityDouble)
+
+            currentTab.gratuity = gratuityAmount
+            currentTab.grandTotal = gratuityTotal
+            
+            print("Customer Agreed To Tip:\(gratuityAmount)")
+            print("Grand Total Recalculated: \(currentTab.grandTotal)")
+            
+            
+        }
+        
+    }
     
     // Place Order To CLOUDCODE
     func placeOrder(tab: Tab) -> AnyObject {
@@ -95,8 +110,6 @@ class TabManager: NSObject {
         print("-----------------------")
         print("Tab For CloudCode Order: \(tab)")
         print("-----------------------")
-        
-
 
         // OPTION 1: Create Object
         var lines = [[String:AnyObject]]()
@@ -139,6 +152,7 @@ class TabManager: NSObject {
             "note": tab.note,
             "table": tab.table,
             "userId": tab.userId,
+            "checkoutMethod": tab.checkoutMethod,
             "lineItems": elements
         ] // end para
         
@@ -149,47 +163,7 @@ class TabManager: NSObject {
         print("Order Equals: \(order)")
         
         
-        // OPTION 1: Convert Object To JSON
-//        let jsonObject: NSData
-//        let aJSONString: NSString
-//        do {
-//            jsonObject = try NSJSONSerialization.dataWithJSONObject(para, options: NSJSONWritingOptions.PrettyPrinted)
-//            aJSONString = NSString(data: jsonObject, encoding: NSUTF8StringEncoding) as! String
-//        } catch _ {
-//            print("UH OHH")
-//            return "Failed"
-//        }
-        
-// --------------------
-        
-//        // OPTION 2: Create Object
-//        let params:NSMutableDictionary = NSMutableDictionary()
-//            params.setValue(tab.id, forKey: "id")
-//            params.setValue(tab.note, forKey: "note")
-//            params.setValue(tab.table, forKey: "table")
-//            params.setValue(tab.userId, forKey: "userId")
-//            params.setValue(tab.lines, forKey: "lineItems")
-//        
-//
-//        
-//        
-//        // OPTION 2: Convert Object To JSON
-//        let jsonData: NSData
-//        do {
-//            
-//            jsonData = try NSJSONSerialization.dataWithJSONObject(params, options: NSJSONWritingOptions())
-//            let jsonString = NSString(data: jsonData, encoding: NSUTF8StringEncoding) as! String
-//            print("JSON STRING: \(jsonString)")
-//        
-//        } catch _ {
-//            
-//            print("UH OH")
-//            return "Failed"
-//            
-//        }
-        
-// ---------------------
-       
+        // Begin Placing Order with Order Object
         var result = String()
         
         // Send Object To CloudCode
@@ -279,11 +253,6 @@ class TabManager: NSObject {
         }
         
     }
-
-    
-    
-    
-    
     
 }
 

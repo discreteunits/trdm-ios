@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TastingRoomDelMar/TabManager.swift"
-            timestampString = "477417761.6382"
+            timestampString = "477447546.19492"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "196"
-            endingLineNumber = "196"
+            startingLineNumber = "170"
+            endingLineNumber = "170"
             landmarkName = "placeOrder(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -203,6 +203,38 @@
             startingLineNumber = "106"
             endingLineNumber = "106"
             landmarkName = "placeOrderSelected()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TastingRoomDelMar/AddGratuityViewController.swift"
+            timestampString = "477446652.150279"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "280"
+            endingLineNumber = "280"
+            landmarkName = "collectionView(_:didSelectItemAtIndexPath:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TastingRoomDelMar/TabManager.swift"
+            timestampString = "477439488.375573"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
+            landmarkName = "gratuityCalculator(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

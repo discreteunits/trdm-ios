@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Parse.setApplicationId("0tK5OiiJtRoCxmlP61AdONeBO2rVPVKpxW3EVaZG",
             clientKey: "GB8OlPH1XWQTCHo8mdU1dP3iPV8NhGUdDcKcZIYx")
-        
+                
         PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)
         
         PFUser.enableAutomaticUser()
@@ -34,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // No one has read access to other peoples stuff
         defaultACL.publicReadAccess = false
         
-        PFACL.setDefaultACL(defaultACL, withAccessForCurrentUser: true)
+        PFACL.setDefaultACL(defaultACL, withAccessForCurrentUser: false)
         
         if application.applicationState != UIApplicationState.Background {
             
@@ -48,18 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
             }
         }
-        
-        //  Swift 2.0
-        if #available(iOS 8.0, *) {
-            let types: UIUserNotificationType = [.Alert, .Badge, .Sound]
-            let settings = UIUserNotificationSettings(forTypes: types, categories: nil)
-            application.registerUserNotificationSettings(settings)
-            application.registerForRemoteNotifications()
-        } else {
-            let types: UIRemoteNotificationType = [.Alert, .Badge, .Sound]
-            application.registerForRemoteNotificationTypes(types)
-        }
-        
+  
         
         // Stripe Integration
         Stripe.setDefaultPublishableKey("pk_test_Ks6cqeQtnXJN0MQIkEOyAmKn")
@@ -93,17 +82,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // -------------------------------
     
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        
+        let chararacterSet: NSCharacterSet = NSCharacterSet(charactersInString: "<>")
+        let deviceTokenToPass = (deviceToken.description as NSString).stringByTrimmingCharactersInSet(chararacterSet).stringByReplacingOccurrencesOfString(" ", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil) as String
+        
+        
+        print("Device Token At AppDelegate: \(deviceToken)")
+        print("DeviceTokenToPass At AppDelegate: \(deviceTokenToPass)")
+
         let installation = PFInstallation.currentInstallation()
-        installation.setDeviceTokenFromData(deviceToken)
+        installation["deviceToken"] = deviceTokenToPass
         installation.saveInBackground()
         
-        PFPush.subscribeToChannelInBackground("") { (succeeded: Bool, error: NSError?) in
-            if succeeded {
-                print("Tasting Room successfully subscribed to push notifications on the broadcast channel.")
-            } else {
-                print("Tasting Room failed to subscribe to push notifications on the broadcast channel with error.", error)
-            }
-        }
     }
     
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {

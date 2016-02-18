@@ -15,8 +15,10 @@ class AddGratuityCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        let screenWidth = self.bounds.width
+        let screenHeight = self.bounds.height
         
-        label = UILabel(frame: CGRectMake(0, 0, 50, 20))
+        label = UILabel(frame: CGRectMake(0, 0, screenWidth, screenHeight))
         label.frame.origin.y = 0
         label.frame.origin.x = 0
         label.textAlignment = .Center

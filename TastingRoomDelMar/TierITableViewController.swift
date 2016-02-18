@@ -35,10 +35,12 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Fetch Credit Cards
         if PFUser.currentUser()!.objectId != "" {
             getCards()
         }
         
+        // Animation
         animateTable()
         
         // Check if user is signed in with Facebook
@@ -49,13 +51,8 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
             
         }
         
-
         // Sync Tab - Create or Find
         TabManager.sharedInstance.syncTab(TabManager.sharedInstance.currentTab.id)
-        
-        // Spoof CardManager and Customer
-        CardManager.sharedInstance
-        
         
         // TIER 1 QUERY
         tierIQuery()
@@ -86,7 +83,8 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
 
             
             // RESET ROUTE
-            route = []
+            route.removeAll()
+            print("Route Reset: \(route)")
             
         }
         
@@ -339,19 +337,11 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
 // ADD INDEX TO ROUTE
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        
-        
-        print("-----------------------")
-        print("\(tierIArray[indexPath.row])")
-        print("-----------------------")
-        
-        
-        
-        
-        
         route.append(tierIArray[indexPath.row])
         
-        print("The Route has been increased to: \(route[0]["name"])")
+        for var index = 0; index < route.count; ++index {
+            print("The Route has been increased to: \(route[index]["name"]).")
+        }
         print("-----------------------")
         
         self.performSegueWithIdentifier("tierII", sender: self)
@@ -384,6 +374,7 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
             
             } else if let result = result {
                 
+                print("----------------")
                 print("Graph Request Returned")
                 
                 // Assign Graph Request Parameters To PFUser Object

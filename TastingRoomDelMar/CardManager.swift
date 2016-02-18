@@ -74,6 +74,7 @@ class CardManager: NSObject {
                 // Success
                 result = response as! NSMutableDictionary
                 print("Response: \(response!)")
+                print("----------------------")
                 
                 CardManager.sharedInstance.currentCustomer.card.brand = result["brand"] as! String
                 CardManager.sharedInstance.currentCustomer.card.last4 = result["last4"] as! String

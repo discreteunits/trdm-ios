@@ -39,11 +39,15 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
         
         dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
             self.tagsArrayCreation()
-            self.tierIVCollectionQuery()
+            print("tagsArrayCreation Completed")
+
         }
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
+            self.tierIVCollectionQuery()
             self.tierIVTableQuery()
+            print("collection and table queries Completed")
+
         }
         
        
@@ -76,9 +80,15 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
 // NAV BACK BUTTON ACTION
     func back(sender: UIBarButtonItem) {
         
+        if route.count == 4 {
+            route.removeAtIndex(3)
+        }
         route.removeAtIndex(2)
-        print("The Route has been reduced to: \(route[0]["name"]), \(route[1]["name"]).")
+        for var index = 0; index < route.count; ++index {
+            print("The Route has been decreased to: \(route[index]["name"]).")
+        }
         print("-----------------------")
+        
         self.navigationController?.popViewControllerAnimated(true)
     }
 
@@ -153,8 +163,16 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
 
 extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDelegate {
     
+    func reloadTable() {
+        
+        self.TierIVTableViewControllerRef?.tableView.reloadData()
+        
+    }
+    
 // TAGS ARRAY CREATION
     func tagsArrayCreation() {
+        
+        self.tagsArray.removeAll()
         
         for object in route as [PFObject]! {
             
@@ -169,6 +187,9 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
 // TIER 4 COLLECTION QUERY
     func tierIVCollectionQuery() {
         
+        self.TierIVCollectionViewControllerRef?.tierIVCollectionArray.removeAll()
+
+        
         var classToBeQueried = String()
         
         // COLLECTION CLASSNAME CONDITION
@@ -176,8 +197,11 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
             classToBeQueried = "WineVarietal"
         } else if route[1]["name"] as! String == "Hops" {
             classToBeQueried = "BeerStyle"
+        } else if route[1]["name"] as! String == "Harvest" {
+            classToBeQueried = "HarvestStyle"
         }
         
+        print("Attempting to query \(classToBeQueried) for collection")
         
         let collectionQuery:PFQuery = PFQuery(className: classToBeQueried)
         collectionQuery.includeKey("tag")
@@ -193,7 +217,7 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
                 for object in objects! as [PFObject]! {
                     
                     if object["tag"] != nil {
-                    
+                        
                         if object["tag"]["state"] as! String == "active" {
                         
                             self.TierIVCollectionViewControllerRef?.tierIVCollectionArray.append(object)
@@ -221,6 +245,9 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
 
 // TIER 4 TABLE QUERY
     func tierIVTableQuery() {
+        
+        self.TierIVTableViewControllerRef?.tierIVTableArray.removeAll()
+        
         
         let tableQuery:PFQuery = PFQuery(className:"Item")
         tableQuery.includeKey("tags")

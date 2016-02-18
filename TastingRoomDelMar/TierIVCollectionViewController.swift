@@ -16,6 +16,7 @@ protocol TierIVCollectionViewDelegate {
     func tagsArrayCreation()
     func tierIVCollectionQuery()
     func tierIVTableQuery()
+    func reloadTable()
 }
 
 class TierIVCollectionViewController: UICollectionViewController {
@@ -95,6 +96,7 @@ class TierIVCollectionViewController: UICollectionViewController {
         
         delegate?.tagsArrayCreation()
         delegate?.tierIVTableQuery()
+        delegate?.reloadTable()
         
     }
     

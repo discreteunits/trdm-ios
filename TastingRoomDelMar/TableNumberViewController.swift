@@ -109,7 +109,7 @@ class TableNumberViewController: UIViewController, UITextFieldDelegate {
             if TabManager.sharedInstance.currentTab.table != "" {
                 
                 // If gratuity is still empty, go to addGratuity
-                if TabManager.sharedInstance.currentTab.gratuity == "" {
+                if (TabManager.sharedInstance.currentTab.gratuity.doubleValue != nil) {
                     
                     self.presentingViewController!.dismissViewControllerAnimated(true, completion: nil)
                     
@@ -128,11 +128,10 @@ class TableNumberViewController: UIViewController, UITextFieldDelegate {
             // If table number was NOT set
             } else {
                 
-                addTableNumberAlert("FUCK", message: "Please enter your table number.")
+                addTableNumberAlert("Whoops", message: "Please enter your table number.")
           
             }
         
-
         // If text field was empty
         } else {
             

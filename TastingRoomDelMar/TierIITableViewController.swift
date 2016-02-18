@@ -53,7 +53,9 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
     func back(sender: UIBarButtonItem) {
 
         route.removeAtIndex(0)
-        print("The Route has been reduced to: \(route)")
+        for var index = 0; index < route.count; ++index {
+            print("The Route has been decreased to: \(route[index]["name"]).")
+        }
         print("-----------------------")
         self.navigationController?.popViewControllerAnimated(true)
     }
@@ -168,7 +170,9 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
  
         route.append(tierIIArray[indexPath.row])
 
-        print("The Route has been increased to: \(route[0]["name"]), \(route[1]["name"])")
+        for var index = 0; index < route.count; ++index {
+            print("The Route has been increased to: \(route[index]["name"]).")
+        }
         print("-----------------------")
         
         self.performSegueWithIdentifier("tierIII", sender: self)

@@ -10,6 +10,7 @@ import UIKit
 import Parse
 import Stripe
 
+// Tab Manager
 struct Modifier {
     var id = String()
     var cloverId = String()
@@ -39,7 +40,7 @@ struct Tab {
     var totalTax = Double()
     var grandTotal = Double()
     var checkoutMethod = String()
-    var gratuity = String()
+    var gratuity = Double()
     
     var lines = [LineItem]()
     
@@ -50,6 +51,7 @@ struct Tab {
     }
 }
 
+// Card Manager
 struct Customer {
     var objectId = String()
     var userId = String()
@@ -63,3 +65,4 @@ struct Card {
     var brand = String()
     var last4 = String()
 }
+

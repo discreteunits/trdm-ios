@@ -23,8 +23,6 @@ class ViewController: UIViewController {
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     
     var signupOrLogin = String()
-    
-    
 
 // ----------------
     override func viewWillAppear(animated: Bool) {
@@ -88,10 +86,31 @@ class ViewController: UIViewController {
                         self.activityStop()
                         
                         dispatch_async(dispatch_get_main_queue()) {
+                        
+                            //  Swift 2.0
+                            if #available(iOS 8.0, *) {
+                                let types: UIUserNotificationType = [.Alert, .Badge, .Sound]
+                                let settings = UIUserNotificationSettings(forTypes: types, categories: nil)
+                                UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+                                UIApplication.sharedApplication().registerForRemoteNotifications()
+                                
+                                self.setUserPointOnInstallation()
+                                
+                                
+                            } else {
+                                let types: UIRemoteNotificationType = [.Alert, .Badge, .Sound]
+                                UIApplication.sharedApplication().registerForRemoteNotificationTypes(types)
+                                
+                                self.setUserPointOnInstallation()
+                                
+                            }
+
+                            
                             
                             self.performSegueWithIdentifier("fbsignin", sender: self)
-                            
+                        
                         }
+                        
                     } else {
                         
                         self.activityStop()
@@ -105,6 +124,22 @@ class ViewController: UIViewController {
                 }
             }
         })
+    }
+    
+    // Set User To Installation
+    func setUserPointOnInstallation() {
+        
+        let installation = PFInstallation.currentInstallation()
+        installation["user"] = PFUser.currentUser()
+        installation.saveInBackground()
+        
+        PFPush.subscribeToChannelInBackground("") { (succeeded: Bool, error: NSError?) in
+            if succeeded {
+                print("Tasting Room successfully subscribed to push notifications on the broadcast channel.")
+            } else {
+                print("Tasting Room failed to subscribe to push notifications on the broadcast channel with error.", error)
+            }
+        }
     }
     
     // ALERT FUNCTION
