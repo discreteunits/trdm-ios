@@ -44,18 +44,31 @@ class TierIVCollectionViewController: UICollectionViewController {
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return tierIVCollectionArray.count
+        return tierIVCollectionArray.count + 1
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("tierIVCollectionCell", forIndexPath: indexPath) as! TierIVCollectionViewCell
 
-        cell.titleLabel?.text = self.tierIVCollectionArray[indexPath.row]["name"] as? String
         cell.titleLabel?.font = UIFont(name: "NexaRustScriptL-00", size: 14)
         cell.layer.borderWidth = 2
         cell.layer.borderColor = UIColor(red: 242/255.0, green: 242/255.0, blue: 242/255.0, alpha: 1.0).CGColor
         cell.layer.cornerRadius = 10.0
         cell.clipsToBounds = true
+        
+        // Show All Cell
+        if indexPath.row == 0 {
+            
+            cell.titleLabel?.text = "Show All"
+            
+        // Every Other Collection Cell
+        } else {
+        
+            let trueIndex = indexPath.row - 1
+            cell.titleLabel?.text = self.tierIVCollectionArray[trueIndex]["name"] as? String
+            
+        }
         
         return cell
     }
@@ -75,28 +88,41 @@ class TierIVCollectionViewController: UICollectionViewController {
         let selectedCell = collectionView.cellForItemAtIndexPath(indexPath)! as! TierIVCollectionViewCell
         selectedCell.layer.cornerRadius = 10.0
         selectedCell.clipsToBounds = true
-        
-        
-        
         selectedCell.contentView.backgroundColor = UIColor.blackColor()
         selectedCell.titleLabel?.textColor = UIColor.whiteColor()
         
-        if !route.contains(tierIVCollectionArray[indexPath.row]) {
+        // Show All 
+        if indexPath.row == 0 {
+            if route.count == 4 {
+                route.removeAtIndex(3)
+            }
+            delegate?.tagsArrayCreation()
+            delegate?.tierIVTableQuery()
+            delegate?.reloadTable()
             
-            route.append(tierIVCollectionArray[indexPath.row])
-            
-            print("The Route has been increased to: \(route[0]["name"]), \(route[1]["name"]), \(route[2]["name"]), \(route[3]["name"]).")
-            print("-----------------------")
-            
+        // Filter By Selection
         } else {
-            
-            print("This selection is already being shown.")
-            
-        }
         
-        delegate?.tagsArrayCreation()
-        delegate?.tierIVTableQuery()
-        delegate?.reloadTable()
+            let trueIndex = indexPath.row - 1
+            if !route.contains(tierIVCollectionArray[trueIndex]) {
+            
+                route.append(tierIVCollectionArray[trueIndex])
+            
+                for var index = 0; index < route.count; ++index {
+                    print("The Route has been increased to: \(route[index]["name"]).")
+                }
+                print("-----------------------")
+            
+            } else {
+            
+                print("This selection is already being shown.")
+            
+            }
+        
+            delegate?.tagsArrayCreation()
+            delegate?.tierIVTableQuery()
+            delegate?.reloadTable()
+        }
         
     }
     
@@ -105,8 +131,11 @@ class TierIVCollectionViewController: UICollectionViewController {
         let deselectedCell = collectionView.cellForItemAtIndexPath(indexPath)! as! TierIVCollectionViewCell
         deselectedCell.contentView.backgroundColor = UIColor.whiteColor()
         deselectedCell.titleLabel?.textColor = UIColor.blackColor()
-
-        route.removeAtIndex(3)
+        
+        if route.count == 4 {
+            route.removeAtIndex(3)
+        }
+        
         delegate?.tagsArrayCreation()
 
     }
