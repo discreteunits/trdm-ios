@@ -45,6 +45,8 @@ class PaymentViewController: UIViewController {
         
         self.dismissViewControllerAnimated(true, completion: nil)
         
+        TabManager.sharedInstance.addItemsIndicator()
+        
     }
 
     /*

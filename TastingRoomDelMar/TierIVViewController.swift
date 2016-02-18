@@ -38,7 +38,7 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
         super.viewDidLoad()
         
         // Items Indicator
-        TabManager.sharedInstance.itemsIndicator()
+        TabManager.sharedInstance.addItemsIndicator()
         
         dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
             self.tagsArrayCreation()
@@ -103,6 +103,15 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
     
     @IBAction func openTab(sender: AnyObject) {
         
+        // Remove Indicator
+//        let currentWindow: UIWindow = UIApplication.sharedApplication().keyWindow!
+//        if let viewWithTag = currentWindow.viewWithTag(31) {
+//            viewWithTag.removeFromSuperview()
+//        }
+        
+        TabManager.sharedInstance.removeItemsIndicator()
+        
+        // Present Tab
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main",bundle: nil)
         var destViewController : UIViewController
         

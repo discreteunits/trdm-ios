@@ -45,6 +45,8 @@ class SettingsTableViewController: UITableViewController {
         
         self.dismissViewControllerAnimated(true, completion: nil)
         
+        TabManager.sharedInstance.addItemsIndicator()
+        
     }
     
 
@@ -261,6 +263,7 @@ class SettingsTableViewController: UITableViewController {
                 
                 PFUser.logOut()
                 performSegueWithIdentifier("Landing", sender: self)
+                TabManager.sharedInstance.removeItemsIndicator()
                 
             }
             

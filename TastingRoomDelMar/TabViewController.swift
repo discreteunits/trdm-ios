@@ -104,12 +104,6 @@ class TabViewController: UIViewController {
         }
 
     }
-
-    func backToMenu(sender: AnyObject) {
-        
-        self.dismissViewControllerAnimated(true, completion: nil)
-        
-    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -119,6 +113,9 @@ class TabViewController: UIViewController {
     @IBAction func menu(sender: AnyObject) {
         
         self.dismissViewControllerAnimated(true, completion: nil)
+        
+        // Add Indicator
+        TabManager.sharedInstance.addItemsIndicator()
         
     }
 

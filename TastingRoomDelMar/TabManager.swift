@@ -255,11 +255,13 @@ class TabManager: NSObject {
     }
     
     
-    func itemsIndicator() {
+    func addItemsIndicator() {
         
         let itemsInTab = TabManager.sharedInstance.currentTab.lines.count
         let currentWindow: UIWindow = UIApplication.sharedApplication().keyWindow!
 
+        removeItemsIndicator()
+        
         currentWindow.reloadInputViews()
 
         // Only Show If LineItems Exist
@@ -288,6 +290,17 @@ class TabManager: NSObject {
         
             currentWindow.reloadInputViews()
             
+        }
+        
+    }
+    
+    func removeItemsIndicator() {
+        
+        // Remove Indicator
+        let currentWindow: UIWindow = UIApplication.sharedApplication().keyWindow!
+        
+        if let viewWithTag = currentWindow.viewWithTag(31) {
+            viewWithTag.removeFromSuperview()
         }
         
     }

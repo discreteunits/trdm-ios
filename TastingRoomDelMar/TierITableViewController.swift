@@ -36,7 +36,7 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         super.viewDidLoad()
         
         // Items Indicator
-        TabManager.sharedInstance.itemsIndicator()
+        TabManager.sharedInstance.addItemsIndicator()
 
         // Fetch Credit Cards
         if PFUser.currentUser()!.objectId != "" {
@@ -251,6 +251,8 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
     
     
     @IBAction func openTab(sender: AnyObject) {
+        
+        TabManager.sharedInstance.removeItemsIndicator()
         
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main",bundle: nil)
         var destViewController : UIViewController

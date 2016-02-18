@@ -24,7 +24,7 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
         super.viewDidLoad()
         
         // Items Indicator
-        TabManager.sharedInstance.itemsIndicator()
+        TabManager.sharedInstance.addItemsIndicator()
         
         // TIER 3 QUERY
         tierIIIQuery()
@@ -69,6 +69,8 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
     
     
     @IBAction func openTab(sender: AnyObject) {
+        
+        TabManager.sharedInstance.removeItemsIndicator()
         
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main",bundle: nil)
         var destViewController : UIViewController

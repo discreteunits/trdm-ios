@@ -485,9 +485,6 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                             TabManager.sharedInstance.currentTab.lines.append(newLineItem)
                             print("Line Item \(newLineItem.name) has been added to currentTab.")
                             
-                            // Items Indicator
-                            TabManager.sharedInstance.itemsIndicator()
-                            
                             // Clean Up
                             modGroups.removeAll()
                             modGroupDict.removeAll()
@@ -659,6 +656,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
         alert.addAction(successAction)
         
         self.presentViewController(alert, animated: true, completion: nil)
+        
     }
     
     func confirm() {
@@ -670,9 +668,12 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
         if let viewWithTag = tierIVView!.viewWithTag(21) {
             
             viewWithTag.removeFromSuperview()
+            // Items Indicator
+            TabManager.sharedInstance.addItemsIndicator()
+            
         }
+        
     }
-    
     
 }
 
