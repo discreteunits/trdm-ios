@@ -254,58 +254,45 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
             
             tableView.beginUpdates()
             
-            print("rows: \(rows)")
-            print("rows in section: \(tableView.numberOfRowsInSection(0))")
-
-            print("tab.lines: \(tab.lines)")
-            
-            
-            tab.lines.removeAtIndex(indexPath.row)
-
-            
-
-            
-//            self.tableView.reloadData()
-//            self.tabTableView.reloadData()
-            
-            print("rows updated: \(rows)")
-            print("rows in section updated: \(tableView.numberOfRowsInSection(0))")
-
-            print("tab.lines updated: \(tab.lines)")
+            TabManager.sharedInstance.currentTab.lines.removeAtIndex(indexPath.row)
+            self.tableView.deleteRowsAtIndexPaths(NSArray(object: NSIndexPath(forRow: indexPath.row, inSection: 0)) as! [NSIndexPath], withRowAnimation: UITableViewRowAnimation.Left)
 
             tableView.endUpdates()
 
             
+            self.tableView.reloadData()
+
    
         }
+        
         rows = calculateRows()
         TabManager.sharedInstance.totalCellCalculator()
-        
+
     }
-    
-    func controllerWillChangeContent(controller: NSFetchedResultsController) {
-        tableView.beginUpdates()
-    }
-    
-    
+//    
+//    func controllerWillChangeContent(controller: NSFetchedResultsController) {
+//        tableView.beginUpdates()
+//    }
+//    
+//    
 //    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
 //        
 //        if type == .Delete {
 //            tableView.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
 //        }
 //    }
-    
-    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
-        
-        if type == .Delete {
-            tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
-        }
-    }
-    
-    func controllerDidChangeContent(controller: NSFetchedResultsController) {
-        tableView.endUpdates()
-    }
-    
+//    
+//    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+//        
+//        if type == .Delete {
+//            tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+//        }
+//    }
+//    
+//    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+//        tableView.endUpdates()
+//    }
+//    
 // ---------------------
     
 
@@ -363,7 +350,6 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
     }
     
 
-    
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
         return .None
     }
@@ -392,7 +378,7 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
 
         if parent < totalRow {
             
-            let modChoices = tab.lines[0].modifiers.count
+            let modChoices = TabManager.sharedInstance.currentTab.lines[0].modifiers.count
             numberOfItems = modChoices
             
         }
@@ -415,14 +401,14 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
 
                 // Assignments
                 //// Declare Pair for Presentation
-                let orderMod = tab.lines[parent].modifiers[indexPath.row].name
-                let servingPrice = "\(Int(tab.lines[parent].modifiers[indexPath.row].price))"
+                let orderMod = TabManager.sharedInstance.currentTab.lines[parent].modifiers[indexPath.row].name
+                let servingPrice = "\(Int(TabManager.sharedInstance.currentTab.lines[parent].modifiers[indexPath.row].price))"
                 let orderAndServing = orderMod + "   " + servingPrice
                 lineitemServingCollectionCell.servingSizeLabel?.text = "\(orderAndServing)"
                 
-                lineitemServingCollectionCell.qtyLabel?.text = "\(Int(tab.lines[parent].quantity))"
+                lineitemServingCollectionCell.qtyLabel?.text = "\(Int(TabManager.sharedInstance.currentTab.lines[parent].quantity))"
                 
-                lineitemServingCollectionCell.priceLabel?.text = "\(Int(tab.lines[parent].price))"
+                lineitemServingCollectionCell.priceLabel?.text = "\(Int(TabManager.sharedInstance.currentTab.lines[parent].price))"
 
                 
                 // Styles
@@ -440,7 +426,7 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
                 var lineitemCollectionCell = collectionView.dequeueReusableCellWithReuseIdentifier("TabLineItemCollectionCell", forIndexPath: indexPath) as! TabLineItemCollectionViewCell
                 
                 // Assignment
-                lineitemCollectionCell.modNameLabel?.text = "\(tab.lines[parent].modifiers[indexPath.row].name)"
+                lineitemCollectionCell.modNameLabel?.text = "\(TabManager.sharedInstance.currentTab.lines[parent].modifiers[indexPath.row].name)"
                 
                 // Styles
                 lineitemCollectionCell.backgroundColor = UIColor.whiteColor()
@@ -486,22 +472,18 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
         
         return cellSize
         
-        
     }
-    
-    
-    
     
     
 // CLOUDCODE PLACEORDER
     @IBAction func placeOrder(sender: AnyObject) {
         
         // Checkout Options
-        if tab.checkoutMethod == "" {
+        if TabManager.sharedInstance.currentTab.checkoutMethod == "" {
             checkoutOptions("Checkout Options", message: "Please select your desired checkout method below.")
         
         // If User already selected checkout option of stripe
-        } else if tab.checkoutMethod == "stripe" {
+        } else if TabManager.sharedInstance.currentTab.checkoutMethod == "stripe" {
             self.stripeCheckout()
         }
 

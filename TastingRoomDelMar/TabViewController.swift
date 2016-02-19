@@ -75,7 +75,7 @@ class TabViewController: UIViewController {
             menuButton.titleLabel?.font = UIFont(name: "NexaRustScriptL-00", size: 24)
             menuButton.layer.cornerRadius = 12.0
             menuButton.clipsToBounds = true
-            menuButton.addTarget(self, action: "backToMenu:", forControlEvents: UIControlEvents.TouchUpInside)
+            menuButton.addTarget(self, action: "backToMenu", forControlEvents: UIControlEvents.TouchUpInside)
             menuButton.layer.zPosition = 99
             
             
@@ -110,9 +110,18 @@ class TabViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func backToMenu() {
+        
+        self.presentingViewController!.dismissViewControllerAnimated(true, completion: nil)
+        
+        // Add Indicator
+        TabManager.sharedInstance.addItemsIndicator()
+        
+    }
+    
     @IBAction func menu(sender: AnyObject) {
         
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.presentingViewController!.dismissViewControllerAnimated(true, completion: nil)
         
         // Add Indicator
         TabManager.sharedInstance.addItemsIndicator()
