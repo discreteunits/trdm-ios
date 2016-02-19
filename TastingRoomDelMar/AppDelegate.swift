@@ -149,6 +149,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
+    // ---------------------- Custom --
+    func resetAppToFirstController() {
+        
+        
+        self.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Landing") as! ViewController
+
+    }
+    
     
 }
 

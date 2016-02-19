@@ -86,7 +86,16 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         cell.altNameLabel?.text = self.tierIVTableArray[indexPath.row]["alternateName"] as! String?
         cell.altNameLabel?.font = UIFont(name: "OpenSans", size: 16)
 
-        cell.pricingLabel?.font = UIFont(name: "OpenSans", size: 12)
+        // Prices FOUND in Item Table
+        if let itemPrice = self.tierIVTableArray[indexPath.row]["prices"] {
+            cell.pricingLabel?.text = self.tierIVTableArray[indexPath.row]["prices"] as! String
+            cell.pricingLabel?.font = UIFont(name: "OpenSans", size: 12)
+        
+            // Prices NOT Found in Item Table
+        } else {
+            cell.pricingLabel?.text = ""
+        }
+
         
         dispatch_async(dispatch_get_main_queue()) {
             
@@ -100,28 +109,23 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
 
                         cell.varietalLabel?.text = tagObject["name"] as? String
                         cell.varietalLabel?.font = UIFont(name: "OpenSans", size: 16)
-
-                        print("tagObject: \(tagObject)")
                         
                         self.itemVarietal = tagObject as PFObject!
 
-                    
                     }
-                
+                    
                 }
             
             }
             
         }
         
-        
-// -------
-// SET PRICE LABEL HERE
-// -------
-//
-//        cell.pricingLabel?.text =
+        if cell.varietalLabel.text == "Varietal" {
+            cell.varietalLabel.text = ""
+        }
         
         return cell
+        
     }
     
     

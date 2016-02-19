@@ -103,12 +103,6 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
     
     @IBAction func openTab(sender: AnyObject) {
         
-        // Remove Indicator
-//        let currentWindow: UIWindow = UIApplication.sharedApplication().keyWindow!
-//        if let viewWithTag = currentWindow.viewWithTag(31) {
-//            viewWithTag.removeFromSuperview()
-//        }
-        
         TabManager.sharedInstance.removeItemsIndicator()
         
         // Present Tab

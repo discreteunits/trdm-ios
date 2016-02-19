@@ -103,7 +103,7 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
                 
                 // Do something with the found objects
                 for object in objects! as [PFObject]! {
-                    
+
                     if object["tag"]["state"] as! String == "active" {
                         
                         self.tierIIIArray.append(object)

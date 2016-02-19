@@ -497,8 +497,12 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                             
 
                             
+                        } else {
+                            whoopsSelectModifiers("Whoops", message: "Please select a modifier and quantity.")
                         }
                         
+                    } else {
+                        whoopsSelectModifiers("Whoops", message: "Please select a modifier and quantity.")
                     }
                     
                 }
@@ -650,6 +654,26 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
         let successAction = UIAlertAction(title: "Sounds Good", style: .Default, handler: { (action) -> Void in
             self.confirm()
             print("Ok Selected")
+        })
+        
+        // Add Actions
+        alert.addAction(successAction)
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+        
+    }
+    
+    //// Whoops Select Modifiers Please
+    @available(iOS 8.0, *)
+    func whoopsSelectModifiers(title: String, message: String) {
+        
+        // Create Controller
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        alert.view.tintColor = UIColor(red: 9/255.0, green: 178/255.0, blue: 126/255.0, alpha: 1.0)
+        
+        // Create Actions
+        let successAction = UIAlertAction(title: "Got It", style: .Default, handler: { (action) -> Void in
+            print("Got It Selected")
         })
         
         // Add Actions

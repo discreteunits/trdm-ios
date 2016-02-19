@@ -262,7 +262,11 @@ class SettingsTableViewController: UITableViewController {
             if indexPath.row == 0 {
                 
                 PFUser.logOut()
-                performSegueWithIdentifier("Landing", sender: self)
+                
+                // Reset Segue Push Stack
+                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                appDelegate.resetAppToFirstController()
+                
                 TabManager.sharedInstance.removeItemsIndicator()
                 
             }
