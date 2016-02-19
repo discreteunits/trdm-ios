@@ -181,6 +181,14 @@ class TabManager: NSObject {
                 result = String(response!)
                 print("Response: \(response!)")
                 
+                // Reset Tab
+                TabManager.sharedInstance.currentTab = Tab()
+                print("TabManager Reset: \(TabManager.sharedInstance.currentTab)")
+                
+                // Reset Segue Push Stack
+                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                appDelegate.resetToMenu()
+                
                 
             }
             

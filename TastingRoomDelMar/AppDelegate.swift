@@ -157,6 +157,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     }
     
+    func resetToMenu() {
+        
+        self.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Menu") as! UINavigationController
+        
+    }
     
 }
 

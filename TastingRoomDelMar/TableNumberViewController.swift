@@ -123,6 +123,8 @@ class TableNumberViewController: UIViewController, UITextFieldDelegate {
                     let result = TabManager.sharedInstance.placeOrder(TabManager.sharedInstance.currentTab)
                     print("Continuing to place order from TableNumberViewController: \(result)")
                     
+                    self.presentingViewController!.dismissViewControllerAnimated(true, completion: nil)
+                    
                 }
                 
             // If table number was NOT set

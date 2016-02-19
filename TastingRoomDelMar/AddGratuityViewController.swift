@@ -178,13 +178,10 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
             // Confirm if gratuity was set -- Not successfully checking doubleValue
             if (TabManager.sharedInstance.currentTab.gratuity.doubleValue != nil) {
                 
-                let result = TabManager.sharedInstance.placeOrder(TabManager.sharedInstance.currentTab)
-                print("Place Order, CloudCode Function Returned: \(result)")
-                self.presentingViewController!.dismissViewControllerAnimated(true, completion: nil)
-                
-                // ----
-                // RESET currentTab Object
-                // ---- 
+                dispatch_async(dispatch_get_main_queue()) {
+                    let result = TabManager.sharedInstance.placeOrder(TabManager.sharedInstance.currentTab)
+                    print("Place Order, CloudCode Function Returned: \(result)")
+                }
                 
             // Gratuity was NOT set
             } else {
