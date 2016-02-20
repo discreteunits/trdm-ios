@@ -35,6 +35,9 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+
+
+        
         // Items Indicator
         TabManager.sharedInstance.addItemsIndicator()
 

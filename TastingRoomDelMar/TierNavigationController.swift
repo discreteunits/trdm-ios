@@ -27,22 +27,5 @@ class TierNavigationController: ENSideMenuNavigationController, ENSideMenuDelega
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    // MARK: - ENSideMenu Delegate
-    func sideMenuWillOpen() {
-        print("sideMenuWillOpen")
-    }
-    
-    func sideMenuWillClose() {
-        print("sideMenuWillClose")
-    }
-    
-    func sideMenuDidClose() {
-        print("sideMenuDidClose")
-    }
-    
-    func sideMenuDidOpen() {
-        print("sideMenuDidOpen")
-    }
 
 }

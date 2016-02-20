@@ -419,6 +419,14 @@
 					D7FFF7AC1C3AFB0600020D9A = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = 48ZXFZ2D47;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					D7FFF7C01C3AFB0600020D9A = {
 						CreatedOnToolsVersion = 7.2;

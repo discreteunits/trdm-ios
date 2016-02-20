@@ -136,15 +136,9 @@ class ViewController: UIViewController {
         
         let installation = PFInstallation.currentInstallation()
         installation["user"] = PFUser.currentUser()
+        installation.addUniqueObject("customer", forKey: "channels")
         installation.saveInBackground()
         
-        PFPush.subscribeToChannelInBackground("") { (succeeded: Bool, error: NSError?) in
-            if succeeded {
-                print("Tasting Room successfully subscribed to push notifications on the broadcast channel.")
-            } else {
-                print("Tasting Room failed to subscribe to push notifications on the broadcast channel with error.", error)
-            }
-        }
     }
     
     // ALERT FUNCTION

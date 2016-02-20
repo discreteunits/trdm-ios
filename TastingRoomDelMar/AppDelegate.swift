@@ -83,15 +83,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
         
-        let chararacterSet: NSCharacterSet = NSCharacterSet(charactersInString: "<>")
-        let deviceTokenToPass = (deviceToken.description as NSString).stringByTrimmingCharactersInSet(chararacterSet).stringByReplacingOccurrencesOfString(" ", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil) as String
-        
-        
         print("Device Token At AppDelegate: \(deviceToken)")
-        print("DeviceTokenToPass At AppDelegate: \(deviceTokenToPass)")
 
         let installation = PFInstallation.currentInstallation()
-        installation["deviceToken"] = deviceTokenToPass
+        installation.setDeviceTokenFromData(deviceToken)
+        
         installation.saveInBackground()
         
     }
