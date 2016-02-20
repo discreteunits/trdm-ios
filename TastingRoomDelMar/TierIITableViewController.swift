@@ -21,26 +21,7 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        print("-----------------------")
-        
-        
-        let push = PFPush()
-        push.setChannel("customer")
-        push.setMessage("Nuff Said.")
-        push.sendPushInBackgroundWithBlock { (success, error) -> Void in
-            if error != nil {
-                print("Successfully sent push notification.")
-            } else {
-                print("Push notification error: \(error)")
-            }
-        }
-        
-        print("-----------------------")
-        
-        
-        
+          
         // Items Indicator
         TabManager.sharedInstance.addItemsIndicator()
 

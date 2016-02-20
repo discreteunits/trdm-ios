@@ -134,9 +134,7 @@
                             <outlet property="delegate" destination="Egm-Ky-q2Z" id="cqU-ae-ZGr"/>
                         </connections>
                     </tableView>
-                    <toolbarItems>
-                        <barButtonItem width="60" style="plain" systemItem="fixedSpace" id="dFb-5e-1HD"/>
-                    </toolbarItems>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="Wjc-Mk-XeL">
                         <rightBarButtonItems>
                             <barButtonItem image="ham" id="Yay-A6-BHG">
@@ -1356,12 +1354,6 @@
                         <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0We-af-mRV">
-                                <rect key="frame" x="0.0" y="133" width="600" height="467"/>
-                                <connections>
-                                    <segue destination="WTZ-qJ-zbB" kind="embed" identifier="TierIVTableEmbeded" id="V7d-OS-S6K"/>
-                                </connections>
-                            </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bYN-wV-cuD">
                                 <rect key="frame" x="0.0" y="64" width="600" height="70"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -1372,6 +1364,12 @@
                                     <segue destination="AnT-wJ-z90" kind="embed" identifier="TierIVCollectionEmbeded" id="ec5-db-Ns7"/>
                                 </connections>
                             </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0We-af-mRV">
+                                <rect key="frame" x="0.0" y="133" width="600" height="467"/>
+                                <connections>
+                                    <segue destination="WTZ-qJ-zbB" kind="embed" identifier="TierIVTableEmbeded" id="V7d-OS-S6K"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1380,7 +1378,6 @@
                             <constraint firstItem="0We-af-mRV" firstAttribute="trailing" secondItem="bYN-wV-cuD" secondAttribute="trailing" id="dME-1G-pDw"/>
                             <constraint firstItem="bYN-wV-cuD" firstAttribute="top" secondItem="5O7-1q-isy" secondAttribute="bottom" id="duQ-dD-jhq"/>
                             <constraint firstItem="0We-af-mRV" firstAttribute="leading" secondItem="bYN-wV-cuD" secondAttribute="leading" id="h89-Ze-Smy"/>
-                            <constraint firstItem="0We-af-mRV" firstAttribute="top" secondItem="5O7-1q-isy" secondAttribute="bottom" constant="69" id="jSL-Vz-MTt"/>
                             <constraint firstAttribute="trailing" secondItem="0We-af-mRV" secondAttribute="trailing" id="r2X-Jj-yGh"/>
                         </constraints>
                     </view>
@@ -1400,6 +1397,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="navigationTitle" destination="6Uc-Tr-5rb" id="eOT-R7-fkg"/>
+                        <outlet property="tierIVCollectionContainer" destination="bYN-wV-cuD" id="HO0-lI-MS4"/>
+                        <outlet property="tierIVTableContainer" destination="0We-af-mRV" id="kSW-gA-iYT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hDa-tB-bWm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1479,10 +1478,10 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ZaA-uY-PYe">
-                                            <rect key="frame" x="0.0" y="0.0" width="79" height="84"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="84"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="66y-OS-sOL">
-                                                    <rect key="frame" x="0.0" y="0.0" width="79" height="25"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="66y-OS-sOL">
+                                                    <rect key="frame" x="0.0" y="0.0" width="240" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="A00-Ck-ndc"/>
                                                     </constraints>
@@ -1490,20 +1489,21 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alt. Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="owL-oc-pg9">
-                                                    <rect key="frame" x="0.0" y="25" width="79" height="21"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T3Y-ip-WLf">
+                                                    <rect key="frame" x="0.0" y="30" width="240" height="21"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Varietal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bEg-KJ-zLp">
+                                                    <rect key="frame" x="0.0" y="51" width="240" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Varietal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bEg-KJ-zLp">
-                                                    <rect key="frame" x="0.0" y="46" width="79" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pricing" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YME-Rb-W7z">
-                                                    <rect key="frame" x="0.0" y="67" width="79" height="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Pricing" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YME-Rb-W7z">
+                                                    <rect key="frame" x="0.0" y="67" width="240" height="17"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="17" id="3gH-pe-skg"/>
                                                     </constraints>
@@ -1514,7 +1514,6 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="66y-OS-sOL" firstAttribute="top" secondItem="ZaA-uY-PYe" secondAttribute="top" id="9aM-Mn-yA8"/>
-                                                <constraint firstItem="YME-Rb-W7z" firstAttribute="top" secondItem="owL-oc-pg9" secondAttribute="bottom" constant="21" id="DmD-ho-z8Q"/>
                                                 <constraint firstItem="bEg-KJ-zLp" firstAttribute="top" secondItem="66y-OS-sOL" secondAttribute="bottom" constant="21" id="m9Q-gQ-gA5"/>
                                             </constraints>
                                         </stackView>
@@ -1544,7 +1543,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="addToOrderButton" destination="XEU-be-Wjo" id="xvy-Z7-PVI"/>
-                                    <outlet property="altNameLabel" destination="owL-oc-pg9" id="94z-oo-8kZ"/>
+                                    <outlet property="altNameTextView" destination="T3Y-ip-WLf" id="mIw-7f-xna"/>
                                     <outlet property="itemNameLabel" destination="66y-OS-sOL" id="1TX-LE-JhB"/>
                                     <outlet property="pricingLabel" destination="YME-Rb-W7z" id="xz1-Fp-yQJ"/>
                                     <outlet property="varietalLabel" destination="bEg-KJ-zLp" id="3Vx-r6-Eas"/>
@@ -1868,7 +1867,7 @@
         <!--Navigation Controller-->
         <scene sceneID="PCz-rN-wSW">
             <objects>
-                <navigationController id="obe-Z9-uM6" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="createAccount" id="obe-Z9-uM6" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="y9s-PS-ifb">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1885,7 +1884,7 @@
         <!--Sign Up-->
         <scene sceneID="ocF-aE-KEi">
             <objects>
-                <viewController storyboardIdentifier="createAccount" title="Sign Up" id="VXj-yJ-McM" customClass="SignUpViewController" customModule="TastingRoomDelMar" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Sign Up" id="VXj-yJ-McM" customClass="SignUpViewController" customModule="TastingRoomDelMar" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4Ma-5J-7pg"/>
                         <viewControllerLayoutGuide type="bottom" id="Jhe-be-bg3"/>
@@ -2231,7 +2230,7 @@
         <image name="tIcon" width="19" height="14"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="P3E-so-8y6"/>
         <segue reference="puV-4c-pc2"/>
-        <segue reference="TyU-lj-hDh"/>
     </inferredMetricsTieBreakers>
 </document>

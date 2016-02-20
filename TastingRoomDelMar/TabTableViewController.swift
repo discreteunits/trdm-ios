@@ -606,6 +606,7 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
     
     func goToLogIn() {
         
+        
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main",bundle: nil)
         
         let vc = mainStoryboard.instantiateViewControllerWithIdentifier("createAccount")
@@ -616,9 +617,10 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
     
     func goToAddPayment() {
         
+        
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main",bundle: nil)
         
-        let vc = mainStoryboard.instantiateViewControllerWithIdentifier("addPayment")
+        let vc = mainStoryboard.instantiateViewControllerWithIdentifier("Payment")
         
         self.presentViewController(vc, animated: true, completion: nil)
         

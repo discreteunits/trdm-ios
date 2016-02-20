@@ -83,8 +83,8 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         
         cell.itemNameLabel?.text = self.tierIVTableArray[indexPath.row]["name"] as! String?
         cell.itemNameLabel?.font = UIFont(name: "BebasNeueRegular", size: 24)
-        cell.altNameLabel?.text = self.tierIVTableArray[indexPath.row]["alternateName"] as! String?
-        cell.altNameLabel?.font = UIFont(name: "OpenSans", size: 16)
+        cell.altNameTextView?.text = self.tierIVTableArray[indexPath.row]["alternateName"] as! String?
+        cell.altNameTextView?.font = UIFont(name: "OpenSans", size: 16)
 
         // Prices FOUND in Item Table
         if let itemPrice = self.tierIVTableArray[indexPath.row]["prices"] {
@@ -128,33 +128,48 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         
     }
     
-    
-    
-// SEGUE TRIGGER AND PREPARATION
-    @IBAction func addToOrder(sender: AnyObject) {
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        activityStart()
-        
-        // ASSIGN ITEM TO OBJECT TO BE PASSED TO POPOVER
-        if let button = sender as? UIButton {
-            if let superview = button.superview {
-                if let cell = superview.superview as? TierIVTableViewCell {
-                    indexPath = tableView.indexPathForCell(cell)
-                }
-            }
-        }
+        let selectedCell = tableView.cellForRowAtIndexPath(indexPath)! as! TierIVTableViewCell
         
         item = tierIVTableArray[indexPath.row]
-        
-        let popoverDynamicHeight = item["modifierGroups"].count
-        let popoverHeightCalculation = ((popoverDynamicHeight + 3) * 100)
-        popoverHeight = CGFloat(popoverHeightCalculation)
-        popoverWidth = tableView.bounds.size.width
         
         performSegueWithIdentifier("showItemConfig", sender: self)
         
         print("------------------------")
 
+    }
+    
+    
+// SEGUE TRIGGER AND PREPARATION
+    @IBAction func addToOrder(sender: AnyObject) {
+        
+        addToOrderButton(sender)
+        
+    }
+    
+    func addToOrderButton(sender: AnyObject) {
+        
+        
+        // ASSIGN ITEM TO OBJECT TO BE PASSED TO POPOVER - To Select Button
+        if let button = sender as? UIButton {
+            if let superview = button.superview {
+                if let cell = superview.superview as? TierIVTableViewCell {
+                    
+                    indexPath = tableView.indexPathForCell(cell)
+                    item = tierIVTableArray[indexPath.row]
+                    
+                }
+                
+            }
+            
+        }
+        
+   
+        performSegueWithIdentifier("showItemConfig", sender: self)
+        
+        print("------------------------")
+        
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -167,6 +182,11 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             var vc = segue.destinationViewController as! PopoverViewController
             
             // Dynamically assign Popover Window Size
+            
+            let popoverDynamicHeight = item["modifierGroups"].count
+            let popoverHeightCalculation = ((popoverDynamicHeight + 3) * 100)
+            popoverHeight = CGFloat(popoverHeightCalculation)
+            popoverWidth = tableView.bounds.size.width
             vc.preferredContentSize = CGSizeMake(popoverWidth, popoverHeight)
 
             

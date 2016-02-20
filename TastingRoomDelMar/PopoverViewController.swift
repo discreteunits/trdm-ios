@@ -111,9 +111,17 @@ class PopoverViewController: UITableViewController {
                 detailsCell.titleLabel.font = UIFont(name: "BebasNeueRegular", size: 24)
                 detailsCell.altNameLabel?.text = popoverItem["alternateName"] as! String!
                 detailsCell.altNameLabel.font = UIFont(name: "OpenSans", size: 16)
-                detailsCell.varietalLabel?.text = popoverItemVarietal["name"] as! String!
+                
                 detailsCell.varietalLabel.font = UIFont(name: "OpenSans", size: 16)
-
+                // IF HARVEST
+                let harvest = route[1]["name"] as! String
+                if harvest != "Harvest" {
+                    detailsCell.varietalLabel?.text = popoverItemVarietal["name"] as! String!
+                } else {
+                    detailsCell.varietalLabel?.text = ""
+                }
+                
+                
                 detailsCell.selectionStyle = UITableViewCellSelectionStyle.None
 
                 return detailsCell
@@ -470,7 +478,15 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                             newLineItem.id = popoverItem.objectId!
                             newLineItem.cloverId = popoverItem["cloverId"] as! String
                             newLineItem.name = popoverItem["name"] as! String
-                            newLineItem.varietal = popoverItemVarietal["name"] as! String
+                            
+                            // IF HARVEST
+                            let harvest = route[1]["name"] as! String
+                            if harvest != "Harvest" {
+                                newLineItem.varietal = popoverItemVarietal["name"] as! String
+                            } else {
+                                newLineItem.varietal = ""
+                            }
+                            
                             newLineItem.modifiers = convertedModChoices
 
                             newLineItem.price = preTaxedItemTotal

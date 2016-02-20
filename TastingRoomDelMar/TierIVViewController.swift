@@ -26,9 +26,44 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
     var tierIVCollectionArray = [PFObject]()
     var tierIVTableArray = [PFObject]()
     
+    
+    @IBOutlet weak var tierIVTableContainer: UIView!
+    @IBOutlet weak var tierIVCollectionContainer: UIView!
+    
 
     
 // ---------------
+    override func viewWillAppear(animated: Bool) {
+        
+        // If Harvest - Remove Collection View
+        let tierTwoSelection = route[1]["name"] as! String
+        
+        print("\(route[1]["name"]) Route Initiating New TierIV style.")
+        
+        if tierTwoSelection == "Harvest" {
+            
+//            tierIVCollectionContainer.removeFromSuperview()
+            tierIVCollectionContainer.hidden = true
+            let screenWidth = self.view.bounds.width
+
+            let views = ["view": self.view, "newView": tierIVTableContainer]
+            let horizontalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:[view]-(<=0)-[newView(\(screenWidth))]", options: NSLayoutFormatOptions.AlignAllCenterY, metrics: nil, views: views)
+            view.addConstraints(horizontalConstraints)
+         
+        // If NOT Harvest
+        } else {
+         
+            let screenHeight = self.view.bounds.height
+            
+            let views = ["view": self.view, "newView": tierIVTableContainer]
+            let verticalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:[view]-(<=0)-[newView(\(screenHeight-132))]", options: NSLayoutFormatOptions.AlignAllCenterX, metrics: nil, views: views)
+            view.addConstraints(verticalConstraints)
+            
+        }
+        
+    }
+    
+    
     override func viewDidAppear(animated: Bool) {
         print("------------Queries Completed------------")
         
@@ -129,6 +164,7 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
 // PREPARE FOR SEGUE DATA TRANSFER
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
+        
         if segue.identifier == "TierIVCollectionEmbeded" {
             
             if let TierIVCollectionViewController = segue.destinationViewController as? TierIVCollectionViewController {
@@ -203,9 +239,7 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
             classToBeQueried = "WineVarietal"
         } else if route[1]["name"] as! String == "Hops" {
             classToBeQueried = "BeerStyle"
-        } else if route[1]["name"] as! String == "Harvest" {
-            classToBeQueried = "HarvestStyle"
-        }
+        } 
         
         print("Attempting to query \(classToBeQueried) for collection")
         
