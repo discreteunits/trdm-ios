@@ -66,7 +66,6 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
     
     override func viewDidAppear(animated: Bool) {
         print("------------Queries Completed------------")
-        
     }
     
     override func viewDidLoad() {
@@ -239,7 +238,7 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
             classToBeQueried = "WineVarietal"
         } else if route[1]["name"] as! String == "Hops" {
             classToBeQueried = "BeerStyle"
-        } 
+        }
         
         print("Attempting to query \(classToBeQueried) for collection")
         

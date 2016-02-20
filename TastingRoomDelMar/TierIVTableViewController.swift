@@ -86,6 +86,21 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         cell.altNameTextView?.text = self.tierIVTableArray[indexPath.row]["alternateName"] as! String?
         cell.altNameTextView?.font = UIFont(name: "OpenSans", size: 16)
 
+        
+        
+        
+        
+        cell.altNameTextView.frame.origin.x = 0
+        // Adjustment For Text View Text Wrapping
+        
+//        cell.altNameTextView.textContainer.lineBreakMode = NSLineBreakMode.ByCharWrapping
+//        
+//        let numberOfLines = cell.altNameTextView.contentSize.height / cell.altNameTextView.font!.lineHeight
+//        print("--------******----------")
+//        print("\(numberOfLines)")
+//        print("--------******----------")
+        
+        
         // Prices FOUND in Item Table
         if let itemPrice = self.tierIVTableArray[indexPath.row]["prices"] {
             cell.pricingLabel?.text = self.tierIVTableArray[indexPath.row]["prices"] as! String
