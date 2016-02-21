@@ -153,6 +153,7 @@ class TabManager: NSObject {
             "table": tab.table,
             "userId": tab.userId,
             "checkoutMethod": tab.checkoutMethod,
+            "tipAmount": tab.gratuity,
             "lineItems": elements
         ] // end para
         

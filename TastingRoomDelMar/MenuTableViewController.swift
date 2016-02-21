@@ -156,6 +156,7 @@ class MenuTableViewController: UITableViewController {
                 selectedMenuItem = 0
             break
         default:
+            
             destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("Settings")
             destViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
             destViewController.modalPresentationStyle = .CurrentContext
@@ -169,6 +170,7 @@ class MenuTableViewController: UITableViewController {
             
                 selectedMenuItem = 0
             break
+            
         }
 
         sideMenuController()?.setContentViewController(destViewController)

@@ -88,13 +88,14 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
 
         
         
-        
+        cell.altNameTextView.frame.width == 100
+        cell.altNameTextView.frame.height == 20
         
         cell.altNameTextView.frame.origin.x = 0
         // Adjustment For Text View Text Wrapping
         
-//        cell.altNameTextView.textContainer.lineBreakMode = NSLineBreakMode.ByCharWrapping
-//        
+        cell.altNameTextView.textContainer.lineBreakMode = NSLineBreakMode.ByCharWrapping
+//
 //        let numberOfLines = cell.altNameTextView.contentSize.height / cell.altNameTextView.font!.lineHeight
 //        print("--------******----------")
 //        print("\(numberOfLines)")

@@ -27,9 +27,6 @@ class TierIVTableViewCell: UITableViewCell {
         altNameTextView.scrollEnabled = false
         
         altNameTextView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
-
-        altNameTextView.frame.width == 300
-        
         
         // Initialization code
         

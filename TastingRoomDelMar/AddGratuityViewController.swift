@@ -183,6 +183,8 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
                     print("Place Order, CloudCode Function Returned: \(result)")
                 }
                 
+                greatSuccessPreConfirm("Great Success!", message: "Your order has been received. We'll notify you once it's been confirmed.")
+                
             // Gratuity was NOT set
             } else {
                 
@@ -363,6 +365,24 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
         UIApplication.sharedApplication().endIgnoringInteractionEvents()
     }
     
+    //// GreatSuccessPreConfirm
+    @available(iOS 8.0, *)
+    func greatSuccessPreConfirm(title: String, message: String) {
+        
+        // Create Controller
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        alert.view.tintColor = UIColor(red: 9/255.0, green: 178/255.0, blue: 126/255.0, alpha: 1.0)
+        
+        // Create Actions
+        let cancelAction = UIAlertAction(title: "Sounds Good", style: .Cancel, handler: { (action) -> Void in
+            print("Cancel Selected")
+        })
+        
+        // Add Actions
+        alert.addAction(cancelAction)
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
     
 }
 
