@@ -119,18 +119,47 @@ class SignUpViewController: UIViewController {
     // For Programmatically Added Signup Button
     func signupAction(sender:UIButton!) {
         
-        activityIndicator.hidden = false
-        activityIndicator.startAnimating()
+        activityStart()
         
         if self.signUpLoginTableViewControllerRef?.signupActive == true {
+            
             self.signUpLoginTableViewControllerRef?.saveUser()
             print("signup action finished")
+            notificationAlert()
+            
         } else {
+            
             self.signUpLoginTableViewControllerRef?.loginUser()
             print("login action finished")
+            notificationAlert()
+            
         }
         
         performSegueWithIdentifier("signup", sender: self)
+        activityStop()
+    }
+    
+    func notificationAlert() {
+        
+        dispatch_async(dispatch_get_main_queue()) {
+            
+            //  Swift 2.0
+            if #available(iOS 8.0, *) {
+                let types: UIUserNotificationType = [.Alert, .Badge, .Sound]
+                let settings = UIUserNotificationSettings(forTypes: types, categories: nil)
+                UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+                UIApplication.sharedApplication().registerForRemoteNotifications()
+            } else {
+                let types: UIRemoteNotificationType = [.Alert, .Badge, .Sound]
+                UIApplication.sharedApplication().registerForRemoteNotificationTypes(types)
+            }
+            
+            let installation = PFInstallation.currentInstallation()
+            installation["user"] = PFUser.currentUser()
+            installation.addUniqueObject("customer", forKey: "channels")
+            installation.saveInBackground()
+            
+        }
         
     }
     

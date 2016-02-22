@@ -35,9 +35,6 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
-
-        
         // Items Indicator
         TabManager.sharedInstance.addItemsIndicator()
 
@@ -71,8 +68,6 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
             
             nav = navBar
             
-
-            
             nav?.barStyle = UIBarStyle.Black
             nav?.tintColor = UIColor.whiteColor()
             nav?.layer.zPosition = 9
@@ -99,9 +94,6 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
             let image = UIImage(named: "Typographic-deconstructed_rgb_600_120")
             imageView.image = image
             navigationItem.titleView = imageView
-            
-            
-
             
             // RESET ROUTE
             route.removeAll()
@@ -464,7 +456,9 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
                 }, completion: nil)
             
             index += 1
+            
         }
+        
     }
     
 }

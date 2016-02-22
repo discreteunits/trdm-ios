@@ -90,7 +90,6 @@ class SignUpLogInTableViewController: UITableViewController, UITextFieldDelegate
         
         loginButton.titleLabel?.font = UIFont(name: "NexaRustScriptL-00", size: 16)
         registeredText.font = UIFont(name: "NexaRustScriptL-00", size: 16)
-        
 
     }
     
@@ -117,13 +116,9 @@ class SignUpLogInTableViewController: UITableViewController, UITextFieldDelegate
         
         user.signUpInBackgroundWithBlock({ (success, error) -> Void in
             
-            self.activityStop()
-            
             if  error == nil {
 
                 print("Successfully saved user.")
-                self.validationSuccessful()
-//                self.SignUpViewControllerRef?.performSegueWithIdentifier("signup", sender: self)
                 
             } else {
                 
@@ -136,24 +131,26 @@ class SignUpLogInTableViewController: UITableViewController, UITextFieldDelegate
         
     }
     
+    
     // LOGIN USER
     func loginUser() {
         
         PFUser.logInWithUsernameInBackground(emailTextField.text!, password: passwordTextField.text!, block: { ( user, error ) -> Void in
-          
-            self.activityStop()
             
             if user != nil {
                 
                 print("Login Successful.")
-                self.performSegueWithIdentifier("login", sender: self)
+//                self.performSegueWithIdentifier("login", sender: self)
                 
             } else {
                 
                 print("Login Failure")
                 self.displayAlert("Login Failed", message: "Please ty again later.")
+           
             }
+            
         })
+        
     }
     
     // ALTERNATE FUNCTION
@@ -263,8 +260,6 @@ class SignUpLogInTableViewController: UITableViewController, UITextFieldDelegate
         
     }
     
-    
-
     func keyboardWillShow(notification:NSNotification) {
         print("Keyboard Appeared")
         
@@ -276,10 +271,6 @@ class SignUpLogInTableViewController: UITableViewController, UITextFieldDelegate
         print("KeyboardHeight: \(keyboardHeight)")
 
     }
-    
-    
-    
-    
     
 }
 
@@ -304,6 +295,7 @@ extension SignUpLogInTableViewController: ValidationDelegate {
             field.layer.borderWidth = 1.0
             error.errorLabel?.text = error.errorMessage
             error.errorLabel?.hidden = false
+            
         }
         
         delegate?.hideSignUpButton()

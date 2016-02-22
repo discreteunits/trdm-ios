@@ -104,9 +104,10 @@ class ViewController: UIViewController {
                             }
 
                             self.performSegueWithIdentifier("fbsignin", sender: self)
-                            self.activityStop()
                         
                         }
+                        
+                        self.activityStop()
                         
                     // If User already exists
                     } else {
