@@ -48,7 +48,6 @@ class SignUpViewController: UIViewController {
             
             nav = navBar
             
-            
             nav?.topItem!.title = "Sign Up"
             nav?.barStyle = UIBarStyle.Black
             nav?.tintColor = UIColor.whiteColor()
@@ -56,28 +55,10 @@ class SignUpViewController: UIViewController {
             
         }
 
-//        validator.styleTransformers(success:{ (validationRule) -> Void in
-//            print("Validation successful style transformer")
-//            // clear error label
-//            validationRule.errorLabel?.hidden = true
-//            validationRule.errorLabel?.text = ""
-//            // validationRule.textField.layer.borderColor = UIColor.whiteColor().CGColor
-//            // validationRule.textField.layer.borderWidth = 0.5
-//            
-//            }, error:{ (validationError) -> Void in
-//                print("Validation failed style transformer")
-//                validationError.errorLabel?.hidden = false
-//                validationError.errorLabel?.text = validationError.errorMessage
-//                // validationError.textField.layer.borderColor = UIColor.redColor().CGColor
-//                // validationError.textField.layer.borderWidth = 1.0
-//        })
-        
-        
-        // Decide if User selected Signup or Login from landing view
+        // Login Selected
         if passedSignupOrLogin == "login" {
             self.signUpLoginTableViewControllerRef?.alternateLoginSignup()
             alternateLoginSignupNav()
-            
         }
         
     }
@@ -97,9 +78,8 @@ class SignUpViewController: UIViewController {
         
         let topOfKeyboard = screenHeight - 345
 
-        
         sign = UIButton(frame: CGRectMake(0, topOfKeyboard, screenWidth, 60))
-        sign.setTitle("Sign Up", forState: .Normal)
+        sign.setTitle("Continue", forState: .Normal)
         sign.layer.backgroundColor = UIColor(red: 9/255.0, green: 178/255.0, blue: 126/255.0, alpha: 1.0).CGColor
         sign.titleLabel?.font = UIFont(name: "NexaRustScriptL-00", size: 24)
         sign.addTarget(self, action: "signupAction:", forControlEvents: UIControlEvents.TouchUpInside)
@@ -125,13 +105,13 @@ class SignUpViewController: UIViewController {
             
             self.signUpLoginTableViewControllerRef?.saveUser()
             print("signup action finished")
-            notificationAlert()
+            pushNotificationsAlert()
             
         } else {
             
             self.signUpLoginTableViewControllerRef?.loginUser()
             print("login action finished")
-            notificationAlert()
+            pushNotificationsAlert()
             
         }
         
@@ -139,7 +119,8 @@ class SignUpViewController: UIViewController {
         activityStop()
     }
     
-    func notificationAlert() {
+    // Push Notifications Alert And Installation Assignment
+    func pushNotificationsAlert() {
         
         dispatch_async(dispatch_get_main_queue()) {
             
@@ -163,19 +144,9 @@ class SignUpViewController: UIViewController {
         
     }
     
-    // ALERT FUNCTION
-    @available(iOS 8.0, *)
-    func displayAlert(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        let okAction = UIAlertAction(title: "Ok", style: .Default, handler: { (action) -> Void in
-            print("Ok")
-        })
-        alert.addAction(okAction)
-        self.presentViewController(alert, animated: true, completion: nil)
-    }
-    
     // ACTIVITY START FUNCTION
     func activityStart() {
+        
         activityIndicator.hidden = false
         activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 50, 50))
         activityIndicator.center = self.view.center
@@ -184,12 +155,15 @@ class SignUpViewController: UIViewController {
         activityIndicator.startAnimating()
         UIApplication.sharedApplication().beginIgnoringInteractionEvents()
         view.addSubview(activityIndicator)
+        
     }
     
     // ACTIVITY STOP FUNCTION
     func activityStop() {
+        
         self.activityIndicator.stopAnimating()
         UIApplication.sharedApplication().endIgnoringInteractionEvents()
+        
     }
     
     // Vertical UI Animation
@@ -213,7 +187,7 @@ class SignUpViewController: UIViewController {
     
     func showButtonVertical() {
         
-        UIView.animateWithDuration(0.3, delay: 0.0, options: .CurveEaseInOut, animations: { () -> Void in
+        UIView.animateWithDuration(0.2, delay: 0.0, options: .CurveEaseInOut, animations: { () -> Void in
             
             self.sign.transform = CGAffineTransformMakeTranslation(0, -self.sign.frame.height + 69)
             self.sign.alpha = 1
@@ -250,11 +224,9 @@ class SignUpViewController: UIViewController {
 
 extension SignUpViewController: SignUpLogInTableViewDelegate {
     func showSignUpButton() {
-        print("called showSignUpButton from SignUpLogInViewDelegate")
         showButtonVertical()
     }
     func hideSignUpButton() {
-        print("called hideSignUpButton from SignUpLogInViewDelegate")
         hideButtonVertical()
     }
     func alternateLoginSignupNav() {
@@ -266,7 +238,7 @@ extension SignUpViewController: SignUpLogInTableViewDelegate {
             
             nav = navigationController?.navigationBar
             nav?.topItem!.title = "Sign Up"
-            self.sign.setTitle("Sign Up", forState: UIControlState.Normal)
+            self.sign.setTitle("Continue", forState: UIControlState.Normal)
             self.sign.layer.backgroundColor = UIColor(red: 9/255.0, green: 178/255.0, blue: 126/255.0, alpha: 1.0).CGColor
             self.sign.setTitleColor(UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 1.0), forState: UIControlState.Normal)
             

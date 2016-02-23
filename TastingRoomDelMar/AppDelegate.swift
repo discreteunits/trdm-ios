@@ -161,4 +161,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
 }
 
+extension UIColor {
+    class func primaryGreenColor() -> UIColor {
+        return UIColor(red: 9/255.0, green: 178/255.0, blue: 126/255.0, alpha: 1.0)
+    }
+}
+
 

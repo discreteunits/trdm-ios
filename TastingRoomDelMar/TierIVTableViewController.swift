@@ -48,15 +48,14 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
 
 
-// ------------
+// ---------------------
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        
     }
     
 // MARK: - Table view data source
@@ -86,21 +85,29 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         cell.altNameTextView?.text = self.tierIVTableArray[indexPath.row]["alternateName"] as! String?
         cell.altNameTextView?.font = UIFont(name: "OpenSans", size: 16)
 
-        
-        
-        cell.altNameTextView.frame.width == 100
-        cell.altNameTextView.frame.height == 20
-        
-        cell.altNameTextView.frame.origin.x = 0
+// -------------------------------
         // Adjustment For Text View Text Wrapping
+
+        cell.altNameTextView?.sizeToFit()
+        
+        let numberOfLines = cell.altNameTextView.contentSize.height / 16
+        
+        
+        
+        cell.altNameTextView.frame.height == numberOfLines * 16
+
+        cell.altNameTextView.scrollEnabled = false
         
         cell.altNameTextView.textContainer.lineBreakMode = NSLineBreakMode.ByCharWrapping
-//
-//        let numberOfLines = cell.altNameTextView.contentSize.height / cell.altNameTextView.font!.lineHeight
-//        print("--------******----------")
-//        print("\(numberOfLines)")
-//        print("--------******----------")
+        cell.altNameTextView.contentInset = UIEdgeInsets(top: 0,left: 0,bottom: 0,right: 0)
         
+        print("--------******----------")
+        print("\(indexPath.row) Has \(numberOfLines) Number Of Lines.")
+        print("--------******----------")
+        
+        
+// ---------------------------------
+
         
         // Prices FOUND in Item Table
         if let itemPrice = self.tierIVTableArray[indexPath.row]["prices"] {
@@ -111,6 +118,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         } else {
             cell.pricingLabel?.text = ""
         }
+        
 
         
         dispatch_async(dispatch_get_main_queue()) {
@@ -141,6 +149,12 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         }
         
         return cell
+        
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        
+        return 100
         
     }
     

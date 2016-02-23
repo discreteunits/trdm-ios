@@ -41,7 +41,7 @@ class ViewController: UIViewController {
         loginButton.titleLabel?.font = UIFont(name: "NexaRustScriptL-00", size: 18)
         skipButton.titleLabel?.font = UIFont(name: "NexaRustScriptL-00", size: 18)
         
-        // TRDM Logo Position
+        // TRDM Logo
         let TRDMLogo = "secondary-logomark-white_rgb_600_600.png"
         let image = UIImage(named: TRDMLogo)
         let imageView = UIImageView(image: image!)
@@ -74,52 +74,33 @@ class ViewController: UIViewController {
         
         PFFacebookUtils.logInInBackgroundWithReadPermissions(["public_profile", "email"], block: { (user: PFUser?, error: NSError?) -> Void in
             
-            if(error != nil) {
+            // Failure
+            if error != nil {
                 self.displayAlert("Error", message: (error?.localizedDescription)!)
                 return
+                
+            // Success
             } else if FBSDKAccessToken.currentAccessToken() != nil {
                 
-                // If User is new
                 if let user = user {
+                    
+                    // Doesn't Exist
                     if user.isNew {
                         
-                        dispatch_async(dispatch_get_main_queue()) {
-                        
-                            //  Swift 2.0
-                            if #available(iOS 8.0, *) {
-                                let types: UIUserNotificationType = [.Alert, .Badge, .Sound]
-                                let settings = UIUserNotificationSettings(forTypes: types, categories: nil)
-                                UIApplication.sharedApplication().registerUserNotificationSettings(settings)
-                                UIApplication.sharedApplication().registerForRemoteNotifications()
-                                
-                                self.setUserPointOnInstallation()
-                                
-                                
-                            } else {
-                                let types: UIRemoteNotificationType = [.Alert, .Badge, .Sound]
-                                UIApplication.sharedApplication().registerForRemoteNotificationTypes(types)
-                                
-                                self.setUserPointOnInstallation()
-                                
-                            }
+                        self.pushNotificationsAlert()
 
-                            self.performSegueWithIdentifier("fbsignin", sender: self)
-                        
-                        }
+                        self.performSegueWithIdentifier("fbsignin", sender: self)
                         
                         self.activityStop()
                         
-                    // If User already exists
+                    // Does Exist
                     } else {
-                        
-                        self.activityStop()
                         
                         dispatch_async(dispatch_get_main_queue()) {
                             
                             self.performSegueWithIdentifier("fblogin", sender: self)
                             self.activityStop()
 
-                            
                         }
                         
                     }
@@ -132,13 +113,28 @@ class ViewController: UIViewController {
         
     }
     
-    // Set User To Installation
-    func setUserPointOnInstallation() {
+    // Push Notifications Alert And Installation Assignment
+    func pushNotificationsAlert() {
         
-        let installation = PFInstallation.currentInstallation()
-        installation["user"] = PFUser.currentUser()
-        installation.addUniqueObject("customer", forKey: "channels")
-        installation.saveInBackground()
+        dispatch_async(dispatch_get_main_queue()) {
+            
+            //  Swift 2.0
+            if #available(iOS 8.0, *) {
+                let types: UIUserNotificationType = [.Alert, .Badge, .Sound]
+                let settings = UIUserNotificationSettings(forTypes: types, categories: nil)
+                UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+                UIApplication.sharedApplication().registerForRemoteNotifications()
+            } else {
+                let types: UIRemoteNotificationType = [.Alert, .Badge, .Sound]
+                UIApplication.sharedApplication().registerForRemoteNotificationTypes(types)
+            }
+            
+            let installation = PFInstallation.currentInstallation()
+            installation["user"] = PFUser.currentUser()
+            installation.addUniqueObject("customer", forKey: "channels")
+            installation.saveInBackground()
+            
+        }
         
     }
     
@@ -156,10 +152,12 @@ class ViewController: UIViewController {
         alert.addAction(okAction)
         
         self.presentViewController(alert, animated: true, completion: nil)
+        
     }
     
     // ACTIVITY START FUNCTION
     func activityStart() {
+        
         activityIndicator.hidden = false
         activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 50, 50))
         activityIndicator.center = self.view.center
@@ -168,12 +166,15 @@ class ViewController: UIViewController {
         activityIndicator.startAnimating()
         UIApplication.sharedApplication().beginIgnoringInteractionEvents()
         view.addSubview(activityIndicator)
+        
     }
     
     // ACTIVITY STOP FUNCTION
     func activityStop() {
+        
         self.activityIndicator.stopAnimating()
         UIApplication.sharedApplication().endIgnoringInteractionEvents()
+        
     }
  
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
