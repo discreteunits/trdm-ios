@@ -167,4 +167,17 @@ extension UIColor {
     }
 }
 
+extension UIFont {
+    class func scriptFont(size: CGFloat) -> UIFont {
+        return UIFont(name: "NexaRustScriptL-00", size: size)!
+    }
+    class func headerFont(size: CGFloat) -> UIFont {
+        return UIFont(name: "BebasNeueRegular", size: size)!
+    }
+    class func basicFont(size: CGFloat) -> UIFont {
+        return UIFont(name: "OpenSans", size: size)!
+    }
+    
+}
+
 

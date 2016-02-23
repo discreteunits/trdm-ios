@@ -39,6 +39,8 @@
 		D775CDD91C6D4AAC006A3F29 /* SettingsEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D775CDD81C6D4AAC006A3F29 /* SettingsEditViewController.swift */; };
 		D775CDDB1C6D4ABA006A3F29 /* SettingsTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D775CDDA1C6D4ABA006A3F29 /* SettingsTextViewController.swift */; };
 		D775CDDD1C6D4AC7006A3F29 /* SettingsEditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D775CDDC1C6D4AC7006A3F29 /* SettingsEditTableViewController.swift */; };
+		D78594941C7BF141000972FB /* SignupSceneOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D78594931C7BF141000972FB /* SignupSceneOneViewController.swift */; };
+		D78594961C7BF164000972FB /* SignupSceneOneTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D78594951C7BF164000972FB /* SignupSceneOneTableViewController.swift */; };
 		D7A8AC041C4D9469008D9A90 /* PopoverTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A8AC031C4D9469008D9A90 /* PopoverTableViewCell.swift */; };
 		D7A8AC081C4D9626008D9A90 /* PopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A8AC071C4D9626008D9A90 /* PopoverViewController.swift */; };
 		D7A8AC0A1C4DB600008D9A90 /* TierIIITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A8AC091C4DB600008D9A90 /* TierIIITableViewController.swift */; };
@@ -136,6 +138,8 @@
 		D775CDD81C6D4AAC006A3F29 /* SettingsEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsEditViewController.swift; sourceTree = "<group>"; };
 		D775CDDA1C6D4ABA006A3F29 /* SettingsTextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTextViewController.swift; sourceTree = "<group>"; };
 		D775CDDC1C6D4AC7006A3F29 /* SettingsEditTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsEditTableViewController.swift; sourceTree = "<group>"; };
+		D78594931C7BF141000972FB /* SignupSceneOneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupSceneOneViewController.swift; sourceTree = "<group>"; };
+		D78594951C7BF164000972FB /* SignupSceneOneTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupSceneOneTableViewController.swift; sourceTree = "<group>"; };
 		D7A8AC031C4D9469008D9A90 /* PopoverTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverTableViewCell.swift; sourceTree = "<group>"; };
 		D7A8AC071C4D9626008D9A90 /* PopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverViewController.swift; sourceTree = "<group>"; };
 		D7A8AC091C4DB600008D9A90 /* TierIIITableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierIIITableViewController.swift; sourceTree = "<group>"; };
@@ -249,9 +253,11 @@
 		D7D809921C7BCDAC00A3F5E6 /* TRDM - Signup */ = {
 			isa = PBXGroup;
 			children = (
+				D7D8099D1C7BCFBA00A3F5E6 /* AccountManager.swift */,
 				D7D809941C7BCE1D00A3F5E6 /* SignupStoryboard.storyboard */,
 				D7D809961C7BCE5000A3F5E6 /* LandingViewController.swift */,
-				D7D8099D1C7BCFBA00A3F5E6 /* AccountManager.swift */,
+				D78594931C7BF141000972FB /* SignupSceneOneViewController.swift */,
+				D78594951C7BF164000972FB /* SignupSceneOneTableViewController.swift */,
 			);
 			name = "TRDM - Signup";
 			sourceTree = "<group>";
@@ -611,6 +617,7 @@
 				D7F981141C4461FD00200639 /* MenuTableViewController.swift in Sources */,
 				D7D809971C7BCE5000A3F5E6 /* LandingViewController.swift in Sources */,
 				D7734AFD1C45D87F009286DD /* TierIVViewController.swift in Sources */,
+				D78594941C7BF141000972FB /* SignupSceneOneViewController.swift in Sources */,
 				D7F981101C44612800200639 /* ENSideMenuControllerViewController.swift in Sources */,
 				D736DADD1C73906800751307 /* TableNumberViewController.swift in Sources */,
 				D775CDD91C6D4AAC006A3F29 /* SettingsEditViewController.swift in Sources */,
@@ -629,6 +636,7 @@
 				D7A8AC0A1C4DB600008D9A90 /* TierIIITableViewController.swift in Sources */,
 				D72B2A4E1C49728C0090875F /* RawPopoverViewController.swift in Sources */,
 				D775CDD11C6D0921006A3F29 /* SettingsSwitchTableViewCell.swift in Sources */,
+				D78594961C7BF164000972FB /* SignupSceneOneTableViewController.swift in Sources */,
 				D7B616881C62DCE0002CF1DE /* TabLineItemTableViewCell.swift in Sources */,
 				D775CDCF1C6D0917006A3F29 /* SettingsLabelTableViewCell.swift in Sources */,
 				D74B1C4E1C58339E008F5A36 /* PopoverActionCollectionViewCell.swift in Sources */,

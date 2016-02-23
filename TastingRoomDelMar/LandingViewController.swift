@@ -138,7 +138,7 @@ class LandingViewController: UIViewController {
             // Prepare for segue through navigation controller
             let destinationNC = segue.destinationViewController as! UINavigationController
             let targetController = destinationNC.topViewController as! SignUpViewController
-//            targetController.passedSignupOrLogin = signupOrLogin
+            targetController.passedSignupOrLogin = signupOrLogin
             
         }
         
