@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		BB65EBD50F601E4F26BD8CFC /* Pods_TastingRoomDelMar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 258E486804D393986620D744 /* Pods_TastingRoomDelMar.framework */; };
 		D719A6301C3F26D500987525 /* TierNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D719A62F1C3F26D500987525 /* TierNavigationController.swift */; };
+		D71E5F6D1C7CBB0F003AB046 /* SignupInputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71E5F6C1C7CBB0F003AB046 /* SignupInputTableViewCell.swift */; };
+		D71E5F711C7CC6F8003AB046 /* SignupMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71E5F701C7CC6F8003AB046 /* SignupMessageTableViewCell.swift */; };
 		D729AB831C471FF90021A66E /* TierIVCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D729AB821C471FF90021A66E /* TierIVCollectionViewCell.swift */; };
 		D729AB851C4736570021A66E /* TierIVTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D729AB841C4736570021A66E /* TierIVTableViewController.swift */; };
 		D72B2A4E1C49728C0090875F /* RawPopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72B2A4D1C49728C0090875F /* RawPopoverViewController.swift */; };
@@ -107,6 +109,8 @@
 		258E486804D393986620D744 /* Pods_TastingRoomDelMar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TastingRoomDelMar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D53F1940B0ECFC354F949DF6 /* Pods-TastingRoomDelMar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TastingRoomDelMar.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TastingRoomDelMar/Pods-TastingRoomDelMar.debug.xcconfig"; sourceTree = "<group>"; };
 		D719A62F1C3F26D500987525 /* TierNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierNavigationController.swift; sourceTree = "<group>"; };
+		D71E5F6C1C7CBB0F003AB046 /* SignupInputTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupInputTableViewCell.swift; sourceTree = "<group>"; };
+		D71E5F701C7CC6F8003AB046 /* SignupMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupMessageTableViewCell.swift; sourceTree = "<group>"; };
 		D729AB821C471FF90021A66E /* TierIVCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierIVCollectionViewCell.swift; sourceTree = "<group>"; };
 		D729AB841C4736570021A66E /* TierIVTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierIVTableViewController.swift; sourceTree = "<group>"; };
 		D72B2A4D1C49728C0090875F /* RawPopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RawPopoverViewController.swift; sourceTree = "<group>"; };
@@ -258,6 +262,8 @@
 				D7D809961C7BCE5000A3F5E6 /* LandingViewController.swift */,
 				D78594931C7BF141000972FB /* SignupSceneOneViewController.swift */,
 				D78594951C7BF164000972FB /* SignupSceneOneTableViewController.swift */,
+				D71E5F6C1C7CBB0F003AB046 /* SignupInputTableViewCell.swift */,
+				D71E5F701C7CC6F8003AB046 /* SignupMessageTableViewCell.swift */,
 			);
 			name = "TRDM - Signup";
 			sourceTree = "<group>";
@@ -617,6 +623,7 @@
 				D7F981141C4461FD00200639 /* MenuTableViewController.swift in Sources */,
 				D7D809971C7BCE5000A3F5E6 /* LandingViewController.swift in Sources */,
 				D7734AFD1C45D87F009286DD /* TierIVViewController.swift in Sources */,
+				D71E5F711C7CC6F8003AB046 /* SignupMessageTableViewCell.swift in Sources */,
 				D78594941C7BF141000972FB /* SignupSceneOneViewController.swift in Sources */,
 				D7F981101C44612800200639 /* ENSideMenuControllerViewController.swift in Sources */,
 				D736DADD1C73906800751307 /* TableNumberViewController.swift in Sources */,
@@ -655,6 +662,7 @@
 				D7FFF7B31C3AFB0600020D9A /* ViewController.swift in Sources */,
 				D775CDDB1C6D4ABA006A3F29 /* SettingsTextViewController.swift in Sources */,
 				D7FFF7B11C3AFB0600020D9A /* AppDelegate.swift in Sources */,
+				D71E5F6D1C7CBB0F003AB046 /* SignupInputTableViewCell.swift in Sources */,
 				D736DADF1C73907A00751307 /* AddGratuityViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

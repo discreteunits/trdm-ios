@@ -26,7 +26,7 @@ class AccountManager: NSObject {
         
     }
     
-    // FACEBOOK LOGIN
+    // Facebook Signup and Login
     @available(iOS 8.0, *)
     func loginWithFacebook(view: UIViewController) {
         
@@ -95,7 +95,7 @@ class AccountManager: NSObject {
         
     }
     
-    // LOGIN USER
+    // Login Parse User
     func loginUser(view: UIViewController, email: String, password: String) {
         
         PFUser.logInWithUsernameInBackground(email, password: password, block: { ( user, error ) -> Void in
@@ -118,6 +118,7 @@ class AccountManager: NSObject {
         
     }
     
+
     
     
 }

@@ -71,7 +71,7 @@ class LandingViewController: UIViewController {
         skipButton.layer.backgroundColor = UIColor.clearColor().CGColor
         skipButton.layer.cornerRadius = 4.0
         skipButton.clipsToBounds = true
-        skipButton.addTarget(self, action: "signinAction:", forControlEvents: UIControlEvents.TouchUpInside)
+        skipButton.addTarget(self, action: "guest", forControlEvents: UIControlEvents.TouchUpInside)
         
         self.view.addSubview(skipButton)
         
@@ -130,6 +130,10 @@ class LandingViewController: UIViewController {
     func login() {
         signupOrLogin = "login"
         performSegueWithIdentifier("startSignup", sender: self)
+    }
+    
+    func guest() {
+        performSegueWithIdentifier("guest", sender: self)
     }
     
 
