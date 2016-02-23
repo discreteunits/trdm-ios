@@ -69,6 +69,55 @@ class AccountManager: NSObject {
         
     }
     
+    // Save Parse User
+    func saveUser(view: UIViewController, username: String, email: String, password: String) {
+        
+        let user = PFUser()
+        
+        user.username = username
+        user.email = email
+        user.password = password
+        
+        user.signUpInBackgroundWithBlock({ (success, error) -> Void in
+            
+            if  error == nil {
+                
+                print("Successfully saved user.")
+                
+            } else {
+                
+                print("Failed to save user.")
+                AlertManager.sharedInstance.displayAlert(view, title: "Failure", message: "Please try again later.")
+                
+            }
+            
+        })
+        
+    }
+    
+    // LOGIN USER
+    func loginUser(view: UIViewController, email: String, password: String) {
+        
+        PFUser.logInWithUsernameInBackground(email, password: password, block: { ( user, error ) -> Void in
+            
+            if user != nil {
+                
+                print("Login Successful.")
+                //                self.performSegueWithIdentifier("login", sender: self)
+                
+            } else {
+                
+                print("Login Failure")
+                
+                AlertManager.sharedInstance.displayAlert(view, title: "Failure", message: "Please Try Again")
+                
+                
+            }
+            
+        })
+        
+    }
+    
     
     
 }

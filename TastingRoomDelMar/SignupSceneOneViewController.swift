@@ -27,6 +27,7 @@ class SignupSceneOneViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
 
         addSignupButton()
+        
   
     }
     
@@ -46,7 +47,7 @@ class SignupSceneOneViewController: UIViewController {
             nav?.topItem!.title = "Sign Up"
             nav?.barStyle = UIBarStyle.Black
             nav?.tintColor = UIColor.whiteColor()
-            nav?.titleTextAttributes = [ NSFontAttributeName: UIFont (name: "NexaRustScriptL-00", size: 20)!]
+            nav?.titleTextAttributes = [ NSFontAttributeName: UIFont.scriptFont(20)]
             
         }
         
@@ -84,7 +85,7 @@ class SignupSceneOneViewController: UIViewController {
         signupButton = UIButton(frame: CGRectMake(0, topOfKeyboard, screenWidth, 60))
         signupButton.setTitle("Continue", forState: .Normal)
         signupButton.layer.backgroundColor = UIColor.primaryGreenColor().CGColor
-        signupButton.titleLabel?.font = UIFont(name: "NexaRustScriptL-00", size: 24)
+        signupButton.titleLabel?.font = UIFont.scriptFont(24)
         signupButton.addTarget(self, action: "signupAction", forControlEvents: UIControlEvents.TouchUpInside)
         signupButton.hidden = true
         
@@ -112,8 +113,45 @@ class SignupSceneOneViewController: UIViewController {
         performSegueWithIdentifier("signupContinue", sender: self)
         
     }
-
     
+    // Signup Button Animation
+    func hideButtonVertical() {
+        
+        UIView.animateWithDuration(0.2, delay: 0.0, options: .CurveEaseInOut, animations: { () -> Void in
+            
+            self.signupButton.transform = CGAffineTransformIdentity
+            self.signupButton.alpha = 0
+            
+            }) { (succeeded: Bool) -> Void in
+                
+                if succeeded {
+                    self.signupButton.hidden = true
+                    
+                }
+                
+        }
+        
+    }
+    
+    func showButtonVertical() {
+        
+        UIView.animateWithDuration(0.2, delay: 0.0, options: .CurveEaseInOut, animations: { () -> Void in
+            
+            self.signupButton.transform = CGAffineTransformMakeTranslation(0, -self.signupButton.frame.height + 69)
+            self.signupButton.alpha = 1
+            
+            }) { (succeeded: Bool) -> Void in
+                
+                if succeeded {
+                    self.signupButton.hidden = false
+                    
+                }
+                
+        }
+        
+    }
+    
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == "sceneOneEmbeded" {
@@ -144,8 +182,8 @@ extension SignupSceneOneViewController: SignupSceneOneTableViewDelegate {
             nav = navigationController?.navigationBar
             nav?.topItem!.title = "Sign Up"
             self.signupButton.setTitle("Continue", forState: UIControlState.Normal)
-            self.signupButton.layer.backgroundColor = UIColor(red: 9/255.0, green: 178/255.0, blue: 126/255.0, alpha: 1.0).CGColor
-            self.signupButton.setTitleColor(UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 1.0), forState: UIControlState.Normal)
+            self.signupButton.layer.backgroundColor = UIColor.primaryGreenColor().CGColor
+            self.signupButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
             
             signupActive = false
             
@@ -162,6 +200,14 @@ extension SignupSceneOneViewController: SignupSceneOneTableViewDelegate {
             
         }
         
+    }
+    
+    func showSignUpButton() {
+        showButtonVertical()
+    }
+    
+    func hideSignUpButton() {
+        hideButtonVertical()
     }
 
 }

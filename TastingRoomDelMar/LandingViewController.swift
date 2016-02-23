@@ -66,7 +66,7 @@ class LandingViewController: UIViewController {
         skipButton.frame.origin.x = screenWidth * 0.75
         skipButton.frame.origin.y = screenHeight * 0.05
         skipButton.setTitle("skip", forState: .Normal)
-        skipButton.titleLabel?.font = UIFont(name: "NexaRustScriptL-00", size: 18)
+        skipButton.titleLabel?.font = UIFont.scriptFont(18)
         skipButton.titleLabel?.textColor = UIColor.whiteColor()
         skipButton.layer.backgroundColor = UIColor.clearColor().CGColor
         skipButton.layer.cornerRadius = 4.0
@@ -80,12 +80,12 @@ class LandingViewController: UIViewController {
         signupButton.frame.origin.x = screenWidth * 0.075
         signupButton.frame.origin.y = screenHeight * 0.8
         signupButton.setTitle("Sign Up", forState: .Normal)
-        signupButton.titleLabel?.font = UIFont(name: "NexaRustScriptL-00", size: 18)
+        signupButton.titleLabel?.font = UIFont.scriptFont(18)
         signupButton.titleLabel?.textColor = UIColor.whiteColor()
         signupButton.layer.backgroundColor = UIColor(red: 74/255.0, green: 74/255.0, blue: 74/255.0, alpha: 1.0).CGColor
         signupButton.layer.cornerRadius = 4.0
         signupButton.clipsToBounds = true
-        signupButton.addTarget(self, action: "signinAction:", forControlEvents: UIControlEvents.TouchUpInside)
+        signupButton.addTarget(self, action: "signin", forControlEvents: UIControlEvents.TouchUpInside)
         
         self.view.addSubview(signupButton)
         
@@ -94,12 +94,12 @@ class LandingViewController: UIViewController {
         loginButton.frame.origin.x = screenWidth * 0.525
         loginButton.frame.origin.y = screenHeight * 0.8
         loginButton.setTitle("Log In", forState: .Normal)
-        loginButton.titleLabel?.font = UIFont(name: "NexaRustScriptL-00", size: 18)
+        loginButton.titleLabel?.font = UIFont.scriptFont(18)
         loginButton.titleLabel?.textColor = UIColor.whiteColor()
         loginButton.layer.backgroundColor = UIColor(red: 74/255.0, green: 74/255.0, blue: 74/255.0, alpha: 1.0).CGColor
         loginButton.layer.cornerRadius = 4.0
         loginButton.clipsToBounds = true
-        loginButton.addTarget(self, action: "signinAction:", forControlEvents: UIControlEvents.TouchUpInside)
+        loginButton.addTarget(self, action: "login", forControlEvents: UIControlEvents.TouchUpInside)
         
         self.view.addSubview(loginButton)
         
@@ -108,7 +108,7 @@ class LandingViewController: UIViewController {
         facebookButton.frame.origin.x = screenWidth * 0.075
         facebookButton.frame.origin.y = screenHeight * 0.875
         facebookButton.setTitle("Log in with Facebook", forState: .Normal)
-        facebookButton.titleLabel?.font = UIFont(name: "NexaRustScriptL-00", size: 18)
+        facebookButton.titleLabel?.font = UIFont.basicFont(18)
         facebookButton.titleLabel?.textColor = UIColor.whiteColor()
         facebookButton.layer.backgroundColor = UIColor(red: 59/255.0, green: 89/255.0, blue: 152/255.0, alpha: 1.0).CGColor
         facebookButton.layer.cornerRadius = 4.0
@@ -117,12 +117,14 @@ class LandingViewController: UIViewController {
         
         self.view.addSubview(facebookButton)
         
-        
-        
     }
     
     func facebook() {
         AccountManager.sharedInstance.loginWithFacebook(self)
+    }
+    
+    func signin() {
+        performSegueWithIdentifier("startSignup", sender: self)
     }
     
     func login() {
@@ -137,7 +139,7 @@ class LandingViewController: UIViewController {
             
             // Prepare for segue through navigation controller
             let destinationNC = segue.destinationViewController as! UINavigationController
-            let targetController = destinationNC.topViewController as! SignUpViewController
+            let targetController = destinationNC.topViewController as! SignupSceneOneViewController
             targetController.passedSignupOrLogin = signupOrLogin
             
         }

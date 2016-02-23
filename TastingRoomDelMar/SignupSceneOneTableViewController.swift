@@ -14,6 +14,8 @@ import ParseFacebookUtilsV4
 @objc
 protocol SignupSceneOneTableViewDelegate {
     func alternateLoginSignupNav()
+    func showSignUpButton()
+    func hideSignUpButton()
 }
 
 class SignupSceneOneTableViewController: UITableViewController, UITextFieldDelegate {
@@ -53,13 +55,38 @@ class SignupSceneOneTableViewController: UITableViewController, UITextFieldDeleg
         
         tableView.scrollEnabled = false
         
-        
+        tableView.tableFooterView = UIView(frame: CGRectZero)
+
+        tableView.backgroundColor = UIColor.blackColor()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        emailLabel.font = UIFont.headerFont(16)
+        emailLabel.textColor = UIColor.whiteColor()
         
+        emailTextField.font = UIFont.headerFont(16)
+        emailTextField.textColor = UIColor.whiteColor()
+        
+        emailErrorMessage.font = UIFont.basicFont(10)
+        emailErrorMessage.textColor = UIColor.redColor()
+        
+        passwordLabel.font = UIFont.headerFont(16)
+        passwordLabel.textColor = UIColor.whiteColor()
+
+        passwordTextField.font = UIFont.headerFont(16)
+        passwordTextField.textColor = UIColor.whiteColor()
+        
+        passwordErrorMessage.font = UIFont.basicFont(10)
+        passwordErrorMessage.textColor = UIColor.redColor()
+        
+        accountMessage.font = UIFont.scriptFont(16)
+        accountMessage.textColor = UIColor.whiteColor()
+
+        alternateButton.titleLabel?.font = UIFont.scriptFont(16)
+        alternateButton.titleLabel?.textColor = UIColor.whiteColor()
+
         
     }
 
@@ -67,7 +94,87 @@ class SignupSceneOneTableViewController: UITableViewController, UITextFieldDeleg
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    // Signup
+    func saveUser() {
+        AccountManager.sharedInstance.saveUser(self, username: emailTextField.text!, email: emailTextField.text!, password: passwordTextField.text!)
+    }
+    
+    // Login
+    func loginUser() {
+        AccountManager.sharedInstance.loginUser(self, email: emailTextField.text!, password: passwordTextField.text!)
+    }
 
+    // Alternate Function
+    func alternateLoginSignup() {
+        
+        // Login State
+        if signupActive == true {
+            
+            accountMessage.text = "Don't have an account?"
+            alternateButton.setTitle("Sign Up", forState: UIControlState.Normal)
+            signupActive = false
+            
+        // Signup State
+        } else {
+            
+            accountMessage.text = "Already Registered?"
+            alternateButton.setTitle("Login", forState: UIControlState.Normal)
+            signupActive = true
+            
+        }
+        
+    }
+    
+    
+    @IBAction func alternateTrigger(sender: AnyObject) {
+        
+        alternateLoginSignup()
+        delegate?.alternateLoginSignupNav()
+        
+    }
+    
+    
+    @IBAction func emailDidChange(sender: AnyObject) {
+        
+        // Valid
+        if ((emailTextField.text?.rangeOfString("@")) != nil) {
+            emailCheckmark.hidden = false
+            emailErrorMessage.hidden = true
+            
+            // Invalid
+        } else {
+            emailErrorMessage.hidden = false
+            emailCheckmark.hidden = true
+            
+        }
+        
+        delegate?.showSignUpButton()
+        
+        if emailTextField.text == "" {
+            delegate?.hideSignUpButton()
+        }
+        
+    }
+    
+    @IBAction func passwordDidChange(sender: AnyObject) {
+        
+        // Invalid
+        if passwordTextField.text!.characters.count < 8 {
+            passwordErrorMessage.hidden = false
+            passwordCheckmark.hidden = true
+            
+            // Valid
+        } else {
+            passwordCheckmark.hidden = false
+            passwordErrorMessage.hidden = true
+            
+        }
+        
+    }
+    
+    
+    
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
