@@ -63,14 +63,10 @@ class SignupSceneOneTableViewController: UITableViewController, UITextFieldDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Get Keyboard Height
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
-        
-        
-        message = "Already have an account?"
-        buttonText = "Log In"
-        
-        
-        
+
+        // Format Elements
         emailLabel.font = UIFont.headerFont(16)
         emailTextField.font = UIFont.headerFont(16)
         emailErrorMessage.hidden = true
@@ -85,8 +81,6 @@ class SignupSceneOneTableViewController: UITableViewController, UITextFieldDeleg
         
         alternateButton.titleLabel?.font = UIFont.scriptFont(16)
         registeredMessage.font = UIFont.scriptFont(16)
-        
-
 
     }
 
@@ -96,13 +90,23 @@ class SignupSceneOneTableViewController: UITableViewController, UITextFieldDeleg
     }
     
     // Signup
-    func saveUser(view: UIViewController, username: String, email: String, password: String) {
-        AccountManager.sharedInstance.saveUser(view, username: username, email: email, password: password)
+    func saveUser(view: UIViewController) {
+        
+        let username = emailTextField.text
+        let email = emailTextField.text
+        let password = passwordTextField.text
+        
+        AccountManager.sharedInstance.saveUser(view, username: username!, email: email!, password: password!)
     }
     
     // Login
-    func loginUser(view: UIViewController, username: String, email: String, password: String) {
-        AccountManager.sharedInstance.loginUser(view, email: email, password: password)
+    func loginUser(view: UIViewController) {
+        
+        let email = emailTextField.text
+        let password = passwordTextField.text
+        
+        AccountManager.sharedInstance.loginUser(view, email: email!, password: password!)
+        
     }
     
     func alternateTrigger(sender: AnyObject) {
@@ -119,22 +123,32 @@ class SignupSceneOneTableViewController: UITableViewController, UITextFieldDeleg
         // Login State
         if signupActive == true {
           
-            message = "Don't have an account?"
-            buttonText = "Sign Up"
+            registeredMessage.text = "Don't have an account?"
+            alternateButton.setTitle("Sign Up", forState: .Normal)
             
             signupActive = false
             
         // Signup State
         } else {
             
-            message = "Already registered?"
-            buttonText = "Login"
+            registeredMessage.text = "Already registered?"
+            alternateButton.setTitle("Log In", forState: .Normal)
             
             signupActive = true
             
         }
         
     }
+    
+    @IBAction func alternate(sender: AnyObject) {
+        
+        alternateSignupLogin()
+        delegate?.alternateLoginSignupNav()
+        
+        self.tableView.reloadData()
+        
+    }
+    
 
     
     func keyboardWillShow(notification:NSNotification) {
@@ -189,6 +203,8 @@ class SignupSceneOneTableViewController: UITableViewController, UITextFieldDeleg
         }
         
     }
+    
+    
 
 
     // MARK: - Table view data source

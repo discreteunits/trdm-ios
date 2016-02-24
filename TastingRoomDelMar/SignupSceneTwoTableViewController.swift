@@ -16,6 +16,18 @@ protocol SignupSceneTwoTableViewDelegate {
 
 class SignupSceneTwoTableViewController: UITableViewController, UITextFieldDelegate {
 
+    @IBOutlet weak var firstNameLabel: UILabel!
+    @IBOutlet weak var firstNameTextField: UITextField!
+    
+    @IBOutlet weak var lastNameLabel: UILabel!
+    @IBOutlet weak var lastNameTextField: UITextField!
+    
+    @IBOutlet weak var mobileLabel: UILabel!
+    @IBOutlet weak var mobileTextField: UITextField!
+    
+    @IBOutlet weak var newsletterLabel: UILabel!
+    @IBOutlet weak var newsletterSwitch: UISwitch!
+    
     var keyboard = CGFloat()
     
     var delegate: SignupSceneTwoTableViewDelegate?
@@ -38,7 +50,20 @@ class SignupSceneTwoTableViewController: UITableViewController, UITextFieldDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Get Keyboard Height
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
+        
+        // Format Elements
+        firstNameLabel.font = UIFont.headerFont(16)
+        firstNameTextField.font = UIFont.headerFont(16)
+        
+        lastNameLabel.font = UIFont.headerFont(16)
+        lastNameTextField.font = UIFont.headerFont(16)
+        
+        mobileLabel.font = UIFont.headerFont(16)
+        mobileTextField.font = UIFont.headerFont(16)
+        
+        newsletterLabel.font = UIFont.headerFont(16)
         
     }
 
@@ -60,45 +85,40 @@ class SignupSceneTwoTableViewController: UITableViewController, UITextFieldDeleg
         keyboard = keyboardHeight
         
     }
-//    
-//    // MARK: - Text field data source
-//    @IBAction func emailDidChange(sender: AnyObject) {
-//        
-//        // Valid
-//        if ((emailTextField.text?.rangeOfString("@")) != nil) {
-//            emailCheckmark.hidden = false
-//            emailErrorMessage.hidden = true
-//            
-//            // Invalid
-//        } else {
-//            emailErrorMessage.hidden = false
-//            emailCheckmark.hidden = true
-//            
-//        }
-//        
-//        delegate?.showSignUpButton()
-//        
-//        if emailTextField.text == "" {
-//            delegate?.hideSignUpButton()
-//        }
-//        
-//    }
-//    
-//    @IBAction func passwordDidChange(sender: AnyObject) {
-//        
-//        // Invalid
-//        if passwordTextField.text!.characters.count < 8 {
-//            passwordErrorMessage.hidden = false
-//            passwordCheckmark.hidden = true
-//            
-//            // Valid
-//        } else {
-//            passwordCheckmark.hidden = false
-//            passwordErrorMessage.hidden = true
-//            
-//        }
-//        
-//    }
+    
+    
+    @IBAction func editingDidChange(sender: AnyObject) {
+        
+        print("Editing did change")
+        
+        delegate?.showSignUpButton()
+        
+        if firstNameTextField.text == "" {
+            delegate?.hideSignUpButton()
+        }
+        
+    }
+    
+    
+    func addDetailsToUser() {
+        
+        let firstName = firstNameTextField.text
+        let lastName = lastNameTextField.text
+        let mobile = mobileTextField.text
+        
+        var newsletter = Bool()
+        
+        if newsletterSwitch.on {
+            newsletter = true
+        } else {
+            newsletter = false
+        }
+
+        
+        AccountManager.sharedInstance.addUserDetails(self, firstName: firstName!, lastName: lastName!, mobile: mobile!, newsletter: newsletter)
+        
+    }
+
 
     // MARK: - Table view data source
 

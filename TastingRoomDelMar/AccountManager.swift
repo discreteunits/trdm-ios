@@ -72,26 +72,38 @@ class AccountManager: NSObject {
     // Save Parse User
     func saveUser(view: UIViewController, username: String, email: String, password: String) {
         
-        let user = PFUser()
+        // Empty Strings
+        if username == "" || password == "" {
+            print("Did not trigger sign up")
+            AlertManager.sharedInstance.displayAlert(view, title: "Failure", message: "Please enter an email and password.")
         
-        user.username = username
-        user.email = email
-        user.password = password
+        // Continue
+        } else {
+            
+            let user = PFUser()
         
-        user.signUpInBackgroundWithBlock({ (success, error) -> Void in
+            user.username = username
+            user.email = email
+            user.password = password
+        
+            user.signUpInBackgroundWithBlock({ (success, error) -> Void in
             
-            if  error == nil {
+                // Success
+                if  error == nil {
                 
-                print("Successfully saved user.")
+                    print("Successfully saved user.")
+                    view.performSegueWithIdentifier("signupContinue", sender: view)
                 
-            } else {
+                // Failure
+                } else {
                 
-                print("Failed to save user.")
-                AlertManager.sharedInstance.displayAlert(view, title: "Failure", message: "Please try again later.")
+                    print("Failed to save user.")
+                    AlertManager.sharedInstance.displayAlert(view, title: "Failure", message: "Please try again later.")
                 
-            }
+                }
             
-        })
+            })
+        }
         
     }
     
@@ -100,15 +112,16 @@ class AccountManager: NSObject {
         
         PFUser.logInWithUsernameInBackground(email, password: password, block: { ( user, error ) -> Void in
             
+            // Success
             if user != nil {
                 
                 print("Login Successful.")
-                //                self.performSegueWithIdentifier("login", sender: self)
+                view.performSegueWithIdentifier("login", sender: view)
                 
+            // Failure
             } else {
                 
                 print("Login Failure")
-                
                 AlertManager.sharedInstance.displayAlert(view, title: "Failure", message: "Please Try Again")
                 
                 
@@ -118,7 +131,49 @@ class AccountManager: NSObject {
         
     }
     
-
+    func addUserDetails(view: UIViewController, firstName: String, lastName: String, mobile: String, newsletter: Bool) {
+ 
+        let user = PFUser.currentUser()
+        
+        user!["firstName"] = firstName
+        user!["lastName"] = lastName
+        user!["mobileNumber"] = mobile
+        
+        if newsletter == true {
+            user!["marketingAllowed"] = true
+        } else {
+            user!["marketingAllowed"] = false
+        }
+        
+        
+        user!.saveInBackgroundWithBlock { (success, error) -> Void in
+            
+            // Success 
+            if error == nil {
+             
+                print("User has been updated successfully.")
+                self.goToTiers(view)
+                
+            // Failure
+            } else {
+                
+                print("Failed to update user")
+                AlertManager.sharedInstance.displayAlert(view, title: "Failure", message: "Please Try Again")
+                
+            }
+        }
+        
+    }
+    
+    func goToTiers(view: UIViewController) {
+        
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let vc = mainStoryboard.instantiateViewControllerWithIdentifier("Menu")
+        
+        view.presentViewController(vc, animated: true, completion: nil)
+        
+    }
     
     
 }

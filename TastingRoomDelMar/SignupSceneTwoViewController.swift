@@ -17,6 +17,13 @@ class SignupSceneTwoViewController: UIViewController {
     var SignupSceneTwoTableViewControllerRef: SignupSceneTwoTableViewController?
     
     // ----------
+    override func viewWillAppear(animated: Bool) {
+        
+        dispatch_async(dispatch_get_main_queue()) {
+            self.addSignupButton()
+        }
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -30,7 +37,7 @@ class SignupSceneTwoViewController: UIViewController {
             nav?.tintColor = UIColor.whiteColor()
             nav?.titleTextAttributes = [ NSFontAttributeName: UIFont.scriptFont(20)]
             
-            let backButton = UIBarButtonItem(title: "<", style: .Bordered, target: self, action: "back:")
+            let backButton = UIBarButtonItem(title: "<", style: .Plain, target: self, action: "back:")
             self.navigationItem.leftBarButtonItem = backButton
             
         }
@@ -43,6 +50,7 @@ class SignupSceneTwoViewController: UIViewController {
     }
     
     func back(sender: UIBarButtonItem) {
+        
         self.presentingViewController!.dismissViewControllerAnimated(false, completion: nil)
         
     }
@@ -50,31 +58,39 @@ class SignupSceneTwoViewController: UIViewController {
     func addSignupButton() {
         
         // Sign Up Button
-        let screenSize: CGRect = UIScreen.mainScreen().bounds
+        let screenSize = self.view.bounds
         
         let screenWidth = screenSize.width
         let screenHeight = screenSize.height
         
-//        let keyboardHeight = self.SignupSceneOneTableViewControllerRef?.keyboard
-//        print("\(keyboardHeight)")
-//        let topOfKeyboard = (screenHeight - keyboardHeight!) - 130
-        
-        let topOfKeyboard = screenHeight - 200
+        let keyboardHeight = self.SignupSceneTwoTableViewControllerRef?.keyboard
+        print("\(keyboardHeight)")
+        let topOfKeyboard = (screenHeight - keyboardHeight!) - 60 - 226
         
         signupButton = UIButton(frame: CGRectMake(0, topOfKeyboard, screenWidth, 60))
-        signupButton.setTitle("Continue", forState: .Normal)
+        signupButton.setTitle("Sign Up", forState: .Normal)
         signupButton.layer.backgroundColor = UIColor.primaryGreenColor().CGColor
         signupButton.titleLabel?.font = UIFont.scriptFont(24)
-        signupButton.addTarget(self, action: "signupAction:", forControlEvents: UIControlEvents.TouchUpInside)
+        signupButton.addTarget(self, action: "addDetailsAction:", forControlEvents: UIControlEvents.TouchUpInside)
         signupButton.hidden = true
         
         self.view.addSubview(signupButton)
         
     }
     
-    func signupAction(sender:UIButton!) {
+    func addDetailsAction(sender: UIButton!) {
         // Make action for adding to current PFUser
+        
+        self.SignupSceneTwoTableViewControllerRef?.addDetailsToUser()
+        
+//        performSegueWithIdentifier("signin", sender: self)
+
+        
+        
+        
     }
+    
+
     
     // Signup Button Animation
     func hideButtonVertical() {

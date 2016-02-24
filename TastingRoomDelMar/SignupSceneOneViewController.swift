@@ -50,7 +50,7 @@ class SignupSceneOneViewController: UIViewController {
             nav?.tintColor = UIColor.whiteColor()
             nav?.titleTextAttributes = [ NSFontAttributeName: UIFont.scriptFont(20)]
             
-            let backButton = UIBarButtonItem(title: "<", style: .Bordered, target: self, action: "back:")
+            let backButton = UIBarButtonItem(title: "<", style: .Plain, target: self, action: "back:")
             self.navigationItem.leftBarButtonItem = backButton
             
         }
@@ -76,14 +76,14 @@ class SignupSceneOneViewController: UIViewController {
     func addSignupButton() {
         
         // Sign Up Button
-        let screenSize: CGRect = UIScreen.mainScreen().bounds
+        let screenSize = self.view.bounds
         
         let screenWidth = screenSize.width
         let screenHeight = screenSize.height
         
         let keyboardHeight = self.SignupSceneOneTableViewControllerRef?.keyboard
         print("\(keyboardHeight)")
-        let topOfKeyboard = (screenHeight - keyboardHeight!) - 130
+        let topOfKeyboard = (screenHeight - keyboardHeight!) - 68
         
         signupButton = UIButton(frame: CGRectMake(0, topOfKeyboard, screenWidth, 60))
         signupButton.setTitle("Continue", forState: .Normal)
@@ -99,25 +99,19 @@ class SignupSceneOneViewController: UIViewController {
     
     func signupAction(sender:UIButton!) {
         
-        let email = self.SignupSceneOneTableViewControllerRef?.email
-        let password = self.SignupSceneOneTableViewControllerRef?.password
-        
-        
+        // Sign Up
         if self.SignupSceneOneTableViewControllerRef?.signupActive == true {
             
-            self.SignupSceneOneTableViewControllerRef?.saveUser(self, username: email!, email: email!, password: password!)
-            print("Signup action finished.")
+            self.SignupSceneOneTableViewControllerRef?.saveUser(self)
             AlertManager.sharedInstance.pushNotificationsAlert()
-            
+          
+        // Log In
         } else {
             
-            self.SignupSceneOneTableViewControllerRef?.loginUser(self, username: email!, email: email!, password: password!)
-            print("Login action finished.")
+            self.SignupSceneOneTableViewControllerRef?.loginUser(self)
             AlertManager.sharedInstance.pushNotificationsAlert()
             
         }
-        
-        performSegueWithIdentifier("signupContinue", sender: self)
         
     }
     
