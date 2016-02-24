@@ -26,8 +26,9 @@ class SignupSceneOneViewController: UIViewController {
     // ----------
     override func viewWillAppear(animated: Bool) {
 
-        addSignupButton()
-        
+        dispatch_async(dispatch_get_main_queue()) {
+            self.addSignupButton()
+        }
   
     }
     
@@ -68,19 +69,11 @@ class SignupSceneOneViewController: UIViewController {
     }
     
     func back(sender: UIBarButtonItem) {
-        
         self.presentingViewController!.dismissViewControllerAnimated(false, completion: nil)
         
     }
     
     func addSignupButton() {
-        
-        
-        //        let keyboardConstraint = NSLayoutConstraint(item: signUpButton, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: topOfKeyboard)
-        
-        
-        //        self.signUpButton.frame = CGRectMake(0, 0, screenWidth, 60)
-        
         
         // Sign Up Button
         let screenSize: CGRect = UIScreen.mainScreen().bounds
@@ -88,16 +81,19 @@ class SignupSceneOneViewController: UIViewController {
         let screenWidth = screenSize.width
         let screenHeight = screenSize.height
         
-        let topOfKeyboard = screenHeight - 200
+        let keyboardHeight = self.SignupSceneOneTableViewControllerRef?.keyboard
+        print("\(keyboardHeight)")
+        let topOfKeyboard = (screenHeight - keyboardHeight!) - 130
         
         signupButton = UIButton(frame: CGRectMake(0, topOfKeyboard, screenWidth, 60))
         signupButton.setTitle("Continue", forState: .Normal)
         signupButton.layer.backgroundColor = UIColor.primaryGreenColor().CGColor
         signupButton.titleLabel?.font = UIFont.scriptFont(24)
-        signupButton.addTarget(self, action: "signupAction", forControlEvents: UIControlEvents.TouchUpInside)
+        signupButton.addTarget(self, action: "signupAction:", forControlEvents: UIControlEvents.TouchUpInside)
         signupButton.hidden = true
         
         self.view.addSubview(signupButton)
+        
     }
     
     

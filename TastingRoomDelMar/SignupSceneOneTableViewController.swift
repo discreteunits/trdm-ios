@@ -20,6 +20,21 @@ protocol SignupSceneOneTableViewDelegate {
 
 class SignupSceneOneTableViewController: UITableViewController, UITextFieldDelegate {
     
+    @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var emailErrorMessage: UILabel!
+    @IBOutlet weak var emailCheckmark: UIImageView!
+    
+    @IBOutlet weak var passwordLabel: UILabel!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var passwordErrorMessage: UILabel!
+    @IBOutlet weak var passwordCheckmark: UIImageView!
+    
+    @IBOutlet weak var registeredMessage: UILabel!
+    @IBOutlet weak var alternateButton: UIButton!
+    
+    var keyboard = CGFloat()
+    
     var email = String()
     var password = String()
     
@@ -31,7 +46,6 @@ class SignupSceneOneTableViewController: UITableViewController, UITextFieldDeleg
     
     var message = String()
     var buttonText = String()
-    
     
     // ----------
     override func viewWillAppear(animated: Bool) {
@@ -49,8 +63,29 @@ class SignupSceneOneTableViewController: UITableViewController, UITextFieldDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
+        
+        
         message = "Already have an account?"
         buttonText = "Log In"
+        
+        
+        
+        emailLabel.font = UIFont.headerFont(16)
+        emailTextField.font = UIFont.headerFont(16)
+        emailErrorMessage.hidden = true
+        emailCheckmark.hidden = true
+        
+        emailTextField.becomeFirstResponder()
+        
+        passwordTextField.font = UIFont.headerFont(16)
+        passwordLabel.font = UIFont.headerFont(16)
+        passwordErrorMessage.hidden = true
+        passwordCheckmark.hidden = true
+        
+        alternateButton.titleLabel?.font = UIFont.scriptFont(16)
+        registeredMessage.font = UIFont.scriptFont(16)
+        
 
 
     }
@@ -100,16 +135,63 @@ class SignupSceneOneTableViewController: UITableViewController, UITextFieldDeleg
         }
         
     }
+
     
-    // MARK: - Text field data source
-    func textFieldDidEndEditing(textField: UITextField) {
-        delegate?.showSignUpButton()
+    func keyboardWillShow(notification:NSNotification) {
+        print("Keyboard Appeared")
+        
+        let userInfo:NSDictionary = notification.userInfo!
+        let keyboardFrame:NSValue = userInfo.valueForKey(UIKeyboardFrameEndUserInfoKey) as! NSValue
+        let keyboardRectangle = keyboardFrame.CGRectValue()
+        let keyboardHeight = keyboardRectangle.height
+        
+        print("KeyboardHeight: \(keyboardHeight)")
+        
+        keyboard = keyboardHeight
+        
     }
     
+    // MARK: - Text field data source
+    @IBAction func emailDidChange(sender: AnyObject) {
+        
+        // Valid
+        if ((emailTextField.text?.rangeOfString("@")) != nil) {
+            emailCheckmark.hidden = false
+            emailErrorMessage.hidden = true
+            
+        // Invalid
+        } else {
+            emailErrorMessage.hidden = false
+            emailCheckmark.hidden = true
+            
+        }
+        
+        delegate?.showSignUpButton()
+        
+        if emailTextField.text == "" {
+            delegate?.hideSignUpButton()
+        }
+        
+    }
     
-    
-    // MARK: - Table view data source
+    @IBAction func passwordDidChange(sender: AnyObject) {
+        
+        // Invalid
+        if passwordTextField.text!.characters.count < 8 {
+            passwordErrorMessage.hidden = false
+            passwordCheckmark.hidden = true
+            
+        // Valid
+        } else {
+            passwordCheckmark.hidden = false
+            passwordErrorMessage.hidden = true
+            
+        }
+        
+    }
 
+
+    // MARK: - Table view data source
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -118,65 +200,6 @@ class SignupSceneOneTableViewController: UITableViewController, UITextFieldDeleg
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return 3
-    }
-
-
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        var cell: UITableViewCell!
-        
-        // Email Row
-        if indexPath.row == 0 {
-            
-            var inputCell: SignupInputTableViewCell
-            inputCell = tableView.dequeueReusableCellWithIdentifier("SignupInputTableCell", forIndexPath: indexPath) as! SignupInputTableViewCell
-            
-            // Set Default Selection
-            inputCell.inputTextField.becomeFirstResponder()
-            
-            // Show Sign Up Button
-            textFieldDidEndEditing(inputCell.inputTextField)
-            
-            inputCell.inputLabel.text = "email"
-            email = inputCell.inputTextField.text!
-            
-            inputCell.errorMessage.text = "Must be a valid email address."
-            
-            return inputCell
-         
-        // Password Row
-        } else if indexPath.row == 1 {
-            
-            var inputCell: SignupInputTableViewCell
-            inputCell = tableView.dequeueReusableCellWithIdentifier("SignupInputTableCell", forIndexPath: indexPath) as! SignupInputTableViewCell
-            
-            inputCell.inputTextField.secureTextEntry = true
-            
-            inputCell.inputLabel.text = "password"
-            password = inputCell.inputTextField.text!
-            
-            inputCell.errorMessage.text = "Must be at least 8 characters long."
-            
-            return inputCell
-            
-        // Message Row
-        } else if indexPath.row == 2 {
-            
-            var messageCell: SignupMessageTableViewCell
-            messageCell = tableView.dequeueReusableCellWithIdentifier("SignupMessageTableCell", forIndexPath: indexPath) as! SignupMessageTableViewCell
-            
-            messageCell.alternateButton.addTarget(self, action: "alternateTrigger:", forControlEvents: .TouchUpInside)
-            
-            messageCell.message.text = message
-            messageCell.alternateButton.setTitle(buttonText, forState: .Normal)
-            
-            return messageCell
-            
-        }
-
-
-        return cell
-        
     }
 
 

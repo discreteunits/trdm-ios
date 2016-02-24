@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SignupInputTableViewCell: UITableViewCell, UITextFieldDelegate {
+class SignupInputTableViewCell: UITableViewCell {
     
     let inputLabel = UILabel()
     let inputTextField = UITextField()
@@ -22,25 +22,32 @@ class SignupInputTableViewCell: UITableViewCell, UITextFieldDelegate {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        // Bounds
+        let screenWidth = contentView.bounds.width
+        let screenHeight = contentView.bounds.height
+        
         //Format Elements
         inputLabel.frame = CGRectMake(0, 0, 100, 50)
         inputLabel.font = UIFont.headerFont(16)
         inputLabel.textColor = UIColor.whiteColor()
         
-        inputTextField.frame = CGRectMake(0, 0, 100, 50)
+        inputTextField.frame = CGRectMake(0, 0, 200, 50)
         inputTextField.frame.origin.x = 100
         inputTextField.autocorrectionType = UITextAutocorrectionType.No
         inputTextField.font = UIFont.headerFont(16)
         inputTextField.textColor = UIColor.whiteColor()
         
-        errorMessage.frame = CGRectMake(0, 0, 50, 50)
+        errorMessage.frame = CGRectMake(0, 0, screenWidth * 0.4, 15)
+        errorMessage.frame.origin.x = screenWidth * 0.155
         errorMessage.font = UIFont.basicFont(10)
         errorMessage.textColor = UIColor.redColor()
+        errorMessage.textAlignment = .Right
         
         checkmark = "checkmark.png"
         let image = UIImage(named: checkmark)
         checkmarkView = UIImageView(image: image!)
-        checkmarkView.frame = CGRectMake(0, 0, 50, 50)
+        checkmarkView.frame = CGRectMake(0, 0, 30, 30)
+        checkmarkView.frame.origin.x = screenWidth * 0.55
         
         // Add Elements
         contentView.addSubview(inputLabel)
@@ -55,28 +62,17 @@ class SignupInputTableViewCell: UITableViewCell, UITextFieldDelegate {
 
         
         // Format Constraints
-        let yConstraint = NSLayoutConstraint(item: inputLabel, attribute: .CenterY, relatedBy: .Equal, toItem: self.contentView, attribute: .CenterY, multiplier: 1, constant: 0)
+        let yConstraint = NSLayoutConstraint(item: checkmarkView, attribute: .CenterY, relatedBy: .Equal, toItem: self.contentView, attribute: .CenterY, multiplier: 1, constant: 0)
 
         // Add Constraints
         contentView.addConstraint(yConstraint)
         
     }
     
-    func inputDidChange(textField: UITextField) {
-        
-        print("Text field did change.")
 
-        // Valid
-        if ((textField.text?.rangeOfString("@")) != nil) {
-            errorMessage.hidden = true
-            checkmarkView.hidden = false
-        // Invalid
-        } else {
-            errorMessage.hidden = false
-            checkmarkView.hidden = true
-        }
-        
-    }
+
+
+    
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
