@@ -18,17 +18,22 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
     
     var nav: UINavigationBar?
     
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-// TIER 3 QUERY
+        // Items Indicator
+        TabManager.sharedInstance.addItemsIndicator()
+        
+        // TIER 3 QUERY
         tierIIIQuery()
         
-// FLYOUT MENU
+        // FLYOUT MENU
         
         self.sideMenuController()?.sideMenu?.delegate = self
         
-// NAV BAR STYLES
+        // NAV BAR STYLES
         
         if let navBar = navigationController?.navigationBar {
             
@@ -39,7 +44,7 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
             nav?.tintColor = UIColor.whiteColor()
             nav?.titleTextAttributes = [ NSFontAttributeName: UIFont (name: "NexaRustScriptL-00", size: 24)!]
             
-// SET NAV BACK BUTTON TO REMOVE LAST ITEM FROM ROUTE
+            // SET NAV BACK BUTTON TO REMOVE LAST ITEM FROM ROUTE
             let lastWindow = route[0]["name"]
             
             self.navigationItem.hidesBackButton = true
@@ -50,19 +55,39 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
         }
     }
     
-// NAV BACK BUTTON ACTION
+    // NAV BACK BUTTON ACTION
     func back(sender: UIBarButtonItem) {
 
         route.removeAtIndex(1)
-        print("The Route has been reduced to: \(route[0]["name"]).")
+        for var index = 0; index < route.count; ++index {
+            print("The Route has been decreased to: \(route[index]["name"]).")
+        }
         print("-----------------------")
+        
         self.navigationController?.popViewControllerAnimated(true)
     }
     
+    
+    @IBAction func openTab(sender: AnyObject) {
+        
+        TabManager.sharedInstance.removeItemsIndicator()
+        
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main",bundle: nil)
+        var destViewController : UIViewController
+        
+        destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("Tab")
+        destViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
+        destViewController.modalPresentationStyle = .CurrentContext
+        
+        let rootVC = sideMenuController() as! UIViewController
+        rootVC.presentViewController(destViewController, animated: true, completion: nil)
+        
+        TabManager.sharedInstance.totalCellCalculator()
+        
+    }
+    
 
-// ------
-// TIER 3 QUERY
-// ------
+    // TIER 3 QUERY
     func tierIIIQuery() {
         
         let query:PFQuery = PFQuery(className:"Tier3")
@@ -78,7 +103,7 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
                 
                 // Do something with the found objects
                 for object in objects! as [PFObject]! {
-                    
+
                     if object["tag"]["state"] as! String == "active" {
                         
                         self.tierIIIArray.append(object)
@@ -144,7 +169,7 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
         
     }
     
-// FLYOUT TRIGGER
+    // FLYOUT TRIGGER
     @IBAction func toggleSideMenu(sender: AnyObject) {
         toggleSideMenuView()
     }
@@ -153,8 +178,12 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
         
         route.append(tierIIIArray[indexPath.row])
         
-        print("The Route has been increased to: \(route[0]["name"]), \(route[1]["name"]), \(route[2]["name"]).")
+        
+        for var index = 0; index < route.count; ++index {
+            print("The Route has been increased to: \(route[index]["name"]).")
+        }
         print("-----------------------")
+
 
         
         self.performSegueWithIdentifier("tierIV", sender: self)

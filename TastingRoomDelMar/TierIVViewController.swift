@@ -25,9 +25,45 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
     var tagsArray = [PFObject]()
     var tierIVCollectionArray = [PFObject]()
     var tierIVTableArray = [PFObject]()
+    
+    
+    @IBOutlet weak var tierIVTableContainer: UIView!
+    @IBOutlet weak var tierIVCollectionContainer: UIView!
+    
 
     
 // ---------------
+    override func viewWillAppear(animated: Bool) {
+        
+        // If Harvest - Remove Collection View
+        let tierTwoSelection = route[1]["name"] as! String
+        
+        print("\(route[1]["name"]) Route Initiating New TierIV style.")
+        
+        if tierTwoSelection == "Harvest" {
+            
+//            tierIVCollectionContainer.removeFromSuperview()
+            tierIVCollectionContainer.hidden = true
+            let screenWidth = self.view.bounds.width
+
+            let views = ["view": self.view, "newView": tierIVTableContainer]
+            let horizontalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:[view]-(<=0)-[newView(\(screenWidth))]", options: NSLayoutFormatOptions.AlignAllCenterY, metrics: nil, views: views)
+            view.addConstraints(horizontalConstraints)
+         
+        // If NOT Harvest
+        } else {
+         
+            let screenHeight = self.view.bounds.height
+            
+            let views = ["view": self.view, "newView": tierIVTableContainer]
+            let verticalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:[view]-(<=0)-[newView(\(screenHeight-132))]", options: NSLayoutFormatOptions.AlignAllCenterX, metrics: nil, views: views)
+            view.addConstraints(verticalConstraints)
+            
+        }
+        
+    }
+    
+    
     override func viewDidAppear(animated: Bool) {
         print("------------Queries Completed------------")
     }
@@ -35,19 +71,25 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Items Indicator
+        TabManager.sharedInstance.addItemsIndicator()
+        
         dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
             self.tagsArrayCreation()
-            self.tierIVCollectionQuery()
+            print("tagsArrayCreation Completed")
+
         }
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
+            self.tierIVCollectionQuery()
             self.tierIVTableQuery()
+            print("collection and table queries Completed")
+
         }
         
        
         
 // FLYOUT MENU
-        
         self.sideMenuController()?.sideMenu?.delegate = self
         
 // NAV BAR STYLES
@@ -75,9 +117,15 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
 // NAV BACK BUTTON ACTION
     func back(sender: UIBarButtonItem) {
         
+        if route.count == 4 {
+            route.removeAtIndex(3)
+        }
         route.removeAtIndex(2)
-        print("The Route has been reduced to: \(route[0]["name"]), \(route[1]["name"]).")
+        for var index = 0; index < route.count; ++index {
+            print("The Route has been decreased to: \(route[index]["name"]).")
+        }
         print("-----------------------")
+        
         self.navigationController?.popViewControllerAnimated(true)
     }
 
@@ -86,6 +134,27 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
         // Dispose of any resources that can be recreated.
     }
     
+    
+    @IBAction func openTab(sender: AnyObject) {
+        
+        TabManager.sharedInstance.removeItemsIndicator()
+        
+        // Present Tab
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main",bundle: nil)
+        var destViewController : UIViewController
+        
+        destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("Tab")
+        destViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
+        destViewController.modalPresentationStyle = .CurrentContext
+        
+        let rootVC = sideMenuController() as! UIViewController
+        rootVC.presentViewController(destViewController, animated: true, completion: nil)
+        
+        TabManager.sharedInstance.totalCellCalculator()
+        
+    }
+    
+    
 // FLYOUT TRIGGER
     @IBAction func toggleSideMenu(sender: AnyObject) {
         toggleSideMenuView()
@@ -93,6 +162,7 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
     
 // PREPARE FOR SEGUE DATA TRANSFER
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
         
         if segue.identifier == "TierIVCollectionEmbeded" {
             
@@ -134,8 +204,16 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
 
 extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDelegate {
     
+    func reloadTable() {
+        
+        self.TierIVTableViewControllerRef?.tableView.reloadData()
+        
+    }
+    
 // TAGS ARRAY CREATION
     func tagsArrayCreation() {
+        
+        self.tagsArray.removeAll()
         
         for object in route as [PFObject]! {
             
@@ -150,15 +228,19 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
 // TIER 4 COLLECTION QUERY
     func tierIVCollectionQuery() {
         
+        self.TierIVCollectionViewControllerRef?.tierIVCollectionArray.removeAll()
+
+        
         var classToBeQueried = String()
         
         // COLLECTION CLASSNAME CONDITION
         if route[1]["name"] as! String == "Vines" {
-            classToBeQueried = "WineVarietals"
+            classToBeQueried = "WineVarietal"
         } else if route[1]["name"] as! String == "Hops" {
-            classToBeQueried = "BeerStyles"
+            classToBeQueried = "BeerStyle"
         }
         
+        print("Attempting to query \(classToBeQueried) for collection")
         
         let collectionQuery:PFQuery = PFQuery(className: classToBeQueried)
         collectionQuery.includeKey("tag")
@@ -174,7 +256,7 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
                 for object in objects! as [PFObject]! {
                     
                     if object["tag"] != nil {
-                    
+                        
                         if object["tag"]["state"] as! String == "active" {
                         
                             self.TierIVCollectionViewControllerRef?.tierIVCollectionArray.append(object)
@@ -203,9 +285,13 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
 // TIER 4 TABLE QUERY
     func tierIVTableQuery() {
         
-        let tableQuery:PFQuery = PFQuery(className:"Items")
+        self.TierIVTableViewControllerRef?.tierIVTableArray.removeAll()
+        
+        
+        let tableQuery:PFQuery = PFQuery(className:"Item")
         tableQuery.includeKey("tags")
         tableQuery.includeKey("modifierGroups")
+        tableQuery.includeKey("taxRates")
         tableQuery.whereKey("tags", containsAllObjectsInArray: tagsArray)
         tableQuery.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
             
@@ -220,6 +306,8 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
                     if !self.TierIVTableViewControllerRef!.tierIVTableArray.contains(object) {
                         
                         self.TierIVTableViewControllerRef?.tierIVTableArray.append(object)
+                        
+
 
                     } else {
                         
@@ -233,6 +321,8 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
                 print("TierIV table query completed with:  \(self.TierIVTableViewControllerRef!.tierIVTableArray.count) objects.")
 
                 
+                
+                
             } else {
                 
                 // Log details of the failure
@@ -240,6 +330,35 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
                 
             }
         }
+    }
+
+
+
+    // TRANSPARENT BLACK BACKGROUND BEHIND MODEL
+    func opaqueWindow() {
+        
+        let tierIVView = self.view
+        
+        print("self view is: \(tierIVView)")
+        
+        let windowWidth = self.view.bounds.size.width
+        let windowHeight = self.view.bounds.size.height
+        
+        let windowView = UIView(frame: CGRectMake(0, 0, windowWidth, windowHeight))
+        
+        if let viewWithTag = tierIVView.viewWithTag(21) {
+
+            windowView.backgroundColor = UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 0.5)
+            viewWithTag.removeFromSuperview()
+                
+        } else {
+
+            windowView.backgroundColor = UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 0.5)
+            windowView.tag = 21
+            tierIVView.addSubview(windowView)
+            
+        }
+        
     }
     
 }

@@ -21,7 +21,10 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+          
+        // Items Indicator
+        TabManager.sharedInstance.addItemsIndicator()
+
         // TIER 2 QUERY
         tierIIQuery()
         
@@ -52,9 +55,30 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
     func back(sender: UIBarButtonItem) {
 
         route.removeAtIndex(0)
-        print("The Route has been reduced to: \(route)")
+        for var index = 0; index < route.count; ++index {
+            print("The Route has been decreased to: \(route[index]["name"]).")
+        }
         print("-----------------------")
         self.navigationController?.popViewControllerAnimated(true)
+    }
+    
+    
+    @IBAction func openTab(sender: AnyObject) {
+        
+        TabManager.sharedInstance.removeItemsIndicator()
+        
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main",bundle: nil)
+        var destViewController : UIViewController
+        
+        destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("Tab")
+        destViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
+        destViewController.modalPresentationStyle = .CurrentContext
+        
+        let rootVC = sideMenuController() as! UIViewController
+        rootVC.presentViewController(destViewController, animated: true, completion: nil)
+        
+        TabManager.sharedInstance.totalCellCalculator()
+        
     }
     
 // ------
@@ -101,7 +125,8 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
         
     }
 
-
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -146,10 +171,12 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
     
 // ADD INDEX TO ROUTE
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
+ 
         route.append(tierIIArray[indexPath.row])
 
-        print("The Route has been increased to: \(route[0]["name"]), \(route[1]["name"])")
+        for var index = 0; index < route.count; ++index {
+            print("The Route has been increased to: \(route[index]["name"]).")
+        }
         print("-----------------------")
         
         self.performSegueWithIdentifier("tierIII", sender: self)

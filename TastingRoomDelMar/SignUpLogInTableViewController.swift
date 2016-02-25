@@ -20,7 +20,7 @@ protocol SignUpLogInTableViewDelegate {
     func alternateLoginSignupNav()
 }
 
-class SignUpLogInTableViewController: UITableViewController {
+class SignUpLogInTableViewController: UITableViewController, UITextFieldDelegate {
 
     var signupActive = true
     
@@ -33,6 +33,15 @@ class SignUpLogInTableViewController: UITableViewController {
     @IBOutlet weak var registeredText: UILabel!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var infoText: UITextView!
+    
+    // Checkmarks
+    @IBOutlet weak var emailCheckmark: UIImageView!
+    @IBOutlet weak var passwordCheckmark: UIImageView!
+    
+    @IBOutlet weak var emailValidMessage: UILabel!
+    @IBOutlet weak var passwordValidMessage: UILabel!
+    
+    
     
     var delegate: SignUpLogInTableViewDelegate?
     var containerViewController: SignUpViewController?
@@ -49,6 +58,16 @@ class SignUpLogInTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
+
+        
+        emailCheckmark.hidden = true
+        passwordCheckmark.hidden = true
+
+        emailValidMessage.hidden = true
+        passwordValidMessage.hidden = true
+        
         
         emailTextField.becomeFirstResponder()
         
@@ -71,7 +90,6 @@ class SignUpLogInTableViewController: UITableViewController {
         
         loginButton.titleLabel?.font = UIFont(name: "NexaRustScriptL-00", size: 16)
         registeredText.font = UIFont(name: "NexaRustScriptL-00", size: 16)
-        
 
     }
     
@@ -87,9 +105,9 @@ class SignUpLogInTableViewController: UITableViewController {
         return 4
     }
     
-// ----------------------
-// SAVE USER
-// ----------------------
+    // --------- End Data Source
+    
+    // SAVE USER
     func saveUser() {
         
         let user = PFUser()
@@ -100,13 +118,9 @@ class SignUpLogInTableViewController: UITableViewController {
         
         user.signUpInBackgroundWithBlock({ (success, error) -> Void in
             
-            self.activityStop()
-            
             if  error == nil {
 
                 print("Successfully saved user.")
-                self.validationSuccessful()
-//                self.SignUpViewControllerRef?.performSegueWithIdentifier("signup", sender: self)
                 
             } else {
                 
@@ -119,40 +133,40 @@ class SignUpLogInTableViewController: UITableViewController {
         
     }
     
-// ------------------
-// LOGIN USER
-// ------------------
+    
+    // LOGIN USER
     func loginUser() {
         
         PFUser.logInWithUsernameInBackground(emailTextField.text!, password: passwordTextField.text!, block: { ( user, error ) -> Void in
-          
-            self.activityStop()
             
             if user != nil {
                 
                 print("Login Successful.")
-                self.performSegueWithIdentifier("login", sender: self)
+//                self.performSegueWithIdentifier("login", sender: self)
                 
             } else {
                 
                 print("Login Failure")
                 self.displayAlert("Login Failed", message: "Please ty again later.")
+           
             }
+            
         })
+        
     }
     
-// ------------------
-// ALTERNATE FUNCTION
-// ------------------
+    // ALTERNATE FUNCTION
     func alternateLoginSignup() {
 
+        // Login State
         if signupActive == true {
             
             infoText.text = "Provide your email and password below to login."
             registeredText.text = "Don't have an account?"
             loginButton.setTitle("Sign Up", forState: UIControlState.Normal)
             signupActive = false
-            
+          
+        // Signup State
         } else {
             
             infoText.text = "Tell us a little bit about yourself. We'd love to get to know you!"
@@ -161,11 +175,10 @@ class SignUpLogInTableViewController: UITableViewController {
             signupActive = true
             
         }
+        
     }
     
-// ------------------
-// ALTERNATE TRIGGER
-// ------------------
+    // ALTERNATE TRIGGER
     @IBAction func login(sender: AnyObject) {
         
         alternateLoginSignup()
@@ -173,30 +186,25 @@ class SignUpLogInTableViewController: UITableViewController {
         
     }
    
-// ----------------------
-// ACTIVITY START FUNCTION
-// ----------------------
+    // ACTIVITY START FUNCTION
     func activityStart() {
+        activityIndicator.hidden = false
         activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 50, 50))
         activityIndicator.center = self.view.center
         activityIndicator.hidesWhenStopped = true
-        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
-        view.addSubview(activityIndicator)
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
         activityIndicator.startAnimating()
         UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+        view.addSubview(activityIndicator)
     }
     
-// ----------------------
-// ACTIVITY STOP FUNCTION
-// ----------------------
+    // ACTIVITY STOP FUNCTION
     func activityStop() {
         self.activityIndicator.stopAnimating()
         UIApplication.sharedApplication().endIgnoringInteractionEvents()
     }
     
-// ----------------------
-// ALERT FUNCTION
-// ----------------------
+    // ALERT FUNCTION
     @available(iOS 8.0, *)
     func displayAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
@@ -208,21 +216,62 @@ class SignUpLogInTableViewController: UITableViewController {
         
     }
     
-// ----------------------
-// TEXTFIELD DID CHANGE FUNCTION
-// ----------------------
+    // TEXTFIELD DID CHANGE FUNCTION
     @IBAction func emailDidChange(sender: AnyObject) {
         
-        validator.validate(self)
-        print("Email did Change")
+//        validator.validate(self)
+        
+        // Valid
+        if ((emailTextField.text?.rangeOfString("@")) != nil) {
+            emailCheckmark.hidden = false
+            emailValidMessage.hidden = true
+
+        // Invalid
+        } else {
+            emailValidMessage.hidden = false
+            emailCheckmark.hidden = true
+
+        }
+        
+        delegate?.showSignUpButton()
+        
+        if emailTextField.text == "" {
+            delegate?.hideSignUpButton()
+        }
+        
+
+        
         
     }
     
     @IBAction func passwordDidChange(sender: AnyObject) {
         
-        validator.validate(self)
-        print("Password did change")
+//        validator.validate(self)
         
+        // Invalid
+        if passwordTextField.text!.characters.count < 8 {
+            passwordValidMessage.hidden = false
+            passwordCheckmark.hidden = true
+
+        // Valid
+        } else {
+            passwordCheckmark.hidden = false
+            passwordValidMessage.hidden = true
+
+        }
+        
+    }
+    
+    func keyboardWillShow(notification:NSNotification) {
+        print("Keyboard Appeared")
+        
+        let userInfo:NSDictionary = notification.userInfo!
+        let keyboardFrame:NSValue = userInfo.valueForKey(UIKeyboardFrameEndUserInfoKey) as! NSValue
+        let keyboardRectangle = keyboardFrame.CGRectValue()
+        let keyboardHeight = keyboardRectangle.height
+
+        print("KeyboardHeight: \(keyboardHeight)")
+
     }
     
 }
@@ -248,6 +297,7 @@ extension SignUpLogInTableViewController: ValidationDelegate {
             field.layer.borderWidth = 1.0
             error.errorLabel?.text = error.errorMessage
             error.errorLabel?.hidden = false
+            
         }
         
         delegate?.hideSignUpButton()

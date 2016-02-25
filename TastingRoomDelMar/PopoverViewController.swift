@@ -10,14 +10,16 @@ import UIKit
 import ParseUI
 import Parse
 
-class PopoverViewController: UITableViewController {
 
+
+class PopoverViewController: UITableViewController {
+    
     // Received data based on table selection
     var popoverItem: PFObject!
     var popoverItemVarietal: PFObject!
     var modGroups = [PFObject]()
     var modGroupDict = [[PFObject]]()
-
+    var taxRates = [PFObject]()
     
     // Data built in this controller
     var modifierObjects = [PFObject]()
@@ -31,13 +33,12 @@ class PopoverViewController: UITableViewController {
     
     
     // User Configuration
-    var modChoice: [PFObject]!
-    var quantityChoice: PFObject!
+    var modChoices = [PFObject]()
+    var quantityChoice = String()
+    // item to pass is popoverItem
     
     // Model Row Collections
     var model = [[PFObject]]()
-
-    
 
 
 // --------------------
@@ -45,7 +46,7 @@ class PopoverViewController: UITableViewController {
         super.viewDidLoad()
         
         createModels(modGroupDict)
-
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -110,9 +111,17 @@ class PopoverViewController: UITableViewController {
                 detailsCell.titleLabel.font = UIFont(name: "BebasNeueRegular", size: 24)
                 detailsCell.altNameLabel?.text = popoverItem["alternateName"] as! String!
                 detailsCell.altNameLabel.font = UIFont(name: "OpenSans", size: 16)
-                detailsCell.varietalLabel?.text = popoverItemVarietal["name"] as! String!
+                
                 detailsCell.varietalLabel.font = UIFont(name: "OpenSans", size: 16)
-
+                // IF HARVEST
+                let harvest = route[1]["name"] as! String
+                if harvest != "Harvest" {
+                    detailsCell.varietalLabel?.text = popoverItemVarietal["name"] as! String!
+                } else {
+                    detailsCell.varietalLabel?.text = ""
+                }
+                
+                
                 detailsCell.selectionStyle = UITableViewCellSelectionStyle.None
 
                 return detailsCell
@@ -214,11 +223,11 @@ class PopoverViewController: UITableViewController {
 // -----------------------------------
 extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
+
     func collectionView(collectionView: UICollectionView,
         numberOfItemsInSection section: Int) -> Int {
             
             let parent = collectionView.superview!.tag
-            
             var numberOfItems: Int!
             
             // Details Table Row
@@ -270,19 +279,21 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                 mgCollectionCell.backgroundColor = UIColor.whiteColor()
                 
                 // Find modifiers and populate cells
-                let trueIndex = parent
-                var itemPortion = model[trueIndex]
-
+                let trueIndex = parent - 1
+                var itemPortion = modGroupDict[trueIndex]
+                
                 let itemPortionObject = itemPortion[indexPath.row]
                 let itemPortionObjectName = itemPortionObject["name"] as? String
                 let itemPortionObjectPrice = itemPortionObject["price"] as? Int
                 let itemPriceDollar = (itemPortionObjectPrice! / 100)
                 let itemPortionPrice = String(itemPriceDollar)
                 
-                mgCollectionCell.label.text = itemPortionObjectName
+                // Pair Modifier Name With Price
+                let orderAndServing = itemPortionObjectName! + "   " + itemPortionPrice
+                
+                mgCollectionCell.label.text = orderAndServing
                 mgCollectionCell.label.font = UIFont(name: "NexaRustScriptL-00", size: 14)
-                mgCollectionCell.priceLabel.text = itemPortionPrice
-                mgCollectionCell.priceLabel.font = UIFont(name: "NexaRustScriptL-00", size: 14)
+                
                 
                 mgCollectionCell.layer.borderWidth = 2
                 mgCollectionCell.layer.borderColor = UIColor(red: 242/255.0, green: 242/255.0, blue: 242/255.0, alpha: 1.0).CGColor
@@ -363,8 +374,17 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
             selectedCell.layer.cornerRadius = 10.0
             selectedCell.clipsToBounds = true
             selectedCell.label.textColor = UIColor.whiteColor()
-            selectedCell.priceLabel.textColor = UIColor.whiteColor()
             selectedCell.backgroundColor = UIColor.blackColor()
+            
+            let mod = model[parent][indexPath.row]
+            
+            // Add chosen modifier to modChoices array.
+            self.modChoices.append(mod)
+            
+            let trueIndex = modChoices.count - 1
+            let modName = modChoices[trueIndex]["name"]
+            print("User chose a modifier of: \(modName)")
+            
 
         // Quantity Table Row
         } else if parent == quantityRow {
@@ -374,6 +394,10 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
             selectedCell.clipsToBounds = true
             selectedCell.label.textColor = UIColor.whiteColor()
             selectedCell.backgroundColor = UIColor.blackColor()
+            
+            quantityChoice = selectedCell.label.text!
+            print("User chose a quantity of: \(quantityChoice)")
+            
 
         // Action Table Row
         } else if parent == actionRow {
@@ -382,10 +406,123 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
             
             // Cancel
             if indexPath.row == 0 {
+                
+                // Revert view controllers, views, and collections back to pre-popover state
+                self.presentingViewController!.dismissViewControllerAnimated(false, completion: nil)
+                
+                let tierIVView = self.presentingViewController!.view
+                if let viewWithTag = tierIVView!.viewWithTag(21) {
+                    
+                    viewWithTag.removeFromSuperview()
+                    
+                }
+                
 
             // Add to Tab
             } else if indexPath.row == 1 {
+                
+                if popoverItem != nil {
+                    if modChoices.count == modGroups.count {
+                        if quantityChoice != "" {
+                         
+                            
+                            // Create Modifiers
+                            // ------------------------------
+                            var convertedModChoices = [Modifier]()
+                            
+                            for modifier in modChoices {
+                                
+                                var newModifier = Modifier()
+                                newModifier.id = modifier.objectId!
+                                newModifier.cloverId = modifier["cloverId"] as! String
+                                newModifier.name = modifier["name"] as! String
+                                
+                                let modPrice = modifier["price"] as! Double
+                                newModifier.price = modPrice / 100
+                                
+                                convertedModChoices.append(newModifier)
+                                print("Mod convnerted to Modifier: \(newModifier)")
+                                                                
+                            }
+                            
+     
+                            // Add All Item Tax Rates Together
+                            var totalTax = Double()
+                            for taxRate in taxRates {
+                                let rate = taxRate["rate"] as! Double
+                                let rateToDollar = rate / 10000000                // TAX RATE DECIMAL CONVERSION
+                                totalTax = totalTax + rateToDollar
+                                
 
+                            }
+                            
+                            
+                            // Calculate Tax Expenditure
+
+                            let lineitemQuantity = Double(quantityChoice)
+                            var preTaxedItem = Double()
+                            var preTaxedItemTotal = Double()
+                            
+                            for newModifier in convertedModChoices {
+                                preTaxedItem = newModifier.price * lineitemQuantity!
+                                preTaxedItemTotal = preTaxedItemTotal + preTaxedItem
+                            }
+                            
+                            var lineitemTax = Double()
+                            lineitemTax = preTaxedItemTotal * totalTax
+
+                            
+                            // Create LineItem
+                            // ------------------------------
+                            var newLineItem = LineItem()
+                            newLineItem.id = popoverItem.objectId!
+                            newLineItem.cloverId = popoverItem["cloverId"] as! String
+                            newLineItem.name = popoverItem["name"] as! String
+                            
+                            // IF HARVEST
+                            let harvest = route[1]["name"] as! String
+                            if harvest != "Harvest" {
+                                newLineItem.varietal = popoverItemVarietal["name"] as! String
+                            } else {
+                                newLineItem.varietal = ""
+                            }
+                            
+                            newLineItem.modifiers = convertedModChoices
+
+                            newLineItem.price = preTaxedItemTotal
+                            
+                            newLineItem.quantity = Int(quantityChoice)!
+                            newLineItem.tax = lineitemTax
+                            
+                            
+                            print("New LineItem created: \(newLineItem.name)")
+                            
+                            // Add LineItem to TabManager tab() Structure
+                            TabManager.sharedInstance.currentTab.lines.append(newLineItem)
+                            print("Line Item \(newLineItem.name) has been added to currentTab.")
+                            
+                            // Clean Up
+                            modGroups.removeAll()
+                            modGroupDict.removeAll()
+                            model.removeAll()
+                            
+                            // Confirm
+                            addedSuccess("Added Successfully", message: "Order has been added to your order.")
+
+                            
+                            
+
+                            
+                        } else {
+                            whoopsSelectModifiers("Whoops", message: "Please select a modifier and quantity.")
+                        }
+                        
+                    } else {
+                        whoopsSelectModifiers("Whoops", message: "Please select a modifier and quantity.")
+                    }
+                    
+                }
+                
             }
             
         }
@@ -406,8 +543,20 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
             
             let deselectedCell = collectionView.cellForItemAtIndexPath(indexPath)! as! PopoverMGCollectionViewCell
             deselectedCell.label.textColor = UIColor.blackColor()
-            deselectedCell.priceLabel.textColor = UIColor.blackColor()
             deselectedCell.backgroundColor = UIColor.whiteColor()
+            
+            let mod = model[parent][indexPath.row]
+            
+            if modChoices.contains(mod) {
+                
+                modChoices = modChoices.filter() {$0 != mod}
+
+            }
+            
+            let trueIndex = modChoices.count - 1
+            let modName = mod["name"]
+            print("Modifier \(modName) has been removed from selected modifiers.")
+
             
         // Quantity Table Row
         } else if parent == quantityRow {
@@ -415,6 +564,9 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
             let deselectedCell = collectionView.cellForItemAtIndexPath(indexPath)! as! PopoverQuantityCollectionViewCell
             deselectedCell.label.textColor = UIColor.blackColor()
             deselectedCell.backgroundColor = UIColor.whiteColor()
+            
+            quantityChoice = ""
+            print("\(quantityChoice)")
           
         // Action Table Row
         } else if parent == actionRow {
@@ -447,7 +599,8 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
             var mgCellSize: CGSize!
             let numberOfModifiers = CGFloat(modGroups[trueIndex]["modifiers"].count)
 
-            let spacing = (numberOfModifiers * 20) - 20
+            let trick = (numberOfModifiers - 1) * 10
+            let spacing = (numberOfModifiers * 20) - trick
             
             let cellHeight = collectionView.bounds.size.height - 40
             let cellWidth = (collectionView.bounds.size.width - spacing) / numberOfModifiers
@@ -482,4 +635,86 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
         return cellSize
     }
     
+    func opaqueWindow() {
+        
+        let tierIVView = self.view
+        
+        let windowWidth = self.view.bounds.size.width
+        let windowHeight = self.view.bounds.size.height
+        
+        let windowView = UIView(frame: CGRectMake(0, 0, windowWidth, windowHeight))
+        
+        if let viewWithTag = tierIVView.viewWithTag(21) {
+            
+            viewWithTag.removeFromSuperview()
+            
+        } else {
+            
+            windowView.backgroundColor = UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 0.5)
+            windowView.tag = 21
+            tierIVView.addSubview(windowView)
+            
+        }
+        
+    }
+    
+    //// Added Successfully
+    @available(iOS 8.0, *)
+    func addedSuccess(title: String, message: String) {
+        
+        // Create Controller
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        alert.view.tintColor = UIColor(red: 9/255.0, green: 178/255.0, blue: 126/255.0, alpha: 1.0)
+        
+        // Create Actions
+        let successAction = UIAlertAction(title: "Sounds Good", style: .Default, handler: { (action) -> Void in
+            self.confirm()
+            print("Ok Selected")
+        })
+        
+        // Add Actions
+        alert.addAction(successAction)
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+        
+    }
+    
+    //// Whoops Select Modifiers Please
+    @available(iOS 8.0, *)
+    func whoopsSelectModifiers(title: String, message: String) {
+        
+        // Create Controller
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        alert.view.tintColor = UIColor(red: 9/255.0, green: 178/255.0, blue: 126/255.0, alpha: 1.0)
+        
+        // Create Actions
+        let successAction = UIAlertAction(title: "Got It", style: .Default, handler: { (action) -> Void in
+            print("Got It Selected")
+        })
+        
+        // Add Actions
+        alert.addAction(successAction)
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+        
+    }
+    
+    func confirm() {
+        
+        // Revert view controllers, views, and collections back to pre-popover state
+        self.presentingViewController!.dismissViewControllerAnimated(false, completion: nil)
+        
+        let tierIVView = self.presentingViewController!.view
+        if let viewWithTag = tierIVView!.viewWithTag(21) {
+            
+            viewWithTag.removeFromSuperview()
+            // Items Indicator
+            TabManager.sharedInstance.addItemsIndicator()
+            
+        }
+        
+    }
+    
 }
+
+

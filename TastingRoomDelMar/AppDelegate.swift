@@ -10,7 +10,7 @@ import UIKit
 import Parse
 import ParseCrashReporting
 import ParseFacebookUtilsV4
-import SlideMenuControllerSwift
+import Stripe
 
 
 @UIApplicationMain
@@ -22,17 +22,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Parse.enableLocalDatastore()
         
-        Parse.setApplicationId("iDDFJkF2ZGnHFtfrcEMba1UYr31zt3fybMzyPM12",
-            clientKey: "NsrsSUee9UZwRJb2tjZMJ1AaEvat8hRQMOjYC1W3")
-        
+        Parse.setApplicationId("0tK5OiiJtRoCxmlP61AdONeBO2rVPVKpxW3EVaZG",
+            clientKey: "GB8OlPH1XWQTCHo8mdU1dP3iPV8NhGUdDcKcZIYx")
+                
         PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)
         
-        // PFUser.enableAutomaticUser()
+        PFUser.enableAutomaticUser()
         
         let defaultACL = PFACL();
-        defaultACL.publicReadAccess = true
         
-        PFACL.setDefaultACL(defaultACL, withAccessForCurrentUser: true)
+        // No one has read access to other peoples stuff
+        defaultACL.publicReadAccess = false
+        
+        PFACL.setDefaultACL(defaultACL, withAccessForCurrentUser: false)
         
         if application.applicationState != UIApplicationState.Background {
             
@@ -46,17 +48,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
             }
         }
+  
         
-        //  Swift 2.0
-        if #available(iOS 8.0, *) {
-            let types: UIUserNotificationType = [.Alert, .Badge, .Sound]
-            let settings = UIUserNotificationSettings(forTypes: types, categories: nil)
-            application.registerUserNotificationSettings(settings)
-            application.registerForRemoteNotifications()
-        } else {
-            let types: UIRemoteNotificationType = [.Alert, .Badge, .Sound]
-            application.registerForRemoteNotificationTypes(types)
-        }
+        // Stripe Integration
+        Stripe.setDefaultPublishableKey("pk_test_Ks6cqeQtnXJN0MQIkEOyAmKn")
         
         
     // -------------------------------
@@ -80,23 +75,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
+
     
     // -------------------------------
     // MARK: Push Notifcations
     // -------------------------------
     
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        
+        print("Device Token At AppDelegate: \(deviceToken)")
+
         let installation = PFInstallation.currentInstallation()
         installation.setDeviceTokenFromData(deviceToken)
+        
         installation.saveInBackground()
         
-        PFPush.subscribeToChannelInBackground("") { (succeeded: Bool, error: NSError?) in
-            if succeeded {
-                print("WhoAmI successfully subscribed to push notifications on the broadcast channel.")
-            } else {
-                print("WhoAmI failed to subscribe to push notifications on the broadcast channel with error.", error)
-            }
-        }
     }
     
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
@@ -152,6 +145,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
+    // ---------------------- Custom --
+    func resetAppToFirstController() {
+        
+        self.window?.rootViewController = UIStoryboard(name: "SignupStoryboard", bundle: nil).instantiateViewControllerWithIdentifier("Landing") as! LandingViewController
+
+    }
+    
+    func resetToMenu() {
+        
+        self.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Menu") as! UINavigationController
+        
+    }
+    
+}
+
+extension UIColor {
+    class func primaryGreenColor() -> UIColor {
+        return UIColor(red: 9/255.0, green: 178/255.0, blue: 126/255.0, alpha: 1.0)
+    }
+}
+
+extension UIFont {
+    class func scriptFont(size: CGFloat) -> UIFont {
+        return UIFont(name: "NexaRustScriptL-00", size: size)!
+    }
+    class func headerFont(size: CGFloat) -> UIFont {
+        return UIFont(name: "BebasNeueRegular", size: size)!
+    }
+    class func basicFont(size: CGFloat) -> UIFont {
+        return UIFont(name: "OpenSans", size: size)!
+    }
     
 }
 

@@ -15,13 +15,13 @@ protocol TierIVTableViewDelegate {
     func tagsArrayCreation()
     func tierIVCollectionQuery()
     func tierIVTableQuery()
+    func opaqueWindow()
 }
 
 class TierIVTableViewController: UITableViewController, UIPopoverPresentationControllerDelegate {
     
     var TierIVViewControllerRef: TierIVViewController?
     var TierIVCollectionViewControllerRef: TierIVCollectionViewController?
-    
     
     @IBOutlet weak var addToTabButton: UIButton!
     
@@ -42,21 +42,21 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     var popoverWidth: CGFloat!
 
     var modDict = [[PFObject]]()
+    
+    var itemTaxRates = [PFObject]()
+
+    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
 
 
-// ------------
+// ---------------------
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        
     }
-    
-    
-    
     
 // MARK: - Table view data source
 
@@ -82,13 +82,49 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         
         cell.itemNameLabel?.text = self.tierIVTableArray[indexPath.row]["name"] as! String?
         cell.itemNameLabel?.font = UIFont(name: "BebasNeueRegular", size: 24)
-        cell.altNameLabel?.text = self.tierIVTableArray[indexPath.row]["alternateName"] as! String?
-        cell.altNameLabel?.font = UIFont(name: "OpenSans", size: 16)
+        cell.altNameTextView?.text = self.tierIVTableArray[indexPath.row]["alternateName"] as! String?
+        cell.altNameTextView?.font = UIFont(name: "OpenSans", size: 16)
 
-        cell.pricingLabel?.font = UIFont(name: "OpenSans", size: 12)
+// -------------------------------
+        // Adjustment For Text View Text Wrapping
 
+        cell.altNameTextView?.sizeToFit()
+        
+        let numberOfLines = cell.altNameTextView.contentSize.height / 16
+        
+        
+        
+        cell.altNameTextView.frame.height == numberOfLines * 16
+
+        cell.altNameTextView.scrollEnabled = false
+        
+        cell.altNameTextView.textContainer.lineBreakMode = NSLineBreakMode.ByCharWrapping
+        cell.altNameTextView.contentInset = UIEdgeInsets(top: 0,left: 0,bottom: 0,right: 0)
+        
+        print("--------******----------")
+        print("\(indexPath.row) Has \(numberOfLines) Number Of Lines.")
+        print("--------******----------")
+        
+        
+// ---------------------------------
+
+        
+        // Prices FOUND in Item Table
+        if let itemPrice = self.tierIVTableArray[indexPath.row]["prices"] {
+            cell.pricingLabel?.text = self.tierIVTableArray[indexPath.row]["prices"] as! String
+            cell.pricingLabel?.font = UIFont(name: "OpenSans", size: 12)
+        
+            // Prices NOT Found in Item Table
+        } else {
+            cell.pricingLabel?.text = ""
+        }
+        
+
+        
         dispatch_async(dispatch_get_main_queue()) {
+            
 
+            
             if let itemTags = self.tierIVTableArray[indexPath.row]["tags"] as? [PFObject] {
 
                 for tagObject in itemTags {
@@ -97,47 +133,36 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
 
                         cell.varietalLabel?.text = tagObject["name"] as? String
                         cell.varietalLabel?.font = UIFont(name: "OpenSans", size: 16)
-
+                        
                         self.itemVarietal = tagObject as PFObject!
 
-                    
                     }
-                
+                    
                 }
             
             }
+            
         }
         
-        
-// -------
-// SET PRICE LABEL HERE
-// -------
-//
-//        cell.pricingLabel?.text =
+        if cell.varietalLabel.text == "Varietal" {
+            cell.varietalLabel.text = ""
+        }
         
         return cell
+        
     }
     
-    
-    
-// SEGUE TRIGGER AND PREPARATION
-    @IBAction func addToOrder(sender: AnyObject) {
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
-        // ASSIGN ITEM TO OBJECT TO BE PASSED TO POPOVER
-        if let button = sender as? UIButton {
-            if let superview = button.superview {
-                if let cell = superview.superview as? TierIVTableViewCell {
-                    indexPath = tableView.indexPathForCell(cell)
-                }
-            }
-        }
+        return 100
+        
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        let selectedCell = tableView.cellForRowAtIndexPath(indexPath)! as! TierIVTableViewCell
         
         item = tierIVTableArray[indexPath.row]
-        
-        let popoverDynamicHeight = item["modifierGroups"].count
-        let popoverHeightCalculation = ((popoverDynamicHeight + 3) * 100)
-        popoverHeight = CGFloat(popoverHeightCalculation)
-        popoverWidth = tableView.bounds.size.width
         
         performSegueWithIdentifier("showItemConfig", sender: self)
         
@@ -145,18 +170,57 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
 
     }
     
+    
+// SEGUE TRIGGER AND PREPARATION
+    @IBAction func addToOrder(sender: AnyObject) {
+        
+        addToOrderButton(sender)
+        
+    }
+    
+    func addToOrderButton(sender: AnyObject) {
+        
+        
+        // ASSIGN ITEM TO OBJECT TO BE PASSED TO POPOVER - To Select Button
+        if let button = sender as? UIButton {
+            if let superview = button.superview {
+                if let cell = superview.superview as? TierIVTableViewCell {
+                    
+                    indexPath = tableView.indexPathForCell(cell)
+                    item = tierIVTableArray[indexPath.row]
+                    
+                }
+                
+            }
+            
+        }
+        
+   
+        performSegueWithIdentifier("showItemConfig", sender: self)
+        
+        print("------------------------")
+        
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
+        modifierGroups.removeAll()
+        modDict.removeAll()
+        
         if segue.identifier == "showItemConfig" {
-            
             
             var vc = segue.destinationViewController as! PopoverViewController
             
             // Dynamically assign Popover Window Size
-            vc.preferredContentSize = CGSizeMake(popoverWidth, popoverHeight)
             
-//            let yCenterConstraint = NSLayoutConstraint(item: vc, attribute: .CenterY, relatedBy: .Equal, toItem: self.TierIVViewControllerRef, attribute: .CenterY, multiplier: 1, constant: 0)
+            let popoverDynamicHeight = item["modifierGroups"].count
+            let popoverHeightCalculation = ((popoverDynamicHeight + 3) * 100)
+            popoverHeight = CGFloat(popoverHeightCalculation)
+            popoverWidth = tableView.bounds.size.width
+            vc.preferredContentSize = CGSizeMake(popoverWidth, popoverHeight)
 
+            
+            delegate?.opaqueWindow()
             
             
             // Build array of modifier groups based on item selection
@@ -167,6 +231,12 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
 
             }
             
+            // Build array of Tax Rates based on item selection
+            let taxRates = item["taxRates"] as! [PFObject]
+            for taxRate in taxRates {
+                self.itemTaxRates.append(taxRate)
+            }
+            print("\(taxRates.count) item tax rate(s) collected")
             
             
             // Data to be passed to popover
@@ -174,18 +244,23 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             vc.popoverItemVarietal = itemVarietal
             vc.modGroups = modifierGroups
             vc.modGroupDict = modDict
+            vc.taxRates = itemTaxRates
             
+            print("item Tax Rates are: \(itemTaxRates)")
             
             
             var controller = vc.popoverPresentationController
             
             controller!.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
             
+            
             if controller != nil {
             
                 controller?.delegate = self
                             
             }
+            
+            activityStop()
 
         }
         
@@ -197,6 +272,9 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     func popoverPresentationControllerDidDismissPopover(popoverPresentationController: UIPopoverPresentationController) {
        
         modifierGroups = []
+
+        delegate?.opaqueWindow()
+        
         
         print("Popover closed.")
         
@@ -214,9 +292,9 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         
         let modArray: [PFObject]?
         
-        let modifierGroupId = modifierGroupObject["modifierGroupId"] as? String
+        let modifierGroupId = modifierGroupObject["cloverId"] as? String
         
-        let modifierQuery:PFQuery = PFQuery(className: "Modifiers")
+        let modifierQuery:PFQuery = PFQuery(className: "Modifier")
         modifierQuery.whereKey("modifierGroupId", containsString: modifierGroupId)
         modifierQuery.orderByAscending("price")
 
@@ -231,6 +309,24 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
 
             return modArray!
             
+    }
+    
+    // ACTIVITY START FUNCTION
+    func activityStart() {
+        activityIndicator.hidden = false
+        activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 50, 50))
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
+        activityIndicator.startAnimating()
+        UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+        view.addSubview(activityIndicator)
+    }
+    
+    // ACTIVITY STOP FUNCTION
+    func activityStop() {
+        self.activityIndicator.stopAnimating()
+        UIApplication.sharedApplication().endIgnoringInteractionEvents()
     }
     
 }

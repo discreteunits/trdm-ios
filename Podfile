@@ -18,5 +18,8 @@ target 'TastingRoomDelMar' do
 	pod 'ENSwiftSideMenu', '~> 0.1'
 	pod 'Bolts'
 	pod 'Bond', '~> 4.0'
+	pod 'RxSwift', '~> 2.0'
+	pod 'RxCocoa', '~> 2.0'
+	pod 'RxBlocking', '~> 2.0'
 		
 end
