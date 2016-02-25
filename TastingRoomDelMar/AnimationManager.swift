@@ -57,6 +57,28 @@ class AnimationManager: NSObject {
         
     }
     
+    func opaqueWindow(view: UIViewController) {
+        
+        let tierIVView = view.view
+        
+        let windowWidth = view.view.bounds.size.width
+        let windowHeight = view.view.bounds.size.height
+        
+        let windowView = UIView(frame: CGRectMake(0, 0, windowWidth, windowHeight))
+        
+        if let viewWithTag = tierIVView.viewWithTag(21) {
+            
+            viewWithTag.removeFromSuperview()
+            
+        } else {
+            
+            windowView.backgroundColor = UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 0.5)
+            windowView.tag = 21
+            tierIVView.addSubview(windowView)
+            
+        }
+        
+    }
     
     
 }

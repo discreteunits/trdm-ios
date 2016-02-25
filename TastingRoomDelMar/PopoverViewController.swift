@@ -507,18 +507,17 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                             model.removeAll()
                             
                             // Confirm
-                            addedSuccess("Added Successfully", message: "Order has been added to your order.")
-
+                            AlertManager.sharedInstance.addedSuccess(self, title: "Added Successfully", message: "Item has been added to your order!")
                             
                             
 
                             
                         } else {
-                            whoopsSelectModifiers("Whoops", message: "Please select a modifier and quantity.")
+                            AlertManager.sharedInstance.whoopsSelectModifiers(self, title: "Whoops", message: "Please select a modifier and quantity.")
                         }
                         
                     } else {
-                        whoopsSelectModifiers("Whoops", message: "Please select a modifier and quantity.")
+                        AlertManager.sharedInstance.whoopsSelectModifiers(self, title: "Whoops", message: "Please select a modifier and quantity.")
                     }
                     
                 }
@@ -634,87 +633,5 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
         
         return cellSize
     }
-    
-    func opaqueWindow() {
-        
-        let tierIVView = self.view
-        
-        let windowWidth = self.view.bounds.size.width
-        let windowHeight = self.view.bounds.size.height
-        
-        let windowView = UIView(frame: CGRectMake(0, 0, windowWidth, windowHeight))
-        
-        if let viewWithTag = tierIVView.viewWithTag(21) {
-            
-            viewWithTag.removeFromSuperview()
-            
-        } else {
-            
-            windowView.backgroundColor = UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 0.5)
-            windowView.tag = 21
-            tierIVView.addSubview(windowView)
-            
-        }
-        
-    }
-    
-    //// Added Successfully
-    @available(iOS 8.0, *)
-    func addedSuccess(title: String, message: String) {
-        
-        // Create Controller
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-        alert.view.tintColor = UIColor(red: 9/255.0, green: 178/255.0, blue: 126/255.0, alpha: 1.0)
-        
-        // Create Actions
-        let successAction = UIAlertAction(title: "Sounds Good", style: .Default, handler: { (action) -> Void in
-            self.confirm()
-            print("Ok Selected")
-        })
-        
-        // Add Actions
-        alert.addAction(successAction)
-        
-        self.presentViewController(alert, animated: true, completion: nil)
-        
-    }
-    
-    //// Whoops Select Modifiers Please
-    @available(iOS 8.0, *)
-    func whoopsSelectModifiers(title: String, message: String) {
-        
-        // Create Controller
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-        alert.view.tintColor = UIColor(red: 9/255.0, green: 178/255.0, blue: 126/255.0, alpha: 1.0)
-        
-        // Create Actions
-        let successAction = UIAlertAction(title: "Got It", style: .Default, handler: { (action) -> Void in
-            print("Got It Selected")
-        })
-        
-        // Add Actions
-        alert.addAction(successAction)
-        
-        self.presentViewController(alert, animated: true, completion: nil)
-        
-    }
-    
-    func confirm() {
-        
-        // Revert view controllers, views, and collections back to pre-popover state
-        self.presentingViewController!.dismissViewControllerAnimated(false, completion: nil)
-        
-        let tierIVView = self.presentingViewController!.view
-        if let viewWithTag = tierIVView!.viewWithTag(21) {
-            
-            viewWithTag.removeFromSuperview()
-            // Items Indicator
-            TabManager.sharedInstance.addItemsIndicator()
-            
-        }
-        
-    }
-    
+
 }
-
-

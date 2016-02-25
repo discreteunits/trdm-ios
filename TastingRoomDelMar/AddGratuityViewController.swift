@@ -183,19 +183,19 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
                     print("Place Order, CloudCode Function Returned: \(result)")
                 }
                 
-                AlertManager.sharedInstance.greatSuccessPreConfirm("Great Success!", message: "Your order has been received. We'll notify you once it's been confirmed.")
+                AlertManager.sharedInstance.greatSuccessPreConfirm(self, title: "Great Success!", message: "Your order has been received. We'll notify you once it's been confirmed.")
                 
             // Gratuity was NOT set
             } else {
                 
-                AlertManager.sharedInstance.addGratuityAlert("Whoops", message: "Please select a gratuity option")
+                AlertManager.sharedInstance.addGratuityAlert(self, title: "Whoops", message: "Please select a gratuity option")
                 
             }
             
         // If User has NOT selected a gratuity option
         } else {
             
-            AlertManager.sharedInstance.addGratuityAlert("Whoops", message: "Please select a gratuity option")
+            AlertManager.sharedInstance.addGratuityAlert(self, title: "Whoops", message: "Please select a gratuity option")
 
         }
         

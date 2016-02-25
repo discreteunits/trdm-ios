@@ -220,7 +220,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             vc.preferredContentSize = CGSizeMake(popoverWidth, popoverHeight)
 
             
-            delegate?.opaqueWindow()
+            AnimationManager.sharedInstance.opaqueWindow(self)
             
             
             // Build array of modifier groups based on item selection

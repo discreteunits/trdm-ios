@@ -36,7 +36,7 @@ class AccountManager: NSObject {
             
             // Failure
             if error != nil {
-                AlertManager.sharedInstance.displayAlert(view, title: "Error", message: (error?.localizedDescription)!)
+                AlertManager.sharedInstance.singleAlert(view, title: "Error", message: (error?.localizedDescription)!)
                 return
                 
             // Success
@@ -81,7 +81,7 @@ class AccountManager: NSObject {
         // Empty Strings
         if username == "" || password == "" {
             print("Did not trigger sign up")
-            AlertManager.sharedInstance.displayAlert(view, title: "Failure", message: "Please enter an email and password.")
+            AlertManager.sharedInstance.singleAlert(view, title: "Failure", message: "Please enter an email and password.")
         
         // Continue
         } else {
@@ -104,7 +104,7 @@ class AccountManager: NSObject {
                 } else {
                 
                     print("Failed to save user.")
-                    AlertManager.sharedInstance.displayAlert(view, title: "Failure", message: "Please try again later.")
+                    AlertManager.sharedInstance.singleAlert(view, title: "Failure", message: "Please try again later.")
                 
                 }
                 
@@ -133,7 +133,7 @@ class AccountManager: NSObject {
             } else {
                 
                 print("Login Failure")
-                AlertManager.sharedInstance.displayAlert(view, title: "Failure", message: "Please Try Again")
+                AlertManager.sharedInstance.singleAlert(view, title: "Failure", message: "Please Try Again")
                 
             }
             
@@ -172,7 +172,7 @@ class AccountManager: NSObject {
             } else {
                 
                 print("Failed to update user")
-                AlertManager.sharedInstance.displayAlert(view, title: "Failure", message: "Please Try Again")
+                AlertManager.sharedInstance.singleAlert(view, title: "Failure", message: "Please Try Again")
                 
             }
             

@@ -75,12 +75,12 @@ class AlertManager: UIViewController {
         alert.addAction(createAccountAction)
         alert.addAction(cancelAction)
         
-        self.presentViewController(alert, animated: true, completion: nil)
+        view.presentViewController(alert, animated: true, completion: nil)
     }
 
     //// WhoopsLoggedIn
     @available(iOS 8.0, *)
-    func whoopsLoggedInAlert(title: String, message: String) {
+    func whoopsLoggedInAlert(view: UIViewController, title: String, message: String) {
         
         // Create Controller
         let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
@@ -88,11 +88,11 @@ class AlertManager: UIViewController {
         
         // Create Actions
         let loginAction = UIAlertAction(title: "Login", style: .Default, handler: { (action) -> Void in
-            self.goToLogIn()
+            self.goToLogIn(view)
             print("Login Selected")
         })
         let createAccountAction = UIAlertAction(title: "Create Account", style: .Default , handler: { (action) -> Void in
-            self.goToLogIn()
+            self.goToLogIn(view)
             print("Create Account Selected")
         })
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action) -> Void in
@@ -104,12 +104,12 @@ class AlertManager: UIViewController {
         alert.addAction(createAccountAction)
         alert.addAction(cancelAction)
         
-        self.presentViewController(alert, animated: true, completion: nil)
+        view.presentViewController(alert, animated: true, completion: nil)
     }
 
     // WhoopsCreditCard
     @available(iOS 8.0, *)
-    func whoopsCreditCardAlert(title: String, message: String) {
+    func whoopsCreditCardAlert(view: UIViewController, title: String, message: String) {
         
         // Create Controller
         let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
@@ -117,7 +117,7 @@ class AlertManager: UIViewController {
         
         // Create Actions
         let addCardAction = UIAlertAction(title: "Add Card", style: .Default, handler: { (action) -> Void in
-            self.goToAddPayment()
+       self.goToAddPayment(view)
             print("Add Card Selected")
         })
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action) -> Void in
@@ -128,12 +128,12 @@ class AlertManager: UIViewController {
         alert.addAction(addCardAction)
         alert.addAction(cancelAction)
         
-        self.presentViewController(alert, animated: true, completion: nil)
+        view.presentViewController(alert, animated: true, completion: nil)
     }
     
     // Add Table Number
     @available(iOS 8.0, *)
-    func addTableNumberAlert(title: String, message: String) {
+    func addTableNumberAlert(view: UIViewController, title: String, message: String) {
         
         // Create Controller
         let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
@@ -147,12 +147,12 @@ class AlertManager: UIViewController {
         // Add Actions
         alert.addAction(cancelAction)
         
-        self.presentViewController(alert, animated: true, completion: nil)
+        view.presentViewController(alert, animated: true, completion: nil)
     }
     
     //// Add Gratuity
     @available(iOS 8.0, *)
-    func addGratuityAlert(title: String, message: String) {
+    func addGratuityAlert(view: UIViewController, title: String, message: String) {
         
         // Create Controller
         let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
@@ -166,12 +166,12 @@ class AlertManager: UIViewController {
         // Add Actions
         alert.addAction(cancelAction)
         
-        self.presentViewController(alert, animated: true, completion: nil)
+        view.presentViewController(alert, animated: true, completion: nil)
     }
     
     //// GreatSuccessPreConfirm
     @available(iOS 8.0, *)
-    func greatSuccessPreConfirm(title: String, message: String) {
+    func greatSuccessPreConfirm(view: UIViewController, title: String, message: String) {
         
         // Create Controller
         let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
@@ -185,8 +185,59 @@ class AlertManager: UIViewController {
         // Add Actions
         alert.addAction(cancelAction)
         
-        self.presentViewController(alert, animated: true, completion: nil)
+        view.presentViewController(alert, animated: true, completion: nil)
     }
+    
+    // Added Successfully
+    @available(iOS 8.0, *)
+    func addedSuccess(view: UIViewController, title: String, message: String) {
+        
+        // Create Controller
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        alert.view.tintColor = UIColor.primaryGreenColor()
+        
+        // Create Actions
+        let successAction = UIAlertAction(title: "Sounds Good", style: .Default, handler: { (action) -> Void in
+            self.confirm(view)
+            print("Ok Selected")
+        })
+        
+        // Add Actions
+        alert.addAction(successAction)
+        
+        view.presentViewController(alert, animated: true, completion: nil)
+        
+    }
+    
+    // Whoops Select Modifiers Please
+    @available(iOS 8.0, *)
+    func whoopsSelectModifiers(view: UIViewController, title: String, message: String) {
+        
+        // Create Controller
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        alert.view.tintColor = UIColor(red: 9/255.0, green: 178/255.0, blue: 126/255.0, alpha: 1.0)
+        
+        // Create Actions
+        let successAction = UIAlertAction(title: "Got It", style: .Default, handler: { (action) -> Void in
+            print("Got It Selected")
+        })
+        
+        // Add Actions
+        alert.addAction(successAction)
+        
+        view.presentViewController(alert, animated: true, completion: nil)
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     // Push Notifications Alert & Installation Assignment
     func pushNotificationsAlert() {
@@ -221,12 +272,12 @@ class AlertManager: UIViewController {
         
         // Whoops Logged In
         if TabManager.sharedInstance.currentTab.userId == "" {
-            whoopsLoggedInAlert("Whoops", message: "Looks like you're not logged in or don't have an account. Login or create an account to place an order.")
+            whoopsLoggedInAlert(view, title: "Whoops", message: "Looks like you're not logged in or don't have an account. Login or create an account to place an order.")
         }
         
         // Whoops Credit Card
         if CardManager.sharedInstance.currentCustomer.card.brand == "" {
-            whoopsCreditCardAlert("Whoops", message: "Looks like you don't have a credit card on file. Please add a card or checkout with your servers.")
+            whoopsCreditCardAlert(view, title: "Whoops", message: "Looks like you don't have a credit card on file. Please add a card or checkout with your servers.")
         }
         
         // Enter Table Number
@@ -242,24 +293,40 @@ class AlertManager: UIViewController {
     }
     
     // Go To Sign Up
-    func goToLogIn() {
+    func goToLogIn(view: UIViewController) {
         
-        let mainStoryboard: UIStoryboard = UIStoryboard(name: "SignupStoryboard",bundle: nil)
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "SignupStoryboard", bundle: nil)
         
         let vc = mainStoryboard.instantiateViewControllerWithIdentifier("createAccount")
         
-        self.presentViewController(vc, animated: true, completion: nil)
+        view.presentViewController(vc, animated: true, completion: nil)
         
     }
     
     // Go To Add Payment
-    func goToAddPayment() {
+    func goToAddPayment(view: UIViewController) {
         
-        let mainStoryboard: UIStoryboard = UIStoryboard(name: "PaymentStoryboard",bundle: nil)
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "PaymentStoryboard", bundle: nil)
         
         let vc = mainStoryboard.instantiateViewControllerWithIdentifier("Payment")
         
-        self.presentViewController(vc, animated: true, completion: nil)
+        view.presentViewController(vc, animated: true, completion: nil)
+        
+    }
+    
+    func confirm(view: UIViewController) {
+        
+        // Revert view controllers, views, and collections back to pre-popover state
+        view.presentingViewController!.dismissViewControllerAnimated(false, completion: nil)
+        
+        let tierIVView = view.presentingViewController!.view
+        if let viewWithTag = tierIVView!.viewWithTag(21) {
+            
+            viewWithTag.removeFromSuperview()
+            // Items Indicator
+            TabManager.sharedInstance.addItemsIndicator()
+            
+        }
         
     }
 
