@@ -7,7 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2AC90E1EB975445BB16AC973 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D72E4531EC809B76A6BB39C3 /* SystemConfiguration.framework */; };
+		3BBD57881B1DF8AE4C2EB711 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C574227E8221806698F1EC14 /* QuartzCore.framework */; };
+		AFB1490345526B31EEF7275E /* BuddyBuildSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F05ACD197DBAF34CD3400BB /* BuddyBuildSDK.framework */; };
+		BA04B6B5F8A92BABC16E8954 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E60AD13452E1D53B452F520 /* AssetsLibrary.framework */; };
 		BB65EBD50F601E4F26BD8CFC /* Pods_TastingRoomDelMar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 258E486804D393986620D744 /* Pods_TastingRoomDelMar.framework */; };
+		C99AEA60BC25AF4C856D92F2 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8324CEE169FA9F8700ADA7C5 /* CoreTelephony.framework */; };
+		CE1737283AA1E1BF6BFD6C08 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B1F7066E6EBD79AC714C226 /* CoreText.framework */; };
 		D7FFF7B11C3AFB0600020D9A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FFF7B01C3AFB0600020D9A /* AppDelegate.swift */; };
 		D7FFF7B31C3AFB0600020D9A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FFF7B21C3AFB0600020D9A /* ViewController.swift */; };
 		D7FFF7B61C3AFB0600020D9A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7FFF7B41C3AFB0600020D9A /* Main.storyboard */; };
@@ -36,8 +42,14 @@
 
 /* Begin PBXFileReference section */
 		04B86A7B2DE721FB50D137DB /* Pods-TastingRoomDelMar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TastingRoomDelMar.release.xcconfig"; path = "Pods/Target Support Files/Pods-TastingRoomDelMar/Pods-TastingRoomDelMar.release.xcconfig"; sourceTree = "<group>"; };
+		1F05ACD197DBAF34CD3400BB /* BuddyBuildSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BuddyBuildSDK.framework; sourceTree = "<group>"; };
 		258E486804D393986620D744 /* Pods_TastingRoomDelMar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TastingRoomDelMar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B1F7066E6EBD79AC714C226 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		5E60AD13452E1D53B452F520 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		8324CEE169FA9F8700ADA7C5 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		C574227E8221806698F1EC14 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		D53F1940B0ECFC354F949DF6 /* Pods-TastingRoomDelMar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TastingRoomDelMar.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TastingRoomDelMar/Pods-TastingRoomDelMar.debug.xcconfig"; sourceTree = "<group>"; };
+		D72E4531EC809B76A6BB39C3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		D7FFF7AD1C3AFB0600020D9A /* TastingRoomDelMar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TastingRoomDelMar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7FFF7B01C3AFB0600020D9A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D7FFF7B21C3AFB0600020D9A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -51,6 +63,7 @@
 		D7FFF7CC1C3AFB0600020D9A /* TastingRoomDelMarUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TastingRoomDelMarUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7FFF7D01C3AFB0600020D9A /* TastingRoomDelMarUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TastingRoomDelMarUITests.swift; sourceTree = "<group>"; };
 		D7FFF7D21C3AFB0600020D9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DEBF8B79409B11C6028B911E /* Bridging-Header.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +72,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB65EBD50F601E4F26BD8CFC /* Pods_TastingRoomDelMar.framework in Frameworks */,
+				AFB1490345526B31EEF7275E /* BuddyBuildSDK.framework in Frameworks */,
+				BA04B6B5F8A92BABC16E8954 /* AssetsLibrary.framework in Frameworks */,
+				CE1737283AA1E1BF6BFD6C08 /* CoreText.framework in Frameworks */,
+				C99AEA60BC25AF4C856D92F2 /* CoreTelephony.framework in Frameworks */,
+				2AC90E1EB975445BB16AC973 /* SystemConfiguration.framework in Frameworks */,
+				3BBD57881B1DF8AE4C2EB711 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +102,12 @@
 			isa = PBXGroup;
 			children = (
 				258E486804D393986620D744 /* Pods_TastingRoomDelMar.framework */,
+				1F05ACD197DBAF34CD3400BB /* BuddyBuildSDK.framework */,
+				5E60AD13452E1D53B452F520 /* AssetsLibrary.framework */,
+				4B1F7066E6EBD79AC714C226 /* CoreText.framework */,
+				8324CEE169FA9F8700ADA7C5 /* CoreTelephony.framework */,
+				D72E4531EC809B76A6BB39C3 /* SystemConfiguration.framework */,
+				C574227E8221806698F1EC14 /* QuartzCore.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -105,6 +130,7 @@
 				D7FFF7AE1C3AFB0600020D9A /* Products */,
 				D72093428157F04460BFB565 /* Pods */,
 				33F0AF0FDEDF0E0B9CE77BF8 /* Frameworks */,
+				DEBF8B79409B11C6028B911E /* Bridging-Header.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -475,10 +501,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = TastingRoomDelMar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tastingroomdelmar.TastingRoomDelMar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -488,10 +519,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = TastingRoomDelMar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tastingroomdelmar.TastingRoomDelMar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Bridging-Header.h";
 			};
 			name = Release;
 		};
