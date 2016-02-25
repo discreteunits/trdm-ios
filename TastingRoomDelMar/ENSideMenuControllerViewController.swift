@@ -98,6 +98,7 @@ public extension UIViewController {
         } while (iteration != nil)
         
         return iteration as? ENSideMenuProtocol
+        
     }
     
     internal func topMostController () -> ENSideMenuProtocol? {
