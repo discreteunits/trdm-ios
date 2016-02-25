@@ -67,10 +67,10 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
         
         TabManager.sharedInstance.removeItemsIndicator()
         
-        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main",bundle: nil)
+        let tabStoryboard: UIStoryboard = UIStoryboard(name: "TabStoryboard",bundle: nil)
         var destViewController : UIViewController
         
-        destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("Tab")
+        destViewController = tabStoryboard.instantiateViewControllerWithIdentifier("Tab")
         destViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
         destViewController.modalPresentationStyle = .CurrentContext
         

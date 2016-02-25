@@ -71,9 +71,9 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerCell = tableView.dequeueReusableCellWithIdentifier("TabHeaderCell") as! TabHeaderTableViewCell
         
-        headerCell.itemLabel.font = UIFont(name: "BebasNeueRegular", size: 18)
-        headerCell.qtyLabel.font = UIFont(name: "BebasNeueRegular", size: 18)
-        headerCell.priceLabel.font = UIFont(name: "BebasNeueRegular", size: 18)
+        headerCell.itemLabel.font = UIFont.headerFont(18)
+        headerCell.qtyLabel.font = UIFont.headerFont(18)
+        headerCell.priceLabel.font = UIFont.headerFont(18)
         
         return headerCell
     }
@@ -112,7 +112,7 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
             lineitemCell.itemNameLabel?.text = "\(tab.lines[indexPath.row].name)"
             
             // Styles
-            lineitemCell.itemNameLabel.font = UIFont(name: "BebasNeueRegular", size: 24)
+            lineitemCell.itemNameLabel.font = UIFont.headerFont(24)
 
             
             return lineitemCell
@@ -130,13 +130,13 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
             totalCell.totalValueLabel?.text = "\(tab.grandTotal)"
             
             // Styles
-            totalCell.subtotalLabel.font = UIFont(name: "BebasNeueRegular", size: 18)
-            totalCell.taxLabel.font = UIFont(name: "BebasNeueRegular", size: 18)
-            totalCell.totalLabel.font = UIFont(name: "BebasNeueRegular", size: 18)
+            totalCell.subtotalLabel.font = UIFont.headerFont(18)
+            totalCell.taxLabel.font = UIFont.headerFont(18)
+            totalCell.totalLabel.font = UIFont.headerFont(18)
             
-            totalCell.subtotalValueLabel.font = UIFont(name: "NexaRustScriptL-00", size: 18)
-            totalCell.taxValueLabel.font = UIFont(name: "NexaRustScriptL-00", size: 18)
-            totalCell.totalValueLabel.font = UIFont(name: "NexaRustScriptL-00", size: 18)
+            totalCell.subtotalValueLabel.font = UIFont.scriptFont(18)
+            totalCell.taxValueLabel.font = UIFont.scriptFont(18)
+            totalCell.totalValueLabel.font = UIFont.scriptFont(18)
             
             
             return totalCell
@@ -151,7 +151,7 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
 
             // Styles
             actionCell.placeOrderButton.layer.backgroundColor = UIColor(red: 9/255.0, green: 178/255.0, blue: 126/255.0, alpha: 1.0).CGColor
-            actionCell.placeOrderButton.titleLabel?.font = UIFont(name: "NexaRustScriptL-00", size: 28)
+            actionCell.placeOrderButton.titleLabel?.font = UIFont.scriptFont(28)
             actionCell.placeOrderButton.layer.cornerRadius = 6.0
             actionCell.placeOrderButton.clipsToBounds = true
             actionCell.placeOrderButton.titleLabel?.textColor = UIColor.whiteColor()
@@ -413,9 +413,9 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
                 
                 // Styles
                 lineitemServingCollectionCell.backgroundColor = UIColor.whiteColor()
-                lineitemServingCollectionCell.servingSizeLabel.font = UIFont(name: "NexaRustScriptL-00", size: 18)
-                lineitemServingCollectionCell.qtyLabel.font = UIFont(name: "NexaRustScriptL-00", size: 18)
-                lineitemServingCollectionCell.priceLabel.font = UIFont(name: "NexaRustScriptL-00", size: 18)
+                lineitemServingCollectionCell.servingSizeLabel.font = UIFont.scriptFont(18)
+                lineitemServingCollectionCell.qtyLabel.font = UIFont.scriptFont(18)
+                lineitemServingCollectionCell.priceLabel.font = UIFont.scriptFont(18)
                 
                 return lineitemServingCollectionCell
                 
@@ -430,7 +430,7 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
                 
                 // Styles
                 lineitemCollectionCell.backgroundColor = UIColor.whiteColor()
-                lineitemCollectionCell.modNameLabel.font = UIFont(name: "NexaRustScriptL-00", size: 18)
+                lineitemCollectionCell.modNameLabel.font = UIFont.scriptFont(18)
                 
                 return lineitemCollectionCell
                 
@@ -618,7 +618,7 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
     func goToAddPayment() {
         
         
-        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main",bundle: nil)
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "PaymentStoryboard",bundle: nil)
         
         let vc = mainStoryboard.instantiateViewControllerWithIdentifier("Payment")
         

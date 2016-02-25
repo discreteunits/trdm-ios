@@ -60,7 +60,7 @@ class TabViewController: UIViewController {
             messageTextView.frame.origin.y = windowHeight * 0.65
             messageTextView.frame.origin.x = windowWidth * 0.15
             messageTextView.text = "Looks like you don't have any items on your tab."
-            messageTextView.font = UIFont(name: "OpenSans", size: 16)
+            messageTextView.font = UIFont.basicFont(16)
             messageTextView.textColor = UIColor.grayColor()
             messageTextView.userInteractionEnabled = false
             messageTextView.textAlignment = .Center
@@ -72,7 +72,7 @@ class TabViewController: UIViewController {
             menuButton.setTitle("Back to Menu", forState: .Normal)
             menuButton.layer.backgroundColor = UIColor(red: 242/255.0, green: 242/255.0, blue: 242/255.0, alpha: 1.0).CGColor
             menuButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
-            menuButton.titleLabel?.font = UIFont(name: "NexaRustScriptL-00", size: 24)
+            menuButton.titleLabel?.font = UIFont.scriptFont(24)
             menuButton.layer.cornerRadius = 12.0
             menuButton.clipsToBounds = true
             menuButton.addTarget(self, action: "backToMenu", forControlEvents: UIControlEvents.TouchUpInside)
@@ -100,7 +100,7 @@ class TabViewController: UIViewController {
             navigationTitle.title = "My Tab"
             nav?.barStyle = UIBarStyle.Black
             nav?.tintColor = UIColor.whiteColor()
-            nav?.titleTextAttributes = [ NSFontAttributeName: UIFont (name: "NexaRustScriptL-00", size: 24)!]
+            nav?.titleTextAttributes = [ NSFontAttributeName: UIFont.scriptFont(24)]
         }
 
     }

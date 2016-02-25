@@ -30,7 +30,7 @@ class PaymentViewController: UIViewController {
             navigationTitle.title = "Payment"
             nav?.barStyle = UIBarStyle.Black
             nav?.tintColor = UIColor.whiteColor()
-            nav?.titleTextAttributes = [ NSFontAttributeName: UIFont (name: "NexaRustScriptL-00", size: 24)!]
+            nav?.titleTextAttributes = [ NSFontAttributeName: UIFont.scriptFont(24)]
         }
         
     }

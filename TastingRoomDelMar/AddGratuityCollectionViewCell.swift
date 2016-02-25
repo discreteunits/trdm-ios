@@ -25,7 +25,7 @@ class AddGratuityCollectionViewCell: UICollectionViewCell {
         label.backgroundColor = UIColor.clearColor()
         label.textColor = UIColor.blackColor()
         label.text = "Cash"
-        label.font = UIFont(name: "NexaRustScriptL-00", size: 18)
+        label.font = UIFont.scriptFont(18)
         
         contentView.addSubview(label)
         
