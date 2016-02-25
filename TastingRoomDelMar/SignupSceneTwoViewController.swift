@@ -86,49 +86,7 @@ class SignupSceneTwoViewController: UIViewController {
 //        performSegueWithIdentifier("signin", sender: self)
 
         
-        
-        
     }
-    
-
-    
-    // Signup Button Animation
-    func hideButtonVertical() {
-        
-        UIView.animateWithDuration(0.2, delay: 0.0, options: .CurveEaseInOut, animations: { () -> Void in
-            
-            self.signupButton.transform = CGAffineTransformIdentity
-            self.signupButton.alpha = 0
-            
-            }) { (succeeded: Bool) -> Void in
-                
-                if succeeded {
-                    self.signupButton.hidden = true
-                    
-                }
-                
-        }
-        
-    }
-    
-    func showButtonVertical() {
-        
-        UIView.animateWithDuration(0.2, delay: 0.0, options: .CurveEaseInOut, animations: { () -> Void in
-            
-            self.signupButton.transform = CGAffineTransformMakeTranslation(0, -self.signupButton.frame.height + 69)
-            self.signupButton.alpha = 1
-            
-            }) { (succeeded: Bool) -> Void in
-                
-                if succeeded {
-                    self.signupButton.hidden = false
-                    
-                }
-                
-        }
-        
-    }
-    
 
     
     // MARK: - Navigation
@@ -148,17 +106,16 @@ class SignupSceneTwoViewController: UIViewController {
         
     }
 
-
 }
 
 extension SignupSceneTwoViewController: SignupSceneTwoTableViewDelegate {
     
     func showSignUpButton() {
-        showButtonVertical()
+        AnimationManager.sharedInstance.showButtonVertical(self, button: signupButton)
     }
     
     func hideSignUpButton() {
-        hideButtonVertical()
+        AnimationManager.sharedInstance.hideButtonVertical(self, button: signupButton)
     }
     
 }

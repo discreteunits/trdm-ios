@@ -30,11 +30,13 @@ class AccountManager: NSObject {
     @available(iOS 8.0, *)
     func loginWithFacebook(view: UIViewController) {
         
+        ActivityManager.sharedInstance.activityStart(view)
+        
         PFFacebookUtils.logInInBackgroundWithReadPermissions(["public_profile", "email"], block: { (user: PFUser?, error: NSError?) -> Void in
             
             // Failure
             if error != nil {
-                AlertManager.sharedInstance.displayAlert(view, title: "Error", message: (error?.localizedDescription)!)
+                AlertManager.sharedInstance.singleAlert(view, title: "Error", message: (error?.localizedDescription)!)
                 return
                 
             // Success
@@ -63,6 +65,8 @@ class AccountManager: NSObject {
                     
                 }
                 
+                ActivityManager.sharedInstance.activityStop()
+                
             }
             
         })
@@ -72,10 +76,12 @@ class AccountManager: NSObject {
     // Save Parse User
     func saveUser(view: UIViewController, username: String, email: String, password: String) {
         
+        ActivityManager.sharedInstance.activityStart(view)
+        
         // Empty Strings
         if username == "" || password == "" {
             print("Did not trigger sign up")
-            AlertManager.sharedInstance.displayAlert(view, title: "Failure", message: "Please enter an email and password.")
+            AlertManager.sharedInstance.singleAlert(view, title: "Failure", message: "Please enter an email and password.")
         
         // Continue
         } else {
@@ -98,9 +104,11 @@ class AccountManager: NSObject {
                 } else {
                 
                     print("Failed to save user.")
-                    AlertManager.sharedInstance.displayAlert(view, title: "Failure", message: "Please try again later.")
+                    AlertManager.sharedInstance.singleAlert(view, title: "Failure", message: "Please try again later.")
                 
                 }
+                
+                ActivityManager.sharedInstance.activityStop()
             
             })
             
@@ -110,6 +118,8 @@ class AccountManager: NSObject {
     
     // Login Parse User
     func loginUser(view: UIViewController, email: String, password: String) {
+        
+        ActivityManager.sharedInstance.activityStart(view)
         
         PFUser.logInWithUsernameInBackground(email, password: password, block: { ( user, error ) -> Void in
             
@@ -123,9 +133,11 @@ class AccountManager: NSObject {
             } else {
                 
                 print("Login Failure")
-                AlertManager.sharedInstance.displayAlert(view, title: "Failure", message: "Please Try Again")
+                AlertManager.sharedInstance.singleAlert(view, title: "Failure", message: "Please Try Again")
                 
             }
+            
+            ActivityManager.sharedInstance.activityStop()
             
         })
         
@@ -133,6 +145,8 @@ class AccountManager: NSObject {
     
     func addUserDetails(view: UIViewController, firstName: String, lastName: String, mobile: String, newsletter: Bool) {
  
+        ActivityManager.sharedInstance.activityStart(view)
+        
         let user = PFUser.currentUser()
         
         user!["firstName"] = firstName
@@ -158,9 +172,11 @@ class AccountManager: NSObject {
             } else {
                 
                 print("Failed to update user")
-                AlertManager.sharedInstance.displayAlert(view, title: "Failure", message: "Please Try Again")
+                AlertManager.sharedInstance.singleAlert(view, title: "Failure", message: "Please Try Again")
                 
             }
+            
+            ActivityManager.sharedInstance.activityStop()
             
         }
         

@@ -126,7 +126,9 @@ class MenuTableViewController: UITableViewController {
                 TabManager.sharedInstance.totalCellCalculator()
             break
         case 2:
-            destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("Tab")
+            let tabStoryboard: UIStoryboard = UIStoryboard(name: "TabStoryboard", bundle: nil)
+
+            destViewController = tabStoryboard.instantiateViewControllerWithIdentifier("Tab")
             destViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
             destViewController.modalPresentationStyle = .CurrentContext
             
@@ -139,7 +141,9 @@ class MenuTableViewController: UITableViewController {
                 selectedMenuItem = 0
             break
         case 3:
-            destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("Payment")
+            let paymentStoryboard: UIStoryboard = UIStoryboard(name: "PaymentStoryboard", bundle: nil)
+
+            destViewController = paymentStoryboard.instantiateViewControllerWithIdentifier("Payment")
             destViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
             destViewController.modalPresentationStyle = .CurrentContext
             
@@ -171,16 +175,6 @@ class MenuTableViewController: UITableViewController {
         sideMenuController()?.setContentViewController(destViewController)
         
     }
-    
-    
-    /*
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-    }
-    */
+
     
 }

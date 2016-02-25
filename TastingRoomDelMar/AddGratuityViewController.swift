@@ -32,7 +32,7 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
         addGratuityLabel.frame.origin.y = 20
         addGratuityLabel.frame.origin.x = 0
         addGratuityLabel.text = "Add Gratuity"
-        addGratuityLabel.font = UIFont(name: "BebasNeueRegular", size: 24)
+        addGratuityLabel.font = UIFont.headerFont(24)
         addGratuityLabel.textColor = UIColor.blackColor()
         addGratuityLabel.textAlignment = .Center
         // Create Text View
@@ -42,7 +42,7 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
         tableNumberTextView.backgroundColor = UIColor.clearColor()
         tableNumberTextView.text = "We hope you enjoyed your experience at Tasting Room Del Mar! Come back soon!"
         tableNumberTextView.textColor = UIColor.blackColor()
-        tableNumberTextView.font = UIFont(name: "OpenSans", size: 14)
+        tableNumberTextView.font = UIFont.basicFont(14)
         tableNumberTextView.textAlignment = .Center
         tableNumberTextView.userInteractionEnabled = false
         
@@ -52,28 +52,28 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
         subTotalLabel.frame.origin.x = 8
         subTotalLabel.textAlignment = .Left
         subTotalLabel.text = "subtotal"
-        subTotalLabel.font = UIFont(name: "BebasNeueRegular", size: 18)
+        subTotalLabel.font = UIFont.headerFont(18)
 
         let taxLabel = UILabel(frame: CGRectMake(0, 0, screenWidth * 0.3, 20))
         taxLabel.frame.origin.y = 108
         taxLabel.frame.origin.x = 8
         taxLabel.textAlignment = .Left
         taxLabel.text = "tax"
-        taxLabel.font = UIFont(name: "BebasNeueRegular", size: 18)
+        taxLabel.font = UIFont.headerFont(18)
 
         let gratuityLabel = UILabel(frame: CGRectMake(0, 0, screenWidth * 0.3, 20))
         gratuityLabel.frame.origin.y = 128
         gratuityLabel.frame.origin.x = 8
         gratuityLabel.textAlignment = .Left
         gratuityLabel.text = "Gratuity"
-        gratuityLabel.font = UIFont(name: "BebasNeueRegular", size: 18)
+        gratuityLabel.font = UIFont.headerFont(18)
 
         let totalLabel = UILabel(frame: CGRectMake(0, 0, screenWidth * 0.3, 20))
         totalLabel.frame.origin.y = 148
         totalLabel.frame.origin.x = 8
         totalLabel.textAlignment = .Left
         totalLabel.text = "total"
-        totalLabel.font = UIFont(name: "BebasNeueRegular", size: 18)
+        totalLabel.font = UIFont.headerFont(18)
 
         
         let subTotalValueLabel = UILabel(frame: CGRectMake(0, 0, screenWidth * 0.3, 20))
@@ -81,28 +81,28 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
         subTotalValueLabel.frame.origin.x = screenWidth * 0.65
         subTotalValueLabel.textAlignment = .Right
         subTotalValueLabel.text = String(TabManager.sharedInstance.currentTab.subtotal)
-        subTotalValueLabel.font = UIFont(name: "BebasNeueRegular", size: 18)
+        subTotalValueLabel.font = UIFont.headerFont(18)
 
         let taxValueLabel = UILabel(frame: CGRectMake(0, 0, screenWidth * 0.3, 20))
         taxValueLabel.frame.origin.y = 108
         taxValueLabel.frame.origin.x = screenWidth * 0.65
         taxValueLabel.textAlignment = .Right
         taxValueLabel.text = String(TabManager.sharedInstance.currentTab.totalTax)
-        taxValueLabel.font = UIFont(name: "BebasNeueRegular", size: 18)
+        taxValueLabel.font = UIFont.headerFont(18)
 
         let gratuityValueLabel = UILabel(frame: CGRectMake(0, 0, screenWidth * 0.3, 20))
         gratuityValueLabel.frame.origin.y = 128
         gratuityValueLabel.frame.origin.x = screenWidth * 0.65
         gratuityValueLabel.textAlignment = .Right
         gratuityValueLabel.text = String(TabManager.sharedInstance.currentTab.gratuity)
-        gratuityValueLabel.font = UIFont(name: "BebasNeueRegular", size: 18)
-
+        gratuityValueLabel.font = UIFont.headerFont(18)
+        
         let totalValueLabel = UILabel(frame: CGRectMake(0, 0, screenWidth * 0.3, 20))
         totalValueLabel.frame.origin.y = 148
         totalValueLabel.frame.origin.x = screenWidth * 0.65
         totalValueLabel.textAlignment = .Right
         totalValueLabel.text = String(TabManager.sharedInstance.currentTab.grandTotal)
-        totalValueLabel.font = UIFont(name: "BebasNeueRegular", size: 18)
+        totalValueLabel.font = UIFont.headerFont(18)
 
 
         // Collection View
@@ -128,7 +128,7 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
         cancelButton.frame.origin.x = 8
         cancelButton.setTitle("Cancel", forState: .Normal)
         cancelButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
-        cancelButton.titleLabel?.font = UIFont(name: "NexaRustScriptL-00", size: 18)
+        cancelButton.titleLabel?.font = UIFont.scriptFont(18)
         cancelButton.layer.backgroundColor = UIColor(red: 224/255.0, green: 224/255.0, blue: 224/255.0, alpha: 1.0).CGColor
         cancelButton.layer.cornerRadius = 12.0
         cancelButton.clipsToBounds = true
@@ -139,8 +139,8 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
         placeOrderButton.frame.origin.x = buttonWidth + 16
         placeOrderButton.setTitle("Place Order", forState: .Normal)
         placeOrderButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
-        placeOrderButton.titleLabel?.font = UIFont(name: "NexaRustScriptL-00", size: 18)
-        placeOrderButton.layer.backgroundColor = UIColor(red: 9/255.0, green: 178/255.0, blue: 126/255.0, alpha: 1.0).CGColor
+        placeOrderButton.titleLabel?.font = UIFont.scriptFont(18)
+        placeOrderButton.layer.backgroundColor = UIColor.primaryGreenColor().CGColor
         placeOrderButton.layer.cornerRadius = 12.0
         placeOrderButton.clipsToBounds = true
         placeOrderButton.addTarget(self, action: "placeOrderWithGratuity", forControlEvents: UIControlEvents.TouchUpInside)
@@ -183,19 +183,19 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
                     print("Place Order, CloudCode Function Returned: \(result)")
                 }
                 
-                greatSuccessPreConfirm("Great Success!", message: "Your order has been received. We'll notify you once it's been confirmed.")
+                AlertManager.sharedInstance.greatSuccessPreConfirm(self, title: "Great Success!", message: "Your order has been received. We'll notify you once it's been confirmed.")
                 
             // Gratuity was NOT set
             } else {
                 
-                addGratuityAlert("Whoops", message: "Please selected a gratuity option.")
+                AlertManager.sharedInstance.addGratuityAlert(self, title: "Whoops", message: "Please select a gratuity option")
                 
             }
             
         // If User has NOT selected a gratuity option
         } else {
             
-            addGratuityAlert("Whoops", message: "Please selected a gratuity option.")
+            AlertManager.sharedInstance.addGratuityAlert(self, title: "Whoops", message: "Please select a gratuity option")
 
         }
         
@@ -210,21 +210,8 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
         // Dispose of any resources that can be recreated.
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
     
-    // ----------------------
-    // Collection View Data Source
-    // ----------------------
-
+    // Collection Data Source
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 4
     }
@@ -238,11 +225,8 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
         cell.layer.cornerRadius = 10.0
         cell.clipsToBounds = true
         
-
-        
         // Cash Option
         if indexPath.row == 0 {
-
 
             cell.label.text = "Cash"
             cell.label.textColor = UIColor.blackColor()
@@ -282,8 +266,6 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
         // Cash
         if indexPath.row == 0 {
             
-
-            
             // Set
             selectedGratuity = selectedCell.label.text!
             print("User chose a gratuity of: \(selectedGratuity).")
@@ -319,69 +301,6 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
         selectedCell.label.backgroundColor = UIColor.clearColor()
         selectedCell.label.textColor = UIColor.blackColor()
         
-    }
-    
-    
-    
-    //// Add Gratuity
-    @available(iOS 8.0, *)
-    func addGratuityAlert(title: String, message: String) {
-        
-        // Create Controller
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-        alert.view.tintColor = UIColor(red: 9/255.0, green: 178/255.0, blue: 126/255.0, alpha: 1.0)
-        
-        // Create Actions
-        let cancelAction = UIAlertAction(title: "Ok", style: .Cancel, handler: { (action) -> Void in
-            print("Ok Selected")
-        })
-        
-        // Add Actions
-        alert.addAction(cancelAction)
-        
-        self.presentViewController(alert, animated: true, completion: nil)
-    }
-    
-    // ACTIVITY START FUNCTION
-    func activityStart() {
-        activityIndicator.hidden = false
-        activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 50, 50))
-        activityIndicator.center = self.view.center
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
-        activityIndicator.startAnimating()
-        UIApplication.sharedApplication().beginIgnoringInteractionEvents()
-
-        activityIndicator.layer.zPosition = 9999999
-//        var currentWindow: UIWindow = UIApplication.sharedApplication().keyWindow!
-//        currentWindow.addSubview(activityIndicator)
-        
-        self.view.addSubview(activityIndicator)
-    }
-    
-    // ACTIVITY STOP FUNCTION
-    func activityStop() {
-        self.activityIndicator.stopAnimating()
-        UIApplication.sharedApplication().endIgnoringInteractionEvents()
-    }
-    
-    //// GreatSuccessPreConfirm
-    @available(iOS 8.0, *)
-    func greatSuccessPreConfirm(title: String, message: String) {
-        
-        // Create Controller
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-        alert.view.tintColor = UIColor(red: 9/255.0, green: 178/255.0, blue: 126/255.0, alpha: 1.0)
-        
-        // Create Actions
-        let cancelAction = UIAlertAction(title: "Sounds Good", style: .Cancel, handler: { (action) -> Void in
-            print("Cancel Selected")
-        })
-        
-        // Add Actions
-        alert.addAction(cancelAction)
-        
-        self.presentViewController(alert, animated: true, completion: nil)
     }
     
 }

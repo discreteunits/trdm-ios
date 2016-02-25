@@ -17,7 +17,6 @@ class PaymentViewController: UIViewController {
 
     @IBOutlet weak var navigationTitle: UINavigationItem!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -30,7 +29,7 @@ class PaymentViewController: UIViewController {
             navigationTitle.title = "Payment"
             nav?.barStyle = UIBarStyle.Black
             nav?.tintColor = UIColor.whiteColor()
-            nav?.titleTextAttributes = [ NSFontAttributeName: UIFont (name: "NexaRustScriptL-00", size: 24)!]
+            nav?.titleTextAttributes = [ NSFontAttributeName: UIFont.scriptFont(24)]
         }
         
     }
@@ -40,7 +39,6 @@ class PaymentViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    
     @IBAction func menu(sender: AnyObject) {
         
         self.dismissViewControllerAnimated(true, completion: nil)
@@ -48,18 +46,5 @@ class PaymentViewController: UIViewController {
         TabManager.sharedInstance.addItemsIndicator()
         
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
-
-
 
 }

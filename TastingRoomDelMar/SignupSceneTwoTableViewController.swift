@@ -57,6 +57,8 @@ class SignupSceneTwoTableViewController: UITableViewController, UITextFieldDeleg
         firstNameLabel.font = UIFont.headerFont(16)
         firstNameTextField.font = UIFont.headerFont(16)
         
+        firstNameTextField.becomeFirstResponder()
+        
         lastNameLabel.font = UIFont.headerFont(16)
         lastNameTextField.font = UIFont.headerFont(16)
         

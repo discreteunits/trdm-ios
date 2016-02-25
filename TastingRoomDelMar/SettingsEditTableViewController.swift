@@ -12,7 +12,8 @@ import ParseUI
 
 @objc
 protocol SettingsEditTableViewDelegate {
-    
+    func showSaveButton()
+    func hideSaveButton()
 }
 
 class SettingsEditTableViewController: UITableViewController {
@@ -30,6 +31,8 @@ class SettingsEditTableViewController: UITableViewController {
     @IBOutlet weak var editMessageTextView: UITextView!
     @IBOutlet weak var editValueTextField: UITextField!
     
+    var keyboard = CGFloat()
+
     
     // ----------
     override func viewWillAppear(animated: Bool) {
@@ -39,15 +42,18 @@ class SettingsEditTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Get Keyboard Height
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
+        
         // Message
         editMessageTextView.text = passedMessage
         editMessageTextView.textAlignment = .Center
-        editMessageTextView.font = UIFont(name: "OpenSans", size: 12)
+        editMessageTextView.font = UIFont.basicFont(12)
         editMessageTextView.textColor = UIColor.grayColor()
         // Text Field
         editValueTextField.placeholder = passedPlaceholder
         editValueTextField.textAlignment = .Left
-        editValueTextField.font = UIFont(name: "OpenSans", size: 20)
+        editValueTextField.font = UIFont.basicFont(20)
         editValueTextField.becomeFirstResponder()
         
         
@@ -67,7 +73,6 @@ class SettingsEditTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 2
     }
-    
 
     
     func valueToSave() {
@@ -106,12 +111,39 @@ class SettingsEditTableViewController: UITableViewController {
         
     }
     
+    
     func saveValue() {
         
         valueToSave()
         
         PFUser.currentUser()?.saveInBackground()
         print("User has been updated successfully.")
+        
+    }
+    
+    
+    func keyboardWillShow(notification:NSNotification) {
+        print("Keyboard Appeared")
+        
+        let userInfo:NSDictionary = notification.userInfo!
+        let keyboardFrame:NSValue = userInfo.valueForKey(UIKeyboardFrameEndUserInfoKey) as! NSValue
+        let keyboardRectangle = keyboardFrame.CGRectValue()
+        let keyboardHeight = keyboardRectangle.height
+        
+        print("KeyboardHeight: \(keyboardHeight)")
+        
+        keyboard = keyboardHeight
+        
+    }
+    
+  
+    @IBAction func editingDidChange(sender: AnyObject) {
+        
+        delegate?.showSaveButton()
+        
+        if editValueTextField.text == "" {
+            delegate?.hideSaveButton()
+        }
         
     }
 

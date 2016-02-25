@@ -23,6 +23,7 @@
 		D736DADD1C73906800751307 /* TableNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D736DADC1C73906800751307 /* TableNumberViewController.swift */; };
 		D736DADF1C73907A00751307 /* AddGratuityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D736DADE1C73907A00751307 /* AddGratuityViewController.swift */; };
 		D736DAE11C73DACE00751307 /* AddGratuityCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D736DAE01C73DACE00751307 /* AddGratuityCollectionViewCell.swift */; };
+		D7498AB21C7F1A8C0086B7BD /* AnimationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7498AB11C7F1A8C0086B7BD /* AnimationManager.swift */; };
 		D74B1C4A1C583260008F5A36 /* PopoverMGCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74B1C491C583260008F5A36 /* PopoverMGCollectionViewCell.swift */; };
 		D74B1C4C1C5832E6008F5A36 /* PopoverQuantityCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74B1C4B1C5832E6008F5A36 /* PopoverQuantityCollectionViewCell.swift */; };
 		D74B1C4E1C58339E008F5A36 /* PopoverActionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74B1C4D1C58339E008F5A36 /* PopoverActionCollectionViewCell.swift */; };
@@ -80,6 +81,8 @@
 		D7F981121C4461A300200639 /* ENSideMenuNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F981111C4461A300200639 /* ENSideMenuNavigationController.swift */; };
 		D7F981141C4461FD00200639 /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F981131C4461FD00200639 /* MenuTableViewController.swift */; };
 		D7FACCFB1C46F1EF0006F6BE /* TierIVCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FACCFA1C46F1EF0006F6BE /* TierIVCollectionViewController.swift */; };
+		D7FC44B41C7E9F06003482B9 /* PaymentStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7FC44B31C7E9F06003482B9 /* PaymentStoryboard.storyboard */; };
+		D7FC44B71C7EA162003482B9 /* TabStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7FC44B61C7EA162003482B9 /* TabStoryboard.storyboard */; };
 		D7FFF7B11C3AFB0600020D9A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FFF7B01C3AFB0600020D9A /* AppDelegate.swift */; };
 		D7FFF7B31C3AFB0600020D9A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FFF7B21C3AFB0600020D9A /* ViewController.swift */; };
 		D7FFF7B81C3AFB0600020D9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7FFF7B71C3AFB0600020D9A /* Assets.xcassets */; };
@@ -125,6 +128,7 @@
 		D736DADC1C73906800751307 /* TableNumberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableNumberViewController.swift; sourceTree = "<group>"; };
 		D736DADE1C73907A00751307 /* AddGratuityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddGratuityViewController.swift; sourceTree = "<group>"; };
 		D736DAE01C73DACE00751307 /* AddGratuityCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddGratuityCollectionViewCell.swift; sourceTree = "<group>"; };
+		D7498AB11C7F1A8C0086B7BD /* AnimationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationManager.swift; sourceTree = "<group>"; };
 		D74B1C491C583260008F5A36 /* PopoverMGCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverMGCollectionViewCell.swift; sourceTree = "<group>"; };
 		D74B1C4B1C5832E6008F5A36 /* PopoverQuantityCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverQuantityCollectionViewCell.swift; sourceTree = "<group>"; };
 		D74B1C4D1C58339E008F5A36 /* PopoverActionCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverActionCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -182,6 +186,8 @@
 		D7F981111C4461A300200639 /* ENSideMenuNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ENSideMenuNavigationController.swift; sourceTree = "<group>"; };
 		D7F981131C4461FD00200639 /* MenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
 		D7FACCFA1C46F1EF0006F6BE /* TierIVCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierIVCollectionViewController.swift; sourceTree = "<group>"; };
+		D7FC44B31C7E9F06003482B9 /* PaymentStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PaymentStoryboard.storyboard; sourceTree = "<group>"; };
+		D7FC44B61C7EA162003482B9 /* TabStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TabStoryboard.storyboard; sourceTree = "<group>"; };
 		D7FFF7AD1C3AFB0600020D9A /* TastingRoomDelMar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TastingRoomDelMar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7FFF7B01C3AFB0600020D9A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D7FFF7B21C3AFB0600020D9A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -299,6 +305,7 @@
 			children = (
 				D7D809991C7BCF3F00A3F5E6 /* AlertManager.swift */,
 				D7D8099B1C7BCF6300A3F5E6 /* ActivityManager.swift */,
+				D7498AB11C7F1A8C0086B7BD /* AnimationManager.swift */,
 				D7C1E0431C5AE3F000143C48 /* TabManager.swift */,
 				D733D4651C69598F00682A84 /* CardManager.swift */,
 				D75AA4271C6062D200D5139B /* Structures.swift */,
@@ -313,6 +320,38 @@
 				D7F981111C4461A300200639 /* ENSideMenuNavigationController.swift */,
 			);
 			name = Library;
+			sourceTree = "<group>";
+		};
+		D7FC44B21C7E9E9D003482B9 /* TRDM - Payment */ = {
+			isa = PBXGroup;
+			children = (
+				D7FC44B31C7E9F06003482B9 /* PaymentStoryboard.storyboard */,
+				D733D45D1C69528500682A84 /* PaymentViewController.swift */,
+				D733D4631C69555700682A84 /* PaymentTableViewController.swift */,
+				D733D45F1C69533A00682A84 /* PaymentCardTableViewCell.swift */,
+				D733D4611C69534400682A84 /* PaymentAddCardTableViewCell.swift */,
+				D733D4671C69746C00682A84 /* PaymentAddViewController.swift */,
+			);
+			name = "TRDM - Payment";
+			sourceTree = "<group>";
+		};
+		D7FC44B51C7EA13D003482B9 /* TRDM - Tab */ = {
+			isa = PBXGroup;
+			children = (
+				D7FC44B61C7EA162003482B9 /* TabStoryboard.storyboard */,
+				D7B616831C62D7C3002CF1DE /* TabViewController.swift */,
+				D7B616851C62D7DB002CF1DE /* TabTableViewController.swift */,
+				D7C448C21C641C0400CD12F8 /* TabHeaderTableViewCell.swift */,
+				D7B616871C62DCE0002CF1DE /* TabLineItemTableViewCell.swift */,
+				D73620411C651BE800DD7F71 /* TabLineItemServingCollectionViewCell.swift */,
+				D736203F1C65143400DD7F71 /* TabLineItemCollectionViewCell.swift */,
+				D7B616891C62DCEF002CF1DE /* TabTotalTableViewCell.swift */,
+				D7B6168B1C62DCFA002CF1DE /* TabActionTableViewCell.swift */,
+				D736DADC1C73906800751307 /* TableNumberViewController.swift */,
+				D736DADE1C73907A00751307 /* AddGratuityViewController.swift */,
+				D736DAE01C73DACE00751307 /* AddGratuityCollectionViewCell.swift */,
+			);
+			name = "TRDM - Tab";
 			sourceTree = "<group>";
 		};
 		D7FFF7A41C3AFB0600020D9A = {
@@ -346,6 +385,8 @@
 				D7D809921C7BCDAC00A3F5E6 /* TRDM - Signup */,
 				D7D809931C7BCDD900A3F5E6 /* TRDM - Tiers */,
 				D765FD361C7E60D400F68389 /* TRDM - Settings */,
+				D7FC44B21C7E9E9D003482B9 /* TRDM - Payment */,
+				D7FC44B51C7EA13D003482B9 /* TRDM - Tab */,
 				D7FFF7B01C3AFB0600020D9A /* AppDelegate.swift */,
 				D7F981131C4461FD00200639 /* MenuTableViewController.swift */,
 				D7B6168D1C62E340002CF1DE /* Main.storyboard */,
@@ -370,22 +411,6 @@
 				D74B1C4B1C5832E6008F5A36 /* PopoverQuantityCollectionViewCell.swift */,
 				D7E8039A1C56E17B003C12D9 /* PopoverActionTableViewCell.swift */,
 				D74B1C4D1C58339E008F5A36 /* PopoverActionCollectionViewCell.swift */,
-				D7B616831C62D7C3002CF1DE /* TabViewController.swift */,
-				D7B616851C62D7DB002CF1DE /* TabTableViewController.swift */,
-				D736DADC1C73906800751307 /* TableNumberViewController.swift */,
-				D736DADE1C73907A00751307 /* AddGratuityViewController.swift */,
-				D736DAE01C73DACE00751307 /* AddGratuityCollectionViewCell.swift */,
-				D7C448C21C641C0400CD12F8 /* TabHeaderTableViewCell.swift */,
-				D7B616871C62DCE0002CF1DE /* TabLineItemTableViewCell.swift */,
-				D73620411C651BE800DD7F71 /* TabLineItemServingCollectionViewCell.swift */,
-				D736203F1C65143400DD7F71 /* TabLineItemCollectionViewCell.swift */,
-				D7B616891C62DCEF002CF1DE /* TabTotalTableViewCell.swift */,
-				D7B6168B1C62DCFA002CF1DE /* TabActionTableViewCell.swift */,
-				D733D45D1C69528500682A84 /* PaymentViewController.swift */,
-				D733D4631C69555700682A84 /* PaymentTableViewController.swift */,
-				D733D45F1C69533A00682A84 /* PaymentCardTableViewCell.swift */,
-				D733D4611C69534400682A84 /* PaymentAddCardTableViewCell.swift */,
-				D733D4671C69746C00682A84 /* PaymentAddViewController.swift */,
 				D72B2A4D1C49728C0090875F /* RawPopoverViewController.swift */,
 				D7FFF7B71C3AFB0600020D9A /* Assets.xcassets */,
 				D7FFF7B91C3AFB0600020D9A /* LaunchScreen.storyboard */,
@@ -529,6 +554,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D765FD381C7E60F400F68389 /* SettingsStoryboard.storyboard in Resources */,
+				D7FC44B71C7EA162003482B9 /* TabStoryboard.storyboard in Resources */,
 				D7C1E03A1C5A952000143C48 /* primary-logotype-05_rgb_600_600.png in Resources */,
 				D7C1E03C1C5A958100143C48 /* Typographic-deconstructed_rgb_600_120.png in Resources */,
 				D7C1E0341C5A950000143C48 /* secondary-logomark-03_rgb_600_600.png in Resources */,
@@ -538,6 +564,7 @@
 				D7C1E03E1C5A960600143C48 /* secondary-logomark-white_rgb_600_600.png in Resources */,
 				D7C1E0371C5A951300143C48 /* primary-logomark-02_rgb_600_600.png in Resources */,
 				D7FFF7BB1C3AFB0600020D9A /* LaunchScreen.storyboard in Resources */,
+				D7FC44B41C7E9F06003482B9 /* PaymentStoryboard.storyboard in Resources */,
 				D7FFF7B81C3AFB0600020D9A /* Assets.xcassets in Resources */,
 				D7C1E0321C5A92B300143C48 /* Fontfabric - Nexa Rust Script L 00.otf in Resources */,
 				D7C1E0411C5AB86800143C48 /* OpenSans-Regular.ttf in Resources */,
@@ -667,6 +694,7 @@
 				D77013911C6C20C900CEB886 /* SettingsTableViewController.swift in Sources */,
 				D7A8AC081C4D9626008D9A90 /* PopoverViewController.swift in Sources */,
 				D7B616841C62D7C3002CF1DE /* TabViewController.swift in Sources */,
+				D7498AB21C7F1A8C0086B7BD /* AnimationManager.swift in Sources */,
 				D7B6168C1C62DCFA002CF1DE /* TabActionTableViewCell.swift in Sources */,
 				D7FACCFB1C46F1EF0006F6BE /* TierIVCollectionViewController.swift in Sources */,
 				D786D1C21C7D580D0034EA81 /* SignupSceneTwoTableViewController.swift in Sources */,
