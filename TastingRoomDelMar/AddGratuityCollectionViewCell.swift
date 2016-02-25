@@ -29,7 +29,6 @@ class AddGratuityCollectionViewCell: UICollectionViewCell {
         
         contentView.addSubview(label)
         
-        
     }
 
     required init?(coder aDecoder: NSCoder) {

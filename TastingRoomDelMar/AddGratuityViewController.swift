@@ -140,7 +140,7 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
         placeOrderButton.setTitle("Place Order", forState: .Normal)
         placeOrderButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
         placeOrderButton.titleLabel?.font = UIFont.scriptFont(18)
-        placeOrderButton.layer.backgroundColor = UIColor(red: 9/255.0, green: 178/255.0, blue: 126/255.0, alpha: 1.0).CGColor
+        placeOrderButton.layer.backgroundColor = UIColor.primaryGreenColor().CGColor
         placeOrderButton.layer.cornerRadius = 12.0
         placeOrderButton.clipsToBounds = true
         placeOrderButton.addTarget(self, action: "placeOrderWithGratuity", forControlEvents: UIControlEvents.TouchUpInside)
@@ -183,19 +183,19 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
                     print("Place Order, CloudCode Function Returned: \(result)")
                 }
                 
-                greatSuccessPreConfirm("Great Success!", message: "Your order has been received. We'll notify you once it's been confirmed.")
+                AlertManager.sharedInstance.greatSuccessPreConfirm("Great Success!", message: "Your order has been received. We'll notify you once it's been confirmed.")
                 
             // Gratuity was NOT set
             } else {
                 
-                addGratuityAlert("Whoops", message: "Please selected a gratuity option.")
+                AlertManager.sharedInstance.addGratuityAlert("Whoops", message: "Please select a gratuity option")
                 
             }
             
         // If User has NOT selected a gratuity option
         } else {
             
-            addGratuityAlert("Whoops", message: "Please selected a gratuity option.")
+            AlertManager.sharedInstance.addGratuityAlert("Whoops", message: "Please select a gratuity option")
 
         }
         
@@ -210,21 +210,8 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
         // Dispose of any resources that can be recreated.
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
     
-    // ----------------------
-    // Collection View Data Source
-    // ----------------------
-
+    // Collection Data Source
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 4
     }
@@ -238,11 +225,8 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
         cell.layer.cornerRadius = 10.0
         cell.clipsToBounds = true
         
-
-        
         // Cash Option
         if indexPath.row == 0 {
-
 
             cell.label.text = "Cash"
             cell.label.textColor = UIColor.blackColor()
@@ -282,8 +266,6 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
         // Cash
         if indexPath.row == 0 {
             
-
-            
             // Set
             selectedGratuity = selectedCell.label.text!
             print("User chose a gratuity of: \(selectedGratuity).")
@@ -319,69 +301,6 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
         selectedCell.label.backgroundColor = UIColor.clearColor()
         selectedCell.label.textColor = UIColor.blackColor()
         
-    }
-    
-    
-    
-    //// Add Gratuity
-    @available(iOS 8.0, *)
-    func addGratuityAlert(title: String, message: String) {
-        
-        // Create Controller
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-        alert.view.tintColor = UIColor(red: 9/255.0, green: 178/255.0, blue: 126/255.0, alpha: 1.0)
-        
-        // Create Actions
-        let cancelAction = UIAlertAction(title: "Ok", style: .Cancel, handler: { (action) -> Void in
-            print("Ok Selected")
-        })
-        
-        // Add Actions
-        alert.addAction(cancelAction)
-        
-        self.presentViewController(alert, animated: true, completion: nil)
-    }
-    
-    // ACTIVITY START FUNCTION
-    func activityStart() {
-        activityIndicator.hidden = false
-        activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 50, 50))
-        activityIndicator.center = self.view.center
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
-        activityIndicator.startAnimating()
-        UIApplication.sharedApplication().beginIgnoringInteractionEvents()
-
-        activityIndicator.layer.zPosition = 9999999
-//        var currentWindow: UIWindow = UIApplication.sharedApplication().keyWindow!
-//        currentWindow.addSubview(activityIndicator)
-        
-        self.view.addSubview(activityIndicator)
-    }
-    
-    // ACTIVITY STOP FUNCTION
-    func activityStop() {
-        self.activityIndicator.stopAnimating()
-        UIApplication.sharedApplication().endIgnoringInteractionEvents()
-    }
-    
-    //// GreatSuccessPreConfirm
-    @available(iOS 8.0, *)
-    func greatSuccessPreConfirm(title: String, message: String) {
-        
-        // Create Controller
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-        alert.view.tintColor = UIColor(red: 9/255.0, green: 178/255.0, blue: 126/255.0, alpha: 1.0)
-        
-        // Create Actions
-        let cancelAction = UIAlertAction(title: "Sounds Good", style: .Cancel, handler: { (action) -> Void in
-            print("Cancel Selected")
-        })
-        
-        // Add Actions
-        alert.addAction(cancelAction)
-        
-        self.presentViewController(alert, animated: true, completion: nil)
     }
     
 }
