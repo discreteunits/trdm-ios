@@ -27,8 +27,17 @@ class SettingsEditViewController: UIViewController {
     
     var SettingsEditTableViewControllerRef: SettingsEditTableViewController?
 
+    var saveButton = UIButton()
+
+    // -------------
+    override func viewWillAppear(animated: Bool) {
+        
+        dispatch_async(dispatch_get_main_queue()) {
+            self.addSignupButton()
+        }
+        
+    }
     
-// -------------------------------
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -50,31 +59,30 @@ class SettingsEditViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    func addSignupButton() {
         
-        if segue.identifier == "SettingEditEmbeded" {
-            
-            if let SettingsEditTableViewController = segue.destinationViewController as? SettingsEditTableViewController {
-                
-                self.SettingsEditTableViewControllerRef = SettingsEditTableViewController
-                
-                SettingsEditTableViewController.delegate = self
-                
-                showValueToEdit()
-                SettingsEditTableViewController.passedEditType = self.passedTrigger // Sets value to edit
-                SettingsEditTableViewController.passedMessage = message
-                SettingsEditTableViewController.passedPlaceholder = placeholder
-
-                
-            }
-            
-        }
+        // Sign Up Button
+        let screenSize = self.view.bounds
+        
+        let screenWidth = screenSize.width
+        let screenHeight = screenSize.height
+        
+        let keyboardHeight = self.SettingsEditTableViewControllerRef?.keyboard
+        print("\(keyboardHeight)")
+        let topOfKeyboard = (screenHeight - keyboardHeight!) - 68
+        
+        saveButton = UIButton(frame: CGRectMake(0, topOfKeyboard, screenWidth, 60))
+        saveButton.setTitle("Save", forState: .Normal)
+        saveButton.layer.backgroundColor = UIColor.primaryGreenColor().CGColor
+        saveButton.titleLabel?.font = UIFont.scriptFont(24)
+        saveButton.addTarget(self, action: "saveChanges:", forControlEvents: UIControlEvents.TouchUpInside)
+        saveButton.hidden = true
+        
+        self.view.addSubview(saveButton)
         
     }
-
     
-    @IBAction func saveEdit(sender: AnyObject) {
+    func saveChanges() {
         
         self.SettingsEditTableViewControllerRef?.saveValue()
         navigationController?.popViewControllerAnimated(true)
@@ -108,9 +116,39 @@ class SettingsEditViewController: UIViewController {
         }
         
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "SettingEditEmbeded" {
+            
+            if let SettingsEditTableViewController = segue.destinationViewController as? SettingsEditTableViewController {
+                
+                self.SettingsEditTableViewControllerRef = SettingsEditTableViewController
+                
+                SettingsEditTableViewController.delegate = self
+                
+                showValueToEdit()
+                SettingsEditTableViewController.passedEditType = self.passedTrigger // Sets value to edit
+                SettingsEditTableViewController.passedMessage = message
+                SettingsEditTableViewController.passedPlaceholder = placeholder
+                
+                
+            }
+            
+        }
+        
+    }
 
 }
 
 extension SettingsEditViewController: SettingsEditTableViewDelegate {
-
+    
+    func showSaveButton() {
+        AnimationManager.sharedInstance.showButtonVertical(self, button: saveButton)
+    }
+    
+    func hideSaveButton() {
+        AnimationManager.sharedInstance.hideButtonVertical(self, button: saveButton)
+    }
+    
 }

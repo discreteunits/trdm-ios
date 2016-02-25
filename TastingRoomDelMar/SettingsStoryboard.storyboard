@@ -210,27 +210,10 @@
                                     <segue destination="Akf-UH-4Iq" kind="embed" identifier="SettingEditEmbeded" id="AAt-PX-nxX"/>
                                 </connections>
                             </containerView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1bz-XC-MHn">
-                                <rect key="frame" x="0.0" y="241" width="600" height="83"/>
-                                <color key="backgroundColor" red="0.094117647060000004" green="0.65098039220000004" blue="0.41960784309999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="nns-NZ-p0f"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="Save">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="saveEdit:" destination="iz2-0S-ugC" eventType="touchUpInside" id="JjI-AJ-vjb"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="pdh-uQ-Puh" firstAttribute="leading" secondItem="hc8-Ua-FOh" secondAttribute="leading" id="AVS-G9-idY"/>
-                            <constraint firstItem="1bz-XC-MHn" firstAttribute="top" secondItem="y9H-Yp-GTf" secondAttribute="bottom" constant="241" id="Bsp-4w-Y9K"/>
-                            <constraint firstItem="pdh-uQ-Puh" firstAttribute="leading" secondItem="1bz-XC-MHn" secondAttribute="leading" id="Kgk-w9-0M1"/>
-                            <constraint firstItem="1bz-XC-MHn" firstAttribute="trailing" secondItem="pdh-uQ-Puh" secondAttribute="trailing" id="heV-Y9-sqR"/>
                             <constraint firstItem="j4D-m9-FPD" firstAttribute="top" secondItem="pdh-uQ-Puh" secondAttribute="bottom" constant="294" id="rdj-Es-oDL"/>
                             <constraint firstAttribute="trailing" secondItem="pdh-uQ-Puh" secondAttribute="trailing" id="rsV-pA-aM9"/>
                             <constraint firstItem="pdh-uQ-Puh" firstAttribute="top" secondItem="y9H-Yp-GTf" secondAttribute="bottom" id="y5b-DO-aQA"/>
@@ -333,7 +316,10 @@
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kmz-sV-tGA">
                                                     <rect key="frame" x="8" y="15" width="584" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert"/>
+                                                    <connections>
+                                                        <action selector="editingDidChange:" destination="Akf-UH-4Iq" eventType="editingChanged" id="HuD-QQ-dPF"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>

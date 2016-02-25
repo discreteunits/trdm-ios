@@ -30,6 +30,8 @@ class AccountManager: NSObject {
     @available(iOS 8.0, *)
     func loginWithFacebook(view: UIViewController) {
         
+        ActivityManager.sharedInstance.activityStart(view)
+        
         PFFacebookUtils.logInInBackgroundWithReadPermissions(["public_profile", "email"], block: { (user: PFUser?, error: NSError?) -> Void in
             
             // Failure
@@ -63,6 +65,8 @@ class AccountManager: NSObject {
                     
                 }
                 
+                ActivityManager.sharedInstance.activityStop()
+                
             }
             
         })
@@ -71,6 +75,8 @@ class AccountManager: NSObject {
     
     // Save Parse User
     func saveUser(view: UIViewController, username: String, email: String, password: String) {
+        
+        ActivityManager.sharedInstance.activityStart(view)
         
         // Empty Strings
         if username == "" || password == "" {
@@ -101,6 +107,8 @@ class AccountManager: NSObject {
                     AlertManager.sharedInstance.displayAlert(view, title: "Failure", message: "Please try again later.")
                 
                 }
+                
+                ActivityManager.sharedInstance.activityStop()
             
             })
             
@@ -110,6 +118,8 @@ class AccountManager: NSObject {
     
     // Login Parse User
     func loginUser(view: UIViewController, email: String, password: String) {
+        
+        ActivityManager.sharedInstance.activityStart(view)
         
         PFUser.logInWithUsernameInBackground(email, password: password, block: { ( user, error ) -> Void in
             
@@ -127,12 +137,16 @@ class AccountManager: NSObject {
                 
             }
             
+            ActivityManager.sharedInstance.activityStop()
+            
         })
         
     }
     
     func addUserDetails(view: UIViewController, firstName: String, lastName: String, mobile: String, newsletter: Bool) {
  
+        ActivityManager.sharedInstance.activityStart(view)
+        
         let user = PFUser.currentUser()
         
         user!["firstName"] = firstName
@@ -161,6 +175,8 @@ class AccountManager: NSObject {
                 AlertManager.sharedInstance.displayAlert(view, title: "Failure", message: "Please Try Again")
                 
             }
+            
+            ActivityManager.sharedInstance.activityStop()
             
         }
         

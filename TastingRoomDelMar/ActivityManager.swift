@@ -24,18 +24,18 @@ class ActivityManager: NSObject {
     }
     
     // Start Activity
-    func activityStart(view: UIView) {
+    func activityStart(view: UIViewController) {
         
         activityIndicator.hidden = false
         activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 50, 50))
-        activityIndicator.center = view.center
+        activityIndicator.center = view.view.center
         activityIndicator.hidesWhenStopped = true
         activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
         activityIndicator.startAnimating()
         
         UIApplication.sharedApplication().beginIgnoringInteractionEvents()
         
-        view.addSubview(activityIndicator)
+        view.view.addSubview(activityIndicator)
         
     }
     
