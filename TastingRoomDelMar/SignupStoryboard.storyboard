@@ -9,7 +9,7 @@
         <!--Landing View-->
         <scene sceneID="QuE-YD-Fbm">
             <objects>
-                <viewController title="Landing View" id="mV3-yB-8NV" customClass="LandingViewController" customModule="TastingRoomDelMar" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Landing" title="Landing View" id="mV3-yB-8NV" customClass="LandingViewController" customModule="TastingRoomDelMar" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0az-Lj-II2"/>
                         <viewControllerLayoutGuide type="bottom" id="Saq-uB-iWa"/>
@@ -33,7 +33,7 @@
         <!--Navigation Controller-->
         <scene sceneID="qSO-nJ-3IJ">
             <objects>
-                <navigationController id="ogt-9X-mba" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="createAccount" id="ogt-9X-mba" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="ke5-P4-Q72">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -80,6 +80,7 @@
                     <navigationItem key="navigationItem" id="gon-AE-Qb7"/>
                     <connections>
                         <segue destination="ZWh-ZN-Phu" kind="show" identifier="signupContinue" id="6k4-OH-iVe"/>
+                        <segue destination="xvW-0L-ls7" kind="show" identifier="login" id="Zz6-jO-S1I"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hHn-yb-Jge" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -229,7 +230,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Already registered?" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vXJ-RU-ct7">
                                                     <rect key="frame" x="199" y="14" width="149" height="21"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="140" id="2ra-DX-snS"/>
+                                                        <constraint firstAttribute="width" constant="160" id="2ra-DX-snS"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -298,20 +299,12 @@
                         </constraints>
                     </view>
                     <connections>
-                        <segue destination="buf-a3-tp7" kind="show" identifier="signin" id="8e2-1w-9VA"/>
+                        <segue destination="xvW-0L-ls7" kind="show" identifier="signin" id="8Mv-39-V9A"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J5s-yE-EPl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1932" y="1160"/>
-        </scene>
-        <!--Main-->
-        <scene sceneID="aej-DD-xXq">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Main" id="buf-a3-tp7" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="IrF-d3-962" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1979" y="1597"/>
         </scene>
         <!--Signup Scene Two Table View Controller-->
         <scene sceneID="Mvq-2Z-mtV">
@@ -487,19 +480,19 @@
             </objects>
             <point key="canvasLocation" x="2654" y="1023"/>
         </scene>
-        <!--Main-->
+        <!--Menu-->
         <scene sceneID="1J0-jw-b2f">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="Menu" storyboardName="Main" id="xvW-0L-ls7" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardIdentifier="Menu" storyboardName="Main" referencedIdentifier="Menu" id="xvW-0L-ls7" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ksU-1K-3nw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="250" y="885"/>
+            <point key="canvasLocation" x="1195" y="1112"/>
         </scene>
     </scenes>
     <resources>
         <image name="checkmark" width="31" height="29"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="zY1-A0-0Kq"/>
+        <segue reference="8Mv-39-V9A"/>
     </inferredMetricsTieBreakers>
 </document>

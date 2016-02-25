@@ -107,7 +107,6 @@ class MenuTableViewController: UITableViewController {
         switch (indexPath.row) {
         case 0:
             destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("TierI")
-
             
                 selectedMenuItem = 0
                 route.removeAll()
@@ -117,7 +116,6 @@ class MenuTableViewController: UITableViewController {
             destViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
             destViewController.modalPresentationStyle = .CurrentContext
 
-            // Gold
             let rootVC = sideMenuController() as! UIViewController
             rootVC.presentViewController(destViewController, animated: true, completion: nil)
             
@@ -132,7 +130,6 @@ class MenuTableViewController: UITableViewController {
             destViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
             destViewController.modalPresentationStyle = .CurrentContext
             
-            // Gold
             let rootVC = sideMenuController() as! UIViewController
             rootVC.presentViewController(destViewController, animated: true, completion: nil)
             
@@ -146,7 +143,6 @@ class MenuTableViewController: UITableViewController {
             destViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
             destViewController.modalPresentationStyle = .CurrentContext
             
-            // Gold
             let rootVC = sideMenuController() as! UIViewController
             rootVC.presentViewController(destViewController, animated: true, completion: nil)
             
@@ -156,12 +152,12 @@ class MenuTableViewController: UITableViewController {
                 selectedMenuItem = 0
             break
         default:
-            
-            destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("Settings")
+            let settingsStoryboard: UIStoryboard = UIStoryboard(name: "SettingsStoryboard", bundle: nil)
+
+            destViewController = settingsStoryboard.instantiateViewControllerWithIdentifier("Settings")
             destViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
             destViewController.modalPresentationStyle = .CurrentContext
             
-            // Gold
             let rootVC = sideMenuController() as! UIViewController
             rootVC.presentViewController(destViewController, animated: true, completion: nil)
             
@@ -170,7 +166,6 @@ class MenuTableViewController: UITableViewController {
             
                 selectedMenuItem = 0
             break
-            
         }
 
         sideMenuController()?.setContentViewController(destViewController)

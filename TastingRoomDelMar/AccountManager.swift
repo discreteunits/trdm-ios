@@ -37,7 +37,7 @@ class AccountManager: NSObject {
                 AlertManager.sharedInstance.displayAlert(view, title: "Error", message: (error?.localizedDescription)!)
                 return
                 
-                // Success
+            // Success
             } else if FBSDKAccessToken.currentAccessToken() != nil {
                 
                 if let user = user {
@@ -103,6 +103,7 @@ class AccountManager: NSObject {
                 }
             
             })
+            
         }
         
     }
@@ -123,7 +124,6 @@ class AccountManager: NSObject {
                 
                 print("Login Failure")
                 AlertManager.sharedInstance.displayAlert(view, title: "Failure", message: "Please Try Again")
-                
                 
             }
             
@@ -161,19 +161,21 @@ class AccountManager: NSObject {
                 AlertManager.sharedInstance.displayAlert(view, title: "Failure", message: "Please Try Again")
                 
             }
+            
         }
         
     }
     
     func goToTiers(view: UIViewController) {
         
-        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//        
+//        let vc = mainStoryboard.instantiateViewControllerWithIdentifier("Menu")
+//        
+//        view.presentViewController(vc, animated: true, completion: nil)
         
-        let vc = mainStoryboard.instantiateViewControllerWithIdentifier("Menu")
-        
-        view.presentViewController(vc, animated: true, completion: nil)
+        view.performSegueWithIdentifier("signin", sender: view)
         
     }
-    
     
 }

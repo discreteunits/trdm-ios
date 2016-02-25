@@ -28,6 +28,7 @@
 		D74B1C4E1C58339E008F5A36 /* PopoverActionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74B1C4D1C58339E008F5A36 /* PopoverActionCollectionViewCell.swift */; };
 		D75AA4281C6062D200D5139B /* Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75AA4271C6062D200D5139B /* Structures.swift */; };
 		D75ABF1E1C48306A00435CF1 /* TierIVTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75ABF1D1C48306A00435CF1 /* TierIVTableViewCell.swift */; };
+		D765FD381C7E60F400F68389 /* SettingsStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D765FD371C7E60F400F68389 /* SettingsStoryboard.storyboard */; };
 		D77013911C6C20C900CEB886 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77013901C6C20C900CEB886 /* SettingsTableViewController.swift */; };
 		D7734AF51C45C1D9009286DD /* TierITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7734AF41C45C1D9009286DD /* TierITableViewController.swift */; };
 		D7734AF71C45D4B3009286DD /* TierIITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7734AF61C45D4B3009286DD /* TierIITableViewController.swift */; };
@@ -129,6 +130,7 @@
 		D74B1C4D1C58339E008F5A36 /* PopoverActionCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverActionCollectionViewCell.swift; sourceTree = "<group>"; };
 		D75AA4271C6062D200D5139B /* Structures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Structures.swift; sourceTree = "<group>"; };
 		D75ABF1D1C48306A00435CF1 /* TierIVTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierIVTableViewCell.swift; sourceTree = "<group>"; };
+		D765FD371C7E60F400F68389 /* SettingsStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SettingsStoryboard.storyboard; sourceTree = "<group>"; };
 		D77013901C6C20C900CEB886 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		D7734AF41C45C1D9009286DD /* TierITableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierITableViewController.swift; sourceTree = "<group>"; };
 		D7734AF61C45D4B3009286DD /* TierIITableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierIITableViewController.swift; sourceTree = "<group>"; };
@@ -237,6 +239,22 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		D765FD361C7E60D400F68389 /* TRDM - Settings */ = {
+			isa = PBXGroup;
+			children = (
+				D765FD371C7E60F400F68389 /* SettingsStoryboard.storyboard */,
+				D77013901C6C20C900CEB886 /* SettingsTableViewController.swift */,
+				D775CDD21C6D0E4D006A3F29 /* SettingsHeaderTableViewCell.swift */,
+				D775CDCE1C6D0917006A3F29 /* SettingsLabelTableViewCell.swift */,
+				D775CDD01C6D0921006A3F29 /* SettingsSwitchTableViewCell.swift */,
+				D775CDD61C6D3D00006A3F29 /* SettingsFooterTableViewCell.swift */,
+				D775CDD81C6D4AAC006A3F29 /* SettingsEditViewController.swift */,
+				D775CDDC1C6D4AC7006A3F29 /* SettingsEditTableViewController.swift */,
+				D775CDDA1C6D4ABA006A3F29 /* SettingsTextViewController.swift */,
+			);
+			name = "TRDM - Settings";
+			sourceTree = "<group>";
+		};
 		D7C1E0311C5A928F00143C48 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -281,6 +299,9 @@
 			children = (
 				D7D809991C7BCF3F00A3F5E6 /* AlertManager.swift */,
 				D7D8099B1C7BCF6300A3F5E6 /* ActivityManager.swift */,
+				D7C1E0431C5AE3F000143C48 /* TabManager.swift */,
+				D733D4651C69598F00682A84 /* CardManager.swift */,
+				D75AA4271C6062D200D5139B /* Structures.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -321,16 +342,14 @@
 			children = (
 				D7C1E0311C5A928F00143C48 /* Resources */,
 				D7F9810E1C4460AD00200639 /* Library */,
-				D7FFF7B01C3AFB0600020D9A /* AppDelegate.swift */,
 				D7D809981C7BCEDE00A3F5E6 /* Common */,
 				D7D809921C7BCDAC00A3F5E6 /* TRDM - Signup */,
 				D7D809931C7BCDD900A3F5E6 /* TRDM - Tiers */,
+				D765FD361C7E60D400F68389 /* TRDM - Settings */,
+				D7FFF7B01C3AFB0600020D9A /* AppDelegate.swift */,
 				D7F981131C4461FD00200639 /* MenuTableViewController.swift */,
-				D7FFF7B21C3AFB0600020D9A /* ViewController.swift */,
 				D7B6168D1C62E340002CF1DE /* Main.storyboard */,
-				D75AA4271C6062D200D5139B /* Structures.swift */,
-				D7C1E0431C5AE3F000143C48 /* TabManager.swift */,
-				D733D4651C69598F00682A84 /* CardManager.swift */,
+				D7FFF7B21C3AFB0600020D9A /* ViewController.swift */,
 				D7F4952E1C3B2DA2006E8592 /* SignUpViewController.swift */,
 				D7F495301C3B38D2006E8592 /* SignUpLogInTableViewController.swift */,
 				D719A62F1C3F26D500987525 /* TierNavigationController.swift */,
@@ -367,14 +386,6 @@
 				D733D45F1C69533A00682A84 /* PaymentCardTableViewCell.swift */,
 				D733D4611C69534400682A84 /* PaymentAddCardTableViewCell.swift */,
 				D733D4671C69746C00682A84 /* PaymentAddViewController.swift */,
-				D77013901C6C20C900CEB886 /* SettingsTableViewController.swift */,
-				D775CDD21C6D0E4D006A3F29 /* SettingsHeaderTableViewCell.swift */,
-				D775CDCE1C6D0917006A3F29 /* SettingsLabelTableViewCell.swift */,
-				D775CDD01C6D0921006A3F29 /* SettingsSwitchTableViewCell.swift */,
-				D775CDD61C6D3D00006A3F29 /* SettingsFooterTableViewCell.swift */,
-				D775CDD81C6D4AAC006A3F29 /* SettingsEditViewController.swift */,
-				D775CDDC1C6D4AC7006A3F29 /* SettingsEditTableViewController.swift */,
-				D775CDDA1C6D4ABA006A3F29 /* SettingsTextViewController.swift */,
 				D72B2A4D1C49728C0090875F /* RawPopoverViewController.swift */,
 				D7FFF7B71C3AFB0600020D9A /* Assets.xcassets */,
 				D7FFF7B91C3AFB0600020D9A /* LaunchScreen.storyboard */,
@@ -517,6 +528,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D765FD381C7E60F400F68389 /* SettingsStoryboard.storyboard in Resources */,
 				D7C1E03A1C5A952000143C48 /* primary-logotype-05_rgb_600_600.png in Resources */,
 				D7C1E03C1C5A958100143C48 /* Typographic-deconstructed_rgb_600_120.png in Resources */,
 				D7C1E0341C5A950000143C48 /* secondary-logomark-03_rgb_600_600.png in Resources */,

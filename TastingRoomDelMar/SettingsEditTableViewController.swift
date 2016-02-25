@@ -31,7 +31,7 @@ class SettingsEditTableViewController: UITableViewController {
     @IBOutlet weak var editValueTextField: UITextField!
     
     
-// ---------------------------
+    // ----------
     override func viewWillAppear(animated: Bool) {
         print("passedEditType is equal to: \(passedEditType)")
     }
@@ -50,7 +50,6 @@ class SettingsEditTableViewController: UITableViewController {
         editValueTextField.font = UIFont(name: "OpenSans", size: 20)
         editValueTextField.becomeFirstResponder()
         
-
         
         tableView.tableFooterView = UIView(frame: CGRectZero)
 
@@ -61,7 +60,6 @@ class SettingsEditTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
-
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }

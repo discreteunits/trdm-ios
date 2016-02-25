@@ -148,8 +148,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // ---------------------- Custom --
     func resetAppToFirstController() {
         
-        
-        self.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Landing") as! ViewController
+        self.window?.rootViewController = UIStoryboard(name: "SignupStoryboard", bundle: nil).instantiateViewControllerWithIdentifier("Landing") as! LandingViewController
 
     }
     

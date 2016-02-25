@@ -39,8 +39,10 @@ class SettingsEditViewController: UIViewController {
             navigationTitle.title = passedTrigger
             nav?.barStyle = UIBarStyle.Black
             nav?.tintColor = UIColor.whiteColor()
-            nav?.titleTextAttributes = [ NSFontAttributeName: UIFont (name: "NexaRustScriptL-00", size: 24)!]
+            nav?.titleTextAttributes = [ NSFontAttributeName: UIFont.scriptFont(24)]
+            
         }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -48,7 +50,6 @@ class SettingsEditViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
@@ -73,8 +74,8 @@ class SettingsEditViewController: UIViewController {
     }
 
     
-    
     @IBAction func saveEdit(sender: AnyObject) {
+        
         self.SettingsEditTableViewControllerRef?.saveValue()
         navigationController?.popViewControllerAnimated(true)
         
@@ -111,7 +112,5 @@ class SettingsEditViewController: UIViewController {
 }
 
 extension SettingsEditViewController: SettingsEditTableViewDelegate {
- 
 
-    
 }

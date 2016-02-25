@@ -18,7 +18,7 @@ class SettingsTableViewController: UITableViewController {
 
     @IBOutlet weak var navigationTitle: UINavigationItem!
     
-// -------------------
+    // ----------
     override func viewWillAppear(animated: Bool) {
         self.tableView.reloadData()
     }
@@ -54,9 +54,20 @@ class SettingsTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func goToLogIn() {
+        
+        
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "SignupStoryboard", bundle: nil)
+        
+        let vc = mainStoryboard.instantiateViewControllerWithIdentifier("createAccount")
+        
+        self.presentViewController(vc, animated: true, completion: nil)
+        
+    }
+    
 
     // MARK: - Table view data source
-    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 4
@@ -98,42 +109,54 @@ class SettingsTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
-        var cell: UITableViewCell!
-
+        let cell = UITableViewCell()
+        
+        // My Account Section
         if indexPath.section == 0 {
             
             let myAccountCell = tableView.dequeueReusableCellWithIdentifier("SettingsLabelTableCell", forIndexPath: indexPath) as! SettingsLabelTableViewCell
-            myAccountCell.settingLabel.font = UIFont(name: "BebasNeueRegular", size: 18)
-            myAccountCell.settingValueLabel.font = UIFont(name: "BebasNeueRegular", size: 18)
             
+            myAccountCell.settingLabel.font = UIFont.headerFont(18)
+            myAccountCell.settingValueLabel.font = UIFont.headerFont(18)
+            
+            // First Name Row
             if indexPath.row == 0 {
 
                 myAccountCell.settingLabel.text = "First name"
                 myAccountCell.settingValueLabel.text = PFUser.currentUser()!["firstName"] as? String
 
                 return myAccountCell
-                
+            
+            // Last Name Row
             } else if indexPath.row == 1 {
                 
                 myAccountCell.settingLabel.text = "Last name"
-                myAccountCell.settingValueLabel.text = PFUser.currentUser()!["lastName"] as! String
+                myAccountCell.settingValueLabel.text = PFUser.currentUser()!["lastName"] as? String
                 
                 return myAccountCell
-                
+            
+            // Mobile Number Row
             } else if indexPath.row == 2 {
                 
                 myAccountCell.settingLabel.text = "mobile number"
-                myAccountCell.settingValueLabel.text = ""
-//                myAccountCell.settingValueLabel.text = PFUser.currentUser()!["mobileNumber"] as! String
+                
+                if PFUser.currentUser()!["mobileNumber"] as? String != "" {
+                    myAccountCell.settingValueLabel.text = PFUser.currentUser()!["mobileNumber"] as? String
+                } else {
+                    myAccountCell.settingValueLabel.text = ""
+                }
                 
                 return myAccountCell
+            
+            // Email Row
             } else if indexPath.row == 3 {
                 
                 myAccountCell.settingLabel.text = "email"
-                myAccountCell.settingValueLabel.text = PFUser.currentUser()!["email"] as! String
+                myAccountCell.settingValueLabel.text = PFUser.currentUser()!["email"] as? String
                 
                 return myAccountCell
-                
+            
+            // Password Row
             } else if indexPath.row == 4 {
                 
                 myAccountCell.settingLabel.text = "password"
@@ -142,19 +165,23 @@ class SettingsTableViewController: UITableViewController {
                 return myAccountCell
                 
             }
-            
+        
+        // Notifications Section
         } else if indexPath.section == 1 {
             
             let notificationCell = tableView.dequeueReusableCellWithIdentifier("SettingsSwitchTableCell", forIndexPath: indexPath) as! SettingsSwitchTableViewCell
-            notificationCell.settingLabel.font = UIFont(name: "BebasNeueRegular", size: 18)
+            
+            notificationCell.settingLabel.font = UIFont.headerFont(18)
                 notificationCell.selectionStyle = UITableViewCellSelectionStyle.None
             
+            // Push Notifications Row
             if indexPath.row == 0 {
                 
                 notificationCell.settingLabel.text = "push notifications"
                 
                 return notificationCell
-                
+            
+            // Newsletter Row
             } else if indexPath.row == 1 {
                 
                 notificationCell.settingLabel.text = "Newsletter"
@@ -163,13 +190,15 @@ class SettingsTableViewController: UITableViewController {
                 
             }
         
+        // More Information Section
         } else if indexPath.section == 2 {
             
             let moreInfoCell = tableView.dequeueReusableCellWithIdentifier("SettingsLabelTableCell", forIndexPath: indexPath) as! SettingsLabelTableViewCell
-            moreInfoCell.settingLabel.font = UIFont(name: "BebasNeueRegular", size: 18)
-            moreInfoCell.settingValueLabel.font = UIFont(name: "BebasNeueRegular", size: 18)
             
+            moreInfoCell.settingLabel.font = UIFont.headerFont(18)
+            moreInfoCell.settingValueLabel.font = UIFont.headerFont(18)
             
+            // Privacy Policy Row
             if indexPath.row == 0 {
                 
                 moreInfoCell.settingLabel.text = "privacy policy"
@@ -177,6 +206,7 @@ class SettingsTableViewController: UITableViewController {
                 
                 return moreInfoCell
                 
+            // Terms Of Use Row
             } else if indexPath.row == 1 {
                 
                 moreInfoCell.settingLabel.text = "terms of use"
@@ -186,25 +216,41 @@ class SettingsTableViewController: UITableViewController {
                 
             }
             
+        // Account Actions Section
         } else if indexPath.section == 3 {
             
-
-            
+            // Log Out Row
             if indexPath.row == 0 {
                 
                 let accountActionCell = tableView.dequeueReusableCellWithIdentifier("SettingsLabelTableCell", forIndexPath: indexPath) as! SettingsLabelTableViewCell
-                accountActionCell.settingLabel.font = UIFont(name: "BebasNeueRegular", size: 18)
-                accountActionCell.settingValueLabel.text = ""
                 
-                accountActionCell.settingLabel.text = "log out"
+                // If Logged In
+                if TabManager.sharedInstance.currentTab.userId != "" {
+
+                    accountActionCell.settingLabel.font = UIFont.headerFont(18)
+                    accountActionCell.settingValueLabel.text = ""
+                    
+                    accountActionCell.settingLabel.text = "log out"
+                    
+                // If NOT Logged In
+                } else {
+
+                    accountActionCell.settingLabel.font = UIFont.headerFont(18)
+                    accountActionCell.settingValueLabel.text = ""
+                
+                    accountActionCell.settingLabel.text = "Sign Up"
+                    
+                }
                 
                 return accountActionCell
                 
+            // Footer
             } else if indexPath.row == 1 {
                 
                 let footerCell = tableView.dequeueReusableCellWithIdentifier("SettingsFooterTableCell", forIndexPath: indexPath) as! SettingsFooterTableViewCell
-                footerCell.versionLabel.font = UIFont(name: "OpenSans", size: 14)
-                footerCell.madeInLabel.font = UIFont(name: "OpenSans", size: 8)
+                
+                footerCell.versionLabel.font = UIFont.basicFont(14)
+                footerCell.madeInLabel.font = UIFont.basicFont(8)
                 footerCell.selectionStyle = UITableViewCellSelectionStyle.None
                 
                 return footerCell
@@ -213,18 +259,15 @@ class SettingsTableViewController: UITableViewController {
             
         }
         
-        
         return cell
     }
 
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        let selectedRow: UITableViewCell
-        
+        // My Account Section
         if indexPath.section == 0 {
             
-
             if indexPath.row == 0 {
                 selectedValue = "First name"
                 
@@ -239,12 +282,15 @@ class SettingsTableViewController: UITableViewController {
 
             } else if indexPath.row == 4 {
                 selectedValue = "password"
+                
             }
             
             performSegueWithIdentifier("editView", sender: self)
         
+        // Notifications Section
         } else if indexPath.section == 1 {
         
+        // More Information Section
         } else if indexPath.section == 2 {
             
             if indexPath.row == 0 {
@@ -257,15 +303,25 @@ class SettingsTableViewController: UITableViewController {
                 
             }
         
+        // Account Actions Section
         } else if indexPath.section == 3 {
             
             if indexPath.row == 0 {
                 
-                PFUser.logOut()
+                if TabManager.sharedInstance.currentTab.userId != "" {
+                    
+                    PFUser.logOut()
+                    
+                    // Reset Segue Push Stack
+                    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                    appDelegate.resetAppToFirstController()
+                    
+                } else {
+                    
+                    goToLogIn()
+                    
+                }
                 
-                // Reset Segue Push Stack
-                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-                appDelegate.resetAppToFirstController()
                 
                 TabManager.sharedInstance.removeItemsIndicator()
                 
@@ -275,49 +331,13 @@ class SettingsTableViewController: UITableViewController {
             
     }
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
 
     // MARK: - Navigation
-
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == "editView" {
             
-            var vc = segue.destinationViewController as! SettingsEditViewController
+            let vc = segue.destinationViewController as! SettingsEditViewController
             
             vc.passedTrigger = selectedValue
             
