@@ -42,7 +42,7 @@ class SignupSceneOneTableViewController: UITableViewController, UITextFieldDeleg
     
     var delegate: SignupSceneOneTableViewDelegate?
     
-    var SignupSceneOneViewControllerRef: SignUpViewController?
+    var SignupSceneOneViewControllerRef: SignupSceneOneViewController?
     
     var message = String()
     var buttonText = String()

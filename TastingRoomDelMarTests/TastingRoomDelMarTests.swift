@@ -7,6 +7,7 @@
 //
 
 import XCTest
+
 @testable import TastingRoomDelMar
 
 class TastingRoomDelMarTests: XCTestCase {
@@ -21,10 +22,23 @@ class TastingRoomDelMarTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testIsEmailValid() {
+        
+        let validEmails = ["tbrysiewicz@gmail.com", "tbrysiewicz@yahoo.com", "tbrysiewicz@att.net"]
+        let invalidEmails = ["123", "456", "789"]
+        
+        
+        for validEmail in validEmails {
+            XCTAssertEqual(Validator.isEmailValid(validEmail), true)
+        }
+        
+        for invalidEmail in invalidEmails {
+            XCTAssertEqual(Validator.isEmailValid(invalidEmail), false)
+        }
+        
     }
+    
+    
     
     func testPerformanceExample() {
         // This is an example of a performance test case.

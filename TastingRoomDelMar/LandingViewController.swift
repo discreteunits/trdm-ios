@@ -13,6 +13,9 @@ import ParseFacebookUtilsV4
 
 class LandingViewController: UIViewController {
     
+    
+
+    
     var screenSize = CGRect()
     var screenWidth = CGFloat()
     var screenHeight = CGFloat()
@@ -37,6 +40,7 @@ class LandingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
         // Do any additional setup after loading the view.
     }
 

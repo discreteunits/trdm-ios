@@ -32,7 +32,7 @@ class SignupSceneTwoTableViewController: UITableViewController, UITextFieldDeleg
     
     var delegate: SignupSceneTwoTableViewDelegate?
     
-    var SignupSceneTwoViewControllerRef: SignUpViewController?
+    var SignupSceneTwoViewControllerRef: SignupSceneTwoViewController?
     
     // ----------
     override func viewWillAppear(animated: Bool) {

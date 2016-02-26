@@ -66,3 +66,15 @@ struct Card {
     var last4 = String()
 }
 
+public struct Validator {
+    public static func isEmailValid(var email:String) -> Bool {
+       
+        if email.rangeOfString("@") != nil {
+            return true
+        } else {
+            return false
+        }
+        
+    }
+}
+
