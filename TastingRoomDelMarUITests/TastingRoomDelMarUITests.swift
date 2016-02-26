@@ -7,11 +7,6 @@
 //
 
 import XCTest
-import Quick
-import Nimble
-
-@testable import TastingRoomDelMar
-
 
 class TastingRoomDelMarUITests: XCTestCase {
         

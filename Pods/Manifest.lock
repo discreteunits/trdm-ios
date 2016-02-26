@@ -7,7 +7,6 @@ PODS:
     - Bolts/Tasks
   - Bolts/Tasks (1.5.1)
   - Bond (4.3.0)
-  - BuddyBuildSDK (1.0.6)
   - ENSwiftSideMenu (0.1)
   - FBSDKCoreKit (4.8.0):
     - Bolts (~> 1.1)
@@ -22,7 +21,6 @@ PODS:
     - FBSDKCoreKit
   - FBSDKShareKit (4.8.0):
     - FBSDKCoreKit
-  - Nimble (3.0.0)
   - Parse (1.11.0):
     - Bolts/Tasks (~> 1.5)
   - ParseCrashReporting (1.9.2):
@@ -37,7 +35,6 @@ PODS:
     - Bolts/Tasks (~> 1.3)
     - Parse (~> 1.9)
   - PureLayout (3.0.1)
-  - Quick (0.9.1)
   - RxBlocking (2.2.0):
     - RxSwift (~> 2.2)
   - RxCocoa (2.2.0):
@@ -53,18 +50,15 @@ DEPENDENCIES:
   - Alamofire (= 3.1.1)
   - Bolts
   - Bond (~> 4.0)
-  - BuddyBuildSDK
   - ENSwiftSideMenu (~> 0.1)
   - FBSDKCoreKit
   - FBSDKLoginKit
   - FBSDKShareKit
-  - Nimble (= 3.0.0)
   - Parse
   - ParseCrashReporting
   - ParseFacebookUtilsV4
   - ParseUI
   - PureLayout
-  - Quick (~> 0.9.0)
   - RxBlocking (~> 2.0)
   - RxCocoa (~> 2.0)
   - RxSwift (~> 2.0)
@@ -85,18 +79,15 @@ SPEC CHECKSUMS:
   Alamofire: 9b0a7188b961a03914a99304488bd226b0e46c0e
   Bolts: a12663244b1d3351c738882e71902fc74db54f64
   Bond: ebe2364b18130690083cbceff036420b21494ae4
-  BuddyBuildSDK: f9923ef709e3cd48b1eb2489f082e91a467c47bc
   ENSwiftSideMenu: 4e17a97d1d92c1a9c7267993a167e27e0a10422d
   FBSDKCoreKit: 66a935d17b6e00b6b64e604f2eb9b72c9ab7deb8
   FBSDKLoginKit: d893fcbb98d854496925e9ff73c67b896982d3c4
   FBSDKShareKit: e7577ee3adf80fc04fb656dd133fbb522250672b
-  Nimble: 4c353d43735b38b545cbb4cb91504588eb5de926
   Parse: 886af46a0a677402f6374bb97ac212e795f70afe
   ParseCrashReporting: 33b760facc649d4fd99eef8f35dcda6a406099e5
   ParseFacebookUtilsV4: eab9b4ade12f0800b4d30f6b808bca55ce17a0e9
   ParseUI: c2bcdfbb00330e464b5b773266ae221697a3bb7b
   PureLayout: f35f5384c9c4e4479df041dbe33ad7577b71ddfb
-  Quick: a5221fc21788b6aeda934805e68b061839bc3165
   RxBlocking: 5bbc826774c4290effa8fe070841e9d45e864639
   RxCocoa: 42efb7a7145a8d1d5878e94ce48a580d29e0c796
   RxSwift: b8a749f2204c6c7a5c29b306a9c3bc11d5b87c5b
