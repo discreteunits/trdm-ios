@@ -21,5 +21,19 @@ target 'TastingRoomDelMar' do
 	pod 'RxSwift', '~> 2.0'
 	pod 'RxCocoa', '~> 2.0'
 	pod 'RxBlocking', '~> 2.0'
-		
+	pod 'BuddyBuildSDK'
+				
+end
+
+def testing_pods
+	pod 'Quick', '~> 0.9.0'
+	pod 'Nimble', '3.0.0'
+end
+
+target 'TastingRoomDelMarTests' do
+	testing_pods
+end
+
+target 'TastingRoomDelMarUITests' do
+	testing_pods
 end

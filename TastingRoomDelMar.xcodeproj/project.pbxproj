@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BB65EBD50F601E4F26BD8CFC /* Pods_TastingRoomDelMar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 258E486804D393986620D744 /* Pods_TastingRoomDelMar.framework */; };
 		D719A6301C3F26D500987525 /* TierNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D719A62F1C3F26D500987525 /* TierNavigationController.swift */; };
 		D729AB831C471FF90021A66E /* TierIVCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D729AB821C471FF90021A66E /* TierIVCollectionViewCell.swift */; };
 		D729AB851C4736570021A66E /* TierIVTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D729AB841C4736570021A66E /* TierIVTableViewController.swift */; };
@@ -111,6 +110,9 @@
 /* Begin PBXFileReference section */
 		04B86A7B2DE721FB50D137DB /* Pods-TastingRoomDelMar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TastingRoomDelMar.release.xcconfig"; path = "Pods/Target Support Files/Pods-TastingRoomDelMar/Pods-TastingRoomDelMar.release.xcconfig"; sourceTree = "<group>"; };
 		258E486804D393986620D744 /* Pods_TastingRoomDelMar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TastingRoomDelMar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		45C32F81B7F1CB0D15D22BF6 /* Pods-TastingRoomDelMarTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TastingRoomDelMarTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TastingRoomDelMarTests/Pods-TastingRoomDelMarTests.release.xcconfig"; sourceTree = "<group>"; };
+		7B6AEB5895F104E1DF89EAEF /* Pods-TastingRoomDelMarUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TastingRoomDelMarUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TastingRoomDelMarUITests/Pods-TastingRoomDelMarUITests.release.xcconfig"; sourceTree = "<group>"; };
+		8D2DC9C41D9AA9D10FAF317B /* Pods-TastingRoomDelMarUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TastingRoomDelMarUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TastingRoomDelMarUITests/Pods-TastingRoomDelMarUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		D53F1940B0ECFC354F949DF6 /* Pods-TastingRoomDelMar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TastingRoomDelMar.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TastingRoomDelMar/Pods-TastingRoomDelMar.debug.xcconfig"; sourceTree = "<group>"; };
 		D719A62F1C3F26D500987525 /* TierNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierNavigationController.swift; sourceTree = "<group>"; };
 		D729AB821C471FF90021A66E /* TierIVCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierIVCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 		D7FFF7CC1C3AFB0600020D9A /* TastingRoomDelMarUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TastingRoomDelMarUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7FFF7D01C3AFB0600020D9A /* TastingRoomDelMarUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TastingRoomDelMarUITests.swift; sourceTree = "<group>"; };
 		D7FFF7D21C3AFB0600020D9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ECD8516AAB481C165FDDA634 /* Pods-TastingRoomDelMarTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TastingRoomDelMarTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TastingRoomDelMarTests/Pods-TastingRoomDelMarTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,7 +210,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB65EBD50F601E4F26BD8CFC /* Pods_TastingRoomDelMar.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,6 +243,10 @@
 			children = (
 				D53F1940B0ECFC354F949DF6 /* Pods-TastingRoomDelMar.debug.xcconfig */,
 				04B86A7B2DE721FB50D137DB /* Pods-TastingRoomDelMar.release.xcconfig */,
+				ECD8516AAB481C165FDDA634 /* Pods-TastingRoomDelMarTests.debug.xcconfig */,
+				45C32F81B7F1CB0D15D22BF6 /* Pods-TastingRoomDelMarTests.release.xcconfig */,
+				8D2DC9C41D9AA9D10FAF317B /* Pods-TastingRoomDelMarUITests.debug.xcconfig */,
+				7B6AEB5895F104E1DF89EAEF /* Pods-TastingRoomDelMarUITests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -464,9 +470,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D7FFF7D81C3AFB0600020D9A /* Build configuration list for PBXNativeTarget "TastingRoomDelMarTests" */;
 			buildPhases = (
+				007723104E9F383FEF6C3989 /* Check Pods Manifest.lock */,
 				D7FFF7BD1C3AFB0600020D9A /* Sources */,
 				D7FFF7BE1C3AFB0600020D9A /* Frameworks */,
 				D7FFF7BF1C3AFB0600020D9A /* Resources */,
+				CE0972C1856A43D832538F81 /* Embed Pods Frameworks */,
+				14D3FD94D2B3EB82F4C6B89F /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -482,9 +491,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D7FFF7DB1C3AFB0600020D9A /* Build configuration list for PBXNativeTarget "TastingRoomDelMarUITests" */;
 			buildPhases = (
+				B555661C24A5DC70ACB69900 /* Check Pods Manifest.lock */,
 				D7FFF7C81C3AFB0600020D9A /* Sources */,
 				D7FFF7C91C3AFB0600020D9A /* Frameworks */,
 				D7FFF7CA1C3AFB0600020D9A /* Resources */,
+				88DD1EC9C6FFED44C4E19417 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -590,6 +601,36 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		007723104E9F383FEF6C3989 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		14D3FD94D2B3EB82F4C6B89F /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TastingRoomDelMarTests/Pods-TastingRoomDelMarTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		250AE2A8641DBF7804BBEDCB /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -633,6 +674,51 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TastingRoomDelMar/Pods-TastingRoomDelMar-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		88DD1EC9C6FFED44C4E19417 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TastingRoomDelMarUITests/Pods-TastingRoomDelMarUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B555661C24A5DC70ACB69900 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		CE0972C1856A43D832538F81 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TastingRoomDelMarTests/Pods-TastingRoomDelMarTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -871,6 +957,7 @@
 		};
 		D7FFF7D91C3AFB0600020D9A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ECD8516AAB481C165FDDA634 /* Pods-TastingRoomDelMarTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = TastingRoomDelMarTests/Info.plist;
@@ -883,6 +970,7 @@
 		};
 		D7FFF7DA1C3AFB0600020D9A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 45C32F81B7F1CB0D15D22BF6 /* Pods-TastingRoomDelMarTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = TastingRoomDelMarTests/Info.plist;
@@ -895,6 +983,7 @@
 		};
 		D7FFF7DC1C3AFB0600020D9A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8D2DC9C41D9AA9D10FAF317B /* Pods-TastingRoomDelMarUITests.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = TastingRoomDelMarUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -907,6 +996,7 @@
 		};
 		D7FFF7DD1C3AFB0600020D9A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7B6AEB5895F104E1DF89EAEF /* Pods-TastingRoomDelMarUITests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = TastingRoomDelMarUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

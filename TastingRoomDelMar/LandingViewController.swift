@@ -11,8 +11,19 @@ import Parse
 import ParseCrashReporting
 import ParseFacebookUtilsV4
 
-class LandingViewController: UIViewController {
+class LandingViewController: UIViewController, UIAlertViewDelegate {
     
+    var alertView = UIAlertController(title: "Test Alert", message: "Alert!", preferredStyle: .Alert)
+
+    class alertView: UIAlertController {
+        var showWasCalled = false
+
+        private func show() {
+            showWasCalled = true
+            
+        }
+    }
+
     var screenSize = CGRect()
     var screenWidth = CGFloat()
     var screenHeight = CGFloat()
@@ -36,6 +47,8 @@ class LandingViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        alertView.show()
 
         // Do any additional setup after loading the view.
     }
