@@ -35,6 +35,9 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Unit Test
+        tableView.accessibilityIdentifier = "Tier One Table"
+        
         // Items Indicator
         TabManager.sharedInstance.addItemsIndicator()
 

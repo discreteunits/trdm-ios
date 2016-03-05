@@ -12,6 +12,7 @@
 		D729AB831C471FF90021A66E /* TierIVCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D729AB821C471FF90021A66E /* TierIVCollectionViewCell.swift */; };
 		D729AB851C4736570021A66E /* TierIVTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D729AB841C4736570021A66E /* TierIVTableViewController.swift */; };
 		D72B2A4E1C49728C0090875F /* RawPopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72B2A4D1C49728C0090875F /* RawPopoverViewController.swift */; };
+		D73398E21C8A771400CD4B48 /* LandingPageUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73398E11C8A771400CD4B48 /* LandingPageUITests.swift */; };
 		D733D45E1C69528500682A84 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D733D45D1C69528500682A84 /* PaymentViewController.swift */; };
 		D733D4601C69533A00682A84 /* PaymentCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D733D45F1C69533A00682A84 /* PaymentCardTableViewCell.swift */; };
 		D733D4621C69534400682A84 /* PaymentAddCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D733D4611C69534400682A84 /* PaymentAddCardTableViewCell.swift */; };
@@ -113,6 +114,8 @@
 		D729AB821C471FF90021A66E /* TierIVCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierIVCollectionViewCell.swift; sourceTree = "<group>"; };
 		D729AB841C4736570021A66E /* TierIVTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierIVTableViewController.swift; sourceTree = "<group>"; };
 		D72B2A4D1C49728C0090875F /* RawPopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RawPopoverViewController.swift; sourceTree = "<group>"; };
+		D73398DD1C8A5F5100CD4B48 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
+		D73398E11C8A771400CD4B48 /* LandingPageUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingPageUITests.swift; sourceTree = "<group>"; };
 		D733D45D1C69528500682A84 /* PaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 		D733D45F1C69533A00682A84 /* PaymentCardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentCardTableViewCell.swift; sourceTree = "<group>"; };
 		D733D4611C69534400682A84 /* PaymentAddCardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentAddCardTableViewCell.swift; sourceTree = "<group>"; };
@@ -237,6 +240,14 @@
 				04B86A7B2DE721FB50D137DB /* Pods-TastingRoomDelMar.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		D73398DC1C8A5F3400CD4B48 /* Playgrounds */ = {
+			isa = PBXGroup;
+			children = (
+				D73398DD1C8A5F5100CD4B48 /* MyPlayground.playground */,
+			);
+			name = Playgrounds;
 			sourceTree = "<group>";
 		};
 		D765FD361C7E60D400F68389 /* TRDM - Settings */ = {
@@ -373,6 +384,7 @@
 		D7FFF7AF1C3AFB0600020D9A /* TastingRoomDelMar */ = {
 			isa = PBXGroup;
 			children = (
+				D73398DC1C8A5F3400CD4B48 /* Playgrounds */,
 				D7C1E0311C5A928F00143C48 /* Resources */,
 				D7F9810E1C4460AD00200639 /* Library */,
 				D7D809981C7BCEDE00A3F5E6 /* Common */,
@@ -424,6 +436,7 @@
 			children = (
 				D7FFF7D01C3AFB0600020D9A /* TastingRoomDelMarUITests.swift */,
 				D7FFF7D21C3AFB0600020D9A /* Info.plist */,
+				D73398E11C8A771400CD4B48 /* LandingPageUITests.swift */,
 			);
 			path = TastingRoomDelMarUITests;
 			sourceTree = "<group>";
@@ -707,6 +720,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D73398E21C8A771400CD4B48 /* LandingPageUITests.swift in Sources */,
 				D7FFF7D11C3AFB0600020D9A /* TastingRoomDelMarUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
