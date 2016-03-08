@@ -46,6 +46,9 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     var itemTaxRates = [PFObject]()
 
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
+    
+    var heights = [CGFloat]()
+    var largestHeight = CGFloat()
 
 
 // ---------------------
@@ -81,31 +84,28 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         
         
         cell.itemNameLabel?.text = self.tierIVTableArray[indexPath.row]["name"] as! String?
-        cell.itemNameLabel?.font = UIFont(name: "BebasNeueRegular", size: 24)
+        cell.itemNameLabel?.font = UIFont.headerFont(24)
         cell.altNameTextView?.text = self.tierIVTableArray[indexPath.row]["alternateName"] as! String?
-        cell.altNameTextView?.font = UIFont(name: "OpenSans", size: 16)
+        cell.altNameTextView?.font = UIFont.basicFont(16)
 
 // -------------------------------
         // Adjustment For Text View Text Wrapping
 
+        
+        cell.altNameTextView.textContainer.lineBreakMode = NSLineBreakMode.ByCharWrapping
+        cell.altNameTextView.contentInset = UIEdgeInsets(top: -10,left: -5,bottom: 0,right: 0)
+        
         cell.altNameTextView?.sizeToFit()
         
-        let numberOfLines = cell.altNameTextView.contentSize.height / 16
+        let textViewHeight = cell.altNameTextView.contentSize.height
         
-        
-        
-        cell.altNameTextView.frame.height == numberOfLines * 16
 
         cell.altNameTextView.scrollEnabled = false
         
-        cell.altNameTextView.textContainer.lineBreakMode = NSLineBreakMode.ByCharWrapping
-        cell.altNameTextView.contentInset = UIEdgeInsets(top: 0,left: 0,bottom: 0,right: 0)
-        
-        print("--------******----------")
-        print("\(indexPath.row) Has \(numberOfLines) Number Of Lines.")
-        print("--------******----------")
-        
-        
+
+        heights.append(textViewHeight)
+        largestHeight = heights.maxElement()!
+
 // ---------------------------------
 
         
@@ -151,12 +151,18 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         return cell
         
     }
+
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
-        return 100
+        let cellHeight = 60 + largestHeight
+        
+        return cellHeight
         
     }
+    
+    
+    
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         

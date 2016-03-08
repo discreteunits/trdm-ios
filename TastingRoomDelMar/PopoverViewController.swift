@@ -108,11 +108,23 @@ class PopoverViewController: UITableViewController {
                     forIndexPath: indexPath) as! PopoverDetailsTableViewCell
                 detailsCell.contentView.tag = indexPath.row
                 detailsCell.titleLabel?.text = popoverItem["name"] as! String!
-                detailsCell.titleLabel.font = UIFont(name: "BebasNeueRegular", size: 24)
-                detailsCell.altNameLabel?.text = popoverItem["alternateName"] as! String!
-                detailsCell.altNameLabel.font = UIFont(name: "OpenSans", size: 16)
+                detailsCell.titleLabel.font = UIFont.headerFont(24)
+                detailsCell.altNameTextView?.text = popoverItem["alternateName"] as! String!
+                detailsCell.altNameTextView.font = UIFont.basicFont(12)
                 
-                detailsCell.varietalLabel.font = UIFont(name: "OpenSans", size: 16)
+                // Adjustment For Text View Text Wrapping
+                detailsCell.altNameTextView.textContainer.lineBreakMode = NSLineBreakMode.ByCharWrapping
+                detailsCell.altNameTextView.contentInset = UIEdgeInsets(top: -12, left: -5, bottom: 0, right: 0)
+                
+                detailsCell.altNameTextView?.sizeToFit()
+                detailsCell.altNameTextView.scrollEnabled = false
+                
+                
+                
+                
+                detailsCell.varietalLabel.font = UIFont.basicFont(16)
+                
+                
                 // IF HARVEST
                 let harvest = route[1]["name"] as! String
                 if harvest != "Harvest" {
@@ -138,7 +150,7 @@ class PopoverViewController: UITableViewController {
                 
                 mgCell.servingLabel.layer.zPosition = 100
                 mgCell.servingLabel.text = modGroups[trueIndex]["name"] as? String
-                mgCell.servingLabel.font = UIFont(name: "BebasNeueRegular", size: 18)
+                mgCell.servingLabel.font = UIFont.headerFont(18)
 
                 
                 return mgCell
@@ -151,7 +163,7 @@ class PopoverViewController: UITableViewController {
                     forIndexPath: indexPath) as! PopoverQuantityTableViewCell
                 qtyCell.contentView.tag = indexPath.row
                 qtyCell.label.text = "quantity"
-                qtyCell.label.font = UIFont(name: "BebasNeueRegular", size: 18)
+                qtyCell.label.font = UIFont.headerFont(18)
 
                 
                 return qtyCell
@@ -292,7 +304,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                 let orderAndServing = itemPortionObjectName! + "   " + itemPortionPrice
                 
                 mgCollectionCell.label.text = orderAndServing
-                mgCollectionCell.label.font = UIFont(name: "NexaRustScriptL-00", size: 14)
+                mgCollectionCell.label.font = UIFont.scriptFont(14)
                 
                 
                 mgCollectionCell.layer.borderWidth = 2
@@ -314,7 +326,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                 
                 var trueIndex = String(indexPath.row + 1)
                 quantityCollectionCell.label.text = trueIndex
-                quantityCollectionCell.label.font = UIFont(name: "NexaRustScriptL-00", size: 14)
+                quantityCollectionCell.label.font = UIFont.scriptFont(14)
                 
                 quantityCollectionCell.layer.borderWidth = 2
                 quantityCollectionCell.layer.borderColor = UIColor(red: 242/255.0, green: 242/255.0, blue: 242/255.0, alpha: 1.0).CGColor
@@ -331,7 +343,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                 actionCollectionCell = collectionView.dequeueReusableCellWithReuseIdentifier("PopoverActionCollectionCell",
                     forIndexPath: indexPath) as! PopoverActionCollectionViewCell
                 
-                actionCollectionCell.label.font = UIFont(name: "NexaRustScriptL-00", size: 20)
+                actionCollectionCell.label.font = UIFont.scriptFont(20)
                 actionCollectionCell.layer.cornerRadius = 6.0
                 actionCollectionCell.clipsToBounds = true
                 
