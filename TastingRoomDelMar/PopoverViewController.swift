@@ -20,7 +20,7 @@ class PopoverViewController: UITableViewController {
     var taxRates = [PFObject]()
 
     // Subproducts
-    var subGroups = [PFObject]()
+    var popoverAdditions = [PFObject]()
     var subproducts = [PFObject]()
     
     // Data built in this controller
@@ -35,7 +35,7 @@ class PopoverViewController: UITableViewController {
     
     
     // User Configuration
-    var modChoices = [PFObject]()
+    var subproductChoices = [PFObject]()
     var quantityChoice = String()
     // item to pass is popoverItem
     
@@ -46,6 +46,10 @@ class PopoverViewController: UITableViewController {
 // --------------------
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("*****************************************")
+        print("Product passed to popover: \(popoverItem)")
+        print("*****************************************")
         
     }
     
@@ -121,25 +125,25 @@ class PopoverViewController: UITableViewController {
             // Modifier Group Table Row
             } else if (indexPath.row > 0) && (indexPath.row < quantityRow) {
                 
-                var mgCell: PopoverMGTableViewCell
-                mgCell = tableView.dequeueReusableCellWithIdentifier("PopoverMGTableCell",
-                    forIndexPath: indexPath) as! PopoverMGTableViewCell
-                mgCell.contentView.tag = indexPath.row
+                var sgCell: PopoverSGTableViewCell
+                sgCell = tableView.dequeueReusableCellWithIdentifier("PopoverSGTableCell",
+                    forIndexPath: indexPath) as! PopoverSGTableViewCell
+                sgCell.contentView.tag = indexPath.row
                 
                 let trueIndex = indexPath.row - 1
                 
-                mgCell.servingLabel.layer.zPosition = 100
-                mgCell.servingLabel.font = UIFont.headerFont(18)
+                sgCell.servingLabel.layer.zPosition = 100
+                sgCell.servingLabel.font = UIFont.headerFont(18)
 
                 if subGroups[trueIndex]["name"] as! PFObject == "" {
-                    mgCell.servingLabel.text = "Servings"
+                    sgCell.servingLabel.text = "Servings"
                 } else {
-                    mgCell.servingLabel.text = subGroups[trueIndex]["name"] as? String
+                    sgCell.servingLabel.text = subGroups[trueIndex]["name"] as? String
 
                 }
 
                 
-                return mgCell
+                return sgCell
                 
             // Quantity Table Row
             } else if indexPath.row == quantityRow {
@@ -184,7 +188,7 @@ class PopoverViewController: UITableViewController {
             // Modifier Group Table Row
             } else if (indexPath.row > 0) && (indexPath.row < quantityRow ) {
                 
-                guard let tableViewCell = cell as? PopoverMGTableViewCell else { return }
+                guard let tableViewCell = cell as? PopoverSGTableViewCell else { return }
                 tableViewCell.setCollectionViewDataSourceDelegate(self, forRow: indexPath.row)
 
             // Quantity Table Row
@@ -233,14 +237,19 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                 
                 numberOfItems = 1
                 
-            // Modifier Group Table Row
+            // SubGroup Table Row
             } else if (parent > 0) && (parent < quantityRow ) {
                 
                 let trueIndex = parent - 1
+                let modCollectionCellCount: Int!
                 
-                let modCollecitonCellCount = subproducts.count
+                if subGroups != [] {
+                    modCollectionCellCount = subGroups.count
+                } else {
+                    modCollectionCellCount = 1
+                }
                 
-                numberOfItems = modCollecitonCellCount
+                numberOfItems = modCollectionCellCount
 
             // Quantity Table Row
             } else if parent == quantityRow {
@@ -267,16 +276,16 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
             // Details Table Row
             if parent == 0 {
 
-            // Modifier Group Table Row
+            // SubGroup Table Row
             } else if (parent > 0) && (parent < quantityRow ) {
                 
-                var mgCollectionCell: PopoverMGCollectionViewCell
-                mgCollectionCell = collectionView.dequeueReusableCellWithReuseIdentifier("PopoverMGCollectionCell",
-                    forIndexPath: indexPath) as! PopoverMGCollectionViewCell
+                var sgCollectionCell: PopoverSGCollectionViewCell
+                sgCollectionCell = collectionView.dequeueReusableCellWithReuseIdentifier("PopoverSGCollectionCell",
+                    forIndexPath: indexPath) as! PopoverSGCollectionViewCell
                 
-                mgCollectionCell.backgroundColor = UIColor.whiteColor()
+                sgCollectionCell.backgroundColor = UIColor.whiteColor()
                 
-                // Find modifiers and populate cells
+                // Find Subproducts and populate cells
                 let trueIndex = parent - 1
                 var itemPortion = subproducts[trueIndex]
                 
@@ -286,20 +295,20 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                 let itemPriceDollar = (itemPortionObjectPrice! / 100)
                 let itemPortionPrice = String(itemPriceDollar)
                 
-                // Pair Modifier Name With Price
+                // Pair SubGroup Name With Price
                 let orderAndServing = itemPortionObjectName! + "   " + itemPortionPrice
                 
-                mgCollectionCell.label.text = orderAndServing
-                mgCollectionCell.label.font = UIFont.scriptFont(14)
+                sgCollectionCell.label.text = orderAndServing
+                sgCollectionCell.label.font = UIFont.scriptFont(14)
                 
                 
-                mgCollectionCell.layer.borderWidth = 2
-                mgCollectionCell.layer.borderColor = UIColor(red: 242/255.0, green: 242/255.0, blue: 242/255.0, alpha: 1.0).CGColor
-                mgCollectionCell.layer.cornerRadius = 10.0
-                mgCollectionCell.clipsToBounds = true
+                sgCollectionCell.layer.borderWidth = 2
+                sgCollectionCell.layer.borderColor = UIColor(red: 242/255.0, green: 242/255.0, blue: 242/255.0, alpha: 1.0).CGColor
+                sgCollectionCell.layer.cornerRadius = 10.0
+                sgCollectionCell.clipsToBounds = true
 
                 
-                return mgCollectionCell
+                return sgCollectionCell
                 
             // Quantity Table Row
             } else if parent == quantityRow {
@@ -365,23 +374,23 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
         // Details Table Row
         if parent == 0 {
             
-        // Modifier Group Table Row
+        // SubGroup Table Row
         } else if (parent > 0) && (parent < quantityRow ) {
             
-            let selectedCell = collectionView.cellForItemAtIndexPath(indexPath)! as! PopoverMGCollectionViewCell
+            let selectedCell = collectionView.cellForItemAtIndexPath(indexPath)! as! PopoverSGCollectionViewCell
             selectedCell.layer.cornerRadius = 10.0
             selectedCell.clipsToBounds = true
             selectedCell.label.textColor = UIColor.whiteColor()
             selectedCell.backgroundColor = UIColor.blackColor()
             
-            let mod = subproducts[indexPath.row]
+            let subproduct = subproducts[indexPath.row]
             
             // Add chosen modifier to modChoices array.
-            self.modChoices.append(mod)
+            self.subproductChoices.append(subproduct)
             
-            let trueIndex = modChoices.count - 1
-            let modName = modChoices[trueIndex]["name"]
-            print("User chose a modifier of: \(modName)")
+            let trueIndex = subproductChoices.count - 1
+            let subproductName = subproductChoices[trueIndex]["name"]
+            print("User chose a modifier of: \(subproductName)")
             
 
         // Quantity Table Row
@@ -420,35 +429,40 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
             } else if indexPath.row == 1 {
                 
                 if popoverItem != nil {
-                    if modChoices.count == subGroups.count {
+                    if subproductChoices.count == subGroups.count {
                         if quantityChoice != "" {
                          
                             
-                            // Create Modifiers
-                            // ------------------------------
-                            var convertedModChoices = [Modifier]()
+                            // Create Modifiers To Add To LineItem
+                            // -----------------------------------
+                            // Func Req. = nil, Func Return = convertedProductChoices
+                            var convertedProductChoices = [SubProduct]()
                             
-                            for modifier in modChoices {
+                            for choice in subproductChoices {
                                 
-                                var newModifier = Modifier()
-                                newModifier.id = modifier.objectId!
-                                newModifier.cloverId = modifier["cloverId"] as! String
-                                newModifier.name = modifier["name"] as! String
+                                var newSubproduct = SubProduct()
+                                newSubproduct.id = choice.objectId!
+                                newSubproduct.lightspeedId = choice["lightspeedId"] as! String
+                                newSubproduct.name = choice["name"] as! String
                                 
-                                let modPrice = modifier["price"] as! Double
-                                newModifier.price = modPrice / 100
+                                let modPrice = choice["price"] as! Double
+                                newSubproduct.price = modPrice / 100
                                 
-                                convertedModChoices.append(newModifier)
-                                print("Mod convnerted to Modifier: \(newModifier)")
+                                convertedProductChoices.append(newSubproduct)
+                                print("Product convnerted to Subproduct: \(newSubproduct)")
                                                                 
                             }
+        
+                            // -------------------------------
+                            // -------------------------------
                             
-     
+                            // Begin Monetary Calculations
+                            // --------------------------------------
                             // Add All Item Tax Rates Together
                             var totalTax = Double()
                             for taxRate in taxRates {
                                 let rate = taxRate["rate"] as! Double
-                                let rateToDollar = rate / 10000000                // TAX RATE DECIMAL CONVERSION
+                                let rateToDollar = rate / 10000000   // TAX RATE DECIMAL CONVERSION
                                 totalTax = totalTax + rateToDollar
 
                             }
@@ -460,7 +474,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                             var preTaxedItem = Double()
                             var preTaxedItemTotal = Double()
                             
-                            for newModifier in convertedModChoices {
+                            for newModifier in convertedProductChoices {
                                 preTaxedItem = newModifier.price * lineitemQuantity!
                                 preTaxedItemTotal = preTaxedItemTotal + preTaxedItem
                             }
@@ -469,14 +483,17 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                             lineitemTax = preTaxedItemTotal * totalTax
 
                             
-                            // Create LineItem
+                            // Begin Create LineItem
                             // ------------------------------
+                            // Func Req. = , Func Return =
                             var newLineItem = LineItem()
                             newLineItem.id = popoverItem.objectId!
                             newLineItem.lightspeedId = "\(popoverItem["lightspeedId"])"
                             newLineItem.name = popoverItem["name"] as! String
                             
                             // IF HARVEST
+                            // ----------
+                            // ADD: Varietal / Beer Style
                             let harvest = route[1]["name"] as! String
                             if harvest != "Harvest" {
                                 newLineItem.varietal = popoverItemVarietal["name"] as! String
@@ -484,7 +501,8 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                                 newLineItem.varietal = ""
                             }
                             
-                            newLineItem.modifiers = convertedModChoices
+                            // ADD:
+                            newLineItem.subproducts = convertedProductChoices
 
                             newLineItem.price = preTaxedItemTotal
                             
@@ -494,7 +512,15 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                             
                             print("New LineItem created: \(newLineItem.name)")
                             
-                            // Add LineItem to TabManager tab() Structure
+                            // ------------------------------
+                            // ------------------------------
+
+                            
+                            
+                            
+                            // Finalize: Add LineItem to Tab, Clean Up, Confirm
+                            // ------------------------------
+                            // Add LineItem to Tab
                             TabManager.sharedInstance.currentTab.lines.append(newLineItem)
                             print("Line Item \(newLineItem.name) has been added to currentTab.")
                             
@@ -504,6 +530,10 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                             // Confirm
                             AlertManager.sharedInstance.addedSuccess(self, title: "Added Successfully", message: "Item has been added to your order!")
                             
+                            print("*****************************************")
+                            print("Product added to tab: \(newLineItem)")
+                            print("*****************************************")
+
                             
 
                             
@@ -535,7 +565,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
         // Modifier Group Table Row
         } else if (parent > 0) && (parent < quantityRow ) {
             
-            let deselectedCell = collectionView.cellForItemAtIndexPath(indexPath)! as! PopoverMGCollectionViewCell
+            let deselectedCell = collectionView.cellForItemAtIndexPath(indexPath)! as! PopoverSGCollectionViewCell
             deselectedCell.label.textColor = UIColor.blackColor()
             deselectedCell.backgroundColor = UIColor.whiteColor()
             

@@ -11,9 +11,9 @@ import Parse
 import Stripe
 
 // Tab Manager
-struct Modifier {
+struct SubProduct {
     var id = String()
-    var cloverId = String()
+    var lightspeedId = String()
     var name = String()
     var price = Double()
 }
@@ -26,13 +26,13 @@ struct LineItem {
     var quantity = Int()
     var price = Double()
     var tax = Double()
-    var modifiers = [Modifier]()
+    var subproducts = [SubProduct]()
 }
 
 struct Tab {
     var id = String()
     var note = String()
-    var cloverId = String()
+    var lightspeedId = String()
     var state = String()
     var table = String()
     var userId = String()

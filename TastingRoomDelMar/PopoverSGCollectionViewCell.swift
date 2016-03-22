@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PopoverMGCollectionViewCell: UICollectionViewCell {
+class PopoverSGCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var label: UILabel!
     

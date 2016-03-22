@@ -1,5 +1,5 @@
 //
-//  PopoverMGTableViewCell.swift
+//  PopoverSGTableViewCell.swift
 //  TastingRoomDelMar
 //
 //  Created by Tobias Robert Brysiewicz on 1/25/16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PopoverMGTableViewCell: UITableViewCell {
+class PopoverSGTableViewCell: UITableViewCell {
 
     
     @IBOutlet weak var PopoverCollectionView: UICollectionView!
