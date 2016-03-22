@@ -91,12 +91,17 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
     func tierIIIQuery() {
         
         let query:PFQuery = PFQuery(className:"Tier3")
-        query.includeKey("tag")
+        query.includeKey("category")
         // RESTRICT QUERY BASED ON TIER 2 SELECTION
         query.whereKey("tier2", equalTo: route[1])
         query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
             
             if error == nil {
+                
+                
+                print("\(route[1])")
+                
+                
                 
                 // The find succeeded.
                 print("TierIII retrieved \(objects!.count) objects.")
@@ -104,9 +109,13 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
                 // Do something with the found objects
                 for object in objects! as [PFObject]! {
 
-                    if object["tag"]["state"] as! String == "active" {
+                    if let product = object["category"] as? PFObject {
+                    
+                        if product["state"] as! String == "active" {
                         
-                        self.tierIIIArray.append(object)
+                            self.tierIIIArray.append(object)
+                            
+                        }
                         
                     }
                     

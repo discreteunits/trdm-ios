@@ -26,6 +26,18 @@ class TabViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        print("@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+        print("@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+
+        print("TAB: \(tab)")
+        
+        print("@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+        print("@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+
+        
+        
+        
         print("-----------------------------")
         print("Lines: \(tab.lines.count)")
         print("Orders: \(orders.orderId.count)")

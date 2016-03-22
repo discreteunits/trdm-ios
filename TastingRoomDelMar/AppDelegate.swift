@@ -22,8 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Parse.enableLocalDatastore()
         
-        Parse.setApplicationId("0tK5OiiJtRoCxmlP61AdONeBO2rVPVKpxW3EVaZG",
-            clientKey: "GB8OlPH1XWQTCHo8mdU1dP3iPV8NhGUdDcKcZIYx")
+        Parse.setApplicationId("kK30VZLdLwfWjOqOfzKbneFjniRGNKr3nOEb83kS",
+            clientKey: "BvU3xAcEB37sp3WXZUD9UhbpI4Set8CCUSbCa0OU")
                 
         PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)
         

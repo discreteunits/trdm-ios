@@ -87,7 +87,7 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
     func tierIIQuery() {
         
         let query:PFQuery = PFQuery(className:"Tier2")
-        query.includeKey("tag")
+        query.includeKey("category")
         // RESTRICT QUERY BASED ON TIER 1 SELECTION
         query.whereKey("tier1", equalTo: route[0])
         query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
@@ -100,9 +100,13 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
                 // Do something with the found objects
                 for object in objects! as [PFObject]! {
                     
-                    if object["tag"]["state"] as! String == "active" {
+                    if let product = object["category"] as? PFObject {
+                    
+                        if product["state"] as! String == "active" {
                         
-                        self.tierIIArray.append(object)
+                            self.tierIIArray.append(object)
+                        
+                        }
                         
                     }
                     

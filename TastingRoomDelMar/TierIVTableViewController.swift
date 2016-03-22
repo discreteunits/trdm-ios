@@ -34,14 +34,11 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     
     var item: PFObject!
     var itemVarietal: PFObject!
-    var modifierGroups = [PFObject]()
     
     var indexPath: NSIndexPath!
     
     var popoverHeight: CGFloat!
     var popoverWidth: CGFloat!
-
-    var modDict = [[PFObject]]()
     
     var itemTaxRates = [PFObject]()
 
@@ -49,6 +46,9 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     
     var heights = [CGFloat]()
     var largestHeight = CGFloat()
+    
+    // Collect Subgroups
+    var subGroups = [PFObject]()
 
 
 // ---------------------
@@ -85,7 +85,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         
         cell.itemNameLabel?.text = self.tierIVTableArray[indexPath.row]["name"] as! String?
         cell.itemNameLabel?.font = UIFont.headerFont(24)
-        cell.altNameTextView?.text = self.tierIVTableArray[indexPath.row]["alternateName"] as! String?
+        cell.altNameTextView?.text = self.tierIVTableArray[indexPath.row]["info"] as! String?
         cell.altNameTextView?.font = UIFont.basicFont(16)
 
 // -------------------------------
@@ -123,18 +123,18 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         
         dispatch_async(dispatch_get_main_queue()) {
             
+            print("item categories: \(self.tierIVTableArray[indexPath.row]["categories"])")
 
-            
-            if let itemTags = self.tierIVTableArray[indexPath.row]["tags"] as? [PFObject] {
+            if let itemCategories = self.tierIVTableArray[indexPath.row]["categories"] as? [PFObject] {
 
-                for tagObject in itemTags {
+                for categoryObject in itemCategories {
                     
-                    if self.tierIVCollectionArray.contains(tagObject) {
+                    if self.tierIVCollectionArray.contains(categoryObject) {
 
-                        cell.varietalLabel?.text = tagObject["name"] as? String
+                        cell.varietalLabel?.text = categoryObject["name"] as? String
                         cell.varietalLabel?.font = UIFont(name: "OpenSans", size: 16)
                         
-                        self.itemVarietal = tagObject as PFObject!
+                        self.itemVarietal = categoryObject as PFObject!
 
                     }
                     
@@ -162,13 +162,26 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     }
     
     
-    
-    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         let selectedCell = tableView.cellForRowAtIndexPath(indexPath)! as! TierIVTableViewCell
         
         item = tierIVTableArray[indexPath.row]
+
+        // If product has additions
+        if let additions = tierIVTableArray[indexPath.row]["additions"] {
+            
+            print("************************************")
+            print("ADDITIONS: \(additions)")
+            print("************************************")
+            
+            for addition in additions as! [PFObject] {
+                subGroups.append(addition)
+            }
+            
+        }
+
+        
         
         performSegueWithIdentifier("showItemConfig", sender: self)
         
@@ -195,6 +208,19 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
                     indexPath = tableView.indexPathForCell(cell)
                     item = tierIVTableArray[indexPath.row]
                     
+                    // If product has additions
+                    if let additions = tierIVTableArray[indexPath.row]["additions"] {
+                    
+                        print("************************************")
+                        print("ADDITIONS: \(additions)")
+                        print("************************************")
+                    
+                        for addition in additions as! [PFObject] {
+                            subGroups.append(addition)
+                        }
+                        
+                    }
+                    
                 }
                 
             }
@@ -210,16 +236,13 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        modifierGroups.removeAll()
-        modDict.removeAll()
-        
         if segue.identifier == "showItemConfig" {
             
-            var vc = segue.destinationViewController as! PopoverViewController
+            let vc = segue.destinationViewController as! PopoverViewController
             
             // Dynamically assign Popover Window Size
             
-            let popoverDynamicHeight = item["modifierGroups"].count
+            let popoverDynamicHeight = subGroups.count
             let popoverHeightCalculation = ((popoverDynamicHeight + 3) * 100)
             popoverHeight = CGFloat(popoverHeightCalculation)
             popoverWidth = tableView.bounds.size.width
@@ -228,31 +251,15 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             
             AnimationManager.sharedInstance.opaqueWindow(self)
             
-            
-            // Build array of modifier groups based on item selection
-            for modifierGroup in self.item["modifierGroups"] as! [PFObject]! {
-                self.modifierGroups.append(modifierGroup)
-                
-                self.modDict.append(modifierQuery(modifierGroup))
-
-            }
-            
-            // Build array of Tax Rates based on item selection
-            let taxRates = item["taxRates"] as! [PFObject]
-            for taxRate in taxRates {
-                self.itemTaxRates.append(taxRate)
-            }
-            print("\(taxRates.count) item tax rate(s) collected")
-            
-            
             // Data to be passed to popover
             vc.popoverItem = item
             vc.popoverItemVarietal = itemVarietal
-            vc.modGroups = modifierGroups
-            vc.modGroupDict = modDict
-            vc.taxRates = itemTaxRates
+            vc.subproducts = subproductQuery(item.objectId!)
             
-            print("item Tax Rates are: \(itemTaxRates)")
+            // If there are additions
+            if subGroups != [] {
+                vc.subGroups = subGroups
+            }
             
             
             var controller = vc.popoverPresentationController
@@ -277,10 +284,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     
     func popoverPresentationControllerDidDismissPopover(popoverPresentationController: UIPopoverPresentationController) {
        
-        modifierGroups = []
-
         delegate?.opaqueWindow()
-        
         
         print("Popover closed.")
         
@@ -292,30 +296,53 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     }
     
     
-    
-    // MODIFIER  QUERY
-    func modifierQuery(modifierGroupObject: PFObject) -> [PFObject] {
+    // SUBPRODUCT QUERY
+    func subproductQuery(parentId: String) -> [PFObject] {
         
-        let modArray: [PFObject]?
+        let subproductsArray: [PFObject]?
         
-        let modifierGroupId = modifierGroupObject["cloverId"] as? String
+        let query:PFQuery = PFQuery(className: "Product")
+        query.whereKey("productType", equalTo: parentId)
         
-        let modifierQuery:PFQuery = PFQuery(className: "Modifier")
-        modifierQuery.whereKey("modifierGroupId", containsString: modifierGroupId)
-        modifierQuery.orderByAscending("price")
-
-            // Synchronously Return Modifiers
-            do {
-                modArray = try modifierQuery.findObjects() as [PFObject]
-            } catch _ {
-                modArray = nil
-            }
-            
-            print("Queried modifier group: \(modifierGroupObject["name"])")
-
-            return modArray!
-            
+        do {
+            subproductsArray = try query.findObjects() as [PFObject]
+        } catch _ {
+            subproductsArray = nil
+        }
+        
+        print("Subproducts array: \(subproductsArray)")
+        
+        return subproductsArray!
+        
     }
+    
+    
+//    // MODIFIER  QUERY
+//    func modifierQuery(modifierGroupObject: PFObject) -> [PFObject] {
+//        
+//        let modArray: [PFObject]?
+//        
+//        let modifierGroupId = modifierGroupObject["cloverId"] as? String
+//        
+//        let modifierQuery:PFQuery = PFQuery(className: "Modifier")
+//        modifierQuery.whereKey("modifierGroupId", containsString: modifierGroupId)
+//        modifierQuery.orderByAscending("price")
+//
+//            // Synchronously Return Modifiers
+//            do {
+//                modArray = try modifierQuery.findObjects() as [PFObject]
+//            } catch _ {
+//                modArray = nil
+//            }
+//            
+//            print("Queried modifier group: \(modifierGroupObject["name"])")
+//
+//            return modArray!
+//            
+//    }
+    
+    
+    
     
     // ACTIVITY START FUNCTION
     func activityStart() {

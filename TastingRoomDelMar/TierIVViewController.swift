@@ -217,7 +217,7 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
         
         for object in route as [PFObject]! {
             
-            let tag = object["tag"] as! PFObject
+            let tag = object["category"] as! PFObject
             
             self.tagsArray.append(tag)
             
@@ -243,7 +243,7 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
         print("Attempting to query \(classToBeQueried) for collection")
         
         let collectionQuery:PFQuery = PFQuery(className: classToBeQueried)
-        collectionQuery.includeKey("tag")
+        collectionQuery.includeKey("category")
         collectionQuery.whereKey("tier3", equalTo: route[2])
         collectionQuery.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
             
@@ -255,12 +255,12 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
                 // Do something with the found objects
                 for object in objects! as [PFObject]! {
                     
-                    if object["tag"] != nil {
+                    if let product = object["category"] as? PFObject {
                         
-                        if object["tag"]["state"] as! String == "active" {
+                        if product["state"] as! String == "active" {
                         
                             self.TierIVCollectionViewControllerRef?.tierIVCollectionArray.append(object)
-                            self.TierIVTableViewControllerRef?.tierIVCollectionArray.append(object["tag"] as! PFObject)
+                            self.TierIVTableViewControllerRef?.tierIVCollectionArray.append(object["category"] as! PFObject)
                         
                         }
                     
@@ -288,11 +288,11 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
         self.TierIVTableViewControllerRef?.tierIVTableArray.removeAll()
         
         
-        let tableQuery:PFQuery = PFQuery(className:"Item")
-        tableQuery.includeKey("tags")
-        tableQuery.includeKey("modifierGroups")
-        tableQuery.includeKey("taxRates")
-        tableQuery.whereKey("tags", containsAllObjectsInArray: tagsArray)
+        let tableQuery:PFQuery = PFQuery(className:"Product")
+        tableQuery.includeKey("category")
+//        tableQuery.includeKey("additions")
+        tableQuery.whereKey("productType", equalTo: "CHOICE")
+        tableQuery.whereKey("categories", containsAllObjectsInArray: tagsArray)
         tableQuery.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
             
             if error == nil {

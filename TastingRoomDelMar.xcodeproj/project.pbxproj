@@ -71,7 +71,6 @@
 		D7D8099A1C7BCF3F00A3F5E6 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D809991C7BCF3F00A3F5E6 /* AlertManager.swift */; };
 		D7D8099C1C7BCF6300A3F5E6 /* ActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D8099B1C7BCF6300A3F5E6 /* ActivityManager.swift */; };
 		D7D8099E1C7BCFBA00A3F5E6 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D8099D1C7BCFBA00A3F5E6 /* AccountManager.swift */; };
-		D7D809A01C7BDD9300A3F5E6 /* TiersStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7D8099F1C7BDD9300A3F5E6 /* TiersStoryboard.storyboard */; };
 		D7E803951C56E140003C12D9 /* PopoverDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E803941C56E140003C12D9 /* PopoverDetailsTableViewCell.swift */; };
 		D7E803971C56E152003C12D9 /* PopoverMGTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E803961C56E152003C12D9 /* PopoverMGTableViewCell.swift */; };
 		D7E803991C56E169003C12D9 /* PopoverQuantityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E803981C56E169003C12D9 /* PopoverQuantityTableViewCell.swift */; };
@@ -175,7 +174,6 @@
 		D7D809991C7BCF3F00A3F5E6 /* AlertManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
 		D7D8099B1C7BCF6300A3F5E6 /* ActivityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityManager.swift; sourceTree = "<group>"; };
 		D7D8099D1C7BCFBA00A3F5E6 /* AccountManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
-		D7D8099F1C7BDD9300A3F5E6 /* TiersStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TiersStoryboard.storyboard; sourceTree = "<group>"; };
 		D7E803941C56E140003C12D9 /* PopoverDetailsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverDetailsTableViewCell.swift; sourceTree = "<group>"; };
 		D7E803961C56E152003C12D9 /* PopoverMGTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverMGTableViewCell.swift; sourceTree = "<group>"; };
 		D7E803981C56E169003C12D9 /* PopoverQuantityTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverQuantityTableViewCell.swift; sourceTree = "<group>"; };
@@ -300,7 +298,25 @@
 		D7D809931C7BCDD900A3F5E6 /* TRDM - Tiers */ = {
 			isa = PBXGroup;
 			children = (
-				D7D8099F1C7BDD9300A3F5E6 /* TiersStoryboard.storyboard */,
+				D7B6168D1C62E340002CF1DE /* Main.storyboard */,
+				D719A62F1C3F26D500987525 /* TierNavigationController.swift */,
+				D7734AF41C45C1D9009286DD /* TierITableViewController.swift */,
+				D7734AF61C45D4B3009286DD /* TierIITableViewController.swift */,
+				D7A8AC091C4DB600008D9A90 /* TierIIITableViewController.swift */,
+				D7734AFC1C45D87F009286DD /* TierIVViewController.swift */,
+				D7FACCFA1C46F1EF0006F6BE /* TierIVCollectionViewController.swift */,
+				D729AB821C471FF90021A66E /* TierIVCollectionViewCell.swift */,
+				D729AB841C4736570021A66E /* TierIVTableViewController.swift */,
+				D75ABF1D1C48306A00435CF1 /* TierIVTableViewCell.swift */,
+				D7A8AC071C4D9626008D9A90 /* PopoverViewController.swift */,
+				D7A8AC031C4D9469008D9A90 /* PopoverTableViewCell.swift */,
+				D7E803941C56E140003C12D9 /* PopoverDetailsTableViewCell.swift */,
+				D7E803961C56E152003C12D9 /* PopoverMGTableViewCell.swift */,
+				D74B1C491C583260008F5A36 /* PopoverMGCollectionViewCell.swift */,
+				D7E803981C56E169003C12D9 /* PopoverQuantityTableViewCell.swift */,
+				D74B1C4B1C5832E6008F5A36 /* PopoverQuantityCollectionViewCell.swift */,
+				D7E8039A1C56E17B003C12D9 /* PopoverActionTableViewCell.swift */,
+				D74B1C4D1C58339E008F5A36 /* PopoverActionCollectionViewCell.swift */,
 			);
 			name = "TRDM - Tiers";
 			sourceTree = "<group>";
@@ -395,25 +411,6 @@
 				D7FC44B51C7EA13D003482B9 /* TRDM - Tab */,
 				D7FFF7B01C3AFB0600020D9A /* AppDelegate.swift */,
 				D7F981131C4461FD00200639 /* MenuTableViewController.swift */,
-				D7B6168D1C62E340002CF1DE /* Main.storyboard */,
-				D719A62F1C3F26D500987525 /* TierNavigationController.swift */,
-				D7734AF41C45C1D9009286DD /* TierITableViewController.swift */,
-				D7734AF61C45D4B3009286DD /* TierIITableViewController.swift */,
-				D7A8AC091C4DB600008D9A90 /* TierIIITableViewController.swift */,
-				D7734AFC1C45D87F009286DD /* TierIVViewController.swift */,
-				D7FACCFA1C46F1EF0006F6BE /* TierIVCollectionViewController.swift */,
-				D729AB821C471FF90021A66E /* TierIVCollectionViewCell.swift */,
-				D729AB841C4736570021A66E /* TierIVTableViewController.swift */,
-				D75ABF1D1C48306A00435CF1 /* TierIVTableViewCell.swift */,
-				D7A8AC071C4D9626008D9A90 /* PopoverViewController.swift */,
-				D7A8AC031C4D9469008D9A90 /* PopoverTableViewCell.swift */,
-				D7E803941C56E140003C12D9 /* PopoverDetailsTableViewCell.swift */,
-				D7E803961C56E152003C12D9 /* PopoverMGTableViewCell.swift */,
-				D74B1C491C583260008F5A36 /* PopoverMGCollectionViewCell.swift */,
-				D7E803981C56E169003C12D9 /* PopoverQuantityTableViewCell.swift */,
-				D74B1C4B1C5832E6008F5A36 /* PopoverQuantityCollectionViewCell.swift */,
-				D7E8039A1C56E17B003C12D9 /* PopoverActionTableViewCell.swift */,
-				D74B1C4D1C58339E008F5A36 /* PopoverActionCollectionViewCell.swift */,
 				D72B2A4D1C49728C0090875F /* RawPopoverViewController.swift */,
 				D7FFF7B71C3AFB0600020D9A /* Assets.xcassets */,
 				D7FFF7B91C3AFB0600020D9A /* LaunchScreen.storyboard */,
@@ -573,7 +570,6 @@
 				D7C1E0321C5A92B300143C48 /* Fontfabric - Nexa Rust Script L 00.otf in Resources */,
 				D7C1E0411C5AB86800143C48 /* OpenSans-Regular.ttf in Resources */,
 				D7C1E0421C5AB86E00143C48 /* BebasNeue Regular.otf in Resources */,
-				D7D809A01C7BDD9300A3F5E6 /* TiersStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

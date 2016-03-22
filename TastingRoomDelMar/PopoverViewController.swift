@@ -17,9 +17,11 @@ class PopoverViewController: UITableViewController {
     // Received data based on table selection
     var popoverItem: PFObject!
     var popoverItemVarietal: PFObject!
-    var modGroups = [PFObject]()
-    var modGroupDict = [[PFObject]]()
     var taxRates = [PFObject]()
+
+    // Subproducts
+    var subGroups = [PFObject]()
+    var subproducts = [PFObject]()
     
     // Data built in this controller
     var modifierObjects = [PFObject]()
@@ -45,8 +47,6 @@ class PopoverViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        createModels(modGroupDict)
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -58,27 +58,6 @@ class PopoverViewController: UITableViewController {
         
     }
     
-    func createModels(dictionary:[[PFObject]]) {
-       
-        // Details Row
-        model.append([])
-        
-        // All Modifier Group Rows
-        for var index = 0; index < modGroupDict.count; ++index {
-            
-            model.append(modGroupDict[index])
-            
-        }
-        
-        // Quantity Row
-        model.append([])
-        
-        // Action Row
-        model.append([])
-        
-        print("Model has been created.")
-
-    }
     
 
     
@@ -87,7 +66,7 @@ class PopoverViewController: UITableViewController {
     override func tableView(tableView: UITableView,
         numberOfRowsInSection section: Int) -> Int {
             
-            rows = modGroups.count + 3
+            rows = subGroups.count + 3
             quantityRow = rows - 2
             actionRow = rows - 1
             
@@ -109,7 +88,7 @@ class PopoverViewController: UITableViewController {
                 detailsCell.contentView.tag = indexPath.row
                 detailsCell.titleLabel?.text = popoverItem["name"] as! String!
                 detailsCell.titleLabel.font = UIFont.headerFont(24)
-                detailsCell.altNameTextView?.text = popoverItem["alternateName"] as! String!
+                detailsCell.altNameTextView?.text = popoverItem["info"] as! String!
                 detailsCell.altNameTextView.font = UIFont.basicFont(12)
                 
                 // Adjustment For Text View Text Wrapping
@@ -123,6 +102,7 @@ class PopoverViewController: UITableViewController {
                 
                 
                 detailsCell.varietalLabel.font = UIFont.basicFont(16)
+                
                 
                 
                 // IF HARVEST
@@ -149,8 +129,14 @@ class PopoverViewController: UITableViewController {
                 let trueIndex = indexPath.row - 1
                 
                 mgCell.servingLabel.layer.zPosition = 100
-                mgCell.servingLabel.text = modGroups[trueIndex]["name"] as? String
                 mgCell.servingLabel.font = UIFont.headerFont(18)
+
+                if subGroups[trueIndex]["name"] as! PFObject == "" {
+                    mgCell.servingLabel.text = "Servings"
+                } else {
+                    mgCell.servingLabel.text = subGroups[trueIndex]["name"] as? String
+
+                }
 
                 
                 return mgCell
@@ -252,7 +238,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                 
                 let trueIndex = parent - 1
                 
-                let modCollecitonCellCount = modGroups[trueIndex]["modifiers"].count
+                let modCollecitonCellCount = subproducts.count
                 
                 numberOfItems = modCollecitonCellCount
 
@@ -292,9 +278,9 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                 
                 // Find modifiers and populate cells
                 let trueIndex = parent - 1
-                var itemPortion = modGroupDict[trueIndex]
+                var itemPortion = subproducts[trueIndex]
                 
-                let itemPortionObject = itemPortion[indexPath.row]
+                let itemPortionObject = itemPortion
                 let itemPortionObjectName = itemPortionObject["name"] as? String
                 let itemPortionObjectPrice = itemPortionObject["price"] as? Int
                 let itemPriceDollar = (itemPortionObjectPrice! / 100)
@@ -388,7 +374,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
             selectedCell.label.textColor = UIColor.whiteColor()
             selectedCell.backgroundColor = UIColor.blackColor()
             
-            let mod = model[parent][indexPath.row]
+            let mod = subproducts[indexPath.row]
             
             // Add chosen modifier to modChoices array.
             self.modChoices.append(mod)
@@ -434,7 +420,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
             } else if indexPath.row == 1 {
                 
                 if popoverItem != nil {
-                    if modChoices.count == modGroups.count {
+                    if modChoices.count == subGroups.count {
                         if quantityChoice != "" {
                          
                             
@@ -464,7 +450,6 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                                 let rate = taxRate["rate"] as! Double
                                 let rateToDollar = rate / 10000000                // TAX RATE DECIMAL CONVERSION
                                 totalTax = totalTax + rateToDollar
-                                
 
                             }
                             
@@ -488,7 +473,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                             // ------------------------------
                             var newLineItem = LineItem()
                             newLineItem.id = popoverItem.objectId!
-                            newLineItem.cloverId = popoverItem["cloverId"] as! String
+                            newLineItem.lightspeedId = "\(popoverItem["lightspeedId"])"
                             newLineItem.name = popoverItem["name"] as! String
                             
                             // IF HARVEST
@@ -514,9 +499,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                             print("Line Item \(newLineItem.name) has been added to currentTab.")
                             
                             // Clean Up
-                            modGroups.removeAll()
-                            modGroupDict.removeAll()
-                            model.removeAll()
+                            subGroups.removeAll()
                             
                             // Confirm
                             AlertManager.sharedInstance.addedSuccess(self, title: "Added Successfully", message: "Item has been added to your order!")
@@ -608,7 +591,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
             
             let trueIndex = parent - 1
             var mgCellSize: CGSize!
-            let numberOfModifiers = CGFloat(modGroups[trueIndex]["modifiers"].count)
+            let numberOfModifiers = CGFloat(subGroups.count)
 
             let trick = (numberOfModifiers - 1) * 10
             let spacing = (numberOfModifiers * 20) - trick

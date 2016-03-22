@@ -20,7 +20,7 @@ struct Modifier {
 
 struct LineItem {
     var id = String()
-    var cloverId = String()
+    var lightspeedId = String()
     var name = String()
     var varietal = String()
     var quantity = Int()

@@ -99,6 +99,7 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
             // Assignments
             lineitemCell.itemNameLabel?.text = "\(tab.lines[indexPath.row].name)"
             
+            
             // Styles
             lineitemCell.itemNameLabel.font = UIFont.headerFont(24)
 
@@ -328,7 +329,7 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
 
         if parent < totalRow {
             
-            let modChoices = TabManager.sharedInstance.currentTab.lines[0].modifiers.count
+            let modChoices = TabManager.sharedInstance.currentTab.lines.count
             numberOfItems = modChoices
             
         }
@@ -351,8 +352,13 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
 
                 // Assignments
                 //// Declare Pair for Presentation
-                let orderMod = TabManager.sharedInstance.currentTab.lines[parent].modifiers[indexPath.row].name
-                let servingPrice = "\(Int(TabManager.sharedInstance.currentTab.lines[parent].modifiers[indexPath.row].price))"
+                let orderMod = TabManager.sharedInstance.currentTab.lines[parent].name
+                
+                
+//                let servingPrice = "\(Int(TabManager.sharedInstance.currentTab.lines[parent].price))"
+                let servingPrice = "10"
+                
+                
                 let orderAndServing = orderMod + "   " + servingPrice
                 lineitemServingCollectionCell.servingSizeLabel?.text = "\(orderAndServing)"
                 
