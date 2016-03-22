@@ -242,6 +242,9 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
+        additions.removeAll()
+        
+        
         if segue.identifier == "showItemConfig" {
             
             let vc = segue.destinationViewController as! PopoverViewController
@@ -249,14 +252,18 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             // Dynamically assign Popover Window Size
             // ------------- BEGIN
             // IF HARVEST
-            let popoverDynamicHeight: Int!
+            var popoverDynamicHeight: Int!
+            
             if route[1]["name"] as! String == "Harvest" {
                 popoverDynamicHeight = additions.count
             // NOT HARVEST
             } else {
                 popoverDynamicHeight = 1
             }
+            
             // ------------- END
+
+            
             
             let popoverHeightCalculation = ((popoverDynamicHeight + 3) * 100)
             popoverHeight = CGFloat(popoverHeightCalculation)
@@ -266,7 +273,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             
             AnimationManager.sharedInstance.opaqueWindow(self)
             
-            
+
             // Data to be passed to popover
             vc.popoverItem = product
             vc.popoverItemVarietal = productVarietal
@@ -277,10 +284,10 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
                 vc.popoverAdditions = additions
             // NOT HARVEST
             } else {
-                vc.subproducts = subproductQuery(product.objectId!)
+                let subproductsArray = subproductQuery(product)
+                vc.subproducts = subproductsArray
             }
             // ------------ END
-            
             
             var controller = vc.popoverPresentationController
             controller!.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
@@ -291,7 +298,6 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
                             
             }
             
-            activityStop()
 
         }
         
@@ -315,43 +321,24 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     
     
     // SUBPRODUCT QUERY
-    func subproductQuery(parentId: String) -> [PFObject] {
+    func subproductQuery(parent: PFObject) -> [PFObject] {
         
         let subproductsArray: [PFObject]?
+        let parentId = parent.objectId!
         
         let query:PFQuery = PFQuery(className: "Product")
         query.whereKey("productType", equalTo: parentId)
         
+        // Synchronously Return Subproducts
         do {
             subproductsArray = try query.findObjects() as [PFObject]
         } catch _ {
             subproductsArray = nil
         }
     
+        print("Subproducts query has retrieved \(subproductsArray!.count) subproducts.")
         return subproductsArray!
         
-    }
-    
-    
-    
-    
-    
-    // ACTIVITY START FUNCTION
-    func activityStart() {
-        activityIndicator.hidden = false
-        activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 50, 50))
-        activityIndicator.center = self.view.center
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
-        activityIndicator.startAnimating()
-        UIApplication.sharedApplication().beginIgnoringInteractionEvents()
-        view.addSubview(activityIndicator)
-    }
-    
-    // ACTIVITY STOP FUNCTION
-    func activityStop() {
-        self.activityIndicator.stopAnimating()
-        UIApplication.sharedApplication().endIgnoringInteractionEvents()
     }
     
 }

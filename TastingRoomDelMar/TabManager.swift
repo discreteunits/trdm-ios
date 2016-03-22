@@ -119,7 +119,7 @@ class TabManager: NSObject {
         for lineitem in tab.lines {
             
             // Loop Thru Mods
-            for mod in lineitem.modifiers {
+            for mod in lineitem.subproducts {
                 let paraMod : [String:AnyObject] = [
                     "id": mod.id
                 ]

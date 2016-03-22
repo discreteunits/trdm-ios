@@ -185,7 +185,7 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
 
         if indexPath.row < totalRow {
             if tab.lines.count > 0 {
-                let lineMods = tab.lines[indexPath.row].modifiers.count
+                let lineMods = tab.lines[indexPath.row].subproducts.count
                 let lineSize = lineMods * 25 + 50
             
                 return CGFloat(lineSize)
@@ -345,7 +345,7 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
         
         if parent < totalRow {
             
-            // Serving Modifier Collection Row
+            // Serving Collection Row
             if indexPath.row == 0 {
                 
                 let lineitemServingCollectionCell = collectionView.dequeueReusableCellWithReuseIdentifier("TabLineItemServingCollectionCell", forIndexPath: indexPath) as! TabLineItemServingCollectionViewCell
@@ -355,12 +355,13 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
                 let orderMod = TabManager.sharedInstance.currentTab.lines[parent].name
                 
                 
-//                let servingPrice = "\(Int(TabManager.sharedInstance.currentTab.lines[parent].price))"
-                let servingPrice = "10"
+                let servingPrice = "\(Int(TabManager.sharedInstance.currentTab.lines[parent].subproducts[indexPath.row].price))"
                 
                 
                 let orderAndServing = orderMod + "   " + servingPrice
                 lineitemServingCollectionCell.servingSizeLabel?.text = "\(orderAndServing)"
+                
+                
                 
                 lineitemServingCollectionCell.qtyLabel?.text = "\(Int(TabManager.sharedInstance.currentTab.lines[parent].quantity))"
                 
@@ -382,7 +383,7 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
                 let lineitemCollectionCell = collectionView.dequeueReusableCellWithReuseIdentifier("TabLineItemCollectionCell", forIndexPath: indexPath) as! TabLineItemCollectionViewCell
                 
                 // Assignment
-                lineitemCollectionCell.modNameLabel?.text = "\(TabManager.sharedInstance.currentTab.lines[parent].modifiers[indexPath.row].name)"
+                lineitemCollectionCell.modNameLabel?.text = "\(TabManager.sharedInstance.currentTab.lines[parent].subproducts[indexPath.row].name)"
                 
                 // Styles
                 lineitemCollectionCell.backgroundColor = UIColor.whiteColor()

@@ -18,6 +18,13 @@ struct SubProduct {
     var price = Double()
 }
 
+struct Addition {
+    var id = String()
+    var lightspeedId = String()
+    var name = String()
+    var price = Double()
+}
+
 struct LineItem {
     var id = String()
     var lightspeedId = String()

@@ -10,7 +10,6 @@ import UIKit
 
 class PopoverSGTableViewCell: UITableViewCell {
 
-    
     @IBOutlet weak var PopoverCollectionView: UICollectionView!
     @IBOutlet weak var servingLabel: UILabel!
     
