@@ -22,8 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Parse.enableLocalDatastore()
         
-        Parse.setApplicationId("kK30VZLdLwfWjOqOfzKbneFjniRGNKr3nOEb83kS",
-            clientKey: "BvU3xAcEB37sp3WXZUD9UhbpI4Set8CCUSbCa0OU")
+        Parse.setApplicationId(AppConfiguration.sharedInstance.currentConfig.databaseAppId,
+            clientKey: AppConfiguration.sharedInstance.currentConfig.databaseClientKey)
                 
         PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)
         
@@ -51,7 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
         
         // Stripe Integration
-        Stripe.setDefaultPublishableKey("pk_test_Ks6cqeQtnXJN0MQIkEOyAmKn")
+        Stripe.setDefaultPublishableKey(AppConfiguration.sharedInstance.currentConfig.paymentKey)
         
         
     // -------------------------------
@@ -162,19 +162,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension UIColor {
     class func primaryGreenColor() -> UIColor {
-        return UIColor(red: 9/255.0, green: 178/255.0, blue: 126/255.0, alpha: 1.0)
+        return AppConfiguration.sharedInstance.currentConfig.primaryColor
     }
 }
 
 extension UIFont {
     class func scriptFont(size: CGFloat) -> UIFont {
-        return UIFont(name: "NexaRustScriptL-00", size: size)!
+        return UIFont(name: AppConfiguration.sharedInstance.currentConfig.scriptFont, size: size)!
     }
     class func headerFont(size: CGFloat) -> UIFont {
-        return UIFont(name: "BebasNeueRegular", size: size)!
+        return UIFont(name: AppConfiguration.sharedInstance.currentConfig.headerFont, size: size)!
     }
     class func basicFont(size: CGFloat) -> UIFont {
-        return UIFont(name: "OpenSans", size: size)!
+        return UIFont(name: AppConfiguration.sharedInstance.currentConfig.basicFont, size: size)!
     }
     
 }

@@ -66,6 +66,17 @@ class SettingsTableViewController: UITableViewController {
         
     }
     
+    func goToHome() {
+        
+        
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "SignupStoryboard", bundle: nil)
+        
+        let vc = mainStoryboard.instantiateViewControllerWithIdentifier("Landing")
+        
+        self.presentViewController(vc, animated: true, completion: nil)
+        
+    }
+    
 
     // MARK: - Table view data source
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -101,7 +112,7 @@ class SettingsTableViewController: UITableViewController {
         } else if section == 2 {
             return 2
         } else if section == 3 {
-            return 2
+            return 3
         }
         
         return 1
@@ -244,8 +255,17 @@ class SettingsTableViewController: UITableViewController {
                 
                 return accountActionCell
                 
-            // Footer
             } else if indexPath.row == 1 {
+                
+                let accountActionCell = tableView.dequeueReusableCellWithIdentifier("SettingsLabelTableCell", forIndexPath: indexPath) as! SettingsLabelTableViewCell
+
+                accountActionCell.settingLabel.font = UIFont.headerFont(18)
+                accountActionCell.settingValueLabel.text = ""
+                
+                accountActionCell.settingLabel.text = "Home"
+            
+            // Footer
+            } else if indexPath.row == 2 {
                 
                 let footerCell = tableView.dequeueReusableCellWithIdentifier("SettingsFooterTableCell", forIndexPath: indexPath) as! SettingsFooterTableViewCell
                 
@@ -324,6 +344,10 @@ class SettingsTableViewController: UITableViewController {
                 
                 
                 TabManager.sharedInstance.removeItemsIndicator()
+                
+            } else if indexPath.row == 1 {
+                
+                goToHome()
                 
             }
             

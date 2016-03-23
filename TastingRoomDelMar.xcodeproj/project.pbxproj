@@ -49,6 +49,7 @@
 		D7A8AC041C4D9469008D9A90 /* PopoverTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A8AC031C4D9469008D9A90 /* PopoverTableViewCell.swift */; };
 		D7A8AC081C4D9626008D9A90 /* PopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A8AC071C4D9626008D9A90 /* PopoverViewController.swift */; };
 		D7A8AC0A1C4DB600008D9A90 /* TierIIITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A8AC091C4DB600008D9A90 /* TierIIITableViewController.swift */; };
+		D7ACC3C41CA31C9A0005DE73 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7ACC3C31CA31C9A0005DE73 /* AppConfiguration.swift */; };
 		D7B616841C62D7C3002CF1DE /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B616831C62D7C3002CF1DE /* TabViewController.swift */; };
 		D7B616861C62D7DB002CF1DE /* TabTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B616851C62D7DB002CF1DE /* TabTableViewController.swift */; };
 		D7B616881C62DCE0002CF1DE /* TabLineItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B616871C62DCE0002CF1DE /* TabLineItemTableViewCell.swift */; };
@@ -152,6 +153,7 @@
 		D7A8AC031C4D9469008D9A90 /* PopoverTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverTableViewCell.swift; sourceTree = "<group>"; };
 		D7A8AC071C4D9626008D9A90 /* PopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverViewController.swift; sourceTree = "<group>"; };
 		D7A8AC091C4DB600008D9A90 /* TierIIITableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierIIITableViewController.swift; sourceTree = "<group>"; };
+		D7ACC3C31CA31C9A0005DE73 /* AppConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		D7B616831C62D7C3002CF1DE /* TabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		D7B616851C62D7DB002CF1DE /* TabTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabTableViewController.swift; sourceTree = "<group>"; };
 		D7B616871C62DCE0002CF1DE /* TabLineItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabLineItemTableViewCell.swift; sourceTree = "<group>"; };
@@ -324,6 +326,7 @@
 		D7D809981C7BCEDE00A3F5E6 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				D7ACC3C31CA31C9A0005DE73 /* AppConfiguration.swift */,
 				D7D809991C7BCF3F00A3F5E6 /* AlertManager.swift */,
 				D7D8099B1C7BCF6300A3F5E6 /* ActivityManager.swift */,
 				D7498AB11C7F1A8C0086B7BD /* AnimationManager.swift */,
@@ -350,8 +353,8 @@
 				D733D45D1C69528500682A84 /* PaymentViewController.swift */,
 				D733D4631C69555700682A84 /* PaymentTableViewController.swift */,
 				D733D45F1C69533A00682A84 /* PaymentCardTableViewCell.swift */,
-				D733D4611C69534400682A84 /* PaymentAddCardTableViewCell.swift */,
 				D733D4671C69746C00682A84 /* PaymentAddViewController.swift */,
+				D733D4611C69534400682A84 /* PaymentAddCardTableViewCell.swift */,
 			);
 			name = "TRDM - Payment";
 			sourceTree = "<group>";
@@ -648,6 +651,7 @@
 				D74B1C4C1C5832E6008F5A36 /* PopoverQuantityCollectionViewCell.swift in Sources */,
 				D75AA4281C6062D200D5139B /* Structures.swift in Sources */,
 				D719A6301C3F26D500987525 /* TierNavigationController.swift in Sources */,
+				D7ACC3C41CA31C9A0005DE73 /* AppConfiguration.swift in Sources */,
 				D7A8AC041C4D9469008D9A90 /* PopoverTableViewCell.swift in Sources */,
 				D7B616861C62D7DB002CF1DE /* TabTableViewController.swift in Sources */,
 				D7E803951C56E140003C12D9 /* PopoverDetailsTableViewCell.swift in Sources */,

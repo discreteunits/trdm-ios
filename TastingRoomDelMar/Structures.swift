@@ -10,6 +10,39 @@ import UIKit
 import Parse
 import Stripe
 
+// App Configuration File
+struct Config {
+    
+    var databaseAppId = "kK30VZLdLwfWjOqOfzKbneFjniRGNKr3nOEb83kS"
+    var databaseClientKey = "BvU3xAcEB37sp3WXZUD9UhbpI4Set8CCUSbCa0OU"
+    
+    var paymentKey = "pk_test_Ks6cqeQtnXJN0MQIkEOyAmKn"
+    
+    var companyName = "Tasting Room Del Mar"
+    var companyAddress = "1435 Camino Del Mar Del Mar, CA, 92014"
+    var companyPhone = "858.232.6545"
+    var companyTagline = String()
+    
+    var brandColor = String()
+    var primaryColor = UIColor(red: 9/255.0, green: 178/255.0, blue: 126/255.0, alpha: 1.0)
+    var secondaryColor = String()
+    
+    var scriptFont = "NexaRustScriptL-00"
+    var headerFont = "BebasNeueRegular"
+    var basicFont = "OpenSans"
+    
+    struct faceBook {
+        var secret = String()
+        var key = String()
+    }
+    
+    struct twitter {
+        var secret = String()
+        var key = String()
+    }
+    
+}
+
 // Tab Manager
 struct SubProduct {
     var id = String()
