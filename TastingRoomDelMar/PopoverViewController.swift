@@ -106,7 +106,7 @@ class PopoverViewController: UITableViewController {
                     detailsCell.varietalLabel?.text = ""
                 } else {
                     if let varietalName = popoverItemVarietal["name"] as? String {
-                    detailsCell.varietalLabel?.text = varietalName
+                        detailsCell.varietalLabel?.text = varietalName
                     }
                 }
                 

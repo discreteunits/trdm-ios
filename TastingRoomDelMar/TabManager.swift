@@ -111,39 +111,46 @@ class TabManager: NSObject {
         print("Tab For CloudCode Order: \(tab)")
         print("-----------------------")
 
-        // OPTION 1: Create Object
+        // Collection Storage For Build
         var lines = [[String:AnyObject]]()
-        var mods = [[String:AnyObject]]()
+        var modifiers = [[String:AnyObject]]()
 
-        // Loop Thru LineItems
+        // BEGIN COLLECTING HERE
+        // ---------------------
+        // LEVEL ONE: Loop LineItems
         for lineitem in tab.lines {
-            
-            // Loop Thru Mods
-            for mod in lineitem.subproducts {
-                let paraMod : [String:AnyObject] = [
-                    "id": mod.id
-                ]
-                mods.append(paraMod)
+
+            // LEVEL TWO: Loop Modifier Groups
+            for modifierGroup in lineitem.product.modifiergroups {
+
+                // LEVEL THREE: Loop Modifiers
+                for modifier in modifierGroup.modifiers {
+                    let paramModifier : [String:AnyObject] = [
+                        "modifierId": modifier.lightspeedId,
+                        "modifierValueId": modifier.modifierValueId
+                    ]
+                    modifiers.append(paramModifier)
+                }
+                
             }
+
             
-            // Detailed Elements Container
-            let smallElements : [String:AnyObject] = [
-                "elements": mods
+            // BEGIN BUILD HERE
+            //-----------------            
+            // Loop LineItems
+            let paramLineItem : [String:AnyObject] = [
+                "productId": lineitem.id,
+                "amount": lineitem.quantity,
+                "objectId": lineitem.id,
+                "modifiers": modifiers
             ]
             
-            // Loop Thru Items
-            let paraLine : [String:AnyObject] = [
-                "id": lineitem.id,
-                "quantity": lineitem.quantity,
-                "modifiers": smallElements
-            ]
-            
-            lines.append(paraLine)
+            lines.append(paramLineItem)
         }
         
-        // Elements Container
-        let elements : [String:AnyObject] = [
-            "body": lines
+        let paramBody : [String:AnyObject] = [
+            "type": tab.type,
+            "orderItems": lines
         ]
         
         // Build Params
@@ -152,7 +159,7 @@ class TabManager: NSObject {
             "checkoutMethod": tab.checkoutMethod,
             "table": tab.table,
 
-            "body": elements
+            "body": paramBody
         ]
         
         // Create Order Object

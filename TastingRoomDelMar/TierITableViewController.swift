@@ -358,7 +358,18 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
 // ADD INDEX TO ROUTE
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
+        // DO ACITONS
         route.append(tierIArray[indexPath.row])
+        
+        if tierIArray[indexPath.row]["name"] as! String == "Dine in" {
+            TabManager.sharedInstance.currentTab.type = "delivery"
+        } else if tierIArray[indexPath.row]["name"] as! String == "Take out" {
+            TabManager.sharedInstance.currentTab.type = "takeaway"
+        }
+        
+        
+        // SHOW ACTIONS
+        print("User chose to: \(TabManager.sharedInstance.currentTab.type)")
         
         for var index = 0; index < route.count; ++index {
             print("The Route has been increased to: \(route[index]["name"]).")

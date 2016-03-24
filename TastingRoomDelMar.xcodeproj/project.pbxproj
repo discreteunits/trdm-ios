@@ -67,6 +67,8 @@
 		D7C1E0421C5AB86E00143C48 /* BebasNeue Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = D7C1E0401C5AB76E00143C48 /* BebasNeue Regular.otf */; };
 		D7C1E0441C5AE3F000143C48 /* TabManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C1E0431C5AE3F000143C48 /* TabManager.swift */; };
 		D7C448C31C641C0400CD12F8 /* TabHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C448C21C641C0400CD12F8 /* TabHeaderTableViewCell.swift */; };
+		D7CDA53E1CA46CF200388A30 /* PlaygroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CDA53D1CA46CF200388A30 /* PlaygroundViewController.swift */; };
+		D7CDA5401CA47F8A00388A30 /* PlaygroundTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CDA53F1CA47F8A00388A30 /* PlaygroundTwoViewController.swift */; };
 		D7D809951C7BCE1D00A3F5E6 /* SignupStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7D809941C7BCE1D00A3F5E6 /* SignupStoryboard.storyboard */; };
 		D7D809971C7BCE5000A3F5E6 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D809961C7BCE5000A3F5E6 /* LandingViewController.swift */; };
 		D7D8099A1C7BCF3F00A3F5E6 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D809991C7BCF3F00A3F5E6 /* AlertManager.swift */; };
@@ -171,6 +173,8 @@
 		D7C1E0401C5AB76E00143C48 /* BebasNeue Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BebasNeue Regular.otf"; sourceTree = "<group>"; };
 		D7C1E0431C5AE3F000143C48 /* TabManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabManager.swift; sourceTree = "<group>"; };
 		D7C448C21C641C0400CD12F8 /* TabHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabHeaderTableViewCell.swift; sourceTree = "<group>"; };
+		D7CDA53D1CA46CF200388A30 /* PlaygroundViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlaygroundViewController.swift; path = ../PlaygroundViewController.swift; sourceTree = "<group>"; };
+		D7CDA53F1CA47F8A00388A30 /* PlaygroundTwoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaygroundTwoViewController.swift; sourceTree = "<group>"; };
 		D7D809941C7BCE1D00A3F5E6 /* SignupStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignupStoryboard.storyboard; sourceTree = "<group>"; };
 		D7D809961C7BCE5000A3F5E6 /* LandingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
 		D7D809991C7BCF3F00A3F5E6 /* AlertManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
@@ -415,6 +419,8 @@
 				D7FFF7B01C3AFB0600020D9A /* AppDelegate.swift */,
 				D7F981131C4461FD00200639 /* MenuTableViewController.swift */,
 				D72B2A4D1C49728C0090875F /* RawPopoverViewController.swift */,
+				D7CDA53D1CA46CF200388A30 /* PlaygroundViewController.swift */,
+				D7CDA53F1CA47F8A00388A30 /* PlaygroundTwoViewController.swift */,
 				D7FFF7B71C3AFB0600020D9A /* Assets.xcassets */,
 				D7FFF7B91C3AFB0600020D9A /* LaunchScreen.storyboard */,
 				D7FFF7BC1C3AFB0600020D9A /* Info.plist */,
@@ -663,6 +669,7 @@
 				D729AB831C471FF90021A66E /* TierIVCollectionViewCell.swift in Sources */,
 				D73620421C651BE800DD7F71 /* TabLineItemServingCollectionViewCell.swift in Sources */,
 				D7F981141C4461FD00200639 /* MenuTableViewController.swift in Sources */,
+				D7CDA53E1CA46CF200388A30 /* PlaygroundViewController.swift in Sources */,
 				D7D809971C7BCE5000A3F5E6 /* LandingViewController.swift in Sources */,
 				D7734AFD1C45D87F009286DD /* TierIVViewController.swift in Sources */,
 				D78594941C7BF141000972FB /* SignupSceneOneViewController.swift in Sources */,
@@ -694,6 +701,7 @@
 				D775CDD31C6D0E4D006A3F29 /* SettingsHeaderTableViewCell.swift in Sources */,
 				D73620401C65143400DD7F71 /* TabLineItemCollectionViewCell.swift in Sources */,
 				D77013911C6C20C900CEB886 /* SettingsTableViewController.swift in Sources */,
+				D7CDA5401CA47F8A00388A30 /* PlaygroundTwoViewController.swift in Sources */,
 				D7A8AC081C4D9626008D9A90 /* PopoverViewController.swift in Sources */,
 				D7B616841C62D7C3002CF1DE /* TabViewController.swift in Sources */,
 				D7498AB21C7F1A8C0086B7BD /* AnimationManager.swift in Sources */,

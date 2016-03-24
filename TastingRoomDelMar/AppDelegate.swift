@@ -49,6 +49,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
   
+        // Nuke App Icon Badge Icon
+        UIApplication.sharedApplication().applicationIconBadgeNumber = 0
         
         // Stripe Integration
         Stripe.setDefaultPublishableKey(AppConfiguration.sharedInstance.currentConfig.paymentKey)
