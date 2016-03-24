@@ -1,0 +1,39 @@
+{
+  "order": {
+    "userId":"3oLzw34sgj",
+    "checkoutMethod": "stripe",
+    "table":23,
+    "body": {
+      // "companyId": 14269,
+      // "customerId": 14558,
+      // "deliveryDate": "2016-11-04T12:00:00Z",
+      "type": "dine-in", //     NOTE: Delivery & Takaway, dine-in is equivilent to delivery type
+      // "status": "AWAITING_PROCESSING",
+      // "description": "test order description.",
+      // "note": "test order note.",
+      "orderItems": [
+        {
+          "productId": 0,
+          "productPlu": "string", // NOTE: sku of product
+          "amount": 1,
+          // "id": 124212,    NOTE: Lineitem ID in lightspeed DB
+          // "totalPrice": 24,
+          // "totalPriceWithoutVat": 24,
+          // "unitPrice": 24,
+          // "unitPriceWithoutVat": 24,
+          "modifiers": [
+            {
+              // "description": "Steak Modifiers",
+              // "id": 0,
+              "modifierId": 1619, // NOTE: modifier group id
+              // "modifierName": "Steak Modifiers",
+              "modifierValueId": 5048, // NOTE: actual modifier of modifier group
+              // "price": 0,
+              // "priceWithoutVat": 0
+            }
+          ]                
+        }
+      ]
+    }
+  }
+}

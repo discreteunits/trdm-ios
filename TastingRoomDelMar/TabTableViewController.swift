@@ -261,7 +261,7 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
             
             let vc = segue.destinationViewController as! TableNumberViewController
             // Size Popover Window
-            vc.preferredContentSize = CGSizeMake(screenWidth, screenHeight*0.4)
+            vc.preferredContentSize = CGSizeMake(screenWidth, screenHeight*0.47)
             
             // Data To Be Passed
             
@@ -284,7 +284,7 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
         if segue.identifier == "addGratuity" {
             let vc = segue.destinationViewController as! AddGratuityViewController
             // Size Popover Window
-            vc.preferredContentSize = CGSizeMake(screenWidth, screenHeight * 0.53)
+            vc.preferredContentSize = CGSizeMake(screenWidth, screenHeight * 0.65)
             
             // Data To Be Passed
             

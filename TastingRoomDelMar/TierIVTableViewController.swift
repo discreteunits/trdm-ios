@@ -9,6 +9,8 @@
 import UIKit
 import ParseUI
 import Parse
+import SwiftyJSON
+
 
 @objc
 protocol TierIVTableViewDelegate {
@@ -214,11 +216,25 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
                     // ------------ BEGIN
                     if route[1]["name"] as! String == "Harvest" {
                         
-                        let productAdditions = tierIVTableArray[indexPath.row]["additions"] as! [PFObject]
+//                        // SWIFTY JSON OPTION
+//                        let productAdditions = tierIVTableArray[indexPath.row]["additions"] as! NSData
+//                        
+//                        let json = JSON(data: productAdditions)
+//                        if let additions = json[0]["additions"]["value"].string  {
+//                            
+//                            // Do something with json?
+//                            print("Additions have been "
+//                            
+//                            
+//                        }
                         
-                        for addition in productAdditions {
-                            additions.append(addition)
-                        }
+                        
+                        
+                        // NATIVE OPTION
+                        let text = tierIVTableArray[indexPath.row]["additions"] as! String
+                        convertStringToDictionary(text)
+                        
+                        
                         
                         print("************************************")
                         print("ADDITIONS: \(additions)")
@@ -238,6 +254,18 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         
         print("------------------------")
         
+    }
+    
+    
+    func convertStringToDictionary(text: String) -> [String:AnyObject]? {
+        if let data = text.dataUsingEncoding(NSUTF8StringEncoding) {
+            do {
+                return try NSJSONSerialization.JSONObjectWithData(data, options: []) as? [String:AnyObject]
+            } catch let error as NSError {
+                print(error)
+            }
+        }
+        return nil
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

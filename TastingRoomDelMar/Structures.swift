@@ -10,7 +10,7 @@ import UIKit
 import Parse
 import Stripe
 
-// App Configuration File
+// App Configuration
 struct Config {
     
     var databaseAppId = "kK30VZLdLwfWjOqOfzKbneFjniRGNKr3nOEb83kS"
@@ -44,18 +44,27 @@ struct Config {
 }
 
 // Tab Manager
-struct SubProduct {
-    var id = String()
+struct Modifier {
     var lightspeedId = String()
+    var info = String()
     var name = String()
-    var price = Double()
+    var price = String()
 }
 
-struct Addition {
+struct ModifierGroup {
+    var lightspeedId = String()
+    var name = String()
+    var price = Double()
+    var modifiers = [Modifier]()
+}
+
+struct Product {
     var id = String()
     var lightspeedId = String()
     var name = String()
     var price = Double()
+    
+    var productPlu = String()
 }
 
 struct LineItem {
@@ -66,7 +75,9 @@ struct LineItem {
     var quantity = Int()
     var price = Double()
     var tax = Double()
-    var subproducts = [SubProduct]()
+    var product = Product()
+    var subproducts = [Product]()
+    var modifierGroups = [ModifierGroup]()
 }
 
 struct Tab {

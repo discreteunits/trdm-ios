@@ -46,40 +46,79 @@
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SettingsLabelTableCell" id="yHE-g1-ZdW" customClass="SettingsLabelTableViewCell" customModule="TastingRoomDelMar" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="80" width="600" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="yHE-g1-ZdW" id="ZHY-vV-y45">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yHE-g1-ZdW" id="ZHY-vV-y45">
                                     <rect key="frame" x="0.0" y="0.0" width="567" height="49.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="settingValueLabel" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6s8-hI-aNf">
-                                            <rect key="frame" x="283" y="0.0" width="137" height="50"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="settingLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VYt-BR-ZTI">
+                                            <rect key="frame" x="15" y="0.0" width="268" height="50"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="268" id="Cyz-dK-Cw0"/>
+                                                <constraint firstAttribute="width" constant="268" id="Kuj-Uf-wAA"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="Cyz-dK-Cw0"/>
+                                                    <exclude reference="Kuj-Uf-wAA"/>
+                                                </mask>
+                                            </variation>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="settingValueLabel" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6s8-hI-aNf">
+                                            <rect key="frame" x="430" y="0.0" width="137" height="50"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="227" id="bBI-HU-lQ4"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="settingLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VYt-BR-ZTI">
-                                            <rect key="frame" x="15" y="0.0" width="268" height="50"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="268" id="Cyz-dK-Cw0"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="bBI-HU-lQ4"/>
+                                                </mask>
+                                            </variation>
                                         </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstAttribute="trailingMargin" secondItem="6s8-hI-aNf" secondAttribute="trailing" id="1xX-iJ-qd2"/>
+                                        <constraint firstItem="VYt-BR-ZTI" firstAttribute="leading" secondItem="ZHY-vV-y45" secondAttribute="leadingMargin" constant="7" id="43D-U8-ICL"/>
+                                        <constraint firstItem="VYt-BR-ZTI" firstAttribute="leading" secondItem="ZHY-vV-y45" secondAttribute="leadingMargin" constant="7" id="62z-GM-6Hu"/>
                                         <constraint firstAttribute="trailing" secondItem="6s8-hI-aNf" secondAttribute="trailing" id="Ea6-dw-iTf"/>
                                         <constraint firstItem="6s8-hI-aNf" firstAttribute="leading" secondItem="VYt-BR-ZTI" secondAttribute="trailing" id="GzD-zt-MGE"/>
                                         <constraint firstItem="6s8-hI-aNf" firstAttribute="centerY" secondItem="ZHY-vV-y45" secondAttribute="centerY" id="JNu-l6-6D1"/>
                                         <constraint firstItem="VYt-BR-ZTI" firstAttribute="centerY" secondItem="ZHY-vV-y45" secondAttribute="centerY" id="JO2-ta-FEC"/>
                                         <constraint firstItem="6s8-hI-aNf" firstAttribute="top" secondItem="ZHY-vV-y45" secondAttribute="top" id="Syr-9h-I54"/>
+                                        <constraint firstItem="6s8-hI-aNf" firstAttribute="centerY" secondItem="ZHY-vV-y45" secondAttribute="centerY" id="bxT-jA-lp2"/>
                                         <constraint firstItem="6s8-hI-aNf" firstAttribute="firstBaseline" secondItem="VYt-BR-ZTI" secondAttribute="firstBaseline" id="fXs-cO-4dQ"/>
+                                        <constraint firstItem="6s8-hI-aNf" firstAttribute="leading" secondItem="VYt-BR-ZTI" secondAttribute="trailing" id="iPJ-52-Uek"/>
+                                        <constraint firstItem="6s8-hI-aNf" firstAttribute="leading" secondItem="VYt-BR-ZTI" secondAttribute="trailing" id="lCf-86-jBx"/>
+                                        <constraint firstItem="VYt-BR-ZTI" firstAttribute="centerY" secondItem="ZHY-vV-y45" secondAttribute="centerY" id="mzk-M1-m7y"/>
+                                        <constraint firstItem="VYt-BR-ZTI" firstAttribute="centerX" secondItem="ZHY-vV-y45" secondAttribute="centerX" id="ooq-nA-zpc"/>
+                                        <constraint firstItem="6s8-hI-aNf" firstAttribute="centerX" secondItem="ZHY-vV-y45" secondAttribute="centerX" id="rYa-Ai-RjO"/>
                                         <constraint firstItem="VYt-BR-ZTI" firstAttribute="leading" secondItem="ZHY-vV-y45" secondAttribute="leadingMargin" constant="7" id="u1B-FE-t7s"/>
                                         <constraint firstItem="6s8-hI-aNf" firstAttribute="baseline" secondItem="VYt-BR-ZTI" secondAttribute="baseline" id="zXw-av-9rz"/>
                                         <constraint firstItem="VYt-BR-ZTI" firstAttribute="centerY" secondItem="ZHY-vV-y45" secondAttribute="centerY" id="zfu-4o-roE"/>
                                     </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="43D-U8-ICL"/>
+                                            <exclude reference="JO2-ta-FEC"/>
+                                            <exclude reference="ooq-nA-zpc"/>
+                                            <exclude reference="u1B-FE-t7s"/>
+                                            <exclude reference="zfu-4o-roE"/>
+                                            <exclude reference="Ea6-dw-iTf"/>
+                                            <exclude reference="GzD-zt-MGE"/>
+                                            <exclude reference="JNu-l6-6D1"/>
+                                            <exclude reference="Syr-9h-I54"/>
+                                            <exclude reference="fXs-cO-4dQ"/>
+                                            <exclude reference="iPJ-52-Uek"/>
+                                            <exclude reference="lCf-86-jBx"/>
+                                            <exclude reference="rYa-Ai-RjO"/>
+                                            <exclude reference="zXw-av-9rz"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="settingLabel" destination="VYt-BR-ZTI" id="4GO-dR-oLC"/>

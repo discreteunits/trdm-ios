@@ -9,6 +9,7 @@
 import UIKit
 import ParseUI
 import Parse
+import SwiftyJSON
 
 class PopoverViewController: UITableViewController {
     
@@ -104,7 +105,9 @@ class PopoverViewController: UITableViewController {
                 if route[1]["name"] as! String == "Harvest" {
                     detailsCell.varietalLabel?.text = ""
                 } else {
-                    detailsCell.varietalLabel?.text = popoverItemVarietal["name"] as? String
+                    if let varietalName = popoverItemVarietal["name"] as? String {
+                    detailsCell.varietalLabel?.text = varietalName
+                    }
                 }
                 
                 return detailsCell
@@ -482,11 +485,11 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                             // Create Modifiers To Add To LineItem
                             // -----------------------------------
                             // Func Req. = nil, Func Return = convertedProductChoices
-                            var convertedProductChoices = [SubProduct]()
+                            var convertedProductChoices = [Product]()
                             
                             for choice in productChoices {
                                 
-                                var newSubproduct = SubProduct()
+                                var newSubproduct = Product()
                                 newSubproduct.id = choice.objectId!
                                 newSubproduct.lightspeedId = String(choice["lightspeedId"])
                                 newSubproduct.name = choice["name"] as! String

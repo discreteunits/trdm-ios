@@ -143,19 +143,17 @@ class TabManager: NSObject {
         
         // Elements Container
         let elements : [String:AnyObject] = [
-            "elements": lines
+            "body": lines
         ]
         
         // Build Params
         let para : [String:AnyObject] = [
-            "id": tab.id,
-            "note": tab.note,
-            "table": tab.table,
             "userId": tab.userId,
             "checkoutMethod": tab.checkoutMethod,
-            "tipAmount": tab.gratuity,
-            "lineItems": elements
-        ] // end para
+            "table": tab.table,
+
+            "body": elements
+        ]
         
         // Create Order Object
         var order : [String:AnyObject] = [
