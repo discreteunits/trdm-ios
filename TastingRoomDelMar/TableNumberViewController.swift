@@ -53,6 +53,8 @@ class TableNumberViewController: UIViewController, UITextFieldDelegate {
         tableNumberTextField.textAlignment = .Center
         tableNumberTextField.backgroundColor = UIColor.whiteColor()
         tableNumberTextField.becomeFirstResponder()
+        tableNumberTextField.delegate = self
+        
         // Create Cancel Button
         let buttonWidth = (screenWidth - 24) / 2
         
@@ -84,6 +86,16 @@ class TableNumberViewController: UIViewController, UITextFieldDelegate {
         popoverView.addSubview(cancelButton)
         popoverView.addSubview(placeOrderButton)
     
+    }
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange,
+        replacementString string: String) -> Bool
+    {
+        let maxLength = 2
+        let currentString: NSString = textField.text!
+        let newString: NSString =
+        currentString.stringByReplacingCharactersInRange(range, withString: string)
+        return newString.length <= maxLength
     }
     
     

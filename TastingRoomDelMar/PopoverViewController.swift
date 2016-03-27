@@ -501,35 +501,49 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                                 print("Product convnerted to Subproduct: \(newSubproduct)")
                                                                 
                             }
-        
+
+                            
+                            
                             // -------------------------------
                             // -------------------------------
                             
                             // Begin Monetary Calculations
                             // --------------------------------------
                             // Add All Item Tax Rates Together
-                            var totalTax = Double()
-                            for taxRate in taxRates {
-                                let rate = taxRate["rate"] as! Double
-                                let rateToDollar = rate / 10000000   // TAX RATE DECIMAL CONVERSION
-                                totalTax = totalTax + rateToDollar
+                            var taxString = popoverItem["taxClass"] as! String
+                            
+                            
+                            
+                            let taxRateString = taxString.stringByReplacingOccurrencesOfString("BUILTIN-", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+                            
+                            
+                            let taxRateConversion = Double(taxRateString)! / 100
+                            let taxRateDouble = taxRateConversion
+                            
+                            print("\(taxRateDouble)")
+                            
 
-                            }
-                            
-                            
                             // Calculate Tax Expenditure
-
                             let lineitemQuantity = Double(quantityChoice)
-                            var preTaxedItem = Double()
-                            var preTaxedItemTotal = Double()
                             
-                            for newModifier in convertedProductChoices {
-                                preTaxedItem = newModifier.price * lineitemQuantity!
-                                preTaxedItemTotal = preTaxedItemTotal + preTaxedItem
-                            }
+                            let lineitemPreTax = lineitemQuantity! * (popoverItem["price"] as! Double)
                             
-                            var lineitemTax = Double()
-                            lineitemTax = preTaxedItemTotal * totalTax
+                            let lineitemTax = lineitemPreTax * taxRateDouble
+                            
+                            let lineitemTotal = lineitemTax + lineitemPreTax
+                            
+                            
+                            print("+++++++++++++++++++++++++++++++++++")
+                            
+                            print("Tax String: \(popoverItem["taxClass"])")
+                            
+                            print("Line Item Pre Tax: \(lineitemPreTax)")
+                            
+                            print("Line Item Tax Calculated to: \(lineitemTax)")
+                            
+                            print("Line Item Total: \(lineitemTotal)")
+                            
+                            print("+++++++++++++++++++++++++++++++++++")
 
                             
                             // Begin Create LineItem
@@ -539,6 +553,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                             newLineItem.id = popoverItem.objectId!
                             newLineItem.lightspeedId = "\(popoverItem["lightspeedId"])"
                             newLineItem.name = popoverItem["name"] as! String
+
                             
                             // IF HARVEST
                             // ----------
@@ -553,7 +568,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                             // ADD: Subproducts
                             newLineItem.subproducts = convertedProductChoices
 
-                            newLineItem.price = preTaxedItemTotal
+                            newLineItem.price = lineitemPreTax
                             
                             newLineItem.quantity = Int(quantityChoice)!
                             newLineItem.tax = lineitemTax

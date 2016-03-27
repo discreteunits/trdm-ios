@@ -57,6 +57,9 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+
+        
     }
 
     override func didReceiveMemoryWarning() {

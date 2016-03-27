@@ -18,6 +18,8 @@ class TierIVTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+
                 
     }
 
