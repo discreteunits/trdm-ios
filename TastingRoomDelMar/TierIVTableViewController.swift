@@ -9,7 +9,6 @@
 import UIKit
 import ParseUI
 import Parse
-import SwiftyJSON
 
 
 @objc
@@ -50,7 +49,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     var largestHeight = CGFloat()
     
     // IF HARVEST
-    var additions = [PFObject]()
+    var additions = [AnyObject]()
 
 
 // ---------------------
@@ -58,8 +57,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
-        
+        self.tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -91,18 +89,20 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         cell.itemNameLabel?.text = self.tierIVTableArray[indexPath.row]["name"] as! String?
         cell.itemNameLabel?.font = UIFont.headerFont(24)
         cell.altNameTextView?.text = self.tierIVTableArray[indexPath.row]["info"] as! String?
-        cell.altNameTextView?.font = UIFont.basicFont(16)
+        cell.altNameTextView?.font = UIFont.basicFont(14)
 
         
         // Adjustment For Text View Text Wrapping
         // ------------------------- BEGIN
         cell.altNameTextView.scrollEnabled = false
         cell.altNameTextView.textContainer.lineBreakMode = NSLineBreakMode.ByCharWrapping
-        cell.altNameTextView.contentInset = UIEdgeInsets(top: -10,left: -5,bottom: 0,right: 0)
+        cell.altNameTextView.contentInset = UIEdgeInsets(top: -10,left: -5,bottom: -10,right: 0)
+        cell.altNameTextView.textContainer.maximumNumberOfLines = 0
         cell.altNameTextView?.sizeToFit()
         
         let textViewHeight = cell.altNameTextView.contentSize.height
 
+        
         heights.append(textViewHeight)
         largestHeight = heights.maxElement()!
         // ------------------------ END
@@ -158,6 +158,20 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
+        
+//        var cellText: String = "Go get some text for your cell."
+//        var cellFont: UIFont = UIFont(name: "Helvetica", size: 17.0)
+//        var constraintSize: CGSize = CGSizeMake(280.0, MAXFLOAT)
+//        var labelSize: CGSize = cellText.sizeWithFont(cellFont, constrainedToSize: constraintSize, lineBreakMode: .WordWrap)
+        
+//        var cellText = product["info"] as! String
+//        var cellFont = UIFont.headerFont(14)
+//        var constraintSize = CGSizeMake(225.0, CGFloat(MAXFLOAT))
+//        
+//        _ = cellText.sizeWithFont(cellFont, constrainedToSize: constraintSize, lineBreakMode: .ByCharWrapping)
+//        
+//        var textViewSize = cellText.boundingRectWithSize(bounds.size, options: NSStringDrawingOptions([.UsesLineFragmentOrigin, .UsesFontLeading]), attributes: [NSFontAttributeName : 14], context: nil)
+        
         let cellHeight = 60 + largestHeight
         
         return cellHeight
@@ -212,6 +226,8 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             if let superview = button.superview {
                 if let cell = superview.superview as? TierIVTableViewCell {
                     
+                    additions.removeAll()
+                    
                     indexPath = tableView.indexPathForCell(cell)
                     product = tierIVTableArray[indexPath.row]
                     
@@ -219,29 +235,22 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
                     // ------------ BEGIN
                     if route[1]["name"] as! String == "Harvest" {
                         
-//                        // SWIFTY JSON OPTION
-//                        let productAdditions = tierIVTableArray[indexPath.row]["additions"] as! NSData
-//                        
-//                        let json = JSON(data: productAdditions)
-//                        if let additions = json[0]["additions"]["value"].string  {
-//                            
-//                            // Do something with json?
-//                            print("Additions have been "
-//                            
-//                            
-//                        }
+
+  
                         
                         
+                        print("This item contains: \(tierIVTableArray[indexPath.row]["additions"].count) raw additions.")
                         
-                        // NATIVE OPTION
-                        let text = tierIVTableArray[indexPath.row]["additions"] as! String
-                        convertStringToDictionary(text)
+                        let additionsRaw = tierIVTableArray[indexPath.row]["additions"]
+
+                        for var i = 0; i < additionsRaw.count; ++i {
+                            additions.append(additionsRaw[i])
+                        }
+                        
+                        print("Additions Created: \(additions)")
                         
                         
-                        
-                        print("************************************")
-                        print("ADDITIONS: \(additions)")
-                        print("************************************")
+
                         
                     }
                     // ------------- END
@@ -260,20 +269,8 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     }
     
     
-    func convertStringToDictionary(text: String) -> [String:AnyObject]? {
-        if let data = text.dataUsingEncoding(NSUTF8StringEncoding) {
-            do {
-                return try NSJSONSerialization.JSONObjectWithData(data, options: []) as? [String:AnyObject]
-            } catch let error as NSError {
-                print(error)
-            }
-        }
-        return nil
-    }
-    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        additions.removeAll()
         
         
         if segue.identifier == "showItemConfig" {
@@ -312,7 +309,15 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             // IF HARVEST
             // ------------ BEGIN
             if route[1]["name"] as! String == "Harvest" {
+                
+                
+                
+                
                 vc.popoverAdditions = additions
+                
+                
+                
+                
             // NOT HARVEST
             } else {
                 let subproductsArray = subproductQuery(product)
@@ -335,8 +340,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     }
     
     
-// PRESENTATION CONTROLLER DATA SOURCE
-    
+    // PRESENTATION CONTROLLER DATA SOURCE
     func popoverPresentationControllerDidDismissPopover(popoverPresentationController: UIPopoverPresentationController) {
        
         delegate?.opaqueWindow()
@@ -371,5 +375,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         return subproductsArray!
         
     }
+    
+
     
 }

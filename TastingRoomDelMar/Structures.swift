@@ -60,6 +60,24 @@ struct ModifierGroup {
     var modifiers = [Modifier]()
 }
 
+struct Value {
+    var id = String()
+    var info = String()
+    var name = String()
+    var price = String()
+    var priceWithoutVAT = String()
+    
+}
+
+struct Addition {
+    var displayName = String()
+    var id = String()
+    var maxSelectedAmount = String()
+    var minSelectedAmount = String()
+    var name = String()
+    var values = [Value]()
+}
+
 struct Product {
     var id = String()
     var lightspeedId = String()
@@ -82,6 +100,7 @@ struct LineItem {
     var tax = Double()
     var product = Product()
     var subproducts = [Product]()
+    var additions = [Addition]()
 }
 
 struct Tab {

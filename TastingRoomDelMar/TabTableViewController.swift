@@ -186,7 +186,7 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
         if indexPath.row < totalRow {
             if tab.lines.count > 0 {
                 let lineMods = tab.lines[indexPath.row].subproducts.count
-                let lineSize = lineMods * 25 + 50
+                let lineSize = (lineMods * 25) + 50
             
                 return CGFloat(lineSize)
             }
@@ -354,9 +354,15 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
                 //// Declare Pair for Presentation
                 let orderMod = TabManager.sharedInstance.currentTab.lines[parent].name
                 
+                // IF HARVEST
+                // ---------
+                var servingPrice = String()
                 
-                let servingPrice = "\(Int(TabManager.sharedInstance.currentTab.lines[parent].subproducts[indexPath.row].price))"
-                
+                if route[1]["name"] as! String == "Harvest" {
+                    
+                } else {
+                    servingPrice = "\(Int(TabManager.sharedInstance.currentTab.lines[parent].subproducts[indexPath.row].price))"
+                }
                 
                 let orderAndServing = orderMod + "   " + servingPrice
                 lineitemServingCollectionCell.servingSizeLabel?.text = "\(orderAndServing)"
@@ -383,7 +389,7 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
                 let lineitemCollectionCell = collectionView.dequeueReusableCellWithReuseIdentifier("TabLineItemCollectionCell", forIndexPath: indexPath) as! TabLineItemCollectionViewCell
                 
                 // Assignment
-                lineitemCollectionCell.modNameLabel?.text = "\(TabManager.sharedInstance.currentTab.lines[parent].subproducts[indexPath.row].name)"
+//                lineitemCollectionCell.modNameLabel?.text = "\(TabManager.sharedInstance.currentTab.lines[parent].subproducts[indexPath.row].name)"
                 
                 // Styles
                 lineitemCollectionCell.backgroundColor = UIColor.whiteColor()

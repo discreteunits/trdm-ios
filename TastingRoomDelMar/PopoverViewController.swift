@@ -17,7 +17,7 @@ class PopoverViewController: UITableViewController {
     var popoverItem: PFObject!
     var popoverItemVarietal: PFObject!
     var taxRates = [PFObject]()
-    var popoverAdditions = [PFObject]()
+    var popoverAdditions = [AnyObject]()
     var subproducts = [PFObject]()
     
     // Row QTY Data
@@ -30,16 +30,12 @@ class PopoverViewController: UITableViewController {
     
     // User Configuration
     var productChoices = [PFObject]()
+    var productHarvestChoices = [[String:AnyObject]]()
     var quantityChoice = String()
 
 // --------------------
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        print("*****************************************")
-//        print("Product passed to popover: \(popoverItem)")
-//        print("Subproducts of this product are: \(subproducts)")
-//        print("*****************************************")
         
     }
     
@@ -65,6 +61,8 @@ class PopoverViewController: UITableViewController {
             
             quantityRow = rows - 2
             actionRow = rows - 1
+            
+            print("Rows calculated to: \(rows)")
             
             return rows
             
@@ -126,7 +124,12 @@ class PopoverViewController: UITableViewController {
                 sgCell.servingLabel.layer.zPosition = 100
                 sgCell.servingLabel.font = UIFont.headerFont(18)
 
+                
+                
                 if route[1]["name"] as! String == "Harvest" {
+                    
+                    print("\(popoverAdditions[trueIndex])")
+                    
                     sgCell.servingLabel.text = popoverAdditions[trueIndex]["name"] as? String
                 } else {
                     sgCell.servingLabel.text = "servings"
@@ -229,10 +232,20 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                 
                 // IF HARVEST ------ BEGIN
                 if route[1]["name"] as! String == "Harvest" {
-                    subgroupCollectionCellCount = popoverAdditions.count
+                    
+                    let popoverAdditionValues = popoverAdditions[trueIndex]["values"]
+                    
+                    var additionValues = [[String:AnyObject]]()
+                    
+                    for value in popoverAdditionValues as! [[String:AnyObject]] {
+                        print("\(value["name"])")
+                        additionValues.append(value)
+                    }
+                    
+                    subgroupCollectionCellCount = additionValues.count
+                    
                 // NOT HARVEST
                 } else {
-                    print("NEVER GONNA STOP NOOOOO: \(subproducts.count)")
                     subgroupCollectionCellCount = subproducts.count
                 }
                 // --------- END
@@ -255,7 +268,6 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                 
             }
             
-            print("NEVER GONNA STOP NOOOOO: \(numberOfItems)")
             return numberOfItems
             
     }
@@ -289,16 +301,17 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                 // IF HARVEST
                 // ------------ BEGIN
                 if route[1]["name"] as! String == "Harvest" {
-
-                    let productPortion = popoverAdditions[trueIndex]
-                
-                    let productPortionName = productPortion["name"] as? String
-                    let productPortionPrice = productPortion["price"] as? Int
-                    let productPriceDollar = (productPortionPrice! / 100)
-                    let productPortionDollarString = String(productPriceDollar)
-                
-                    let orderAndServing = productPortionName! + "   " + productPortionDollarString
-                    sgCollectionCell.label.text = orderAndServing
+                    
+                    let popoverAdditionValues = popoverAdditions[trueIndex]["values"]
+                    
+                    var additionValues = [[String:AnyObject]]()
+                    
+                    for value in popoverAdditionValues as! [[String:AnyObject]] {
+                        print("\(value["name"])")
+                        additionValues.append(value)
+                    }
+                    
+                    sgCollectionCell.label.text = additionValues[indexPath.row]["name"] as? String
                 
                 // NOT HARVEST
                 } else {
@@ -399,11 +412,21 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
             // ---------------- BEGIN
             if route[1]["name"] as! String == "Harvest" {
                 
-                let addition = popoverAdditions[indexPath.row]
-                self.productChoices.append(addition)
+                let trueIndex = parent - 1
+                let popoverAdditionValues = popoverAdditions[trueIndex]["values"]
                 
-                let trueIndex = productChoices.count - 1
-                let additionName = productChoices[trueIndex]["name"]
+                var additionValues = [[String:AnyObject]]()
+                
+                for value in popoverAdditionValues as! [[String:AnyObject]] {
+                    print("\(value["name"])")
+                    additionValues.append(value)
+                }
+
+                
+                let additionValueSelection = additionValues[indexPath.row]
+                self.productHarvestChoices.append(additionValueSelection)
+                
+                let additionName = productHarvestChoices[trueIndex]["name"] as! String
                 print("User chose to add: \(additionName)")
                 
                 
@@ -478,7 +501,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                 
                 
                 if popoverItem != nil {
-                    if productChoices.count == completedChoices {
+                    if productChoices.count == completedChoices || productHarvestChoices.count == completedChoices {
                         if quantityChoice != "" {
                          
                             
@@ -544,6 +567,22 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                             print("Line Item Total: \(lineitemTotal)")
                             
                             print("+++++++++++++++++++++++++++++++++++")
+                            
+                            
+//                            // Begin Create Values and Additions
+//                            // -----------------
+//                            // IF HARVEST
+//                            if route[1]["name"] as! String == "Harvest" {
+//                            dd
+//                                for addition in productHarvestChoices {
+//                                    
+//                                    
+//                                    
+//                                }
+//                                
+//                                
+//                                
+//                            }
 
                             
                             // Begin Create LineItem
@@ -591,6 +630,10 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                             // Clean Up
                             popoverAdditions.removeAll()
                             subproducts.removeAll()
+                            productHarvestChoices.removeAll()
+                            productChoices.removeAll()
+                            taxRates.removeAll()
+                            
                             
                             // Confirm
                             AlertManager.sharedInstance.addedSuccess(self, title: "Added Successfully", message: "Item has been added to your order!")
@@ -634,17 +677,52 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
             deselectedCell.label.textColor = UIColor.blackColor()
             deselectedCell.backgroundColor = UIColor.whiteColor()
             
-            let subproduct = subproducts[indexPath.row]
-            
-            if popoverAdditions.contains(subproduct) {
+            // IF HARVEST
+            // ----------
+            if route[1]["name"] as! String == "Harvest" {
                 
-                productChoices = productChoices.filter() {$0 != subproduct}
-
+                let additionValue = productHarvestChoices[indexPath.row]
+                
+                if let index = productHarvestChoices.indexOf(additionValue) {
+                    
+                }
+                
+                
+                if productHarvestChoices.containsObject(additionValue) {
+                    
+                }
+                
+                productHarvestChoices.filter({ (additionValue) -> Bool in
+                    
+                })
+                
+                if (productHarvestChoices as NSArray).containsObject(additionValue) {
+                    
+                    let foundIndex = find(productHarvestChoices, additionValue)
+                    
+                    
+                    productHarvestChoices = productHarvestChoices.filter() {$0 != additionValue}
+                    
+                }
+                
+                
+            } else {
+                
+                let subproduct = subproducts[indexPath.row]
+                
+                if productChoices.contains(subproduct) {
+                    
+                    productChoices = productChoices.filter() {$0 != subproduct}
+                    
+                }
+                
+                let trueIndex = productChoices.count - 1
+                let subproductName = subproduct["name"]
+                print("Modifier \(subproductName) has been removed from selected modifiers.")
+                
             }
             
-            let trueIndex = productChoices.count - 1
-            let subproductName = subproduct["name"]
-            print("Modifier \(subproductName) has been removed from selected modifiers.")
+
 
             
         // Quantity Table Row
@@ -691,7 +769,20 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
             // --------------- BEGIN
             let numberOfModifiers: CGFloat!
             if route[1]["name"] as! String == "Harvest" {
-                numberOfModifiers = CGFloat(popoverAdditions.count)
+                
+                let popoverAdditionValues = popoverAdditions[trueIndex]["values"]
+                
+                var additionValues = [[String:AnyObject]]()
+                
+                for value in popoverAdditionValues as! [[String:AnyObject]] {
+                    print("\(value["name"])")
+                    additionValues.append(value)
+                }
+                
+                
+                numberOfModifiers = CGFloat(additionValues.count)
+  
+                
             } else {
                 numberOfModifiers = CGFloat(subproducts.count)
             }

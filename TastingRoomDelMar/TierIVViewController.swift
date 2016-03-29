@@ -35,6 +35,9 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
 // ---------------
     override func viewWillAppear(animated: Bool) {
         
+        TierIVTableViewControllerRef?.tableView.reloadData()
+
+        
         // If Harvest - Remove Collection View
         let tierTwoSelection = route[1]["name"] as! String
         
@@ -51,13 +54,15 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
             view.addConstraints(horizontalConstraints)
          
         // If NOT Harvest
-        } else {
-         
-            let screenHeight = self.view.bounds.height
-            
-            let views = ["view": self.view, "newView": tierIVTableContainer]
-            let verticalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:[view]-(<=0)-[newView(\(screenHeight-132))]", options: NSLayoutFormatOptions.AlignAllCenterX, metrics: nil, views: views)
-            view.addConstraints(verticalConstraints)
+        } else 	{
+//            
+//            let screenHeight = self.view.bounds.height
+//            
+//            let views = ["view": self.view, "newView": tierIVTableContainer]
+//            let verticalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:[view]-(<=0)-[newView(\(screenHeight-132))]", options: NSLayoutFormatOptions.AlignAllCenterX, metrics: nil, views: views)
+//            
+//            view.addConstraints(verticalConstraints)
+
             
         }
         
@@ -65,6 +70,9 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
     
     
     override func viewDidAppear(animated: Bool) {
+        
+        TierIVTableViewControllerRef?.tableView.reloadData()
+        
         print("------------Queries Completed------------")
     }
     
