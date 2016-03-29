@@ -54,6 +54,10 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
 
 // ---------------------
     
+    override func viewWillAppear(animated: Bool) {
+        self.tableView.reloadData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -183,6 +187,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         
         let selectedCell = tableView.cellForRowAtIndexPath(indexPath)! as! TierIVTableViewCell
         
+        additions.removeAll()
         product = tierIVTableArray[indexPath.row]
 
         
@@ -190,18 +195,18 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         // ------------ BEGIN
         if route[1]["name"] as! String == "Harvest" {
             
-            let productAdditions = tierIVTableArray[indexPath.row]["additions"] as! [PFObject]
+            print("This item contains: \(tierIVTableArray[indexPath.row]["additions"].count) raw additions.")
             
-            for addition in productAdditions {
-                additions.append(addition)
+            let additionsRaw = tierIVTableArray[indexPath.row]["additions"]
+            
+            for var i = 0; i < additionsRaw.count; ++i {
+                additions.append(additionsRaw[i])
             }
             
-            print("************************************")
-            print("ADDITIONS: \(additions)")
-            print("************************************")
-        
+            print("Additions Created: \(additions)")
+            
         }
-        // ------------ END
+        // ------------- END
 
         
         performSegueWithIdentifier("showItemConfig", sender: self)
@@ -235,10 +240,6 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
                     // ------------ BEGIN
                     if route[1]["name"] as! String == "Harvest" {
                         
-
-  
-                        
-                        
                         print("This item contains: \(tierIVTableArray[indexPath.row]["additions"].count) raw additions.")
                         
                         let additionsRaw = tierIVTableArray[indexPath.row]["additions"]
@@ -249,9 +250,6 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
                         
                         print("Additions Created: \(additions)")
                         
-                        
-
-                        
                     }
                     // ------------- END
                     
@@ -260,7 +258,6 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             }
             
         }
-        
    
         performSegueWithIdentifier("showItemConfig", sender: self)
         

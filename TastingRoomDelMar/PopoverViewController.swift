@@ -61,9 +61,7 @@ class PopoverViewController: UITableViewController {
             
             quantityRow = rows - 2
             actionRow = rows - 1
-            
-            print("Rows calculated to: \(rows)")
-            
+                        
             return rows
             
     }
@@ -125,13 +123,14 @@ class PopoverViewController: UITableViewController {
                 sgCell.servingLabel.font = UIFont.headerFont(18)
 
                 
-                
+                // IF HARVEST
                 if route[1]["name"] as! String == "Harvest" {
                     
-                    print("\(popoverAdditions[trueIndex])")
-                    
                     sgCell.servingLabel.text = popoverAdditions[trueIndex]["name"] as? String
+                    
+                // IF NOT HARVEST
                 } else {
+                    
                     sgCell.servingLabel.text = "servings"
 
                 }
@@ -238,8 +237,9 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                     var additionValues = [[String:AnyObject]]()
                     
                     for value in popoverAdditionValues as! [[String:AnyObject]] {
-                        print("\(value["name"])")
+
                         additionValues.append(value)
+                        
                     }
                     
                     subgroupCollectionCellCount = additionValues.count
@@ -307,8 +307,9 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                     var additionValues = [[String:AnyObject]]()
                     
                     for value in popoverAdditionValues as! [[String:AnyObject]] {
-                        print("\(value["name"])")
+                        
                         additionValues.append(value)
+                        
                     }
                     
                     sgCollectionCell.label.text = additionValues[indexPath.row]["name"] as? String
@@ -418,7 +419,6 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                 var additionValues = [[String:AnyObject]]()
                 
                 for value in popoverAdditionValues as! [[String:AnyObject]] {
-                    print("\(value["name"])")
                     additionValues.append(value)
                 }
 
@@ -428,6 +428,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                 
                 let additionName = productHarvestChoices[trueIndex]["name"] as! String
                 print("User chose to add: \(additionName)")
+                print("\(productHarvestChoices)")
                 
                 
             // NOT HARVEST
@@ -569,21 +570,44 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                             print("+++++++++++++++++++++++++++++++++++")
                             
                             
-//                            // Begin Create Values and Additions
-//                            // -----------------
-//                            // IF HARVEST
-//                            if route[1]["name"] as! String == "Harvest" {
-//                            dd
-//                                for addition in productHarvestChoices {
-//                                    
-//                                    
-//                                    
-//                                }
-//                                
-//                                
-//                                
-//                            }
+                            
+                            
+                            
+                            // Begin Create Addition Values 
+                            // ----------------------------
+                            var convertedProductHarvestChoices = [Value]()
+                            
+                            for choice in productHarvestChoices {
+                                
+                                var newValue = Value()
+                                newValue.id = choice["id"] as! String
+                                newValue.info = choice["info"] as! String
+                                newValue.name = choice["name"] as! String
+                                newValue.price = choice["price"] as! String
+                                newValue.priceWithoutVAT = choice["priceWithoutVAT"] as! String
+                                
+                                convertedProductHarvestChoices.append(newValue)
+                                print("Product Harvest Choice convnerted to Value: \(newValue)")
+                                
+                            }
+                            // -------------------------- END
 
+                            
+                            
+                            
+                            
+                            
+                            // Begin Create Additions
+                            // ----------------------------
+                            
+                            
+                            
+                            // -------------------------- END
+                            
+                            
+                            
+                            
+                            
                             
                             // Begin Create LineItem
                             // ------------------------------
@@ -681,29 +705,28 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
             // ----------
             if route[1]["name"] as! String == "Harvest" {
                 
-                let additionValue = productHarvestChoices[indexPath.row]
+                let trueIndex = parent - 1
                 
-                if let index = productHarvestChoices.indexOf(additionValue) {
+                let additionValue = productHarvestChoices[trueIndex]["name"] as! String
+                
+                
+                // IF 1337
+                // Remove If Deselected
+                var count = 0
+                
+                for productHarvestChoice in productHarvestChoices {
                     
+                    if productHarvestChoice["name"] as! String == additionValue {
+                    
+                            productHarvestChoices.removeAtIndex(count)
+                            
+                    }
+                    
+                    count = count + 1
                 }
                 
-                
-                if productHarvestChoices.containsObject(additionValue) {
-                    
-                }
-                
-                productHarvestChoices.filter({ (additionValue) -> Bool in
-                    
-                })
-                
-                if (productHarvestChoices as NSArray).containsObject(additionValue) {
-                    
-                    let foundIndex = find(productHarvestChoices, additionValue)
-                    
-                    
-                    productHarvestChoices = productHarvestChoices.filter() {$0 != additionValue}
-                    
-                }
+
+                print("Modifier \(additionValue) has been removed from selected modifiers.")
                 
                 
             } else {
@@ -775,8 +798,9 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                 var additionValues = [[String:AnyObject]]()
                 
                 for value in popoverAdditionValues as! [[String:AnyObject]] {
-                    print("\(value["name"])")
+                    
                     additionValues.append(value)
+                    
                 }
                 
                 
@@ -825,3 +849,5 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
     }
 
 }
+
+
