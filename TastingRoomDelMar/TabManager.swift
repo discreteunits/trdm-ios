@@ -26,24 +26,30 @@ class TabManager: NSObject {
 
     }
     
-    
     func syncTab(tabId: String) {
         
         // Look for order in DB
         if currentTab.id != "" {
             
-            print("Current tab has an ID.")
+            if printFlag {
+                print("Current tab has an ID.")
+            }
             
             // Run query for tab with found ID
             tabQuery(tabId)
             
-            print("Order found that matches tab: \(currentTab)")
+            if printFlag {
+                print("Order found that matches tab: \(currentTab)")
+            }
             
         // Initialize new tab
         } else {
             
             currentTab = Tab()
-            print("New Tab Created: \(currentTab)")
+            
+            if printFlag {
+                print("New Tab Created: \(currentTab)")
+            }
             
         }
         
@@ -73,7 +79,9 @@ class TabManager: NSObject {
         currentTab.totalTax = totalTax
         currentTab.grandTotal = total
         
-        print("Current Tab Totals Calculated: \(currentTab)")
+        if printFlag {
+            print("Current Tab Totals Calculated: \(currentTab)")
+        }
         
     }
     
@@ -96,9 +104,10 @@ class TabManager: NSObject {
             currentTab.gratuity = gratuityAmount
             currentTab.grandTotal = gratuityTotal
             
-            print("Customer Agreed To Tip:\(gratuityAmount)")
-            print("Grand Total Recalculated: \(currentTab.grandTotal)")
-            
+            if printFlag {
+                print("Customer Agreed To Tip:\(gratuityAmount)")
+                print("Grand Total Recalculated: \(currentTab.grandTotal)")
+            }
             
         }
         
@@ -107,9 +116,11 @@ class TabManager: NSObject {
     // Place Order To CLOUDCODE
     func placeOrder(tab: Tab) -> AnyObject {
         
-        print("-----------------------")
-        print("Tab For CloudCode Order: \(tab)")
-        print("-----------------------")
+        if printFlag {
+            print("-----------------------")
+            print("Tab For CloudCode Order: \(tab)")
+            print("-----------------------")
+        }
 
         // Collection Storage For Build
         var lines = [[String:AnyObject]]()
@@ -166,8 +177,10 @@ class TabManager: NSObject {
         var order : [String:AnyObject] = [
             "order": para
         ]
-        print("Order Equals: \(order)")
         
+        if printFlag {
+            print("Order Equals: \(order)")
+        }
         
         // Begin Placing Order with Order Object
         var result = String()
@@ -179,22 +192,29 @@ class TabManager: NSObject {
             if let error = error {
                 
                 // Failure 
-                print("Error: \(error)")
+                if printFlag {
+                    print("Error: \(error)")
+                }
                 
             } else {
                 
                 // Success 
                 result = String(response!)
-                print("Response: \(response!)")
+                
+                if printFlag {
+                    print("Response: \(response!)")
+                }
                 
                 // Reset Tab
                 TabManager.sharedInstance.currentTab = Tab()
-                print("TabManager Reset: \(TabManager.sharedInstance.currentTab)")
+                
+                if printFlag {
+                    print("TabManager Reset: \(TabManager.sharedInstance.currentTab)")
+                }
                 
                 // Reset Segue Push Stack
                 let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
                 appDelegate.resetToMenu()
-                
                 
             }
             
@@ -203,8 +223,6 @@ class TabManager: NSObject {
         return result
         
     }
-
-    
     
     func addToTab() {
         
@@ -232,9 +250,10 @@ class TabManager: NSObject {
             if error == nil {
                 
                 // The find succeeded. 
-                print("Tab query has found \(objects!.count) orders.")
-                print("---------------------")
-
+                if printFlag {
+                    print("Tab query has found \(objects!.count) orders.")
+                    print("---------------------")
+                }
                 
                 // Do something with the found objects.
                 for object in objects! {
@@ -250,7 +269,9 @@ class TabManager: NSObject {
                         
                     } else {
                         
-                        print("Object found does not have a state of OPEN.")
+                        if printFlag {
+                            print("Object found does not have a state of OPEN.")
+                        }
                         
                     }
                     
@@ -260,7 +281,9 @@ class TabManager: NSObject {
             } else {
                 
                 // Log details of the failure
-                print("Error: \(error!) \(error!.userInfo)")
+                if printFlag {
+                    print("Error: \(error!) \(error!.userInfo)")
+                }
                 
             }
             
@@ -320,5 +343,3 @@ class TabManager: NSObject {
     }
     
 }
-
-

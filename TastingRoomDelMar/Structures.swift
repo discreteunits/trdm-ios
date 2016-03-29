@@ -45,6 +45,7 @@ struct Config {
 
 // Tab Manager
 struct Modifier {
+    
     var lightspeedId = String()
     var modifierValueId = String()
     var info = String()
@@ -54,13 +55,16 @@ struct Modifier {
 }
 
 struct ModifierGroup {
+    
     var lightspeedId = String()
     var name = String()
     var price = Double()
     var modifiers = [Modifier]()
+    
 }
 
 struct Value {
+    
     var id = String()
     var info = String()
     var name = String()
@@ -70,15 +74,18 @@ struct Value {
 }
 
 struct Addition {
+    
     var displayName = String()
     var id:String = String()
     var maxSelectedAmount = String()
     var minSelectedAmount = String()
     var name = String()
     var values = [Value]()
+    
 }
 
 struct Product {
+    
     var id = String()
     var lightspeedId = String()
     var name = String()
@@ -91,6 +98,7 @@ struct Product {
 }
 
 struct LineItem {
+    
     var id = String()
     var lightspeedId = String()
     var name = String()
@@ -101,9 +109,11 @@ struct LineItem {
     var product = Product()
     var subproducts = [Product]()
     var additions = [Addition]()
+    
 }
 
 struct Tab {
+    
     var id = String()
     var type = String()
     var note = String()
@@ -123,25 +133,32 @@ struct Tab {
         if PFUser.currentUser()!.objectId != nil {
             userId = PFUser.currentUser()!.objectId!
         }
+        
     }
+    
 }
 
 // Card Manager
 struct Customer {
+    
     var objectId = String()
     var userId = String()
     var stripeId = String()
     var orderId = [String]()
     
     var card = Card()
+    
 }
 
 struct Card {
+    
     var brand = String()
     var last4 = String()
+    
 }
 
 public struct Validator {
+    
     public static func isEmailValid(var email:String) -> Bool {
        
         if email.rangeOfString("@") != nil {
@@ -151,5 +168,6 @@ public struct Validator {
         }
         
     }
+    
 }
 

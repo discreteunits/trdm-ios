@@ -80,5 +80,4 @@ class AnimationManager: NSObject {
         
     }
     
-    
 }

@@ -26,27 +26,19 @@ class TabViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        print("@@@@@@@@@@@@@@@@@@@@@@@@@@@")
-        print("@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+        if printFlag {
+            print("@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+            print("TAB: \(tab)")
+            print("@@@@@@@@@@@@@@@@@@@@@@@@@@@")
 
-        print("TAB: \(tab)")
-        
-        print("@@@@@@@@@@@@@@@@@@@@@@@@@@@")
-        print("@@@@@@@@@@@@@@@@@@@@@@@@@@@")
-
-        
-        
-        
-        print("-----------------------------")
-        print("Lines: \(tab.lines.count)")
-        print("Orders: \(orders.orderId.count)")
-        print("-----------------------------")
-
+            print("-----------------------------")
+            print("Lines: \(tab.lines.count)")
+            print("Orders: \(orders.orderId.count)")
+            print("-----------------------------")
+        }
     
         // Default Empty Tab View
         if tab.lines.count < 1 {
-            
             
 //            if orders.orderId.count < 1 {
             
@@ -91,7 +83,6 @@ class TabViewController: UIViewController {
             menuButton.layer.zPosition = 99
             
             
-            
             // Add Created Views
             tabView.addSubview(windowView)
             tabView.addSubview(TRDMImageView)
@@ -101,10 +92,8 @@ class TabViewController: UIViewController {
 //        }
         
         }
-        
 
         // NAV BAR STYLES
-        
         if let navBar = navigationController?.navigationBar {
             
             nav = navBar
@@ -113,6 +102,7 @@ class TabViewController: UIViewController {
             nav?.barStyle = UIBarStyle.Black
             nav?.tintColor = UIColor.whiteColor()
             nav?.titleTextAttributes = [ NSFontAttributeName: UIFont.scriptFont(24)]
+            
         }
 
     }
@@ -139,7 +129,6 @@ class TabViewController: UIViewController {
         TabManager.sharedInstance.addItemsIndicator()
         
     }
-
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 

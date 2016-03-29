@@ -13,7 +13,6 @@ class TabLineItemTableViewCell: UITableViewCell {
     @IBOutlet weak var TabCollectionView: UICollectionView!
 
     @IBOutlet weak var itemNameLabel: UILabel!
-
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,7 +21,6 @@ class TabLineItemTableViewCell: UITableViewCell {
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
     
@@ -34,6 +32,7 @@ class TabLineItemTableViewCell: UITableViewCell {
             TabCollectionView.dataSource = dataSourceDelegate
             TabCollectionView.tag = row
             TabCollectionView.reloadData()
+            
     }
 
 }

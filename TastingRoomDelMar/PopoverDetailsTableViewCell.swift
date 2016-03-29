@@ -14,7 +14,6 @@ class PopoverDetailsTableViewCell: UITableViewCell {
     
     @IBOutlet weak var altNameTextView: UITextView!
     
-    
     @IBOutlet weak var varietalLabel: UILabel!
     
     override func awakeFromNib() {
@@ -24,7 +23,6 @@ class PopoverDetailsTableViewCell: UITableViewCell {
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
     

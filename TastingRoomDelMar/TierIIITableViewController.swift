@@ -59,10 +59,13 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
     func back(sender: UIBarButtonItem) {
 
         route.removeAtIndex(1)
-        for var index = 0; index < route.count; ++index {
-            print("The Route has been decreased to: \(route[index]["name"]).")
+        
+        if printFlag {
+            for var index = 0; index < route.count; ++index {
+                print("The Route has been decreased to: \(route[index]["name"]).")
+            }
+            print("-----------------------")
         }
-        print("-----------------------")
         
         self.navigationController?.popViewControllerAnimated(true)
     }
@@ -99,7 +102,9 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
             if error == nil {
    
                 // The find succeeded.
-                print("TierIII retrieved \(objects!.count) objects.")
+                if printFlag {
+                    print("TierIII retrieved \(objects!.count) objects.")
+                }
                 
                 // Do something with the found objects
                 for object in objects! as [PFObject]! {
@@ -117,17 +122,20 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
                 }
                 
                 self.tableView.reloadData()
-                for i in self.tierIIIArray {
-                    print("TierIII Array: \(i["name"])")
+                
+                if printFlag {
+                    for i in self.tierIIIArray {
+                        print("TierIII Array: \(i["name"])")
+                    }
+                    print("-----------------------")
                 }
-                print("-----------------------")
-                
-                
                 
             } else {
                 
                 // Log details of the failure
-                print("Error: \(error!) \(error!.userInfo)")
+                if printFlag {
+                    print("Error: \(error!) \(error!.userInfo)")
+                }
                 
             }
             
@@ -182,12 +190,12 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
         
         route.append(tierIIIArray[indexPath.row])
         
-        
-        for var index = 0; index < route.count; ++index {
-            print("The Route has been increased to: \(route[index]["name"]).")
+        if printFlag {
+            for var index = 0; index < route.count; ++index {
+                print("The Route has been increased to: \(route[index]["name"]).")
+            }
+            print("-----------------------")
         }
-        print("-----------------------")
-
 
         
         self.performSegueWithIdentifier("tierIV", sender: self)

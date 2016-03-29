@@ -44,7 +44,6 @@ class PaymentTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
-
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -52,8 +51,6 @@ class PaymentTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        
-        
         if currentCustomer.card.last4 != "" {
             rows = 2
         } else {
@@ -66,7 +63,6 @@ class PaymentTableViewController: UITableViewController {
         
     }
 
-
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         var cell: UITableViewCell!
@@ -78,7 +74,6 @@ class PaymentTableViewController: UITableViewController {
             // Assignments
             cardCell.providerLabel.text = currentCustomer.card.brand as! String
             cardCell.lastFourLabel.text = currentCustomer.card.last4
-            
             
             // Styles
             cardCell.layer.backgroundColor = UIColor(red: 242/255.0, green: 242/255.0, blue: 242/255.0, alpha: 1.0).CGColor

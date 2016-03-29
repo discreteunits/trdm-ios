@@ -162,20 +162,6 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
-        
-//        var cellText: String = "Go get some text for your cell."
-//        var cellFont: UIFont = UIFont(name: "Helvetica", size: 17.0)
-//        var constraintSize: CGSize = CGSizeMake(280.0, MAXFLOAT)
-//        var labelSize: CGSize = cellText.sizeWithFont(cellFont, constrainedToSize: constraintSize, lineBreakMode: .WordWrap)
-        
-//        var cellText = product["info"] as! String
-//        var cellFont = UIFont.headerFont(14)
-//        var constraintSize = CGSizeMake(225.0, CGFloat(MAXFLOAT))
-//        
-//        _ = cellText.sizeWithFont(cellFont, constrainedToSize: constraintSize, lineBreakMode: .ByCharWrapping)
-//        
-//        var textViewSize = cellText.boundingRectWithSize(bounds.size, options: NSStringDrawingOptions([.UsesLineFragmentOrigin, .UsesFontLeading]), attributes: [NSFontAttributeName : 14], context: nil)
-        
         let cellHeight = 60 + largestHeight
         
         return cellHeight
@@ -191,11 +177,13 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         product = tierIVTableArray[indexPath.row]
 
         
-        // IF HARVEST: Get Additions and Set
-        // ------------ BEGIN
+        // ----- HARVEST BEGIN ------
         if route[1]["name"] as! String == "Harvest" {
             
-            print("This item contains: \(tierIVTableArray[indexPath.row]["additions"].count) raw additions.")
+            
+            if printFlag {
+                print("This item contains: \(tierIVTableArray[indexPath.row]["additions"].count) raw additions.")
+            }
             
             let additionsRaw = tierIVTableArray[indexPath.row]["additions"]
             
@@ -203,18 +191,21 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
                 additions.append(additionsRaw[i])
             }
             
-            print("Additions Created: \(additions)")
-                        
+            if printFlag {
+                print("Additions Created: \(additions)")
+            }
+            
         }
-        // ------------- END
+        // ----- END -----
 
         
         performSegueWithIdentifier("showItemConfig", sender: self)
         
-        print("------------------------")
-
+        if printFlag {
+            print("------------------------")
+        }
+        
     }
-    
     
     // SEGUE TRIGGER AND PREPARATION
     @IBAction func addToOrder(sender: AnyObject) {
@@ -222,7 +213,6 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         addToOrderButton(sender)
         
     }
-    
     
     func addToOrderButton(sender: AnyObject) {
         
@@ -236,11 +226,12 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
                     indexPath = tableView.indexPathForCell(cell)
                     product = tierIVTableArray[indexPath.row]
                     
-                    // IF HARVEST: Get Additions and Set
-                    // ------------ BEGIN
+                    // ----- HARVEST BEGIN ------
                     if route[1]["name"] as! String == "Harvest" {
                         
-                        print("This item contains: \(tierIVTableArray[indexPath.row]["additions"].count) raw additions.")
+                        if printFlag {
+                            print("This item contains: \(tierIVTableArray[indexPath.row]["additions"].count) raw additions.")
+                        }
                         
                         let additionsRaw = tierIVTableArray[indexPath.row]["additions"]
 
@@ -248,10 +239,11 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
                             additions.append(additionsRaw[i])
                         }
                         
-                        print("Additions Created: \(additions)")
-                        
+                        if printFlag {
+                            print("Additions Created: \(additions)")
+                        }
                     }
-                    // ------------- END
+                    // ----- END -----
                     
                 }
                 
@@ -261,7 +253,9 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
    
         performSegueWithIdentifier("showItemConfig", sender: self)
         
-        print("------------------------")
+        if printFlag {
+            print("------------------------")
+        }
         
     }
     
@@ -275,52 +269,42 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             let vc = segue.destinationViewController as! PopoverViewController
             
             // Dynamically assign Popover Window Size
-            // ------------- BEGIN
-            // IF HARVEST
+            
+            
+            // ----- HARVEST BEGIN ------
             var popoverDynamicHeight: Int!
             
             if route[1]["name"] as! String == "Harvest" {
                 popoverDynamicHeight = additions.count
-            // NOT HARVEST
             } else {
                 popoverDynamicHeight = 1
             }
-            
-            // ------------- END
+            // ----- END -----
 
-            
             
             let popoverHeightCalculation = ((popoverDynamicHeight + 3) * 100)
             popoverHeight = CGFloat(popoverHeightCalculation)
             popoverWidth = tableView.bounds.size.width
             vc.preferredContentSize = CGSizeMake(popoverWidth, popoverHeight)
 
-            
             AnimationManager.sharedInstance.opaqueWindow(self)
-            
 
             // Data to be passed to popover
             vc.popoverItem = product
             vc.popoverItemVarietal = productVarietal
             
-            // IF HARVEST
-            // ------------ BEGIN
+            
+            // ----- HARVEST BEGIN ------
             if route[1]["name"] as! String == "Harvest" {
-                
-                
-                
                 
                 vc.popoverAdditions = additions
                 
-                
-                
-                
-            // NOT HARVEST
             } else {
                 let subproductsArray = subproductQuery(product)
                 vc.subproducts = subproductsArray
             }
-            // ------------ END
+            // ----- END -----
+            
             
             var controller = vc.popoverPresentationController
             controller!.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
@@ -342,8 +326,9 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
        
         delegate?.opaqueWindow()
         
-        print("Popover closed.")
-        
+        if printFlag {
+            print("Popover closed.")
+        }
     }
     
     
@@ -367,12 +352,13 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         } catch _ {
             subproductsArray = nil
         }
-    
-        print("Subproducts query has retrieved \(subproductsArray!.count) subproducts.")
+        
+        if printFlag {
+            print("Subproducts query has retrieved \(subproductsArray!.count) subproducts.")
+        }
+        
         return subproductsArray!
         
     }
-    
-
     
 }

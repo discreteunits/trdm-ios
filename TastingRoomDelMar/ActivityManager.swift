@@ -13,7 +13,7 @@ class ActivityManager: NSObject {
     static let sharedInstance = ActivityManager()
     
     // ----------
-    
+
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
 
     override init() {

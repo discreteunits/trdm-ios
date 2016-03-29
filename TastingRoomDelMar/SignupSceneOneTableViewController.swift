@@ -149,17 +149,20 @@ class SignupSceneOneTableViewController: UITableViewController, UITextFieldDeleg
         
     }
     
-
-    
     func keyboardWillShow(notification:NSNotification) {
-        print("Keyboard Appeared")
+        
+        if printFlag {
+            print("Keyboard Appeared")
+        }
         
         let userInfo:NSDictionary = notification.userInfo!
         let keyboardFrame:NSValue = userInfo.valueForKey(UIKeyboardFrameEndUserInfoKey) as! NSValue
         let keyboardRectangle = keyboardFrame.CGRectValue()
         let keyboardHeight = keyboardRectangle.height
         
-        print("KeyboardHeight: \(keyboardHeight)")
+        if printFlag {
+            print("KeyboardHeight: \(keyboardHeight)")
+        }
         
         keyboard = keyboardHeight
         
@@ -204,9 +207,6 @@ class SignupSceneOneTableViewController: UITableViewController, UITextFieldDeleg
         
     }
     
-    
-
-
     // MARK: - Table view data source
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections

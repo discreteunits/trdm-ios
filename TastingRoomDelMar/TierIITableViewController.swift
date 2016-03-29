@@ -51,14 +51,18 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
         }
     }
     
-// NAV BACK BUTTON ACTION
+    // NAV BACK BUTTON ACTION
     func back(sender: UIBarButtonItem) {
 
         route.removeAtIndex(0)
-        for var index = 0; index < route.count; ++index {
-            print("The Route has been decreased to: \(route[index]["name"]).")
+        
+        if printFlag {
+            for var index = 0; index < route.count; ++index {
+                print("The Route has been decreased to: \(route[index]["name"]).")
+            }
+            print("-----------------------")
         }
-        print("-----------------------")
+        
         self.navigationController?.popViewControllerAnimated(true)
     }
     
@@ -81,9 +85,9 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
         
     }
     
-// ------
-// TIER 2 QUERY
-// ------
+    // ------
+    // TIER 2 QUERY
+    // ------
     func tierIIQuery() {
         
         let query:PFQuery = PFQuery(className:"Tier2")
@@ -95,7 +99,9 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
             if error == nil {
                 
                 // The find succeeded.
-                print("TierII retrieved \(objects!.count) objects.")
+                if printFlag {
+                    print("TierII retrieved \(objects!.count) objects.")
+                }
                 
                 // Do something with the found objects
                 for object in objects! as [PFObject]! {
@@ -113,15 +119,20 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
                 }
                 
                 self.tableView.reloadData()
-                for i in self.tierIIArray {
-                    print("TierII Array: \(i["name"])")
+                
+                if printFlag {
+                    for i in self.tierIIArray {
+                        print("TierII Array: \(i["name"])")
+                    }
+                    print("-----------------------")
                 }
-                print("-----------------------")
                 
             } else {
                 
                 // Log details of the failure
-                print("Error: \(error!) \(error!.userInfo)")
+                if printFlag {
+                    print("Error: \(error!) \(error!.userInfo)")
+                }
                 
             }
             
@@ -178,10 +189,12 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
  
         route.append(tierIIArray[indexPath.row])
 
-        for var index = 0; index < route.count; ++index {
-            print("The Route has been increased to: \(route[index]["name"]).")
+        if printFlag {
+            for var index = 0; index < route.count; ++index {
+                print("The Route has been increased to: \(route[index]["name"]).")
+            }
+            print("-----------------------")
         }
-        print("-----------------------")
         
         self.performSegueWithIdentifier("tierIII", sender: self)
         

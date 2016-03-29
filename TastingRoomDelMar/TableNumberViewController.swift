@@ -98,11 +98,9 @@ class TableNumberViewController: UIViewController, UITextFieldDelegate {
         return newString.length <= maxLength
     }
     
-    
     func cancelPopover() {
         self.presentingViewController!.dismissViewControllerAnimated(false, completion: nil)
     }
-    
     
     func placeOrderSelected() {
         
@@ -111,8 +109,11 @@ class TableNumberViewController: UIViewController, UITextFieldDelegate {
             
             // Set Table Number
                 TabManager.sharedInstance.currentTab.table = String(self.tableNumberTextField.text!)
+            
+            if printFlag {
                 print("User entered table number: \(TabManager.sharedInstance.currentTab.table)")
-        
+            }
+            
             // If table number was set
             if TabManager.sharedInstance.currentTab.table != "" {
                 
@@ -129,7 +130,10 @@ class TableNumberViewController: UIViewController, UITextFieldDelegate {
                 } else {
                     
                     let result = TabManager.sharedInstance.placeOrder(TabManager.sharedInstance.currentTab)
-                    print("Continuing to place order from TableNumberViewController: \(result)")
+                    
+                    if printFlag {
+                        print("Continuing to place order from TableNumberViewController: \(result)")
+                    }
                     
                     self.presentingViewController!.dismissViewControllerAnimated(true, completion: nil)
                     

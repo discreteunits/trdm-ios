@@ -36,9 +36,6 @@ class TierIVCollectionViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -112,14 +109,18 @@ class TierIVCollectionViewController: UICollectionViewController {
             
                 route.append(tierIVCollectionArray[trueIndex])
             
-                for var index = 0; index < route.count; ++index {
-                    print("The Route has been increased to: \(route[index]["name"]).")
+                if printFlag {
+                    for var index = 0; index < route.count; ++index {
+                        print("The Route has been increased to: \(route[index]["name"]).")
+                    }
+                    print("-----------------------")
                 }
-                print("-----------------------")
             
             } else {
             
-                print("This selection is already being shown.")
+                if printFlag {
+                    print("This selection is already being shown.")
+                }
             
             }
         

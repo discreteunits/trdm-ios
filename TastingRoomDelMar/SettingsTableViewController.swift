@@ -280,6 +280,7 @@ class SettingsTableViewController: UITableViewController {
         }
         
         return cell
+        
     }
 
     
@@ -341,7 +342,6 @@ class SettingsTableViewController: UITableViewController {
                     goToLogIn()
                     
                 }
-                
                 
                 TabManager.sharedInstance.removeItemsIndicator()
                 

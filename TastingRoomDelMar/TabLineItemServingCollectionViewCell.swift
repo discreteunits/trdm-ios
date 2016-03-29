@@ -10,7 +10,6 @@ import UIKit
 
 class TabLineItemServingCollectionViewCell: UICollectionViewCell {
     
-
     @IBOutlet weak var servingSizeLabel: UILabel!
     @IBOutlet weak var qtyLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!

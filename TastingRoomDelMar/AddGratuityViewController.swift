@@ -74,7 +74,6 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
         totalLabel.textAlignment = .Left
         totalLabel.text = "total"
         totalLabel.font = UIFont.headerFont(18)
-
         
         let subTotalValueLabel = UILabel(frame: CGRectMake(0, 0, screenWidth * 0.3, 20))
         subTotalValueLabel.frame.origin.y = 88
@@ -103,7 +102,6 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
         totalValueLabel.textAlignment = .Right
         totalValueLabel.text = String(TabManager.sharedInstance.currentTab.grandTotal)
         totalValueLabel.font = UIFont.headerFont(18)
-
 
         // Collection View
         let itemWidth = (screenWidth/5)
@@ -163,11 +161,9 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
     
         popoverView.addSubview(gratuityCollectionView)
         
-    
     }
     
     func placeOrderWithGratuity() {
-        
         
         // If user has selected a gratuity option
         if selectedGratuity != "" {
@@ -180,7 +176,11 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
                 
                 dispatch_async(dispatch_get_main_queue()) {
                     let result = TabManager.sharedInstance.placeOrder(TabManager.sharedInstance.currentTab)
-                    print("Place Order, CloudCode Function Returned: \(result)")
+                    
+                    if printFlag {
+                        print("Place Order, CloudCode Function Returned: \(result)")
+                    }
+                    
                 }
                 
                 AlertManager.sharedInstance.greatSuccessPreConfirm(self, title: "Great Success!", message: "Your order has been received. We'll notify you once it's been confirmed.")
@@ -202,7 +202,9 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
     }
     
     func cancelPopover() {
+        
         self.dismissViewControllerAnimated(true, completion: nil)
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -213,7 +215,9 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
     
     // Collection Data Source
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
         return 4
+        
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -252,7 +256,9 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
             
         }
         
+        
         return cell
+        
         
     }
     
@@ -268,28 +274,40 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
             
             // Set
             selectedGratuity = selectedCell.label.text!
-            print("User chose a gratuity of: \(selectedGratuity).")
-
+            
+            if printFlag {
+                print("User chose a gratuity of: \(selectedGratuity).")
+            }
+            
         // 15%
         } else if indexPath.row == 1 {
             
             // Set
             selectedGratuity = selectedCell.label.text!
-            print("User chose a gratuity of: \(selectedGratuity) precent.")
-
-            // 20%
+            
+            if printFlag {
+                print("User chose a gratuity of: \(selectedGratuity) precent.")
+            }
+            
+        // 20%
         } else if indexPath.row == 2 {
             
             // Set
             selectedGratuity = selectedCell.label.text!
-            print("User chose a gratuity of: \(selectedGratuity) precent.")
-        
-            // 25%
+            
+            if printFlag {
+                print("User chose a gratuity of: \(selectedGratuity) precent.")
+            }
+            
+        // 25%
         } else if indexPath.row == 3 {
             
             // Set
             selectedGratuity = selectedCell.label.text!
-            print("User chose a gratuity of: \(selectedGratuity) precent.")
+            
+            if printFlag {
+                print("User chose a gratuity of: \(selectedGratuity) precent.")
+            }
             
         }
         

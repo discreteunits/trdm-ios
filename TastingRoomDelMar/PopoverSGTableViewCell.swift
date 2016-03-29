@@ -20,7 +20,6 @@ class PopoverSGTableViewCell: UITableViewCell {
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
 
@@ -32,6 +31,7 @@ class PopoverSGTableViewCell: UITableViewCell {
             PopoverCollectionView.dataSource = dataSourceDelegate
             PopoverCollectionView.tag = row
             PopoverCollectionView.reloadData()
+            
     }
     
 }

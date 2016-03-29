@@ -34,7 +34,10 @@ class AlertManager: UIViewController {
         
         // Create Actions
         let okAction = UIAlertAction(title: "Okay", style: .Default, handler: { (action) -> Void in
-            print("User selected okay.")
+            
+            if printFlag {
+                print("User selected okay.")
+            }
             
         })
         
@@ -60,14 +63,25 @@ class AlertManager: UIViewController {
             // Continue Place Order
             self.stripeCheckout(view)
             
-            print("Closeout Now Selected")
+            if printFlag {
+                print("Closeout Now Selected")
+            }
+            
         })
         let createAccountAction = UIAlertAction(title: "Closeout later with your Server", style: .Default , handler: { (action) -> Void in
             TabManager.sharedInstance.currentTab.checkoutMethod = "server"
-            print("Closeout Later Selected")
+            
+            if printFlag {
+                print("Closeout Later Selected")
+            }
+        
         })
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action) -> Void in
-            print("Cancel Selected")
+            
+            if printFlag {
+                print("Cancel Selected")
+            }
+            
         })
         
         // Add Actions
@@ -76,6 +90,7 @@ class AlertManager: UIViewController {
         alert.addAction(cancelAction)
         
         view.presentViewController(alert, animated: true, completion: nil)
+        
     }
 
     //// WhoopsLoggedIn
@@ -89,14 +104,26 @@ class AlertManager: UIViewController {
         // Create Actions
         let loginAction = UIAlertAction(title: "Login", style: .Default, handler: { (action) -> Void in
             self.goToLogIn(view)
-            print("Login Selected")
+            
+            if printFlag {
+                print("Login Selected")
+            }
+            
         })
         let createAccountAction = UIAlertAction(title: "Create Account", style: .Default , handler: { (action) -> Void in
             self.goToLogIn(view)
-            print("Create Account Selected")
+            
+            if printFlag {
+                print("Create Account Selected")
+            }
+            
         })
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action) -> Void in
-            print("Cancel Selected")
+            
+            if printFlag {
+                print("Cancel Selected")
+            }
+            
         })
         
         // Add Actions
@@ -105,6 +132,7 @@ class AlertManager: UIViewController {
         alert.addAction(cancelAction)
         
         view.presentViewController(alert, animated: true, completion: nil)
+        
     }
 
     // WhoopsCreditCard
@@ -117,11 +145,20 @@ class AlertManager: UIViewController {
         
         // Create Actions
         let addCardAction = UIAlertAction(title: "Add Card", style: .Default, handler: { (action) -> Void in
-       self.goToAddPayment(view)
-            print("Add Card Selected")
+            
+            self.goToAddPayment(view)
+            
+            if printFlag {
+                print("Add Card Selected")
+            }
+            
         })
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action) -> Void in
-            print("Cancel Selected")
+            
+            if printFlag {
+                print("Cancel Selected")
+            }
+            
         })
         
         // Add Actions
@@ -141,7 +178,11 @@ class AlertManager: UIViewController {
         
         // Create Actions
         let cancelAction = UIAlertAction(title: "Ok", style: .Cancel, handler: { (action) -> Void in
-            print("Ok Selected")
+            
+            if printFlag {
+                print("Ok Selected")
+            }
+            
         })
         
         // Add Actions
@@ -160,7 +201,11 @@ class AlertManager: UIViewController {
         
         // Create Actions
         let cancelAction = UIAlertAction(title: "Ok", style: .Cancel, handler: { (action) -> Void in
-            print("Ok Selected")
+            
+            if printFlag {
+                print("Ok Selected")
+            }
+            
         })
         
         // Add Actions
@@ -179,7 +224,11 @@ class AlertManager: UIViewController {
         
         // Create Actions
         let cancelAction = UIAlertAction(title: "Sounds Good", style: .Cancel, handler: { (action) -> Void in
-            print("Cancel Selected")
+            
+            if printFlag {
+                print("Cancel Selected")
+            }
+            
         })
         
         // Add Actions
@@ -199,7 +248,11 @@ class AlertManager: UIViewController {
         // Create Actions
         let successAction = UIAlertAction(title: "Sounds Good", style: .Default, handler: { (action) -> Void in
             self.confirm(view)
-            print("Ok Selected")
+            
+            if printFlag {
+                print("Ok Selected")
+            }
+            
         })
         
         // Add Actions
@@ -219,7 +272,11 @@ class AlertManager: UIViewController {
         
         // Create Actions
         let successAction = UIAlertAction(title: "Got It", style: .Default, handler: { (action) -> Void in
-            print("Got It Selected")
+            
+            if printFlag {
+                print("Got It Selected")
+            }
+            
         })
         
         // Add Actions
@@ -228,16 +285,6 @@ class AlertManager: UIViewController {
         view.presentViewController(alert, animated: true, completion: nil)
         
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     // Push Notifications Alert & Installation Assignment
     func pushNotificationsAlert() {
@@ -263,7 +310,6 @@ class AlertManager: UIViewController {
         }
         
     }
-    
     
     // ---------- Functions For Alert Actions
     

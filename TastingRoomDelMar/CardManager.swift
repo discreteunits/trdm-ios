@@ -21,7 +21,10 @@ class CardManager: NSObject {
         super.init()
  
         currentCustomer.userId = TabManager.sharedInstance.currentTab.userId
-        print("Current Customer: \(currentCustomer)")
+        
+        if printFlag {
+            print("Current Customer: \(currentCustomer)")
+        }
         
     }
     
@@ -37,17 +40,26 @@ class CardManager: NSObject {
             if let error = error {
                 
                 // Failure
-                print("\(error)")
+                if printFlag {
+                    print("\(error)")
+                }
+                
             } else {
                 
                 // Success
                 result = String(response!)
                 
-                print("Response: \(response!)")
-                print("Result: \(result)")
+                if printFlag {
+                    print("Response: \(response!)")
+                    print("Result: \(result)")
+                }
                 
                 self.currentCustomer.objectId = String(response!)
-                print("Current Customer ID Set: \(self.currentCustomer.objectId)")
+                
+                if printFlag {
+                    print("Current Customer ID Set: \(self.currentCustomer.objectId)")
+                }
+                
             }
             
         }
@@ -67,14 +79,19 @@ class CardManager: NSObject {
             if let error = error {
                 
                 // Failure 
-                print("Error: \(error)")
+                if printFlag {
+                    print("Error: \(error)")
+                }
                 
             } else {
                 
                 // Success
                 result = response as! NSMutableDictionary
-                print("Response: \(response!)")
-                print("----------------------")
+                
+                if printFlag {
+                    print("Response: \(response!)")
+                    print("----------------------")
+                }
                 
                 CardManager.sharedInstance.currentCustomer.card.brand = result["brand"] as! String
                 CardManager.sharedInstance.currentCustomer.card.last4 = result["last4"] as! String

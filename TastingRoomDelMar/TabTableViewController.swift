@@ -54,6 +54,7 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         
         return 1
+        
     }
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -64,6 +65,7 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
         headerCell.priceLabel.font = UIFont.headerFont(18)
         
         return headerCell
+        
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -80,6 +82,7 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
         actionRow = numberOfRows - 1
         
         return numberOfRows
+        
     }
 
 
@@ -145,11 +148,14 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
             actionCell.placeOrderButton.clipsToBounds = true
             actionCell.placeOrderButton.titleLabel?.textColor = UIColor.whiteColor()
             
+            
             return actionCell
             
         }
         
+        
         return cell
+        
         
     }
     
@@ -263,9 +269,6 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
             // Size Popover Window
             vc.preferredContentSize = CGSizeMake(screenWidth, screenHeight*0.47)
             
-            // Data To Be Passed
-            
-            
             // Set Controller
             let controller = vc.popoverPresentationController
             controller!.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
@@ -286,9 +289,6 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
             // Size Popover Window
             vc.preferredContentSize = CGSizeMake(screenWidth, screenHeight * 0.65)
             
-            // Data To Be Passed
-            
-            
             // Set Controller
             let controller = vc.popoverPresentationController
             controller!.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
@@ -302,7 +302,9 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
     }
 
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        
         return .None
+        
     }
 
 }
@@ -320,7 +322,6 @@ extension TabTableViewController: TableNumberViewDelegate {
 
 // Mark: Collection Data Source
 extension TabTableViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
@@ -367,8 +368,6 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
                 let orderAndServing = orderMod + "   " + servingPrice
                 lineitemServingCollectionCell.servingSizeLabel?.text = "\(orderAndServing)"
                 
-                
-                
                 lineitemServingCollectionCell.qtyLabel?.text = "\(Int(TabManager.sharedInstance.currentTab.lines[parent].quantity))"
                 
                 lineitemServingCollectionCell.priceLabel?.text = "\(Int(TabManager.sharedInstance.currentTab.lines[parent].price))"
@@ -379,6 +378,7 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
                 lineitemServingCollectionCell.servingSizeLabel.font = UIFont.scriptFont(18)
                 lineitemServingCollectionCell.qtyLabel.font = UIFont.scriptFont(18)
                 lineitemServingCollectionCell.priceLabel.font = UIFont.scriptFont(18)
+                
                 
                 return lineitemServingCollectionCell
                 
@@ -395,13 +395,17 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
                 lineitemCollectionCell.backgroundColor = UIColor.whiteColor()
                 lineitemCollectionCell.modNameLabel.font = UIFont.scriptFont(18)
                 
+                
                 return lineitemCollectionCell
+                
                 
             }
             
         }
         
+        
         return cell
+        
         
     }
     

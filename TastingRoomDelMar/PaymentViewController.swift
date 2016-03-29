@@ -20,7 +20,6 @@ class PaymentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
         // NAV BAR STYLES
         if let navBar = navigationController?.navigationBar {
             
@@ -30,6 +29,7 @@ class PaymentViewController: UIViewController {
             nav?.barStyle = UIBarStyle.Black
             nav?.tintColor = UIColor.whiteColor()
             nav?.titleTextAttributes = [ NSFontAttributeName: UIFont.scriptFont(24)]
+            
         }
         
     }

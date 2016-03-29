@@ -45,7 +45,6 @@ class MenuTableViewController: UITableViewController {
         
         self.view.addSubview(imageView)
         
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -84,15 +83,20 @@ class MenuTableViewController: UITableViewController {
         cell!.textLabel?.text = "\(menuArray[indexPath.row])"
         
         return cell!
+        
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        
         return 50.0
+        
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        print("Selected row: \(indexPath.row)")
+        if printFlag {
+            print("Selected row: \(indexPath.row)")
+        }
         
 //        if (indexPath.row == selectedMenuItem) {
 //            return
@@ -175,6 +179,5 @@ class MenuTableViewController: UITableViewController {
         sideMenuController()?.setContentViewController(destViewController)
         
     }
-
     
 }

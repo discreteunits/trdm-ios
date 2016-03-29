@@ -33,9 +33,7 @@ class PopoverViewController: UITableViewController {
     var productHarvestChoices = [Addition]() // Harvest
     var quantityChoice = String()
     
-    
-    
-    
+
     var additionValues = [[String:AnyObject]]()
     
     
@@ -697,28 +695,33 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
             let trueIndex = parent - 1
             var sgCellSize: CGSize!
             
-            // IF HARVEST
-            // --------------- BEGIN
+            
+            // ----- HARVEST BEGIN ------
             let numberOfModifiers: CGFloat!
             if route[1]["name"] as! String == "Harvest" {
                 
-                let popoverAdditionValues = popoverAdditions[trueIndex]["values"]
+                let trueIndex = parent - 1
+                let numberOfValues = additions[trueIndex].values.count
                 
-                var additionValues = [[String:AnyObject]]()
-                
-                for value in popoverAdditionValues as! [[String:AnyObject]] {
+                if numberOfValues > 3 {
                     
-                    additionValues.append(value)
+                    numberOfModifiers = 3
+                    
+                } else {
+                    
+                    numberOfModifiers = CGFloat(additions[trueIndex].values.count)
                     
                 }
                 
-                numberOfModifiers = CGFloat(additionValues.count)
                 
             } else {
+                
                 numberOfModifiers = CGFloat(subproducts.count)
+                
             }
-            // --------------- END
+            // ----- END -----
 
+            
             let trick = (numberOfModifiers - 1) * 10
             let spacing = (numberOfModifiers * 20) - trick
             
@@ -753,6 +756,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
         }
         
         return cellSize
+        
     }
 
 }

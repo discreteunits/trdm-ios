@@ -69,6 +69,7 @@ class SignupSceneOneViewController: UIViewController {
     }
     
     func back(sender: UIBarButtonItem) {
+        
         self.presentingViewController!.dismissViewControllerAnimated(false, completion: nil)
         
     }
@@ -137,7 +138,9 @@ class SignupSceneOneViewController: UIViewController {
 extension SignupSceneOneViewController: SignupSceneOneTableViewDelegate {
     
     func alternateLoginSignupNav() {
-        print("Alternated Signup / Login State.")
+        if printFlag {
+            print("Alternated Signup / Login State.")
+        }
         var signupActive = self.SignupSceneOneTableViewControllerRef?.signupActive
         
         // Signup State

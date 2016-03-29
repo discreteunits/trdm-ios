@@ -26,11 +26,8 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
     var tierIVCollectionArray = [PFObject]()
     var tierIVTableArray = [PFObject]()
     
-    
     @IBOutlet weak var tierIVTableContainer: UIView!
     @IBOutlet weak var tierIVCollectionContainer: UIView!
-    
-
     
 // ---------------
     override func viewWillAppear(animated: Bool) {
@@ -41,7 +38,9 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
         // If Harvest - Remove Collection View
         let tierTwoSelection = route[1]["name"] as! String
         
-        print("\(route[1]["name"]) Route Initiating New TierIV style.")
+        if printFlag {
+            print("\(route[1]["name"]) Route Initiating New TierIV style.")
+        }
         
         if tierTwoSelection == "Harvest" {
             
@@ -55,14 +54,6 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
          
         // If NOT Harvest
         } else 	{
-//            
-//            let screenHeight = self.view.bounds.height
-//            
-//            let views = ["view": self.view, "newView": tierIVTableContainer]
-//            let verticalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:[view]-(<=0)-[newView(\(screenHeight-132))]", options: NSLayoutFormatOptions.AlignAllCenterX, metrics: nil, views: views)
-//            
-//            view.addConstraints(verticalConstraints)
-
             
         }
         
@@ -73,7 +64,10 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
         
         TierIVTableViewControllerRef?.tableView.reloadData()
         
-        print("------------Queries Completed------------")
+        if printFlag {
+            print("------------Queries Completed------------")
+        }
+        
     }
     
     override func viewDidLoad() {
@@ -84,15 +78,21 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
         
         dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
             self.tagsArrayCreation()
-            print("tagsArrayCreation Completed")
-
+            
+            if printFlag {
+                print("tagsArrayCreation Completed")
+            }
+            
         }
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
             self.tierIVCollectionQuery()
             self.tierIVTableQuery()
-            print("collection and table queries Completed")
-
+            
+            if printFlag {
+                print("collection and table queries Completed")
+            }
+            
         }
         
        
@@ -129,10 +129,13 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
             route.removeAtIndex(3)
         }
         route.removeAtIndex(2)
-        for var index = 0; index < route.count; ++index {
-            print("The Route has been decreased to: \(route[index]["name"]).")
+        
+        if printFlag {
+            for var index = 0; index < route.count; ++index {
+                print("The Route has been decreased to: \(route[index]["name"]).")
+            }
+            print("-----------------------")
         }
-        print("-----------------------")
         
         self.navigationController?.popViewControllerAnimated(true)
     }
@@ -183,7 +186,9 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
                 
             } else {
                 
-                print("Collection Data NOT Passed!")
+                if printFlag {
+                    print("Collection Data NOT Passed!")
+                }
                 
             }
             
@@ -200,7 +205,9 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
                 
             } else {
                 
-                print("Table Data Not Passed!")
+                if printFlag {
+                    print("Table Data Not Passed!")
+                }
                 
             }
         
@@ -248,8 +255,10 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
             classToBeQueried = "BeerStyle"
         }
         
-        print("Attempting to query \(classToBeQueried) for collection")
-        
+        if printFlag {
+            print("Attempting to query \(classToBeQueried) for collection")
+        }
+            
         let collectionQuery:PFQuery = PFQuery(className: classToBeQueried)
         collectionQuery.includeKey("category")
         collectionQuery.whereKey("tier3", equalTo: route[2])
@@ -258,8 +267,10 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
             if error == nil {
                 
                 // The find succeeded.
-                print("TierIV collection query retrieved: \(objects!.count) objects.")
-                
+                if printFlag {
+                    print("TierIV collection query retrieved: \(objects!.count) objects.")
+                }
+                    
                 // Do something with the found objects
                 for object in objects! as [PFObject]! {
                     
@@ -277,12 +288,17 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
                 }
                 
                 self.TierIVCollectionViewControllerRef?.collectionView?.reloadData()
-                print("TierIV collection query appended: \(self.TierIVCollectionViewControllerRef!.tierIVCollectionArray.count) objects.")
+                
+                if printFlag {
+                    print("TierIV collection query appended: \(self.TierIVCollectionViewControllerRef!.tierIVCollectionArray.count) objects.")
+                }
                 
             } else {
                 
                 // Log details of the failure
-                print("Error: \(error!) \(error!.userInfo)")
+                if printFlag {
+                    print("Error: \(error!) \(error!.userInfo)")
+                }
                 
             }
             
@@ -306,7 +322,9 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
             if error == nil {
                 
                 // The find succeeded.
-                print("TierIV table query retrieved: \(objects!.count) objects.")
+                if printFlag {
+                    print("TierIV table query retrieved: \(objects!.count) objects.")
+                }
                 
                 // Do something with the found objects
                 for object in objects! as [PFObject] {
@@ -319,25 +337,31 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
 
                     } else {
                         
-                        print("This selection is already being shown.")
+                        if printFlag {
+                            print("This selection is already being shown.")
+                        }
                         
                     }
                     
                 }
                 
                 self.TierIVTableViewControllerRef?.tableView.reloadData()
-                print("TierIV table query completed with:  \(self.TierIVTableViewControllerRef!.tierIVTableArray.count) objects.")
-
                 
-                
+                if printFlag {
+                    print("TierIV table query completed with:  \(self.TierIVTableViewControllerRef!.tierIVTableArray.count) objects.")
+                }
                 
             } else {
                 
                 // Log details of the failure
-                print("Error: \(error!) \(error!.userInfo)")
+                if printFlag {
+                    print("Error: \(error!) \(error!.userInfo)")
+                }
                 
             }
+            
         }
+        
     }
 
 
@@ -347,8 +371,10 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
         
         let tierIVView = self.view
         
-        print("self view is: \(tierIVView)")
-        
+        if printFlag {
+            print("self view is: \(tierIVView)")
+        }
+            
         let windowWidth = self.view.bounds.size.width
         let windowHeight = self.view.bounds.size.height
         

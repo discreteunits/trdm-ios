@@ -64,7 +64,11 @@ class SignupSceneTwoViewController: UIViewController {
         let screenHeight = screenSize.height
         
         let keyboardHeight = self.SignupSceneTwoTableViewControllerRef?.keyboard
-        print("\(keyboardHeight)")
+        
+        if printFlag {
+            print("\(keyboardHeight)")
+        }
+        
         let topOfKeyboard = (screenHeight - keyboardHeight!) - 60 - 226
         
         signupButton = UIButton(frame: CGRectMake(0, topOfKeyboard, screenWidth, 60))
@@ -84,7 +88,6 @@ class SignupSceneTwoViewController: UIViewController {
         self.SignupSceneTwoTableViewControllerRef?.addDetailsToUser()
         
 //        performSegueWithIdentifier("signin", sender: self)
-
         
     }
 

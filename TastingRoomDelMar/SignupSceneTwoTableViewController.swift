@@ -75,15 +75,19 @@ class SignupSceneTwoTableViewController: UITableViewController, UITextFieldDeleg
     }
     
     func keyboardWillShow(notification:NSNotification) {
-        print("Keyboard Appeared")
+        
+        if printFlag {
+            print("Keyboard Appeared")
+        }
         
         let userInfo:NSDictionary = notification.userInfo!
         let keyboardFrame:NSValue = userInfo.valueForKey(UIKeyboardFrameEndUserInfoKey) as! NSValue
         let keyboardRectangle = keyboardFrame.CGRectValue()
         let keyboardHeight = keyboardRectangle.height
         
-        print("KeyboardHeight: \(keyboardHeight)")
-        
+        if printFlag {
+            print("KeyboardHeight: \(keyboardHeight)")
+        }
         keyboard = keyboardHeight
         
     }
@@ -91,7 +95,9 @@ class SignupSceneTwoTableViewController: UITableViewController, UITextFieldDeleg
     
     @IBAction func editingDidChange(sender: AnyObject) {
         
-        print("Editing did change")
+        if printFlag {
+            print("Editing did change")
+        }
         
         delegate?.showSignUpButton()
         
@@ -116,14 +122,11 @@ class SignupSceneTwoTableViewController: UITableViewController, UITextFieldDeleg
             newsletter = false
         }
 
-        
         AccountManager.sharedInstance.addUserDetails(self, firstName: firstName!, lastName: lastName!, mobile: mobile!, newsletter: newsletter)
         
     }
 
-
     // MARK: - Table view data source
-
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -133,15 +136,5 @@ class SignupSceneTwoTableViewController: UITableViewController, UITextFieldDeleg
         // #warning Incomplete implementation, return the number of rows
         return 4
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

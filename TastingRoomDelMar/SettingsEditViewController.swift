@@ -89,7 +89,6 @@ class SettingsEditViewController: UIViewController {
         
     }
     
-    
     func showValueToEdit() {
         
         if passedTrigger == "First name" {
@@ -110,7 +109,6 @@ class SettingsEditViewController: UIViewController {
             
         } else if passedTrigger == "password" {
             message = "This is how you'll log into the Tasting Room app."
-            //            field = PFUser.currentUser()!["password"] as! String
             placeholder = "password"
             
         }
@@ -131,7 +129,6 @@ class SettingsEditViewController: UIViewController {
                 SettingsEditTableViewController.passedEditType = self.passedTrigger // Sets value to edit
                 SettingsEditTableViewController.passedMessage = message
                 SettingsEditTableViewController.passedPlaceholder = placeholder
-                
                 
             }
             

@@ -369,12 +369,14 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         
         
         // SHOW ACTIONS
-        print("User chose to: \(TabManager.sharedInstance.currentTab.type)")
+        if printFlag {
+            print("User chose to: \(TabManager.sharedInstance.currentTab.type)")
         
-        for var index = 0; index < route.count; ++index {
-            print("The Route has been increased to: \(route[index]["name"]).")
+            for var index = 0; index < route.count; ++index {
+                print("The Route has been increased to: \(route[index]["name"]).")
+            }
+            print("-----------------------")
         }
-        print("-----------------------")
         
         self.performSegueWithIdentifier("tierII", sender: self)
 
@@ -401,23 +403,30 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
     
             if error != nil {
                 
-                print("----------------")
-                print("Graph Request Returned Error: \(error)")
-            
+                if printFlag {
+                    print("----------------")
+                    print("Graph Request Returned Error: \(error)")
+                }
+                    
             } else if let result = result {
                 
-                print("----------------")
-                print("Graph Request Returned")
+                if printFlag {
+                    print("----------------")
+                    print("Graph Request Returned")
+                }
                 
                 // Assign Graph Request Parameters To PFUser Object
                 PFUser.currentUser()?["username"] = result["email"]
-                print("Username: \(result["email"] as! String)")
                 PFUser.currentUser()?["email"] = result["email"]
-                print("Email: \(result["email"] as! String)")
                 PFUser.currentUser()?["firstName"] = result["first_name"]
-                print("First Name: \(result["first_name"] as! String)")
                 PFUser.currentUser()?["lastName"] = result["last_name"]
-                print("Last Name: \(result["last_name"] as! String)")
+                
+                if printFlag {
+                    print("Username: \(result["email"] as! String)")
+                    print("Email: \(result["email"] as! String)")
+                    print("First Name: \(result["first_name"] as! String)")
+                    print("Last Name: \(result["last_name"] as! String)")
+                }
                 
 //                PFUser.currentUser()?["name"] = result["name"]
 //                PFUser.currentUser()?["gender"] = result["gender"]
@@ -440,8 +449,10 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
                         PFUser.currentUser()?["image"] = imageFile
                         PFUser.currentUser()?.saveInBackground()
                         
-                        print("----------------")
-
+                        if printFlag {
+                            print("----------------")
+                        }
+                    
                     }
                 
                 }

@@ -36,7 +36,11 @@ class SettingsEditTableViewController: UITableViewController {
     
     // ----------
     override func viewWillAppear(animated: Bool) {
-        print("passedEditType is equal to: \(passedEditType)")
+        
+        if printFlag {
+            print("passedEditType is equal to: \(passedEditType)")
+        }
+        
     }
     
     override func viewDidLoad() {
@@ -56,7 +60,6 @@ class SettingsEditTableViewController: UITableViewController {
         editValueTextField.font = UIFont.basicFont(20)
         editValueTextField.becomeFirstResponder()
         
-        
         tableView.tableFooterView = UIView(frame: CGRectZero)
 
     }
@@ -74,7 +77,6 @@ class SettingsEditTableViewController: UITableViewController {
         return 2
     }
 
-    
     func valueToSave() {
         
         if passedEditType == "First name" {
@@ -111,31 +113,37 @@ class SettingsEditTableViewController: UITableViewController {
         
     }
     
-    
     func saveValue() {
         
         valueToSave()
         
         PFUser.currentUser()?.saveInBackground()
-        print("User has been updated successfully.")
+        
+        if printFlag {
+            print("User has been updated successfully.")
+        }
         
     }
     
     
     func keyboardWillShow(notification:NSNotification) {
-        print("Keyboard Appeared")
+        
+        if printFlag {
+            print("Keyboard Appeared")
+        }
         
         let userInfo:NSDictionary = notification.userInfo!
         let keyboardFrame:NSValue = userInfo.valueForKey(UIKeyboardFrameEndUserInfoKey) as! NSValue
         let keyboardRectangle = keyboardFrame.CGRectValue()
         let keyboardHeight = keyboardRectangle.height
         
-        print("KeyboardHeight: \(keyboardHeight)")
+        if printFlag {
+            print("KeyboardHeight: \(keyboardHeight)")
+        }
         
         keyboard = keyboardHeight
         
     }
-    
   
     @IBAction func editingDidChange(sender: AnyObject) {
         

@@ -14,7 +14,6 @@ class SettingsSwitchTableViewCell: UITableViewCell {
     
     @IBOutlet weak var settingSwitch: UISwitch!
     
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -22,14 +21,14 @@ class SettingsSwitchTableViewCell: UITableViewCell {
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
     
-    
     @IBAction func `switch`(sender: AnyObject) {
         
-        print("User has switched setting value")
+        if printFlag {
+            print("User has switched setting value")
+        }
         
     }
 

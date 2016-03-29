@@ -20,7 +20,5 @@ class AppConfiguration: NSObject {
     override init() {
         super.init()
     }
-    
-    
 
 }

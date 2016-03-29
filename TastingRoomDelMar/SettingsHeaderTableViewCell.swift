@@ -9,7 +9,6 @@
 import UIKit
 
 class SettingsHeaderTableViewCell: UITableViewCell {
-
     
     @IBOutlet weak var headerLabel: UILabel!
     
@@ -20,7 +19,6 @@ class SettingsHeaderTableViewCell: UITableViewCell {
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
 

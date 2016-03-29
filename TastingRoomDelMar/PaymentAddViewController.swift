@@ -13,7 +13,6 @@ import ParseUI
 
 class PaymentAddViewController: UIViewController, STPPaymentCardTextFieldDelegate {
     
-
     var currentCustomer = CardManager.sharedInstance.currentCustomer
     
     var stripeCard = STPCardParams()
@@ -77,7 +76,11 @@ class PaymentAddViewController: UIViewController, STPPaymentCardTextFieldDelegat
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
         let okAction = UIAlertAction(title: "Ok", style: .Default, handler: { (action) -> Void in
-            print("Field Validation Alert Fired")
+            
+            if printFlag {
+                print("Field Validation Alert Fired")
+            }
+        
         })
         
         alert.addAction(okAction)
@@ -104,30 +107,48 @@ class PaymentAddViewController: UIViewController, STPPaymentCardTextFieldDelegat
         UIApplication.sharedApplication().endIgnoringInteractionEvents()
         
     }
-
-
     
     // Check if text fields have been edited
     @IBAction func cardNumberDidChange(sender: AnyObject) {
-        print("Card Number Added")
+        
+        if printFlag {
+            print("Card Number Added")
+        }
+        
     }
     @IBAction func expMonthDidChange(sender: AnyObject) {
-        print("Expiration Month Added")
+        
+        if printFlag {
+            print("Expiration Month Added")
+        }
+        
     }
     @IBAction func expYearDidChange(sender: AnyObject) {
-        print("Expiration Year Added")
+        
+        if printFlag {
+            print("Expiration Year Added")
+        }
+        
     }
     @IBAction func cvcDidChange(sender: AnyObject) {
-        print("CVC Added")
+        
+        if printFlag {
+            print("CVC Added")
+        }
+        
     }
     
     // Finish flagging to refactor
     func textFieldDidchange(textfield: UITextField) {
-        print("\(textfield) did change.")
+        
+        if printFlag {
+            print("\(textfield) did change.")
+        }
+        
     }
+   
     
 /*
-    
     // Stripe Server Validation
     func validateCardInfo() -> Bool {
 
@@ -139,7 +160,6 @@ class PaymentAddViewController: UIViewController, STPPaymentCardTextFieldDelegat
 
        return true
     }
-
 */
     
     
@@ -153,14 +173,21 @@ class PaymentAddViewController: UIViewController, STPPaymentCardTextFieldDelegat
                 
                 // Failure
                 self.activityStop()
-                print("\(error)")
+                
+                if printFlag {
+                    print("\(error)")
+                }
+                
                 self.displayAlert("Failed", message: "Please try again later.")
                 
             } else {
                 
                 // Success 
                 self.activityStop()
-                print("Token Created: \(token!.tokenId)")
+                
+                if printFlag {
+                    print("Token Created: \(token!.tokenId)")
+                }
                 
                 // Alert
                 self.greatSuccessAddedCard("Great Success!", message: "Card successfully added.")
@@ -170,11 +197,12 @@ class PaymentAddViewController: UIViewController, STPPaymentCardTextFieldDelegat
                 var confirmedUserCard: AnyObject!
 
                 confirmedUserCard = CardManager.sharedInstance.setCard(user!, token: token!.tokenId)
-                print("Confirmed User Card Created: \(confirmedUserCard)")
-                print("----------------")
-
-
                 
+                if printFlag {
+                    print("Confirmed User Card Created: \(confirmedUserCard)")
+                    print("----------------")
+                }
+
                 // Dismiss View
                 self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
                 
@@ -184,10 +212,8 @@ class PaymentAddViewController: UIViewController, STPPaymentCardTextFieldDelegat
         
     }
     
-
     // Create Customer Trigger
     @IBAction func saveCard(sender: AnyObject) {
-
 
         // Validation
         if CardNumberTextField.text?.isEmpty == false &&
@@ -200,7 +226,10 @@ class PaymentAddViewController: UIViewController, STPPaymentCardTextFieldDelegat
             stripeCard.expMonth = UInt(ExpMonthTextField.text!)!
             stripeCard.expYear = UInt(ExpYearTextField.text!)!
             stripeCard.cvc = String(CVCTextField.text!)
-            print("StripeCard Created: \(stripeCard)")
+                
+            if printFlag {
+                print("StripeCard Created: \(stripeCard)")
+            }
                 
         } else {
             displayAlert("Required", message: "All fields are required.")
@@ -208,10 +237,7 @@ class PaymentAddViewController: UIViewController, STPPaymentCardTextFieldDelegat
         
         // Set Card
         performStripeOperation()
-        
 
-
-        
 //        if validateCardInfo() {
 //            performStripeOperation()
 //        }
@@ -228,7 +254,11 @@ class PaymentAddViewController: UIViewController, STPPaymentCardTextFieldDelegat
         
         // Create Actions
         let successAction = UIAlertAction(title: "Done", style: .Default, handler: { (action) -> Void in
-            print("Done Selected")
+            
+            if printFlag {
+                print("Done Selected")
+            }
+            
         })
         
         // Add Actions
@@ -237,18 +267,5 @@ class PaymentAddViewController: UIViewController, STPPaymentCardTextFieldDelegat
         self.presentViewController(alert, animated: true, completion: nil)
         
     }
-    
-
-
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
    
 }
