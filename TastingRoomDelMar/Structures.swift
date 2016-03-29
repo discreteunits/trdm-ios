@@ -44,17 +44,34 @@ struct Config {
 }
 
 // Tab Manager
+struct Modifier {
+    var lightspeedId = String()
+    var modifierValueId = String()
+    var info = String()
+    var name = String()
+    var price = String()
+    
+}
+
+struct ModifierGroup {
+    var lightspeedId = String()
+    var name = String()
+    var price = Double()
+    var modifiers = [Modifier]()
+}
+
 struct Value {
     var id = String()
     var info = String()
     var name = String()
     var price = String()
     var priceWithoutVAT = String()
+    
 }
 
 struct Addition {
     var displayName = String()
-    var id = String()
+    var id:String = String()
     var maxSelectedAmount = String()
     var minSelectedAmount = String()
     var name = String()
@@ -68,6 +85,9 @@ struct Product {
     var price = Double()
     
     var productPlu = String()
+    
+    var modifiergroups = [ModifierGroup]()
+    
 }
 
 struct LineItem {

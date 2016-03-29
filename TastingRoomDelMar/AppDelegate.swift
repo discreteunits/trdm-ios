@@ -12,6 +12,7 @@ import ParseCrashReporting
 import ParseFacebookUtilsV4
 import Stripe
 
+var printFlag = true
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

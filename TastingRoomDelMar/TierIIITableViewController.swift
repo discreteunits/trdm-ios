@@ -97,12 +97,7 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
         query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
             
             if error == nil {
-                
-                
-                print("\(route[1])")
-                
-                
-                
+   
                 // The find succeeded.
                 print("TierIII retrieved \(objects!.count) objects.")
                 

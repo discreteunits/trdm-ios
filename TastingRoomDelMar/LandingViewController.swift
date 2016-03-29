@@ -13,9 +13,6 @@ import ParseFacebookUtilsV4
 
 class LandingViewController: UIViewController {
     
-    
-
-    
     var screenSize = CGRect()
     var screenWidth = CGFloat()
     var screenHeight = CGFloat()
@@ -27,6 +24,12 @@ class LandingViewController: UIViewController {
     // ------------
     override func viewWillAppear(animated: Bool) {
         
+        print("Print Statements Have Been Set To: \(printFlag)")
+        if printFlag {
+            print("Created By: Tobias Brysiewicz")
+        }
+        print("------------------------------------------")
+
         screenSize = UIScreen.mainScreen().bounds
         screenWidth = screenSize.width
         screenHeight = screenSize.height
@@ -37,6 +40,7 @@ class LandingViewController: UIViewController {
         buttons()
         
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
