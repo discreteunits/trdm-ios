@@ -190,7 +190,7 @@ class PaymentAddViewController: UIViewController, STPPaymentCardTextFieldDelegat
                 }
                 
                 // Alert
-                self.greatSuccessAddedCard("Great Success!", message: "Card successfully added.")
+                AlertManager.sharedInstance.greatSuccessAddedCard(self, title: "Great Success!", message: "Card successfully added.")
                 
                 // Set User Card CLOUDCODE
                 let user = PFUser.currentUser()?.objectId
@@ -241,30 +241,6 @@ class PaymentAddViewController: UIViewController, STPPaymentCardTextFieldDelegat
 //        if validateCardInfo() {
 //            performStripeOperation()
 //        }
-        
-    }
-    
-    //// Whoops Select Modifiers Please
-    @available(iOS 8.0, *)
-    func greatSuccessAddedCard(title: String, message: String) {
-        
-        // Create Controller
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-        alert.view.tintColor = UIColor(red: 9/255.0, green: 178/255.0, blue: 126/255.0, alpha: 1.0)
-        
-        // Create Actions
-        let successAction = UIAlertAction(title: "Done", style: .Default, handler: { (action) -> Void in
-            
-            if printFlag {
-                print("Done Selected")
-            }
-            
-        })
-        
-        // Add Actions
-        alert.addAction(successAction)
-        
-        self.presentViewController(alert, animated: true, completion: nil)
         
     }
    

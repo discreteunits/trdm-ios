@@ -395,14 +395,12 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
                 let lineitemServingCollectionCell = collectionView.dequeueReusableCellWithReuseIdentifier("TabLineItemServingCollectionCell", forIndexPath: indexPath) as! TabLineItemServingCollectionViewCell
 
                 
-                let orderMod = TabManager.sharedInstance.currentTab.lines[parent].name
+                let orderMod = TabManager.sharedInstance.currentTab.lines[parent].subproducts[indexPath.row].info
                 
                 // IF HARVEST
                 // ---------
                 var servingPrice = String()
-                
-                
-                
+
                 if TabManager.sharedInstance.currentTab.lines[parent].eatOrDrink == "Eat" {
                 
                     servingPrice = "\(Int(TabManager.sharedInstance.currentTab.lines[parent].product.price))"
@@ -414,9 +412,7 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
                 }
                 
                 
-                
-                
-                
+
                 let orderAndServing = orderMod + "   " + servingPrice
                 lineitemServingCollectionCell.servingSizeLabel?.text = "\(orderAndServing)"
                 

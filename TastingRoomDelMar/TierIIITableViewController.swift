@@ -19,6 +19,13 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
     var nav: UINavigationBar?
     
 
+    // --------------------
+    override func viewWillAppear(animated: Bool) {
+        
+        tierIIIArray.removeAll()
+        
+        tierIIIQuery()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,15 +33,10 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
         // Items Indicator
         TabManager.sharedInstance.addItemsIndicator()
         
-        // TIER 3 QUERY
-        tierIIIQuery()
-        
         // FLYOUT MENU
-        
         self.sideMenuController()?.sideMenu?.delegate = self
         
         // NAV BAR STYLES
-        
         if let navBar = navigationController?.navigationBar {
             
             nav = navBar
@@ -120,15 +122,15 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
                     }
                     
                 }
-                
-                self.tableView.reloadData()
-                
+                                
                 if printFlag {
                     for i in self.tierIIIArray {
                         print("TierIII Array: \(i["name"])")
                     }
                     print("-----------------------")
                 }
+                
+                AnimationManager.sharedInstance.animateTable(self.tableView)
                 
             } else {
                 
@@ -172,7 +174,7 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
-        let tableHeight = (tableView.bounds.size.height - 44.0)
+        let tableHeight = (tableView.bounds.size.height)
         let numberOfCells: Int = tierIIIArray.count
         let numberOfCellsFloat = CGFloat(numberOfCells)
         let cellHeight = tableHeight / numberOfCellsFloat

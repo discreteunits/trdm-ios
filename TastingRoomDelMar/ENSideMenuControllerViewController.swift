@@ -501,7 +501,12 @@ extension ENSideMenu: UIDynamicAnimatorDelegate {
     }
     
     public func dynamicAnimatorWillResume(animator: UIDynamicAnimator) {
-        print("Flyout menu triggered.")
+        
+        if printFlag {
+            print("Flyout menu triggered.")
+        }
+        
     }
+    
 }
 

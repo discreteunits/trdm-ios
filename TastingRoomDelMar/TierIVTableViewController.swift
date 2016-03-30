@@ -16,7 +16,6 @@ protocol TierIVTableViewDelegate {
     func tagsArrayCreation()
     func tierIVCollectionQuery()
     func tierIVTableQuery()
-    func opaqueWindow()
 }
 
 class TierIVTableViewController: UITableViewController, UIPopoverPresentationControllerDelegate {
@@ -56,6 +55,9 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     
     override func viewWillAppear(animated: Bool) {
         self.tableView.reloadData()
+        
+        AnimationManager.sharedInstance.animateTable(self.tableView)
+        
     }
     
     override func viewDidLoad() {
@@ -181,8 +183,8 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        let selectedCell = tableView.cellForRowAtIndexPath(indexPath)! as! TierIVTableViewCell
-        
+//        let selectedCell = tableView.cellForRowAtIndexPath(indexPath)! as! TierIVTableViewCell
+
         additions.removeAll()
         product = tierIVTableArray[indexPath.row]
 
@@ -270,6 +272,11 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     }
     
     
+    func processHarvestAdditions() {
+        
+    }
+    
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         
@@ -297,8 +304,11 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             popoverWidth = tableView.bounds.size.width
             vc.preferredContentSize = CGSizeMake(popoverWidth, popoverHeight)
 
-            AnimationManager.sharedInstance.opaqueWindow(self)
+            
+            AnimationManager.sharedInstance.opaqueWindow(self.parentViewController!)
 
+            
+            
             // Data to be passed to popover
             vc.popoverItem = product
             vc.popoverItemVarietal = productVarietal
@@ -333,12 +343,13 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     
     // PRESENTATION CONTROLLER DATA SOURCE
     func popoverPresentationControllerDidDismissPopover(popoverPresentationController: UIPopoverPresentationController) {
-       
-        delegate?.opaqueWindow()
+        
+        AnimationManager.sharedInstance.opaqueWindow(self.parentViewController!)
         
         if printFlag {
             print("Popover closed.")
         }
+        
     }
     
     
@@ -348,7 +359,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     
     
     // SUBPRODUCT QUERY
-    func subproductQuery(parent: PFObject) -> [PFObject] {
+    func subproductQuery(parent: PFObject) -> [Product] {
         
         let subproductsArray: [PFObject]?
         let parentId = parent.objectId!
@@ -367,7 +378,29 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             print("Subproducts query has retrieved \(subproductsArray!.count) subproducts.")
         }
         
-        return subproductsArray!
+
+        var convertedSubproducts = [Product]()
+        
+        for subproduct in subproductsArray! {
+            
+            var newSubproduct = Product()
+            newSubproduct.id = subproduct.objectId!
+            newSubproduct.lightspeedId = String(subproduct["lightspeedId"])
+            newSubproduct.name = subproduct["name"] as! String
+            newSubproduct.info = subproduct["info"] as! String
+            
+            let productPrice = subproduct["price"] as! Double
+            newSubproduct.price = productPrice
+            
+            convertedSubproducts.append(newSubproduct)
+            
+        }
+        
+        // Sort Subproducts by Price
+        convertedSubproducts.sortInPlace { $0.price < $1.price }
+
+
+        return convertedSubproducts
         
     }
     

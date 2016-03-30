@@ -311,6 +311,34 @@ class AlertManager: UIViewController {
         
     }
     
+    
+    //// Whoops Select Modifiers Please
+    @available(iOS 8.0, *)
+    func greatSuccessAddedCard(view: UIViewController, title: String, message: String) {
+        
+        // Create Controller
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        alert.view.tintColor = UIColor(red: 9/255.0, green: 178/255.0, blue: 126/255.0, alpha: 1.0)
+        
+        // Create Actions
+        let successAction = UIAlertAction(title: "Done", style: .Default, handler: { (action) -> Void in
+            
+            if printFlag {
+                print("Done Selected")
+            }
+            
+        })
+        
+        // Add Actions
+        alert.addAction(successAction)
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+        
+    }
+    
+    
+    
+    
     // ---------- Functions For Alert Actions
     
     // Conditional Check For Place Order

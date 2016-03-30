@@ -31,7 +31,17 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
     var TRDMImage = UIImage()
     var TRDMImageView = UIImageView()
     
+    
 // ------------------------------
+    override func viewWillAppear(animated: Bool) {
+        
+        tierIArray.removeAll()
+        
+        // TIER 1 QUERY
+        tierIQuery()
+
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -46,9 +56,6 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
             getCards()
         }
         
-        // Animation
-        animateTable()
-        
         // Check if user is signed in with Facebook
         if FBSDKAccessToken.currentAccessToken() != nil {
             
@@ -60,8 +67,6 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         // Sync Tab - Create or Find
         TabManager.sharedInstance.syncTab(TabManager.sharedInstance.currentTab.id)
         
-        // TIER 1 QUERY
-        tierIQuery()
 
         // FLYOUT MENU
         self.sideMenuController()?.sideMenu?.delegate = self
@@ -127,31 +132,6 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
     // Location Flyout Menu
     func locationFlyout(sender: UIBarButtonItem) {
         
-        
-        UIView.animateWithDuration(0.4, delay: 0.2, options: .CurveEaseInOut, animations: { () -> Void in
-            
-            
-            self.locationFlyoutView.transform = CGAffineTransformMakeTranslation(0, 0)
-            self.locationFlyoutView.alpha = 1
-            
-            self.windowView.transform = CGAffineTransformMakeTranslation(0, 0)
-            self.windowView.alpha = 1
-            
-            self.locationLabel.transform = CGAffineTransformMakeTranslation(0, 0)
-            self.locationLabel.alpha = 1
-            
-            self.delMarLabel.transform = CGAffineTransformMakeTranslation(0, 0)
-            self.delMarLabel.alpha = 1
-            
-            self.addressTextView.transform = CGAffineTransformMakeTranslation(0, 0)
-            self.addressTextView.alpha = 1
-            
-//                        self.TRDMImageView.transform = CGAffineTransformMakeTranslation(0, 0)
-            
-            }) { (succeeded: Bool) -> Void in
-                if succeeded {
-
-     
                     // Create Black Window
                     self.locationFlyoutView = self.view
                     
@@ -237,11 +217,7 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
                         
                         
                     }
-                
-                }
-                
-        }
-    
+        
     }
     
 
@@ -268,9 +244,7 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
     
 
     
-// -----
-// TIER 1 QUERY
-// -----
+    // TIER 1 QUERY
     func tierIQuery() {
         
         let query:PFQuery = PFQuery(className:"Tier1")
@@ -296,11 +270,13 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
                     
                 }
                 
-                self.tableView.reloadData()
                 for i in self.tierIArray {
                     print("TierI Array: \(i["name"])")
                 }
                 print("-----------------------")
+                
+                
+                AnimationManager.sharedInstance.animateTable(self.tableView)
                 
             } else {
                 
@@ -341,7 +317,7 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
-        let tableHeight = (tableView.bounds.size.height - 44.0)
+        let tableHeight = (tableView.bounds.size.height)
         let numberOfCells: Int = tierIArray.count
         let numberOfCellsFloat = CGFloat(numberOfCells)
         let cellHeight = tableHeight / numberOfCellsFloat
@@ -350,12 +326,12 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         
     }
 
-// FLYOUT TRIGGER
+    // FLYOUT TRIGGER
     @IBAction func toggleSideMenu(sender: AnyObject) {
         toggleSideMenuView()
     }
 
-// ADD INDEX TO ROUTE
+    // ADD INDEX TO ROUTE
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         // DO ACITONS
@@ -380,6 +356,16 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         
         self.performSegueWithIdentifier("tierII", sender: self)
 
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        
+        
+        if segue.identifier == "tierII" {
+            self.tierIArray.removeAll()
+        }
+    
     }
     
     
@@ -461,32 +447,6 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
     
         })
     
-    }
-
-    // Fly Up Table Cells Animation
-    func animateTable() {
-        self.tableView.reloadData()
-        
-        let cells = tableView.visibleCells
-        let tableHeight: CGFloat = tableView.bounds.size.height
-        
-        for i in cells {
-            let cell: UITableViewCell = i as UITableViewCell
-            cell.transform = CGAffineTransformMakeTranslation(0, tableHeight)
-        }
-        
-        var index = 0
-        
-        for a in cells {
-            let cell: UITableViewCell = a as UITableViewCell
-            UIView.animateWithDuration(1.5, delay: 0.3 * Double(index), usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .Repeat, animations: {
-                cell.transform = CGAffineTransformMakeTranslation(0, 0);
-                }, completion: nil)
-            
-            index += 1
-            
-        }
-        
     }
     
 }

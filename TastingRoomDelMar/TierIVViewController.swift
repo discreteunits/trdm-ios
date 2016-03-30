@@ -44,7 +44,6 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
         
         if tierTwoSelection == "Harvest" {
             
-//            tierIVCollectionContainer.removeFromSuperview()
             tierIVCollectionContainer.hidden = true
             let screenWidth = self.view.bounds.width
 
@@ -95,12 +94,10 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
             
         }
         
-       
-        
-// FLYOUT MENU
+        // FLYOUT MENU
         self.sideMenuController()?.sideMenu?.delegate = self
         
-// NAV BAR STYLES
+        // NAV BAR STYLES
         
         if let navBar = navigationController?.navigationBar {
             
@@ -111,7 +108,7 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
             nav?.tintColor = UIColor.whiteColor()
             nav?.titleTextAttributes = [ NSFontAttributeName: UIFont (name: "NexaRustScriptL-00", size: 24)!]
             
-// SET NAV BACK BUTTON TO REMOVE LAST ITEM FROM ROUTE
+            // SET NAV BACK BUTTON TO REMOVE LAST ITEM FROM ROUTE
             let lastWindow = route[1]["name"]
             
             self.navigationItem.hidesBackButton = true
@@ -122,7 +119,7 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
         }
     }
     
-// NAV BACK BUTTON ACTION
+    // NAV BACK BUTTON ACTION
     func back(sender: UIBarButtonItem) {
         
         if route.count == 4 {
@@ -166,12 +163,12 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
     }
     
     
-// FLYOUT TRIGGER
+    // FLYOUT TRIGGER
     @IBAction func toggleSideMenu(sender: AnyObject) {
         toggleSideMenuView()
     }
     
-// PREPARE FOR SEGUE DATA TRANSFER
+    // PREPARE FOR SEGUE DATA TRANSFER
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         
@@ -225,7 +222,7 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
         
     }
     
-// TAGS ARRAY CREATION
+    // TAGS ARRAY CREATION
     func tagsArrayCreation() {
         
         self.tagsArray.removeAll()
@@ -240,7 +237,7 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
         
     }
     
-// TIER 4 COLLECTION QUERY
+    // TIER 4 COLLECTION QUERY
     func tierIVCollectionQuery() {
         
         self.TierIVCollectionViewControllerRef?.tierIVCollectionArray.removeAll()
@@ -306,7 +303,7 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
         
     }
 
-// TIER 4 TABLE QUERY
+    // TIER 4 TABLE QUERY
     func tierIVTableQuery() {
         
         self.TierIVTableViewControllerRef?.tierIVTableArray.removeAll()
@@ -314,7 +311,6 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
         
         let tableQuery:PFQuery = PFQuery(className:"Product")
         tableQuery.includeKey("category")
-//        tableQuery.includeKey("additions")
         tableQuery.whereKey("productType", equalTo: "CHOICE")
         tableQuery.whereKey("categories", containsAllObjectsInArray: tagsArray)
         tableQuery.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
@@ -359,37 +355,6 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
                 }
                 
             }
-            
-        }
-        
-    }
-
-
-
-    // TRANSPARENT BLACK BACKGROUND BEHIND MODEL
-    func opaqueWindow() {
-        
-        let tierIVView = self.view
-        
-        if printFlag {
-            print("self view is: \(tierIVView)")
-        }
-            
-        let windowWidth = self.view.bounds.size.width
-        let windowHeight = self.view.bounds.size.height
-        
-        let windowView = UIView(frame: CGRectMake(0, 0, windowWidth, windowHeight))
-        
-        if let viewWithTag = tierIVView.viewWithTag(21) {
-
-            windowView.backgroundColor = UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 0.5)
-            viewWithTag.removeFromSuperview()
-                
-        } else {
-
-            windowView.backgroundColor = UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 0.5)
-            windowView.tag = 21
-            tierIVView.addSubview(windowView)
             
         }
         

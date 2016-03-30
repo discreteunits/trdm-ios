@@ -12,21 +12,26 @@ import Parse
 
 class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
     
-    
     @IBOutlet weak var navigationTitle: UINavigationItem!
     
     var tierIIArray = [PFObject]()
     
     var nav: UINavigationBar?
     
+    // ------------
+    override func viewWillAppear(animated: Bool) {
+        
+        tierIIArray.removeAll()
+        
+        tierIIQuery()
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
           
         // Items Indicator
         TabManager.sharedInstance.addItemsIndicator()
-
-        // TIER 2 QUERY
-        tierIIQuery()
         
         // FLYOUT MENU
         self.sideMenuController()?.sideMenu?.delegate = self
@@ -118,14 +123,14 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
                     
                 }
                 
-                self.tableView.reloadData()
-                
                 if printFlag {
                     for i in self.tierIIArray {
                         print("TierII Array: \(i["name"])")
                     }
                     print("-----------------------")
                 }
+                
+                AnimationManager.sharedInstance.animateTable(self.tableView)
                 
             } else {
                 
@@ -170,7 +175,7 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
-        let tableHeight = (tableView.bounds.size.height - 44.0)
+        let tableHeight = (tableView.bounds.size.height)
         let numberOfCells: Int = tierIIArray.count
         let numberOfCellsFloat = CGFloat(numberOfCells)
         let cellHeight = tableHeight / numberOfCellsFloat

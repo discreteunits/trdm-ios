@@ -90,6 +90,7 @@ struct Product {
     var lightspeedId = String()
     var name = String()
     var price = Double()
+    var info = String()
     
     var productPlu = String()
     
