@@ -190,12 +190,27 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
         let cellSize = CGFloat()
 
         if indexPath.row < totalRow {
-            if tab.lines.count > 0 {
-                let lineMods = tab.lines[indexPath.row].subproducts.count
-                let lineSize = (lineMods * 25) + 50
             
-                return CGFloat(lineSize)
+            
+            
+            // ----- HARVEST BEGIN ------
+            if tab.lines[indexPath.row].eatOrDrink == "Eat" {
+             
+                
+                
+            } else {
+               
+                if tab.lines.count > 0 {
+                    let lineMods = tab.lines[indexPath.row].subproducts.count
+                    let lineSize = (lineMods * 25) + 50
+                    
+                    return CGFloat(lineSize)
+                }
+                
             }
+            // ----- END -----
+
+
             
             return 0
             

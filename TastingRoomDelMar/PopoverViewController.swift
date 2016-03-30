@@ -561,6 +561,18 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                             newLineItem.quantity = Int(quantityChoice)!
                             newLineItem.tax = lineitemTax
                             
+                        
+                            
+                            // ----- HARVEST BEGIN ------
+                            if route[1]["name"] as! String == "Harvest" {
+                                newLineItem.eatOrDrink = "Eat"
+                            } else {
+                                newLineItem.eatOrDrink = "Drink"
+                            }
+                            // ----- END -----
+                            
+                                
+                                
                             print("New LineItem created: \(newLineItem.name)")
 
                             // Finalize: Add LineItem to Tab, Clean Up, Confirm

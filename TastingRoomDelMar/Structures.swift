@@ -110,6 +110,8 @@ struct LineItem {
     var subproducts = [Product]()
     var additions = [Addition]()
     
+    var eatOrDrink = String()
+    
 }
 
 struct Tab {
