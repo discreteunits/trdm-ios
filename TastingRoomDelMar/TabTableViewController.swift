@@ -116,6 +116,9 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
             var totalCell: TabTotalTableViewCell
             totalCell = tableView.dequeueReusableCellWithIdentifier("TabTotalTableCell", forIndexPath: indexPath) as! TabTotalTableViewCell
             
+            // Connect Specific Table Cell With Specific Colleciton View
+            totalCell.contentView.tag = indexPath.row
+            
             // Assignments
             totalCell.subtotalValueLabel?.text = "\(tab.subtotal)"
             totalCell.taxValueLabel?.text = "\(tab.totalTax)"
@@ -141,6 +144,9 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
             
             actionCell = tableView.dequeueReusableCellWithIdentifier("TabActionTableCell", forIndexPath: indexPath) as! TabActionTableViewCell
 
+            // Connect Specific Table Cell With Specific Colleciton View
+            actionCell.contentView.tag = indexPath.row
+            
             // Styles
             actionCell.placeOrderButton.layer.backgroundColor = UIColor(red: 9/255.0, green: 178/255.0, blue: 126/255.0, alpha: 1.0).CGColor
             actionCell.placeOrderButton.titleLabel?.font = UIFont.scriptFont(28)
@@ -195,7 +201,13 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
             
             // ----- HARVEST BEGIN ------
             if tab.lines[indexPath.row].eatOrDrink == "Eat" {
-             
+                
+                let lineMods = tab.lines[indexPath.row].additions.count
+                let lineModsWithServing = lineMods + 1
+                let lineSize = (lineModsWithServing * 25) + 50
+                
+                
+                return CGFloat(lineSize)
                 
                 
             } else {
@@ -204,7 +216,10 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
                     let lineMods = tab.lines[indexPath.row].subproducts.count
                     let lineSize = (lineMods * 25) + 50
                     
+                    
                     return CGFloat(lineSize)
+                    
+                    
                 }
                 
             }
@@ -345,8 +360,21 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
 
         if parent < totalRow {
             
-            let modChoices = TabManager.sharedInstance.currentTab.lines.count
-            numberOfItems = modChoices
+            
+            // ----- HARVEST BEGIN ------
+            if TabManager.sharedInstance.currentTab.lines[parent].eatOrDrink == "Eat" {
+                
+                let modChoices = TabManager.sharedInstance.currentTab.lines[parent].additions.count
+                numberOfItems = modChoices + 1
+                
+            } else {
+                
+                let modChoices = TabManager.sharedInstance.currentTab.lines[parent].subproducts.count
+                numberOfItems = modChoices
+                
+            }
+            // ----- END -----
+            
             
         }
         
@@ -361,13 +389,22 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
         
         if parent < totalRow {
             
-            // Serving Collection Row
+//            if TabManager.sharedInstance.currentTab.lines[parent].eatOrDrink == "Eat" {
+//                
+//                // Do some Harvest Stuff
+//            
+//            } else {
+//                
+//                // Do some Beer or Wine Stuff
+//                
+//            }
+            
+            // DEFAULT: Serving Row
             if indexPath.row == 0 {
                 
                 let lineitemServingCollectionCell = collectionView.dequeueReusableCellWithReuseIdentifier("TabLineItemServingCollectionCell", forIndexPath: indexPath) as! TabLineItemServingCollectionViewCell
 
-                // Assignments
-                //// Declare Pair for Presentation
+                
                 let orderMod = TabManager.sharedInstance.currentTab.lines[parent].name
                 
                 // IF HARVEST
@@ -398,13 +435,32 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
                 return lineitemServingCollectionCell
                 
                 
-            // All Other Modifier Colleciton Rows
+            // ----- IF HARVEST -----
             } else {
                
                 let lineitemCollectionCell = collectionView.dequeueReusableCellWithReuseIdentifier("TabLineItemCollectionCell", forIndexPath: indexPath) as! TabLineItemCollectionViewCell
                 
-                // Assignment
-//                lineitemCollectionCell.modNameLabel?.text = "\(TabManager.sharedInstance.currentTab.lines[parent].subproducts[indexPath.row].name)"
+  
+                // ----- IF HARVEST -----
+                if TabManager.sharedInstance.currentTab.lines[parent].eatOrDrink == "Eat" {
+                
+                    let trueIndex = indexPath.row - 1
+                    
+                    lineitemCollectionCell.modNameLabel?.text = "\(TabManager.sharedInstance.currentTab.lines[parent].additions[trueIndex].values[0].name)"
+                
+                    // ---------
+                    // WARNING: value[0] is not dynamic and will error for multi-selections 
+                    // ---------
+                    
+                } else {
+                
+                    // Do some Beer or Wine Stuff
+                                
+                }
+                // ----- END -----
+
+                
+                
                 
                 // Styles
                 lineitemCollectionCell.backgroundColor = UIColor.whiteColor()
@@ -436,7 +492,7 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
             var collectionLineSize: CGSize!
             
             let cellWidth = collectionView.bounds.size.width - 10
-            let cellHeight = CGFloat(25)
+            let cellHeight = CGFloat(20)
             
             collectionLineSize = CGSize(width: cellWidth, height: cellHeight)
             
