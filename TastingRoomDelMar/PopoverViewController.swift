@@ -563,6 +563,19 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                             
                         
                             
+                            // CREATE PRODUCT FROM POPOVER ITEM
+                            var newProduct = Product()
+                            newProduct.id = popoverItem.objectId!
+                            newProduct.lightspeedId = String(popoverItem["lightspeedId"])
+                            newProduct.name = popoverItem["name"] as! String
+                            
+                            let newProductPrice = popoverItem["price"] as! Double
+                            newProduct.price = newProductPrice
+
+                            newLineItem.product = newProduct
+                            
+                        
+                            
                             // ----- HARVEST BEGIN ------
                             if route[1]["name"] as! String == "Harvest" {
                                 newLineItem.eatOrDrink = "Eat"

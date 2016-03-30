@@ -389,16 +389,6 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
         
         if parent < totalRow {
             
-//            if TabManager.sharedInstance.currentTab.lines[parent].eatOrDrink == "Eat" {
-//                
-//                // Do some Harvest Stuff
-//            
-//            } else {
-//                
-//                // Do some Beer or Wine Stuff
-//                
-//            }
-            
             // DEFAULT: Serving Row
             if indexPath.row == 0 {
                 
@@ -411,11 +401,21 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
                 // ---------
                 var servingPrice = String()
                 
-                if route[1]["name"] as! String == "Harvest" {
+                
+                
+                if TabManager.sharedInstance.currentTab.lines[parent].eatOrDrink == "Eat" {
+                
+                    servingPrice = "\(Int(TabManager.sharedInstance.currentTab.lines[parent].product.price))"
                     
                 } else {
+                
                     servingPrice = "\(Int(TabManager.sharedInstance.currentTab.lines[parent].subproducts[indexPath.row].price))"
+                    
                 }
+                
+                
+                
+                
                 
                 let orderAndServing = orderMod + "   " + servingPrice
                 lineitemServingCollectionCell.servingSizeLabel?.text = "\(orderAndServing)"
