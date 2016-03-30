@@ -114,15 +114,25 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         
         // Prices From Product Table
         // ------------------------- BEGIN
-        if let productPrice = self.tierIVTableArray[indexPath.row]["prices"] {
-            cell.pricingLabel?.text = self.tierIVTableArray[indexPath.row]["prices"] as! String
+        // ----- IF HARVEST -----
+        if route[1]["name"] as! String == "Harvest" {
+            
+            cell.pricingLabel?.text = "\(self.tierIVTableArray[indexPath.row]["price"])"
             cell.pricingLabel?.font = UIFont(name: "OpenSans", size: 12)
-        
-        // Prices NOT Found in Item Table
+            
         } else {
-            cell.pricingLabel?.text = ""
+        
+            if let productPrice = self.tierIVTableArray[indexPath.row]["prices"] {
+                cell.pricingLabel?.text = self.tierIVTableArray[indexPath.row]["prices"] as! String
+                cell.pricingLabel?.font = UIFont(name: "OpenSans", size: 12)
+        
+            // Prices NOT Found in Item Table
+            } else {
+                cell.pricingLabel?.text = ""
+            }
+            // ------------------------- END
         }
-        // ------------------------- END
+        // ----- END
         
 
         // ASYNC: Get Varietal / Beer Style
