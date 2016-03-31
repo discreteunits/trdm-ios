@@ -193,51 +193,9 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
                 
         
         if let viewWithTag = self.locationFlyoutView.viewWithTag(11) {
-            
 
-            
-            UIView.animateWithDuration(1.5, delay: 0.05, usingSpringWithDamping: 1.0,
-                initialSpringVelocity: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
-                    
-                    viewWithTag.transform = CGAffineTransformMakeTranslation(-windowWidth, 0);
-                    
-                    let subViews = self.view.subviews
-                    for subview in subViews {
-                        if subview.tag == 12 {
-                            subview.transform = CGAffineTransformMakeTranslation(-windowWidth, 0);
-                        } else if subview.tag == 13 {
-                            subview.transform = CGAffineTransformMakeTranslation(-windowWidth, 0)
-                        } else if subview.tag == 14 {
-                            subview.transform = CGAffineTransformMakeTranslation(-windowWidth, 0)
-                        } else if subview.tag == 15 {
-                            subview.transform = CGAffineTransformMakeRotation(0)
-                            subview.transform = CGAffineTransformMakeTranslation(-windowWidth, windowWidth)
-                        }
-                    }
-                    
-                }, completion: {
-                    (finished: Bool) -> Void in
-                    
-                    viewWithTag.removeFromSuperview()
-                    
-                    let subViews = self.view.subviews
-                    for subview in subViews {
-                        if subview.tag == 12 {
-                            subview.removeFromSuperview()
-                        } else if subview.tag == 13 {
-                            subview.removeFromSuperview()
-                        } else if subview.tag == 14 {
-                            subview.removeFromSuperview()
-                        } else if subview.tag == 15 {
-                            subview.removeFromSuperview()
-                        }
-                        
-                    }
-                    
-                    self.view.layer.removeAllAnimations()
-
-                })
-
+            removeFlyoutLocationMenu(viewWithTag)
+           
         } else {
             
             addFlyoutLocationMenu()
@@ -246,30 +204,53 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         
     }
     
-//    func removeFlyoutLocationMenu() {
-//        
-//        let windowWidth = self.view.bounds.size.width - 20
-//
-//        
-//        UIView.animateWithDuration(1.5, delay: 0.05, usingSpringWithDamping: 1.0,
-//            initialSpringVelocity: 0, options: UIViewAnimationOptions.CurveEaseIn, animations: {
-//                self.windowView.transform = CGAffineTransformMakeTranslation(windowWidth, 0);
-//                self.locationLabel.transform = CGAffineTransformMakeTranslation(windowWidth, 0);
-//                self.delMarLabel.transform = CGAffineTransformMakeTranslation(windowWidth, 0);
-//                self.addressTextView.transform = CGAffineTransformMakeTranslation(windowWidth, 0);
-//                self.TRDMImageView.transform = CGAffineTransformMakeTranslation(-windowWidth, 0);
-//                self.TRDMImageView.transform = CGAffineTransformMakeRotation(CGFloat(M_PI + M_PI_2 + M_PI_4))
-//                
-//            }, completion: {
-//                (finished: Bool) -> Void in
-//                
-//                if finished == false {
-//                    self.flyoutBool == true
-//                }
-//                
-//        })
-//        
-//    }
+    func removeFlyoutLocationMenu(viewWithTag: UIView) {
+        
+        let windowWidth = self.view.bounds.size.width - 20
+
+        UIView.animateWithDuration(1.5, delay: 0.05, usingSpringWithDamping: 1.0,
+            initialSpringVelocity: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+                
+                viewWithTag.transform = CGAffineTransformMakeTranslation(-windowWidth, 0);
+                
+                let subViews = self.view.subviews
+                for subview in subViews {
+                    if subview.tag == 12 {
+                        subview.transform = CGAffineTransformMakeTranslation(-windowWidth, 0);
+                    } else if subview.tag == 13 {
+                        subview.transform = CGAffineTransformMakeTranslation(-windowWidth, 0)
+                    } else if subview.tag == 14 {
+                        subview.transform = CGAffineTransformMakeTranslation(-windowWidth, 0)
+                    } else if subview.tag == 15 {
+                        // subview.transform = CGAffineTransformMakeRotation(0)
+                        subview.transform = CGAffineTransformMakeTranslation(-windowWidth, windowWidth)
+                    }
+                }
+                
+            }, completion: {
+                (finished: Bool) -> Void in
+                
+                viewWithTag.removeFromSuperview()
+                
+                let subViews = self.view.subviews
+                for subview in subViews {
+                    if subview.tag == 12 {
+                        subview.removeFromSuperview()
+                    } else if subview.tag == 13 {
+                        subview.removeFromSuperview()
+                    } else if subview.tag == 14 {
+                        subview.removeFromSuperview()
+                    } else if subview.tag == 15 {
+                        subview.removeFromSuperview()
+                    }
+                    
+                }
+                
+                self.view.layer.removeAllAnimations()
+                
+        })
+        
+    }
     
     func addFlyoutLocationMenu() {
         
@@ -289,14 +270,7 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
             self.TRDMImageView.transform = CGAffineTransformMakeTranslation(0, 0);
             self.TRDMImageView.transform = CGAffineTransformMakeRotation(CGFloat(M_PI + M_PI_2 + M_PI_4))
 
-            }, completion: {
-                (finished: Bool) -> Void in
-                
-                if finished {
-                    self.flyoutBool == false
-                    print("\(self.flyoutBool)")
-                }
-        })
+            }, completion: nil)
         
     }
     
