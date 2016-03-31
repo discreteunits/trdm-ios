@@ -31,6 +31,7 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
     var TRDMImage = UIImage()
     var TRDMImageView = UIImageView()
     
+    var flyoutBool = true
     
 // ------------------------------
     override func viewWillAppear(animated: Bool) {
@@ -132,96 +133,172 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
     // Location Flyout Menu
     func locationFlyout(sender: UIBarButtonItem) {
         
-                    // Create Black Window
-                    self.locationFlyoutView = self.view
+        // Create Black Window
+        self.locationFlyoutView = self.view
                     
-                    let windowWidth = self.view.bounds.size.width - 20
-                    let windowHeight = self.view.bounds.size.height
-                    self.windowView = UIView(frame: CGRectMake(0, 0, windowWidth * 0.78, windowHeight))
-                    self.windowView.backgroundColor = UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 1.0)
-                    self.windowView.layer.zPosition = 99999
-                    self.windowView.tag = 11
+        let windowWidth = self.view.bounds.size.width - 20
+        let windowHeight = self.view.bounds.size.height
+        self.windowView = UIView(frame: CGRectMake(0, 0, windowWidth * 0.78, windowHeight))
+        self.windowView.backgroundColor = UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 1.0)
+        self.windowView.layer.zPosition = 99999
+        self.windowView.transform = CGAffineTransformMakeTranslation(-windowWidth, 0)
+        self.windowView.tag = 11
                     
-                    // Create Location Label
-                    self.locationLabel = UILabel(frame: CGRectMake(8, 8, windowWidth / 2, 21))
-                    self.locationLabel.text = "Our Locations"
-                    self.locationLabel.font = UIFont(name: "NexaRustScriptL-00", size: 24)
-                    self.locationLabel.layer.zPosition = 999999
-                    self.locationLabel.textColor = UIColor.whiteColor()
-                    self.locationLabel.tag = 12
+        // Create Location Label
+        self.locationLabel = UILabel(frame: CGRectMake(8, 8, windowWidth / 2, 21))
+        self.locationLabel.text = "Our Locations"
+        self.locationLabel.font = UIFont(name: "NexaRustScriptL-00", size: 24)
+        self.locationLabel.layer.zPosition = 999999
+        self.locationLabel.textColor = UIColor.whiteColor()
+        self.locationLabel.transform = CGAffineTransformMakeTranslation(-windowWidth, 0)
+        self.locationLabel.tag = 12
                     
-                    // Create Location Title
-                    self.delMarLabel = UILabel(frame: CGRectMake(8, 40, windowWidth / 2, 21))
-                    self.delMarLabel.text = "Del Mar"
-                    self.delMarLabel.font = UIFont(name: "NexaRustScriptL-00", size: 20)
-                    self.delMarLabel.layer.zPosition = 999999
-                    self.delMarLabel.textColor = UIColor.whiteColor()
-                    self.delMarLabel.tag = 13
+        // Create Location Title
+        self.delMarLabel = UILabel(frame: CGRectMake(8, 40, windowWidth / 2, 21))
+        self.delMarLabel.text = "Del Mar"
+        self.delMarLabel.font = UIFont(name: "NexaRustScriptL-00", size: 20)
+        self.delMarLabel.layer.zPosition = 999999
+        self.delMarLabel.textColor = UIColor.whiteColor()
+        self.delMarLabel.transform = CGAffineTransformMakeTranslation(-windowWidth, 0)
+        self.delMarLabel.tag = 13
                     
                     
-                    // Create Location Address
-                    self.addressTextView = UITextView(frame: CGRectMake(8, 60, windowWidth / 3 , 200))
-                    self.addressTextView.text = "1435 Camino Del Mar Del Mar, CA 92014 858.232.6545"
-                    self.addressTextView.userInteractionEnabled = false
+        // Create Location Address
+        self.addressTextView = UITextView(frame: CGRectMake(8, 60, windowWidth / 3 , 200))
+        self.addressTextView.text = "1435 Camino Del Mar Del Mar, CA 92014 858.232.6545"
+        self.addressTextView.userInteractionEnabled = false
+        self.addressTextView.font = UIFont(name: "BebasNeueRegular", size: 16)
+        self.addressTextView.textColor = UIColor.whiteColor()
+        self.addressTextView.backgroundColor = UIColor.blackColor()
+        self.addressTextView.layer.zPosition = 999999
+        self.addressTextView.transform = CGAffineTransformMakeTranslation(-windowWidth, 0)
+        self.addressTextView.tag = 14
                     
-                    self.addressTextView.font = UIFont(name: "BebasNeueRegular", size: 16)
-                    self.addressTextView.textColor = UIColor.whiteColor()
-                    self.addressTextView.backgroundColor = UIColor.blackColor()
-                    self.addressTextView.layer.zPosition = 999999
-                    self.addressTextView.tag = 14
+        // TRDM Logo Position
+        let screenSize: CGRect = UIScreen.mainScreen().bounds
+        let screenWidth = screenSize.width
+        let screenHeight = screenSize.height
                     
-                    // TRDM Logo Position
-                    let screenSize: CGRect = UIScreen.mainScreen().bounds
-                    let screenWidth = screenSize.width
-                    let screenHeight = screenSize.height
-                    
-                    self.TRDMLogo = "secondary-logomark-white_rgb_600_600.png"
-                    self.TRDMImage = UIImage(named: self.TRDMLogo)!
-                    self.TRDMImageView = UIImageView(image: self.TRDMImage)
-                    self.TRDMImageView.frame = CGRectMake(0, 0,screenWidth / 2, screenWidth / 2)
-                    self.TRDMImageView.frame.origin.y = (screenHeight / 1.6 )
-                    self.TRDMImageView.frame.origin.x = 16
-                    self.TRDMImageView.alpha = 0.5
-                    self.TRDMImageView.transform = CGAffineTransformMakeRotation(CGFloat(M_PI + M_PI_2 + M_PI_4))
-                    self.TRDMImageView.layer.zPosition = 999999
-                    self.TRDMImageView.tag = 15
+        self.TRDMLogo = "secondary-logomark-white_rgb_600_600.png"
+        self.TRDMImage = UIImage(named: self.TRDMLogo)!
+        self.TRDMImageView = UIImageView(image: self.TRDMImage)
+        self.TRDMImageView.frame = CGRectMake(0, 0,screenWidth / 2, screenWidth / 2)
+        self.TRDMImageView.frame.origin.y = (screenHeight / 1.6 )
+        self.TRDMImageView.frame.origin.x = 16
+        self.TRDMImageView.alpha = 0.5
+        self.TRDMImageView.layer.zPosition = 999999
+        self.TRDMImageView.transform = CGAffineTransformMakeRotation(0)
+        self.TRDMImageView.transform = CGAffineTransformMakeTranslation(-windowWidth, 0)
+        self.TRDMImageView.tag = 15
                 
-                
-                
-                    if let viewWithTag = self.locationFlyoutView.viewWithTag(11) {
-                        
-                        viewWithTag.removeFromSuperview()
-                        
-                        let subViews = self.view.subviews
-                        for subview in subViews {
-                            if subview.tag == 12 {
-                                subview.removeFromSuperview()
-                            } else if subview.tag == 13 {
-                                subview.removeFromSuperview()
-                            } else if subview.tag == 14 {
-                                subview.removeFromSuperview()
-                            } else if subview.tag == 15 {
-                                subview.removeFromSuperview()
-                            }
-                            
+        
+        if let viewWithTag = self.locationFlyoutView.viewWithTag(11) {
+            
+
+            
+            UIView.animateWithDuration(1.5, delay: 0.05, usingSpringWithDamping: 1.0,
+                initialSpringVelocity: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+                    
+                    viewWithTag.transform = CGAffineTransformMakeTranslation(-windowWidth, 0);
+                    
+                    let subViews = self.view.subviews
+                    for subview in subViews {
+                        if subview.tag == 12 {
+                            subview.transform = CGAffineTransformMakeTranslation(-windowWidth, 0);
+                        } else if subview.tag == 13 {
+                            subview.transform = CGAffineTransformMakeTranslation(-windowWidth, 0)
+                        } else if subview.tag == 14 {
+                            subview.transform = CGAffineTransformMakeTranslation(-windowWidth, 0)
+                        } else if subview.tag == 15 {
+                            subview.transform = CGAffineTransformMakeRotation(0)
+                            subview.transform = CGAffineTransformMakeTranslation(-windowWidth, windowWidth)
+                        }
+                    }
+                    
+                }, completion: {
+                    (finished: Bool) -> Void in
+                    
+                    viewWithTag.removeFromSuperview()
+                    
+                    let subViews = self.view.subviews
+                    for subview in subViews {
+                        if subview.tag == 12 {
+                            subview.removeFromSuperview()
+                        } else if subview.tag == 13 {
+                            subview.removeFromSuperview()
+                        } else if subview.tag == 14 {
+                            subview.removeFromSuperview()
+                        } else if subview.tag == 15 {
+                            subview.removeFromSuperview()
                         }
                         
-                        
-                    } else {
-                        
-                        self.locationFlyoutView.addSubview(self.windowView)
-                        self.view.addSubview(self.locationLabel)
-                        self.view.addSubview(self.delMarLabel)
-                        self.view.addSubview(self.addressTextView)
-                        self.view.addSubview(self.TRDMImageView)
-                        
-                        
                     }
+                    
+                    self.view.layer.removeAllAnimations()
+
+                })
+
+        } else {
+            
+            addFlyoutLocationMenu()
+            
+        }
         
     }
     
-
+//    func removeFlyoutLocationMenu() {
+//        
+//        let windowWidth = self.view.bounds.size.width - 20
+//
+//        
+//        UIView.animateWithDuration(1.5, delay: 0.05, usingSpringWithDamping: 1.0,
+//            initialSpringVelocity: 0, options: UIViewAnimationOptions.CurveEaseIn, animations: {
+//                self.windowView.transform = CGAffineTransformMakeTranslation(windowWidth, 0);
+//                self.locationLabel.transform = CGAffineTransformMakeTranslation(windowWidth, 0);
+//                self.delMarLabel.transform = CGAffineTransformMakeTranslation(windowWidth, 0);
+//                self.addressTextView.transform = CGAffineTransformMakeTranslation(windowWidth, 0);
+//                self.TRDMImageView.transform = CGAffineTransformMakeTranslation(-windowWidth, 0);
+//                self.TRDMImageView.transform = CGAffineTransformMakeRotation(CGFloat(M_PI + M_PI_2 + M_PI_4))
+//                
+//            }, completion: {
+//                (finished: Bool) -> Void in
+//                
+//                if finished == false {
+//                    self.flyoutBool == true
+//                }
+//                
+//        })
+//        
+//    }
     
+    func addFlyoutLocationMenu() {
+        
+        self.locationFlyoutView.addSubview(self.windowView)
+        self.view.addSubview(self.locationLabel)
+        self.view.addSubview(self.delMarLabel)
+        self.view.addSubview(self.addressTextView)
+        self.view.addSubview(self.TRDMImageView)
+        
+        UIView.animateWithDuration(1.5, delay: 0.05, usingSpringWithDamping: 1.0,
+        initialSpringVelocity: 0, options: UIViewAnimationOptions.CurveEaseIn, animations: {
+            
+            self.windowView.transform = CGAffineTransformMakeTranslation(0, 0);
+            self.locationLabel.transform = CGAffineTransformMakeTranslation(0, 0);
+            self.delMarLabel.transform = CGAffineTransformMakeTranslation(0, 0);
+            self.addressTextView.transform = CGAffineTransformMakeTranslation(0, 0);
+            self.TRDMImageView.transform = CGAffineTransformMakeTranslation(0, 0);
+            self.TRDMImageView.transform = CGAffineTransformMakeRotation(CGFloat(M_PI + M_PI_2 + M_PI_4))
+
+            }, completion: {
+                (finished: Bool) -> Void in
+                
+                if finished {
+                    self.flyoutBool == false
+                    print("\(self.flyoutBool)")
+                }
+        })
+        
+    }
     
     
     @IBAction func openTab(sender: AnyObject) {
@@ -448,6 +525,45 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         })
     
     }
+    
+    
+//    func animateTable(any: [AnyObject]) {
+////        self.view.reloadData()
+//        
+//        let items = any
+//        let viewHeight: CGFloat = self.view.bounds.size.height
+//        
+//        for i in items {
+//            let item: AnyObject = i as AnyObject
+//            item.transform = CGAffineTransformMakeTranslation(0, viewHeight)
+//        }
+//        
+//        var index = 0
+//        
+//        // Original Settings
+//        // 1.5, delay: 0.05, usingSpringWithDamping: 0.8
+//        
+//        for a in items {
+//            let item: AnyObject = a as AnyObject
+//            UIView.animateWithDuration(0.5, delay: 0.05 * Double(index), usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: UIViewAnimationOptions.CurveEaseInOut , animations: {
+//                item.transform = CGAffineTransformMakeTranslation(0, 0);
+//                }, completion: nil)
+//            
+//            index = index + 1
+//            
+//            
+//        }
+//        
+//        
+//    }
+    
+    
+    
+    
+    
+    
+    
+    
     
 }
 
