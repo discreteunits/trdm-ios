@@ -246,17 +246,30 @@ class AlertManager: UIViewController {
         alert.view.tintColor = UIColor.primaryGreenColor()
         
         // Create Actions
-        let successAction = UIAlertAction(title: "Sounds Good", style: .Default, handler: { (action) -> Void in
+        let goBackToMenu = UIAlertAction(title: "Back To Menu", style: .Default, handler: { (action) -> Void in
             self.confirm(view)
             
             if printFlag {
-                print("Ok Selected")
+                print("Back To Menu Selected")
+            }
+            
+        })
+        
+        let goToTabAction = UIAlertAction(title: "Go To Tab", style: .Default, handler: { (action) -> Void in
+            
+//            self.confirm(view)
+            
+            self.goToTab(view)
+
+            if printFlag {
+                print("Go To Tab Selected")
             }
             
         })
         
         // Add Actions
-        alert.addAction(successAction)
+        alert.addAction(goBackToMenu)
+        alert.addAction(goToTabAction)
         
         view.presentViewController(alert, animated: true, completion: nil)
         
@@ -388,6 +401,20 @@ class AlertManager: UIViewController {
         
     }
     
+    // Go To Tab
+    func goToTab(view: UIViewController) {
+        
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "TabStoryboard", bundle: nil)
+        
+        let vc = mainStoryboard.instantiateViewControllerWithIdentifier("Tab")
+        
+        // Calculate Totals
+        TabManager.sharedInstance.totalCellCalculator()
+        
+        view.presentViewController(vc, animated: true, completion: nil)
+        
+    }
+    
     func confirm(view: UIViewController) {
         
         // Revert view controllers, views, and collections back to pre-popover state
@@ -403,5 +430,5 @@ class AlertManager: UIViewController {
         }
         
     }
-
+    
 }

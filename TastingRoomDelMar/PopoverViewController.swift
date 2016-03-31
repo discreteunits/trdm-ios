@@ -495,28 +495,6 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                     if productChoices.count == completedChoices || productHarvestChoices.count == completedChoices {
                         if quantityChoice != "" {
                          
-//                            // Create Modifiers To Add To LineItem
-//                            // -----------------------------------
-//                            var convertedProductChoices = [Product]()
-//                            
-//                            for choice in productChoices {
-//                                
-//                                var newSubproduct = Product()
-//                                newSubproduct.id = choice.objectId!
-//                                newSubproduct.lightspeedId = String(choice["lightspeedId"])
-//                                newSubproduct.name = choice["name"] as! String
-//                                
-//                                let productPrice = choice["price"] as! Double
-//                                newSubproduct.price = productPrice
-//                                
-//                                convertedProductChoices.append(newSubproduct)
-//                                
-//                                if printFlag {
-//                                    print("Product convnerted to Subproduct: \(newSubproduct)")
-//                                }
-//                                
-//                            }
-                            
                             // Begin Monetary Calculations
                             // --------------------------------------
                             var taxString = popoverItem["taxClass"] as! String
@@ -535,8 +513,12 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                             
                             // Total All Subproduct Choice Prices
                             var totalChoicesPrice = Double()
-                            for choice in productChoices {
-                                totalChoicesPrice = totalChoicesPrice + choice.price
+                            if route[1]["name"] as! String == "Harvest" {
+                                totalChoicesPrice = popoverItem["price"] as! Double
+                            } else {
+                                for choice in productChoices {
+                                    totalChoicesPrice = totalChoicesPrice + choice.price
+                                }
                             }
                             
                             let lineitemPreTax = lineitemQuantity! * (totalChoicesPrice)
@@ -622,6 +604,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                             
                             // Confirm
                             AlertManager.sharedInstance.addedSuccess(self, title: "Added Successfully", message: "Item has been added to your order!")
+
                             
                             if printFlag {
                                 print("*****************************************")
@@ -630,11 +613,11 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                             }
                             
                         } else {
-                            AlertManager.sharedInstance.whoopsSelectModifiers(self, title: "Whoops", message: "Please select a modifier and quantity.")
+                            AlertManager.sharedInstance.whoopsSelectModifiers(self, title: "Whoops", message: "Please select a serving and quantity.")
                         }
                         
                     } else {
-                        AlertManager.sharedInstance.whoopsSelectModifiers(self, title: "Whoops", message: "Please select a modifier and quantity.")
+                        AlertManager.sharedInstance.whoopsSelectModifiers(self, title: "Whoops", message: "Please select a serving and quantity.")
                     }
                     
                 }

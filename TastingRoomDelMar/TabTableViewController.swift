@@ -225,8 +225,6 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
             }
             // ----- END -----
 
-
-            
             return 0
             
         } else if indexPath.row == totalRow {
@@ -273,6 +271,8 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
             TabManager.sharedInstance.currentTab.lines.removeAtIndex(indexPath.row)
             self.tableView.deleteRowsAtIndexPaths(NSArray(object: NSIndexPath(forRow: indexPath.row, inSection: 0)) as! [NSIndexPath], withRowAnimation: UITableViewRowAnimation.Left)
 
+            TabManager.sharedInstance.totalCellCalculator()
+            
             tableView.endUpdates()
 
             
@@ -282,6 +282,9 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
         
         rows = calculateRows()
         TabManager.sharedInstance.totalCellCalculator()
+        
+        self.tableView.reloadData()
+
 
     }
 
@@ -395,18 +398,22 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
                 let lineitemServingCollectionCell = collectionView.dequeueReusableCellWithReuseIdentifier("TabLineItemServingCollectionCell", forIndexPath: indexPath) as! TabLineItemServingCollectionViewCell
 
                 
-                let orderMod = TabManager.sharedInstance.currentTab.lines[parent].subproducts[indexPath.row].info
-                
+
                 // IF HARVEST
                 // ---------
                 var servingPrice = String()
+                var orderMod = String()
 
                 if TabManager.sharedInstance.currentTab.lines[parent].eatOrDrink == "Eat" {
                 
+                    orderMod = TabManager.sharedInstance.currentTab.lines[parent].name
+                    
                     servingPrice = "\(Int(TabManager.sharedInstance.currentTab.lines[parent].product.price))"
                     
                 } else {
                 
+                    orderMod = TabManager.sharedInstance.currentTab.lines[parent].subproducts[indexPath.row].info
+                    
                     servingPrice = "\(Int(TabManager.sharedInstance.currentTab.lines[parent].subproducts[indexPath.row].price))"
                     
                 }
