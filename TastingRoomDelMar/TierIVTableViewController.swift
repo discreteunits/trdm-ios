@@ -54,7 +54,6 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
 // ---------------------
     
     override func viewWillAppear(animated: Bool) {
-        self.tableView.reloadData()
         
         AnimationManager.sharedInstance.animateTable(self.tableView)
         
@@ -71,7 +70,6 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     }
     
 // MARK: - Table view data source
-
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1

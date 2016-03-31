@@ -30,6 +30,10 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
     var TableNumberViewControllerRef: TableNumberViewController?
     
 // --------------------
+    override func viewWillAppear(animated: Bool) {
+        TabManager.sharedInstance.totalCellCalculator()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -268,7 +272,9 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
             
             tableView.beginUpdates()
             
+            // Remove Line Item From Tab Struct
             TabManager.sharedInstance.currentTab.lines.removeAtIndex(indexPath.row)
+            // Remove Row From Table
             self.tableView.deleteRowsAtIndexPaths(NSArray(object: NSIndexPath(forRow: indexPath.row, inSection: 0)) as! [NSIndexPath], withRowAnimation: UITableViewRowAnimation.Left)
 
             TabManager.sharedInstance.totalCellCalculator()
@@ -285,6 +291,8 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
         
         self.tableView.reloadData()
 
+        
+        
 
     }
 

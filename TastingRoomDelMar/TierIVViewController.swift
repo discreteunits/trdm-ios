@@ -32,9 +32,6 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
 // ---------------
     override func viewWillAppear(animated: Bool) {
         
-        TierIVTableViewControllerRef?.tableView.reloadData()
-
-        
         // If Harvest - Remove Collection View
         let tierTwoSelection = route[1]["name"] as! String
         
@@ -56,12 +53,6 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
             
         }
         
-    }
-    
-    
-    override func viewDidAppear(animated: Bool) {
-        
-        TierIVTableViewControllerRef?.tableView.reloadData()
         
         if printFlag {
             print("------------Queries Completed------------")
@@ -181,6 +172,8 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
                 
                 TierIVCollectionViewController.collectionArray = tierIVCollectionArray
                 
+                TierIVCollectionViewControllerRef?.collectionView?.reloadData()
+                
             } else {
                 
                 if printFlag {
@@ -197,8 +190,6 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
                 
                 self.TierIVTableViewControllerRef = TierIVTableViewController
                 TierIVTableViewController.delegate = self
-                
-
                 
             } else {
                 
@@ -219,7 +210,7 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
     func reloadTable() {
         
         self.TierIVTableViewControllerRef?.tableView.reloadData()
-        
+
     }
     
     // TAGS ARRAY CREATION
@@ -289,7 +280,7 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
                 if printFlag {
                     print("TierIV collection query appended: \(self.TierIVCollectionViewControllerRef!.tierIVCollectionArray.count) objects.")
                 }
-                
+                  
             } else {
                 
                 // Log details of the failure
@@ -341,7 +332,7 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
                     
                 }
                 
-                self.TierIVTableViewControllerRef?.tableView.reloadData()
+                AnimationManager.sharedInstance.animateTable((self.TierIVTableViewControllerRef!.tableView)!)
                 
                 if printFlag {
                     print("TierIV table query completed with:  \(self.TierIVTableViewControllerRef!.tierIVTableArray.count) objects.")

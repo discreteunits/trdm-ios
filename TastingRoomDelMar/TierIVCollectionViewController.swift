@@ -33,6 +33,29 @@ class TierIVCollectionViewController: UICollectionViewController {
     }
     
 // ------------------
+    override func viewWillAppear(animated: Bool) {
+        
+        // IF NOT HARVEST
+        if route[1]["name"] as! String != "Harvest" {
+        
+        self.collectionView!.frame.origin.y = -self.collectionView!.bounds.size.height
+
+        showCollection()
+        
+        }
+        
+    }
+    
+    func showCollection() {
+        
+        UIView.animateWithDuration(1.5, delay: 0.05, usingSpringWithDamping: 1.0, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: {
+            
+            self.collectionView!.transform = CGAffineTransformMakeTranslation(0, self.collectionView!.bounds.size.height)
+            self.collectionView!.alpha = 1
+                
+        }, completion: nil)
+        
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

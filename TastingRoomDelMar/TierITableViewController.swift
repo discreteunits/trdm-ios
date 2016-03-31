@@ -31,7 +31,6 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
     var TRDMImage = UIImage()
     var TRDMImageView = UIImageView()
     
-    var flyoutBool = true
     
 // ------------------------------
     override func viewWillAppear(animated: Bool) {
@@ -109,24 +108,6 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
             print("Route Reset: \(route)")
             
         }
-        
-    }
-    
-    func slideInFromLeft(duration: NSTimeInterval = 1.0, completionDelegate: AnyObject? = nil) {
-        
-        let slideInFromLeftTransition = CATransition()
-        
-        if let delegate: AnyObject = completionDelegate {
-            slideInFromLeftTransition.delegate = delegate
-        }
-        
-        slideInFromLeftTransition.type = kCATransitionPush
-        slideInFromLeftTransition.subtype = kCATransitionFromLeft
-        slideInFromLeftTransition.duration = duration
-        slideInFromLeftTransition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        slideInFromLeftTransition.fillMode = kCAFillModeRemoved
-        
-        self.view.layer.addAnimation(slideInFromLeftTransition, forKey: "slideInFromLeftTransition")
         
     }
     
@@ -225,6 +206,7 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
                         // subview.transform = CGAffineTransformMakeRotation(0)
                         subview.transform = CGAffineTransformMakeTranslation(-windowWidth, windowWidth)
                     }
+                    
                 }
                 
             }, completion: {
@@ -499,45 +481,6 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         })
     
     }
-    
-    
-//    func animateTable(any: [AnyObject]) {
-////        self.view.reloadData()
-//        
-//        let items = any
-//        let viewHeight: CGFloat = self.view.bounds.size.height
-//        
-//        for i in items {
-//            let item: AnyObject = i as AnyObject
-//            item.transform = CGAffineTransformMakeTranslation(0, viewHeight)
-//        }
-//        
-//        var index = 0
-//        
-//        // Original Settings
-//        // 1.5, delay: 0.05, usingSpringWithDamping: 0.8
-//        
-//        for a in items {
-//            let item: AnyObject = a as AnyObject
-//            UIView.animateWithDuration(0.5, delay: 0.05 * Double(index), usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: UIViewAnimationOptions.CurveEaseInOut , animations: {
-//                item.transform = CGAffineTransformMakeTranslation(0, 0);
-//                }, completion: nil)
-//            
-//            index = index + 1
-//            
-//            
-//        }
-//        
-//        
-//    }
-    
-    
-    
-    
-    
-    
-    
-    
     
 }
 

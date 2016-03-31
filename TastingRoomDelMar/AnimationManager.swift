@@ -106,10 +106,8 @@ class AnimationManager: NSObject {
             
             index = index + 1
             
-            
         }
         
-        
     }
-    
+ 
 }
