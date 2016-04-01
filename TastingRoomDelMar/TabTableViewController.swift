@@ -458,6 +458,17 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
                     let trueIndex = indexPath.row - 1
                     
                     lineitemCollectionCell.modNameLabel?.text = "\(TabManager.sharedInstance.currentTab.lines[parent].additions[trueIndex].values[0].name)"
+                    
+                    if TabManager.sharedInstance.currentTab.lines[parent].additions[trueIndex].values[0].price != "0" {
+                        
+                        let modPrice = TabManager.sharedInstance.currentTab.lines[parent].additions[trueIndex].values[0].price
+                        lineitemCollectionCell.modPriceLabel?.text = "+ " + modPrice
+                        
+                    } else {
+                        
+                        lineitemCollectionCell.modPriceLabel?.text = ""
+                        
+                    }
                 
                     // ---------
                     // WARNING: value[0] is not dynamic and will error for multi-selections 
@@ -476,6 +487,7 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
                 // Styles
                 lineitemCollectionCell.backgroundColor = UIColor.whiteColor()
                 lineitemCollectionCell.modNameLabel.font = UIFont.scriptFont(18)
+                lineitemCollectionCell.modPriceLabel.font = UIFont.scriptFont(18)
                 
                 
                 return lineitemCollectionCell

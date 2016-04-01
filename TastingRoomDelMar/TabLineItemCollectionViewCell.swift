@@ -11,5 +11,6 @@ import UIKit
 class TabLineItemCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var modNameLabel: UILabel!
+    @IBOutlet weak var modPriceLabel: UILabel!
     
 }
