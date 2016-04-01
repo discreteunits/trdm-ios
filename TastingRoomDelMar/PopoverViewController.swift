@@ -36,10 +36,29 @@ class PopoverViewController: UITableViewController {
     // Collect All Additions For This Item
     var additions:[Addition] = [Addition]()
     
+    // Text Wrapping for Description/Info
+    var heights = [CGFloat]()
+    var largestHeight = CGFloat()
+    
 
 // --------------------
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        delay(0.1) { () -> () in
+            self.tableView.reloadData()
+        }
+        
+    }
+    
+    func delay(delay:Double, closure:()->()) {
+        dispatch_after(
+            dispatch_time(
+                DISPATCH_TIME_NOW,
+                Int64(delay * Double(NSEC_PER_SEC))
+            ),
+            dispatch_get_main_queue(), closure)
     }
     
     override func didReceiveMemoryWarning() {
@@ -49,6 +68,8 @@ class PopoverViewController: UITableViewController {
     override func viewWillAppear(animated: Bool) {
         
         createAdditions()
+        
+//        self.tableView.reloadData()
    
     }
     
@@ -127,12 +148,24 @@ class PopoverViewController: UITableViewController {
                 detailsCell.altNameTextView?.text = popoverItem["info"] as! String!
                 detailsCell.altNameTextView.font = UIFont.basicFont(12)
                 
+
                 // Adjustment For Text View Text Wrapping ---- BEGIN
+                detailsCell.altNameTextView.scrollEnabled = true
                 detailsCell.altNameTextView.textContainer.lineBreakMode = NSLineBreakMode.ByCharWrapping
                 detailsCell.altNameTextView.contentInset = UIEdgeInsets(top: -12, left: -5, bottom: 0, right: 0)
+                detailsCell.altNameTextView.textContainer.maximumNumberOfLines = 0
                 detailsCell.altNameTextView?.sizeToFit()
-                detailsCell.altNameTextView.scrollEnabled = false
+                
+                let textViewHeight = detailsCell.altNameTextView.contentSize.height
+                
+                heights.append(textViewHeight)
+                largestHeight = heights.maxElement()!
+                
+                print("heights: \(heights)")
+                print("largestHeight: \(largestHeight)")
+                
                 // ----------- END
+                
                 
                 detailsCell.varietalLabel.font = UIFont.basicFont(16)
                 // IF HARVEST
@@ -234,6 +267,18 @@ class PopoverViewController: UITableViewController {
 
             }
     
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        
+        var cellHeight: CGFloat = CGFloat(100)
+        
+        if indexPath.row == 0 {
+            cellHeight = 60 + largestHeight
+        }
+        
+        return cellHeight
+        
     }
 
 }
@@ -735,13 +780,12 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
         
         // Details Table Row
         if parent == 0 {
-
+            
         // SUBGROUPS: Subproduct and Additions Table Row
         } else if (parent > 0) && (parent < quantityRow ) {
             
             let trueIndex = parent - 1
             var sgCellSize: CGSize!
-            
             
             // ----- HARVEST BEGIN ------
             let numberOfModifiers: CGFloat!

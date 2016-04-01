@@ -462,7 +462,11 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
                     if TabManager.sharedInstance.currentTab.lines[parent].additions[trueIndex].values[0].price != "0" {
                         
                         let modPrice = TabManager.sharedInstance.currentTab.lines[parent].additions[trueIndex].values[0].price
-                        lineitemCollectionCell.modPriceLabel?.text = "+ " + modPrice
+                        let lineQTY = TabManager.sharedInstance.currentTab.lines[parent].quantity
+                        
+                        let modTotalPrice = Int(modPrice)! * Int(lineQTY)
+                        
+                        lineitemCollectionCell.modPriceLabel?.text = "+ " + "\(modTotalPrice)"
                         
                     } else {
                         

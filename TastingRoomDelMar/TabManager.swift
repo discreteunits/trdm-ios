@@ -60,14 +60,31 @@ class TabManager: NSObject {
         var subtotal = Double()
         var totalTax = Double()
         
+        
+        
         let lineitems = currentTab.lines
         for lineitem in lineitems {
+            
+            var values = Double()
+            if lineitem.eatOrDrink == "Eat" {
+                for addition in lineitem.additions {
+                    for value in addition.values {
+                        values = values + Double(value.price)!
+                    }
+                }
+            }
+            
+            let allAdditionValuePrices = values * Double(lineitem.quantity)
             
             // Tax Calculations
             totalTax = totalTax + lineitem.tax // Already in dollars
         
             // Subtotal Calculations
-            subtotal = subtotal + lineitem.price // Already in dollars
+            subtotal = subtotal + lineitem.price + allAdditionValuePrices // Already in dollars
+            
+            
+
+            
             
         }
         

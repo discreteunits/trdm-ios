@@ -98,7 +98,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         
         // Adjustment For Text View Text Wrapping
         // ------------------------- BEGIN
-        cell.altNameTextView.scrollEnabled = false
+        cell.altNameTextView.scrollEnabled = true
         cell.altNameTextView.textContainer.lineBreakMode = NSLineBreakMode.ByCharWrapping
         cell.altNameTextView.contentInset = UIEdgeInsets(top: -10,left: -5,bottom: -10,right: 0)
         cell.altNameTextView.textContainer.maximumNumberOfLines = 0
@@ -181,12 +181,9 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-//        let selectedCell = tableView.cellForRowAtIndexPath(indexPath)! as! TierIVTableViewCell
-
         additions.removeAll()
         product = tierIVTableArray[indexPath.row]
 
-        
         // ----- HARVEST BEGIN ------
         if route[1]["name"] as! String == "Harvest" {
             

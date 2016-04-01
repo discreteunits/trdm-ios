@@ -235,22 +235,29 @@
                                             </connections>
                                         </collectionView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="itemName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TRh-NR-7kq">
-                                            <rect key="frame" x="154" y="0.0" width="300" height="30"/>
+                                            <rect key="frame" x="154" y="8" width="300" height="22"/>
                                             <constraints>
+                                                <constraint firstAttribute="height" constant="24" id="Foo-xt-Lii"/>
                                                 <constraint firstAttribute="width" constant="300" id="atZ-jr-UNU"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="qty" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EAL-ve-fwx">
-                                            <rect key="frame" x="22" y="0.0" width="25" height="25"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Price" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7oZ-nw-xu9">
+                                            <rect key="frame" x="539" y="8" width="53" height="25"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="24" id="bT0-8o-ks0"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Price" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7oZ-nw-xu9">
-                                            <rect key="frame" x="539" y="0.0" width="53" height="25"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="qty" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EAL-ve-fwx">
+                                            <rect key="frame" x="22" y="8" width="25" height="25"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="24" id="qEZ-iJ-hoE"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -258,6 +265,8 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="hfe-EN-Ctk" firstAttribute="leading" secondItem="IqJ-ll-w9n" secondAttribute="leading" id="DoT-IX-Aa3"/>
+                                        <constraint firstItem="TRh-NR-7kq" firstAttribute="top" secondItem="IqJ-ll-w9n" secondAttribute="topMargin" id="Grx-F6-xtO"/>
+                                        <constraint firstItem="7oZ-nw-xu9" firstAttribute="top" secondItem="IqJ-ll-w9n" secondAttribute="topMargin" id="JSc-pE-ZJX"/>
                                         <constraint firstItem="TRh-NR-7kq" firstAttribute="centerX" secondItem="IqJ-ll-w9n" secondAttribute="centerX" id="MHt-cr-jha"/>
                                         <constraint firstItem="EAL-ve-fwx" firstAttribute="top" secondItem="IqJ-ll-w9n" secondAttribute="topMargin" constant="-8" id="NpG-zL-Tbe"/>
                                         <constraint firstItem="EAL-ve-fwx" firstAttribute="leading" secondItem="IqJ-ll-w9n" secondAttribute="leadingMargin" constant="24" id="Nqk-Gp-uG3"/>
@@ -269,9 +278,12 @@
                                         <constraint firstItem="7oZ-nw-xu9" firstAttribute="trailing" secondItem="IqJ-ll-w9n" secondAttribute="trailingMargin" constant="-20" id="e2r-fN-vBf"/>
                                         <constraint firstItem="hfe-EN-Ctk" firstAttribute="top" secondItem="IqJ-ll-w9n" secondAttribute="top" constant="26" id="rD7-FF-tuq"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="TRh-NR-7kq" secondAttribute="trailing" constant="132" id="u9E-cZ-k0R"/>
+                                        <constraint firstItem="EAL-ve-fwx" firstAttribute="top" secondItem="IqJ-ll-w9n" secondAttribute="topMargin" id="vqw-bU-tYg"/>
                                     </constraints>
                                     <variation key="default">
                                         <mask key="constraints">
+                                            <exclude reference="NpG-zL-Tbe"/>
+                                            <exclude reference="Vc1-Vw-cQg"/>
                                             <exclude reference="dAK-KN-GmC"/>
                                         </mask>
                                     </variation>

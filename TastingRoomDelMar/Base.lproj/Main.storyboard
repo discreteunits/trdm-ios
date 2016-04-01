@@ -289,10 +289,10 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ZaA-uY-PYe">
-                                            <rect key="frame" x="8" y="8" width="225" height="126"/>
+                                            <rect key="frame" x="8" y="8" width="250" height="126"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="66y-OS-sOL">
-                                                    <rect key="frame" x="0.0" y="0.0" width="225" height="26"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="250" height="26"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="225" id="2VE-dY-XjU"/>
                                                         <constraint firstAttribute="height" constant="25" id="A00-Ck-ndc"/>
@@ -307,10 +307,10 @@
                                                     </variation>
                                                 </label>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T3Y-ip-WLf">
-                                                    <rect key="frame" x="0.0" y="26" width="225" height="64"/>
+                                                    <rect key="frame" x="0.0" y="26" width="250" height="64"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="225" id="fYx-jV-6S2"/>
+                                                        <constraint firstAttribute="width" constant="250" id="fYx-jV-6S2"/>
                                                         <constraint firstAttribute="height" constant="40" id="xSD-l9-Kwc"/>
                                                     </constraints>
                                                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim </string>
@@ -318,7 +318,7 @@
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Varietal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bEg-KJ-zLp">
-                                                    <rect key="frame" x="0.0" y="90" width="225" height="20"/>
+                                                    <rect key="frame" x="0.0" y="90" width="250" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="Oab-MD-MqL"/>
                                                     </constraints>
@@ -327,7 +327,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pricing" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YME-Rb-W7z">
-                                                    <rect key="frame" x="0.0" y="110" width="225" height="16"/>
+                                                    <rect key="frame" x="0.0" y="110" width="250" height="16"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="16" id="3gH-pe-skg"/>
                                                     </constraints>
@@ -434,13 +434,14 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="altNameTextView" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="89L-Jo-KEX">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="89L-Jo-KEX">
                                                     <rect key="frame" x="10" y="36" width="300" height="24"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="300" id="5B0-84-Fo7"/>
                                                         <constraint firstAttribute="height" constant="24" id="AJw-Sy-Jae"/>
                                                     </constraints>
+                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim </string>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
