@@ -123,7 +123,15 @@ class TabViewController: UIViewController {
     
     @IBAction func menu(sender: AnyObject) {
         
-        self.presentingViewController!.dismissViewControllerAnimated(true, completion: nil)
+//        if let parentVC = self.parentViewController {
+//            if let parentVC = parentVC as? PopoverViewController {
+//                parentVC.dismissViewControllerAnimated(true, completion: nil)
+//            }
+//        }
+        
+        self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+        
+        
         
         // Add Indicator
         TabManager.sharedInstance.addItemsIndicator()
@@ -137,9 +145,6 @@ class TabViewController: UIViewController {
             if let TabTableViewController = segue.destinationViewController as? TabTableViewController {
                 
                 self.TabTableViewControllerRef = TabTableViewController
-                
-                
-                
                 
             } 
             

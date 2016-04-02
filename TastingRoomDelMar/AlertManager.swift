@@ -259,6 +259,8 @@ class AlertManager: UIViewController {
             
 //            self.confirm(view)
             
+            
+            
             self.goToTab(view)
 
             if printFlag {
@@ -404,15 +406,52 @@ class AlertManager: UIViewController {
     // Go To Tab
     func goToTab(view: UIViewController) {
         
-        let mainStoryboard: UIStoryboard = UIStoryboard(name: "TabStoryboard", bundle: nil)
+        let tabStoryboard: UIStoryboard = UIStoryboard(name: "TabStoryboard", bundle: nil)
+        let vc = tabStoryboard.instantiateViewControllerWithIdentifier("Tab")
         
-        let vc = mainStoryboard.instantiateViewControllerWithIdentifier("Tab")
         
         // Calculate Totals
         TabManager.sharedInstance.totalCellCalculator()
         
-        view.presentViewController(vc, animated: true, completion: nil)
+//        let rootVC: UIViewController = TierIVViewController()
+//        
+//        view.dismissViewControllerAnimated(false, completion: {
+//            view.presentViewController(vc, animated: true, completion: nil)
+//        })
         
+//        delay(0.1) { () -> () in
+//            self.confirm(view)
+//
+//        }
+        
+        print("\(view.view.subviews)")
+
+        
+        view.presentViewController(vc, animated: true, completion: {
+            self.confirm(view)
+            
+        })
+
+        
+        
+//        view.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+//
+//    
+//        view.presentViewController(vc, animated: true, completion: nil)
+//        
+ 
+        
+
+        
+    }
+    
+    func delay(delay:Double, closure:()->()) {
+        dispatch_after(
+            dispatch_time(
+                DISPATCH_TIME_NOW,
+                Int64(delay * Double(NSEC_PER_SEC))
+            ),
+            dispatch_get_main_queue(), closure)
     }
     
     func confirm(view: UIViewController) {
