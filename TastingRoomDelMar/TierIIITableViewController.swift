@@ -25,6 +25,10 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
         tierIIIArray.removeAll()
         
         tierIIIQuery()
+        
+//        // Remove Animation Flash During Navigation "BACK" Selection
+//        tableView.alpha = 0
+        
     }
     
     override func viewDidLoad() {

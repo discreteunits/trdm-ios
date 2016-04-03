@@ -83,7 +83,26 @@ class AnimationManager: NSObject {
     
     // Fly Up Table Cells Animation
     func animateTable(tableView: UITableView) {
+        
         tableView.reloadData()
+
+        
+//        UIView.animateWithDuration(0.2, delay: 0.0, options: .CurveEaseInOut, animations: { () -> Void in
+//            
+//            tableView.alpha = 1
+//            
+//            }) { (succeeded: Bool) -> Void in
+//                
+//                if succeeded {
+//                    tableView.hidden = false
+//               
+//
+//                
+//                }
+//                
+//        }
+        
+
         
         let cells = tableView.visibleCells
         let tableHeight: CGFloat = tableView.bounds.size.height
@@ -100,8 +119,11 @@ class AnimationManager: NSObject {
         
         for a in cells {
             let cell: UITableViewCell = a as UITableViewCell
-            UIView.animateWithDuration(0.5, delay: 0.05 * Double(index), usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: UIViewAnimationOptions.CurveEaseInOut , animations: {
+            UIView.animateWithDuration(1.2, delay: 0.05 * Double(index), usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: UIViewAnimationOptions.CurveEaseInOut , animations: {
+                
                 cell.transform = CGAffineTransformMakeTranslation(0, 0);
+                
+                
                 }, completion: nil)
             
             index = index + 1
@@ -109,5 +131,39 @@ class AnimationManager: NSObject {
         }
         
     }
+    
+    func animateTableOut(tableView: UITableView) {
+        
+        
+
+        let cells = tableView.visibleCells
+        let tableHeight: CGFloat = tableView.bounds.size.height
+        
+        for i in cells {
+            let cell: UITableViewCell = i as UITableViewCell
+            cell.transform = CGAffineTransformMakeTranslation(0, 0)
+        }
+        
+        var index = cells.count
+        
+        // Original Settings
+        // 1.5, delay: 0.05, usingSpringWithDamping: 0.8
+        
+        for a in cells {
+            let cell: UITableViewCell = a as UITableViewCell
+            UIView.animateWithDuration(1.2, delay: 0.05 * Double(index), usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: UIViewAnimationOptions.CurveEaseInOut , animations: {
+                
+                cell.transform = CGAffineTransformMakeTranslation(0, tableHeight);
+                
+                
+                }, completion: nil)
+            
+            index = index - 1
+            
+        }
+        
+    }
+    
+
  
 }

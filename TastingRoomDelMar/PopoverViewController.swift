@@ -42,6 +42,8 @@ class PopoverViewController: UITableViewController {
     
 
 // --------------------
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -49,6 +51,8 @@ class PopoverViewController: UITableViewController {
         delay(0.1) { () -> () in
             self.tableView.reloadData()
         }
+        
+        
         
     }
     

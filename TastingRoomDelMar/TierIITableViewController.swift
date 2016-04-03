@@ -25,6 +25,10 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
         
         tierIIQuery()
         
+        
+//        // Remove Animation Flash During Navigation "BACK" Selection
+//        tableView.alpha = 0
+//        
     }
     
     override func viewDidLoad() {
