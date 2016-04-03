@@ -393,8 +393,6 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        
-        
         if segue.identifier == "tierII" {
             self.tierIArray.removeAll()
         }
@@ -415,7 +413,7 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         
     }
     
-// Facebook Graph Requests
+    // Facebook Graph Requests
     func getFBUserData() {
         let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, gender, email, birthday"])
         graphRequest.startWithCompletionHandler( { (connection, result, error) -> Void in

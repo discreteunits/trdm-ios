@@ -21,6 +21,7 @@ class TabViewController: UIViewController {
     
     var tab = TabManager.sharedInstance.currentTab
     var orders = CardManager.sharedInstance.currentCustomer
+    
 
 // ---------------
     override func viewDidLoad() {
@@ -36,62 +37,8 @@ class TabViewController: UIViewController {
             print("Orders: \(orders.orderId.count)")
             print("-----------------------------")
         }
-    
-        // Default Empty Tab View
-        if tab.lines.count < 1 {
-            
-//            if orders.orderId.count < 1 {
-            
-            let tabView = self.view
-            // Screen Bounds
-            let windowWidth = self.view.bounds.size.width
-            let windowHeight = self.view.bounds.size.height
-            // Create View
-            let windowView = UIView(frame: CGRectMake(0, 0, windowWidth, windowHeight))
-            windowView.backgroundColor = UIColor.whiteColor()
-            windowView.layer.zPosition = 98
-            // Create TRDM Logo
-            let TRDMLogo = "secondary-logomark-03_rgb_600_600"
-            let TRDMImage = UIImage(named: TRDMLogo)
-            let TRDMImageView = UIImageView(image: TRDMImage)
-            TRDMImageView.frame = CGRectMake(0, 0, windowWidth * 0.8, windowWidth * 0.8)
-            TRDMImageView.frame.origin.y = windowHeight / 6
-            TRDMImageView.frame.origin.x = windowWidth * 0.1
-            TRDMImageView.alpha = 0.1
-            TRDMImageView.layer.zPosition = 99
-            // Create Message Text View
-            let messageTextView = UITextView(frame: CGRectMake(0, 0, windowWidth * 0.7, windowWidth / 2))
-            messageTextView.frame.origin.y = windowHeight * 0.65
-            messageTextView.frame.origin.x = windowWidth * 0.15
-            messageTextView.text = "Looks like you don't have any items on your tab."
-            messageTextView.font = UIFont.basicFont(16)
-            messageTextView.textColor = UIColor.grayColor()
-            messageTextView.userInteractionEnabled = false
-            messageTextView.textAlignment = .Center
-            messageTextView.layer.zPosition = 99
-            // Create Back To Menu Button
-            let menuButton = UIButton(frame: CGRectMake(0, 0, windowWidth * 0.8, windowHeight / 10))
-            menuButton.frame.origin.y = windowHeight * 0.75
-            menuButton.frame.origin.x = windowWidth * 0.1
-            menuButton.setTitle("Back to Menu", forState: .Normal)
-            menuButton.layer.backgroundColor = UIColor(red: 242/255.0, green: 242/255.0, blue: 242/255.0, alpha: 1.0).CGColor
-            menuButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
-            menuButton.titleLabel?.font = UIFont.scriptFont(24)
-            menuButton.layer.cornerRadius = 12.0
-            menuButton.clipsToBounds = true
-            menuButton.addTarget(self, action: "backToMenu", forControlEvents: UIControlEvents.TouchUpInside)
-            menuButton.layer.zPosition = 99
-            
-            
-            // Add Created Views
-            tabView.addSubview(windowView)
-            tabView.addSubview(TRDMImageView)
-            tabView.addSubview(messageTextView)
-            tabView.addSubview(menuButton)
-            
-//        }
         
-        }
+        defaultScreen()
 
         // NAV BAR STYLES
         if let navBar = navigationController?.navigationBar {
@@ -106,6 +53,7 @@ class TabViewController: UIViewController {
         }
 
     }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -156,5 +104,67 @@ class TabViewController: UIViewController {
 
 
 extension TabViewController: TabTableViewDelegate {
+    
+    
+    func defaultScreen() {
+        
+        
+        // Default Empty Tab View
+        if TabManager.sharedInstance.currentTab.lines.count < 1 {
+            
+            //            if orders.orderId.count < 1 {
+            
+            let tabView = self.view
+            // Screen Bounds
+            let windowWidth = self.view.bounds.size.width
+            let windowHeight = self.view.bounds.size.height
+            // Create View
+            let windowView = UIView(frame: CGRectMake(0, 0, windowWidth, windowHeight))
+            windowView.backgroundColor = UIColor.whiteColor()
+            windowView.layer.zPosition = 98
+            // Create TRDM Logo
+            let TRDMLogo = "secondary-logomark-03_rgb_600_600"
+            let TRDMImage = UIImage(named: TRDMLogo)
+            let TRDMImageView = UIImageView(image: TRDMImage)
+            TRDMImageView.frame = CGRectMake(0, 0, windowWidth * 0.8, windowWidth * 0.8)
+            TRDMImageView.frame.origin.y = windowHeight / 6
+            TRDMImageView.frame.origin.x = windowWidth * 0.1
+            TRDMImageView.alpha = 0.1
+            TRDMImageView.layer.zPosition = 99
+            // Create Message Text View
+            let messageTextView = UITextView(frame: CGRectMake(0, 0, windowWidth * 0.7, windowWidth / 2))
+            messageTextView.frame.origin.y = windowHeight * 0.65
+            messageTextView.frame.origin.x = windowWidth * 0.15
+            messageTextView.text = "Looks like you don't have any items on your tab."
+            messageTextView.font = UIFont.basicFont(16)
+            messageTextView.textColor = UIColor.grayColor()
+            messageTextView.userInteractionEnabled = false
+            messageTextView.textAlignment = .Center
+            messageTextView.layer.zPosition = 99
+            // Create Back To Menu Button
+            let menuButton = UIButton(frame: CGRectMake(0, 0, windowWidth * 0.8, windowHeight / 10))
+            menuButton.frame.origin.y = windowHeight * 0.75
+            menuButton.frame.origin.x = windowWidth * 0.1
+            menuButton.setTitle("Back to Menu", forState: .Normal)
+            menuButton.layer.backgroundColor = UIColor(red: 242/255.0, green: 242/255.0, blue: 242/255.0, alpha: 1.0).CGColor
+            menuButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+            menuButton.titleLabel?.font = UIFont.scriptFont(24)
+            menuButton.layer.cornerRadius = 12.0
+            menuButton.clipsToBounds = true
+            menuButton.addTarget(self, action: "backToMenu", forControlEvents: UIControlEvents.TouchUpInside)
+            menuButton.layer.zPosition = 99
+            
+            
+            // Add Created Views
+            tabView.addSubview(windowView)
+            tabView.addSubview(TRDMImageView)
+            tabView.addSubview(messageTextView)
+            tabView.addSubview(menuButton)
+            
+            //        }
+            
+        }
+        
+    }
     
 }

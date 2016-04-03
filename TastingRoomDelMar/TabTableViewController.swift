@@ -13,7 +13,7 @@ import ParseUI
 
 @objc
 protocol TabTableViewDelegate {
-    
+    func defaultScreen()
 }
 
 class TabTableViewController: UITableViewController, NSFetchedResultsControllerDelegate, UIPopoverPresentationControllerDelegate {
@@ -28,6 +28,8 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
     @IBOutlet var tabTableView: UITableView!
     
     var TableNumberViewControllerRef: TableNumberViewController?
+    
+    var delegate: TabTableViewDelegate?
     
 // --------------------
     override func viewWillAppear(animated: Bool) {
@@ -124,9 +126,9 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
             totalCell.contentView.tag = indexPath.row
             
             // Assignments
-            totalCell.subtotalValueLabel?.text = "\(tab.subtotal)"
-            totalCell.taxValueLabel?.text = "\(tab.totalTax)"
-            totalCell.totalValueLabel?.text = "\(tab.grandTotal)"
+            totalCell.subtotalValueLabel?.text = "\(TabManager.sharedInstance.currentTab.subtotal)"
+            totalCell.taxValueLabel?.text = "\(TabManager.sharedInstance.currentTab.totalTax)"
+            totalCell.totalValueLabel?.text = "\(TabManager.sharedInstance.currentTab.grandTotal)"
             
             // Styles
             totalCell.subtotalLabel.font = UIFont.headerFont(18)
@@ -270,31 +272,34 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
         
         if editingStyle == .Delete {
             
-            tableView.beginUpdates()
-            
+            self.tableView.beginUpdates()
+
+
             // Remove Line Item From Tab Struct
             TabManager.sharedInstance.currentTab.lines.removeAtIndex(indexPath.row)
             // Remove Row From Table
             self.tableView.deleteRowsAtIndexPaths(NSArray(object: NSIndexPath(forRow: indexPath.row, inSection: 0)) as! [NSIndexPath], withRowAnimation: UITableViewRowAnimation.Left)
-
-            TabManager.sharedInstance.totalCellCalculator()
             
-            tableView.endUpdates()
+            if TabManager.sharedInstance.currentTab.lines.count == 0 {
+                self.dismissViewControllerAnimated(false, completion: nil)
+            }
 
-            
-            self.tableView.reloadData()
 
         }
+        
+        self.tableView.endUpdates()
+
         
         rows = calculateRows()
         TabManager.sharedInstance.totalCellCalculator()
         
         self.tableView.reloadData()
 
-        
-        
+
 
     }
+    
+
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
