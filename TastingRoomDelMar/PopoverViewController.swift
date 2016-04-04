@@ -42,17 +42,21 @@ class PopoverViewController: UITableViewController {
     
 
 // --------------------
-
+    override func viewWillAppear(animated: Bool) {
+        
+        createAdditions()
+        
+        //        self.tableView.reloadData()
+        
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         delay(0.1) { () -> () in
             self.tableView.reloadData()
         }
-        
-        
         
     }
     
@@ -69,14 +73,7 @@ class PopoverViewController: UITableViewController {
         super.didReceiveMemoryWarning()
     }
     
-    override func viewWillAppear(animated: Bool) {
-        
-        createAdditions()
-        
-//        self.tableView.reloadData()
-   
-    }
-    
+
     func createAdditions() {
         
         // Create Additions with Values

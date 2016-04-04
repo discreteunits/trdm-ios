@@ -239,7 +239,7 @@ class AlertManager: UIViewController {
     
     // Added Successfully
     @available(iOS 8.0, *)
-    func addedSuccess(view: UIViewController, title: String, message: String) {
+    func addedSuccessWithTab(view: UIViewController, title: String, message: String) {
         
         // Create Controller
         let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
@@ -276,6 +276,32 @@ class AlertManager: UIViewController {
         view.presentViewController(alert, animated: true, completion: nil)
         
     }
+    
+    // Added Successfully
+    @available(iOS 8.0, *)
+    func addedSuccess(view: UIViewController, title: String, message: String) {
+        
+        // Create Controller
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        alert.view.tintColor = UIColor.primaryGreenColor()
+        
+        // Create Actions
+        let goBackToMenu = UIAlertAction(title: "Sounds Good", style: .Default, handler: { (action) -> Void in
+            self.confirm(view)
+            
+            if printFlag {
+                print("Okay Selected")
+            }
+            
+        })
+        
+        // Add Actions
+        alert.addAction(goBackToMenu)
+        
+        view.presentViewController(alert, animated: true, completion: nil)
+        
+    }
+
     
     // Whoops Select Modifiers Please
     @available(iOS 8.0, *)

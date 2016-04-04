@@ -19,21 +19,25 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
     var nav: UINavigationBar?
     
     // ------------
+    override func viewWillDisappear(animated: Bool) {
+        
+        AnimationManager.sharedInstance.fade(self.tableView, alpha: 0.0)
+        
+    }
+    
     override func viewWillAppear(animated: Bool) {
         
-        tierIIArray.removeAll()
+        AnimationManager.sharedInstance.fade(self.tableView, alpha: 1.0)
         
-        tierIIQuery()
+        self.tierIIArray.removeAll()
         
-        
-//        // Remove Animation Flash During Navigation "BACK" Selection
-//        tableView.alpha = 0
-//        
+        self.tierIIQuery()
+
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-          
+        
         // Items Indicator
         TabManager.sharedInstance.addItemsIndicator()
         
@@ -156,7 +160,7 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
         // Dispose of any resources that can be recreated.
     }
 
-// MARK: - Table view data source
+    // MARK: - Table view data source
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -188,12 +192,12 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
         
     }
 
-// FLYOUT TRIGGER
+    // FLYOUT TRIGGER
     @IBAction func toggleSideMenu(sender: AnyObject) {
         toggleSideMenuView()
     }
     
-// ADD INDEX TO ROUTE
+    // ADD INDEX TO ROUTE
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
  
         route.append(tierIIArray[indexPath.row])

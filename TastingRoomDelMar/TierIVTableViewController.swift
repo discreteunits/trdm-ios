@@ -16,6 +16,7 @@ protocol TierIVTableViewDelegate {
     func tagsArrayCreation()
     func tierIVCollectionQuery()
     func tierIVTableQuery()
+    func getViewBounds() -> CGRect
 }
 
 class TierIVTableViewController: UITableViewController, UIPopoverPresentationControllerDelegate {
@@ -298,6 +299,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             popoverHeight = CGFloat(popoverHeightCalculation)
             popoverWidth = tableView.bounds.size.width
             vc.preferredContentSize = CGSizeMake(popoverWidth, popoverHeight)
+            
 
             
             AnimationManager.sharedInstance.opaqueWindow(self.parentViewController!)
@@ -320,12 +322,19 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             }
             // ----- END -----
             
-            
             var controller = vc.popoverPresentationController
             controller!.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
             
             if controller != nil {
+                
+                let bounds: CGRect = (delegate?.getViewBounds())!
+                
+                let position = (CGFloat(bounds.height) - popoverHeight) - 50
             
+//                controller!.sourceRect = CGRectMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds), 0, 0)
+
+                controller!.sourceRect = CGRectMake(0, position, 0, 0)
+                
                 controller?.delegate = self
                             
             }

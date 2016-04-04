@@ -29,6 +29,9 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
     @IBOutlet weak var tierIVTableContainer: UIView!
     @IBOutlet weak var tierIVCollectionContainer: UIView!
     
+    var bounds: CGRect!
+
+    
 // ---------------
     override func viewWillAppear(animated: Bool) {
         
@@ -62,6 +65,8 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        bounds = self.view.bounds
         
         // Items Indicator
         TabManager.sharedInstance.addItemsIndicator()
@@ -108,6 +113,7 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
             self.navigationItem.leftBarButtonItem!.setTitleTextAttributes( [NSFontAttributeName: UIFont(name: "NexaRustScriptL-00", size: 20)!], forState: UIControlState.Normal)
             
         }
+        
     }
     
     // NAV BACK BUTTON ACTION
@@ -126,6 +132,7 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
         }
         
         self.navigationController?.popViewControllerAnimated(true)
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -206,6 +213,13 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
 }
 
 extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDelegate {
+    
+    func getViewBounds()  -> CGRect {
+                
+        return bounds
+        
+    }
+    
     
     func reloadTable() {
         

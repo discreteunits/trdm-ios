@@ -20,14 +20,21 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
     
 
     // --------------------
+    override func viewWillDisappear(animated: Bool) {
+        
+        tableView.reloadData()
+        
+        AnimationManager.sharedInstance.fade(self.tableView, alpha: 0.0)
+        
+    }
+    
     override func viewWillAppear(animated: Bool) {
+        
+        AnimationManager.sharedInstance.fade(self.tableView, alpha: 1.0)
         
         tierIIIArray.removeAll()
         
         tierIIIQuery()
-        
-//        // Remove Animation Flash During Navigation "BACK" Selection
-//        tableView.alpha = 0
         
     }
     
@@ -202,7 +209,6 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
             }
             print("-----------------------")
         }
-
         
         self.performSegueWithIdentifier("tierIV", sender: self)
         

@@ -35,18 +35,18 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
 // ------------------------------
     override func viewWillDisappear(animated: Bool) {
         
-        
+        AnimationManager.sharedInstance.fade(self.tableView, alpha: 0.0)
+
     }
     
     override func viewWillAppear(animated: Bool) {
         
-        tierIArray.removeAll()
+        AnimationManager.sharedInstance.fade(self.tableView, alpha: 1.0)
+        
+        self.tierIArray.removeAll()
         
         // TIER 1 QUERY
-        tierIQuery()
-
-//        // Remove Animation Flash During Navigation "BACK" Selection
-//        tableView.alpha = 0
+        self.tierIQuery()
         
     }
     
@@ -283,7 +283,6 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         
     }
     
-
     
     // TIER 1 QUERY
     func tierIQuery() {
@@ -397,8 +396,6 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         
 
         self.performSegueWithIdentifier("tierII", sender: self)
-   
-        
 
     }
     
@@ -408,12 +405,7 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         
         if segue.identifier == "tierII" {
             
-            
-//            AnimationManager.sharedInstance.animateTableOut(self.tableView)
-
-            
             self.tierIArray.removeAll()
-            
             
         }
     
