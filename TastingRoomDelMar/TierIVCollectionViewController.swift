@@ -35,14 +35,15 @@ class TierIVCollectionViewController: UICollectionViewController {
 // ------------------
     override func viewWillAppear(animated: Bool) {
         
-        // IF NOT HARVEST
-        if route[1]["name"] as! String != "Harvest" {
-        
-        self.collectionView!.frame.origin.y = -self.collectionView!.bounds.size.height
-
-        showCollection()
-        
-        }
+        // Animate Collection Cells
+//        // IF NOT HARVEST
+//        if route[1]["name"] as! String != "Harvest" {
+//        
+//        self.collectionView!.frame.origin.y = -self.collectionView!.bounds.size.height
+//
+//        showCollection()
+//        
+//        }
         
     }
     

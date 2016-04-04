@@ -267,8 +267,21 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         
     }
     
-    
-    func processHarvestAdditions() {
+    func getVarietal() {
+        
+        if let productCategories = self.product["categories"] as? [PFObject] {
+            
+            for categoryObject in productCategories {
+                
+                if self.tierIVCollectionArray.contains(categoryObject) {
+                    
+                    self.productVarietal = categoryObject as PFObject!
+                    
+                }
+                
+            }
+            
+        }
         
     }
     
@@ -304,7 +317,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             
             AnimationManager.sharedInstance.opaqueWindow(self.parentViewController!)
 
-            
+            getVarietal()
             
             // Data to be passed to popover
             vc.popoverItem = product
@@ -327,18 +340,15 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             
             if controller != nil {
                 
-                let bounds: CGRect = (delegate?.getViewBounds())!
+                // CENTER POPOVER
                 
+                let bounds: CGRect = (delegate?.getViewBounds())!
                 let position = (CGFloat(bounds.height) - popoverHeight) - 50
             
-//                controller!.sourceRect = CGRectMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds), 0, 0)
-
                 controller!.sourceRect = CGRectMake(0, position, 0, 0)
-                
                 controller?.delegate = self
                             
             }
-            
 
         }
         
