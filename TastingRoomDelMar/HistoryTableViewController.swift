@@ -24,7 +24,6 @@ class HistoryTableViewController: UITableViewController {
     
     var orderToPass: PFObject!
     
-    var lineItemNames = [String]()
 
     
     // ----------------------
@@ -130,13 +129,11 @@ class HistoryTableViewController: UITableViewController {
 
         if segue.identifier == "historyDetail" {
             
-            orderLineItemQuery(orderToPass)
 
             
             let vc = segue.destinationViewController as! HistoryDetailTableViewController
             
             vc.order = orderToPass
-            vc.lineItemNames = lineItemNames
             
         }
 
@@ -188,50 +185,6 @@ class HistoryTableViewController: UITableViewController {
                 }
                 
                 AnimationManager.sharedInstance.animateTable(self.tableView)
-                
-            } else {
-                
-                // Log details of the failure
-                if printFlag {
-                    print("Error: \(error!) \(error!.userInfo)")
-                }
-                
-            }
-            
-        }
-        
-    }
-    
-    // Order Query
-    func orderLineItemQuery(orderToPass: PFObject)  {
-        
-        let lineObjectId = orderToPass["lineItems"]
-        
-        let query:PFQuery = PFQuery(className:"Product")
-        query.whereKey("user", equalTo: String(lineObjectId))
-        query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
-            
-            if error == nil {
-                
-                // The find succeeded.
-                if printFlag {
-                    print("-----------------------")
-                    print("Order LineItem query retrieved \(objects!.count) objects.")
-                }
-                
-                // Do something with the found objects
-                for object in objects! as [PFObject]! {
-                    
-                    let objectName = object["name"] as! String
-                    
-                    self.lineItemNames.append(objectName)
-                    
-                }
-                
-                if printFlag {
-                    print("\(self.lineItemNames).")
-                    print("-----------------------")
-                }
                 
             } else {
                 

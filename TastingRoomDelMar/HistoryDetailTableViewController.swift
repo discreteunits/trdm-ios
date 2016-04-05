@@ -19,32 +19,58 @@ class HistoryDetailTableViewController: UITableViewController {
     
     var lineItemNames = [String]()
     
+    var nav: UINavigationBar?
     
+
+    @IBOutlet weak var navigationTitle: UINavigationItem!
+
     
     // ---------
+    override func viewWillAppear(animated: Bool) {
+        
+        orderLineItemQuery(order)
+        print("Line Item Names: \(lineItemNames)")
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        print("Order Passed: \(order)")
-
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+        
+        if let navBar = navigationController?.navigationBar {
+            
+            nav = navBar
+            
+            navigationTitle.title = "Order #" + String(order["lightspeedId"])
+            nav?.barStyle = UIBarStyle.Black
+            nav?.tintColor = UIColor.whiteColor()
+            nav?.titleTextAttributes = [ NSFontAttributeName: UIFont (name: "NexaRustScriptL-00", size: 24)!]
+        
+        self.navigationItem.hidesBackButton = true
+        let newBackButton = UIBarButtonItem(title: "< History", style: UIBarButtonItemStyle.Bordered, target: self, action: "back:")
+        self.navigationItem.leftBarButtonItem = newBackButton
+        self.navigationItem.leftBarButtonItem!.setTitleTextAttributes( [NSFontAttributeName: UIFont(name: "NexaRustScriptL-00", size: 20)!], forState: UIControlState.Normal)
+        
+        }
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
+    // NAV BACK BUTTON ACTION
+    func back(sender: UIBarButtonItem) {
+        
+        self.navigationController?.popViewControllerAnimated(true)
+        
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     // MARK: - Table view data source
-
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
+
         return 1
+        
     }
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -63,9 +89,8 @@ class HistoryDetailTableViewController: UITableViewController {
         rows = order["lineItems"].count + 1
         totalRow = rows - 1
         
-        print("\(order["lineItems"].count) line items found for this order.")
-        
         return rows
+        
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -78,14 +103,19 @@ class HistoryDetailTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("HistoryDetailTableCell", forIndexPath: indexPath) as! HistoryDetailTableViewCell
             
             // Assignments
-            cell.qtyLabel.text = String(order["orderItems"][indexPath.row]["amount"])
+            cell.qtyLabel.text = String(order["orderItems"][indexPath.row]["amount"] as! Int)
             cell.itemLabel.text = lineItemNames[indexPath.row]
-            cell.priceLabel.text = String(order["orderItems"][indexPath.row]["totalPrice"])
+            cell.priceLabel.text = String(order["orderItems"][indexPath.row]["totalPrice"] as! Double)
             
             // Styles
             cell.qtyLabel.font = UIFont.headerFont(18)
-            cell.itemLabel.font = UIFont.headerFont(20)
+            cell.itemLabel.font = UIFont.headerFont(28)
             cell.priceLabel.font = UIFont.headerFont(18)
+            
+            // Functionality
+            cell.selectionStyle = UITableViewCellSelectionStyle.None
+            cell.userInteractionEnabled = false
+            
             
             return cell
             
@@ -157,6 +187,96 @@ class HistoryDetailTableViewController: UITableViewController {
     */
 
     
+//    // Order Query
+//    func orderLineItemQuery(orderToPass: PFObject)  {
+//        
+//        
+//        var lineItemObjectIds = [Int]()
+//        
+//        for lineItem in orderToPass["orderItems"] as! [AnyObject] {
+//            lineItemObjectIds.append(lineItem["productId"]! as! Int)
+//        }
+//        
+//        print("lineItemObjectIds: \(lineItemObjectIds)")
+//        
+//        
+//        
+//        let query:PFQuery = PFQuery(className:"Product")
+////        query.includeKey("lightspeedId")
+//        query.whereKey("lightspeedId", containedIn: lineItemObjectIds)
+//        query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
+//            
+//            if error == nil {
+//                
+//                // The find succeeded.
+//                if printFlag {
+//                    print("-----------------------")
+//                    print("Order LineItem query retrieved \(objects!.count) objects.")
+//                }
+//                
+//                // Do something with the found objects
+//                for object in objects! as [PFObject]! {
+//                    
+//                    let objectName = object["name"] as! String
+//                    
+//                    print("ObjectName in query: \(objectName)")
+//                    
+//                    self.lineItemNames.append(objectName)
+//                    
+//                }
+//                
+//                if printFlag {
+//                    print("\(self.lineItemNames).")
+//                    print("-----------------------")
+//                }
+//                
+//            } else {
+//                
+//                // Log details of the failure
+//                if printFlag {
+//                    print("Error: \(error!) \(error!.userInfo)")
+//                }
+//                
+//            }
+//            
+//        }
+//        
+//    }
 
+    
+    
+    // Order Query
+    func orderLineItemQuery(orderToPass: PFObject)  {
+        
+        
+        var orderItemObjectIds = [Int]()
+        
+        for orderItem in orderToPass["orderItems"] as! [AnyObject] {
+            orderItemObjectIds.append(orderItem["productId"]! as! Int)
+        }
+        
+        print("lineItemObjectIds: \(orderItemObjectIds)")
+        
+        var products: [PFObject]?
+        
+        let query:PFQuery = PFQuery(className:"Product")
+        //        query.includeKey("lightspeedId")
+        query.whereKey("lightspeedId", containedIn: orderItemObjectIds)
+        
+        do {
+            products = try query.findObjects() as [PFObject]
+        } catch _ {
+            products = nil
+        }
+        
+        for product in products! {
+            
+            lineItemNames.append(product["name"] as! String)
+            
+        }
+        
+        print("Query completed, creating: \(lineItemNames)")
+        
+    }
     
 }

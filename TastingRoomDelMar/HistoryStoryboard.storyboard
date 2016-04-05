@@ -108,7 +108,7 @@
             </objects>
             <point key="canvasLocation" x="-1437" y="-940"/>
         </scene>
-        <!--History Detail Table View Controller-->
+        <!--Title-->
         <scene sceneID="Q9W-cu-EiW">
             <objects>
                 <tableViewController id="gtT-yV-xqt" customClass="HistoryDetailTableViewController" customModule="TastingRoomDelMar" customModuleProvider="target" sceneMemberID="viewController">
@@ -149,7 +149,7 @@
                                         <constraint firstItem="wI8-7w-foL" firstAttribute="centerY" secondItem="bSB-DR-a8k" secondAttribute="centerY" id="Aga-mt-rhK"/>
                                         <constraint firstItem="psc-z8-JwM" firstAttribute="centerX" secondItem="bSB-DR-a8k" secondAttribute="centerX" id="YKD-vG-zfB"/>
                                         <constraint firstItem="9dl-8F-MdM" firstAttribute="leading" secondItem="bSB-DR-a8k" secondAttribute="leadingMargin" constant="8" id="cs1-gH-UT8"/>
-                                        <constraint firstItem="wI8-7w-foL" firstAttribute="trailing" secondItem="bSB-DR-a8k" secondAttribute="trailingMargin" constant="16" id="mXp-YY-YrS"/>
+                                        <constraint firstItem="wI8-7w-foL" firstAttribute="trailing" secondItem="bSB-DR-a8k" secondAttribute="trailingMargin" constant="-16" id="mXp-YY-YrS"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -185,7 +185,7 @@
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="pUd-Vb-AGG" firstAttribute="trailing" secondItem="ASw-1c-ohR" secondAttribute="trailingMargin" constant="16" id="3Dh-hz-s9O"/>
+                                        <constraint firstItem="pUd-Vb-AGG" firstAttribute="trailing" secondItem="ASw-1c-ohR" secondAttribute="trailingMargin" constant="-16" id="3Dh-hz-s9O"/>
                                         <constraint firstItem="ipi-o5-euR" firstAttribute="centerY" secondItem="ASw-1c-ohR" secondAttribute="centerY" id="5ON-TT-Xkx"/>
                                         <constraint firstItem="ipi-o5-euR" firstAttribute="leading" secondItem="ASw-1c-ohR" secondAttribute="leadingMargin" constant="8" id="JIa-H0-Cf4"/>
                                         <constraint firstItem="Ilx-lK-Ofm" firstAttribute="centerX" secondItem="ASw-1c-ohR" secondAttribute="centerX" id="p4e-ip-Qjq"/>
@@ -221,7 +221,7 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="5Wx-Bs-CP9" firstAttribute="centerY" secondItem="czn-cx-L8m" secondAttribute="centerY" id="32O-9W-QdN"/>
-                                        <constraint firstItem="adG-nF-CoG" firstAttribute="trailing" secondItem="czn-cx-L8m" secondAttribute="trailingMargin" constant="16" id="5A2-jS-U94"/>
+                                        <constraint firstItem="adG-nF-CoG" firstAttribute="trailing" secondItem="czn-cx-L8m" secondAttribute="trailingMargin" constant="-16" id="5A2-jS-U94"/>
                                         <constraint firstItem="adG-nF-CoG" firstAttribute="centerY" secondItem="czn-cx-L8m" secondAttribute="centerY" id="lFf-0A-iR8"/>
                                         <constraint firstItem="5Wx-Bs-CP9" firstAttribute="leading" secondItem="czn-cx-L8m" secondAttribute="leadingMargin" constant="8" id="pP4-6u-owR"/>
                                     </constraints>
@@ -237,6 +237,10 @@
                             <outlet property="delegate" destination="gtT-yV-xqt" id="4be-Sc-C45"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Title" id="cxG-ds-Pl5"/>
+                    <connections>
+                        <outlet property="navigationTitle" destination="cxG-ds-Pl5" id="GxM-wS-WyK"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b2Q-Yj-ShD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
