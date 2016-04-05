@@ -52,7 +52,7 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
             
             nav = navBar
             
-            navigationTitle.title = route[1]["name"] as! String
+            navigationTitle.title = route[1]["name"] as? String
             nav?.barStyle = UIBarStyle.Black
             nav?.tintColor = UIColor.whiteColor()
             nav?.titleTextAttributes = [ NSFontAttributeName: UIFont (name: "NexaRustScriptL-00", size: 24)!]
@@ -61,7 +61,7 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
             let lastWindow = route[0]["name"]
             
             self.navigationItem.hidesBackButton = true
-            let newBackButton = UIBarButtonItem(title: "< \(lastWindow)", style: UIBarButtonItemStyle.Bordered, target: self, action: "back:")
+            let newBackButton = UIBarButtonItem(title: "< \(lastWindow)", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(TierIIITableViewController.back(_:)))
             self.navigationItem.leftBarButtonItem = newBackButton
             self.navigationItem.leftBarButtonItem!.setTitleTextAttributes( [NSFontAttributeName: UIFont(name: "NexaRustScriptL-00", size: 20)!], forState: UIControlState.Normal)
             
@@ -74,7 +74,7 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
         route.removeAtIndex(1)
         
         if printFlag {
-            for var index = 0; index < route.count; ++index {
+            for index in 0 ..< route.count {
                 print("The Route has been decreased to: \(route[index]["name"]).")
             }
             print("-----------------------")
@@ -204,7 +204,7 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
         route.append(tierIIIArray[indexPath.row])
         
         if printFlag {
-            for var index = 0; index < route.count; ++index {
+            for index in 0 ..< route.count {
                 print("The Route has been increased to: \(route[index]["name"]).")
             }
             print("-----------------------")

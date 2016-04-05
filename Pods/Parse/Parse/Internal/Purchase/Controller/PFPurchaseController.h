@@ -11,10 +11,7 @@
 
 #import <Parse/PFConstants.h>
 
-#import "PFDataProvider.h"
-
-PF_OSX_UNAVAILABLE_WARNING
-PF_WATCH_UNAVAILABLE_WARNING
+#import "PFMacros.h"
 
 @class BFTask PF_GENERIC(__covariant BFGenericType);
 @class PFFileManager;
@@ -25,9 +22,10 @@ PF_WATCH_UNAVAILABLE_WARNING
 @class SKPaymentQueue;
 @class SKPaymentTransaction;
 
-PF_OSX_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPurchaseController : NSObject
+@interface PFPurchaseController : NSObject
 
-@property (nonatomic, weak, readonly) id<PFCommandRunnerProvider, PFFileManagerProvider> dataSource;
+@property (nonatomic, strong, readonly) id<PFCommandRunning> commandRunner;
+@property (nonatomic, strong, readonly) PFFileManager *fileManager;
 @property (nonatomic, strong, readonly) NSBundle *bundle;
 
 @property (nonatomic, strong) SKPaymentQueue *paymentQueue;
@@ -40,11 +38,13 @@ PF_OSX_UNAVAILABLE PF_WATCH_UNAVAILABLE @interface PFPurchaseController : NSObje
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;
-- (instancetype)initWithDataSource:(id<PFCommandRunnerProvider, PFFileManagerProvider>)dataSource
-                            bundle:(NSBundle *)bundle NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithCommandRunner:(id<PFCommandRunning>)commandRunner
+                          fileManager:(PFFileManager *)fileManager
+                               bundle:(NSBundle *)bundle NS_DESIGNATED_INITIALIZER;
 
-+ (instancetype)controllerWithDataSource:(id<PFCommandRunnerProvider, PFFileManagerProvider>)dataSource
-                                  bundle:(NSBundle *)bundle;
++ (instancetype)controllerWithCommandRunner:(id<PFCommandRunning>)commandRunner
+                                fileManager:(PFFileManager *)fileManager
+                                     bundle:(NSBundle *)bundle;
 
 ///--------------------------------------
 /// @name Products

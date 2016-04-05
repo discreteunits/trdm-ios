@@ -44,7 +44,7 @@ static NSString *const PFLogInViewDefaultTwitterButtonImageName = @"twitter_icon
 + (PFActionButtonConfiguration *)_defaultSignUpButtonConfiguration {
     PFActionButtonConfiguration *configuration = [[PFActionButtonConfiguration alloc] initWithBackgroundImageColor:[PFColor signupButtonBackgroundColor]
                                                                                                              image:nil];
-    NSString *title = PFLocalizedString(@"Sign Up", @"Sign Up");
+    NSString *title = NSLocalizedString(@"Sign Up", @"Sign Up");
     [configuration setTitle:title forButtonStyle:PFActionButtonStyleNormal];
     [configuration setTitle:title forButtonStyle:PFActionButtonStyleWide];
 
@@ -55,9 +55,9 @@ static NSString *const PFLogInViewDefaultTwitterButtonImageName = @"twitter_icon
     PFActionButtonConfiguration *configuration = [[PFActionButtonConfiguration alloc] initWithBackgroundImageColor:[PFColor facebookButtonBackgroundColor]
                                                                                                              image:[PFImage imageNamed:PFLogInViewDefaultFacebookButtonImageName]];
 
-    [configuration setTitle:PFLocalizedString(@"Facebook", @"Facebook")
+    [configuration setTitle:NSLocalizedString(@"Facebook", @"Facebook")
              forButtonStyle:PFActionButtonStyleNormal];
-    [configuration setTitle:PFLocalizedString(@"Log In with Facebook", @"Log In with Facebook")
+    [configuration setTitle:NSLocalizedString(@"Log In with Facebook", @"Log In with Facebook")
 
              forButtonStyle:PFActionButtonStyleWide];
 
@@ -68,9 +68,9 @@ static NSString *const PFLogInViewDefaultTwitterButtonImageName = @"twitter_icon
     PFActionButtonConfiguration *configuration = [[PFActionButtonConfiguration alloc] initWithBackgroundImageColor:[PFColor twitterButtonBackgroundColor]
                                                                                                              image:[PFImage imageNamed:PFLogInViewDefaultTwitterButtonImageName]];
 
-    [configuration setTitle:PFLocalizedString(@"Twitter", @"Twitter")
+    [configuration setTitle:NSLocalizedString(@"Twitter", @"Twitter")
              forButtonStyle:PFActionButtonStyleNormal];
-    [configuration setTitle:PFLocalizedString(@"Log In with Twitter", @"Log In with Twitter")
+    [configuration setTitle:NSLocalizedString(@"Log In with Twitter", @"Log In with Twitter")
 
              forButtonStyle:PFActionButtonStyleWide];
 
@@ -131,7 +131,7 @@ static NSString *const PFLogInViewDefaultTwitterButtonImageName = @"twitter_icon
         if (!_passwordField) {
             _passwordField = [[PFTextField alloc] initWithFrame:CGRectZero
                                                  separatorStyle:PFTextFieldSeparatorStyleBottom];
-            _passwordField.placeholder = PFLocalizedString(@"Password", @"Password");
+            _passwordField.placeholder = NSLocalizedString(@"Password", @"Password");
             _passwordField.secureTextEntry = YES;
             _passwordField.autocorrectionType = UITextAutocorrectionTypeNo;
             _passwordField.autocapitalizationType = UITextAutocapitalizationTypeNone;
@@ -160,7 +160,7 @@ static NSString *const PFLogInViewDefaultTwitterButtonImageName = @"twitter_icon
     if (_fields & PFLogInFieldsPasswordForgotten) {
         if (!_passwordForgottenButton) {
             _passwordForgottenButton = [[PFTextButton alloc] initWithFrame:CGRectZero];
-            [_passwordForgottenButton setTitle:PFLocalizedString(@"Forgot Password?", "Forgot Password?")
+            [_passwordForgottenButton setTitle:NSLocalizedString(@"Forgot Password?", "Forgot Password?")
                                       forState:UIControlStateNormal];
             [self addSubview:_passwordForgottenButton];
         }
@@ -172,7 +172,7 @@ static NSString *const PFLogInViewDefaultTwitterButtonImageName = @"twitter_icon
     if (_fields & PFLogInFieldsLogInButton) {
         if (!_logInButton) {
             _logInButton = [[PFPrimaryButton alloc] initWithBackgroundImageColor:[PFColor loginButtonBackgroundColor]];
-            [_logInButton setTitle:PFLocalizedString(@"Log In", @"Log In") forState:UIControlStateNormal];
+            [_logInButton setTitle:NSLocalizedString(@"Log In", @"Log In") forState:UIControlStateNormal];
             [self addSubview:_logInButton];
         }
     } else {
@@ -475,10 +475,10 @@ static NSString *const PFLogInViewDefaultTwitterButtonImageName = @"twitter_icon
     NSString *usernamePlaceholder = nil;
     if (!_emailAsUsername) {
         keyboardType = UIKeyboardTypeDefault;
-        usernamePlaceholder = PFLocalizedString(@"Username", @"Username");
+        usernamePlaceholder = NSLocalizedString(@"Username", @"Username");
     } else {
         keyboardType = UIKeyboardTypeEmailAddress;
-        usernamePlaceholder = PFLocalizedString(@"Email", @"Email");
+        usernamePlaceholder = NSLocalizedString(@"Email", @"Email");
     }
     
     _usernameField.placeholder = usernamePlaceholder;

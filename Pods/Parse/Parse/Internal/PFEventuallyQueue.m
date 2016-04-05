@@ -21,19 +21,13 @@
 #import "PFLogging.h"
 #import "PFMacros.h"
 #import "PFRESTCommand.h"
-#import "PFTaskQueue.h"
-
-#if !TARGET_OS_WATCH
 #import "PFReachability.h"
-#endif
+#import "PFTaskQueue.h"
 
 NSUInteger const PFEventuallyQueueDefaultMaxAttemptsCount = 5;
 NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval = 600.0f;
 
-@interface PFEventuallyQueue ()
-#if !TARGET_OS_WATCH
-<PFReachabilityListener>
-#endif
+@interface PFEventuallyQueue () <PFReachabilityListener>
 
 @property (atomic, assign, readwrite) BOOL monitorsReachability;
 @property (atomic, assign, getter=isRunning) BOOL running;
@@ -366,9 +360,6 @@ NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval = 600.0f;
 ///--------------------------------------
 
 - (void)_startMonitoringNetworkReachability {
-#if TARGET_OS_WATCH
-    self.connected = YES;
-#else
     if (self.monitorsReachability) {
         return;
     }
@@ -378,27 +369,31 @@ NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval = 600.0f;
 
     // Set the initial connected status
     self.connected = ([PFReachability sharedParseReachability].currentState != PFReachabilityStateNotReachable);
-#endif
 }
 
 - (void)_stopMonitoringNetworkReachability {
-#if !TARGET_OS_WATCH
     if (!self.monitorsReachability) {
         return;
     }
 
     [[PFReachability sharedParseReachability] removeListener:self];
 
+    if (_reachability != NULL) {
+        SCNetworkReachabilitySetCallback(_reachability, NULL, NULL);
+        SCNetworkReachabilitySetDispatchQueue(_reachability, NULL);
+        CFRelease(_reachability);
+        _reachability = NULL;
+    }
+
     self.monitorsReachability = NO;
     self.connected = YES;
-#endif
 }
 
 ///--------------------------------------
 #pragma mark - Accessors
 ///--------------------------------------
 
-/** Manually sets the network connection status. */
+/*! Manually sets the network connection status. */
 - (void)setConnected:(BOOL)connected {
     BFTaskCompletionSource *barrier = [BFTaskCompletionSource taskCompletionSource];
     dispatch_async(_processingQueue, ^{
@@ -426,7 +421,7 @@ NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval = 600.0f;
 #pragma mark - Test Helper Method
 ///--------------------------------------
 
-/** Makes this command cache forget all the state it keeps during a single run of the app. */
+/*! Makes this command cache forget all the state it keeps during a single run of the app. */
 - (void)_simulateReboot {
     // Make sure there is no command pending enqueuing
     [[[[_commandEnqueueTaskQueue enqueue:^BFTask *(BFTask *toAwait) {
@@ -441,12 +436,12 @@ NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval = 600.0f;
     }] waitUntilFinished];
 }
 
-/** Test helper to return how many commands are being retained in memory by the cache. */
+/*! Test helper to return how many commands are being retained in memory by the cache. */
 - (int)_commandsInMemory {
     return (int)[_taskCompletionSources count];
 }
 
-/** Called by PFObject whenever an object has been updated after a saveEventually. */
+/*! Called by PFObject whenever an object has been updated after a saveEventually. */
 - (void)_notifyTestHelperObjectUpdated {
     [self.testHelper notify:PFEventuallyQueueEventObjectUpdated];
 }
@@ -459,8 +454,6 @@ NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval = 600.0f;
     _retryInterval = retryInterval;
 }
 
-#if !TARGET_OS_WATCH
-
 ///--------------------------------------
 #pragma mark - Reachability
 ///--------------------------------------
@@ -470,8 +463,6 @@ NSTimeInterval const PFEventuallyQueueDefaultTimeoutRetryInterval = 600.0f;
         self.connected = (state != PFReachabilityStateNotReachable);
     }
 }
-
-#endif
 
 @end
 

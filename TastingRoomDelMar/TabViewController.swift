@@ -151,7 +151,7 @@ extension TabViewController: TabTableViewDelegate {
             menuButton.titleLabel?.font = UIFont.scriptFont(24)
             menuButton.layer.cornerRadius = 12.0
             menuButton.clipsToBounds = true
-            menuButton.addTarget(self, action: "backToMenu", forControlEvents: UIControlEvents.TouchUpInside)
+            menuButton.addTarget(self, action: #selector(TabViewController.backToMenu), forControlEvents: UIControlEvents.TouchUpInside)
             menuButton.layer.zPosition = 99
             
             

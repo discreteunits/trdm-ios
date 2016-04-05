@@ -75,7 +75,8 @@ class SettingsEditViewController: UIViewController {
         saveButton.setTitle("Save", forState: .Normal)
         saveButton.layer.backgroundColor = UIColor.primaryGreenColor().CGColor
         saveButton.titleLabel?.font = UIFont.scriptFont(24)
-        saveButton.addTarget(self, action: "saveChanges:", forControlEvents: UIControlEvents.TouchUpInside)
+//        saveButton.addTarget(self, action: "saveChanges:", forControlEvents: UIControlEvents.TouchUpInside)
+        saveButton.addTarget(self, action: #selector(SettingsEditViewController.saveChanges), forControlEvents: UIControlEvents.TouchUpInside)
         saveButton.hidden = true
         
         self.view.addSubview(saveButton)

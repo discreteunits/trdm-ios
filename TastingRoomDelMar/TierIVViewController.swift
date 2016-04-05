@@ -99,7 +99,7 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
             
             nav = navBar
             
-            navigationTitle.title = route[2]["name"] as! String
+            navigationTitle.title = route[2]["name"] as? String
             nav?.barStyle = UIBarStyle.Black
             nav?.tintColor = UIColor.whiteColor()
             nav?.titleTextAttributes = [ NSFontAttributeName: UIFont (name: "NexaRustScriptL-00", size: 24)!]
@@ -108,7 +108,7 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
             let lastWindow = route[1]["name"]
             
             self.navigationItem.hidesBackButton = true
-            let newBackButton = UIBarButtonItem(title: "< \(lastWindow)", style: UIBarButtonItemStyle.Bordered, target: self, action: "back:")
+            let newBackButton = UIBarButtonItem(title: "< \(lastWindow)", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(TierIVViewController.back(_:)))
             self.navigationItem.leftBarButtonItem = newBackButton;
             self.navigationItem.leftBarButtonItem!.setTitleTextAttributes( [NSFontAttributeName: UIFont(name: "NexaRustScriptL-00", size: 20)!], forState: UIControlState.Normal)
             
@@ -125,7 +125,7 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
         route.removeAtIndex(2)
         
         if printFlag {
-            for var index = 0; index < route.count; ++index {
+            for index in 0 ..< route.count {
                 print("The Route has been decreased to: \(route[index]["name"]).")
             }
             print("-----------------------")

@@ -36,6 +36,8 @@ class HistoryDetailTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.tableFooterView = UIView()
+
         
         if let navBar = navigationController?.navigationBar {
             
@@ -47,7 +49,7 @@ class HistoryDetailTableViewController: UITableViewController {
             nav?.titleTextAttributes = [ NSFontAttributeName: UIFont (name: "NexaRustScriptL-00", size: 24)!]
         
         self.navigationItem.hidesBackButton = true
-        let newBackButton = UIBarButtonItem(title: "< History", style: UIBarButtonItemStyle.Bordered, target: self, action: "back:")
+        let newBackButton = UIBarButtonItem(title: "< History", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(HistoryDetailTableViewController.back(_:)))
         self.navigationItem.leftBarButtonItem = newBackButton
         self.navigationItem.leftBarButtonItem!.setTitleTextAttributes( [NSFontAttributeName: UIFont(name: "NexaRustScriptL-00", size: 20)!], forState: UIControlState.Normal)
         
@@ -103,9 +105,9 @@ class HistoryDetailTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("HistoryDetailTableCell", forIndexPath: indexPath) as! HistoryDetailTableViewCell
             
             // Assignments
-            cell.qtyLabel.text = String(order["orderItems"][indexPath.row]["amount"] as! Int)
+            cell.qtyLabel.text = String(order["orderItems"][indexPath.row]["amount"]! as! Int)
             cell.itemLabel.text = lineItemNames[indexPath.row]
-            cell.priceLabel.text = String(order["orderItems"][indexPath.row]["totalPrice"] as! Double)
+            cell.priceLabel.text = String(order["orderItems"][indexPath.row]["totalPrice"]! as! Double)
             
             // Styles
             cell.qtyLabel.font = UIFont.headerFont(18)
@@ -136,112 +138,9 @@ class HistoryDetailTableViewController: UITableViewController {
             
         }
         
-        
         return cell
+        
     }
-
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-    
-//    // Order Query
-//    func orderLineItemQuery(orderToPass: PFObject)  {
-//        
-//        
-//        var lineItemObjectIds = [Int]()
-//        
-//        for lineItem in orderToPass["orderItems"] as! [AnyObject] {
-//            lineItemObjectIds.append(lineItem["productId"]! as! Int)
-//        }
-//        
-//        print("lineItemObjectIds: \(lineItemObjectIds)")
-//        
-//        
-//        
-//        let query:PFQuery = PFQuery(className:"Product")
-////        query.includeKey("lightspeedId")
-//        query.whereKey("lightspeedId", containedIn: lineItemObjectIds)
-//        query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
-//            
-//            if error == nil {
-//                
-//                // The find succeeded.
-//                if printFlag {
-//                    print("-----------------------")
-//                    print("Order LineItem query retrieved \(objects!.count) objects.")
-//                }
-//                
-//                // Do something with the found objects
-//                for object in objects! as [PFObject]! {
-//                    
-//                    let objectName = object["name"] as! String
-//                    
-//                    print("ObjectName in query: \(objectName)")
-//                    
-//                    self.lineItemNames.append(objectName)
-//                    
-//                }
-//                
-//                if printFlag {
-//                    print("\(self.lineItemNames).")
-//                    print("-----------------------")
-//                }
-//                
-//            } else {
-//                
-//                // Log details of the failure
-//                if printFlag {
-//                    print("Error: \(error!) \(error!.userInfo)")
-//                }
-//                
-//            }
-//            
-//        }
-//        
-//    }
 
     
     

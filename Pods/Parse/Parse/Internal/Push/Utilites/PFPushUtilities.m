@@ -11,7 +11,7 @@
 
 #import <dlfcn.h>
 
-#if TARGET_OS_IOS
+#if TARGET_OS_IPHONE
 #import <AudioToolbox/AudioToolbox.h>
 
 #import "PFAlertView.h"
@@ -54,9 +54,9 @@
     [[[PFKeychainStore alloc] initWithService:@"ParsePush"] removeObjectForKey:@"ParsePush"];
 }
 
-#if TARGET_OS_IOS
+#if TARGET_OS_IPHONE
 
-+ (void)showAlertViewWithTitle:(nullable NSString *)title message:(nullable NSString *)message NS_EXTENSION_UNAVAILABLE_IOS("") {
++ (void)showAlertViewWithTitle:(NSString *)title message:(NSString *)message {
     NSString *cancelButtonTitle = NSLocalizedStringFromTableInBundle(@"OK", @"Parse",
                                                                      [NSBundle bundleForClass:[self class]],
                                                                      @"Default alert view cancel button title.");

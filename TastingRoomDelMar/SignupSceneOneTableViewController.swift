@@ -64,7 +64,7 @@ class SignupSceneOneTableViewController: UITableViewController, UITextFieldDeleg
         super.viewDidLoad()
         
         // Get Keyboard Height
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SignupSceneOneTableViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
 
         // Format Elements
         emailLabel.font = UIFont.headerFont(16)

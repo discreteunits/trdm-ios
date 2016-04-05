@@ -105,11 +105,20 @@ public extension UIViewController {
         if (topController is UITabBarController) {
             topController = (topController as! UITabBarController).selectedViewController
         }
-        while (topController?.presentedViewController is ENSideMenuProtocol) {
+        var lastMenuProtocol : ENSideMenuProtocol?
+        while (topController?.presentedViewController != nil) {
+            if(topController?.presentedViewController is ENSideMenuProtocol) {
+                lastMenuProtocol = topController?.presentedViewController as? ENSideMenuProtocol
+            }
             topController = topController?.presentedViewController
         }
         
-        return topController as? ENSideMenuProtocol
+        if (lastMenuProtocol != nil) {
+            return lastMenuProtocol
+        }
+        else {
+            return topController as? ENSideMenuProtocol
+        }
     }
 }
 
@@ -161,17 +170,17 @@ public class ENSideMenu : NSObject, UIGestureRecognizerDelegate {
         animator = UIDynamicAnimator(referenceView:sourceView)
         animator.delegate = self
         
-        self.panRecognizer = UIPanGestureRecognizer(target: self, action: "handlePan:")
+        self.panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(ENSideMenu.handlePan(_:)))
         panRecognizer!.delegate = self
         sourceView.addGestureRecognizer(panRecognizer!)
         
         // Add right swipe gesture recognizer
-        let rightSwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "handleGesture:")
+        let rightSwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(ENSideMenu.handleGesture(_:)))
         rightSwipeGestureRecognizer.delegate = self
         rightSwipeGestureRecognizer.direction =  UISwipeGestureRecognizerDirection.Right
         
         // Add left swipe gesture recognizer
-        let leftSwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "handleGesture:")
+        let leftSwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(ENSideMenu.handleGesture(_:)))
         leftSwipeGestureRecognizer.delegate = self
         leftSwipeGestureRecognizer.direction = UISwipeGestureRecognizerDirection.Left
         
@@ -352,6 +361,11 @@ public class ENSideMenu : NSObject, UIGestureRecognizerDelegate {
     }
     
     public func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
+        
+        if delegate?.sideMenuShouldOpenSideMenu?() == false {
+            return false
+        }
+        
         if gestureRecognizer is UISwipeGestureRecognizer {
             let swipeGestureRecognizer = gestureRecognizer as! UISwipeGestureRecognizer
             if !self.allowLeftSwipe {
@@ -492,10 +506,6 @@ extension ENSideMenu: UIDynamicAnimatorDelegate {
         } else {
             self.delegate?.sideMenuDidClose?()
         }
-    }
-    
-    public func dynamicAnimatorWillResume(animator: UIDynamicAnimator) {
-        print("resume")
     }
 }
 

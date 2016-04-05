@@ -49,7 +49,7 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
             
             nav = navBar
             
-            navigationTitle.title = route[0]["name"] as! String
+            navigationTitle.title = route[0]["name"] as? String
             nav?.barStyle = UIBarStyle.Black
             nav?.tintColor = UIColor.whiteColor()
             nav?.titleTextAttributes = [ NSFontAttributeName: UIFont (name: "NexaRustScriptL-00", size: 24)!]
@@ -57,7 +57,7 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
             
             // SET NAV BACK BUTTON TO REMOVE LAST ITEM FROM ROUTE
             self.navigationItem.hidesBackButton = true
-            let newBackButton = UIBarButtonItem(title: "< Del Mar", style: UIBarButtonItemStyle.Bordered, target: self, action: "back:")
+            let newBackButton = UIBarButtonItem(title: "< Del Mar", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(TierIITableViewController.back(_:)))
             self.navigationItem.leftBarButtonItem = newBackButton
             self.navigationItem.leftBarButtonItem!.setTitleTextAttributes( [NSFontAttributeName: UIFont(name: "NexaRustScriptL-00", size: 20)!], forState: UIControlState.Normal)
             
@@ -70,7 +70,7 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
         route.removeAtIndex(0)
         
         if printFlag {
-            for var index = 0; index < route.count; ++index {
+            for index in 0 ..< route.count {
                 print("The Route has been decreased to: \(route[index]["name"]).")
             }
             print("-----------------------")
@@ -203,7 +203,7 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
         route.append(tierIIArray[indexPath.row])
 
         if printFlag {
-            for var index = 0; index < route.count; ++index {
+            for index in 0 ..< route.count {
                 print("The Route has been increased to: \(route[index]["name"]).")
             }
             print("-----------------------")

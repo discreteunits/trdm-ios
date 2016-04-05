@@ -89,7 +89,7 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
             nav?.layer.zPosition = 9
    
             self.navigationItem.hidesBackButton = true
-            var newBackButton = UIBarButtonItem(title: "Del Mar", style: UIBarButtonItemStyle.Plain, target: self, action: "locationFlyout:")
+            let newBackButton = UIBarButtonItem(title: "Del Mar", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(TierITableViewController.locationFlyout(_:)))
             
             // Center Image Via
             let fixedItem: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .FixedSpace, target: nil, action: nil)
@@ -388,7 +388,7 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         if printFlag {
             print("User chose to: \(TabManager.sharedInstance.currentTab.type)")
         
-            for var index = 0; index < route.count; ++index {
+            for index in 0 ..< route.count {
                 print("The Route has been increased to: \(route[index]["name"]).")
             }
             print("-----------------------")
@@ -445,16 +445,16 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
                 }
                 
                 // Assign Graph Request Parameters To PFUser Object
-                PFUser.currentUser()?["username"] = result["email"]
-                PFUser.currentUser()?["email"] = result["email"]
-                PFUser.currentUser()?["firstName"] = result["first_name"]
-                PFUser.currentUser()?["lastName"] = result["last_name"]
+                PFUser.currentUser()?["username"]! = result["email"]
+                PFUser.currentUser()?["email"]! = result["email"]
+                PFUser.currentUser()?["firstName"]! = result["first_name"]
+                PFUser.currentUser()?["lastName"]! = result["last_name"]
                 
                 if printFlag {
-                    print("Username: \(result["email"] as! String)")
-                    print("Email: \(result["email"] as! String)")
-                    print("First Name: \(result["first_name"] as! String)")
-                    print("Last Name: \(result["last_name"] as! String)")
+                    print("Username: \(result["email"]! as! String)")
+                    print("Email: \(result["email"]! as! String)")
+                    print("First Name: \(result["first_name"]! as! String)")
+                    print("Last Name: \(result["last_name"]! as! String)")
                 }
                 
 //                PFUser.currentUser()?["name"] = result["name"]
@@ -464,7 +464,7 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
                 PFUser.currentUser()?.saveInBackground()
                 
                 // Get and Save FB Profile Picture To Parse
-                let userId = result["id"] as! String
+                let userId = result["id"]! as! String
                 let facebookProfilePictureUrl = "https://graph.facebook.com/" + userId + "/picture?type=large"
                 
                 if let fbPicUrl = NSURL(string: facebookProfilePictureUrl) {
@@ -474,7 +474,7 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
                         // Show FB Profile Pic
 //                        self.userImage.image = UIImage(data: data)
                         
-                        let imageFile: PFFile = PFFile(data: data)!
+                        let imageFile: PFFile = PFFile(data: data)
                         PFUser.currentUser()?["image"] = imageFile
                         PFUser.currentUser()?.saveInBackground()
                         

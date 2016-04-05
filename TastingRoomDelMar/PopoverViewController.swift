@@ -77,9 +77,9 @@ class PopoverViewController: UITableViewController {
     func createAdditions() {
         
         // Create Additions with Values
-        for var i = 0; i < popoverAdditions.count; ++i {
+        for i in 0 ..< popoverAdditions.count {
             
-            let additionValues = popoverAdditions[i]["values"]
+            let additionValues = popoverAdditions[i]["values"]!
             
             var convertedAdditionValues: [Value] = [Value]()
             
@@ -99,11 +99,11 @@ class PopoverViewController: UITableViewController {
             let additionRaw = popoverAdditions[i]
             
             var newAddition = Addition()
-            newAddition.displayName = additionRaw["displayName"] as! String
+            newAddition.displayName = additionRaw["displayName"]! as! String
             newAddition.id = String(additionRaw["id"]!)
             newAddition.maxSelectedAmount = String(additionRaw["maxSelectedAmount"]!)
             newAddition.minSelectedAmount = String(additionRaw["minSelectedAmount"]!)
-            newAddition.name = additionRaw["name"] as! String
+            newAddition.name = additionRaw["name"]! as! String
             newAddition.values = convertedAdditionValues
             
             self.additions.append(newAddition)
@@ -132,7 +132,7 @@ class PopoverViewController: UITableViewController {
     override func tableView(tableView: UITableView,
         cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
             
-            var cell: UITableViewCell!
+            let cell = UITableViewCell()
             
             // Details Table Row
             if indexPath.row == 0 {
@@ -241,8 +241,8 @@ class PopoverViewController: UITableViewController {
         willDisplayCell cell: UITableViewCell,
         forRowAtIndexPath indexPath: NSIndexPath) {
             
-            var tableViewCell: UITableViewCell!
-            
+//            let tableViewCell =  UITableViewCell()
+        
             // Details Table Row
             if indexPath.row == 0 {
                 
@@ -338,7 +338,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(collectionView: UICollectionView,
         cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
             
-            var cell: UICollectionViewCell!
+            let cell = UICollectionViewCell()
             let parent = collectionView.superview!.tag
             
             // Details Table Row
@@ -391,7 +391,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                 
                 quantityCollectionCell.backgroundColor = UIColor.whiteColor()
                 
-                var trueIndex = String(indexPath.row + 1)
+                let trueIndex = String(indexPath.row + 1)
                 quantityCollectionCell.label.text = trueIndex
                 quantityCollectionCell.label.font = UIFont.scriptFont(14)
                 
@@ -440,7 +440,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
         let parent = collectionView.superview!.tag
-        let selectedCell: UICollectionViewCell
+        let selectedCell = UICollectionViewCell()
 
         // Details Table Row
         if parent == 0 {
@@ -543,7 +543,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                          
                             // Begin Monetary Calculations
                             // --------------------------------------
-                            var taxString = popoverItem["taxClass"] as! String
+                            let taxString = popoverItem["taxClass"] as! String
                             
                             let taxRateString = taxString.stringByReplacingOccurrencesOfString("BUILTIN-", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
                             
@@ -776,7 +776,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
     // Size Collection Cells
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         
-        var cellSize: CGSize!
+        let cellSize = CGSize()
         let parent = collectionView.superview!.tag
         
         // Details Table Row

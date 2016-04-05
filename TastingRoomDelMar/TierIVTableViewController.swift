@@ -31,7 +31,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     var tierIVCollectionArray = [PFObject]()
     var tierIVTableArray = [PFObject]()
 
-    var popover: UIPopoverController?
+    var popover: UIPopoverPresentationController?
     
     var product: PFObject!
     var productVarietal: PFObject!
@@ -124,7 +124,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         } else {
         
             if let productPrice = self.tierIVTableArray[indexPath.row]["prices"] {
-                cell.pricingLabel?.text = self.tierIVTableArray[indexPath.row]["prices"] as! String
+                cell.pricingLabel?.text = self.tierIVTableArray[indexPath.row]["prices"] as? String
                 cell.pricingLabel?.font = UIFont(name: "OpenSans", size: 12)
         
             // Prices NOT Found in Item Table
@@ -195,7 +195,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             
             let additionsRaw = tierIVTableArray[indexPath.row]["additions"]
             
-            for var i = 0; i < additionsRaw.count; ++i {
+            for i in 0 ..< additionsRaw.count {
                 additions.append(additionsRaw[i])
             }
             
@@ -243,7 +243,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
                         
                         let additionsRaw = tierIVTableArray[indexPath.row]["additions"]
 
-                        for var i = 0; i < additionsRaw.count; ++i {
+                        for i in 0 ..< additionsRaw.count {
                             additions.append(additionsRaw[i])
                         }
                         

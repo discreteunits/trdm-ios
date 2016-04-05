@@ -289,18 +289,18 @@ NSString *const PFLogInCancelNotification = @"com.parse.ui.login.cancel";
 }
 
 - (void)_forgotPasswordAction PF_EXTENSION_UNAVAILABLE("") {
-    NSString *title = PFLocalizedString(@"Reset Password", @"Forgot password request title in PFLogInViewController");
-    NSString *message = PFLocalizedString(@"Please enter the email address for your account.",
+    NSString *title = NSLocalizedString(@"Reset Password", @"Forgot password request title in PFLogInViewController");
+    NSString *message = NSLocalizedString(@"Please enter the email address for your account.",
                                           @"Email request message in PFLogInViewController");
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title
                                                         message:message
                                                        delegate:self
-                                              cancelButtonTitle:PFLocalizedString(@"Cancel", @"Cancel")
-                                              otherButtonTitles:PFLocalizedString(@"OK", @"OK"), nil];
+                                              cancelButtonTitle:NSLocalizedString(@"Cancel", @"Cancel")
+                                              otherButtonTitles:NSLocalizedString(@"OK", @"OK"), nil];
     alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
 
     UITextField *textField = [alertView textFieldAtIndex:0];
-    textField.placeholder = PFLocalizedString(@"Email", @"Email");
+    textField.placeholder = NSLocalizedString(@"Email", @"Email");
     textField.keyboardType = UIKeyboardTypeEmailAddress;
     textField.returnKeyType = UIReturnKeyDone;
 
@@ -310,15 +310,15 @@ NSString *const PFLogInCancelNotification = @"com.parse.ui.login.cancel";
 - (void)_requestPasswordResetWithEmail:(NSString *)email {
     [PFUser requestPasswordResetForEmailInBackground:email block:^(BOOL success, NSError *error) {
         if (success) {
-            NSString *title = PFLocalizedString(@"Password Reset",
+            NSString *title = NSLocalizedString(@"Password Reset",
                                                 @"Password reset success alert title in PFLogInViewController.");
-            NSString *message = [NSString stringWithFormat:PFLocalizedString(@"An email with reset instructions has been sent to '%@'.",
+            NSString *message = [NSString stringWithFormat:NSLocalizedString(@"An email with reset instructions has been sent to '%@'.",
                                                                              @"Password reset message in PFLogInViewController"), email];
             [PFUIAlertView showAlertViewWithTitle:title
                                           message:message
-                                cancelButtonTitle:PFLocalizedString(@"OK", @"OK")];
+                                cancelButtonTitle:NSLocalizedString(@"OK", @"OK")];
         } else {
-            NSString *title = PFLocalizedString(@"Password Reset Failed",
+            NSString *title = NSLocalizedString(@"Password Reset Failed",
                                                 @"Password reset error alert title in PFLogInViewController.");
             [PFUIAlertView showAlertViewWithTitle:title error:error];
         }
@@ -471,12 +471,12 @@ NSString *const PFLogInCancelNotification = @"com.parse.ui.login.cancel";
     if (_delegateExistingMethods.didFailToLogIn) {
         [_delegate logInViewController:self didFailToLogInWithError:error];
     } else {
-        NSString *title = PFLocalizedString(@"Login Failed", @"Login failed alert title in PFLogInViewController");
+        NSString *title = NSLocalizedString(@"Login Failed", @"Login failed alert title in PFLogInViewController");
         NSString *message = nil;
         if (error.code == kPFErrorObjectNotFound) {
-            message = PFLocalizedString(@"The username and password you entered don't match", @"Invalid login credentials alert message in PFLogInViewController");
+            message = NSLocalizedString(@"The username and password you entered don't match", @"Invalid login credentials alert message in PFLogInViewController");
         } else {
-            message = PFLocalizedString(@"Please try again", @"Generic login failed alert message in PFLogInViewController");
+            message = NSLocalizedString(@"Please try again", @"Generic login failed alert message in PFLogInViewController");
         }
         [PFUIAlertView showAlertViewWithTitle:title message:message];
     }

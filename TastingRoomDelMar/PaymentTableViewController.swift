@@ -65,14 +65,14 @@ class PaymentTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        var cell: UITableViewCell!
+        let cell = UITableViewCell()
         
         // Card Row
         if indexPath.row < addPaymentRow {
             let cardCell = tableView.dequeueReusableCellWithIdentifier("PaymentCardTableCell", forIndexPath: indexPath) as! PaymentCardTableViewCell
             
             // Assignments
-            cardCell.providerLabel.text = currentCustomer.card.brand as! String
+            cardCell.providerLabel.text = currentCustomer.card.brand 
             cardCell.lastFourLabel.text = currentCustomer.card.last4
             
             // Styles

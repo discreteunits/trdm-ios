@@ -77,7 +77,7 @@ class LandingViewController: UIViewController {
         skipButton.layer.backgroundColor = UIColor.clearColor().CGColor
         skipButton.layer.cornerRadius = 4.0
         skipButton.clipsToBounds = true
-        skipButton.addTarget(self, action: "guest", forControlEvents: UIControlEvents.TouchUpInside)
+        skipButton.addTarget(self, action: #selector(LandingViewController.guest), forControlEvents: UIControlEvents.TouchUpInside)
         
         self.view.addSubview(skipButton)
         
@@ -91,7 +91,7 @@ class LandingViewController: UIViewController {
         signupButton.layer.backgroundColor = UIColor(red: 74/255.0, green: 74/255.0, blue: 74/255.0, alpha: 1.0).CGColor
         signupButton.layer.cornerRadius = 4.0
         signupButton.clipsToBounds = true
-        signupButton.addTarget(self, action: "signin", forControlEvents: UIControlEvents.TouchUpInside)
+        signupButton.addTarget(self, action: #selector(LandingViewController.signin), forControlEvents: UIControlEvents.TouchUpInside)
         
         self.view.addSubview(signupButton)
         
@@ -105,7 +105,7 @@ class LandingViewController: UIViewController {
         loginButton.layer.backgroundColor = UIColor(red: 74/255.0, green: 74/255.0, blue: 74/255.0, alpha: 1.0).CGColor
         loginButton.layer.cornerRadius = 4.0
         loginButton.clipsToBounds = true
-        loginButton.addTarget(self, action: "login", forControlEvents: UIControlEvents.TouchUpInside)
+        loginButton.addTarget(self, action: #selector(LandingViewController.login), forControlEvents: UIControlEvents.TouchUpInside)
         
         self.view.addSubview(loginButton)
         
@@ -119,7 +119,7 @@ class LandingViewController: UIViewController {
         facebookButton.layer.backgroundColor = UIColor(red: 59/255.0, green: 89/255.0, blue: 152/255.0, alpha: 1.0).CGColor
         facebookButton.layer.cornerRadius = 4.0
         facebookButton.clipsToBounds = true
-        facebookButton.addTarget(self, action: "facebook", forControlEvents: UIControlEvents.TouchUpInside)
+        facebookButton.addTarget(self, action: #selector(LandingViewController.facebook), forControlEvents: UIControlEvents.TouchUpInside)
         
         self.view.addSubview(facebookButton)
         

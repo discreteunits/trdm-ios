@@ -24,11 +24,11 @@ class HistoryTableViewController: UITableViewController {
     
     var orderToPass: PFObject!
     
-
-    
     // ----------------------
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.tableFooterView = UIView()
         
         self.closedOrders.removeAll()
         self.openOrders.removeAll()

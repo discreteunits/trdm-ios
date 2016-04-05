@@ -24,13 +24,13 @@ NS_ASSUME_NONNULL_BEGIN
 /// @name Fetch
 ///--------------------------------------
 
-/**
+/*!
  Fetches an object asynchronously.
 
  @param object       Object to fetch.
  @param sessionToken Session token to use.
 
- @return `BFTask` with result set to `PFObject`.
+ @returns `BFTask` with result set to `PFObject`.
  */
 - (BFTask *)fetchObjectAsync:(PFObject *)object withSessionToken:(nullable NSString *)sessionToken;
 
@@ -40,13 +40,13 @@ NS_ASSUME_NONNULL_BEGIN
 /// @name Delete
 ///--------------------------------------
 
-/**
+/*!
  Deletes an object asynchronously.
 
  @param object       Object to fetch.
  @param sessionToken Session token to use.
 
- @return `BFTask` with result set to `nil`.
+ @returns `BFTask` with result set to `nil`.
  */
 - (BFTask *)deleteObjectAsync:(PFObject *)object withSessionToken:(nullable NSString *)sessionToken;
 

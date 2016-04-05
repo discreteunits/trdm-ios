@@ -50,7 +50,7 @@ class SignupSceneOneViewController: UIViewController {
             nav?.tintColor = UIColor.whiteColor()
             nav?.titleTextAttributes = [ NSFontAttributeName: UIFont.scriptFont(20)]
             
-            let backButton = UIBarButtonItem(title: "<", style: .Plain, target: self, action: "back:")
+            let backButton = UIBarButtonItem(title: "<", style: .Plain, target: self, action: #selector(SignupSceneOneViewController.back(_:)))
             self.navigationItem.leftBarButtonItem = backButton
             
         }
@@ -90,7 +90,7 @@ class SignupSceneOneViewController: UIViewController {
         signupButton.setTitle("Continue", forState: .Normal)
         signupButton.layer.backgroundColor = UIColor.primaryGreenColor().CGColor
         signupButton.titleLabel?.font = UIFont.scriptFont(24)
-        signupButton.addTarget(self, action: "signupAction:", forControlEvents: UIControlEvents.TouchUpInside)
+        signupButton.addTarget(self, action: #selector(SignupSceneOneViewController.signupAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         signupButton.hidden = true
         
         self.view.addSubview(signupButton)

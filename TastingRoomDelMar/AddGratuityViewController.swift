@@ -24,9 +24,11 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
 
         let popoverView = self.view
         popoverView.layer.backgroundColor = UIColor(red: 246/255.0, green: 246/255.0, blue: 246/255.0, alpha: 1.0).CGColor
+        
         // Screen Bounds
         let screenWidth = self.view.bounds.size.width - 20
-        let screenHeight = self.view.bounds.size.height
+//        let screenHeight = self.view.bounds.size.height
+        
         // Create Add Gratuity Label
         let addGratuityLabel = UILabel(frame: CGRectMake(0, 0, screenWidth, 30))
         addGratuityLabel.frame.origin.y = 20
@@ -130,7 +132,7 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
         cancelButton.layer.backgroundColor = UIColor(red: 224/255.0, green: 224/255.0, blue: 224/255.0, alpha: 1.0).CGColor
         cancelButton.layer.cornerRadius = 12.0
         cancelButton.clipsToBounds = true
-        cancelButton.addTarget(self, action: "cancelPopover", forControlEvents: UIControlEvents.TouchUpInside)
+        cancelButton.addTarget(self, action: #selector(AddGratuityViewController.cancelPopover), forControlEvents: UIControlEvents.TouchUpInside)
         // Create Place Order Button
         let placeOrderButton = UIButton(frame: CGRectMake(0, 0, buttonWidth, 60))
         placeOrderButton.frame.origin.y = 250
@@ -141,7 +143,7 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
         placeOrderButton.layer.backgroundColor = UIColor.primaryGreenColor().CGColor
         placeOrderButton.layer.cornerRadius = 12.0
         placeOrderButton.clipsToBounds = true
-        placeOrderButton.addTarget(self, action: "placeOrderWithGratuity", forControlEvents: UIControlEvents.TouchUpInside)
+        placeOrderButton.addTarget(self, action: #selector(AddGratuityViewController.placeOrderWithGratuity), forControlEvents: UIControlEvents.TouchUpInside)
         
         // Add To View
         popoverView.addSubview(addGratuityLabel)

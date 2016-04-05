@@ -25,7 +25,6 @@
 
 @interface ParseManager : NSObject <PFCommandRunnerProvider,
 PFFileManagerProvider,
-PFPersistenceControllerProvider,
 PFOfflineStoreProvider,
 PFEventuallyQueueProvider,
 PFKeychainStoreProvider,
@@ -39,14 +38,11 @@ PFInstallationIdentifierStoreProvider>
 @property (nonatomic, copy, readonly) NSString *containingApplicationIdentifier;
 
 @property (nonatomic, strong, readonly) PFCoreManager *coreManager;
-
-#if !TARGET_OS_WATCH && !TARGET_OS_TV
 @property (nonatomic, strong) PFPushManager *pushManager;
-#endif
 
 @property (nonatomic, strong) PFAnalyticsController *analyticsController;
 
-#if TARGET_OS_IOS || TARGET_OS_TV
+#if TARGET_OS_IPHONE
 @property (nonatomic, strong) PFPurchaseController *purchaseController;
 #endif
 
@@ -56,18 +52,18 @@ PFInstallationIdentifierStoreProvider>
 
 - (instancetype)init NS_UNAVAILABLE;
 
-/**
+/*!
  Initializes an instance of ParseManager class.
 
  @param applicationId                   ApplicationId of Parse app.
  @param clientKey                       ClientKey of Parse app.
 
- @return `ParseManager` instance.
+ @returns `ParseManager` instance.
  */
 - (instancetype)initWithApplicationId:(NSString *)applicationId
                             clientKey:(NSString *)clientKey NS_DESIGNATED_INITIALIZER;
 
-/**
+/*!
  Configures ParseManager with specified properties.
 
  @param applicationGroupIdentifier      Shared AppGroup container identifier.

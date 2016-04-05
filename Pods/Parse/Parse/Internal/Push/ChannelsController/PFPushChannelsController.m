@@ -14,7 +14,6 @@
 #import "PFCurrentInstallationController.h"
 #import "PFErrorUtilities.h"
 #import "PFInstallation.h"
-#import "PFInstallationConstants.h"
 
 @interface PFPushChannelsController ()
 
@@ -49,7 +48,7 @@
 #pragma mark - Get
 ///--------------------------------------
 
-- (BFTask PF_GENERIC(NSSet<NSString *> *)*)getSubscribedChannelsAsync {
+- (BFTask *)getSubscribedChannelsAsync {
     return [[self _getCurrentObjectAsync] continueWithSuccessBlock:^id(BFTask *task) {
         PFInstallation *installation = task.result;
 
@@ -57,7 +56,7 @@
                                     ? (BFTask *)[installation fetchInBackground]
                                     : (BFTask *)[installation saveInBackground]);
 
-        return [installationTask continueWithSuccessBlock:^id(BFTask *_) {
+        return [installationTask continueWithSuccessBlock:^id(BFTask *task) {
             return [NSSet setWithArray:installation.channels];
         }];
     }];
@@ -71,11 +70,11 @@
     return [[self _getCurrentObjectAsync] continueWithSuccessBlock:^id(BFTask *task) {
         PFInstallation *installation = task.result;
         if ([installation.channels containsObject:name] &&
-            ![installation isDirtyForKey:PFInstallationKeyChannels]) {
+            ![installation isDirtyForKey:@"channels"]) {
             return @YES;
         }
 
-        [installation addUniqueObject:name forKey:PFInstallationKeyChannels];
+        [installation addUniqueObject:name forKey:@"channels"];
         return [installation saveInBackground];
     }];
 }
@@ -85,10 +84,10 @@
         PFInstallation *installation = task.result;
         if (name.length != 0 &&
             ![installation.channels containsObject:name] &&
-            ![installation isDirtyForKey:PFInstallationKeyChannels]) {
+            ![installation isDirtyForKey:@"channels"]) {
             return @YES;
         }
-        [installation removeObject:name forKey:PFInstallationKeyChannels];
+        [installation removeObject:name forKey:@"channels"];
         return [installation saveInBackground];
     }];
 }

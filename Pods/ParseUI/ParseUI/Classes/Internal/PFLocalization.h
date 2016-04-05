@@ -22,7 +22,8 @@
 #ifndef ParseUI_PFLocalization_h
 #define ParseUI_PFLocalization_h
 
-#define PFLocalizedString(key, comment) \
+#undef NSLocalizedString
+#define NSLocalizedString(key, comment) \
 [[NSBundle bundleForClass:[self class]] localizedStringForKey:key value:nil table:@"ParseUI"]
 
 #endif

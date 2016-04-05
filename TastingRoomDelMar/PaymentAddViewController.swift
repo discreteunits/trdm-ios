@@ -50,7 +50,7 @@ class PaymentAddViewController: UIViewController, STPPaymentCardTextFieldDelegat
             
             // SET NAV BACK BUTTON TO REMOVE LAST ITEM FROM ROUTE
             self.navigationItem.hidesBackButton = true
-            let newBackButton = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: "back:")
+            let newBackButton = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: #selector(PaymentAddViewController.back(_:)))
             self.navigationItem.leftBarButtonItem = newBackButton
             self.navigationItem.leftBarButtonItem!.setTitleTextAttributes( [NSFontAttributeName: UIFont.headerFont(24)], forState: UIControlState.Normal)
             

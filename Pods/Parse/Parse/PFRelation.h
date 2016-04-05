@@ -9,49 +9,50 @@
 
 #import <Foundation/Foundation.h>
 
+#import <Parse/PFNullability.h>
 #import <Parse/PFObject.h>
 #import <Parse/PFQuery.h>
 
-NS_ASSUME_NONNULL_BEGIN
+PF_ASSUME_NONNULL_BEGIN
 
-/**
+/*!
  The `PFRelation` class that is used to access all of the children of a many-to-many relationship.
  Each instance of `PFRelation` is associated with a particular parent object and key.
  */
 @interface PFRelation : NSObject
 
-/**
- The name of the class of the target child objects.
+/*!
+ @abstract The name of the class of the target child objects.
  */
-@property (nullable, nonatomic, copy) NSString *targetClass;
+@property (PF_NULLABLE_PROPERTY nonatomic, copy) NSString *targetClass;
 
 ///--------------------------------------
 /// @name Accessing Objects
 ///--------------------------------------
 
-/**
- Returns a `PFQuery` object that can be used to get objects in this relation.
+/*!
+ @abstract Returns a <PFQuery> object that can be used to get objects in this relation.
  */
-- (PFQuery *)query;
+- (PF_NULLABLE PFQuery *)query;
 
 ///--------------------------------------
 /// @name Modifying Relations
 ///--------------------------------------
 
-/**
- Adds a relation to the passed in object.
+/*!
+ @abstract Adds a relation to the passed in object.
 
- @param object A `PFObject` object to add relation to.
+ @param object A <PFObject> object to add relation to.
  */
 - (void)addObject:(PFObject *)object;
 
-/**
- Removes a relation to the passed in object.
+/*!
+ @abstract Removes a relation to the passed in object.
 
- @param object A `PFObject` object to add relation to.
+ @param object A <PFObject> object to add relation to.
  */
 - (void)removeObject:(PFObject *)object;
 
 @end
 
-NS_ASSUME_NONNULL_END
+PF_ASSUME_NONNULL_END

@@ -134,7 +134,7 @@ class TierIVCollectionViewController: UICollectionViewController {
                 route.append(tierIVCollectionArray[trueIndex])
             
                 if printFlag {
-                    for var index = 0; index < route.count; ++index {
+                    for index in 0 ..< route.count {
                         print("The Route has been increased to: \(route[index]["name"]).")
                     }
                     print("-----------------------")

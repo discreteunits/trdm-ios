@@ -34,17 +34,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         PFUser.enableAutomaticUser()
         
-        let defaultACL = PFACL();
+        var defaultACL = PFACL();
         
         // No one has read access to other peoples stuff
-        defaultACL.publicReadAccess = false
+//        defaultACL.publicReadAccess = false
+        defaultACL.getPublicReadAccess()
         
         PFACL.setDefaultACL(defaultACL, withAccessForCurrentUser: false)
         
         if application.applicationState != UIApplicationState.Background {
             
-            let preBackgroundPush = !application.respondsToSelector("backgroundRefreshStatus")
-            let oldPushHandlerOnly = !self.respondsToSelector("application:didReceiveRemoteNotification:fetchCompletionHandler:")
+            let preBackgroundPush = !application.respondsToSelector(Selector("backgroundRefreshStatus"))
+            let oldPushHandlerOnly = !self.respondsToSelector(#selector(UIApplicationDelegate.application(_:didReceiveRemoteNotification:fetchCompletionHandler:)))
             var noPushPayload = false;
             if let options = launchOptions {
                 noPushPayload = options[UIApplicationLaunchOptionsRemoteNotificationKey] != nil;

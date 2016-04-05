@@ -21,7 +21,7 @@ class PlaygroundTwoViewController: UIViewController {
         
 
         // Do any additional setup after loading the view.
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "actOnSpecialNotification", name: notificationKey, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(PlaygroundTwoViewController.actOnSpecialNotification), name: notificationKey, object: nil)
 
     }
 

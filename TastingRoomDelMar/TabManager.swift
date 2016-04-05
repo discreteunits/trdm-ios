@@ -60,8 +60,6 @@ class TabManager: NSObject {
         var subtotal = Double()
         var totalTax = Double()
         
-        
-        
         let lineitems = currentTab.lines
         for lineitem in lineitems {
             
@@ -81,10 +79,6 @@ class TabManager: NSObject {
         
             // Subtotal Calculations
             subtotal = subtotal + lineitem.price + allAdditionValuePrices // Already in dollars
-            
-            
-
-            
             
         }
         
@@ -191,7 +185,7 @@ class TabManager: NSObject {
         ]
         
         // Create Order Object
-        var order : [String:AnyObject] = [
+        let order : [String:AnyObject] = [
             "order": para
         ]
         

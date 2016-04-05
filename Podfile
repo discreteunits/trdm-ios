@@ -6,7 +6,7 @@ target 'TastingRoomDelMar' do
 	pod 'Parse'
 	pod 'ParseUI'
 	pod 'ParseCrashReporting'
-	pod 'ParseFacebookUtilsV4'
+	pod 'ParseFacebookUtilsV4', '~> 1.8.5'
 	pod 'FBSDKCoreKit'
 	pod 'FBSDKLoginKit'
 	pod 'FBSDKShareKit'

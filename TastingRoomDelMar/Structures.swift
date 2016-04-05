@@ -162,7 +162,7 @@ struct Card {
 
 public struct Validator {
     
-    public static func isEmailValid(var email:String) -> Bool {
+    public static func isEmailValid( email:String) -> Bool {
        
         if email.rangeOfString("@") != nil {
             return true

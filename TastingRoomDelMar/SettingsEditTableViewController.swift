@@ -47,7 +47,7 @@ class SettingsEditTableViewController: UITableViewController {
         super.viewDidLoad()
         
         // Get Keyboard Height
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SettingsEditTableViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
         
         // Message
         editMessageTextView.text = passedMessage
