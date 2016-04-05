@@ -31,6 +31,13 @@
 		D75AA4281C6062D200D5139B /* Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75AA4271C6062D200D5139B /* Structures.swift */; };
 		D75ABF1E1C48306A00435CF1 /* TierIVTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75ABF1D1C48306A00435CF1 /* TierIVTableViewCell.swift */; };
 		D765FD381C7E60F400F68389 /* SettingsStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D765FD371C7E60F400F68389 /* SettingsStoryboard.storyboard */; };
+		D7683B0F1CB3086900F79678 /* HistoryStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7683B0E1CB3086900F79678 /* HistoryStoryboard.storyboard */; };
+		D7683B111CB308C100F79678 /* HistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7683B101CB308C100F79678 /* HistoryTableViewController.swift */; };
+		D7683B131CB308D400F79678 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7683B121CB308D400F79678 /* HistoryTableViewCell.swift */; };
+		D7683B151CB308E300F79678 /* HistoryDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7683B141CB308E300F79678 /* HistoryDetailTableViewController.swift */; };
+		D7683B171CB30FA000F79678 /* HistoryDetailHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7683B161CB30FA000F79678 /* HistoryDetailHeaderTableViewCell.swift */; };
+		D7683B1B1CB32B6000F79678 /* HistoryDetailTotalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7683B1A1CB32B6000F79678 /* HistoryDetailTotalTableViewCell.swift */; };
+		D7683B1D1CB33EFA00F79678 /* HistoryDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7683B1C1CB33EFA00F79678 /* HistoryDetailTableViewCell.swift */; };
 		D77013911C6C20C900CEB886 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77013901C6C20C900CEB886 /* SettingsTableViewController.swift */; };
 		D7734AF51C45C1D9009286DD /* TierITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7734AF41C45C1D9009286DD /* TierITableViewController.swift */; };
 		D7734AF71C45D4B3009286DD /* TierIITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7734AF61C45D4B3009286DD /* TierIITableViewController.swift */; };
@@ -137,6 +144,13 @@
 		D75AA4271C6062D200D5139B /* Structures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Structures.swift; sourceTree = "<group>"; };
 		D75ABF1D1C48306A00435CF1 /* TierIVTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierIVTableViewCell.swift; sourceTree = "<group>"; };
 		D765FD371C7E60F400F68389 /* SettingsStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SettingsStoryboard.storyboard; sourceTree = "<group>"; };
+		D7683B0E1CB3086900F79678 /* HistoryStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HistoryStoryboard.storyboard; sourceTree = "<group>"; };
+		D7683B101CB308C100F79678 /* HistoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableViewController.swift; sourceTree = "<group>"; };
+		D7683B121CB308D400F79678 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
+		D7683B141CB308E300F79678 /* HistoryDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryDetailTableViewController.swift; sourceTree = "<group>"; };
+		D7683B161CB30FA000F79678 /* HistoryDetailHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryDetailHeaderTableViewCell.swift; sourceTree = "<group>"; };
+		D7683B1A1CB32B6000F79678 /* HistoryDetailTotalTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryDetailTotalTableViewCell.swift; sourceTree = "<group>"; };
+		D7683B1C1CB33EFA00F79678 /* HistoryDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryDetailTableViewCell.swift; sourceTree = "<group>"; };
 		D77013901C6C20C900CEB886 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		D7734AF41C45C1D9009286DD /* TierITableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierITableViewController.swift; sourceTree = "<group>"; };
 		D7734AF61C45D4B3009286DD /* TierIITableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierIITableViewController.swift; sourceTree = "<group>"; };
@@ -268,6 +282,20 @@
 				D775CDDA1C6D4ABA006A3F29 /* SettingsTextViewController.swift */,
 			);
 			name = "TRDM - Settings";
+			sourceTree = "<group>";
+		};
+		D7683B0D1CB3084600F79678 /* TRDM - History */ = {
+			isa = PBXGroup;
+			children = (
+				D7683B0E1CB3086900F79678 /* HistoryStoryboard.storyboard */,
+				D7683B101CB308C100F79678 /* HistoryTableViewController.swift */,
+				D7683B121CB308D400F79678 /* HistoryTableViewCell.swift */,
+				D7683B141CB308E300F79678 /* HistoryDetailTableViewController.swift */,
+				D7683B161CB30FA000F79678 /* HistoryDetailHeaderTableViewCell.swift */,
+				D7683B1C1CB33EFA00F79678 /* HistoryDetailTableViewCell.swift */,
+				D7683B1A1CB32B6000F79678 /* HistoryDetailTotalTableViewCell.swift */,
+			);
+			name = "TRDM - History";
 			sourceTree = "<group>";
 		};
 		D7C1E0311C5A928F00143C48 /* Resources */ = {
@@ -416,6 +444,7 @@
 				D765FD361C7E60D400F68389 /* TRDM - Settings */,
 				D7FC44B21C7E9E9D003482B9 /* TRDM - Payment */,
 				D7FC44B51C7EA13D003482B9 /* TRDM - Tab */,
+				D7683B0D1CB3084600F79678 /* TRDM - History */,
 				D7FFF7B01C3AFB0600020D9A /* AppDelegate.swift */,
 				D7F981131C4461FD00200639 /* MenuTableViewController.swift */,
 				D72B2A4D1C49728C0090875F /* RawPopoverViewController.swift */,
@@ -565,6 +594,7 @@
 			files = (
 				D765FD381C7E60F400F68389 /* SettingsStoryboard.storyboard in Resources */,
 				D7FC44B71C7EA162003482B9 /* TabStoryboard.storyboard in Resources */,
+				D7683B0F1CB3086900F79678 /* HistoryStoryboard.storyboard in Resources */,
 				D7C1E03A1C5A952000143C48 /* primary-logotype-05_rgb_600_600.png in Resources */,
 				D7C1E03C1C5A958100143C48 /* Typographic-deconstructed_rgb_600_120.png in Resources */,
 				D7C1E0341C5A950000143C48 /* secondary-logomark-03_rgb_600_600.png in Resources */,
@@ -658,6 +688,7 @@
 				D75AA4281C6062D200D5139B /* Structures.swift in Sources */,
 				D719A6301C3F26D500987525 /* TierNavigationController.swift in Sources */,
 				D7ACC3C41CA31C9A0005DE73 /* AppConfiguration.swift in Sources */,
+				D7683B151CB308E300F79678 /* HistoryDetailTableViewController.swift in Sources */,
 				D7A8AC041C4D9469008D9A90 /* PopoverTableViewCell.swift in Sources */,
 				D7B616861C62D7DB002CF1DE /* TabTableViewController.swift in Sources */,
 				D7E803951C56E140003C12D9 /* PopoverDetailsTableViewCell.swift in Sources */,
@@ -666,6 +697,7 @@
 				D7D8099A1C7BCF3F00A3F5E6 /* AlertManager.swift in Sources */,
 				D7C1E0441C5AE3F000143C48 /* TabManager.swift in Sources */,
 				D7D8099E1C7BCFBA00A3F5E6 /* AccountManager.swift in Sources */,
+				D7683B171CB30FA000F79678 /* HistoryDetailHeaderTableViewCell.swift in Sources */,
 				D729AB831C471FF90021A66E /* TierIVCollectionViewCell.swift in Sources */,
 				D73620421C651BE800DD7F71 /* TabLineItemServingCollectionViewCell.swift in Sources */,
 				D7F981141C4461FD00200639 /* MenuTableViewController.swift in Sources */,
@@ -683,6 +715,7 @@
 				D75ABF1E1C48306A00435CF1 /* TierIVTableViewCell.swift in Sources */,
 				D736DAE11C73DACE00751307 /* AddGratuityCollectionViewCell.swift in Sources */,
 				D74B1C4A1C583260008F5A36 /* PopoverSGCollectionViewCell.swift in Sources */,
+				D7683B111CB308C100F79678 /* HistoryTableViewController.swift in Sources */,
 				D7F981121C4461A300200639 /* ENSideMenuNavigationController.swift in Sources */,
 				D7B6168A1C62DCEF002CF1DE /* TabTotalTableViewCell.swift in Sources */,
 				D733D4641C69555700682A84 /* PaymentTableViewController.swift in Sources */,
@@ -691,7 +724,9 @@
 				D72B2A4E1C49728C0090875F /* RawPopoverViewController.swift in Sources */,
 				D786D1C01C7D57F70034EA81 /* SignupSceneTwoViewController.swift in Sources */,
 				D775CDD11C6D0921006A3F29 /* SettingsSwitchTableViewCell.swift in Sources */,
+				D7683B1B1CB32B6000F79678 /* HistoryDetailTotalTableViewCell.swift in Sources */,
 				D78594961C7BF164000972FB /* SignupSceneOneTableViewController.swift in Sources */,
+				D7683B131CB308D400F79678 /* HistoryTableViewCell.swift in Sources */,
 				D7B616881C62DCE0002CF1DE /* TabLineItemTableViewCell.swift in Sources */,
 				D775CDCF1C6D0917006A3F29 /* SettingsLabelTableViewCell.swift in Sources */,
 				D74B1C4E1C58339E008F5A36 /* PopoverActionCollectionViewCell.swift in Sources */,
@@ -708,6 +743,7 @@
 				D7B6168C1C62DCFA002CF1DE /* TabActionTableViewCell.swift in Sources */,
 				D7FACCFB1C46F1EF0006F6BE /* TierIVCollectionViewController.swift in Sources */,
 				D786D1C21C7D580D0034EA81 /* SignupSceneTwoTableViewController.swift in Sources */,
+				D7683B1D1CB33EFA00F79678 /* HistoryDetailTableViewCell.swift in Sources */,
 				D7E8039B1C56E17B003C12D9 /* PopoverActionTableViewCell.swift in Sources */,
 				D733D4681C69746C00682A84 /* PaymentAddViewController.swift in Sources */,
 				D775CDDB1C6D4ABA006A3F29 /* SettingsTextViewController.swift in Sources */,

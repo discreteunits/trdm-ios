@@ -61,14 +61,14 @@ class MenuTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // Return the number of rows in the section.
-        return 5
+        return 6
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         var cell = tableView.dequeueReusableCellWithIdentifier("CELL")
         
-        let menuArray = ["Menu", "Events", "Tab", "Payment", "Settings"]
+        let menuArray = ["Menu", "Events", "Tab", "History", "Payment", "Settings"]
         
         if (cell == nil) {
             cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "CELL")
@@ -127,7 +127,6 @@ class MenuTableViewController: UITableViewController {
             TabManager.sharedInstance.removeItemsIndicator()
             
                 selectedMenuItem = 0
-                TabManager.sharedInstance.totalCellCalculator()
             break
         case 2:
             let tabStoryboard: UIStoryboard = UIStoryboard(name: "TabStoryboard", bundle: nil)
@@ -145,6 +144,21 @@ class MenuTableViewController: UITableViewController {
                 selectedMenuItem = 0
             break
         case 3:
+            let historyStoryboard: UIStoryboard = UIStoryboard(name: "HistoryStoryboard", bundle: nil)
+            
+            destViewController = historyStoryboard.instantiateViewControllerWithIdentifier("History")
+            destViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
+            destViewController.modalPresentationStyle = .CurrentContext
+            
+            let rootVC = sideMenuController() as! UIViewController
+            rootVC.presentViewController(destViewController, animated: true, completion: nil)
+            
+            // Remove Items Indicator
+            TabManager.sharedInstance.removeItemsIndicator()
+            
+            selectedMenuItem = 0
+            break
+        case 4:
             let paymentStoryboard: UIStoryboard = UIStoryboard(name: "PaymentStoryboard", bundle: nil)
 
             destViewController = paymentStoryboard.instantiateViewControllerWithIdentifier("Payment")
