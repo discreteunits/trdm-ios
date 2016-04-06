@@ -31,6 +31,10 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
     
     var delegate: TabTableViewDelegate?
     
+    // Price Formatter
+    let formatter = PriceFormatManager.priceFormatManager
+
+    
 // --------------------
     override func viewWillAppear(animated: Bool) {
         TabManager.sharedInstance.totalCellCalculator()
@@ -126,9 +130,24 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
             totalCell.contentView.tag = indexPath.row
             
             // Assignments
-            totalCell.subtotalValueLabel?.text = "\(TabManager.sharedInstance.currentTab.subtotal)"
-            totalCell.taxValueLabel?.text = "\(TabManager.sharedInstance.currentTab.totalTax)"
-            totalCell.totalValueLabel?.text = "\(TabManager.sharedInstance.currentTab.grandTotal)"
+            
+//            totalCell.subtotalValueLabel?.text = "\(TabManager.sharedInstance.currentTab.subtotal)"
+            let subTotal = TabManager.sharedInstance.currentTab.subtotal
+            let convertedSubtotal = formatter.formatPrice(subTotal)
+            totalCell.subtotalValueLabel?.text = convertedSubtotal
+            
+            
+//            totalCell.taxValueLabel?.text = "\(TabManager.sharedInstance.currentTab.totalTax)"
+            let totalTax = TabManager.sharedInstance.currentTab.totalTax
+            let convertedTotalTax = formatter.formatPrice(totalTax)
+            totalCell.taxValueLabel?.text = convertedTotalTax
+
+            
+//            totalCell.totalValueLabel?.text = "\(TabManager.sharedInstance.currentTab.grandTotal)"
+            let grandTotal = TabManager.sharedInstance.currentTab.grandTotal
+            let convertedGrandTotal = formatter.formatPrice(grandTotal)
+            totalCell.totalValueLabel?.text = convertedGrandTotal
+            
             
             // Styles
             totalCell.subtotalLabel.font = UIFont.headerFont(18)
@@ -219,12 +238,9 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
             } else {
                
                 if tab.lines.count > 0 {
-                    let lineMods = tab.lines[indexPath.row].subproducts.count
-                    let lineSize = (lineMods * 25) + 50
                     
-                    
+                    let lineSize = 100
                     return CGFloat(lineSize)
-                    
                     
                 }
                 
@@ -385,7 +401,7 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
                 
             } else {
                 
-                let modChoices = TabManager.sharedInstance.currentTab.lines[parent].subproducts.count
+                let modChoices = 1
                 numberOfItems = modChoices
                 
             }
@@ -425,9 +441,9 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
                     
                 } else {
                 
-                    orderMod = TabManager.sharedInstance.currentTab.lines[parent].subproducts[indexPath.row].info
+                    orderMod = TabManager.sharedInstance.currentTab.lines[parent].subproduct.info
                     
-                    servingPrice = "\(Int(TabManager.sharedInstance.currentTab.lines[parent].subproducts[indexPath.row].price))"
+                    servingPrice = "\(Int(TabManager.sharedInstance.currentTab.lines[parent].subproduct.price))"
                     
                 }
                 

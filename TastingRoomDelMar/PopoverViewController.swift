@@ -29,8 +29,9 @@ class PopoverViewController: UITableViewController {
     var maxQuantity = 10
     
     // User Choices
-    var productChoices = [Product]() // Beer and Wine
-    var productHarvestChoices = [Addition]() // Harvest
+    var productChoice = Product() // Beer and Wine
+    var productAdditionChoices = [Addition]() // Harvest
+    
     var quantityChoice = String()
     
     // Collect All Additions For This Item
@@ -86,7 +87,7 @@ class PopoverViewController: UITableViewController {
             for value in additionValues as! [[String:AnyObject]] {
                 
                 var newValue = Value()
-                newValue.id = String(value["id"]!)
+                newValue.modifierId = String(value["id"]!)
                 newValue.info = value["info"] as! String
                 newValue.name = value["name"] as! String
                 newValue.price = String(value["price"]!)
@@ -100,7 +101,7 @@ class PopoverViewController: UITableViewController {
             
             var newAddition = Addition()
             newAddition.displayName = additionRaw["displayName"]! as! String
-            newAddition.id = String(additionRaw["id"]!)
+            newAddition.modifierValueId = String(additionRaw["id"]!)
             newAddition.maxSelectedAmount = String(additionRaw["maxSelectedAmount"]!)
             newAddition.minSelectedAmount = String(additionRaw["minSelectedAmount"]!)
             newAddition.name = additionRaw["name"]! as! String
@@ -470,18 +471,15 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                     print("Selected Addition with Value: \(selectedAddition)")
                 }
                 
-                productHarvestChoices.append(selectedAddition)
+                productAdditionChoices.append(selectedAddition)
                 
             } else {
                 
                 let subproduct = subproducts[indexPath.row]
-                self.productChoices.append(subproduct)
+                productChoice = subproduct
                 
-                let trueIndex = productChoices.count - 1
-                
-                let subproductName = productChoices[trueIndex].name
                 if printFlag {
-                    print("User chose to add: \(subproductName)")
+                    print("User chose to add: \(productChoice.name)")
                 }
                 
             }
@@ -538,39 +536,36 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                 // ----- END -----
                 
                 if popoverItem != nil {
-                    if productChoices.count == completedChoices || productHarvestChoices.count == completedChoices {
+                    if productChoice.name != "" || productAdditionChoices.count == completedChoices {
                         if quantityChoice != "" {
-                         
+
+                            
+                            
+                            
+                            // // // //  func monetaryCalculations
+                            
                             // Begin Monetary Calculations
-                            // --------------------------------------
                             let taxString = popoverItem["taxClass"] as! String
-                            
                             let taxRateString = taxString.stringByReplacingOccurrencesOfString("BUILTIN-", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
-                            
                             let taxRateConversion = Double(taxRateString)! / 100
                             let taxRateDouble = taxRateConversion
-                            
-                            if printFlag {
-                                print("\(taxRateDouble)")
-                            }
-                            
-                            // Calculate Tax Expenditure
                             let lineitemQuantity = Double(quantityChoice)
+
+                            if printFlag {
+                                print("Tax Rate: \(taxRateDouble)")
+                            }
                             
                             // Total All Subproduct Choice Prices
                             var totalChoicesPrice = Double()
                             if route[1]["name"] as! String == "Harvest" {
                                 totalChoicesPrice = popoverItem["price"] as! Double
                             } else {
-                                for choice in productChoices {
-                                    totalChoicesPrice = totalChoicesPrice + choice.price
-                                }
+                                totalChoicesPrice = productChoice.price
                             }
                             
+                            // Tax and Total for LineItem
                             let lineitemPreTax = lineitemQuantity! * (totalChoicesPrice)
-                            
                             let lineitemTax = lineitemPreTax * taxRateDouble
-                            
                             let lineitemTotal = lineitemTax + lineitemPreTax
                             
                             if printFlag {
@@ -582,57 +577,55 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                                 print("+++++++++++++++++++++++++++++++++++")
                             }
                             
-                            // Begin Create LineItem
-                            // ------------------------------
-                            var newLineItem = LineItem()
-                            newLineItem.id = popoverItem.objectId!
-                            newLineItem.lightspeedId = "\(popoverItem["lightspeedId"])"
-                            newLineItem.name = popoverItem["name"] as! String
-                            newLineItem.additions = productHarvestChoices
                             
+                            
+                            // // // //  func parentProductCreation
+                            
+                            // LineItem Parent Product
+                            var newProduct = Product()
+                            newProduct.objectId = popoverItem.objectId!                 // Parse Obj ID
+                            newProduct.productId = String(popoverItem["lightspeedId"])      // Lightspeed ID
+                            newProduct.name = popoverItem["name"] as! String
+                            newProduct.price = popoverItem["price"] as! Double
+                            newProduct.info = popoverItem["info"] as! String
+                            
+                            
+                            
+                            
+                            // // // //  func createLineItem
+                            
+                            // Begin Create LineItem
+                            var newLineItem = LineItem()
+                            
+                            newLineItem.objectId = popoverItem.objectId!
+                            newLineItem.productId = "\(popoverItem["lightspeedId"])"
+                            newLineItem.quantity = Int(quantityChoice)!
+
+                            newLineItem.name = popoverItem["name"] as! String
+                            newLineItem.price = lineitemPreTax
+                            newLineItem.tax = lineitemTax
                             
                             // ----- HARVEST BEGIN ------
                             if route[1]["name"] as! String == "Harvest" {
                                 newLineItem.varietal = ""
-                            } else {
-                                newLineItem.varietal = popoverItemVarietal["name"] as! String
-                            }
-                            // ----- END -----
-                            
-                            
-                            // ADD: Subproducts
-                            newLineItem.subproducts = productChoices
-                            newLineItem.price = lineitemPreTax
-                            newLineItem.quantity = Int(quantityChoice)!
-                            newLineItem.tax = lineitemTax
-                            
-                            
-                            // CREATE PRODUCT FROM POPOVER ITEM
-                            var newProduct = Product()
-                            newProduct.id = popoverItem.objectId!
-                            newProduct.lightspeedId = String(popoverItem["lightspeedId"])
-                            newProduct.name = popoverItem["name"] as! String
-                            
-                            let newProductPrice = popoverItem["price"] as! Double
-                            newProduct.price = newProductPrice
-
-                            newLineItem.product = newProduct
-                            
-                            
-                            // ----- HARVEST BEGIN ------
-                            if route[1]["name"] as! String == "Harvest" {
                                 newLineItem.eatOrDrink = "Eat"
                             } else {
+                                newLineItem.varietal = popoverItemVarietal["name"] as! String
                                 newLineItem.eatOrDrink = "Drink"
                             }
                             // ----- END -----
+                            
+
+                            newLineItem.product = newProduct
+                            newLineItem.subproduct = productChoice
+                            newLineItem.additions = productAdditionChoices
+
+
                             
                             if printFlag {
                                 print("New LineItem created: \(newLineItem.name)")
                             }
 
-                            // Finalize: Add LineItem to Tab, Clean Up, Confirm
-                            // ------------------------------
                             // Add LineItem to Tab
                             TabManager.sharedInstance.currentTab.lines.append(newLineItem)
                             
@@ -640,13 +633,21 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                                 print("Line Item \(newLineItem.name) has been added to currentTab.")
                             }
                             
+                            
+                            
+                            
+                            // // // // func cleanUp
+                            
                             // Clean Up
                             popoverAdditions.removeAll()
                             subproducts.removeAll()
-                            productHarvestChoices.removeAll()
-                            productChoices.removeAll()
+                            productAdditionChoices.removeAll()
+                            productChoice = Product()
                             taxRates.removeAll()
                             
+                            
+                            
+                            // // // // func confirmSuccess
                             
                             // Confirm
                             AlertManager.sharedInstance.addedSuccess(self, title: "Added Successfully", message: "Item has been added to your order!")
@@ -700,9 +701,9 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                 let deselectedAddition = additions[trueIndex]
                 
                 var count = 0
-                for productHarvestChoice in productHarvestChoices {
-                    if productHarvestChoice.name == deselectedAddition.name {
-                        productHarvestChoices.removeAtIndex(count)
+                for productAdditionChoice in productAdditionChoices {
+                    if productAdditionChoice.name == deselectedAddition.name {
+                        productAdditionChoices.removeAtIndex(count)
                         count = 0
                     } else {
                         count = count + 1
@@ -711,39 +712,16 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                 
                 if printFlag {
                     print("------- UPDATED --------")
-                    print("ProductHarvestChoices: \(productHarvestChoices)")
+                    print("ProductAdditionChoices: \(productAdditionChoices)")
                     print("------- -- -- -- --------")
                 }
                     
             } else {
                 
-//                let subproduct = subproducts[indexPath.row]
-//                
-//                if productChoices.contains(subproduct) {
-//                    
-//                    productChoices = productChoices.filter() {$0 != subproduct}
-//                    
-//                }
-                
-                let trueIndex = parent - 1
-                
-                let deselectedSubproduct = productChoices[trueIndex]
-                
-                var count = 0
-                for productChoice in productChoices {
-                    if productChoice.name == deselectedSubproduct.name {
-                        productChoices.removeAtIndex(count)
-                        count = 0
-                    } else {
-                        count = count + 1
-                    }
-                }
-                
-                
-                
-                let subproductName = deselectedSubproduct.name
+                productChoice = Product()
+
                 if printFlag {
-                    print("Modifier \(subproductName) has been removed from selected modifiers.")
+                    print("Product Choice has been set to: \(productChoice)")
                 }
                 
             }
@@ -760,14 +738,6 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
           
         // Action Table Row
         } else if parent == actionRow {
-            
-            let deselectedCell = collectionView.cellForItemAtIndexPath(indexPath)! as! PopoverActionCollectionViewCell
-            
-            if indexPath.row == 0 {
-                
-            } else if indexPath.row == 1 {
-
-            }
             
         }
         

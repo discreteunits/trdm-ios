@@ -60,6 +60,8 @@ class TabManager: NSObject {
         var subtotal = Double()
         var totalTax = Double()
         
+        
+        // ----- HARVEST BEGIN ------
         let lineitems = currentTab.lines
         for lineitem in lineitems {
             
@@ -81,6 +83,8 @@ class TabManager: NSObject {
             subtotal = subtotal + lineitem.price + allAdditionValuePrices // Already in dollars
             
         }
+        // ----- END -----
+
         
         // Total Calculation
         let total = totalTax + subtotal
@@ -138,41 +142,55 @@ class TabManager: NSObject {
         var modifiers = [[String:AnyObject]]()
 
         // BEGIN COLLECTING HERE
-        // ---------------------
-        // LEVEL ONE: Loop LineItems
         for lineitem in tab.lines {
 
-            // LEVEL TWO: Loop Modifier Groups
-            for modifierGroup in lineitem.product.modifiergroups {
 
-                // LEVEL THREE: Loop Modifiers
-                for modifier in modifierGroup.modifiers {
-                    let paramModifier : [String:AnyObject] = [
-                        "modifierId": modifier.lightspeedId,
-                        "modifierValueId": modifier.modifierValueId
-                    ]
-                    modifiers.append(paramModifier)
+            // ----- HARVEST BEGIN ------
+            for line in TabManager.sharedInstance.currentTab.lines {
+                
+                if line.eatOrDrink == "Eat" {
+                   
+                    for addition in line.additions {
+                        
+                        for value in addition.values {
+                            
+                            let paramModifier : [String:AnyObject] = [
+                                "modifierId": value.modifierId,
+                                "modifierValueId": addition.modifierValueId
+                            ]
+                            
+                            modifiers.append(paramModifier)
+                            
+                        }
+                        
+                    }
+                
                 }
                 
             }
+            // ----- END -----
+
 
             
-            // BEGIN BUILD HERE
+            // Begin Building LineItem
             //-----------------            
             // Loop LineItems
             let paramLineItem : [String:AnyObject] = [
-                "productId": lineitem.id,
                 "amount": lineitem.quantity,
-                "objectId": lineitem.id,
+                "objectId": lineitem.subproduct.objectId,
+                "productId": lineitem.subproduct.productId,
                 "modifiers": modifiers
             ]
             
             lines.append(paramLineItem)
+            
         }
         
         let paramBody : [String:AnyObject] = [
             "type": tab.type,
-            "orderItems": lines
+            "orderItems": lines,
+            "description": "Spoofed",
+            "note": "Spoofer"
         ]
         
         // Build Params

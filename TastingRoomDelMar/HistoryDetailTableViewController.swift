@@ -24,6 +24,9 @@ class HistoryDetailTableViewController: UITableViewController {
 
     @IBOutlet weak var navigationTitle: UINavigationItem!
 
+
+
+    let formatter = PriceFormatManager.priceFormatManager
     
     // ---------
     override func viewWillAppear(animated: Bool) {
@@ -37,7 +40,6 @@ class HistoryDetailTableViewController: UITableViewController {
         super.viewDidLoad()
         
         tableView.tableFooterView = UIView()
-
         
         if let navBar = navigationController?.navigationBar {
             
@@ -107,7 +109,9 @@ class HistoryDetailTableViewController: UITableViewController {
             // Assignments
             cell.qtyLabel.text = String(order["orderItems"][indexPath.row]["amount"]! as! Int)
             cell.itemLabel.text = lineItemNames[indexPath.row]
-            cell.priceLabel.text = String(order["orderItems"][indexPath.row]["totalPrice"]! as! Double)
+
+            let priceString = order["orderItems"][indexPath.row]["totalPrice"]! as! Double
+            cell.priceLabel.text = formatter.formatPrice(priceString)
             
             // Styles
             cell.qtyLabel.font = UIFont.headerFont(18)
@@ -128,7 +132,7 @@ class HistoryDetailTableViewController: UITableViewController {
             let orderPrice = order["orderTaxInfo"][0]["totalWithTax"]! as! Double
             
             // Assigments
-            cell.totalLabel.text = String(orderPrice)
+            cell.totalLabel.text = formatter.formatPrice(orderPrice)
             
             // Styles
             cell.total.font = UIFont.headerFont(28)

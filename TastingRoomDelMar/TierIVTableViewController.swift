@@ -397,14 +397,13 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         
         for subproduct in subproductsArray! {
             
+            // Subproduct Of LineItem
             var newSubproduct = Product()
-            newSubproduct.id = subproduct.objectId!
-            newSubproduct.lightspeedId = String(subproduct["lightspeedId"])
+            newSubproduct.objectId = subproduct.objectId!
+            newSubproduct.productId = String(subproduct["lightspeedId"])
             newSubproduct.name = subproduct["name"] as! String
+            newSubproduct.price = subproduct["price"] as! Double
             newSubproduct.info = subproduct["info"] as! String
-            
-            let productPrice = subproduct["price"] as! Double
-            newSubproduct.price = productPrice
             
             convertedSubproducts.append(newSubproduct)
             

@@ -44,28 +44,28 @@ struct Config {
 }
 
 // Tab Manager
-struct Modifier {
-    
-    var lightspeedId = String()
-    var modifierValueId = String()
-    var info = String()
-    var name = String()
-    var price = String()
-    
-}
-
-struct ModifierGroup {
-    
-    var lightspeedId = String()
-    var name = String()
-    var price = Double()
-    var modifiers = [Modifier]()
-    
-}
+//struct Modifier {
+//    
+//    var lightspeedId = String()
+//    var modifierValueId = String()
+//    var info = String()
+//    var name = String()
+//    var price = String()
+//    
+//}
+//
+//struct ModifierGroup {
+//    
+//    var lightspeedId = String()
+//    var name = String()
+//    var price = Double()
+//    var modifiers = [Modifier]()
+//    
+//}
 
 struct Value {
     
-    var id = String()
+    var modifierId = String()
     var info = String()
     var name = String()
     var price = String()
@@ -76,7 +76,7 @@ struct Value {
 struct Addition {
     
     var displayName = String()
-    var id:String = String()
+    var modifierValueId = String()
     var maxSelectedAmount = String()
     var minSelectedAmount = String()
     var name = String()
@@ -86,49 +86,55 @@ struct Addition {
 
 struct Product {
     
-    var id = String()
-    var lightspeedId = String()
+    var objectId = String() // Subproduct Parse Object ID
+    var productId = String() // Subproduct Lightspeed ID
     var name = String()
     var price = Double()
     var info = String()
     
-    var productPlu = String()
-    
-    var modifiergroups = [ModifierGroup]()
+//    var modifiergroups = [ModifierGroup]()
     
 }
 
 struct LineItem {
     
-    var id = String()
-    var lightspeedId = String()
-    var name = String()
-    var varietal = String()
+    // CloudeCode Use
+    var objectId = String() // Parent Product Parse Object ID
+    var productId = String() // Parent Product Lightspeed ID
     var quantity = Int()
+
+    // App Use
+    var name = String()
     var price = Double()
     var tax = Double()
-    var product = Product()
-    var subproducts = [Product]()
-    var additions = [Addition]()
-    
+    var varietal = String()
     var eatOrDrink = String()
     
+    // NEEDED?????
+    var product = Product()
+    var subproduct = Product()
+    var additions = [Addition]()
 }
 
 struct Tab {
     
-    var id = String()
+    // CloudCode Use
     var type = String()
     var note = String()
-    var lightspeedId = String()
-    var state = String()
     var table = String()
     var userId = String()
+    var checkoutMethod = String()
+
+    // NEEDED?????
+    var id = String()
+    var lightspeedId = String()
+    var state = String()
+    var gratuity = Double()
+
+    // App Use
     var subtotal = Double()
     var totalTax = Double()
     var grandTotal = Double()
-    var checkoutMethod = String()
-    var gratuity = Double()
     
     var lines = [LineItem]()
     

@@ -28,6 +28,7 @@
 		D74B1C4A1C583260008F5A36 /* PopoverSGCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74B1C491C583260008F5A36 /* PopoverSGCollectionViewCell.swift */; };
 		D74B1C4C1C5832E6008F5A36 /* PopoverQuantityCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74B1C4B1C5832E6008F5A36 /* PopoverQuantityCollectionViewCell.swift */; };
 		D74B1C4E1C58339E008F5A36 /* PopoverActionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74B1C4D1C58339E008F5A36 /* PopoverActionCollectionViewCell.swift */; };
+		D74D91531CB5A33100795C29 /* PriceFormatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74D91521CB5A33100795C29 /* PriceFormatManager.swift */; };
 		D75AA4281C6062D200D5139B /* Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75AA4271C6062D200D5139B /* Structures.swift */; };
 		D75ABF1E1C48306A00435CF1 /* TierIVTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75ABF1D1C48306A00435CF1 /* TierIVTableViewCell.swift */; };
 		D765FD381C7E60F400F68389 /* SettingsStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D765FD371C7E60F400F68389 /* SettingsStoryboard.storyboard */; };
@@ -141,6 +142,7 @@
 		D74B1C491C583260008F5A36 /* PopoverSGCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverSGCollectionViewCell.swift; sourceTree = "<group>"; };
 		D74B1C4B1C5832E6008F5A36 /* PopoverQuantityCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverQuantityCollectionViewCell.swift; sourceTree = "<group>"; };
 		D74B1C4D1C58339E008F5A36 /* PopoverActionCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverActionCollectionViewCell.swift; sourceTree = "<group>"; };
+		D74D91521CB5A33100795C29 /* PriceFormatManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriceFormatManager.swift; sourceTree = "<group>"; };
 		D75AA4271C6062D200D5139B /* Structures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Structures.swift; sourceTree = "<group>"; };
 		D75ABF1D1C48306A00435CF1 /* TierIVTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierIVTableViewCell.swift; sourceTree = "<group>"; };
 		D765FD371C7E60F400F68389 /* SettingsStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SettingsStoryboard.storyboard; sourceTree = "<group>"; };
@@ -365,6 +367,7 @@
 				D7C1E0431C5AE3F000143C48 /* TabManager.swift */,
 				D733D4651C69598F00682A84 /* CardManager.swift */,
 				D75AA4271C6062D200D5139B /* Structures.swift */,
+				D74D91521CB5A33100795C29 /* PriceFormatManager.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -681,6 +684,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D74D91531CB5A33100795C29 /* PriceFormatManager.swift in Sources */,
 				D7E803991C56E169003C12D9 /* PopoverQuantityTableViewCell.swift in Sources */,
 				D7734AF71C45D4B3009286DD /* TierIITableViewController.swift in Sources */,
 				D733D4601C69533A00682A84 /* PaymentCardTableViewCell.swift in Sources */,
