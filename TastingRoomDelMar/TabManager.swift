@@ -178,7 +178,7 @@ class TabManager: NSObject {
             let paramLineItem : [String:AnyObject] = [
                 "amount": lineitem.quantity,
                 "objectId": lineitem.subproduct.objectId,
-                "productId": lineitem.subproduct.productId,
+                "productId": Int(lineitem.subproduct.productId)!,
                 "modifiers": modifiers
             ]
             
