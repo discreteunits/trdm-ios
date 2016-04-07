@@ -33,6 +33,24 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
 
     
 // ---------------
+    override func isViewLoaded() -> Bool {
+        
+        if TabManager.sharedInstance.tierIVToTab {
+            
+            let tabStoryboard: UIStoryboard = UIStoryboard(name: "TabStoryboard", bundle: nil)
+            
+            let vc = tabStoryboard.instantiateViewControllerWithIdentifier("Tab")
+            
+            TabManager.sharedInstance.tierIVToTab = false
+            
+            self.presentViewController(vc, animated: true, completion: nil)
+
+        }
+        
+        return true
+        
+    }
+    
     override func viewWillAppear(animated: Bool) {
         
         // If Harvest - Remove Collection View
@@ -62,9 +80,16 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
         }
         
     }
+
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+
+        
+
+        
         
         bounds = self.view.bounds
         
@@ -364,6 +389,8 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
         }
         
     }
+    
+
     
 }
 

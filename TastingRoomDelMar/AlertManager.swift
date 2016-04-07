@@ -286,17 +286,30 @@ class AlertManager: UIViewController {
         alert.view.tintColor = UIColor.primaryGreenColor()
         
         // Create Actions
-        let goBackToMenu = UIAlertAction(title: "Sounds Good", style: .Default, handler: { (action) -> Void in
+        let goBackToMenu = UIAlertAction(title: "Menu", style: .Default, handler: { (action) -> Void in
+            
+            self.confirm(view)
+
+            if printFlag {
+                print("Back To Menu Selected")
+            }
+            
+        })
+        let goToTab = UIAlertAction(title: "Tab", style: .Default, handler: { (action) -> Void in
+            
+            TabManager.sharedInstance.tierIVToTab = true
+            
             self.confirm(view)
             
             if printFlag {
-                print("Okay Selected")
+                print("Go To Tab Selected")
             }
             
         })
         
         // Add Actions
         alert.addAction(goBackToMenu)
+        alert.addAction(goToTab)
         
         view.presentViewController(alert, animated: true, completion: nil)
         
@@ -369,6 +382,7 @@ class AlertManager: UIViewController {
             }
             
         })
+        
         
         // Add Actions
         alert.addAction(successAction)

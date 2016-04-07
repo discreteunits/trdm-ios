@@ -16,6 +16,8 @@ class TabManager: NSObject {
     
     var currentTab = Tab()
     
+    var tierIVToTab = false
+    
 // -------------------
     override init() {
         super.init()
