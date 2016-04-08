@@ -88,6 +88,7 @@ class SignupSceneTwoTableViewController: UITableViewController, UITextFieldDeleg
         if printFlag {
             print("KeyboardHeight: \(keyboardHeight)")
         }
+        
         keyboard = keyboardHeight
         
     }

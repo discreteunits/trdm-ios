@@ -35,6 +35,15 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
 
 // ---------------
     override func isViewLoaded() -> Bool {
+        
+        // ----- HARVEST BEGIN ------
+        if route[1]["name"] as! String == "Harvest" {
+            // Do Nothing
+            notHarvest = ""
+        } else {
+            notHarvest = "CHOICE"
+        }
+        // ----- END -----
 
         if TabManager.sharedInstance.tierIVToTab {
             
@@ -360,8 +369,6 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
                     if !self.TierIVTableViewControllerRef!.tierIVTableArray.contains(object) {
                         
                         self.TierIVTableViewControllerRef?.tierIVTableArray.append(object)
-                        
-
 
                     } else {
                         

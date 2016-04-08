@@ -69,7 +69,7 @@ class SignupSceneTwoViewController: UIViewController {
             print("\(keyboardHeight)")
         }
         
-        let topOfKeyboard = (screenHeight - keyboardHeight!) - 60 - 226
+        let topOfKeyboard = (screenHeight - keyboardHeight!) - 68
         
         signupButton = UIButton(frame: CGRectMake(0, topOfKeyboard, screenWidth, 60))
         signupButton.setTitle("Sign Up", forState: .Normal)

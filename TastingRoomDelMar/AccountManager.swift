@@ -97,19 +97,19 @@ class AccountManager: NSObject {
                 // Success
                 if  error == nil {
                 
+                    ActivityManager.sharedInstance.activityStop()
                     print("Successfully saved user.")
                     view.performSegueWithIdentifier("signupContinue", sender: view)
                 
                 // Failure
                 } else {
                 
+                    ActivityManager.sharedInstance.activityStop()
                     print("Failed to save user.")
                     AlertManager.sharedInstance.singleAlert(view, title: "Failure", message: "Please try again later.")
                 
                 }
                 
-                ActivityManager.sharedInstance.activityStop()
-            
             })
             
         }
@@ -184,13 +184,13 @@ class AccountManager: NSObject {
     
     func goToTiers(view: UIViewController) {
         
-//        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//        
-//        let vc = mainStoryboard.instantiateViewControllerWithIdentifier("Menu")
-//        
-//        view.presentViewController(vc, animated: true, completion: nil)
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         
-        view.performSegueWithIdentifier("signin", sender: view)
+        let vc = mainStoryboard.instantiateViewControllerWithIdentifier("Menu")
+        
+        view.presentViewController(vc, animated: true, completion: nil)
+        
+//        view.performSegueWithIdentifier("signin", sender: view)
         
     }
     
