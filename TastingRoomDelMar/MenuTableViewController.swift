@@ -61,20 +61,38 @@ class MenuTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // Return the number of rows in the section.
-        return 6
+        
+        if PFUser.currentUser()!.username != nil {
+            return 6
+        } else {
+            return 3
+        }
+        
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         var cell = tableView.dequeueReusableCellWithIdentifier("CELL")
+        var menuArray = [String]()
         
-        let menuArray = ["Menu", "Events", "Tab", "History", "Payment", "Settings"]
+        // ----- Logged In Trigger -----
+        if PFUser.currentUser()!.username != nil {
+            
+            menuArray = ["Menu", "Events", "Tab", "History", "Payment", "Settings"]
+            
+        } else {
+            
+            menuArray = ["Menu", "Events", "Home"]
+            
+        }
+        // ----- END -----
+        
         
         if (cell == nil) {
             cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "CELL")
             cell!.backgroundColor = UIColor.clearColor()
             cell!.textLabel?.textColor = UIColor.whiteColor()
-            cell!.textLabel?.font = UIFont(name: "NexaRustScriptL-00", size: 24)
+            cell!.textLabel?.font = UIFont.scriptFont(24)
             let selectedBackgroundView = UIView(frame: CGRectMake(0, 0, cell!.frame.size.width, cell!.frame.size.height))
             selectedBackgroundView.backgroundColor = UIColor.grayColor().colorWithAlphaComponent(0.2)
             cell!.selectedBackgroundView = selectedBackgroundView
@@ -129,20 +147,43 @@ class MenuTableViewController: UITableViewController {
                 selectedMenuItem = 0
             break
         case 2:
-            let tabStoryboard: UIStoryboard = UIStoryboard(name: "TabStoryboard", bundle: nil)
-
-            destViewController = tabStoryboard.instantiateViewControllerWithIdentifier("Tab")
-            destViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
-            destViewController.modalPresentationStyle = .CurrentContext
             
-            let rootVC = sideMenuController() as! UIViewController
-            rootVC.presentViewController(destViewController, animated: true, completion: nil)
-            
-            // Remove Items Indicator
-            TabManager.sharedInstance.removeItemsIndicator()
-            
+            // ----- Logged In Trigger -----
+            if PFUser.currentUser()!.username != nil {
+                
+                let tabStoryboard: UIStoryboard = UIStoryboard(name: "TabStoryboard", bundle: nil)
+                
+                destViewController = tabStoryboard.instantiateViewControllerWithIdentifier("Tab")
+                destViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
+                destViewController.modalPresentationStyle = .CurrentContext
+                
+                let rootVC = sideMenuController() as! UIViewController
+                rootVC.presentViewController(destViewController, animated: true, completion: nil)
+                
+                // Remove Items Indicator
+                TabManager.sharedInstance.removeItemsIndicator()
+                
+                selectedMenuItem = 0
+                break
+                
+            } else {
+                
+                let signupStoryboard: UIStoryboard = UIStoryboard(name: "SignupStoryboard", bundle: nil)
+                destViewController = signupStoryboard.instantiateViewControllerWithIdentifier("Landing") as UIViewController
+                
+                let appDel: AppDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
+                let rootView: UIViewController = UIViewController()
+                appDel.window?.rootViewController = rootView
+                
+                rootView.presentViewController(destViewController, animated: true, completion: nil)
+                
+                route.removeAll()
                 selectedMenuItem = 0
             break
+                
+            }
+            // ----- END -----
+
         case 3:
             let historyStoryboard: UIStoryboard = UIStoryboard(name: "HistoryStoryboard", bundle: nil)
             
@@ -193,5 +234,5 @@ class MenuTableViewController: UITableViewController {
         sideMenuController()?.setContentViewController(destViewController)
         
     }
-    
+  
 }

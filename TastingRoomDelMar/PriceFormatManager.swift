@@ -21,19 +21,7 @@ class PriceFormatManager: NSObject {
         formatter.maximumFractionDigits = 2
         
         var convertedPrice = String()
-        
-//        if (price - floor(price) > 0.1) {
-//            convertedPrice = formatter.stringFromNumber(price)!
-//            
-//            return convertedPrice
-//        } else if (price - floor(price) > 0) {
-//            let convertPrice = formatter.stringFromNumber(price)
-//            convertedPrice = convertPrice! + "0"
-//            
-//            return convertedPrice
-//            
-//        }
-        
+
         
         if ( price - floor(price) > 0.1 && price - floor(price) < 0 ) {
             let convertPrice = formatter.stringFromNumber(price)

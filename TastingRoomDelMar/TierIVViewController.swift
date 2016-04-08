@@ -30,10 +30,10 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
     @IBOutlet weak var tierIVCollectionContainer: UIView!
     
     var bounds: CGRect!
-
     
 // ---------------
     override func isViewLoaded() -> Bool {
+
         
         if TabManager.sharedInstance.tierIVToTab {
             
@@ -52,6 +52,26 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
     }
     
     override func viewWillAppear(animated: Bool) {
+        
+        // NAV BAR STYLES
+        if let navBar = navigationController?.navigationBar {
+            
+            nav = navBar
+            
+            navigationTitle.title = route[2]["name"] as! String
+            nav?.barStyle = UIBarStyle.Black
+            nav?.tintColor = UIColor.whiteColor()
+            nav?.titleTextAttributes = [ NSFontAttributeName: UIFont (name: "NexaRustScriptL-00", size: 24)!]
+            
+            // SET NAV BACK BUTTON TO REMOVE LAST ITEM FROM ROUTE
+            let lastWindow = route[1]["name"]
+            
+            self.navigationItem.hidesBackButton = true
+            let newBackButton = UIBarButtonItem(title: "< \(lastWindow)", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(TierIVViewController.back(_:)))
+            self.navigationItem.leftBarButtonItem = newBackButton;
+            self.navigationItem.leftBarButtonItem!.setTitleTextAttributes( [NSFontAttributeName: UIFont(name: "NexaRustScriptL-00", size: 20)!], forState: UIControlState.Normal)
+            
+        }
         
         // If Harvest - Remove Collection View
         let tierTwoSelection = route[1]["name"] as! String
@@ -86,11 +106,6 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
-        
-
-        
-        
         bounds = self.view.bounds
         
         // Items Indicator
@@ -117,27 +132,6 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
         
         // FLYOUT MENU
         self.sideMenuController()?.sideMenu?.delegate = self
-        
-        // NAV BAR STYLES
-        
-        if let navBar = navigationController?.navigationBar {
-            
-            nav = navBar
-            
-            navigationTitle.title = route[2]["name"] as? String
-            nav?.barStyle = UIBarStyle.Black
-            nav?.tintColor = UIColor.whiteColor()
-            nav?.titleTextAttributes = [ NSFontAttributeName: UIFont (name: "NexaRustScriptL-00", size: 24)!]
-            
-            // SET NAV BACK BUTTON TO REMOVE LAST ITEM FROM ROUTE
-            let lastWindow = route[1]["name"]
-            
-            self.navigationItem.hidesBackButton = true
-            let newBackButton = UIBarButtonItem(title: "< \(lastWindow)", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(TierIVViewController.back(_:)))
-            self.navigationItem.leftBarButtonItem = newBackButton;
-            self.navigationItem.leftBarButtonItem!.setTitleTextAttributes( [NSFontAttributeName: UIFont(name: "NexaRustScriptL-00", size: 20)!], forState: UIControlState.Normal)
-            
-        }
         
     }
     

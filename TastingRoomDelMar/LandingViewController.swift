@@ -24,6 +24,10 @@ class LandingViewController: UIViewController {
     // ------------
     override func viewWillAppear(animated: Bool) {
         
+
+
+        
+        
         print("Print Statements Have Been Set To: \(printFlag)")
         if printFlag {
             print("Created By: Tobias Brysiewicz")
