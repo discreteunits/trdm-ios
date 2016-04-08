@@ -35,9 +35,9 @@ class PriceFormatManager: NSObject {
 //        }
         
         
-        if (price - floor(price) > 0.1) {
+        if ( price - floor(price) > 0.1 && price - floor(price) < 0 ) {
             let convertPrice = formatter.stringFromNumber(price)
-            convertedPrice = convertPrice! + "0"
+            convertedPrice = convertPrice!
             
             return convertedPrice
             

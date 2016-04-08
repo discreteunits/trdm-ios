@@ -24,6 +24,9 @@ class HistoryTableViewController: UITableViewController {
     
     var orderToPass: PFObject!
     
+    let formatter = PriceFormatManager.priceFormatManager
+
+    
     // ----------------------
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,14 +93,16 @@ class HistoryTableViewController: UITableViewController {
         let dateFormat = NSDateFormatter()
         dateFormat.dateFormat = "EEE, MMM d, h:mm a"
         
-        let orderPrice = order["orderTaxInfo"][0]["totalWithTax"]! as! Double
         
         // Assigments
         cell.orderNumberLabel.text = "Order #" + String(order["lightspeedId"])
         cell.dateLabel.text = NSString(format: "%@", dateFormat.stringFromDate(dateUpdated!)) as String
         cell.typeLabel.text = order["type"] as? String
         
-        cell.totalLabel.text = "Total: " + String(orderPrice)
+        let orderPrice = order["orderTaxInfo"][0]["totalWithTax"]! as! Double
+        let totalString = formatter.formatPrice(orderPrice)
+        cell.totalLabel.text = "Total: " + totalString
+        
         cell.methodLabel.text = order["checkoutMethod"] as? String
         
         // Styles
