@@ -192,7 +192,8 @@ class TabManager: NSObject {
             "type": tab.type,
             "orderItems": lines,
             "description": "Spoofed",
-            "note": "Spoofer"
+            "note": "Spoofer",
+            "tipAmount": tab.gratuity
         ]
         
         // Build Params

@@ -31,10 +31,11 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
     
     var bounds: CGRect!
     
+    var notHarvest = String()
+
 // ---------------
     override func isViewLoaded() -> Bool {
 
-        
         if TabManager.sharedInstance.tierIVToTab {
             
             let tabStoryboard: UIStoryboard = UIStoryboard(name: "TabStoryboard", bundle: nil)
@@ -52,6 +53,16 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
     }
     
     override func viewWillAppear(animated: Bool) {
+        
+        // ----- HARVEST BEGIN ------
+        if route[1]["name"] as! String == "Harvest" {
+            // Do Nothing
+            notHarvest = ""
+        } else {
+            notHarvest = "CHOICE"
+        }
+        // ----- END -----
+        
         
         // NAV BAR STYLES
         if let navBar = navigationController?.navigationBar {
@@ -101,8 +112,6 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
         
     }
 
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -332,10 +341,9 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
         
         self.TierIVTableViewControllerRef?.tierIVTableArray.removeAll()
         
-        
         let tableQuery:PFQuery = PFQuery(className:"Product")
         tableQuery.includeKey("category")
-        tableQuery.whereKey("productType", equalTo: "CHOICE")
+        tableQuery.whereKey("productType", equalTo: notHarvest)
         tableQuery.whereKey("categories", containsAllObjectsInArray: tagsArray)
         tableQuery.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
             

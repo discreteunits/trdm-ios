@@ -237,19 +237,25 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
                     // ----- HARVEST BEGIN ------
                     if route[1]["name"] as! String == "Harvest" {
                         
-                        if printFlag {
-                            print("This item contains: \(tierIVTableArray[indexPath.row]["additions"].count) raw additions.")
+                        if (tierIVTableArray[indexPath.row]["additions"] != nil) {
+                            
+                            if printFlag {
+                                print("This item contains: \(tierIVTableArray[indexPath.row]["additions"].count) raw additions.")
+                            }
+                            
+                            let additionsRaw = tierIVTableArray[indexPath.row]["additions"]
+                            
+                            for i in 0 ..< additionsRaw.count {
+                                additions.append(additionsRaw[i])
+                            }
+                            
+                            if printFlag {
+                                print("Additions Created: \(additions)")
+                            }
+                            
                         }
                         
-                        let additionsRaw = tierIVTableArray[indexPath.row]["additions"]
 
-                        for i in 0 ..< additionsRaw.count {
-                            additions.append(additionsRaw[i])
-                        }
-                        
-                        if printFlag {
-                            print("Additions Created: \(additions)")
-                        }
                     }
                     // ----- END -----
                     

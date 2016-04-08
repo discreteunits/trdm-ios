@@ -61,7 +61,7 @@ class AlertManager: UIViewController {
             TabManager.sharedInstance.currentTab.checkoutMethod = "stripe"
             
             // Continue Place Order
-            self.stripeCheckout(view)
+            self.checkout(view)
             
             if printFlag {
                 print("Closeout Now Selected")
@@ -70,6 +70,9 @@ class AlertManager: UIViewController {
         })
         let createAccountAction = UIAlertAction(title: "Closeout later with your Server", style: .Default , handler: { (action) -> Void in
             TabManager.sharedInstance.currentTab.checkoutMethod = "server"
+            
+            // Continue Place Order
+            self.checkout(view)
             
             if printFlag {
                 print("Closeout Later Selected")
@@ -397,7 +400,7 @@ class AlertManager: UIViewController {
     // ---------- Functions For Alert Actions
     
     // Conditional Check For Place Order
-    func stripeCheckout(view: UIViewController) {
+    func checkout(view: UIViewController) {
         
         // Whoops Logged In
         if TabManager.sharedInstance.currentTab.userId == "" {

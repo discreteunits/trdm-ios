@@ -572,7 +572,7 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
         // If User already selected checkout option of stripe
         } else if TabManager.sharedInstance.currentTab.checkoutMethod == "stripe" {
             
-            AlertManager.sharedInstance.stripeCheckout(self)
+            AlertManager.sharedInstance.checkout(self)
             
         }
 
