@@ -335,7 +335,7 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         // Dispose of any resources that can be recreated.
     }
 
-// MARK: - Table view data source
+    // MARK: - Table view data source
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -351,8 +351,7 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         
         cell.textLabel?.text = tierIArray[indexPath.row]["name"] as? String
         cell.textLabel?.textAlignment = NSTextAlignment.Center
-        cell.textLabel?.font = UIFont(name: "NexaRustScriptL-00", size: 38.0)
-        
+        cell.textLabel?.font = UIFont.scriptFont(38)
         return cell
     }
     
@@ -395,9 +394,16 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
             print("-----------------------")
         }
         
+        if tierIArray[indexPath.row]["name"] as! String == "Events" {
+            
+            self.performSegueWithIdentifier("events", sender: self)
 
-        self.performSegueWithIdentifier("tierII", sender: self)
-
+        } else {
+            
+            self.performSegueWithIdentifier("tierII", sender: self)
+            
+        }
+        
     }
     
 

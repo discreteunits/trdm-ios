@@ -36,25 +36,23 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
 // ---------------
     override func isViewLoaded() -> Bool {
         
-        // ----- HARVEST BEGIN ------
-        if route[1]["name"] as! String == "Harvest" {
-            // Do Nothing
+        // ----- HARVEST OR EVENTS BEGIN ------
+        if route[0]["name"] as! String == "Events" {
+            notHarvest = ""
+        } else if route[1]["name"] as! String == "Harvest" {
             notHarvest = ""
         } else {
             notHarvest = "CHOICE"
         }
         // ----- END -----
 
+        
+        // This is for going to tab from "Add To Tab" Alert
         if TabManager.sharedInstance.tierIVToTab {
-            
             let tabStoryboard: UIStoryboard = UIStoryboard(name: "TabStoryboard", bundle: nil)
-            
             let vc = tabStoryboard.instantiateViewControllerWithIdentifier("Tab")
-            
             TabManager.sharedInstance.tierIVToTab = false
-            
             self.presentViewController(vc, animated: true, completion: nil)
-
         }
         
         return true
@@ -64,7 +62,9 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
     override func viewWillAppear(animated: Bool) {
         
         // ----- HARVEST BEGIN ------
-        if route[1]["name"] as! String == "Harvest" {
+        if route[0]["name"] as! String == "Events" {
+            notHarvest = ""
+        } else if route[1]["name"] as! String == "Harvest" {
             // Do Nothing
             notHarvest = ""
         } else {
@@ -76,15 +76,26 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
         // NAV BAR STYLES
         if let navBar = navigationController?.navigationBar {
             
+            var navTitle = String()
+            var lastWindow = String()
+            
+            if route[0]["name"] as! String == "Events" {
+                navTitle = route[0]["name"] as! String
+                lastWindow = route[0]["name"] as! String
+            } else {
+                route[2]["name"] as! String
+                lastWindow = route[1]["name"] as! String
+            }
+            
             nav = navBar
             
-            navigationTitle.title = route[2]["name"] as! String
+            navigationTitle.title = navTitle
             nav?.barStyle = UIBarStyle.Black
             nav?.tintColor = UIColor.whiteColor()
             nav?.titleTextAttributes = [ NSFontAttributeName: UIFont (name: "NexaRustScriptL-00", size: 24)!]
             
             // SET NAV BACK BUTTON TO REMOVE LAST ITEM FROM ROUTE
-            let lastWindow = route[1]["name"]
+
             
             self.navigationItem.hidesBackButton = true
             let newBackButton = UIBarButtonItem(title: "< \(lastWindow)", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(TierIVViewController.back(_:)))
@@ -93,25 +104,24 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
             
         }
         
-        // If Harvest - Remove Collection View
-        let tierTwoSelection = route[1]["name"] as! String
+        // If Harvest OR Events - Remove Collection View
         
-        if printFlag {
-            print("\(route[1]["name"]) Route Initiating New TierIV style.")
-        }
         
-        if tierTwoSelection == "Harvest" {
+        
+        if route[0]["name"] as! String == "Events" {
             
-            tierIVCollectionContainer.hidden = true
-            let screenWidth = self.view.bounds.width
+            removeCollection()
+            print("\(route[0]["name"]) Route Initiating New TierIV style.")
 
-            let views = ["view": self.view, "newView": tierIVTableContainer]
-            let horizontalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:[view]-(<=0)-[newView(\(screenWidth))]", options: NSLayoutFormatOptions.AlignAllCenterY, metrics: nil, views: views)
-            view.addConstraints(horizontalConstraints)
-         
-        // If NOT Harvest
-        } else 	{
             
+        } else if route[1]["name"] as! String == "Harvest" {
+            
+            removeCollection()
+            print("\(route[1]["name"]) Route Initiating New TierIV style.")
+
+         
+        } else 	{
+            // Do Nothing
         }
         
         
@@ -121,6 +131,17 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
         
     }
 
+    func removeCollection() {
+        
+        tierIVCollectionContainer.hidden = true
+        let screenWidth = self.view.bounds.width
+        
+        let views = ["view": self.view, "newView": tierIVTableContainer]
+        let horizontalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:[view]-(<=0)-[newView(\(screenWidth))]", options: NSLayoutFormatOptions.AlignAllCenterY, metrics: nil, views: views)
+        view.addConstraints(horizontalConstraints)
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -139,7 +160,12 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
         }
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
-            self.tierIVCollectionQuery()
+            
+            
+            if route[0]["name"] as! String != "Events" {
+                self.tierIVCollectionQuery()
+            }
+            
             self.tierIVTableQuery()
             
             if printFlag {
@@ -156,10 +182,17 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
     // NAV BACK BUTTON ACTION
     func back(sender: UIBarButtonItem) {
         
-        if route.count == 4 {
+        // Events
+        if route.count == 1 {
+            route.removeAtIndex(0)
+        // Beer or Wine WITH Collection Selection
+        } else if route.count == 4 {
             route.removeAtIndex(3)
+            route.removeAtIndex(2)
+        // Beer or Wine WITHOUT Collection Selection
+        } else {
+            route.removeAtIndex(2)
         }
-        route.removeAtIndex(2)
         
         if printFlag {
             for index in 0 ..< route.count {

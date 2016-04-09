@@ -116,7 +116,9 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         // Prices From Product Table
         // ------------------------- BEGIN
         // ----- IF HARVEST -----
-        if route[1]["name"] as! String == "Harvest" {
+        if route[0]["name"] as! String == "Events" {
+            
+        } else if route[1]["name"] as! String == "Harvest" {
             
             cell.pricingLabel?.text = "\(self.tierIVTableArray[indexPath.row]["price"])"
             cell.pricingLabel?.font = UIFont(name: "OpenSans", size: 12)
@@ -234,8 +236,10 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
                     indexPath = tableView.indexPathForCell(cell)
                     product = tierIVTableArray[indexPath.row]
                     
-                    // ----- HARVEST BEGIN ------
-                    if route[1]["name"] as! String == "Harvest" {
+                    // ----- HARVEST OR EVENTS BEGIN ------
+                    if route[0]["name"] as! String == "Events" {
+                        
+                    } else if route[1]["name"] as! String == "Harvest" {
                         
                         if (tierIVTableArray[indexPath.row]["additions"] != nil) {
                             
@@ -303,10 +307,11 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             // Dynamically assign Popover Window Size
             
             
-            // ----- HARVEST BEGIN ------
+            // ----- HARVEST OR EVENTS BEGIN ------
             var popoverDynamicHeight: Int!
-            
-            if route[1]["name"] as! String == "Harvest" {
+            if route[0]["name"] as! String == "Events" {
+                popoverDynamicHeight = 1
+            } else if route[1]["name"] as! String == "Harvest" {
                 popoverDynamicHeight = additions.count
             } else {
                 popoverDynamicHeight = 1

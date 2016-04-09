@@ -24,7 +24,8 @@ class LandingViewController: UIViewController {
     // ------------
     override func viewWillAppear(animated: Bool) {
         
-
+        route.removeAll()
+        TabManager.sharedInstance.currentTab.lines.removeAll()
 
         
         
