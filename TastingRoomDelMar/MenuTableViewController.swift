@@ -131,7 +131,7 @@ class MenuTableViewController: UITableViewController {
             destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("TierI")
             
                 selectedMenuItem = 0
-                route.removeAll()
+                RouteManager.sharedInstance.resetRoute()
             break
         case 1:
             destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("Events")
@@ -177,7 +177,7 @@ class MenuTableViewController: UITableViewController {
                 
                 rootView.presentViewController(destViewController, animated: true, completion: nil)
                 
-                route.removeAll()
+                RouteManager.sharedInstance.resetRoute()
                 selectedMenuItem = 0
             break
                 
