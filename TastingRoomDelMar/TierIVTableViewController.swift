@@ -64,13 +64,14 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         super.viewDidLoad()
         
         self.tableView.reloadData()
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-// MARK: - Table view data source
+    // MARK: - Table view data source
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -116,26 +117,22 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         // Prices From Product Table
         // ------------------------- BEGIN
         // ----- IF HARVEST -----
-        if route[0]["name"] as! String == "Events" {
-            
-        } else if route[1]["name"] as! String == "Harvest" {
-            
+        if RouteManager.sharedInstance.TierOne!["name"] as! String == "Events" {
+           
+        } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
             cell.pricingLabel?.text = "\(self.tierIVTableArray[indexPath.row]["price"])"
-            cell.pricingLabel?.font = UIFont(name: "OpenSans", size: 12)
-            
+            cell.pricingLabel?.font = UIFont.basicFont(12)
         } else {
-        
             if let productPrice = self.tierIVTableArray[indexPath.row]["prices"] {
                 cell.pricingLabel?.text = self.tierIVTableArray[indexPath.row]["prices"] as? String
                 cell.pricingLabel?.font = UIFont(name: "OpenSans", size: 12)
-        
+                
             // Prices NOT Found in Item Table
             } else {
                 cell.pricingLabel?.text = ""
             }
-            // ------------------------- END
-        }
-        // ----- END
+
+        } // ----- END
         
 
         // ASYNC: Get Varietal / Beer Style
@@ -149,16 +146,13 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
                     if self.tierIVCollectionArray.contains(categoryObject) {
 
                         cell.varietalLabel?.text = categoryObject["name"] as? String
-                        cell.varietalLabel?.font = UIFont(name: "OpenSans", size: 16)
+                        cell.varietalLabel?.font = UIFont.basicFont(16)
                         
                         self.productVarietal = categoryObject as PFObject!
 
                     }
-                    
                 }
-            
             }
-            
         }
         // ----------------------- END
         
@@ -166,7 +160,6 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         if cell.varietalLabel.text == "Varietal" {
             cell.varietalLabel.text = ""
         }
-        
         
         return cell
         
@@ -188,12 +181,9 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         product = tierIVTableArray[indexPath.row]
 
         // ----- HARVEST BEGIN ------
-        if route[1]["name"] as! String == "Harvest" {
+        if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
             
-            
-            if printFlag {
-                print("This item contains: \(tierIVTableArray[indexPath.row]["additions"].count) raw additions.")
-            }
+            print("This item contains: \(tierIVTableArray[indexPath.row]["additions"].count) raw additions.")
             
             let additionsRaw = tierIVTableArray[indexPath.row]["additions"]
             
@@ -211,9 +201,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         
         performSegueWithIdentifier("showItemConfig", sender: self)
         
-        if printFlag {
-            print("------------------------")
-        }
+        print("------------------------")
         
     }
     
@@ -237,15 +225,13 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
                     product = tierIVTableArray[indexPath.row]
                     
                     // ----- HARVEST OR EVENTS BEGIN ------
-                    if route[0]["name"] as! String == "Events" {
+                    if RouteManager.sharedInstance.TierOne!["name"] as! String == "Events" {
                         
-                    } else if route[1]["name"] as! String == "Harvest" {
+                    } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
                         
                         if (tierIVTableArray[indexPath.row]["additions"] != nil) {
                             
-                            if printFlag {
-                                print("This item contains: \(tierIVTableArray[indexPath.row]["additions"].count) raw additions.")
-                            }
+                            print("This item contains: \(tierIVTableArray[indexPath.row]["additions"].count) raw additions.")
                             
                             let additionsRaw = tierIVTableArray[indexPath.row]["additions"]
                             
@@ -253,27 +239,17 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
                                 additions.append(additionsRaw[i])
                             }
                             
-                            if printFlag {
-                                print("Additions Created: \(additions)")
-                            }
+                            print("Additions Created: \(additions)")
                             
                         }
-                        
-
-                    }
-                    // ----- END -----
-                    
+                    } // ----- END
                 }
-                
             }
-            
         }
    
         performSegueWithIdentifier("showItemConfig", sender: self)
         
-        if printFlag {
-            print("------------------------")
-        }
+        print("------------------------")
         
     }
     
@@ -288,17 +264,11 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
                     self.productVarietal = categoryObject as PFObject!
                     
                 }
-                
             }
-            
         }
-        
     }
     
-    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-        
         
         if segue.identifier == "showItemConfig" {
             
@@ -309,9 +279,9 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             
             // ----- HARVEST OR EVENTS BEGIN ------
             var popoverDynamicHeight: Int!
-            if route[0]["name"] as! String == "Events" {
+            if RouteManager.sharedInstance.TierOne!["name"] as! String == "Events" {
                 popoverDynamicHeight = 1
-            } else if route[1]["name"] as! String == "Harvest" {
+            } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
                 popoverDynamicHeight = additions.count
             } else {
                 popoverDynamicHeight = 1
@@ -336,7 +306,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             
             
             // ----- HARVEST BEGIN ------
-            if route[1]["name"] as! String == "Harvest" {
+            if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
                 
                 vc.popoverAdditions = additions
                 
@@ -360,20 +330,15 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
                 controller?.delegate = self
                             
             }
-
         }
-        
     }
-    
     
     // PRESENTATION CONTROLLER DATA SOURCE
     func popoverPresentationControllerDidDismissPopover(popoverPresentationController: UIPopoverPresentationController) {
         
         AnimationManager.sharedInstance.opaqueWindow(self.parentViewController!)
         
-        if printFlag {
-            print("Popover closed.")
-        }
+        print("Popover closed.")
         
     }
     
@@ -403,7 +368,6 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             print("Subproducts query has retrieved \(subproductsArray!.count) subproducts.")
         }
         
-
         var convertedSubproducts = [Product]()
         
         for subproduct in subproductsArray! {
@@ -423,9 +387,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         // Sort Subproducts by Price
         convertedSubproducts.sortInPlace { $0.price < $1.price }
 
-
         return convertedSubproducts
         
     }
-    
 }

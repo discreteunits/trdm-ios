@@ -49,7 +49,6 @@ class PopoverViewController: UITableViewController {
         
         //        self.tableView.reloadData()
         
-        
     }
     
     override func viewDidLoad() {
@@ -68,6 +67,7 @@ class PopoverViewController: UITableViewController {
                 Int64(delay * Double(NSEC_PER_SEC))
             ),
             dispatch_get_main_queue(), closure)
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -110,14 +110,13 @@ class PopoverViewController: UITableViewController {
             self.additions.append(newAddition)
             
         }
-        
     }
     
     // TABLE DELEGATE AND DATA SOURCE
     override func tableView(tableView: UITableView,
         numberOfRowsInSection section: Int) -> Int {
             
-            if route[1]["name"] as! String == "Harvest" {
+            if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
                 rows = additions.count + 3
             } else {
                 rows = 4
@@ -171,7 +170,7 @@ class PopoverViewController: UITableViewController {
                 
                 detailsCell.varietalLabel.font = UIFont.basicFont(16)
                 // IF HARVEST
-                if route[1]["name"] as! String == "Harvest" {
+                if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
                     detailsCell.varietalLabel?.text = ""
                 } else {
                     if let varietalName = popoverItemVarietal["name"] as? String {
@@ -196,7 +195,7 @@ class PopoverViewController: UITableViewController {
 
                 
                 // IF HARVEST
-                if route[1]["name"] as! String == "Harvest" {
+                if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
                     
                     sgCell.servingLabel.text = additions[trueIndex].name
                     
@@ -268,7 +267,6 @@ class PopoverViewController: UITableViewController {
                 tableViewCell.setCollectionViewDataSourceDelegate(self, forRow: indexPath.row)
 
             }
-    
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -282,13 +280,10 @@ class PopoverViewController: UITableViewController {
         return cellHeight
         
     }
-
 }
 
 
-// -----------------------------------
 // COLLECTION DELEGATE AND DATA SOURCE
-// -----------------------------------
 extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(collectionView: UICollectionView,
@@ -309,7 +304,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                 let subgroupCollectionCellCount: Int!
                 
                 // ----- HARVEST BEGIN ------
-                if route[1]["name"] as! String == "Harvest" {
+                if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
                     
                     subgroupCollectionCellCount = additions[trueIndex].values.count
                     
@@ -363,7 +358,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                 let trueIndex = parent - 1
 
                 // ----- HARVEST BEGIN ------
-                if route[1]["name"] as! String == "Harvest" {
+                if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
                     
                     sgCollectionCell.label.text = additions[trueIndex].values[indexPath.row].name
                 
@@ -446,7 +441,6 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
         // Details Table Row
         if parent == 0 {
             
-            
         // SubGroup Table Row
         } else if (parent > 0) && (parent < quantityRow ) {
             
@@ -457,7 +451,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
             selectedCell.backgroundColor = UIColor.blackColor()
             
             // ----- HARVEST BEGIN ------
-            if route[1]["name"] as! String == "Harvest" {
+            if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
                 
                 let trueIndex = parent - 1
 
@@ -467,9 +461,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                 selectedAddition.values.removeAll()
                 selectedAddition.values.append(additions[trueIndex].values[indexPath.row])
                 
-                if printFlag {
-                    print("Selected Addition with Value: \(selectedAddition)")
-                }
+                print("Selected Addition with Value: \(selectedAddition)")
                 
                 productAdditionChoices.append(selectedAddition)
                 
@@ -478,9 +470,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                 let subproduct = subproducts[indexPath.row]
                 productChoice = subproduct
                 
-                if printFlag {
-                    print("User chose to add: \(productChoice.name)")
-                }
+                print("User chose to add: \(productChoice.name)")
                 
             }
             // ----- END -----
@@ -524,7 +514,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                 let completedChoices: Int!
                 
                 // ----- HARVEST BEGIN ------
-                if route[1]["name"] as! String == "Harvest" {
+                if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
                     
                    completedChoices = popoverAdditions.count
                    
@@ -538,11 +528,6 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                 if popoverItem != nil {
                     if productChoice.name != "" || productAdditionChoices.count == completedChoices {
                         if quantityChoice != "" {
-
-                            
-                            
-                            
-                            // // // //  func monetaryCalculations
                             
                             // Begin Monetary Calculations
                             let taxString = popoverItem["taxClass"] as! String
@@ -551,13 +536,12 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                             let taxRateDouble = taxRateConversion
                             let lineitemQuantity = Double(quantityChoice)
 
-                            if printFlag {
-                                print("Tax Rate: \(taxRateDouble)")
-                            }
+                            print("Tax Rate: \(taxRateDouble)")
+                            
                             
                             // Total All Subproduct Choice Prices
                             var totalChoicesPrice = Double()
-                            if route[1]["name"] as! String == "Harvest" {
+                            if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
                                 totalChoicesPrice = popoverItem["price"] as! Double
                             } else {
                                 totalChoicesPrice = productChoice.price
@@ -568,18 +552,13 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                             let lineitemTax = lineitemPreTax * taxRateDouble
                             let lineitemTotal = lineitemTax + lineitemPreTax
                             
-                            if printFlag {
-                                print("+++++++++++++++++++++++++++++++++++")
-                                print("Tax String: \(popoverItem["taxClass"])")
-                                print("Line Item Pre Tax: \(lineitemPreTax)")
-                                print("Line Item Tax Calculated to: \(lineitemTax)")
-                                print("Line Item Total: \(lineitemTotal)")
-                                print("+++++++++++++++++++++++++++++++++++")
-                            }
+                            print("+++++++++++++++++++++++++++++++++++")
+                            print("Tax String: \(popoverItem["taxClass"])")
+                            print("Line Item Pre Tax: \(lineitemPreTax)")
+                            print("Line Item Tax Calculated to: \(lineitemTax)")
+                            print("Line Item Total: \(lineitemTotal)")
+                            print("+++++++++++++++++++++++++++++++++++")
                             
-                            
-                            
-                            // // // //  func parentProductCreation
                             
                             // LineItem Parent Product
                             var newProduct = Product()
@@ -589,10 +568,6 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                             newProduct.price = popoverItem["price"] as! Double
                             newProduct.info = popoverItem["info"] as! String
                             
-                            
-                            
-                            
-                            // // // //  func createLineItem
                             
                             // Begin Create LineItem
                             var newLineItem = LineItem()
@@ -606,7 +581,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                             newLineItem.tax = lineitemTax
                             
                             // ----- HARVEST BEGIN ------
-                            if route[1]["name"] as! String == "Harvest" {
+                            if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
                                 newLineItem.varietal = ""
                                 newLineItem.eatOrDrink = "Eat"
                             } else {
@@ -620,23 +595,14 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                             newLineItem.subproduct = productChoice
                             newLineItem.additions = productAdditionChoices
 
+                            print("New LineItem created: \(newLineItem.name)")
 
                             
-                            if printFlag {
-                                print("New LineItem created: \(newLineItem.name)")
-                            }
-
                             // Add LineItem to Tab
                             TabManager.sharedInstance.currentTab.lines.append(newLineItem)
                             
-                            if printFlag {
-                                print("Line Item \(newLineItem.name) has been added to currentTab.")
-                            }
+                            print("Line Item \(newLineItem.name) has been added to currentTab.")
                             
-                            
-                            
-                            
-                            // // // // func cleanUp
                             
                             // Clean Up
                             popoverAdditions.removeAll()
@@ -645,19 +611,14 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                             productChoice = Product()
                             taxRates.removeAll()
                             
-                            
-                            
-                            // // // // func confirmSuccess
-                            
+            
                             // Confirm
                             AlertManager.sharedInstance.addedSuccess(self, title: "Added Successfully", message: "Item has been added to your order!")
 
+                            print("*****************************************")
+                            print("Product added to tab: \(newLineItem)")
+                            print("*****************************************")
                             
-                            if printFlag {
-                                print("*****************************************")
-                                print("Product added to tab: \(newLineItem)")
-                                print("*****************************************")
-                            }
                             
                         } else {
                             AlertManager.sharedInstance.whoopsSelectModifiers(self, title: "Whoops", message: "Please select a serving and quantity.")
@@ -666,13 +627,9 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                     } else {
                         AlertManager.sharedInstance.whoopsSelectModifiers(self, title: "Whoops", message: "Please select a serving and quantity.")
                     }
-                    
                 }
-                
             }
-            
         }
-        
     }
     
     func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
@@ -693,10 +650,9 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
             
             // IF HARVEST
             // ----------
-            if route[1]["name"] as! String == "Harvest" {
+            if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
                 
                 let trueIndex = parent - 1
-                
                 
                 let deselectedAddition = additions[trueIndex]
                 
@@ -710,19 +666,15 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                     }
                 }
                 
-                if printFlag {
-                    print("------- UPDATED --------")
-                    print("ProductAdditionChoices: \(productAdditionChoices)")
-                    print("------- -- -- -- --------")
-                }
-                    
+                print("------- UPDATED --------")
+                print("ProductAdditionChoices: \(productAdditionChoices)")
+                print("------- -- -- -- --------")
+                
             } else {
                 
                 productChoice = Product()
 
-                if printFlag {
-                    print("Product Choice has been set to: \(productChoice)")
-                }
+                print("Product Choice has been set to: \(productChoice)")
                 
             }
             
@@ -740,7 +692,6 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
         } else if parent == actionRow {
             
         }
-        
     }
 
     // Size Collection Cells
@@ -760,26 +711,19 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
             
             // ----- HARVEST BEGIN ------
             let numberOfModifiers: CGFloat!
-            if route[1]["name"] as! String == "Harvest" {
+            if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
                 
                 let trueIndex = parent - 1
                 let numberOfValues = additions[trueIndex].values.count
                 
                 if numberOfValues > 3 {
-                    
                     numberOfModifiers = 3
-                    
                 } else {
-                    
                     numberOfModifiers = CGFloat(additions[trueIndex].values.count)
-                    
                 }
                 
-                
             } else {
-                
                 numberOfModifiers = CGFloat(subproducts.count)
-                
             }
             // ----- END -----
 
@@ -820,7 +764,4 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
         return cellSize
         
     }
-
 }
-
-

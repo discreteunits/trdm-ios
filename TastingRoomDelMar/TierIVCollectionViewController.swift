@@ -75,7 +75,7 @@ class TierIVCollectionViewController: UICollectionViewController {
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("tierIVCollectionCell", forIndexPath: indexPath) as! TierIVCollectionViewCell
 
-        cell.titleLabel?.font = UIFont(name: "NexaRustScriptL-00", size: 14)
+        cell.titleLabel?.font = UIFont.scriptFont(14)
         cell.layer.borderWidth = 2
         cell.layer.borderColor = UIColor(red: 242/255.0, green: 242/255.0, blue: 242/255.0, alpha: 1.0).CGColor
         cell.layer.cornerRadius = 10.0
@@ -117,10 +117,12 @@ class TierIVCollectionViewController: UICollectionViewController {
         
         // Show All 
         if indexPath.row == 0 {
-                        
-            if route.count == 4 {
-                route.removeAtIndex(3)
+            
+            // Clean Up
+            if RouteManager.sharedInstance.Route!.count == 4 {
+                RouteManager.sharedInstance.TierFour = nil
             }
+            
             delegate?.tagsArrayCreation()
             delegate?.tierIVTableQuery()
             delegate?.reloadTable()
@@ -129,23 +131,12 @@ class TierIVCollectionViewController: UICollectionViewController {
         } else {
         
             let trueIndex = indexPath.row - 1
-            if !route.contains(tierIVCollectionArray[trueIndex]) {
             
-                route.append(tierIVCollectionArray[trueIndex])
-            
-                if printFlag {
-                    for index in 0 ..< route.count {
-                        print("The Route has been increased to: \(route[index]["name"]).")
-                    }
-                    print("-----------------------")
-                }
-            
+            if !RouteManager.sharedInstance.Route!.contains(tierIVCollectionArray[trueIndex]) {
+                RouteManager.sharedInstance.TierFour = tierIVCollectionArray[trueIndex]
+                RouteManager.sharedInstance.printRoute()
             } else {
-            
-                if printFlag {
-                    print("This selection is already being shown.")
-                }
-            
+                print("This selection is already being shown.")
             }
         
             delegate?.tagsArrayCreation()
@@ -161,12 +152,12 @@ class TierIVCollectionViewController: UICollectionViewController {
         deselectedCell.contentView.backgroundColor = UIColor.whiteColor()
         deselectedCell.titleLabel?.textColor = UIColor.blackColor()
         
-        if route.count == 4 {
-            route.removeAtIndex(3)
+        
+        if RouteManager.sharedInstance.Route!.count == 4 {
+            RouteManager.sharedInstance.TierFour = nil
         }
         
         delegate?.tagsArrayCreation()
 
     }
-
 }
