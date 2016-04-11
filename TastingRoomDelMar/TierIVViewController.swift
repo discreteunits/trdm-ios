@@ -31,20 +31,22 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
     
     var bounds: CGRect!
     
-    var notHarvest = String()
+    var notHarvest: String = String()
 
 // ---------------
     override func isViewLoaded() -> Bool {
         
-        // ----- HARVEST OR EVENTS BEGIN ------
-        if route[0]["name"] as! String == "Events" {
-            notHarvest = ""
-        } else if route[1]["name"] as! String == "Harvest" {
-            notHarvest = ""
-        } else {
-            notHarvest = "CHOICE"
-        }
-        // ----- END -----
+//        // ----- HARVEST OR EVENTS BEGIN ------
+//        if route[0]["name"] as! String == "Events" {
+//            notHarvest = ""
+//        } else if route[1]["name"] as! String == "Harvest" {
+//            notHarvest = ""
+//        } else {
+//            notHarvest = "CHOICE"
+//        }
+//        // ----- END -----
+        
+        
 
         
         // This is for going to tab from "Add To Tab" Alert
@@ -79,8 +81,11 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
             var navTitle = String()
             var lastWindow = String()
             
-            if route[0]["name"] as! String == "Events" {
+            if route[0]["skipToTier4"] as! Bool {
                 navTitle = route[0]["name"] as! String
+                lastWindow = route[0]["name"] as! String
+            } else if route[1]["skipToTier4"] as! Bool {
+                navTitle = route[1]["name"] as! String
                 lastWindow = route[0]["name"] as! String
             } else {
                 route[2]["name"] as! String
@@ -104,46 +109,26 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
             
         }
         
-        // If Harvest OR Events - Remove Collection View
-        
-        
-        
-        if route[0]["name"] as! String == "Events" {
-            
-            removeCollection()
-            print("\(route[0]["name"]) Route Initiating New TierIV style.")
-
-            
-        } else if route[1]["name"] as! String == "Harvest" {
-            
-            removeCollection()
-            print("\(route[1]["name"]) Route Initiating New TierIV style.")
-
-         
-        } else 	{
-            // Do Nothing
-        }
-        
-        
         if printFlag {
             print("------------Queries Completed------------")
         }
         
     }
 
-    func removeCollection() {
-        
-        tierIVCollectionContainer.hidden = true
-        let screenWidth = self.view.bounds.width
-        
-        let views = ["view": self.view, "newView": tierIVTableContainer]
-        let horizontalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:[view]-(<=0)-[newView(\(screenWidth))]", options: NSLayoutFormatOptions.AlignAllCenterY, metrics: nil, views: views)
-        view.addConstraints(horizontalConstraints)
-        
-    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // ----- HARVEST OR EVENTS BEGIN ------
+        if route[0]["name"] as! String == "Events" {
+            notHarvest = ""
+        } else if route[1]["name"] as! String == "Harvest" {
+            notHarvest = ""
+        } else {
+            notHarvest = "CHOICE"
+        }
+        // ----- END -----
         
         bounds = self.view.bounds
         
@@ -161,11 +146,7 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
             
-            
-            if route[0]["name"] as! String != "Events" {
-                self.tierIVCollectionQuery()
-            }
-            
+            self.tierIVCollectionQuery()
             self.tierIVTableQuery()
             
             if printFlag {
@@ -185,6 +166,8 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
         // Events
         if route.count == 1 {
             route.removeAtIndex(0)
+        } else if route.count == 2 {
+            route.removeAtIndex(1)
         // Beer or Wine WITH Collection Selection
         } else if route.count == 4 {
             route.removeAtIndex(3)
@@ -378,6 +361,7 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
         let tableQuery:PFQuery = PFQuery(className:"Product")
         tableQuery.includeKey("category")
         tableQuery.whereKey("productType", equalTo: notHarvest)
+//        tableQuery.whereKeyExists("productType")
         tableQuery.whereKey("categories", containsAllObjectsInArray: tagsArray)
         tableQuery.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
             
@@ -423,8 +407,6 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
         }
         
     }
-    
-
     
 }
 

@@ -98,9 +98,7 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
         
     }
     
-    // ------
     // TIER 2 QUERY
-    // ------
     func tierIIQuery() {
         
         let query:PFQuery = PFQuery(className:"Tier2")
@@ -209,8 +207,12 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
             print("-----------------------")
         }
         
-        self.performSegueWithIdentifier("tierIII", sender: self)
         
+        if tierIIArray[indexPath.row]["skipToTier4"] as! Bool {
+            self.performSegueWithIdentifier("tierTwoToFour", sender: self)
+        } else {
+            self.performSegueWithIdentifier("tierIII", sender: self)
+        }
     }
 
 }

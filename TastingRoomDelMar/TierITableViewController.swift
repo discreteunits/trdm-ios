@@ -394,14 +394,10 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
             print("-----------------------")
         }
         
-        if tierIArray[indexPath.row]["name"] as! String == "Events" {
-            
-            self.performSegueWithIdentifier("events", sender: self)
-
+        if tierIArray[indexPath.row]["skipToTier4"] as! Bool {
+            self.performSegueWithIdentifier("tierOneToFour", sender: self)
         } else {
-            
             self.performSegueWithIdentifier("tierII", sender: self)
-            
         }
         
     }
