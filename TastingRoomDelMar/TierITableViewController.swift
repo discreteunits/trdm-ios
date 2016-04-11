@@ -12,7 +12,7 @@ import Parse
 import Bond
 import ParseFacebookUtilsV4
 
-var route = [PFObject]()
+var route: [PFObject]?
 
 class TierITableViewController: UITableViewController, ENSideMenuDelegate {
 
@@ -48,7 +48,6 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         // TIER 1 QUERY
         self.tierIQuery()
 
-
     }
     
     override func viewDidLoad() {
@@ -76,7 +75,6 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         // Sync Tab - Create or Find
         TabManager.sharedInstance.syncTab(TabManager.sharedInstance.currentTab.id)
         
-
         // FLYOUT MENU
         self.sideMenuController()?.sideMenu?.delegate = self
 
@@ -100,24 +98,27 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
             self.navigationItem.leftBarButtonItems = [newBackButton, fixedItem]
             
             
-            self.navigationItem.leftBarButtonItem!.setTitleTextAttributes( [NSFontAttributeName: UIFont(name: "NexaRustScriptL-00", size: 20)!], forState: UIControlState.Normal)
+            self.navigationItem.leftBarButtonItem!.setTitleTextAttributes( [NSFontAttributeName: UIFont.scriptFont(20)], forState: UIControlState.Normal)
                         
             // Set Tasting Room Logo As Title
             let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 24))
             imageView.frame.origin.x = 0
-            
             
             imageView.contentMode = .ScaleAspectFit
             let image = UIImage(named: "Typographic-deconstructed_rgb_600_120")
             imageView.image = image
             navigationItem.titleView = imageView
             
-            // RESET ROUTE
-            route.removeAll()
-            print("Route Reset: \(route)")
+            // ROUTE MANAGER
+            RouteManager.sharedInstance.resetRoute()
+            RouteManager.sharedInstance.printRoute()
             
         }
-        
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
     
     // Location Flyout Menu
@@ -137,7 +138,7 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         // Create Location Label
         self.locationLabel = UILabel(frame: CGRectMake(8, 8, windowWidth / 2, 21))
         self.locationLabel.text = "Our Locations"
-        self.locationLabel.font = UIFont(name: "NexaRustScriptL-00", size: 24)
+        self.locationLabel.font = UIFont.scriptFont(24)
         self.locationLabel.layer.zPosition = 999999
         self.locationLabel.textColor = UIColor.whiteColor()
         self.locationLabel.transform = CGAffineTransformMakeTranslation(-windowWidth, 0)
@@ -146,7 +147,7 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         // Create Location Title
         self.delMarLabel = UILabel(frame: CGRectMake(8, 40, windowWidth / 2, 21))
         self.delMarLabel.text = "Del Mar"
-        self.delMarLabel.font = UIFont(name: "NexaRustScriptL-00", size: 20)
+        self.delMarLabel.font = UIFont.scriptFont(20)
         self.delMarLabel.layer.zPosition = 999999
         self.delMarLabel.textColor = UIColor.whiteColor()
         self.delMarLabel.transform = CGAffineTransformMakeTranslation(-windowWidth, 0)
@@ -157,7 +158,7 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         self.addressTextView = UITextView(frame: CGRectMake(8, 60, windowWidth / 3 , 200))
         self.addressTextView.text = "1435 Camino Del Mar Del Mar, CA 92014 858.232.6545"
         self.addressTextView.userInteractionEnabled = false
-        self.addressTextView.font = UIFont(name: "BebasNeueRegular", size: 16)
+        self.addressTextView.font = UIFont.headerFont(16)
         self.addressTextView.textColor = UIColor.whiteColor()
         self.addressTextView.backgroundColor = UIColor.blackColor()
         self.addressTextView.layer.zPosition = 999999
@@ -181,7 +182,6 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         self.TRDMImageView.transform = CGAffineTransformMakeTranslation(-windowWidth, 0)
         self.TRDMImageView.tag = 15
                 
-        
         if let viewWithTag = self.locationFlyoutView.viewWithTag(11) {
 
             removeFlyoutLocationMenu(viewWithTag)
@@ -191,7 +191,6 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
             addFlyoutLocationMenu()
             
         }
-        
     }
     
     func removeFlyoutLocationMenu(viewWithTag: UIView) {
@@ -215,7 +214,6 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
                         // subview.transform = CGAffineTransformMakeRotation(0)
                         subview.transform = CGAffineTransformMakeTranslation(-windowWidth, windowWidth)
                     }
-                    
                 }
                 
             }, completion: {
@@ -234,13 +232,11 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
                     } else if subview.tag == 15 {
                         subview.removeFromSuperview()
                     }
-                    
                 }
                 
                 self.view.layer.removeAllAnimations()
                 
         })
-        
     }
     
     func addFlyoutLocationMenu() {
@@ -262,7 +258,6 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
             self.TRDMImageView.transform = CGAffineTransformMakeRotation(CGFloat(M_PI + M_PI_2 + M_PI_4))
 
             }, completion: nil)
-        
     }
     
     
@@ -308,7 +303,6 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
                         
                         }
                     }
-                    
                 }
                 
                 for i in self.tierIArray {
@@ -325,84 +319,13 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
                 print("Error: \(error!) \(error!.userInfo)")
                 
             }
-            
         }
-        
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    // MARK: - Table view data source
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
-
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return tierIArray.count
-    }
-
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
-        
-        cell.textLabel?.text = tierIArray[indexPath.row]["name"] as? String
-        cell.textLabel?.textAlignment = NSTextAlignment.Center
-        cell.textLabel?.font = UIFont.scriptFont(38)
-        return cell
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        
-        let tableHeight = (tableView.bounds.size.height)
-        let numberOfCells: Int = tierIArray.count
-        let numberOfCellsFloat = CGFloat(numberOfCells)
-        let cellHeight = tableHeight / numberOfCellsFloat
-        
-        return cellHeight
-        
-    }
-
     // FLYOUT TRIGGER
     @IBAction func toggleSideMenu(sender: AnyObject) {
         toggleSideMenuView()
     }
-
-    // ADD INDEX TO ROUTE
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        // DO ACITONS
-        route.append(tierIArray[indexPath.row])
-        
-        if tierIArray[indexPath.row]["name"] as! String == "Dine in" {
-            TabManager.sharedInstance.currentTab.type = "delivery"
-        } else if tierIArray[indexPath.row]["name"] as! String == "Take out" {
-            TabManager.sharedInstance.currentTab.type = "takeaway"
-        }
-        
-        
-        // SHOW ACTIONS
-        if printFlag {
-            print("User chose to: \(TabManager.sharedInstance.currentTab.type)")
-        
-            for index in 0 ..< route.count {
-                print("The Route has been increased to: \(route[index]["name"]).")
-            }
-            print("-----------------------")
-        }
-        
-        if tierIArray[indexPath.row]["skipToTier4"] as! Bool {
-            self.performSegueWithIdentifier("tierOneToFour", sender: self)
-        } else {
-            self.performSegueWithIdentifier("tierII", sender: self)
-        }
-        
-    }
-    
-
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
@@ -411,7 +334,6 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
             self.tierIArray.removeAll()
             
         }
-    
     }
     
     
@@ -425,7 +347,6 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
             CardManager.sharedInstance.currentCustomer.orderId.append(String(card))
         
         }
-        
     }
     
     // Facebook Graph Requests
@@ -484,17 +405,66 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
                         if printFlag {
                             print("----------------")
                         }
-                    
                     }
-                
                 }
-                
             }
-    
         })
-    
     }
     
+    // MARK: - Table view data source
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 1
+    }
+    
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
+        return tierIArray.count
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
+        
+        cell.textLabel?.text = tierIArray[indexPath.row]["name"] as? String
+        cell.textLabel?.textAlignment = NSTextAlignment.Center
+        cell.textLabel?.font = UIFont.scriptFont(38)
+        return cell
+        
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        
+        let tableHeight = (tableView.bounds.size.height)
+        let numberOfCells: Int = tierIArray.count
+        let numberOfCellsFloat = CGFloat(numberOfCells)
+        let cellHeight = tableHeight / numberOfCellsFloat
+        
+        return cellHeight
+        
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        // ROUTE MANAGER
+        RouteManager.sharedInstance.TierOne = tierIArray[indexPath.row]
+        RouteManager.sharedInstance.printRoute()
+        
+        // Set Order Type
+        if tierIArray[indexPath.row]["name"] as! String == "Dine in" {
+            TabManager.sharedInstance.currentTab.type = "delivery"
+        } else if tierIArray[indexPath.row]["name"] as! String == "Take Away" {
+            TabManager.sharedInstance.currentTab.type = "takeaway"
+        }
+        print("User chose to: \(TabManager.sharedInstance.currentTab.type)")
+        
+        
+        // Next Tier
+        if tierIArray[indexPath.row]["skipToTier4"] as! Bool {
+            self.performSegueWithIdentifier("tierOneToFour", sender: self)
+        } else {
+            self.performSegueWithIdentifier("tierII", sender: self)
+        }
+    }
 }
 
 

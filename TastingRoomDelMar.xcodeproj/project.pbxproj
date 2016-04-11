@@ -75,6 +75,7 @@
 		D7C1E0421C5AB86E00143C48 /* BebasNeue Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = D7C1E0401C5AB76E00143C48 /* BebasNeue Regular.otf */; };
 		D7C1E0441C5AE3F000143C48 /* TabManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C1E0431C5AE3F000143C48 /* TabManager.swift */; };
 		D7C448C31C641C0400CD12F8 /* TabHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C448C21C641C0400CD12F8 /* TabHeaderTableViewCell.swift */; };
+		D7C463FB1CBC330C00449EF3 /* RouteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C463FA1CBC330C00449EF3 /* RouteManager.swift */; };
 		D7CDA53E1CA46CF200388A30 /* PlaygroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CDA53D1CA46CF200388A30 /* PlaygroundViewController.swift */; };
 		D7CDA5401CA47F8A00388A30 /* PlaygroundTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CDA53F1CA47F8A00388A30 /* PlaygroundTwoViewController.swift */; };
 		D7D809951C7BCE1D00A3F5E6 /* SignupStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7D809941C7BCE1D00A3F5E6 /* SignupStoryboard.storyboard */; };
@@ -189,6 +190,7 @@
 		D7C1E0401C5AB76E00143C48 /* BebasNeue Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BebasNeue Regular.otf"; sourceTree = "<group>"; };
 		D7C1E0431C5AE3F000143C48 /* TabManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabManager.swift; sourceTree = "<group>"; };
 		D7C448C21C641C0400CD12F8 /* TabHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabHeaderTableViewCell.swift; sourceTree = "<group>"; };
+		D7C463FA1CBC330C00449EF3 /* RouteManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteManager.swift; sourceTree = "<group>"; };
 		D7CDA53D1CA46CF200388A30 /* PlaygroundViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlaygroundViewController.swift; path = ../PlaygroundViewController.swift; sourceTree = "<group>"; };
 		D7CDA53F1CA47F8A00388A30 /* PlaygroundTwoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaygroundTwoViewController.swift; sourceTree = "<group>"; };
 		D7D809941C7BCE1D00A3F5E6 /* SignupStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignupStoryboard.storyboard; sourceTree = "<group>"; };
@@ -368,6 +370,7 @@
 				D733D4651C69598F00682A84 /* CardManager.swift */,
 				D75AA4271C6062D200D5139B /* Structures.swift */,
 				D74D91521CB5A33100795C29 /* PriceFormatManager.swift */,
+				D7C463FA1CBC330C00449EF3 /* RouteManager.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -689,6 +692,7 @@
 				D7734AF71C45D4B3009286DD /* TierIITableViewController.swift in Sources */,
 				D733D4601C69533A00682A84 /* PaymentCardTableViewCell.swift in Sources */,
 				D74B1C4C1C5832E6008F5A36 /* PopoverQuantityCollectionViewCell.swift in Sources */,
+				D7C463FB1CBC330C00449EF3 /* RouteManager.swift in Sources */,
 				D75AA4281C6062D200D5139B /* Structures.swift in Sources */,
 				D719A6301C3F26D500987525 /* TierNavigationController.swift in Sources */,
 				D7ACC3C41CA31C9A0005DE73 /* AppConfiguration.swift in Sources */,

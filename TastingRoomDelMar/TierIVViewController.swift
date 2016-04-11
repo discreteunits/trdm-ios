@@ -61,18 +61,19 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
         
     }
     
-    override func viewWillAppear(animated: Bool) {
-        
-        // ----- HARVEST BEGIN ------
-        if route[0]["name"] as! String == "Events" {
+    func productTypeToQuery() {
+        if RouteManager.sharedInstance.TierOne!["name"] as! String == "Events" {
             notHarvest = ""
-        } else if route[1]["name"] as! String == "Harvest" {
-            // Do Nothing
+        } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
             notHarvest = ""
         } else {
             notHarvest = "CHOICE"
         }
-        // ----- END -----
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        
+        productTypeToQuery()
         
         
         // NAV BAR STYLES
@@ -81,15 +82,15 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
             var navTitle = String()
             var lastWindow = String()
             
-            if route[0]["skipToTier4"] as! Bool {
-                navTitle = route[0]["name"] as! String
-                lastWindow = route[0]["name"] as! String
-            } else if route[1]["skipToTier4"] as! Bool {
-                navTitle = route[1]["name"] as! String
-                lastWindow = route[0]["name"] as! String
+            if RouteManager.sharedInstance.TierOne!["skipToTier4"] as! Bool {
+                navTitle = RouteManager.sharedInstance.TierOne!["name"] as! String
+                lastWindow = navTitle
+            } else if RouteManager.sharedInstance.TierTwo!["skipToTier4"] as! Bool {
+                navTitle = RouteManager.sharedInstance.TierTwo!["name"] as! String
+                lastWindow = RouteManager.sharedInstance.TierOne!["name"] as! String
             } else {
-                route[2]["name"] as! String
-                lastWindow = route[1]["name"] as! String
+                navTitle = RouteManager.sharedInstance.TierThree!["name"] as! String
+                lastWindow = RouteManager.sharedInstance.TierTwo!["name"] as! String
             }
             
             nav = navBar
@@ -97,38 +98,25 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
             navigationTitle.title = navTitle
             nav?.barStyle = UIBarStyle.Black
             nav?.tintColor = UIColor.whiteColor()
-            nav?.titleTextAttributes = [ NSFontAttributeName: UIFont (name: "NexaRustScriptL-00", size: 24)!]
+            nav?.titleTextAttributes = [ NSFontAttributeName: UIFont.scriptFont(24)]
             
             // SET NAV BACK BUTTON TO REMOVE LAST ITEM FROM ROUTE
-
-            
             self.navigationItem.hidesBackButton = true
             let newBackButton = UIBarButtonItem(title: "< \(lastWindow)", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(TierIVViewController.back(_:)))
             self.navigationItem.leftBarButtonItem = newBackButton;
-            self.navigationItem.leftBarButtonItem!.setTitleTextAttributes( [NSFontAttributeName: UIFont(name: "NexaRustScriptL-00", size: 20)!], forState: UIControlState.Normal)
+            self.navigationItem.leftBarButtonItem!.setTitleTextAttributes( [NSFontAttributeName: UIFont.scriptFont(20)], forState: UIControlState.Normal)
             
         }
         
-        if printFlag {
-            print("------------Queries Completed------------")
-        }
+        print("------------Queries Completed------------")
         
     }
 
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // ----- HARVEST OR EVENTS BEGIN ------
-        if route[0]["name"] as! String == "Events" {
-            notHarvest = ""
-        } else if route[1]["name"] as! String == "Harvest" {
-            notHarvest = ""
-        } else {
-            notHarvest = "CHOICE"
-        }
-        // ----- END -----
+        productTypeToQuery()
         
         bounds = self.view.bounds
         
@@ -138,9 +126,7 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
         dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
             self.tagsArrayCreation()
             
-            if printFlag {
-                print("tagsArrayCreation Completed")
-            }
+            print("tagsArrayCreation Completed")
             
         }
         
@@ -149,9 +135,7 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
             self.tierIVCollectionQuery()
             self.tierIVTableQuery()
             
-            if printFlag {
-                print("collection and table queries Completed")
-            }
+            print("collection and table queries Completed")
             
         }
         
@@ -163,27 +147,17 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
     // NAV BACK BUTTON ACTION
     func back(sender: UIBarButtonItem) {
         
-        // Events
-        if route.count == 1 {
-            route.removeAtIndex(0)
-        } else if route.count == 2 {
-            route.removeAtIndex(1)
-        // Beer or Wine WITH Collection Selection
-        } else if route.count == 4 {
-            route.removeAtIndex(3)
-            route.removeAtIndex(2)
-        // Beer or Wine WITHOUT Collection Selection
-        } else {
-            route.removeAtIndex(2)
+        if RouteManager.sharedInstance.Route!.count == 1 {          // Jumped From TierOne
+            RouteManager.sharedInstance.TierOne = nil
+        } else if RouteManager.sharedInstance.Route!.count == 2 {   // Jumped From TierTwo
+            RouteManager.sharedInstance.TierTwo = nil
+        } else if RouteManager.sharedInstance.Route!.count == 4 {   // On TierFour With Collection Selection
+            RouteManager.sharedInstance.TierThree = nil
+            RouteManager.sharedInstance.TierFour = nil
+        } else {                                                    // On TierFour Without Collection Selection
+            RouteManager.sharedInstance.TierThree = nil
         }
-        
-        if printFlag {
-            for index in 0 ..< route.count {
-                print("The Route has been decreased to: \(route[index]["name"]).")
-            }
-            print("-----------------------")
-        }
-        
+ 
         self.navigationController?.popViewControllerAnimated(true)
         
     }
@@ -192,7 +166,6 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
     
     @IBAction func openTab(sender: AnyObject) {
         
@@ -222,7 +195,6 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
     // PREPARE FOR SEGUE DATA TRANSFER
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        
         if segue.identifier == "TierIVCollectionEmbeded" {
             
             if let TierIVCollectionViewController = segue.destinationViewController as? TierIVCollectionViewController {
@@ -236,12 +208,9 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
                 
             } else {
                 
-                if printFlag {
-                    print("Collection Data NOT Passed!")
-                }
+                print("Collection Data NOT Passed!")
                 
             }
-            
         }
 
         if segue.identifier == "TierIVTableEmbeded" {
@@ -253,16 +222,11 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
                 
             } else {
                 
-                if printFlag {
-                    print("Table Data Not Passed!")
-                }
+                print("Table Data Not Passed!")
                 
             }
-        
         }
-        
     }
-    
 }
 
 extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDelegate {
@@ -283,16 +247,17 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
     // TAGS ARRAY CREATION
     func tagsArrayCreation() {
         
+        // Clean Up
         self.tagsArray.removeAll()
         
-        for object in route as [PFObject]! {
+        // Set
+        for object in RouteManager.sharedInstance.Route! as! [PFObject] {
             
             let tag = object["category"] as! PFObject
             
             self.tagsArray.append(tag)
             
         }
-        
     }
     
     // TIER 4 COLLECTION QUERY
@@ -303,21 +268,16 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
         let collectionQuery:PFQuery = PFQuery(className: "Tier4")
         collectionQuery.includeKey("category")
         collectionQuery.includeKey("parentTiers")
-        collectionQuery.whereKey("parentTiers", containedIn: route)
+        collectionQuery.whereKey("parentTiers", containedIn: RouteManager.sharedInstance.Route!)
         collectionQuery.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
             
             if error == nil {
                 
                 // The find succeeded.
-                if printFlag {
-                    print("TierIV collection query retrieved: \(objects!.count) objects.")
-                }
+                print("TierIV collection query retrieved: \(objects!.count) objects.")
                     
-                // Do something with the found objects
                 for object in objects! as [PFObject]! {
-                    
                     if let product = object["category"] as? PFObject {
-                        
                         if product["state"] as! String == "active" {
                         
                             if !(self.TierIVCollectionViewControllerRef?.tierIVCollectionArray.contains(object))! {
@@ -327,30 +287,22 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
                             if !(self.TierIVTableViewControllerRef?.tierIVTableArray.contains(object))! {
                                 self.TierIVTableViewControllerRef?.tierIVCollectionArray.append(object["category"] as! PFObject)
                             }
-                        
+                            
                         }
-                    
                     }
-                    
                 }
                 
                 self.TierIVCollectionViewControllerRef?.collectionView?.reloadData()
                 
-                if printFlag {
-                    print("TierIV collection query appended: \(self.TierIVCollectionViewControllerRef!.tierIVCollectionArray.count) objects.")
-                }
-                  
+                print("TierIV collection query appended: \(self.TierIVCollectionViewControllerRef!.tierIVCollectionArray.count) objects.")
+                
             } else {
                 
                 // Log details of the failure
-                if printFlag {
-                    print("Error: \(error!) \(error!.userInfo)")
-                }
+                print("Error: \(error!) \(error!.userInfo)")
                 
             }
-            
         }
-        
     }
 
     // TIER 4 TABLE QUERY
@@ -368,45 +320,31 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
             if error == nil {
                 
                 // The find succeeded.
-                if printFlag {
-                    print("TierIV table query retrieved: \(objects!.count) objects.")
-                }
+                print("TierIV table query retrieved: \(objects!.count) objects.")
                 
-                // Do something with the found objects
                 for object in objects! as [PFObject] {
-                    
                     if !self.TierIVTableViewControllerRef!.tierIVTableArray.contains(object) {
                         
                         self.TierIVTableViewControllerRef?.tierIVTableArray.append(object)
 
                     } else {
                         
-                        if printFlag {
-                            print("This selection is already being shown.")
-                        }
+                        print("This selection is already being shown.")
                         
                     }
-                    
                 }
                 
                 AnimationManager.sharedInstance.animateTable((self.TierIVTableViewControllerRef!.tableView)!)
                 
-                if printFlag {
-                    print("TierIV table query completed with:  \(self.TierIVTableViewControllerRef!.tierIVTableArray.count) objects.")
-                }
+                print("TierIV table query completed with:  \(self.TierIVTableViewControllerRef!.tierIVTableArray.count) objects.")
                 
             } else {
                 
                 // Log details of the failure
-                if printFlag {
-                    print("Error: \(error!) \(error!.userInfo)")
-                }
+                print("Error: \(error!) \(error!.userInfo)")
                 
             }
-            
         }
-        
     }
-    
 }
 

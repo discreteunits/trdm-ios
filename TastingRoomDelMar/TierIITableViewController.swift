@@ -49,36 +49,30 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
             
             nav = navBar
             
-            navigationTitle.title = route[0]["name"] as? String
+            navigationTitle.title = RouteManager.sharedInstance.TierOne!["name"] as? String
             nav?.barStyle = UIBarStyle.Black
             nav?.tintColor = UIColor.whiteColor()
-            nav?.titleTextAttributes = [ NSFontAttributeName: UIFont (name: "NexaRustScriptL-00", size: 24)!]
+            nav?.titleTextAttributes = [ NSFontAttributeName: UIFont.scriptFont(24)]
             
             
             // SET NAV BACK BUTTON TO REMOVE LAST ITEM FROM ROUTE
             self.navigationItem.hidesBackButton = true
             let newBackButton = UIBarButtonItem(title: "< Del Mar", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(TierIITableViewController.back(_:)))
             self.navigationItem.leftBarButtonItem = newBackButton
-            self.navigationItem.leftBarButtonItem!.setTitleTextAttributes( [NSFontAttributeName: UIFont(name: "NexaRustScriptL-00", size: 20)!], forState: UIControlState.Normal)
+            self.navigationItem.leftBarButtonItem!.setTitleTextAttributes( [NSFontAttributeName: UIFont.scriptFont(20)], forState: UIControlState.Normal)
             
         }
     }
     
     // NAV BACK BUTTON ACTION
     func back(sender: UIBarButtonItem) {
-
-        route.removeAtIndex(0)
         
-        if printFlag {
-            for index in 0 ..< route.count {
-                print("The Route has been decreased to: \(route[index]["name"]).")
-            }
-            print("-----------------------")
-        }
+        // Remove
+        RouteManager.sharedInstance.TierOne = nil
         
         self.navigationController?.popViewControllerAnimated(true)
+        
     }
-    
     
     @IBAction func openTab(sender: AnyObject) {
         
@@ -103,56 +97,39 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
         
         let query:PFQuery = PFQuery(className:"Tier2")
         query.includeKey("category")
-        // RESTRICT QUERY BASED ON TIER 1 SELECTION
-        query.whereKey("parentTiers", equalTo: route[0])
+        query.whereKey("parentTiers", equalTo: RouteManager.sharedInstance.TierOne!)
         query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
             
             if error == nil {
                 
                 // The find succeeded.
-                if printFlag {
-                    print("TierII retrieved \(objects!.count) objects.")
-                }
+                print("TierII retrieved \(objects!.count) objects.")
                 
-                // Do something with the found objects
                 for object in objects! as [PFObject]! {
-                    
                     if let product = object["category"] as? PFObject {
-                    
                         if product["state"] as! String == "active" {
                         
                             self.tierIIArray.append(object)
                         
                         }
-                        
                     }
-                    
                 }
                 
-                if printFlag {
-                    for i in self.tierIIArray {
-                        print("TierII Array: \(i["name"])")
-                    }
-                    print("-----------------------")
+                for i in self.tierIIArray {
+                    print("TierII Array: \(i["name"])")
                 }
+                print("-----------------------")
                 
                 AnimationManager.sharedInstance.animateTable(self.tableView)
                 
             } else {
                 
                 // Log details of the failure
-                if printFlag {
-                    print("Error: \(error!) \(error!.userInfo)")
-                }
-                
+                print("Error: \(error!) \(error!.userInfo)")
             }
-            
         }
-        
     }
 
-    
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -174,7 +151,7 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
 
         cell.textLabel?.text = tierIIArray[indexPath.row]["name"] as? String
         cell.textLabel?.textAlignment = NSTextAlignment.Center
-        cell.textLabel?.font = UIFont(name: "NexaRustScriptL-00", size: 38.0)
+        cell.textLabel?.font = UIFont.scriptFont(38)
         
         return cell
     }
@@ -187,7 +164,6 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
         let cellHeight = tableHeight / numberOfCellsFloat
         
         return cellHeight
-        
     }
 
     // FLYOUT TRIGGER
@@ -198,21 +174,15 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
     // ADD INDEX TO ROUTE
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
  
-        route.append(tierIIArray[indexPath.row])
-
-        if printFlag {
-            for index in 0 ..< route.count {
-                print("The Route has been increased to: \(route[index]["name"]).")
-            }
-            print("-----------------------")
-        }
+        // ROUTE MANAGER
+        RouteManager.sharedInstance.TierTwo = tierIIArray[indexPath.row]
+        RouteManager.sharedInstance.printRoute()
         
-        
+        // Next Tier
         if tierIIArray[indexPath.row]["skipToTier4"] as! Bool {
             self.performSegueWithIdentifier("tierTwoToFour", sender: self)
         } else {
             self.performSegueWithIdentifier("tierIII", sender: self)
         }
     }
-
 }

@@ -18,7 +18,6 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
     
     var nav: UINavigationBar?
     
-
     // --------------------
     override func viewWillDisappear(animated: Bool) {
         
@@ -52,13 +51,13 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
             
             nav = navBar
             
-            navigationTitle.title = route[1]["name"] as? String
+            navigationTitle.title = RouteManager.sharedInstance.TierTwo!["name"] as? String
             nav?.barStyle = UIBarStyle.Black
             nav?.tintColor = UIColor.whiteColor()
             nav?.titleTextAttributes = [ NSFontAttributeName: UIFont (name: "NexaRustScriptL-00", size: 24)!]
             
             // SET NAV BACK BUTTON TO REMOVE LAST ITEM FROM ROUTE
-            let lastWindow = route[0]["name"]
+            let lastWindow = RouteManager.sharedInstance.TierOne!["name"] as! String
             
             self.navigationItem.hidesBackButton = true
             let newBackButton = UIBarButtonItem(title: "< \(lastWindow)", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(TierIIITableViewController.back(_:)))
@@ -71,16 +70,11 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
     // NAV BACK BUTTON ACTION
     func back(sender: UIBarButtonItem) {
 
-        route.removeAtIndex(1)
-        
-        if printFlag {
-            for index in 0 ..< route.count {
-                print("The Route has been decreased to: \(route[index]["name"]).")
-            }
-            print("-----------------------")
-        }
+        // Remove
+        RouteManager.sharedInstance.TierTwo = nil
         
         self.navigationController?.popViewControllerAnimated(true)
+        
     }
     
     
@@ -102,44 +96,34 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
         
     }
     
-
     // TIER 3 QUERY
     func tierIIIQuery() {
         
         let query:PFQuery = PFQuery(className:"Tier3")
         query.includeKey("category")
-        // RESTRICT QUERY BASED ON TIER 2 SELECTION
-        query.whereKey("parentTiers", equalTo: route[1])
+        query.whereKey("parentTiers", equalTo: RouteManager.sharedInstance.TierTwo!)
         query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
             
             if error == nil {
    
                 // The find succeeded.
-                if printFlag {
-                    print("TierIII retrieved \(objects!.count) objects.")
-                }
+                print("TierIII retrieved \(objects!.count) objects.")
                 
-                // Do something with the found objects
                 for object in objects! as [PFObject]! {
-
                     if let product = object["category"] as? PFObject {
-                    
                         if product["state"] as! String == "active" {
                         
                             self.tierIIIArray.append(object)
                             
                         }
-                        
                     }
-                    
                 }
                                 
-                if printFlag {
-                    for i in self.tierIIIArray {
-                        print("TierIII Array: \(i["name"])")
-                    }
-                    print("-----------------------")
+                for i in self.tierIIIArray {
+                    print("TierIII Array: \(i["name"])")
                 }
+                print("-----------------------")
+                
                 
                 AnimationManager.sharedInstance.animateTable(self.tableView)
                 
@@ -149,11 +133,8 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
                 if printFlag {
                     print("Error: \(error!) \(error!.userInfo)")
                 }
-                
             }
-            
         }
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -162,7 +143,6 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
     }
     
     // MARK: - Table view data source
-    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -181,6 +161,7 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
         cell.textLabel?.font = UIFont(name: "NexaRustScriptL-00", size: 38.0)
         
         return cell
+        
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -201,17 +182,10 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        route.append(tierIIIArray[indexPath.row])
-        
-        if printFlag {
-            for index in 0 ..< route.count {
-                print("The Route has been increased to: \(route[index]["name"]).")
-            }
-            print("-----------------------")
-        }
+        RouteManager.sharedInstance.TierThree = tierIIIArray[indexPath.row]
+        RouteManager.sharedInstance.printRoute()
         
         self.performSegueWithIdentifier("tierIV", sender: self)
         
     }
-    
 }
