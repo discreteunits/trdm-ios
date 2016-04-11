@@ -106,7 +106,7 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
         let query:PFQuery = PFQuery(className:"Tier2")
         query.includeKey("category")
         // RESTRICT QUERY BASED ON TIER 1 SELECTION
-        query.whereKey("tier1", equalTo: route[0])
+        query.whereKey("parentTiers", equalTo: route[0])
         query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
             
             if error == nil {

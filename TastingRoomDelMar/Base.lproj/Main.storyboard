@@ -54,7 +54,7 @@
                     <connections>
                         <outlet property="tabIcon" destination="S6M-4D-lAC" id="kqf-gX-nVc"/>
                         <segue destination="EVh-kB-hCB" kind="show" identifier="tierII" id="EYf-5m-3zV"/>
-                        <segue destination="Tcs-V0-8z7" kind="show" identifier="events" id="kVe-Dk-vVX"/>
+                        <segue destination="Tcs-V0-8z7" kind="show" identifier="tierOneToFour" id="kVe-Dk-vVX"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JP9-Za-koK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -101,6 +101,7 @@
                     <connections>
                         <outlet property="navigationTitle" destination="gKt-jc-NcM" id="hKn-lY-bTC"/>
                         <segue destination="qcR-Yl-ZfG" kind="show" identifier="tierIII" id="aFW-0d-mLl"/>
+                        <segue destination="Tcs-V0-8z7" kind="show" identifier="tierTwoToFour" id="fNY-lr-dV0"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gx1-oe-fYY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -701,6 +702,6 @@
         <image name="tIcon" width="19" height="14"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="kVe-Dk-vVX"/>
+        <segue reference="fNY-lr-dV0"/>
     </inferredMetricsTieBreakers>
 </document>

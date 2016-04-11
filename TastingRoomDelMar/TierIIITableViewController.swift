@@ -109,7 +109,7 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
         let query:PFQuery = PFQuery(className:"Tier3")
         query.includeKey("category")
         // RESTRICT QUERY BASED ON TIER 2 SELECTION
-        query.whereKey("tier2", equalTo: route[1])
+        query.whereKey("parentTiers", equalTo: route[1])
         query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
             
             if error == nil {

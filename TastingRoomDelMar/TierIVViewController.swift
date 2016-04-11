@@ -316,24 +316,11 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
     func tierIVCollectionQuery() {
         
         self.TierIVCollectionViewControllerRef?.tierIVCollectionArray.removeAll()
-
-        
-        var classToBeQueried = String()
-        
-        // COLLECTION CLASSNAME CONDITION
-        if route[1]["name"] as! String == "Vines" {
-            classToBeQueried = "WineVarietal"
-        } else if route[1]["name"] as! String == "Hops" {
-            classToBeQueried = "BeerStyle"
-        }
-        
-        if printFlag {
-            print("Attempting to query \(classToBeQueried) for collection")
-        }
             
-        let collectionQuery:PFQuery = PFQuery(className: classToBeQueried)
+        let collectionQuery:PFQuery = PFQuery(className: "Tier4")
         collectionQuery.includeKey("category")
-        collectionQuery.whereKey("tier3", equalTo: route[2])
+        collectionQuery.includeKey("parentTiers")
+        collectionQuery.whereKey("parentTiers", containedIn: route)
         collectionQuery.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
             
             if error == nil {
@@ -350,8 +337,13 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
                         
                         if product["state"] as! String == "active" {
                         
-                            self.TierIVCollectionViewControllerRef?.tierIVCollectionArray.append(object)
-                            self.TierIVTableViewControllerRef?.tierIVCollectionArray.append(object["category"] as! PFObject)
+                            if !(self.TierIVCollectionViewControllerRef?.tierIVCollectionArray.contains(object))! {
+                                self.TierIVCollectionViewControllerRef?.tierIVCollectionArray.append(object)
+                            }
+                            
+                            if !(self.TierIVTableViewControllerRef?.tierIVTableArray.contains(object))! {
+                                self.TierIVTableViewControllerRef?.tierIVCollectionArray.append(object["category"] as! PFObject)
+                            }
                         
                         }
                     
