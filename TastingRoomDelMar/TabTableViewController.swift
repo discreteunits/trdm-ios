@@ -433,16 +433,24 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
                 var servingPrice = String()
                 var orderMod = String()
 
-                if TabManager.sharedInstance.currentTab.lines[parent].eatOrDrink == "Eat" {
+                if TabManager.sharedInstance.currentTab.lines[parent].eatOrDrink == "Merch" {
+                    
+                    orderMod = ""
+                    servingPrice = ""
+                    
+                } else if TabManager.sharedInstance.currentTab.lines[parent].eatOrDrink == "Event" {
+                    
+                    orderMod = ""
+                    servingPrice = ""
+                    
+                } else if TabManager.sharedInstance.currentTab.lines[parent].eatOrDrink == "Eat" {
                 
                     orderMod = TabManager.sharedInstance.currentTab.lines[parent].name
-                    
                     servingPrice = "\(Int(TabManager.sharedInstance.currentTab.lines[parent].product.price))"
                     
                 } else {
                 
                     orderMod = TabManager.sharedInstance.currentTab.lines[parent].subproduct.info
-                    
                     servingPrice = "\(Int(TabManager.sharedInstance.currentTab.lines[parent].subproduct.price))"
                     
                 }

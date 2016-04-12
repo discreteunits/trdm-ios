@@ -51,7 +51,6 @@ class TabViewController: UIViewController {
             nav?.titleTextAttributes = [ NSFontAttributeName: UIFont.scriptFont(24)]
             
         }
-
     }
     
     
@@ -95,19 +94,14 @@ class TabViewController: UIViewController {
                 self.TabTableViewControllerRef = TabTableViewController
                 
             } 
-            
         }
-        
     }
-
 }
 
 
 extension TabViewController: TabTableViewDelegate {
     
-    
     func defaultScreen() {
-        
         
         // Default Empty Tab View
         if TabManager.sharedInstance.currentTab.lines.count < 1 {
@@ -164,7 +158,5 @@ extension TabViewController: TabTableViewDelegate {
             //        }
             
         }
-        
     }
-    
 }

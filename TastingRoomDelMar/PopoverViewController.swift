@@ -521,7 +521,15 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                 let completedChoices: Int!
                 
                 // ----- HARVEST BEGIN ------
-                if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
+                if RouteManager.sharedInstance.TierOne!["name"] as! String == "Merch" {
+                    
+                    completedChoices = 0
+
+                } else if RouteManager.sharedInstance.TierOne!["name"] as! String == "Events" {
+                    
+                    completedChoices = 0
+                    
+                } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
                     
                    completedChoices = popoverAdditions.count
                    
@@ -548,7 +556,11 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                             
                             // Total All Subproduct Choice Prices
                             var totalChoicesPrice = Double()
-                            if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
+                            if RouteManager.sharedInstance.TierOne!["name"] as! String == "Merch" {
+                                totalChoicesPrice = popoverItem["price"] as! Double
+                            } else if RouteManager.sharedInstance.TierOne!["name"] as! String == "Events" {
+                                totalChoicesPrice = popoverItem["price"] as! Double
+                            } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
                                 totalChoicesPrice = popoverItem["price"] as! Double
                             } else {
                                 totalChoicesPrice = productChoice.price
@@ -588,7 +600,13 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                             newLineItem.tax = lineitemTax
                             
                             // ----- HARVEST BEGIN ------
-                            if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
+                            if RouteManager.sharedInstance.TierOne!["name"] as! String == "Merch" {
+                                newLineItem.varietal = ""
+                                newLineItem.eatOrDrink = "Merch"
+                            } else if RouteManager.sharedInstance.TierOne!["name"] as! String == "Events" {
+                                newLineItem.varietal = ""
+                                newLineItem.eatOrDrink = "Event"
+                            } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
                                 newLineItem.varietal = ""
                                 newLineItem.eatOrDrink = "Eat"
                             } else {

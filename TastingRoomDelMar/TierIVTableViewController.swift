@@ -186,7 +186,11 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         product = tierIVTableArray[indexPath.row]
 
         // ----- HARVEST BEGIN ------
-        if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
+        if RouteManager.sharedInstance.TierOne!["name"] as! String == "Merch" {
+            
+        } else if RouteManager.sharedInstance.TierOne!["name"] as! String == "Events" {
+            
+        } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
             
             print("This item contains: \(tierIVTableArray[indexPath.row]["additions"].count) raw additions.")
             
@@ -230,7 +234,9 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
                     product = tierIVTableArray[indexPath.row]
                     
                     // ----- HARVEST OR EVENTS BEGIN ------
-                    if RouteManager.sharedInstance.TierOne!["name"] as! String == "Events" {
+                    if RouteManager.sharedInstance.TierOne!["name"] as! String == "Merch" {
+                        
+                    } else if RouteManager.sharedInstance.TierOne!["name"] as! String == "Events" {
                         
                     } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
                         
@@ -284,7 +290,9 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             
             // ----- HARVEST OR EVENTS BEGIN ------
             var popoverDynamicHeight: Int!
-            if RouteManager.sharedInstance.TierOne!["name"] as! String == "Events" {
+            if RouteManager.sharedInstance.TierOne!["name"] as! String == "Merch" {
+                popoverDynamicHeight = 1
+            } else if RouteManager.sharedInstance.TierOne!["name"] as! String == "Events" {
                 popoverDynamicHeight = 1
             } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
                 popoverDynamicHeight = additions.count
