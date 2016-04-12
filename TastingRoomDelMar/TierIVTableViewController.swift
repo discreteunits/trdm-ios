@@ -63,6 +63,10 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
+        
+        
         self.tableView.reloadData()
         
     }
@@ -88,14 +92,22 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         cell.selectionStyle = UITableViewCellSelectionStyle.None
 
         
-        cell.addToOrderButton.layer.cornerRadius = 6.0
-        cell.addToOrderButton.clipsToBounds = true
+        // If User Is Logged in
+        if TabManager.sharedInstance.currentTab.userId == "" {
+            cell.addToOrderButton.hidden = true
+            cell.userInteractionEnabled = false
+
+        } else {
+            cell.addToOrderButton.layer.cornerRadius = 6.0
+            cell.addToOrderButton.clipsToBounds = true
+        }
         
         
         cell.itemNameLabel?.text = self.tierIVTableArray[indexPath.row]["name"] as! String?
         cell.itemNameLabel?.font = UIFont.headerFont(24)
         cell.altNameTextView?.text = self.tierIVTableArray[indexPath.row]["info"] as! String?
         cell.altNameTextView?.font = UIFont.basicFont(14)
+        cell.pricingLabel?.font = UIFont.basicFont(12)
 
         
         // Adjustment For Text View Text Wrapping
@@ -120,14 +132,17 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         // ----- IF HARVEST -----
         if RouteManager.sharedInstance.TierOne!["name"] as! String == "Merch" {
             cell.pricingLabel?.text = "\(self.tierIVTableArray[indexPath.row]["price"])"
-            cell.pricingLabel?.font = UIFont.basicFont(12)
+            
         } else if RouteManager.sharedInstance.TierOne!["name"] as! String == "Events" {
+            
             cell.pricingLabel?.text = "\(self.tierIVTableArray[indexPath.row]["price"])"
-            cell.pricingLabel?.font = UIFont.basicFont(12)
+            
         } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
+            
             cell.pricingLabel?.text = "\(self.tierIVTableArray[indexPath.row]["price"])"
-            cell.pricingLabel?.font = UIFont.basicFont(12)
+            
         } else {
+            
             if let productPrice = self.tierIVTableArray[indexPath.row]["prices"] {
                 cell.pricingLabel?.text = self.tierIVTableArray[indexPath.row]["prices"] as? String
                 cell.pricingLabel?.font = UIFont.basicFont(12)
@@ -182,36 +197,47 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        additions.removeAll()
-        product = tierIVTableArray[indexPath.row]
+        // If User Is Logged in
+        if TabManager.sharedInstance.currentTab.userId == "" {
+            
+            // Do Nothing
+            let cell = tableView.dequeueReusableCellWithIdentifier("itemCell", forIndexPath: indexPath) as! TierIVTableViewCell
+            cell.selectionStyle = UITableViewCellSelectionStyle.None
+            cell.userInteractionEnabled = false
 
-        // ----- HARVEST BEGIN ------
-        if RouteManager.sharedInstance.TierOne!["name"] as! String == "Merch" {
             
-        } else if RouteManager.sharedInstance.TierOne!["name"] as! String == "Events" {
+        } else {
+        
+            additions.removeAll()
+            product = tierIVTableArray[indexPath.row]
+
+            // ----- HARVEST BEGIN ------
+            if RouteManager.sharedInstance.TierOne!["name"] as! String == "Merch" {
             
-        } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
+            } else if RouteManager.sharedInstance.TierOne!["name"] as! String == "Events" {
             
-            print("This item contains: \(tierIVTableArray[indexPath.row]["additions"].count) raw additions.")
+            } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
             
-            let additionsRaw = tierIVTableArray[indexPath.row]["additions"]
-            
-            for i in 0 ..< additionsRaw.count {
-                additions.append(additionsRaw[i])
+                if tierIVTableArray[indexPath.row]["additions"] != nil {
+                    print("This item contains: \(tierIVTableArray[indexPath.row]["additions"].count) raw additions.")
+               
+                    let additionsRaw = tierIVTableArray[indexPath.row]["additions"]
+                    
+                    for i in 0 ..< additionsRaw.count {
+                        additions.append(additionsRaw[i])
+                    }
+                    
+                    print("Additions Created: \(additions)")
+                }
             }
-            
-            if printFlag {
-                print("Additions Created: \(additions)")
-            }
-            
+            // ----- END -----
+
+        
+            performSegueWithIdentifier("showItemConfig", sender: self)
+        
+            print("------------------------")
+        
         }
-        // ----- END -----
-
-        
-        performSegueWithIdentifier("showItemConfig", sender: self)
-        
-        print("------------------------")
-        
     }
     
     // SEGUE TRIGGER AND PREPARATION
@@ -290,19 +316,35 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             
             // ----- HARVEST OR EVENTS BEGIN ------
             var popoverDynamicHeight: Int!
+            var popoverHeightCalculation: Int!
             if RouteManager.sharedInstance.TierOne!["name"] as! String == "Merch" {
+                
                 popoverDynamicHeight = 1
+                popoverHeightCalculation = ((popoverDynamicHeight + 2) * 100)
+
             } else if RouteManager.sharedInstance.TierOne!["name"] as! String == "Events" {
+                
                 popoverDynamicHeight = 1
+                popoverHeightCalculation = ((popoverDynamicHeight + 2) * 100)
+
             } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
+                
                 popoverDynamicHeight = additions.count
+                popoverHeightCalculation = ((popoverDynamicHeight + 3) * 100)
+                vc.popoverAdditions = additions
+
+
             } else {
+                
                 popoverDynamicHeight = 1
+                popoverHeightCalculation = ((popoverDynamicHeight + 3) * 100)
+                let subproductsArray = subproductQuery(product)
+                vc.subproducts = subproductsArray
+
             }
             // ----- END -----
 
             
-            let popoverHeightCalculation = ((popoverDynamicHeight + 3) * 100)
             popoverHeight = CGFloat(popoverHeightCalculation)
             popoverWidth = tableView.bounds.size.width
             vc.preferredContentSize = CGSizeMake(popoverWidth, popoverHeight)
@@ -318,33 +360,69 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             vc.popoverItemVarietal = productVarietal
             
             
-            // ----- HARVEST BEGIN ------
-            if RouteManager.sharedInstance.TierOne!["name"] as! String == "Merch" {
-                
-            } else if RouteManager.sharedInstance.TierOne!["name"] as! String == "Events" {
-                
-            } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
-                
-                vc.popoverAdditions = additions
-                
-            } else {
-                let subproductsArray = subproductQuery(product)
-                vc.subproducts = subproductsArray
-            }
-            // ----- END -----
+//            // ----- HARVEST BEGIN ------
+//            if RouteManager.sharedInstance.TierOne!["name"] as! String == "Merch" {
+//                
+//            } else if RouteManager.sharedInstance.TierOne!["name"] as! String == "Events" {
+//                
+//            } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
+//                
+//                vc.popoverAdditions = additions
+//                
+//            } else {
+//                
+//                let subproductsArray = subproductQuery(product)
+//                vc.subproducts = subproductsArray
+//                
+//            }
+//            // ----- END -----
             
             var controller = vc.popoverPresentationController
             controller!.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
             
             if controller != nil {
                 
-                // CENTER POPOVER
-                
-                let bounds: CGRect = (delegate?.getViewBounds())!
-                let position = (CGFloat(bounds.height) - popoverHeight) - 50
-            
-                controller!.sourceRect = CGRectMake(0, position, 0, 0)
-                controller?.delegate = self
+                // CENTER POPOVER VERTICALLY
+                if RouteManager.sharedInstance.TierOne!["name"] as! String == "Merch" {
+                    
+                    let bounds: CGRect = (delegate?.getViewBounds())!
+                    let position = (CGFloat(bounds.height) - popoverHeight) / 2
+                    
+                    print("Position: \(position)")
+                    
+                    controller!.sourceRect = CGRectMake(0, position, 0, 0)
+                    controller?.delegate = self
+                    
+                } else if RouteManager.sharedInstance.TierOne!["name"] as! String == "Events" {
+                    
+                    
+                    
+                } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
+                    
+                    let bounds: CGRect = (delegate?.getViewBounds())!
+                    let position = (CGFloat(bounds.height) - popoverHeight) / 2
+                    
+                    controller!.sourceRect = CGRectMake(0, position, 0, 0)
+                    controller?.delegate = self
+                    
+                    print("============")
+                    print("Bounds: \(bounds)")
+                    print("Position: \(position)")
+                    print("PopoverHeight: \(popoverHeight)")
+                    print("============")
+
+                    
+                } else {
+                    
+                    let bounds: CGRect = (delegate?.getViewBounds())!
+                    let position = (CGFloat(bounds.height) - popoverHeight) - 50
+                    
+                    controller!.sourceRect = CGRectMake(0, position, 0, 0)
+                    controller?.delegate = self
+                    
+                }
+                // ----- END -----
+
                             
             }
         }

@@ -495,6 +495,7 @@
 				D7FFF7AB1C3AFB0600020D9A /* Resources */,
 				250AE2A8641DBF7804BBEDCB /* Embed Pods Frameworks */,
 				5261BCB4BE84312680FA958A /* Copy Pods Resources */,
+				D79ACED51CBD59D600D70463 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -679,6 +680,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TastingRoomDelMar/Pods-TastingRoomDelMar-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		D79ACED51CBD59D600D70463 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 52fa462b37fc0c005e5599806fd96b167f34f913 35b7d5c1f47faf8fb09a510c9f2a06ce9f351d05498e0c88f4702aeb013fb4cd";
 		};
 /* End PBXShellScriptBuildPhase section */
 

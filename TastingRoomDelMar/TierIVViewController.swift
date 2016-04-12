@@ -234,7 +234,9 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
 extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDelegate {
     
     func getViewBounds()  -> CGRect {
-                
+        
+        bounds = self.view.bounds
+        
         return bounds
         
     }

@@ -7,7 +7,10 @@ PODS:
     - Bolts/Tasks
   - Bolts/Tasks (1.7.0)
   - Bond (4.3.1)
+  - Crashlytics (3.7.0):
+    - Fabric (~> 1.6.3)
   - ENSwiftSideMenu (0.1.1)
+  - Fabric (1.6.7)
   - FBSDKCoreKit (4.10.1):
     - Bolts (~> 1.5)
   - FBSDKLoginKit (4.10.1):
@@ -43,7 +46,9 @@ DEPENDENCIES:
   - Alamofire (= 3.1.1)
   - Bolts
   - Bond (~> 4.0)
+  - Crashlytics
   - ENSwiftSideMenu (~> 0.1)
+  - Fabric
   - FBSDKCoreKit
   - FBSDKLoginKit
   - FBSDKShareKit
@@ -72,7 +77,9 @@ SPEC CHECKSUMS:
   Alamofire: 9b0a7188b961a03914a99304488bd226b0e46c0e
   Bolts: a0058fa3b331c5a1e4402d534f2dae36dbff31e4
   Bond: 55903fc67f09e8e49791a657163cabba1d6fb29d
+  Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
   ENSwiftSideMenu: a934caefbe811e4925f172009349da4a49901307
+  Fabric: caf7580c725e64db144f610ac65cd60956911dc7
   FBSDKCoreKit: d2aaed5e9ab7d8d6301c533376a1fbff1cf3deb5
   FBSDKLoginKit: 699ff169080e3072de4b9b0faca90bf23dc36deb
   FBSDKShareKit: 2fd887cce0056bdda91f99b2021d724a4fed8e88

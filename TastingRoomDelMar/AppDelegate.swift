@@ -11,6 +11,8 @@ import Parse
 import ParseCrashReporting
 import ParseFacebookUtilsV4
 import Stripe
+import Fabric
+import Crashlytics
 
 var printFlag = true
 
@@ -60,7 +62,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Stripe Integration
         Stripe.setDefaultPublishableKey(AppConfiguration.sharedInstance.currentConfig.paymentKey)
-        
+        Fabric.with([STPAPIClient.self, Crashlytics.self])
+
         
     // -------------------------------
     // MARK: USER AUTO LOG IN
