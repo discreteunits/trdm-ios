@@ -121,6 +121,10 @@ class PopoverViewController: UITableViewController {
             rows = 3
         } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
             rows = additions.count + 3
+        } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "More" {
+            rows = 3
+        } else if RouteManager.sharedInstance.TierThree!["name"] as! String == "Flights" {
+            rows = 3
         } else {
             rows = 4
         }
@@ -178,6 +182,10 @@ class PopoverViewController: UITableViewController {
                 } else if RouteManager.sharedInstance.TierOne!["name"] as! String == "Events" {
                     detailsCell.varietalLabel?.text = ""
                 } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
+                    detailsCell.varietalLabel?.text = ""
+                } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "More" {
+                    detailsCell.varietalLabel?.text = ""
+                } else if RouteManager.sharedInstance.TierThree!["name"] as! String == "Flights" {
                     detailsCell.varietalLabel?.text = ""
                 } else {
                     if let varietalName = popoverItemVarietal["name"] as? String {
@@ -532,7 +540,15 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                 } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
                     
                    completedChoices = popoverAdditions.count
-                   
+                
+                } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "More" {
+                    
+                    completedChoices = 0
+                    
+                } else if RouteManager.sharedInstance.TierThree!["name"] as! String == "Flights" {
+                    
+                    completedChoices = 0
+                
                 } else {
                     
                     completedChoices = 1
@@ -561,6 +577,8 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                             } else if RouteManager.sharedInstance.TierOne!["name"] as! String == "Events" {
                                 totalChoicesPrice = popoverItem["price"] as! Double
                             } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
+                                totalChoicesPrice = popoverItem["price"] as! Double
+                            } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "More" {
                                 totalChoicesPrice = popoverItem["price"] as! Double
                             } else {
                                 totalChoicesPrice = productChoice.price
@@ -602,16 +620,19 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                             // ----- HARVEST BEGIN ------
                             if RouteManager.sharedInstance.TierOne!["name"] as! String == "Merch" {
                                 newLineItem.varietal = ""
-                                newLineItem.eatOrDrink = "Merch"
+                                newLineItem.path = "Merch"
                             } else if RouteManager.sharedInstance.TierOne!["name"] as! String == "Events" {
                                 newLineItem.varietal = ""
-                                newLineItem.eatOrDrink = "Event"
+                                newLineItem.path = "Event"
                             } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
                                 newLineItem.varietal = ""
-                                newLineItem.eatOrDrink = "Eat"
+                                newLineItem.path = "Eat"
+                            } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "More" {
+                                newLineItem.varietal = ""
+                                newLineItem.path = "More"
                             } else {
                                 newLineItem.varietal = popoverItemVarietal["name"] as! String
-                                newLineItem.eatOrDrink = "Drink"
+                                newLineItem.path = "Drink"
                             }
                             // ----- END -----
                             

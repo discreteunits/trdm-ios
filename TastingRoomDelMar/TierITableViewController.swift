@@ -450,7 +450,7 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         RouteManager.sharedInstance.printRoute()
         
         // Set Order Type
-        if tierIArray[indexPath.row]["name"] as! String == "Dine in" {
+        if tierIArray[indexPath.row]["name"] as! String == "Dine In" {
             TabManager.sharedInstance.currentTab.type = "delivery"
         } else if tierIArray[indexPath.row]["name"] as! String == "Take Away" {
             TabManager.sharedInstance.currentTab.type = "takeaway"

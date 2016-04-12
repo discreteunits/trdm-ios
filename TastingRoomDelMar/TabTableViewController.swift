@@ -225,7 +225,7 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
             
             
             // ----- HARVEST BEGIN ------
-            if tab.lines[indexPath.row].eatOrDrink == "Eat" {
+            if tab.lines[indexPath.row].path == "Eat" {
                 
                 let lineMods = tab.lines[indexPath.row].additions.count
                 let lineModsWithServing = lineMods + 1
@@ -394,7 +394,7 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
             
             
             // ----- HARVEST BEGIN ------
-            if TabManager.sharedInstance.currentTab.lines[parent].eatOrDrink == "Eat" {
+            if TabManager.sharedInstance.currentTab.lines[parent].path == "Eat" {
                 
                 let modChoices = TabManager.sharedInstance.currentTab.lines[parent].additions.count
                 numberOfItems = modChoices + 1
@@ -433,20 +433,25 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
                 var servingPrice = String()
                 var orderMod = String()
 
-                if TabManager.sharedInstance.currentTab.lines[parent].eatOrDrink == "Merch" {
+                if TabManager.sharedInstance.currentTab.lines[parent].path == "Merch" {
                     
                     orderMod = ""
                     servingPrice = ""
                     
-                } else if TabManager.sharedInstance.currentTab.lines[parent].eatOrDrink == "Event" {
+                } else if TabManager.sharedInstance.currentTab.lines[parent].path == "Event" {
                     
                     orderMod = ""
                     servingPrice = ""
                     
-                } else if TabManager.sharedInstance.currentTab.lines[parent].eatOrDrink == "Eat" {
+                } else if TabManager.sharedInstance.currentTab.lines[parent].path == "Eat" {
                 
                     orderMod = TabManager.sharedInstance.currentTab.lines[parent].name
                     servingPrice = "\(Int(TabManager.sharedInstance.currentTab.lines[parent].product.price))"
+                    
+                } else if TabManager.sharedInstance.currentTab.lines[parent].path == "More" {
+                    
+                    orderMod = ""
+                    servingPrice = ""
                     
                 } else {
                 
@@ -482,7 +487,7 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
                 
   
                 // ----- IF HARVEST -----
-                if TabManager.sharedInstance.currentTab.lines[parent].eatOrDrink == "Eat" {
+                if TabManager.sharedInstance.currentTab.lines[parent].path == "Eat" {
                 
                     let trueIndex = indexPath.row - 1
                     

@@ -29,8 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Parse.enableLocalDatastore()
         
-        Parse.setApplicationId(AppConfiguration.sharedInstance.currentConfig.databaseAppId,
-            clientKey: AppConfiguration.sharedInstance.currentConfig.databaseClientKey)
+        Parse.setApplicationId(AppConfiguration.sharedInstance.databaseAppId,
+            clientKey: AppConfiguration.sharedInstance.databaseClientKey)
                 
         PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)
         
@@ -61,7 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.sharedApplication().applicationIconBadgeNumber = 0
         
         // Stripe Integration
-        Stripe.setDefaultPublishableKey(AppConfiguration.sharedInstance.currentConfig.paymentKey)
+        Stripe.setDefaultPublishableKey(AppConfiguration.sharedInstance.paymentPublishableKey)
         Fabric.with([STPAPIClient.self, Crashlytics.self])
 
         
@@ -169,19 +169,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension UIColor {
     class func primaryGreenColor() -> UIColor {
-        return AppConfiguration.sharedInstance.currentConfig.primaryColor
+        return AppConfiguration.sharedInstance.primaryColor
     }
 }
 
 extension UIFont {
     class func scriptFont(size: CGFloat) -> UIFont {
-        return UIFont(name: AppConfiguration.sharedInstance.currentConfig.scriptFont, size: size)!
+        return UIFont(name: AppConfiguration.sharedInstance.scriptFont, size: size)!
     }
     class func headerFont(size: CGFloat) -> UIFont {
-        return UIFont(name: AppConfiguration.sharedInstance.currentConfig.headerFont, size: size)!
+        return UIFont(name: AppConfiguration.sharedInstance.headerFont, size: size)!
     }
     class func basicFont(size: CGFloat) -> UIFont {
-        return UIFont(name: AppConfiguration.sharedInstance.currentConfig.basicFont, size: size)!
+        return UIFont(name: AppConfiguration.sharedInstance.basicFont, size: size)!
     }
     
 }

@@ -44,25 +44,6 @@ struct Config {
 }
 
 // Tab Manager
-//struct Modifier {
-//    
-//    var lightspeedId = String()
-//    var modifierValueId = String()
-//    var info = String()
-//    var name = String()
-//    var price = String()
-//    
-//}
-//
-//struct ModifierGroup {
-//    
-//    var lightspeedId = String()
-//    var name = String()
-//    var price = Double()
-//    var modifiers = [Modifier]()
-//    
-//}
-
 struct Value {
     
     var modifierId = String()
@@ -108,7 +89,7 @@ struct LineItem {
     var price = Double()
     var tax = Double()
     var varietal = String()
-    var eatOrDrink = String()
+    var path = String()
     
     // NEEDED?????
     var product = Product()

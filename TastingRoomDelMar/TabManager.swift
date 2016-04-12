@@ -68,7 +68,7 @@ class TabManager: NSObject {
         for lineitem in lineitems {
             
             var values = Double()
-            if lineitem.eatOrDrink == "Eat" {
+            if lineitem.path == "Eat" {
                 for addition in lineitem.additions {
                     for value in addition.values {
                         values = values + Double(value.price)!
@@ -150,7 +150,7 @@ class TabManager: NSObject {
             // ----- HARVEST BEGIN ------
             for line in TabManager.sharedInstance.currentTab.lines {
                 
-                if line.eatOrDrink == "Eat" {
+                if line.path == "Eat" {
                    
                     for addition in line.additions {
                         

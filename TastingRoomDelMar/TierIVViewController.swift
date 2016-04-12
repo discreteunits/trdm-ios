@@ -235,7 +235,7 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
     
     func getViewBounds()  -> CGRect {
         
-        bounds = self.view.bounds
+        bounds = UIScreen.mainScreen().bounds
         
         return bounds
         
