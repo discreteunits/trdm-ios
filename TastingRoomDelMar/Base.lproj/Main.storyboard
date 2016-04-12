@@ -290,6 +290,21 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="153.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
+                                        <button opaque="NO" contentMode="scaleAspectFit" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XEU-be-Wjo">
+                                            <rect key="frame" x="471" y="43" width="121" height="33"/>
+                                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="30" id="UXc-Xc-h81"/>
+                                                <constraint firstAttribute="width" constant="80" id="oxg-ic-DHT"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="NexaRustScriptL-00" family="Nexa Rust Script L" pointSize="16"/>
+                                            <state key="normal" title="Add to Tab">
+                                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="addToOrder:" destination="WTZ-qJ-zbB" eventType="touchUpInside" id="Ndl-D9-QVh"/>
+                                            </connections>
+                                        </button>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ZaA-uY-PYe">
                                             <rect key="frame" x="8" y="8" width="250" height="125"/>
                                             <subviews>
@@ -339,21 +354,6 @@
                                                 </label>
                                             </subviews>
                                         </stackView>
-                                        <button opaque="NO" contentMode="scaleAspectFit" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XEU-be-Wjo">
-                                            <rect key="frame" x="471" y="43" width="121" height="33"/>
-                                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="30" id="UXc-Xc-h81"/>
-                                                <constraint firstAttribute="width" constant="80" id="oxg-ic-DHT"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" name="NexaRustScriptL-00" family="Nexa Rust Script L" pointSize="16"/>
-                                            <state key="normal" title="Add to Tab">
-                                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="addToOrder:" destination="WTZ-qJ-zbB" eventType="touchUpInside" id="Ndl-D9-QVh"/>
-                                            </connections>
-                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="XEU-be-Wjo" firstAttribute="trailing" secondItem="3Ko-V1-4Ep" secondAttribute="trailingMargin" id="6Sg-r8-Q93"/>
@@ -431,20 +431,20 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="FST-Q5-6ze">
-                                            <rect key="frame" x="0.0" y="12" width="318" height="76"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="FST-Q5-6ze">
+                                            <rect key="frame" x="8" y="12" width="318" height="76"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="titleLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hBb-FX-Kdo">
-                                                    <rect key="frame" x="10" y="7" width="300" height="25"/>
+                                                    <rect key="frame" x="10" y="7" width="300" height="24"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="25" id="igC-Y9-90w"/>
+                                                        <constraint firstAttribute="height" constant="24" id="igC-Y9-90w"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="89L-Jo-KEX">
-                                                    <rect key="frame" x="10" y="36" width="300" height="24"/>
+                                                    <rect key="frame" x="10" y="31" width="300" height="24"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="300" id="5B0-84-Fo7"/>
@@ -454,30 +454,27 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="varietalLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u57-hT-U50">
-                                                    <rect key="frame" x="10" y="64" width="300" height="12"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="varietalLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u57-hT-U50">
+                                                    <rect key="frame" x="10" y="55" width="300" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="12" id="eGl-yX-JO6"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="eGl-yX-JO6"/>
+                                                        </mask>
+                                                    </variation>
                                                 </label>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstItem="u57-hT-U50" firstAttribute="top" secondItem="89L-Jo-KEX" secondAttribute="bottom" constant="-10" id="5LX-Wa-XUl"/>
-                                                <constraint firstAttribute="trailing" secondItem="89L-Jo-KEX" secondAttribute="trailing" constant="10" id="I7E-au-XFX"/>
-                                                <constraint firstItem="89L-Jo-KEX" firstAttribute="top" secondItem="hBb-FX-Kdo" secondAttribute="bottom" constant="4" id="vlO-tb-ZwH"/>
-                                            </constraints>
                                             <edgeInsets key="layoutMargins" top="7" left="10" bottom="0.0" right="8"/>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="I7E-au-XFX"/>
-                                                    <exclude reference="vlO-tb-ZwH"/>
-                                                </mask>
-                                            </variation>
                                         </stackView>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="FST-Q5-6ze" firstAttribute="centerY" secondItem="jrF-Ct-uJe" secondAttribute="centerY" id="AAa-tc-w4G"/>
-                                        <constraint firstItem="FST-Q5-6ze" firstAttribute="leading" secondItem="jrF-Ct-uJe" secondAttribute="leading" id="VPr-C1-kg4"/>
+                                        <constraint firstItem="FST-Q5-6ze" firstAttribute="leading" secondItem="jrF-Ct-uJe" secondAttribute="leading" constant="8" id="VPr-C1-kg4"/>
                                         <constraint firstItem="FST-Q5-6ze" firstAttribute="top" secondItem="jrF-Ct-uJe" secondAttribute="topMargin" constant="4" id="uo2-jv-lKn"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -701,7 +698,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LsJ-TJ-xrK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5038" y="1299"/>
+            <point key="canvasLocation" x="5042" y="1299"/>
         </scene>
     </scenes>
     <resources>

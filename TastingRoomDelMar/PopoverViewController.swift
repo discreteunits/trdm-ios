@@ -580,6 +580,8 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                                 totalChoicesPrice = popoverItem["price"] as! Double
                             } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "More" {
                                 totalChoicesPrice = popoverItem["price"] as! Double
+                            } else if RouteManager.sharedInstance.TierThree!["name"] as! String == "Flights" {
+                                totalChoicesPrice = popoverItem["price"] as! Double
                             } else {
                                 totalChoicesPrice = productChoice.price
                             }
@@ -603,7 +605,13 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                             newProduct.productId = String(popoverItem["lightspeedId"])      // Lightspeed ID
                             newProduct.name = popoverItem["name"] as! String
                             newProduct.price = popoverItem["price"] as! Double
-                            newProduct.info = popoverItem["info"] as! String
+                            
+                            if let info = popoverItem["info"] as? String {
+                                newProduct.info = info
+                            } else {
+                                newProduct.info = ""
+                            }
+                            
                             
                             
                             // Begin Create LineItem
@@ -630,6 +638,9 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                             } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "More" {
                                 newLineItem.varietal = ""
                                 newLineItem.path = "More"
+                            } else if RouteManager.sharedInstance.TierThree!["name"] as! String == "Flights" {
+                                newLineItem.varietal = ""
+                                newLineItem.path = "Flights"
                             } else {
                                 newLineItem.varietal = popoverItemVarietal["name"] as! String
                                 newLineItem.path = "Drink"

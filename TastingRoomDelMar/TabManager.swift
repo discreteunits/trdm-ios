@@ -52,9 +52,7 @@ class TabManager: NSObject {
             if printFlag {
                 print("New Tab Created: \(currentTab)")
             }
-            
         }
-        
     }
     
     func totalCellCalculator() {
@@ -97,9 +95,10 @@ class TabManager: NSObject {
         currentTab.grandTotal = total
         
         if printFlag {
+            print("---------------------------")
             print("Current Tab Totals Calculated: \(currentTab)")
+            print("---------------------------")
         }
-        
     }
     
     func gratuityCalculator(gratuity: String) {
@@ -164,16 +163,12 @@ class TabManager: NSObject {
                             modifiers.append(paramModifier)
                             
                         }
-                        
                     }
-                
                 }
-                
             }
             // ----- END -----
 
 
-            
             // Begin Building LineItem
             //-----------------            
             // Loop LineItems
@@ -256,22 +251,6 @@ class TabManager: NSObject {
         
     }
     
-    func addToTab() {
-        
-    }
-    
-    func removeFromTab() {
-        
-    }
-    
-    func placeOrder() {
-        
-    }
-    
-    func clearTab() {
-        
-    }
-    
     func tabQuery(id: String) {
         
         let tabQuery:PFQuery = PFQuery(className: "Order")
@@ -304,9 +283,7 @@ class TabManager: NSObject {
                         if printFlag {
                             print("Object found does not have a state of OPEN.")
                         }
-                        
                     }
-                    
                 }
                 
                 
@@ -316,13 +293,9 @@ class TabManager: NSObject {
                 if printFlag {
                     print("Error: \(error!) \(error!.userInfo)")
                 }
-                
             }
-            
         }
-        
     }
-    
     
     func addItemsIndicator() {
         
@@ -360,7 +333,6 @@ class TabManager: NSObject {
             currentWindow.reloadInputViews()
             
         }
-        
     }
     
     func removeItemsIndicator() {
@@ -371,7 +343,5 @@ class TabManager: NSObject {
         if let viewWithTag = currentWindow.viewWithTag(31) {
             viewWithTag.removeFromSuperview()
         }
-        
     }
-    
 }

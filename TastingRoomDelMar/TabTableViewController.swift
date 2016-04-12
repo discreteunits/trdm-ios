@@ -452,6 +452,11 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
                     
                     orderMod = ""
                     servingPrice = ""
+                   
+                } else if TabManager.sharedInstance.currentTab.lines[parent].path == "Flights" {
+
+                    orderMod = ""
+                    servingPrice = ""
                     
                 } else {
                 
@@ -459,7 +464,6 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
                     servingPrice = "\(Int(TabManager.sharedInstance.currentTab.lines[parent].subproduct.price))"
                     
                 }
-                
                 
 
                 let orderAndServing = orderMod + "   " + servingPrice
@@ -518,9 +522,6 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
                                 
                 }
                 // ----- END -----
-
-                
-                
                 
                 // Styles
                 lineitemCollectionCell.backgroundColor = UIColor.whiteColor()
@@ -532,12 +533,9 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
                 
                 
             }
-            
         }
         
-        
         return cell
-        
         
     }
     

@@ -11,6 +11,7 @@ import ParseUI
 import Parse
 import Bond
 import ParseFacebookUtilsV4
+import ParseCrashReporting
 
 var route: [PFObject]?
 
@@ -368,11 +369,13 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
                     print("Graph Request Returned")
                 }
                 
+                print("CURRENT USER: \(PFUser.currentUser())")
+                
                 // Assign Graph Request Parameters To PFUser Object
-                PFUser.currentUser()?["username"]! = result["email"]
-                PFUser.currentUser()?["email"]! = result["email"]
-                PFUser.currentUser()?["firstName"]! = result["first_name"]
-                PFUser.currentUser()?["lastName"]! = result["last_name"]
+                PFUser.currentUser()?["username"] = result["email"]!
+                PFUser.currentUser()?["email"] = result["email"]!
+                PFUser.currentUser()?["firstName"] = result["first_name"]!
+                PFUser.currentUser()?["lastName"] = result["last_name"]!
                 
                 if printFlag {
                     print("Username: \(result["email"]! as! String)")

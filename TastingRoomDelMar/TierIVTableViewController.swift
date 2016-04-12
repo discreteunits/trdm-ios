@@ -484,7 +484,10 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             newSubproduct.productId = String(subproduct["lightspeedId"])
             newSubproduct.name = subproduct["name"] as! String
             newSubproduct.price = subproduct["price"] as! Double
-            newSubproduct.info = subproduct["info"] as! String
+            
+            if subproduct["info"] != nil {
+                newSubproduct.info = subproduct["info"] as! String
+            }
             
             convertedSubproducts.append(newSubproduct)
             
