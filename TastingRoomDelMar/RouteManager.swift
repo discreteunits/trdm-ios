@@ -35,6 +35,7 @@ class RouteManager: NSObject {
                 } else { return fullRoute } // Return @ TierTwo
             } else { return fullRoute } // Return @ TierOne
         } else { return fullRoute } // Return NOTHING
+        
     }
     
     func printRoute() {

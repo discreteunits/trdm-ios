@@ -16,6 +16,10 @@ class TierIVTableViewCell: UITableViewCell {
     @IBOutlet weak var pricingLabel: UILabel!
     @IBOutlet weak var addToOrderButton: UIButton!
     
+    
+    @IBOutlet weak var tableStackView: UIStackView!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
                 

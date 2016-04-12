@@ -112,20 +112,25 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         heights.append(textViewHeight)
         largestHeight = heights.maxElement()!
         // ------------------------ END
+
         
         
         // Prices From Product Table
         // ------------------------- BEGIN
         // ----- IF HARVEST -----
-        if RouteManager.sharedInstance.TierOne!["name"] as! String == "Events" {
-           
+        if RouteManager.sharedInstance.TierOne!["name"] as! String == "Merch" {
+            cell.pricingLabel?.text = "\(self.tierIVTableArray[indexPath.row]["price"])"
+            cell.pricingLabel?.font = UIFont.basicFont(12)
+        } else if RouteManager.sharedInstance.TierOne!["name"] as! String == "Events" {
+            cell.pricingLabel?.text = "\(self.tierIVTableArray[indexPath.row]["price"])"
+            cell.pricingLabel?.font = UIFont.basicFont(12)
         } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
             cell.pricingLabel?.text = "\(self.tierIVTableArray[indexPath.row]["price"])"
             cell.pricingLabel?.font = UIFont.basicFont(12)
         } else {
             if let productPrice = self.tierIVTableArray[indexPath.row]["prices"] {
                 cell.pricingLabel?.text = self.tierIVTableArray[indexPath.row]["prices"] as? String
-                cell.pricingLabel?.font = UIFont(name: "OpenSans", size: 12)
+                cell.pricingLabel?.font = UIFont.basicFont(12)
                 
             // Prices NOT Found in Item Table
             } else {
@@ -168,8 +173,8 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
-        let cellHeight = 60 + largestHeight
-        
+        let cellHeight = 80 + largestHeight
+
         return cellHeight
         
     }
@@ -306,7 +311,11 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             
             
             // ----- HARVEST BEGIN ------
-            if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
+            if RouteManager.sharedInstance.TierOne!["name"] as! String == "Merch" {
+                
+            } else if RouteManager.sharedInstance.TierOne!["name"] as! String == "Events" {
+                
+            } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
                 
                 vc.popoverAdditions = additions
                 

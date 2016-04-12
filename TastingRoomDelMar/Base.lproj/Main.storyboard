@@ -25,7 +25,7 @@
                                 <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="K9C-KF-KVw" id="ZVa-8f-bpS">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -74,7 +74,7 @@
                                 <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Cqr-2d-ZfF" id="3Fx-OI-ihR">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -278,23 +278,23 @@
         <scene sceneID="6H1-bG-vfi">
             <objects>
                 <tableViewController storyboardIdentifier="TierIVTable" automaticallyAdjustsScrollViewInsets="NO" id="WTZ-qJ-zbB" customClass="TierIVTableViewController" customModule="TastingRoomDelMar" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="97" sectionHeaderHeight="28" sectionFooterHeight="28" id="X5c-7e-CoL">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="154" sectionHeaderHeight="28" sectionFooterHeight="28" id="X5c-7e-CoL">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="467"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="itemCell" rowHeight="100" id="Ik1-QJ-zJP" customClass="TierIVTableViewCell" customModule="TastingRoomDelMar" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="600" height="100"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="itemCell" rowHeight="154" id="Ik1-QJ-zJP" customClass="TierIVTableViewCell" customModule="TastingRoomDelMar" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="600" height="154"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ik1-QJ-zJP" id="3Ko-V1-4Ep">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="153.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ZaA-uY-PYe">
-                                            <rect key="frame" x="8" y="8" width="250" height="126"/>
+                                            <rect key="frame" x="8" y="8" width="250" height="125"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="66y-OS-sOL">
-                                                    <rect key="frame" x="0.0" y="0.0" width="250" height="26"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="250" height="25"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="225" id="2VE-dY-XjU"/>
                                                         <constraint firstAttribute="height" constant="25" id="A00-Ck-ndc"/>
@@ -309,7 +309,7 @@
                                                     </variation>
                                                 </label>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T3Y-ip-WLf">
-                                                    <rect key="frame" x="0.0" y="26" width="250" height="64"/>
+                                                    <rect key="frame" x="0.0" y="25" width="250" height="64"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="250" id="fYx-jV-6S2"/>
@@ -320,7 +320,7 @@
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Varietal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bEg-KJ-zLp">
-                                                    <rect key="frame" x="0.0" y="90" width="250" height="20"/>
+                                                    <rect key="frame" x="0.0" y="89" width="250" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="Oab-MD-MqL"/>
                                                     </constraints>
@@ -329,7 +329,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pricing" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YME-Rb-W7z">
-                                                    <rect key="frame" x="0.0" y="110" width="250" height="16"/>
+                                                    <rect key="frame" x="0.0" y="109" width="250" height="16"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="16" id="3gH-pe-skg"/>
                                                     </constraints>
@@ -360,14 +360,21 @@
                                         <constraint firstItem="ZaA-uY-PYe" firstAttribute="leading" secondItem="3Ko-V1-4Ep" secondAttribute="leadingMargin" id="8DP-Ie-4fT"/>
                                         <constraint firstItem="ZaA-uY-PYe" firstAttribute="top" secondItem="3Ko-V1-4Ep" secondAttribute="topMargin" id="GP7-Vr-Klf"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="XEU-be-Wjo" secondAttribute="bottom" constant="8" id="XP5-ln-wbI"/>
+                                        <constraint firstItem="XEU-be-Wjo" firstAttribute="leading" secondItem="ZaA-uY-PYe" secondAttribute="trailing" constant="50" id="YZk-Xy-p3Z"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="ZaA-uY-PYe" secondAttribute="bottom" id="lyG-EQ-PK2"/>
                                     </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="YZk-Xy-p3Z"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="addToOrderButton" destination="XEU-be-Wjo" id="xvy-Z7-PVI"/>
                                     <outlet property="altNameTextView" destination="T3Y-ip-WLf" id="mIw-7f-xna"/>
                                     <outlet property="itemNameLabel" destination="66y-OS-sOL" id="1TX-LE-JhB"/>
                                     <outlet property="pricingLabel" destination="YME-Rb-W7z" id="xz1-Fp-yQJ"/>
+                                    <outlet property="tableStackView" destination="ZaA-uY-PYe" id="5Ky-3x-blD"/>
                                     <outlet property="varietalLabel" destination="bEg-KJ-zLp" id="3Vx-r6-Eas"/>
                                 </connections>
                             </tableViewCell>

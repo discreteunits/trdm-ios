@@ -133,8 +133,15 @@ class TierIVCollectionViewController: UICollectionViewController {
             let trueIndex = indexPath.row - 1
             
             if !RouteManager.sharedInstance.Route!.contains(tierIVCollectionArray[trueIndex]) {
-                RouteManager.sharedInstance.TierFour = tierIVCollectionArray[trueIndex]
+                
+                if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
+                    RouteManager.sharedInstance.TierThree = tierIVCollectionArray[trueIndex]
+                } else {
+                    RouteManager.sharedInstance.TierFour = tierIVCollectionArray[trueIndex]
+                }
+                
                 RouteManager.sharedInstance.printRoute()
+                
             } else {
                 print("This selection is already being shown.")
             }

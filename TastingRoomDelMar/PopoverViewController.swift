@@ -113,19 +113,22 @@ class PopoverViewController: UITableViewController {
     }
     
     // TABLE DELEGATE AND DATA SOURCE
-    override func tableView(tableView: UITableView,
-        numberOfRowsInSection section: Int) -> Int {
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+       
+        if RouteManager.sharedInstance.TierOne!["name"] as! String == "Merch" {
+            rows = 3
+        } else if RouteManager.sharedInstance.TierOne!["name"] as! String == "Events" {
+            rows = 3
+        } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
+            rows = additions.count + 3
+        } else {
+            rows = 4
+        }
             
-            if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
-                rows = additions.count + 3
-            } else {
-                rows = 4
-            }
-            
-            quantityRow = rows - 2
-            actionRow = rows - 1
+        quantityRow = rows - 2
+        actionRow = rows - 1
                         
-            return rows
+        return rows
             
     }
 
@@ -170,7 +173,11 @@ class PopoverViewController: UITableViewController {
                 
                 detailsCell.varietalLabel.font = UIFont.basicFont(16)
                 // IF HARVEST
-                if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
+                if RouteManager.sharedInstance.TierOne!["name"] as! String == "Merch" {
+                    detailsCell.varietalLabel?.text = ""
+                } else if RouteManager.sharedInstance.TierOne!["name"] as! String == "Events" {
+                    detailsCell.varietalLabel?.text = ""
+                } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
                     detailsCell.varietalLabel?.text = ""
                 } else {
                     if let varietalName = popoverItemVarietal["name"] as? String {

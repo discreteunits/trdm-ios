@@ -64,6 +64,8 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
     func productTypeToQuery() {
         if RouteManager.sharedInstance.TierOne!["name"] as! String == "Events" {
             notHarvest = ""
+        } else if RouteManager.sharedInstance.TierOne!["name"] as! String == "Merch" {
+            notHarvest = ""
         } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
             notHarvest = ""
         } else {
@@ -312,8 +314,9 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
         
         let tableQuery:PFQuery = PFQuery(className:"Product")
         tableQuery.includeKey("category")
-        tableQuery.whereKey("productType", equalTo: notHarvest)
+//        tableQuery.whereKey("productType", equalTo: notHarvest)
 //        tableQuery.whereKeyExists("productType")
+//        tableQuery.whereKey("categories", containsAllObjectsInArray: RouteManager.sharedInstance.Route!)
         tableQuery.whereKey("categories", containsAllObjectsInArray: tagsArray)
         tableQuery.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
             

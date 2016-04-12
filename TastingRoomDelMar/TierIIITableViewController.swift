@@ -158,7 +158,7 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
         
         cell.textLabel?.text = tierIIIArray[indexPath.row]["name"] as? String
         cell.textLabel?.textAlignment = NSTextAlignment.Center
-        cell.textLabel?.font = UIFont(name: "NexaRustScriptL-00", size: 38.0)
+        cell.textLabel?.font = UIFont.scriptFont(38)
         
         return cell
         
