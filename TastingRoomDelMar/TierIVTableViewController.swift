@@ -106,18 +106,17 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         
         
         
-        // -----
-        // calculate and manualy position stack view like in prepare for segue @ controller != nil 
-        // -----
-        
-        
-        
-        
-        
-        let yConstraint = NSLayoutConstraint(item: cell.tableStackView, attribute: .CenterY, relatedBy: .Equal, toItem: cell.contentView, attribute: .CenterY, multiplier: 1, constant: 0)
-        cell.contentView.addConstraint(yConstraint)
-
-        
+//        // -----
+//        // calculate and manualy position stack view like in prepare for segue @ controller != nil 
+//        // -----
+//        let stackView = cell.tableStackView.frame.size.height
+//        let bounds: CGRect = cell.contentView.bounds
+//        let position = (stackView - CGFloat(bounds.height)) / 2
+//        cell.tableStackView.frame.origin.y = position
+//        
+//        print("StackView: \(stackView)")
+//        print("Bounds: \(bounds)")
+//        
         
         
         

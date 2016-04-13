@@ -335,6 +335,9 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
             let controller = vc.popoverPresentationController
             controller!.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
             
+            AnimationManager.sharedInstance.opaqueWindow(self.parentViewController!.parentViewController!)
+
+            
             if controller != nil {
                 controller?.delegate = self
             }
@@ -355,6 +358,8 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
             let controller = vc.popoverPresentationController
             controller!.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
             
+            AnimationManager.sharedInstance.opaqueWindow(self.parentViewController!)
+
             if controller != nil {
                 controller?.delegate = self
             }

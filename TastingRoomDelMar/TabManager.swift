@@ -172,10 +172,26 @@ class TabManager: NSObject {
             // Begin Building LineItem
             //-----------------            
             // Loop LineItems
+            
+            // Guard Against Non-Subproducts
+            var lineProductId: String
+            var lineObjectId: String
+            if lineitem.path == "Eat" {
+                lineProductId = lineitem.subproduct.productId
+                lineObjectId = lineitem.subproduct.objectId
+            } else if lineitem.path == "Drink" {
+                lineProductId = lineitem.productId
+                lineObjectId = lineitem.objectId
+            } else {
+                lineProductId = lineitem.productId
+                lineObjectId = lineitem.objectId
+                
+            }
+            
             let paramLineItem : [String:AnyObject] = [
                 "amount": lineitem.quantity,
-                "objectId": lineitem.subproduct.objectId,
-                "productId": Int(lineitem.subproduct.productId)!,
+                "objectId": lineObjectId,
+                "productId": Int(lineProductId)!,
                 "modifiers": modifiers
             ]
             
@@ -183,8 +199,13 @@ class TabManager: NSObject {
             
         }
         
+        // Guard Against Event's Type
+        if TabManager.sharedInstance.currentTab.type == "" {
+            TabManager.sharedInstance.currentTab.type = "delivery"
+        }
+        
         let paramBody : [String:AnyObject] = [
-            "type": tab.type,
+            "type": TabManager.sharedInstance.currentTab.type,
             "orderItems": lines,
             "description": "Spoofed",
             "note": "Spoofer",
