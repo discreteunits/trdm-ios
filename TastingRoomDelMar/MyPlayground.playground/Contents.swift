@@ -41,4 +41,5 @@ bounce.density = 800
 bounce.resistance = 1
 animator.addBehavior(bounce)
 
-//animator.setValue(true, forKey: "debugEnabled")
+animator.setValue(true, forKey: "debugEnabled")
+

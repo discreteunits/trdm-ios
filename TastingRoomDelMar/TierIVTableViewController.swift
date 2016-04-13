@@ -103,6 +103,25 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         }
         
         
+        
+        
+        
+        // -----
+        // calculate and manualy position stack view like in prepare for segue @ controller != nil 
+        // -----
+        
+        
+        
+        
+        
+        let yConstraint = NSLayoutConstraint(item: cell.tableStackView, attribute: .CenterY, relatedBy: .Equal, toItem: cell.contentView, attribute: .CenterY, multiplier: 1, constant: 0)
+        cell.contentView.addConstraint(yConstraint)
+
+        
+        
+        
+        
+        
         cell.itemNameLabel?.text = self.tierIVTableArray[indexPath.row]["name"] as! String?
         cell.itemNameLabel?.font = UIFont.headerFont(24)
         cell.altNameTextView?.text = self.tierIVTableArray[indexPath.row]["info"] as! String?
@@ -411,17 +430,22 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
                     
                 } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
                     
+
+                    
                     let bounds: CGRect = (delegate?.getViewBounds())!
                     let position = (CGFloat(bounds.height) - popoverHeight) / 2
                     
                     controller!.sourceRect = CGRectMake(0, position, 0, 0)
                     controller?.delegate = self
                     
-//                    print("============")
-//                    print("Bounds: \(bounds)")
-//                    print("Position: \(position)")
-//                    print("PopoverHeight: \(popoverHeight)")
-//                    print("============")
+                    
+                    
+                    
+                    print("============")
+                    print("Bounds: \(bounds)")
+                    print("Position: \(position)")
+                    print("PopoverHeight: \(popoverHeight)")
+                    print("============")
                     
                 } else {
                     
@@ -438,6 +462,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             }
         }
     }
+    
     
     // PRESENTATION CONTROLLER DATA SOURCE
     func popoverPresentationControllerDidDismissPopover(popoverPresentationController: UIPopoverPresentationController) {

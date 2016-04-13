@@ -25,9 +25,7 @@ class LandingViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         
         RouteManager.sharedInstance.resetRoute()
-        TabManager.sharedInstance.currentTab.lines.removeAll()
-
-        
+        TabManager.sharedInstance.currentTab.lines.removeAll()        
         
         print("Print Statements Have Been Set To: \(printFlag)")
         if printFlag {

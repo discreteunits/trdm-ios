@@ -13,6 +13,7 @@ import SwiftyJSON
 
 class PopoverViewController: UITableViewController {
     
+    
     // Received Data From Table Controller
     var popoverItem: PFObject!
     var popoverItemVarietal: PFObject!
