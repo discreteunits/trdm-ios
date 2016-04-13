@@ -102,24 +102,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             cell.addToOrderButton.clipsToBounds = true
         }
         
-        
-        
-        
-        
-//        // -----
-//        // calculate and manualy position stack view like in prepare for segue @ controller != nil 
-//        // -----
-//        let stackView = cell.tableStackView.frame.size.height
-//        let bounds: CGRect = cell.contentView.bounds
-//        let position = (stackView - CGFloat(bounds.height)) / 2
-//        cell.tableStackView.frame.origin.y = position
-//        
-//        print("StackView: \(stackView)")
-//        print("Bounds: \(bounds)")
-//        
-        
         cell.tableStackView.sizeToFit()
-        
         
         cell.itemNameLabel?.text = self.tierIVTableArray[indexPath.row]["name"] as! String?
         cell.itemNameLabel?.font = UIFont.headerFont(24)
@@ -367,6 +350,8 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             
             } else {
                 
+                
+                
                 popoverDynamicHeight = 1
                 popoverHeightCalculation = ((popoverDynamicHeight + 3) * 100)
                 let subproductsArray = subproductQuery(product)
@@ -378,10 +363,8 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             
             popoverHeight = CGFloat(popoverHeightCalculation)
             popoverWidth = tableView.bounds.size.width
-            vc.preferredContentSize = CGSizeMake(popoverWidth, popoverHeight)
+            vc.preferredContentSize = CGSizeMake(popoverWidth, 1)
             
-            
-
             
             AnimationManager.sharedInstance.opaqueWindow(self.parentViewController!)
 
@@ -390,9 +373,9 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             // Data to be passed to popover
             vc.popoverItem = product
             vc.popoverItemVarietal = productVarietal
-            
-            
-            
+            vc.height = popoverHeight
+            vc.width = popoverWidth
+
             
             controller = vc.popoverPresentationController
             controller!.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
@@ -400,17 +383,11 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             if controller != nil {
                 
                 controller!.sourceView = self.view
-                controller!.sourceRect = CGRectMake(CGRectGetMidX(self.view.bounds), CGRectGetMidY(self.view.bounds) - 50, 0, 0)
+                controller!.sourceRect = CGRectMake(CGRectGetMidX(self.view.bounds) - 8, CGRectGetMidY(self.view.bounds) - 50, 0, 0)
                 controller?.delegate = self
                 
             }
         }
-    }
-    
-    
-    func popoverPresentationController(popoverPresentationController: UIPopoverPresentationController, willRepositionPopoverToRect rect: UnsafeMutablePointer<CGRect>, inView view: AutoreleasingUnsafeMutablePointer<UIView?>) {
-        
-        
     }
     
     // PRESENTATION CONTROLLER DATA SOURCE

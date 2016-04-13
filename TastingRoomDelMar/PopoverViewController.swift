@@ -13,7 +13,6 @@ import SwiftyJSON
 
 class PopoverViewController: UITableViewController {
     
-    
     // Received Data From Table Controller
     var popoverItem: PFObject!
     var popoverItemVarietal: PFObject!
@@ -38,36 +37,23 @@ class PopoverViewController: UITableViewController {
     // Collect All Additions For This Item
     var additions:[Addition] = [Addition]()
     
-    // Text Wrapping for Description/Info
-    var heights = [CGFloat]()
-    var largestHeight = CGFloat()
-    
-    
+    var height = CGFloat()
+    var width = CGFloat()
 
 // --------------------
-    
-//    func popoverPresentationController(popoverPresentationController: UIPopoverPresentationController, willRepositionPopoverToRect rect: UnsafeMutablePointer<CGRect>, inView view: AutoreleasingUnsafeMutablePointer<UIView?>) {
-//        
-//        
-//    }
-    
     override func viewWillAppear(animated: Bool) {
-        
-//        var rect = CGRectMake((CGRectGetWidth(self.view.bounds) - 2) * 0.5, (CGRectGetHeight(self.view.bounds) - 2) * 0.5, 2, 2)
-
-        
-
         
         createAdditions()
         
         //        self.tableView.reloadData()
-        
+
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         delay(0.1) { () -> () in
+            self.preferredContentSize = CGSize(width: self.width, height: self.height - 28)
             self.tableView.reloadData()
         }
         
@@ -86,7 +72,6 @@ class PopoverViewController: UITableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
 
     func createAdditions() {
         
@@ -166,26 +151,6 @@ class PopoverViewController: UITableViewController {
 
                 detailsCell.titleLabel?.text = popoverItem["name"] as! String!
                 detailsCell.titleLabel.font = UIFont.headerFont(24)
-                detailsCell.altNameTextView?.text = popoverItem["info"] as! String!
-                detailsCell.altNameTextView.font = UIFont.basicFont(12)
-                
-
-                // Adjustment For Text View Text Wrapping ---- BEGIN
-                detailsCell.altNameTextView.scrollEnabled = true
-                detailsCell.altNameTextView.textContainer.lineBreakMode = NSLineBreakMode.ByCharWrapping
-                detailsCell.altNameTextView.contentInset = UIEdgeInsets(top: -12, left: -5, bottom: 0, right: 0)
-                detailsCell.altNameTextView.textContainer.maximumNumberOfLines = 0
-                detailsCell.altNameTextView?.sizeToFit()
-                
-                let textViewHeight = detailsCell.altNameTextView.contentSize.height
-                
-                heights.append(textViewHeight)
-                largestHeight = heights.maxElement()!
-                
-                print("heights: \(heights)")
-                print("largestHeight: \(largestHeight)")
-                
-                // ----------- END
                 
                 
                 detailsCell.varietalLabel.font = UIFont.basicFont(16)
@@ -264,12 +229,9 @@ class PopoverViewController: UITableViewController {
             
     }
     
-    
     override func tableView(tableView: UITableView,
         willDisplayCell cell: UITableViewCell,
         forRowAtIndexPath indexPath: NSIndexPath) {
-            
-//            let tableViewCell =  UITableViewCell()
         
             // Details Table Row
             if indexPath.row == 0 {
@@ -302,7 +264,7 @@ class PopoverViewController: UITableViewController {
         var cellHeight: CGFloat = CGFloat(100)
         
         if indexPath.row == 0 {
-            cellHeight = 60 + largestHeight
+            cellHeight = 80
         }
         
         return cellHeight

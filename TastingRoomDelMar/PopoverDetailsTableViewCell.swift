@@ -11,9 +11,7 @@ import UIKit
 class PopoverDetailsTableViewCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
-    
-    @IBOutlet weak var altNameTextView: UITextView!
-    
+        
     @IBOutlet weak var varietalLabel: UILabel!
     
     override func awakeFromNib() {
