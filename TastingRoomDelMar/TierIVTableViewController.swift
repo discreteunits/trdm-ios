@@ -118,7 +118,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
 //        print("Bounds: \(bounds)")
 //        
         
-        
+        cell.tableStackView.sizeToFit()
         
         
         cell.itemNameLabel?.text = self.tierIVTableArray[indexPath.row]["name"] as! String?
@@ -331,12 +331,12 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         
         if segue.identifier == "showItemConfig" {
             
+            var controller = popoverPresentationController
+            
             let vc = segue.destinationViewController as! PopoverViewController
             
+            
             // Dynamically assign Popover Window Size
-            
-            
-            // ----- HARVEST OR EVENTS BEGIN ------
             var popoverDynamicHeight: Int!
             var popoverHeightCalculation: Int!
             if RouteManager.sharedInstance.TierOne!["name"] as! String == "Merch" {
@@ -380,6 +380,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             popoverWidth = tableView.bounds.size.width
             vc.preferredContentSize = CGSizeMake(popoverWidth, popoverHeight)
             
+            
 
             
             AnimationManager.sharedInstance.opaqueWindow(self.parentViewController!)
@@ -391,77 +392,26 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             vc.popoverItemVarietal = productVarietal
             
             
-            var controller = vc.popoverPresentationController
-            controller!.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
             
+            
+            controller = vc.popoverPresentationController
+            controller!.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
+
             if controller != nil {
                 
-                // CENTER POPOVER VERTICALLY
-                if RouteManager.sharedInstance.TierOne!["name"] as! String == "Merch" {
-
-                    let bounds: CGRect = (delegate?.getViewBounds())!
-                    let position = (CGFloat(bounds.height) - popoverHeight) / 2
-                    
-                    print("Position: \(position)")
-                    
-                    controller!.sourceRect = CGRectMake(0, position, 0, 0)
-                    controller?.delegate = self
-                    
-                } else if RouteManager.sharedInstance.TierOne!["name"] as! String == "Events" {
-                    
-                    let bounds: CGRect = (delegate?.getViewBounds())!
-                    let position = (CGFloat(bounds.height) - popoverHeight) / 2
-                    
-                    print("Position: \(position)")
-                    
-                    controller!.sourceRect = CGRectMake(0, position, 0, 0)
-                    controller?.delegate = self
-                    
-                } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "More" {
-                    
-                    let bounds: CGRect = (delegate?.getViewBounds())!
-                    let position = (CGFloat(bounds.height) - popoverHeight) / 2
-                    
-                    print("Position: \(position)")
-                    
-                    controller!.sourceRect = CGRectMake(0, position, 0, 0)
-                    controller?.delegate = self
-                    
-                } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
-                    
-
-                    
-                    let bounds: CGRect = (delegate?.getViewBounds())!
-                    let position = (CGFloat(bounds.height) - popoverHeight) / 2
-                    
-                    controller!.sourceRect = CGRectMake(0, position, 0, 0)
-                    controller?.delegate = self
-                    
-                    
-                    
-                    
-                    print("============")
-                    print("Bounds: \(bounds)")
-                    print("Position: \(position)")
-                    print("PopoverHeight: \(popoverHeight)")
-                    print("============")
-                    
-                } else {
-                    
-                    let bounds: CGRect = (delegate?.getViewBounds())!
-                    let position = (CGFloat(bounds.height) - popoverHeight) / 2 
-                    
-                    controller!.sourceRect = CGRectMake(0, position, 0, 0)
-                    controller?.delegate = self
-                    
-                }
-                // ----- END -----
-
-                            
+                controller!.sourceView = self.view
+                controller!.sourceRect = CGRectMake(CGRectGetMidX(self.view.bounds), CGRectGetMidY(self.view.bounds) - 50, 0, 0)
+                controller?.delegate = self
+                
             }
         }
     }
     
+    
+    func popoverPresentationController(popoverPresentationController: UIPopoverPresentationController, willRepositionPopoverToRect rect: UnsafeMutablePointer<CGRect>, inView view: AutoreleasingUnsafeMutablePointer<UIView?>) {
+        
+        
+    }
     
     // PRESENTATION CONTROLLER DATA SOURCE
     func popoverPresentationControllerDidDismissPopover(popoverPresentationController: UIPopoverPresentationController) {

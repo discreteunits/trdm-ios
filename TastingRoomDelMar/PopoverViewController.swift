@@ -42,9 +42,21 @@ class PopoverViewController: UITableViewController {
     var heights = [CGFloat]()
     var largestHeight = CGFloat()
     
+    
 
 // --------------------
+    
+//    func popoverPresentationController(popoverPresentationController: UIPopoverPresentationController, willRepositionPopoverToRect rect: UnsafeMutablePointer<CGRect>, inView view: AutoreleasingUnsafeMutablePointer<UIView?>) {
+//        
+//        
+//    }
+    
     override func viewWillAppear(animated: Bool) {
+        
+//        var rect = CGRectMake((CGRectGetWidth(self.view.bounds) - 2) * 0.5, (CGRectGetHeight(self.view.bounds) - 2) * 0.5, 2, 2)
+
+        
+
         
         createAdditions()
         
