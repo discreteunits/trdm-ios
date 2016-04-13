@@ -63,10 +63,6 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
-        
-        
         self.tableView.reloadData()
         
     }
@@ -102,7 +98,8 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             cell.addToOrderButton.clipsToBounds = true
         }
         
-        cell.tableStackView.sizeToFit()
+
+
         
         cell.itemNameLabel?.text = self.tierIVTableArray[indexPath.row]["name"] as! String?
         cell.itemNameLabel?.font = UIFont.headerFont(24)
@@ -121,6 +118,19 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         
         let textViewHeight = cell.altNameTextView.contentSize.height
 
+//        cell.altNameTextView.contentSize.height = textViewHeight
+
+//        cell.altNameTextView.frame = CGRect(x: 0, y: 0, width: 200, height: textViewHeight)
+        
+//        cell.altNameTextView.frame.size.height = textViewHeight
+        
+        
+//        cell.tableStackView.frame = CGRectMake(CGRectGetMidX(cell.contentView.bounds), CGRectGetMidY(cell.contentView.bounds), 0, 0)
+//        cell.tableStackView.sizeToFit()
+
+//        cell.setNeedsLayout()
+//        cell.layoutIfNeeded()
+        
         
         heights.append(textViewHeight)
         largestHeight = heights.maxElement()!
