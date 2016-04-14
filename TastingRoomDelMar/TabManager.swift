@@ -130,7 +130,7 @@ class TabManager: NSObject {
     }
     
     // Place Order To CLOUDCODE
-    func placeOrder(tab: Tab) -> AnyObject {
+    func placeOrder(view: UIViewController, tab: Tab) -> AnyObject {
         
         if printFlag {
             print("-----------------------")
@@ -243,6 +243,8 @@ class TabManager: NSObject {
                 if printFlag {
                     print("Error: \(error)")
                 }
+
+                AlertManager.sharedInstance.singleAlert(view, title: "Failure", message:  "Sorry, please try again later.")
                 
             } else {
                 
@@ -259,6 +261,9 @@ class TabManager: NSObject {
                 if printFlag {
                     print("TabManager Reset: \(TabManager.sharedInstance.currentTab)")
                 }
+                
+                AlertManager.sharedInstance.greatSuccessPreConfirm(view, title: "Great Success!", message: "Your order has been received. We'll notify you once it's been confirmed.")
+
                 
                 // Reset Segue Push Stack
                 let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate

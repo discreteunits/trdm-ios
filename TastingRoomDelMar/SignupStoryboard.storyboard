@@ -252,6 +252,7 @@
                             <outlet property="delegate" destination="QVs-bx-Hjo" id="R41-Dx-nv5"/>
                         </connections>
                     </tableView>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
                         <outlet property="alternateButton" destination="7Ou-qU-vuD" id="oRq-2T-d4v"/>
                         <outlet property="emailCheckmark" destination="yUJ-Dy-jI4" id="jS1-yC-t7c"/>
@@ -493,6 +494,6 @@
         <image name="checkmark" width="31" height="29"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="asG-7Z-5yE"/>
+        <segue reference="zY1-A0-0Kq"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -132,7 +132,7 @@ class TableNumberViewController: UIViewController, UITextFieldDelegate {
                 // If Gratuity is NOT empty, continue placing order
                 } else {
                     
-                    let result = TabManager.sharedInstance.placeOrder(TabManager.sharedInstance.currentTab)
+                    let result = TabManager.sharedInstance.placeOrder(self, tab: TabManager.sharedInstance.currentTab)
                     
                     if printFlag {
                         print("Continuing to place order from TableNumberViewController: \(result)")

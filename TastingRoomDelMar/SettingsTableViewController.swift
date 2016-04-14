@@ -19,6 +19,7 @@ class SettingsTableViewController: UITableViewController {
     @IBOutlet weak var navigationTitle: UINavigationItem!
     
     // ----------
+    
     override func viewWillAppear(animated: Bool) {
         self.tableView.reloadData()
     }
@@ -27,6 +28,7 @@ class SettingsTableViewController: UITableViewController {
         super.viewDidLoad()
         
         self.tableView.reloadData()
+        
 
         if let navBar = navigationController?.navigationBar {
             
@@ -84,6 +86,7 @@ class SettingsTableViewController: UITableViewController {
         return 4
     }
     
+    
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         let headerCell = tableView.dequeueReusableCellWithIdentifier("SettingsHeaderTableCell") as! SettingsHeaderTableViewCell
@@ -129,6 +132,7 @@ class SettingsTableViewController: UITableViewController {
             
             myAccountCell.settingLabel.font = UIFont.headerFont(18)
             myAccountCell.settingValueLabel.font = UIFont.headerFont(18)
+            
             
             // First Name Row
             if indexPath.row == 0 {

@@ -38,6 +38,9 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Stop Activity Indicator 
+        ActivityManager.sharedInstance.activityStop(self)
+        
         // Items Indicator
         TabManager.sharedInstance.addItemsIndicator()
         

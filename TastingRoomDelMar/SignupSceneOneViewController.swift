@@ -13,6 +13,7 @@ import ParseFacebookUtilsV4
 
 class SignupSceneOneViewController: UIViewController {
     
+    
     var SignupSceneOneTableViewControllerRef: SignupSceneOneTableViewController?
     
     var currentUser: PFUser?
@@ -24,6 +25,10 @@ class SignupSceneOneViewController: UIViewController {
     var passedSignupOrLogin = String()
     
     // ----------
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.Portrait
+    }
+    
     override func viewWillAppear(animated: Bool) {
 
         dispatch_async(dispatch_get_main_queue()) {

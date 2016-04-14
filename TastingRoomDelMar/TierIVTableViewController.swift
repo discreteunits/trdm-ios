@@ -125,7 +125,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
 //        cell.altNameTextView.frame.size.height = textViewHeight
         
         
-//        cell.tableStackView.frame = CGRectMake(CGRectGetMidX(cell.contentView.bounds), CGRectGetMidY(cell.contentView.bounds), 0, 0)
+//        cell.tableStackView.frame = CGRectMake(CGRectGetMidX(cell.contentView.bounds), CGRectGetMidY(cell.contentView.bounds), 0, textViewHeight)
 //        cell.tableStackView.sizeToFit()
 
 //        cell.setNeedsLayout()

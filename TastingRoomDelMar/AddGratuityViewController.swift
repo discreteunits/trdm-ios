@@ -177,15 +177,17 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
             if (TabManager.sharedInstance.currentTab.gratuity.doubleValue != nil) {
                 
                 dispatch_async(dispatch_get_main_queue()) {
-                    let result = TabManager.sharedInstance.placeOrder(TabManager.sharedInstance.currentTab)
+                    let result = TabManager.sharedInstance.placeOrder(self, tab: TabManager.sharedInstance.currentTab)
                     
                     if printFlag {
                         print("Place Order, CloudCode Function Returned: \(result)")
                     }
                     
                 }
+            
+//            AlertManager.sharedInstance.greatSuccessPreConfirm(self, title: "Great Success!", message: "Your order has been received. We'll notify you once it's been confirmed.")
                 
-                AlertManager.sharedInstance.greatSuccessPreConfirm(self, title: "Great Success!", message: "Your order has been received. We'll notify you once it's been confirmed.")
+
                 
             // Gratuity was NOT set
             } else {

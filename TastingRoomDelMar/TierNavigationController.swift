@@ -10,6 +10,10 @@ import UIKit
 
 class TierNavigationController: ENSideMenuNavigationController, ENSideMenuDelegate {
     
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.Portrait
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

@@ -65,7 +65,7 @@ class AccountManager: NSObject {
                     
                 }
                 
-                ActivityManager.sharedInstance.activityStop()
+                ActivityManager.sharedInstance.activityStop(view)
                 
             }
             
@@ -97,14 +97,14 @@ class AccountManager: NSObject {
                 // Success
                 if  error == nil {
                 
-                    ActivityManager.sharedInstance.activityStop()
+                    ActivityManager.sharedInstance.activityStop(view)
                     print("Successfully saved user.")
                     view.performSegueWithIdentifier("signupContinue", sender: view)
                 
                 // Failure
                 } else {
                 
-                    ActivityManager.sharedInstance.activityStop()
+                    ActivityManager.sharedInstance.activityStop(view)
                     print("Failed to save user.")
                     AlertManager.sharedInstance.singleAlert(view, title: "Failure", message: "Please try again later.")
                 
@@ -137,7 +137,7 @@ class AccountManager: NSObject {
                 
             }
             
-            ActivityManager.sharedInstance.activityStop()
+            ActivityManager.sharedInstance.activityStop(view)
             
         })
         
@@ -176,7 +176,7 @@ class AccountManager: NSObject {
                 
             }
             
-            ActivityManager.sharedInstance.activityStop()
+            ActivityManager.sharedInstance.activityStop(view)
             
         }
         

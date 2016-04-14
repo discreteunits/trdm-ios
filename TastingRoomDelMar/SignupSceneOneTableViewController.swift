@@ -48,6 +48,10 @@ class SignupSceneOneTableViewController: UITableViewController, UITextFieldDeleg
     var buttonText = String()
     
     // ----------
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.Portrait
+    }
+    
     override func viewWillAppear(animated: Bool) {
         
         tableView.scrollEnabled = false

@@ -34,12 +34,7 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
     
     
 // ------------------------------
-    override func viewWillDisappear(animated: Bool) {
-        
-        AnimationManager.sharedInstance.fade(self.tableView, alpha: 0.0)
 
-    }
-    
     override func viewWillAppear(animated: Bool) {
         
         AnimationManager.sharedInstance.fade(self.tableView, alpha: 1.0)
@@ -446,7 +441,12 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         
     }
     
+    
+    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        // Start Activity Indicator
+        ActivityManager.sharedInstance.activityStart(self)
         
         // ROUTE MANAGER
         RouteManager.sharedInstance.TierOne = tierIArray[indexPath.row]
@@ -468,7 +468,12 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
             self.performSegueWithIdentifier("tierII", sender: self)
         }
     }
+    
 }
+
+
+
+
 
 
 

@@ -40,7 +40,7 @@ class ActivityManager: NSObject {
     }
     
     // Stop Activity
-    func activityStop() {
+    func activityStop(view: UIViewController) {
         
         self.activityIndicator.stopAnimating()
         

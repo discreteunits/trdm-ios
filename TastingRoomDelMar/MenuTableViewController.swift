@@ -10,6 +10,8 @@ import UIKit
 import Parse
 import ParseUI
 
+
+
 class MenuTableViewController: UITableViewController {
     var selectedMenuItem : Int = 0
     override func viewDidLoad() {
@@ -63,7 +65,7 @@ class MenuTableViewController: UITableViewController {
         // Return the number of rows in the section.
         
         if PFUser.currentUser()!.username != nil {
-            return 6
+            return 5
         } else {
             return 3
         }
@@ -78,11 +80,11 @@ class MenuTableViewController: UITableViewController {
         // ----- Logged In Trigger -----
         if PFUser.currentUser()!.username != nil {
             
-            menuArray = ["Menu", "Events", "Tab", "History", "Payment", "Settings"]
+            menuArray = ["Menu", "Tab", "History", "Payment", "Settings"]
             
         } else {
             
-            menuArray = ["Menu", "Events", "Home"]
+            menuArray = ["Menu", "Home"]
             
         }
         // ----- END -----
@@ -134,19 +136,6 @@ class MenuTableViewController: UITableViewController {
                 RouteManager.sharedInstance.resetRoute()
             break
         case 1:
-            destViewController = mainStoryboard.instantiateViewControllerWithIdentifier("Events")
-            destViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
-            destViewController.modalPresentationStyle = .CurrentContext
-
-            let rootVC = sideMenuController() as! UIViewController
-            rootVC.presentViewController(destViewController, animated: true, completion: nil)
-            
-            // Remove Items Indicator
-            TabManager.sharedInstance.removeItemsIndicator()
-            
-                selectedMenuItem = 0
-            break
-        case 2:
             
             // ----- Logged In Trigger -----
             if PFUser.currentUser()!.username != nil {
@@ -184,7 +173,7 @@ class MenuTableViewController: UITableViewController {
             }
             // ----- END -----
 
-        case 3:
+        case 2:
             let historyStoryboard: UIStoryboard = UIStoryboard(name: "HistoryStoryboard", bundle: nil)
             
             destViewController = historyStoryboard.instantiateViewControllerWithIdentifier("History")
@@ -199,7 +188,7 @@ class MenuTableViewController: UITableViewController {
             
             selectedMenuItem = 0
             break
-        case 4:
+        case 3:
             let paymentStoryboard: UIStoryboard = UIStoryboard(name: "PaymentStoryboard", bundle: nil)
 
             destViewController = paymentStoryboard.instantiateViewControllerWithIdentifier("Payment")
@@ -236,3 +225,5 @@ class MenuTableViewController: UITableViewController {
     }
   
 }
+
+

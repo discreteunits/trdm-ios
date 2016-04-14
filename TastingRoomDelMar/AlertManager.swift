@@ -38,6 +38,9 @@ class AlertManager: UIViewController {
             if printFlag {
                 print("User selected okay.")
             }
+
+            AnimationManager.sharedInstance.opaqueWindow(view)
+            view.dismissViewControllerAnimated(true, completion: nil)
             
         })
         

@@ -22,6 +22,10 @@ class LandingViewController: UIViewController {
     var signupOrLogin = String()
 
     // ------------
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.Portrait
+    }
+    
     override func viewWillAppear(animated: Bool) {
         
         RouteManager.sharedInstance.resetRoute()

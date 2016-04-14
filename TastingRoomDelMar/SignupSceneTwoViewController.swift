@@ -17,6 +17,10 @@ class SignupSceneTwoViewController: UIViewController {
     var SignupSceneTwoTableViewControllerRef: SignupSceneTwoTableViewController?
     
     // ----------
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.Portrait
+    }
+    
     override func viewWillAppear(animated: Bool) {
         
         dispatch_async(dispatch_get_main_queue()) {
