@@ -329,6 +329,10 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
             
             self.tierIArray.removeAll()
             
+        } else if segue.identifier == "tierOneToFour" {
+            
+            self.tierIArray.removeAll()
+            
         }
     }
     
@@ -442,11 +446,10 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
     }
     
     
-    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         // Start Activity Indicator
-        ActivityManager.sharedInstance.activityStart(self)
+//        ActivityManager.sharedInstance.activityStart(self)
         
         // ROUTE MANAGER
         RouteManager.sharedInstance.TierOne = tierIArray[indexPath.row]
@@ -461,6 +464,7 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         print("User chose to: \(TabManager.sharedInstance.currentTab.type)")
         
         
+        
         // Next Tier
         if tierIArray[indexPath.row]["skipToTier4"] as! Bool {
             self.performSegueWithIdentifier("tierOneToFour", sender: self)
@@ -468,12 +472,4 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
             self.performSegueWithIdentifier("tierII", sender: self)
         }
     }
-    
 }
-
-
-
-
-
-
-

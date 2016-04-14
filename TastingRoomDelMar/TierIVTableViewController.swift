@@ -100,9 +100,9 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             cell.addToOrderButton.layer.cornerRadius = 6.0
             cell.addToOrderButton.clipsToBounds = true
         }
+
         
-
-
+        
         
         cell.itemNameLabel?.text = self.tierIVTableArray[indexPath.row]["name"] as! String?
         cell.itemNameLabel?.font = UIFont.headerFont(24)
@@ -145,6 +145,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         // ------------------------- BEGIN
         // ----- IF HARVEST -----
         if RouteManager.sharedInstance.TierOne!["name"] as! String == "Merch" {
+            
             cell.pricingLabel?.text = "\(self.tierIVTableArray[indexPath.row]["price"])"
             
         } else if RouteManager.sharedInstance.TierOne!["name"] as! String == "Events" {

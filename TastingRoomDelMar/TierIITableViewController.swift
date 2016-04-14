@@ -39,7 +39,7 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
         super.viewDidLoad()
         
         // Stop Activity Indicator 
-        ActivityManager.sharedInstance.activityStop(self)
+//        ActivityManager.sharedInstance.activityStop(self)
         
         // Items Indicator
         TabManager.sharedInstance.addItemsIndicator()
