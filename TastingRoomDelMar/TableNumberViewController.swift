@@ -101,7 +101,13 @@ class TableNumberViewController: UIViewController, UITextFieldDelegate {
     }
     
     func cancelPopover() {
-        AnimationManager.sharedInstance.opaqueWindow(self.parentViewController!.parentViewController!)
+        
+        
+        
+//        AnimationManager.sharedInstance.opaqueWindow(self.parentViewController!.parentViewController!)
+        
+        
+        
         self.presentingViewController!.dismissViewControllerAnimated(false, completion: nil)
     }
     

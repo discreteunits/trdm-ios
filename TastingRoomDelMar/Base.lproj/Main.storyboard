@@ -305,23 +305,17 @@
                                                 <action selector="addToOrder:" destination="WTZ-qJ-zbB" eventType="touchUpInside" id="Ndl-D9-QVh"/>
                                             </connections>
                                         </button>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ZaA-uY-PYe">
+                                        <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ZaA-uY-PYe">
                                             <rect key="frame" x="8" y="27" width="250" height="101"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="66y-OS-sOL">
                                                     <rect key="frame" x="0.0" y="0.0" width="250" height="25"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="225" id="2VE-dY-XjU"/>
                                                         <constraint firstAttribute="height" constant="25" id="A00-Ck-ndc"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="21"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
-                                                    <variation key="default">
-                                                        <mask key="constraints">
-                                                            <exclude reference="2VE-dY-XjU"/>
-                                                        </mask>
-                                                    </variation>
                                                 </label>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T3Y-ip-WLf">
                                                     <rect key="frame" x="0.0" y="25" width="250" height="40"/>
@@ -358,8 +352,8 @@
                                     <constraints>
                                         <constraint firstItem="XEU-be-Wjo" firstAttribute="trailing" secondItem="3Ko-V1-4Ep" secondAttribute="trailingMargin" id="6Sg-r8-Q93"/>
                                         <constraint firstItem="ZaA-uY-PYe" firstAttribute="leading" secondItem="3Ko-V1-4Ep" secondAttribute="leadingMargin" id="8DP-Ie-4fT"/>
+                                        <constraint firstItem="ZaA-uY-PYe" firstAttribute="top" secondItem="3Ko-V1-4Ep" secondAttribute="topMargin" constant="16" id="Qp1-cZ-7dC"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="XEU-be-Wjo" secondAttribute="bottom" constant="8" id="XP5-ln-wbI"/>
-                                        <constraint firstItem="ZaA-uY-PYe" firstAttribute="centerY" secondItem="3Ko-V1-4Ep" secondAttribute="centerY" id="loZ-O5-z3A"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>

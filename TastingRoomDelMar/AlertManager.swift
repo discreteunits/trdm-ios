@@ -161,6 +161,12 @@ class AlertManager: UIViewController {
         })
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action) -> Void in
             
+            
+// REMOVE OPAQUE VIEW
+            
+//            AnimationManager.sharedInstance.opaqueWindow(view.parentViewController!)
+            
+            
             if printFlag {
                 print("Cancel Selected")
             }
@@ -383,6 +389,8 @@ class AlertManager: UIViewController {
         // Create Actions
         let successAction = UIAlertAction(title: "Done", style: .Default, handler: { (action) -> Void in
             
+            view.navigationController?.dismissViewControllerAnimated(true, completion: nil)
+            
             if printFlag {
                 print("Done Selected")
             }
@@ -393,7 +401,7 @@ class AlertManager: UIViewController {
         // Add Actions
         alert.addAction(successAction)
         
-        self.presentViewController(alert, animated: true, completion: nil)
+        view.presentViewController(alert, animated: true, completion: nil)
         
     }
     

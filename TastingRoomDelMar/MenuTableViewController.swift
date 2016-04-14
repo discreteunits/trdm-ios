@@ -197,7 +197,9 @@ class MenuTableViewController: UITableViewController {
             
             let rootVC = sideMenuController() as! UIViewController
             rootVC.presentViewController(destViewController, animated: true, completion: nil)
+           
             
+                
             // Remove Items Indicator
             TabManager.sharedInstance.removeItemsIndicator()
             

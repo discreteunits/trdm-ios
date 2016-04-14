@@ -389,10 +389,12 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             popoverWidth = tableView.bounds.size.width
             vc.preferredContentSize = CGSizeMake(popoverWidth, 1)
             
-            
+            // Add Opaque Background
             AnimationManager.sharedInstance.opaqueWindow(self.parentViewController!)
 
+            
             getVarietal()
+            
             
             // Data to be passed to popover
             vc.popoverItem = product
@@ -417,6 +419,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     // PRESENTATION CONTROLLER DATA SOURCE
     func popoverPresentationControllerDidDismissPopover(popoverPresentationController: UIPopoverPresentationController) {
         
+        // Remove Opaque Window
         AnimationManager.sharedInstance.opaqueWindow(self.parentViewController!)
         
         print("Popover closed.")

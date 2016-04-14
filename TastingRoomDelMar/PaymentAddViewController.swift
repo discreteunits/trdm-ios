@@ -204,12 +204,12 @@ class PaymentAddViewController: UIViewController, STPPaymentCardTextFieldDelegat
                 }
 
                 // Dismiss View
-                self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
+                
+                AlertManager.sharedInstance.greatSuccessAddedCard(self, title: "Great Success!", message: "Your card has been added to your account.")
+                
                 
             }
-            
         }
-        
     }
     
     // Create Customer Trigger

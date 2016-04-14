@@ -11,15 +11,17 @@ import Parse
 import ParseUI
 
 class PaymentTableViewController: UITableViewController {
-
-    var currentCustomer = CardManager.sharedInstance.currentCustomer
     
     var rows = Int()
     
     // Table Row Indicators
     var addPaymentRow: Int!
     
+    
+    // -----------
     override func viewWillAppear(animated: Bool) {
+        
+        self.tableView.reloadData()
         
         dispatch_async(dispatch_get_main_queue()) {
 
@@ -51,7 +53,7 @@ class PaymentTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        if currentCustomer.card.last4 != "" {
+        if CardManager.sharedInstance.currentCustomer.card.last4 != "" {
             rows = 2
         } else {
             rows = 1
@@ -72,8 +74,8 @@ class PaymentTableViewController: UITableViewController {
             let cardCell = tableView.dequeueReusableCellWithIdentifier("PaymentCardTableCell", forIndexPath: indexPath) as! PaymentCardTableViewCell
             
             // Assignments
-            cardCell.providerLabel.text = currentCustomer.card.brand 
-            cardCell.lastFourLabel.text = currentCustomer.card.last4
+            cardCell.providerLabel.text = CardManager.sharedInstance.currentCustomer.card.brand
+            cardCell.lastFourLabel.text = CardManager.sharedInstance.currentCustomer.card.last4
             
             // Styles
             cardCell.layer.backgroundColor = UIColor(red: 242/255.0, green: 242/255.0, blue: 242/255.0, alpha: 1.0).CGColor

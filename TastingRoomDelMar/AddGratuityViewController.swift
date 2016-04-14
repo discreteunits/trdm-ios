@@ -208,8 +208,13 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
     func cancelPopover() {
         
         self.dismissViewControllerAnimated(true, completion: nil)
-        AnimationManager.sharedInstance.opaqueWindow(self.parentViewController!.parentViewController!)
+        
+        
+        
+//        AnimationManager.sharedInstance.opaqueWindow(self.parentViewController!.parentViewController!)
 
+        
+        
         
     }
 
