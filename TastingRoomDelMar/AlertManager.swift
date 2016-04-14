@@ -40,13 +40,36 @@ class AlertManager: UIViewController {
             }
 
             AnimationManager.sharedInstance.opaqueWindow(view)
-            view.dismissViewControllerAnimated(true, completion: nil)
+//            view.dismissViewControllerAnimated(true, completion: nil)
             
         })
         
         // Add Actions To Alert
         alert.addAction(okAction)
         
+        // Present Alert
+        view.presentViewController(alert, animated: true, completion: nil)
+        
+    }
+    
+    func placeOrderFailure(view: UIViewController, title: String, message: String) {
+        
+        // Create Controller
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        alert.view.tintColor = UIColor.primaryGreenColor()
+        
+        // Create Actions
+        let okAction = UIAlertAction(title: "Okay", style: .Cancel, handler: {
+            (action) -> Void in
+        
+            view.dismissViewControllerAnimated(false, completion: nil)
+            print("User selected okay.")
+            
+        })
+        
+        // Add Actions To Alert
+        alert.addAction(okAction)
+            
         // Present Alert
         view.presentViewController(alert, animated: true, completion: nil)
         

@@ -33,8 +33,18 @@ class AppConfiguration: NSObject {
         return _STRIPE_ID
     }
 
+    // Strings for branding content ie: a convention for images ie: brand-logo.png
+    // primary brand image
+    // primary brand image with tag line
+    // primary brand icon
+    // secondary branding image
+    // secondary branding image with tag line
+    // secondary branding icon 
+    
     
     var primaryColor: UIColor = UIColor(red: 9/255.0, green: 178/255.0, blue: 126/255.0, alpha: 1.0)
+    // secondaryColor
+    
     
     var scriptFont: String {
         return "NexaRustScriptL-00"

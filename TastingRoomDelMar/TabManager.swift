@@ -244,7 +244,8 @@ class TabManager: NSObject {
                     print("Error: \(error)")
                 }
 
-                AlertManager.sharedInstance.singleAlert(view, title: "Failure", message:  "Sorry, please try again later.")
+                AlertManager.sharedInstance.placeOrderFailure(view, title: "Failure", message: "Sorry, please try again later.")
+                
                 
             } else {
                 

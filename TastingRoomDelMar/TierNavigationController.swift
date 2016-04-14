@@ -14,10 +14,10 @@ class TierNavigationController: ENSideMenuNavigationController, ENSideMenuDelega
         return UIInterfaceOrientationMask.Portrait
     }
     
+    
     override func viewDidLoad() {
-        super.viewDidLoad()
-        
-// FLYOUT MENU
+//        super.viewDidLoad()
+        // FLYOUT MENU
         sideMenu = ENSideMenu(sourceView: self.view, menuViewController: MenuTableViewController(), menuPosition:.Right)
         //sideMenu?.delegate = self //optional
         sideMenu?.menuWidth = 260.0 // optional, default is 160
@@ -31,5 +31,4 @@ class TierNavigationController: ENSideMenuNavigationController, ENSideMenuDelega
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
 }
