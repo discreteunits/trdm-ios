@@ -90,9 +90,12 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         
         // If User Is Logged in
         if TabManager.sharedInstance.currentTab.userId == "" {
-            cell.addToOrderButton.hidden = true
+            cell.addToOrderButton.hidden = false
+            cell.addToOrderButton.backgroundColor = UIColor.lightGrayColor()
+            cell.addToOrderButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+            cell.addToOrderButton.layer.cornerRadius = 6.0
+            cell.addToOrderButton.clipsToBounds = true
             cell.userInteractionEnabled = false
-
         } else {
             cell.addToOrderButton.layer.cornerRadius = 6.0
             cell.addToOrderButton.clipsToBounds = true

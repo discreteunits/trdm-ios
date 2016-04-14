@@ -67,7 +67,7 @@ class MenuTableViewController: UITableViewController {
         if PFUser.currentUser()!.username != nil {
             return 5
         } else {
-            return 3
+            return 2
         }
         
     }
