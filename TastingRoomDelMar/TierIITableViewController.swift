@@ -21,6 +21,10 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
     // ------------
     override func viewWillDisappear(animated: Bool) {
         
+        // Stop Activity Indicator
+        ActivityManager.sharedInstance.activityStop(self)
+
+        
         AnimationManager.sharedInstance.fade(self.tableView, alpha: 0.0)
         
     }
@@ -176,11 +180,14 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
     
     // ADD INDEX TO ROUTE
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
- 
+        
+        // Start Activity Indicator
+        ActivityManager.sharedInstance.activityStart(self)
+        
         // ROUTE MANAGER
         RouteManager.sharedInstance.TierTwo = tierIIArray[indexPath.row]
         RouteManager.sharedInstance.printRoute()
-        
+
         // Next Tier
         if tierIIArray[indexPath.row]["skipToTier4"] as! Bool {
             self.performSegueWithIdentifier("tierTwoToFour", sender: self)

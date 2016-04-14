@@ -21,6 +21,10 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
     // --------------------
     override func viewWillDisappear(animated: Bool) {
         
+        
+        // Stop Activity Indicator
+        ActivityManager.sharedInstance.activityStop(self)
+        
         tableView.reloadData()
         
         AnimationManager.sharedInstance.fade(self.tableView, alpha: 0.0)
@@ -182,6 +186,11 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
+        
+        // Start Activity Indicator
+        ActivityManager.sharedInstance.activityStart(self)
+        
+        // ROUTE MANAGER
         RouteManager.sharedInstance.TierThree = tierIIIArray[indexPath.row]
         RouteManager.sharedInstance.printRoute()
         

@@ -34,6 +34,10 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
     
     
 // ------------------------------
+    override func viewWillDisappear(animated: Bool) {
+        // Stop Activity Indicator
+        ActivityManager.sharedInstance.activityStop(self)
+    }
 
     override func viewWillAppear(animated: Bool) {
         
@@ -449,7 +453,7 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         // Start Activity Indicator
-//        ActivityManager.sharedInstance.activityStart(self)
+        ActivityManager.sharedInstance.activityStart(self)
         
         // ROUTE MANAGER
         RouteManager.sharedInstance.TierOne = tierIArray[indexPath.row]

@@ -216,6 +216,8 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
+        
+        
         // If User Is Logged in
         if TabManager.sharedInstance.currentTab.userId == "" {
             
@@ -252,6 +254,10 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             // ----- END -----
 
         
+            
+            // Start Activity Indicator
+            ActivityManager.sharedInstance.activityStart(self)
+            
             performSegueWithIdentifier("showItemConfig", sender: self)
         
             print("------------------------")
@@ -327,6 +333,10 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == "showItemConfig" {
+            
+            
+            // Stop Activity Indicator
+            ActivityManager.sharedInstance.activityStop(self)
             
             var controller = popoverPresentationController
             
