@@ -22,7 +22,12 @@ class TierIVTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-                
+        
+//        altNameTextView.scrollEnabled = false
+//        altNameTextView.textContainer.lineBreakMode = NSLineBreakMode.ByCharWrapping
+//        altNameTextView.contentInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+//        altNameTextView.textContainer.maximumNumberOfLines = 0
+        
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

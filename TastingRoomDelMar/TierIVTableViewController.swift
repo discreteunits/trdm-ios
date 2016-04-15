@@ -111,9 +111,15 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         cell.pricingLabel?.font = UIFont.basicFont(12)
 
         
+        
+        
+        
+        
         // Adjustment For Text View Text Wrapping
         // ------------------------- BEGIN
-        cell.altNameTextView.scrollEnabled = true
+        cell.altNameTextView.backgroundColor = UIColor.clearColor()
+        cell.altNameTextView.frame.size.width = (UIScreen.mainScreen().bounds.width - 80)
+        cell.altNameTextView.scrollEnabled = false
         cell.altNameTextView.textContainer.lineBreakMode = NSLineBreakMode.ByCharWrapping
         cell.altNameTextView.contentInset = UIEdgeInsets(top: -10,left: -5,bottom: -10,right: 0)
         cell.altNameTextView.textContainer.maximumNumberOfLines = 0
@@ -121,6 +127,13 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         
         let textViewHeight = cell.altNameTextView.contentSize.height
 
+        
+        
+        
+        
+        
+        
+        
 //        cell.altNameTextView.contentSize.height = textViewHeight
 
 //        cell.altNameTextView.frame = CGRect(x: 0, y: 0, width: 200, height: textViewHeight)
@@ -135,8 +148,10 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
 //        cell.layoutIfNeeded()
         
         
+        // Get Largest Cell Size After Wrapping
         heights.append(textViewHeight)
         largestHeight = heights.maxElement()!
+        
         // ------------------------ END
 
         
