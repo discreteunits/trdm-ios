@@ -14,6 +14,7 @@ import Stripe
 import Fabric
 import Crashlytics
 
+
 var printFlag = true
 
 @UIApplicationMain

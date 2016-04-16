@@ -13,7 +13,6 @@ import Bond
 import ParseFacebookUtilsV4
 import ParseCrashReporting
 
-var route: [PFObject]?
 
 class TierITableViewController: UITableViewController, ENSideMenuDelegate {
 
@@ -40,7 +39,7 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
     }
 
     override func viewWillAppear(animated: Bool) {
-        
+
         AnimationManager.sharedInstance.fade(self.tableView, alpha: 1.0)
         
         self.tierIArray.removeAll()
@@ -52,7 +51,7 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Unit Test
         tableView.accessibilityIdentifier = "Tier One Table"
         

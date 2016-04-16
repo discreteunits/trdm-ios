@@ -10,6 +10,8 @@ import UIKit
 import Parse
 import ParseCrashReporting
 import ParseFacebookUtilsV4
+import ReachabilitySwift
+
 
 class LandingViewController: UIViewController {
     
@@ -50,7 +52,7 @@ class LandingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+    
     }
 
     override func didReceiveMemoryWarning() {
@@ -85,6 +87,8 @@ class LandingViewController: UIViewController {
         skipButton.layer.cornerRadius = 4.0
         skipButton.clipsToBounds = true
         skipButton.addTarget(self, action: #selector(LandingViewController.guest), forControlEvents: UIControlEvents.TouchUpInside)
+        skipButton.hidden = true
+        skipButton.tag = 77
         
         self.view.addSubview(skipButton)
         
@@ -99,6 +103,8 @@ class LandingViewController: UIViewController {
         signupButton.layer.cornerRadius = 4.0
         signupButton.clipsToBounds = true
         signupButton.addTarget(self, action: #selector(LandingViewController.signin), forControlEvents: UIControlEvents.TouchUpInside)
+        signupButton.hidden = true
+        signupButton.tag = 78
         
         self.view.addSubview(signupButton)
         
@@ -113,6 +119,8 @@ class LandingViewController: UIViewController {
         loginButton.layer.cornerRadius = 4.0
         loginButton.clipsToBounds = true
         loginButton.addTarget(self, action: #selector(LandingViewController.login), forControlEvents: UIControlEvents.TouchUpInside)
+        loginButton.hidden = true
+        loginButton.tag = 79
         
         self.view.addSubview(loginButton)
         
@@ -127,8 +135,33 @@ class LandingViewController: UIViewController {
         facebookButton.layer.cornerRadius = 4.0
         facebookButton.clipsToBounds = true
         facebookButton.addTarget(self, action: #selector(LandingViewController.facebook), forControlEvents: UIControlEvents.TouchUpInside)
+        facebookButton.hidden = true
+        facebookButton.tag = 80
         
         self.view.addSubview(facebookButton)
+        
+        // Not Connected Message
+        let disconnectedMessage = UITextView(frame: CGRectMake(0, 0, screenWidth * 0.875, 80))
+        disconnectedMessage.frame.origin.x = screenWidth * 0.125
+        disconnectedMessage.frame.origin.y = screenHeight * 0.78
+        disconnectedMessage.text = "You must be connected to the internet to use this app."
+        disconnectedMessage.textAlignment = .Center
+        disconnectedMessage.font = UIFont.headerFont(28)
+        disconnectedMessage.textColor = UIColor.whiteColor()
+        disconnectedMessage.backgroundColor = UIColor.lightGrayColor()
+        disconnectedMessage.layer.cornerRadius = 4.0
+        disconnectedMessage.clipsToBounds = true
+        disconnectedMessage.hidden = true
+        disconnectedMessage.scrollEnabled = false
+        disconnectedMessage.textContainer.lineBreakMode = NSLineBreakMode.ByCharWrapping
+        disconnectedMessage.contentInset = UIEdgeInsets(top: 8,left: 8, bottom: 8,right: 8)
+        disconnectedMessage.textContainer.maximumNumberOfLines = 0
+        disconnectedMessage.sizeToFit()
+        disconnectedMessage.alpha = 0.8
+        
+        self.view.addSubview(disconnectedMessage)
+        
+        checkConnectivity(skipButton, signin: signupButton, login: loginButton, facebook: facebookButton, disconnected: disconnectedMessage)
         
     }
     
@@ -162,5 +195,63 @@ class LandingViewController: UIViewController {
         }
         
     }
-
+    
+    func checkConnectivity(skip: UIButton, signin: UIButton, login: UIButton, facebook: UIButton, disconnected: UITextView) {
+        
+        // CONNECTIVITY CONTROL
+        let reachability: Reachability
+        do {
+            reachability = try Reachability.reachabilityForInternetConnection()
+            print("Device can be Reached.")
+        } catch {
+            print("Device can not be Reached.")
+            return
+        }
+        
+        reachability.whenReachable = { reachability in
+            dispatch_async(dispatch_get_main_queue()) {
+                if reachability.isReachableViaWiFi() {
+                    
+                    skip.hidden = false
+                    signin.hidden = false
+                    login.hidden = false
+                    facebook.hidden = false
+                    
+                    disconnected.hidden = true
+                    
+                    print("Reachable via WiFi")
+                } else {
+                    
+                    skip.hidden = false
+                    signin.hidden = false
+                    login.hidden = false
+                    facebook.hidden = false
+                    
+                    disconnected.hidden = true
+                    
+                    print("Reachable via Cellular")
+                }
+            }
+        }
+        
+        reachability.whenUnreachable = { reachability in
+            dispatch_async(dispatch_get_main_queue()) {
+                
+                skip.hidden = true
+                signin.hidden = true
+                login.hidden = true
+                facebook.hidden = true
+                
+                disconnected.hidden = false
+                
+                print("No internet connection... removing app access points.")
+            }
+        }
+        
+        do {
+            try reachability.startNotifier()
+        } catch {
+            print("Unable to start notifier")
+        }
+    }
 }
