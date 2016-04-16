@@ -31,6 +31,7 @@ PODS:
     - Bolts/Tasks (~> 1.2)
     - Parse (~> 1.8)
   - PureLayout (3.0.1)
+  - ReachabilitySwift (2.3.3)
   - RxBlocking (2.3.1):
     - RxSwift (~> 2.3.1)
   - RxCocoa (2.3.1):
@@ -57,6 +58,7 @@ DEPENDENCIES:
   - ParseFacebookUtilsV4 (~> 1.8.5)
   - ParseUI
   - PureLayout
+  - ReachabilitySwift (from `https://github.com/ashleymills/Reachability.swift`)
   - RxBlocking (~> 2.0)
   - RxCocoa (~> 2.0)
   - RxSwift (~> 2.0)
@@ -65,10 +67,15 @@ DEPENDENCIES:
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
 
 EXTERNAL SOURCES:
+  ReachabilitySwift:
+    :git: https://github.com/ashleymills/Reachability.swift
   SwiftyJSON:
     :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 CHECKOUT OPTIONS:
+  ReachabilitySwift:
+    :commit: fa90df50c04f5743fbdf643cbe8d10562d75673d
+    :git: https://github.com/ashleymills/Reachability.swift
   SwiftyJSON:
     :commit: 2a5b70f06001316d4fb54501edc70b4084705da0
     :git: https://github.com/SwiftyJSON/SwiftyJSON.git
@@ -88,6 +95,7 @@ SPEC CHECKSUMS:
   ParseFacebookUtilsV4: cc51857cf984c6fc743e7f17c2ddebdb6f02f963
   ParseUI: 8a22e448c03f825203d8c379c80523517f68baa3
   PureLayout: f35f5384c9c4e4479df041dbe33ad7577b71ddfb
+  ReachabilitySwift: e0f6b6f280effb47731acfaaa2d5ffe223703793
   RxBlocking: 84fd81865a641a3843b33bae7b8315e78ddbd383
   RxCocoa: a2baaf3462b989559a51dce59d78fbebb8fe0afa
   RxSwift: 829b2843e9eddc77a02cb3f5117f0d55f8f646f1

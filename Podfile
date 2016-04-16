@@ -23,4 +23,5 @@ target 'TastingRoomDelMar' do
 	pod 'RxBlocking', '~> 2.0'
 	pod 'Fabric'
 	pod 'Crashlytics'		
+	pod 'ReachabilitySwift', :git => 'https://github.com/ashleymills/Reachability.swift'
 end
