@@ -328,13 +328,33 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
                 print("TierIV table query retrieved: \(objects!.count) objects.")
                 
                 for object in objects! as [PFObject] {
-                    if !self.TierIVTableViewControllerRef!.tierIVTableArray.contains(object) {
+                    if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Hops" {
                         
-                        self.TierIVTableViewControllerRef?.tierIVTableArray.append(object)
-
+                        if object["productType"] as! String == "CHOICE" {
+                            if !self.TierIVTableViewControllerRef!.tierIVTableArray.contains(object) {
+                                self.TierIVTableViewControllerRef?.tierIVTableArray.append(object)
+                            } else {
+                                print("This selection is already being shown.")
+                            }
+                        }
+                        
+                    } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Vines" {
+                        
+                        if object["productType"] as! String == "CHOICE" {
+                            if !self.TierIVTableViewControllerRef!.tierIVTableArray.contains(object) {
+                                self.TierIVTableViewControllerRef?.tierIVTableArray.append(object)
+                            } else {
+                                print("This selection is already being shown.")
+                            }
+                        }
+ 
                     } else {
-                        
-                        print("This selection is already being shown.")
+                    // IF NOT HOPS or VINES
+                        if !self.TierIVTableViewControllerRef!.tierIVTableArray.contains(object) {
+                            self.TierIVTableViewControllerRef?.tierIVTableArray.append(object)
+                        } else {
+                            print("This selection is already being shown.")
+                        }
                         
                     }
                 }

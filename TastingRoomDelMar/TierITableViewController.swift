@@ -46,7 +46,7 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         
         // TIER 1 QUERY
         self.tierIQuery()
-
+  
     }
     
     override func viewDidLoad() {

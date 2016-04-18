@@ -289,7 +289,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
-        let cellHeight = 80 + largestHeight
+        let cellHeight = 90 + largestHeight
 
         return cellHeight
         
@@ -327,7 +327,9 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
                     let additionsRaw = tierIVTableArray[indexPath.row]["additions"]
                     
                     for i in 0 ..< additionsRaw.count {
-                        additions.append(additionsRaw[i])
+                        if additionsRaw[i]["name"]! as! String != "Table Number" {
+                            additions.append(additionsRaw[i])
+                        }
                     }
                     
                     print("Additions Created: \(additions)")
@@ -380,7 +382,9 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
                             let additionsRaw = tierIVTableArray[indexPath.row]["additions"]
                             
                             for i in 0 ..< additionsRaw.count {
-                                additions.append(additionsRaw[i])
+                                if additionsRaw[i]["name"]! as! String != "Table Number" {
+                                    additions.append(additionsRaw[i])
+                                }
                             }
                             
                             print("Additions Created: \(additions)")
@@ -544,7 +548,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             newSubproduct.productId = String(subproduct["lightspeedId"])
             newSubproduct.name = subproduct["name"] as! String
             newSubproduct.price = subproduct["price"] as! Double
-            
+                
             if subproduct["info"] != nil {
                 newSubproduct.info = subproduct["info"] as! String
             }

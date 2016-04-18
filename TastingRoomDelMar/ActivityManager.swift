@@ -32,6 +32,7 @@ class ActivityManager: NSObject {
         activityIndicator.hidesWhenStopped = true
         activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
         activityIndicator.startAnimating()
+        activityIndicator.tag = 901
         
         UIApplication.sharedApplication().beginIgnoringInteractionEvents()
         
@@ -46,6 +47,9 @@ class ActivityManager: NSObject {
         
         UIApplication.sharedApplication().endIgnoringInteractionEvents()
         
+        if let viewWithTag = view.view.viewWithTag(901) {
+            viewWithTag.removeFromSuperview()
+        }
     }
     
 }
