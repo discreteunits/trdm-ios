@@ -83,6 +83,7 @@ struct LineItem {
     var objectId = String() // Parent Product Parse Object ID
     var productId = String() // Parent Product Lightspeed ID
     var quantity = Int()
+    var type = String()
 
     // App Use
     var name = String()
@@ -100,7 +101,6 @@ struct LineItem {
 struct Tab {
     
     // CloudCode Use
-    var type = String()
     var note = String()
     var table = String()
     var userId = String()
@@ -111,6 +111,7 @@ struct Tab {
     var lightspeedId = String()
     var state = String()
     var gratuity = Double()
+    var gratuityPercent = Double()
 
     // App Use
     var subtotal = Double()

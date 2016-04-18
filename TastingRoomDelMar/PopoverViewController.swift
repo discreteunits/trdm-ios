@@ -595,6 +595,20 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                             newLineItem.objectId = popoverItem.objectId!
                             newLineItem.productId = "\(popoverItem["lightspeedId"])"
                             newLineItem.quantity = Int(quantityChoice)!
+                            
+                            // Set Line Item Type (ie: Delivery, Take Away)
+                            if RouteManager.sharedInstance.TierOne!["name"] as! String == "Dine In" {
+                                
+                                newLineItem.type = "delivery"
+                                
+                            } else if RouteManager.sharedInstance.TierOne!["name"] as! String == "Take Away" {
+                                
+                                newLineItem.type = "takeaway"
+                                
+                            } else {
+                                newLineItem.type = ""  // Set Default
+                            }
+                            
 
                             newLineItem.name = popoverItem["name"] as! String
                             newLineItem.price = lineitemPreTax

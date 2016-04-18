@@ -457,17 +457,7 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         // ROUTE MANAGER
         RouteManager.sharedInstance.TierOne = tierIArray[indexPath.row]
         RouteManager.sharedInstance.printRoute()
-        
-        // Set Order Type
-        if tierIArray[indexPath.row]["name"] as! String == "Dine In" {
-            TabManager.sharedInstance.currentTab.type = "delivery"
-        } else if tierIArray[indexPath.row]["name"] as! String == "Take Away" {
-            TabManager.sharedInstance.currentTab.type = "takeaway"
-        }
-        print("User chose to: \(TabManager.sharedInstance.currentTab.type)")
-        
-        
-        
+
         // Next Tier
         if tierIArray[indexPath.row]["skipToTier4"] as! Bool {
             self.performSegueWithIdentifier("tierOneToFour", sender: self)

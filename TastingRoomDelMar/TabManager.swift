@@ -129,6 +129,9 @@ class TabManager: NSObject {
         
     }
     
+    
+    
+    
     // Place Order To CLOUDCODE
     func placeOrder(view: UIViewController, tab: Tab) -> AnyObject {
         
@@ -138,12 +141,15 @@ class TabManager: NSObject {
             print("-----------------------")
         }
 
+        // Separate Delivery and Take Away orders
+        var deliveryOrders = [[String:AnyObject]]()
+        var takeawayOrders = [[String:AnyObject]]()
+        
         // Collection Storage For Build
-        var lines = [[String:AnyObject]]()
         var modifiers = [[String:AnyObject]]()
 
         // BEGIN COLLECTING HERE
-        for lineitem in tab.lines {
+        for lineitem in TabManager.sharedInstance.currentTab.lines {
 
 
             // ----- HARVEST BEGIN ------
@@ -191,50 +197,78 @@ class TabManager: NSObject {
             let paramLineItem : [String:AnyObject] = [
                 "amount": lineitem.quantity,
                 "objectId": lineObjectId,
-                "productId": Int(lineProductId)!,
-                "modifiers": modifiers
+                "modifiers": modifiers,
             ]
             
-            lines.append(paramLineItem)
-            
+            // Build Delivery and Take Away Arrays
+            if lineitem.type == "delivery" {
+                deliveryOrders.append(paramLineItem)
+            } else if lineitem.type == "takeaway" {
+                takeawayOrders.append(paramLineItem)
+            }
         }
         
-        // Guard Against Event's Type
-        if TabManager.sharedInstance.currentTab.type == "" {
-            TabManager.sharedInstance.currentTab.type = "delivery"
-        }
+//        // Guard Against Event's Type
+//        if TabManager.sharedInstance.currentTab.type == "" {
+//            TabManager.sharedInstance.currentTab.type = "delivery"
+//        }
         
-        let paramBody : [String:AnyObject] = [
-            "type": TabManager.sharedInstance.currentTab.type,
-            "orderItems": lines,
-            "description": "Spoofed",
+        // Build Delivery Order Object
+        let deliveryBody : [String:AnyObject] = [
+            "orderItems": deliveryOrders,
             "note": "Spoofer",
-            "tipAmount": tab.gratuity
+            "type": "delivery"
         ]
-        
-        // Build Params
-        let para : [String:AnyObject] = [
+        // Build Delivery Param
+        let deliveryParam : [String:AnyObject] = [
             "userId": tab.userId,
             "checkoutMethod": tab.checkoutMethod,
             "table": tab.table,
+            "tipPercent": tab.gratuityPercent,
 
-            "body": paramBody
-        ]
+            "body": deliveryBody
+        ] // --- END DELIVERY ORDER OBJECT BUILD ---
         
-        // Create Order Object
+        
+        // Build Take Away Order Object
+        let takeawayBody : [String:AnyObject] = [
+            "orderItems": takeawayOrders,
+            "note": "Spoofer",
+            "type": "takeaway"
+        ]
+        // Build Take Away Param
+        let takeawayParam : [String:AnyObject] = [
+            "userId": tab.userId,
+            "checkoutMethod": tab.checkoutMethod,
+            "table": tab.table,
+            "tipPercent": tab.gratuityPercent,
+            
+            "body": takeawayBody
+        ] // ----- END TAKEAWAY ORDER OBJECT BUILD -----
+        
+        
+        // Create All Orders Object (Delivery and Take Away)
+        var allOrders = [[String:AnyObject]]()
+        allOrders.append(deliveryParam)
+        allOrders.append(takeawayParam)
+        
+        
+        // Create Order For CloudCode Function
         let order : [String:AnyObject] = [
-            "order": para
+            "orders": allOrders
         ]
-        
         if printFlag {
             print("Order Equals: \(order)")
         }
         
+        
+        
+        
         // Begin Placing Order with Order Object
         var result = String()
         
-        // Send Object To CloudCode
-        PFCloud.callFunctionInBackground("placeOrder", withParameters: order ) {
+        // Send Order Object To CloudCode
+        PFCloud.callFunctionInBackground("placeOrders", withParameters: order ) {
             (response: AnyObject?, error: NSError?) -> Void in
             
             if let error = error {

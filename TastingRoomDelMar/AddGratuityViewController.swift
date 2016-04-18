@@ -173,6 +173,12 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
             // Calculate Gratuity Property
             TabManager.sharedInstance.gratuityCalculator(selectedGratuity)
             
+            
+            // Set Gratuity Percent For CloudCode Function
+            let gratuityPercent = Double(selectedGratuity)! / 100
+            TabManager.sharedInstance.currentTab.gratuityPercent = gratuityPercent
+            
+            
             // Confirm if gratuity was set -- Not successfully checking doubleValue
             if (TabManager.sharedInstance.currentTab.gratuity.doubleValue != nil) {
                 
