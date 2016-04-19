@@ -9,6 +9,7 @@
 import UIKit
 import Parse
 import ParseUI
+import ParseFacebookUtilsV4
 
 class SettingsTableViewController: UITableViewController {
 
@@ -174,8 +175,13 @@ class SettingsTableViewController: UITableViewController {
             // Password Row
             } else if indexPath.row == 4 {
                 
-                myAccountCell.settingLabel.text = "password"
-                myAccountCell.settingValueLabel.text = ""
+                if PFFacebookUtils.isLinkedWithUser(PFUser.currentUser()!) {
+                    myAccountCell.settingLabel.text = ""
+                    myAccountCell.settingValueLabel.text = ""
+                } else {
+                    myAccountCell.settingLabel.text = "password"
+                    myAccountCell.settingValueLabel.text = ""
+                }
                 
                 return myAccountCell
                 

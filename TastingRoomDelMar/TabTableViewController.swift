@@ -241,7 +241,7 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
                
                 if tab.lines.count > 0 {
                     
-                    let lineSize = 100
+                    let lineSize = 120
                     return CGFloat(lineSize)
                     
                 }
@@ -429,11 +429,11 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
             if TabManager.sharedInstance.currentTab.lines[parent].path == "Eat" {
                 
                 let modChoices = TabManager.sharedInstance.currentTab.lines[parent].additions.count
-                numberOfItems = modChoices + 1
+                numberOfItems = modChoices + 2
                 
             } else {
                 
-                let modChoices = 1
+                let modChoices = 2
                 numberOfItems = modChoices
                 
             }
@@ -514,60 +514,67 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
                 
                 return lineitemServingCollectionCell
                 
-                
             // ----- IF HARVEST -----
             } else {
-               
-                let lineitemCollectionCell = collectionView.dequeueReusableCellWithReuseIdentifier("TabLineItemCollectionCell", forIndexPath: indexPath) as! TabLineItemCollectionViewCell
                 
-  
-                // ----- IF HARVEST -----
-                if TabManager.sharedInstance.currentTab.lines[parent].path == "Eat" {
+                if TabManager.sharedInstance.currentTab.lines.count < TabManager.sharedInstance.currentTab.lines.count {
+                    
+                    let lineitemCollectionCell = collectionView.dequeueReusableCellWithReuseIdentifier("TabLineItemCollectionCell", forIndexPath: indexPath) as! TabLineItemCollectionViewCell
+                    
+                    // ----- IF HARVEST -----
+                    if TabManager.sharedInstance.currentTab.lines[parent].path == "Eat" {
                 
-                    let trueIndex = indexPath.row - 1
+                        let trueIndex = indexPath.row - 1
                     
-                    lineitemCollectionCell.modNameLabel?.text = "\(TabManager.sharedInstance.currentTab.lines[parent].additions[trueIndex].values[0].name)"
+                        lineitemCollectionCell.modNameLabel?.text = "\(TabManager.sharedInstance.currentTab.lines[parent].additions[trueIndex].values[0].name)"
                     
-                    if TabManager.sharedInstance.currentTab.lines[parent].additions[trueIndex].values[0].price != "0" {
+                        if TabManager.sharedInstance.currentTab.lines[parent].additions[trueIndex].values[0].price != "0" {
                         
-                        let modPrice = TabManager.sharedInstance.currentTab.lines[parent].additions[trueIndex].values[0].price
-                        let lineQTY = TabManager.sharedInstance.currentTab.lines[parent].quantity
+                            let modPrice = TabManager.sharedInstance.currentTab.lines[parent].additions[trueIndex].values[0].price
+                            let lineQTY = TabManager.sharedInstance.currentTab.lines[parent].quantity
                         
-                        let modTotalPrice = Int(modPrice)! * Int(lineQTY)
+                            let modTotalPrice = Int(modPrice)! * Int(lineQTY)
                         
-                        lineitemCollectionCell.modPriceLabel?.text = "+ " + "\(modTotalPrice)"
+                            lineitemCollectionCell.modPriceLabel?.text = "+ " + "\(modTotalPrice)"
                         
+                        } else {
+                            lineitemCollectionCell.modPriceLabel?.text = ""
+                        }
+                        // ---------
+                        // WARNING: value[0] is not dynamic and will error for multi-selections
+                        // ---------
                     } else {
-                        
-                        lineitemCollectionCell.modPriceLabel?.text = ""
-                        
+                        // Do some Beer or Wine Stuff
                     }
-                
-                    // ---------
-                    // WARNING: value[0] is not dynamic and will error for multi-selections 
-                    // ---------
+                    
+                    // Styles
+                    lineitemCollectionCell.backgroundColor = UIColor.whiteColor()
+                    lineitemCollectionCell.modNameLabel.font = UIFont.scriptFont(18)
+                    lineitemCollectionCell.modPriceLabel.font = UIFont.scriptFont(18)
+                    
+                    return lineitemCollectionCell
                     
                 } else {
-                
-                    // Do some Beer or Wine Stuff
-                                
+                    let lineitemCollectionCell = collectionView.dequeueReusableCellWithReuseIdentifier("TabLineItemCollectionCell", forIndexPath: indexPath) as! TabLineItemCollectionViewCell
+                    
+                    
+                    // Assignments
+                    lineitemCollectionCell.modNameLabel.text = TabManager.sharedInstance.currentTab.lines[parent].type.capitalizedString
+                    lineitemCollectionCell.modPriceLabel.text = ""
+                    
+                    
+                    // Styles
+                    lineitemCollectionCell.modNameLabel.font = UIFont.scriptFont(18)
+                    lineitemCollectionCell.backgroundColor = UIColor.whiteColor()
+                    
+                    
+                    return lineitemCollectionCell
+                    
                 }
                 // ----- END -----
-                
-                // Styles
-                lineitemCollectionCell.backgroundColor = UIColor.whiteColor()
-                lineitemCollectionCell.modNameLabel.font = UIFont.scriptFont(18)
-                lineitemCollectionCell.modPriceLabel.font = UIFont.scriptFont(18)
-                
-                
-                return lineitemCollectionCell
-                
-                
             }
         }
-        
         return cell
-        
     }
     
     

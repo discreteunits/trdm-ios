@@ -146,31 +146,59 @@
                                     <outlet property="qtyLabel" destination="Swa-sO-IP4" id="6Op-GY-cTg"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TabLineItemTableCell" rowHeight="86" id="kuN-Xk-aqO" customClass="TabLineItemTableViewCell" customModule="TastingRoomDelMar" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="78" width="600" height="86"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TabLineItemTableCell" rowHeight="120" id="kuN-Xk-aqO" customClass="TabLineItemTableViewCell" customModule="TastingRoomDelMar" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="78" width="600" height="120"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="kuN-Xk-aqO" id="IqJ-ll-w9n">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="85.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="120"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="itemName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TRh-NR-7kq">
+                                            <rect key="frame" x="150" y="8" width="300" height="22"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="24" id="Foo-xt-Lii"/>
+                                                <constraint firstAttribute="width" constant="300" id="atZ-jr-UNU"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Price" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7oZ-nw-xu9">
+                                            <rect key="frame" x="539" y="8" width="53" height="25"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="24" id="bT0-8o-ks0"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="qty" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EAL-ve-fwx">
+                                            <rect key="frame" x="22" y="8" width="25" height="25"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="24" id="qEZ-iJ-hoE"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hfe-EN-Ctk">
-                                            <rect key="frame" x="0.0" y="26" width="600" height="60"/>
+                                            <rect key="frame" x="0.0" y="24" width="600" height="75"/>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="YlH-gw-QEy">
-                                                <size key="itemSize" width="300" height="25"/>
+                                            <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="6" minimumInteritemSpacing="10" id="YlH-gw-QEy">
+                                                <size key="itemSize" width="300" height="20"/>
                                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                 <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                 <inset key="sectionInset" minX="8" minY="5" maxX="0.0" maxY="0.0"/>
                                             </collectionViewFlowLayout>
                                             <cells>
                                                 <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TabLineItemServingCollectionCell" id="jKW-dG-go6" customClass="TabLineItemServingCollectionViewCell" customModule="TastingRoomDelMar" customModuleProvider="target">
-                                                    <rect key="frame" x="154" y="5" width="300" height="25"/>
+                                                    <rect key="frame" x="154" y="5" width="300" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                        <rect key="frame" x="0.0" y="0.0" width="300" height="25"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="300" height="20"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="servingSize" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2rm-v2-ZN0">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="servingSize" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2rm-v2-ZN0">
                                                                 <rect key="frame" x="59" y="0.0" width="182" height="25"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -181,6 +209,7 @@
                                                     </view>
                                                     <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
+                                                        <constraint firstItem="2rm-v2-ZN0" firstAttribute="leading" secondItem="jKW-dG-go6" secondAttribute="leadingMargin" constant="56" id="NK0-bK-gUK"/>
                                                         <constraint firstItem="2rm-v2-ZN0" firstAttribute="centerY" secondItem="jKW-dG-go6" secondAttribute="centerY" id="qe4-Dh-Ryj"/>
                                                     </constraints>
                                                     <connections>
@@ -190,23 +219,23 @@
                                                     </connections>
                                                 </collectionViewCell>
                                                 <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TabLineItemCollectionCell" id="aqH-R8-0FU" customClass="TabLineItemCollectionViewCell" customModule="TastingRoomDelMar" customModuleProvider="target">
-                                                    <rect key="frame" x="154" y="40" width="300" height="25"/>
+                                                    <rect key="frame" x="154" y="31" width="300" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                        <rect key="frame" x="0.0" y="0.0" width="300" height="25"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="300" height="20"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="modName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x47-4w-4FQ">
-                                                                <rect key="frame" x="25" y="0.0" width="216" height="25"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="modPrice" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k9A-hS-GwI">
                                                                 <rect key="frame" x="218" y="0.0" width="74" height="23"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="60" id="naG-D8-3Hr"/>
                                                                 </constraints>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="modName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x47-4w-4FQ">
+                                                                <rect key="frame" x="25" y="0.0" width="216" height="25"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -234,34 +263,6 @@
                                                 <outlet property="delegate" destination="AdG-c7-Hqc" id="csf-Tb-Ryd"/>
                                             </connections>
                                         </collectionView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="itemName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TRh-NR-7kq">
-                                            <rect key="frame" x="154" y="8" width="300" height="22"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="24" id="Foo-xt-Lii"/>
-                                                <constraint firstAttribute="width" constant="300" id="atZ-jr-UNU"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Price" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7oZ-nw-xu9">
-                                            <rect key="frame" x="539" y="8" width="53" height="25"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="24" id="bT0-8o-ks0"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="qty" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EAL-ve-fwx">
-                                            <rect key="frame" x="22" y="8" width="25" height="25"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="24" id="qEZ-iJ-hoE"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="hfe-EN-Ctk" firstAttribute="leading" secondItem="IqJ-ll-w9n" secondAttribute="leading" id="DoT-IX-Aa3"/>
@@ -294,7 +295,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TabTotalTableCell" rowHeight="86" id="9bs-Qh-fzJ" customClass="TabTotalTableViewCell" customModule="TastingRoomDelMar" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="164" width="600" height="86"/>
+                                <rect key="frame" x="0.0" y="198" width="600" height="86"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="9bs-Qh-fzJ" id="CIc-9g-iF2">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="85.5"/>
@@ -405,7 +406,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TabActionTableCell" rowHeight="86" id="kdo-EU-0w3" customClass="TabActionTableViewCell" customModule="TastingRoomDelMar" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="250" width="600" height="86"/>
+                                <rect key="frame" x="0.0" y="284" width="600" height="86"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kdo-EU-0w3" id="cuj-Yy-ZY3">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="85.5"/>
