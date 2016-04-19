@@ -28,6 +28,8 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
     @IBOutlet var tabTableView: UITableView!
     
     var TableNumberViewControllerRef: TableNumberViewController?
+    var AddGratuityViewControllerRef: AddGratuityViewController?
+    var AlertManagerRef: AlertManager?
     
     var delegate: TabTableViewDelegate?
     
@@ -323,25 +325,24 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
         let screenWidth = self.view.bounds.size.width
         let screenHeight = self.view.bounds.size.height
         
-        
         // Enter Table Number Popover
         if segue.identifier == "enterTableNumber" {
             
             let vc = segue.destinationViewController as! TableNumberViewController
             // Size Popover Window
-            vc.preferredContentSize = CGSizeMake(screenWidth, screenHeight*0.47)
+            vc.preferredContentSize = CGSizeMake(screenWidth, screenHeight*0.38)
             
             // Set Controller
             let controller = vc.popoverPresentationController
             controller!.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
             
             
-            
-//            AnimationManager.sharedInstance.opaqueWindow(self.parentViewController!.parentViewController!)
-
-            
             if controller != nil {
+                
+                controller!.sourceView = self.view
+                controller!.sourceRect = CGRectMake(CGRectGetMidX(self.view.bounds) - 8, CGRectGetMidY(self.view.bounds) - 50, 0, 0)
                 controller?.delegate = self
+                
             }
             
             // Protocol or GratuitySegue
@@ -353,24 +354,30 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
         // Add Gratuity Popover
         if segue.identifier == "addGratuity" {
             let vc = segue.destinationViewController as! AddGratuityViewController
+           
             // Size Popover Window
-            vc.preferredContentSize = CGSizeMake(screenWidth, screenHeight * 0.65)
+            vc.preferredContentSize = CGSizeMake(screenWidth, screenHeight * 0.53)
             
             // Set Controller
             let controller = vc.popoverPresentationController
             controller!.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
-            
-            
-            
-//            AnimationManager.sharedInstance.opaqueWindow(self.parentViewController!)
 
             
-            
             if controller != nil {
+                
+                controller!.sourceView = self.view
+                controller!.sourceRect = CGRectMake(CGRectGetMidX(self.view.bounds) - 8, CGRectGetMidY(self.view.bounds) - 50, 0, 0)
                 controller?.delegate = self
             }
             
+            // Protocol or GratuitySegue
+            self.AddGratuityViewControllerRef = vc
+            vc.delegate = self
+            
+            AlertManager.sharedInstance.delegate = self
+            
         }
+
         
     }
 
@@ -384,10 +391,14 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
 
 
 // Extension for protocol in Table Number Popover
-extension TabTableViewController: TableNumberViewDelegate {
+extension TabTableViewController: TableNumberViewDelegate, AddGratuityViewDelegate, AlertManagerDelegate {
     
     func gratuitySegue() {
         performSegueWithIdentifier("addGratuity", sender: self)
+    }
+    
+    func removeOpaque() {
+        AnimationManager.sharedInstance.opaqueWindow(self)
     }
     
 }
@@ -436,7 +447,6 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
             if indexPath.row == 0 {
                 
                 let lineitemServingCollectionCell = collectionView.dequeueReusableCellWithReuseIdentifier("TabLineItemServingCollectionCell", forIndexPath: indexPath) as! TabLineItemServingCollectionViewCell
-
                 
 
                 // IF HARVEST
@@ -583,8 +593,11 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     
+    
     // CLOUDCODE PLACEORDER
     @IBAction func placeOrder(sender: AnyObject) {
+        
+        AnimationManager.sharedInstance.opaqueWindow(self)
         
         // Checkout Options
         if TabManager.sharedInstance.currentTab.checkoutMethod == "" {

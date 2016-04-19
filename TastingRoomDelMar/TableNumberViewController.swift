@@ -11,6 +11,7 @@ import UIKit
 @objc
 protocol TableNumberViewDelegate {
     func gratuitySegue()
+    func removeOpaque()
 }
 
 class TableNumberViewController: UIViewController, UITextFieldDelegate {
@@ -102,13 +103,9 @@ class TableNumberViewController: UIViewController, UITextFieldDelegate {
     
     func cancelPopover() {
         
-        
-        
-//        AnimationManager.sharedInstance.opaqueWindow(self.parentViewController!.parentViewController!)
-        
-        
-        
+        delegate?.removeOpaque()
         self.presentingViewController!.dismissViewControllerAnimated(false, completion: nil)
+        
     }
     
     func placeOrderSelected() {

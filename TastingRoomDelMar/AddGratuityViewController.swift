@@ -8,6 +8,12 @@
 
 import UIKit
 
+@objc
+protocol AddGratuityViewDelegate {
+    func gratuitySegue()
+    func removeOpaque()
+}
+
 class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
 
     var gratuityCollectionView: UICollectionView!
@@ -17,6 +23,8 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
     var tab = TabManager.sharedInstance.currentTab
     
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
+
+    var delegate: AddGratuityViewDelegate?
 
 // -------------------------
     override func viewDidLoad() {
@@ -193,7 +201,6 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
             
 //            AlertManager.sharedInstance.greatSuccessPreConfirm(self, title: "Great Success!", message: "Your order has been received. We'll notify you once it's been confirmed.")
                 
-
                 
             // Gratuity was NOT set
             } else {
@@ -213,14 +220,8 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
     
     func cancelPopover() {
         
-        self.dismissViewControllerAnimated(true, completion: nil)
-        
-        
-        
-//        AnimationManager.sharedInstance.opaqueWindow(self.parentViewController!.parentViewController!)
-
-        
-        
+        delegate?.removeOpaque()
+        self.presentingViewController!.dismissViewControllerAnimated(false, completion: nil)
         
     }
 

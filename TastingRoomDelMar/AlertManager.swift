@@ -10,10 +10,18 @@ import UIKit
 import Parse
 import ParseUI
 
+@objc
+protocol AlertManagerDelegate {
+    func gratuitySegue()
+    func removeOpaque()
+}
+
 class AlertManager: UIViewController {
     
     static let sharedInstance = AlertManager()
-    
+
+    var delegate: AlertManagerDelegate?
+
     // ---------
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,9 +67,11 @@ class AlertManager: UIViewController {
         alert.view.tintColor = UIColor.primaryGreenColor()
         
         // Create Actions
-        let okAction = UIAlertAction(title: "Okay", style: .Cancel, handler: {
+        let okAction = UIAlertAction(title: "Okay", style: .Default, handler: {
             (action) -> Void in
-        
+            
+            print("DELEGATE: \(self.delegate)")
+            self.delegate?.removeOpaque()
             view.dismissViewControllerAnimated(false, completion: nil)
             print("User selected okay.")
             
@@ -259,6 +269,8 @@ class AlertManager: UIViewController {
         
         // Create Actions
         let cancelAction = UIAlertAction(title: "Sounds Good", style: .Cancel, handler: { (action) -> Void in
+            
+            self.delegate?.removeOpaque()
             
             if printFlag {
                 print("Cancel Selected")
