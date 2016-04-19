@@ -381,6 +381,16 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
         
     }
 
+    // PRESENTATION CONTROLLER DATA SOURCE
+    func popoverPresentationControllerDidDismissPopover(popoverPresentationController: UIPopoverPresentationController) {
+        
+        // Remove Opaque Window
+        AnimationManager.sharedInstance.opaqueWindow(self.parentViewController!)
+        
+        print("Popover closed.")
+        
+    }
+    
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
         
         return .None
