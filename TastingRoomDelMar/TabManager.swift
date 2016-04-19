@@ -238,7 +238,6 @@ class TabManager: NSObject {
         ]
         // Build Take Away Param
         let takeawayParam : [String:AnyObject] = [
-            "userId": tab.userId,
             "checkoutMethod": tab.checkoutMethod,
             "table": tab.table,
             "tipPercent": tab.gratuityPercent,
@@ -249,12 +248,18 @@ class TabManager: NSObject {
         
         // Create All Orders Object (Delivery and Take Away)
         var allOrders = [[String:AnyObject]]()
-        allOrders.append(deliveryParam)
-        allOrders.append(takeawayParam)
+        
+        if deliveryOrders.count > 0 {
+            allOrders.append(deliveryParam)
+        }
+        if takeawayOrders.count > 0 {
+            allOrders.append(takeawayParam)
+        }
         
         
         // Create Order For CloudCode Function
         let order : [String:AnyObject] = [
+            "userId": tab.userId,
             "orders": allOrders
         ]
         if printFlag {

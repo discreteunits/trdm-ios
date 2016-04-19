@@ -70,7 +70,6 @@ class AlertManager: UIViewController {
         let okAction = UIAlertAction(title: "Okay", style: .Default, handler: {
             (action) -> Void in
             
-            print("DELEGATE: \(self.delegate)")
             self.delegate?.removeOpaque()
             view.dismissViewControllerAnimated(false, completion: nil)
             print("User selected okay.")
