@@ -320,10 +320,12 @@ class SettingsTableViewController: UITableViewController {
             
             if indexPath.row == 0 {
                 
+                selectedValue = "Privacy Policy"
                 performSegueWithIdentifier("textView", sender: self)
                 
             } else if indexPath.row == 1 {
                 
+                selectedValue = "Terms of Use" 
                 performSegueWithIdentifier("textView", sender: self)
                 
             }
@@ -366,6 +368,12 @@ class SettingsTableViewController: UITableViewController {
         if segue.identifier == "editView" {
             
             let vc = segue.destinationViewController as! SettingsEditViewController
+            
+            vc.passedTrigger = selectedValue
+            
+        } else if segue.identifier == "textView" {
+            
+            let vc = segue.destinationViewController as! SettingsTextViewController
             
             vc.passedTrigger = selectedValue
             
