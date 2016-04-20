@@ -200,12 +200,25 @@ class SettingsTableViewController: UITableViewController {
                 
                 notificationCell.settingLabel.text = "push notifications"
                 
+                if PFUser.currentUser()!["pushAllowed"] as! Bool {
+                    notificationCell.settingSwitch.setOn(true, animated: true)
+                } else {
+                    notificationCell.settingSwitch.setOn(false, animated: true)
+                }
+                
                 return notificationCell
             
             // Newsletter Row
             } else if indexPath.row == 1 {
                 
                 notificationCell.settingLabel.text = "Newsletter"
+                
+                
+                if PFUser.currentUser()!["marketingAllowed"] as! Bool {
+                    notificationCell.settingSwitch.setOn(true, animated: true)
+                } else {
+                    notificationCell.settingSwitch.setOn(false, animated: true)
+                }
                 
                 return notificationCell
                 
@@ -320,6 +333,8 @@ class SettingsTableViewController: UITableViewController {
         
         // Notifications Section
         } else if indexPath.section == 1 {
+            
+
         
         // More Information Section
         } else if indexPath.section == 2 {

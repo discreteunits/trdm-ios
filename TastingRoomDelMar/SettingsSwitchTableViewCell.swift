@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Parse
+import ParseUI
 
 class SettingsSwitchTableViewCell: UITableViewCell {
 
@@ -26,10 +28,40 @@ class SettingsSwitchTableViewCell: UITableViewCell {
     
     @IBAction func `switch`(sender: AnyObject) {
         
-        if printFlag {
-            print("User has switched setting value")
+        if settingLabel.text == "Push Notifications" {
+            
+            print("Push notifications switch")
+            
+            let pushAllowed = settingSwitch
+            PFUser.currentUser()!["pushAllowed"] = pushAllowed.enabled
+            PFUser.currentUser()!.saveInBackgroundWithBlock({ (success, error) in
+                
+                if error == nil {
+                    print("Successfully Switched")
+                } else {
+                    print("Switch Failure")
+                }
+            })
+            
+        } else if settingLabel.text == "Newsletter" {
+         
+            print("Newsletter switch")
+            
+            
+            
+            let marketingAllowed = settingSwitch.enabled
+            PFUser.currentUser()!["marketingAllowed"] = marketingAllowed
+            PFUser.currentUser()!.saveInBackgroundWithBlock({ (success, error) in
+                
+                if error == nil {
+                    print("Successfully Switched")
+                } else {
+                    print("Switch Failure")
+                }
+            })
         }
+
+        print("Switched")
         
     }
-
 }
