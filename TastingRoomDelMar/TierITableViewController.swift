@@ -386,32 +386,38 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
                     print("Last Name: \(result["last_name"]! as! String)")
                 }
                 
+                
 //                PFUser.currentUser()?["name"] = result["name"]
 //                PFUser.currentUser()?["gender"] = result["gender"]
 //                PFUser.currentUser()?["birthday"] = result["birthday"]
 
                 PFUser.currentUser()?.saveInBackground()
                 
-                // Get and Save FB Profile Picture To Parse
-                let userId = result["id"]! as! String
-                let facebookProfilePictureUrl = "https://graph.facebook.com/" + userId + "/picture?type=large"
                 
-                if let fbPicUrl = NSURL(string: facebookProfilePictureUrl) {
-                    
-                    if let data = NSData(contentsOfURL: fbPicUrl) {
-                        
-                        // Show FB Profile Pic
-//                        self.userImage.image = UIImage(data: data)
-                        
-                        let imageFile: PFFile = PFFile(data: data)
-                        PFUser.currentUser()?["image"] = imageFile
-                        PFUser.currentUser()?.saveInBackground()
-                        
-                        if printFlag {
-                            print("----------------")
-                        }
-                    }
-                }
+                
+                
+//                // Get and Save FB Profile Picture To Parse
+//                let userId = result["id"]! as! String
+//                let facebookProfilePictureUrl = "https://graph.facebook.com/" + userId + "/picture?type=large"
+//                
+//                if let fbPicUrl = NSURL(string: facebookProfilePictureUrl) {
+//                    
+//                    if let data = NSData(contentsOfURL: fbPicUrl) {
+//                        
+//                        // Show FB Profile Pic
+////                        self.userImage.image = UIImage(data: data)
+//                        
+//                        let imageFile: PFFile = PFFile(data: data)
+//                        PFUser.currentUser()?["image"] = imageFile
+//                        PFUser.currentUser()?.saveInBackground()
+//                        
+//                        if printFlag {
+//                            print("----------------")
+//                        }
+//                    }
+//                }
+                
+                
             }
         })
     }
