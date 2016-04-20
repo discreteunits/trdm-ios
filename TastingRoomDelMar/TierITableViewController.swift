@@ -9,7 +9,6 @@
 import UIKit
 import ParseUI
 import Parse
-import Bond
 import ParseFacebookUtilsV4
 import ParseCrashReporting
 

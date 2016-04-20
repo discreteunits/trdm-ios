@@ -9,7 +9,6 @@
 import UIKit
 import ParseUI
 import Parse
-import SwiftyJSON
 
 class PopoverViewController: UITableViewController {
     
