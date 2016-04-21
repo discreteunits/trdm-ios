@@ -165,9 +165,13 @@ class PopoverViewController: UITableViewController {
                 } else if RouteManager.sharedInstance.TierThree!["name"] as! String == "Flights" {
                     detailsCell.varietalLabel?.text = ""
                 } else {
-                    if let varietalName = popoverItemVarietal["name"] as? String {
-                        detailsCell.varietalLabel?.text = varietalName
-                    }
+                    
+                    detailsCell.varietalLabel?.text = ""
+
+                    
+//                    if let varietalName = popoverItemVarietal["name"] as? String {
+//                        detailsCell.varietalLabel?.text = varietalName
+//                    }
                 }
                 
                 return detailsCell
@@ -630,7 +634,10 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                                 newLineItem.varietal = ""
                                 newLineItem.path = "Flights"
                             } else {
-                                newLineItem.varietal = popoverItemVarietal["name"] as! String
+                                
+                                newLineItem.varietal = ""
+
+//                                newLineItem.varietal = popoverItemVarietal["name"] as! String
                                 newLineItem.path = "Drink"
                             }
                             // ----- END -----

@@ -14,6 +14,7 @@ import ParseUI
 @objc
 protocol TabTableViewDelegate {
     func defaultScreen()
+    func getView() -> UIView
 }
 
 class TabTableViewController: UITableViewController, NSFetchedResultsControllerDelegate, UIPopoverPresentationControllerDelegate {
@@ -29,7 +30,8 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
     // Price Formatter
     let formatter = PriceFormatManager.priceFormatManager
 
-    
+    var numberOfItems: Int!
+
 // --------------------
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,11 +39,11 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
         self.tableView.tableFooterView?.hidden = true
         
-//        // Scroll to bottom of table
-//        dispatch_async(dispatch_get_main_queue()) {
-//            let indexPath = NSIndexPath(forRow: self.rows, inSection: 0)
-//            self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Middle, animated: false)
-//        }
+        // Scroll to bottom of table
+        dispatch_async(dispatch_get_main_queue()) {
+            let indexPath = NSIndexPath(forRow: TabManager.sharedInstance.currentTab.lines.count - 1, inSection: 0)
+            self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Middle, animated: true)
+        }
 
     }
 
@@ -182,7 +184,6 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         let parent = collectionView.superview!.tag
-        var numberOfItems: Int!
 
         // ----- HARVEST BEGIN ------
         if TabManager.sharedInstance.currentTab.lines[parent].path == "Eat" {
@@ -206,6 +207,7 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         let parent = collectionView.superview!.tag
+        
         
         // Serving Cell Defaulted To Top
         if indexPath.row == 0 {
@@ -265,65 +267,66 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
                 
             return lineitemServingCollectionCell
             
+            
         // Modifier Cells
-        } else {
+        } else if indexPath.row < (numberOfItems - 1) {
         
-            if TabManager.sharedInstance.currentTab.lines.count < TabManager.sharedInstance.currentTab.lines.count {
+            
+            let lineitemCollectionCell = collectionView.dequeueReusableCellWithReuseIdentifier("TabLineItemCollectionCell", forIndexPath: indexPath) as! TabLineItemCollectionViewCell
                     
-                let lineitemCollectionCell = collectionView.dequeueReusableCellWithReuseIdentifier("TabLineItemCollectionCell", forIndexPath: indexPath) as! TabLineItemCollectionViewCell
-                    
-                // ----- IF HARVEST -----
-                if TabManager.sharedInstance.currentTab.lines[parent].path == "Eat" {
+            // ----- IF HARVEST -----
+            if TabManager.sharedInstance.currentTab.lines[parent].path == "Eat" {
                 
-                    let trueIndex = indexPath.row - 1
+                let trueIndex = indexPath.row - 1
                     
-                    lineitemCollectionCell.modNameLabel?.text = "\(TabManager.sharedInstance.currentTab.lines[parent].additions[trueIndex].values[0].name)"
+                lineitemCollectionCell.modNameLabel?.text = "\(TabManager.sharedInstance.currentTab.lines[parent].additions[trueIndex].values[0].name)"
                     
-                    if TabManager.sharedInstance.currentTab.lines[parent].additions[trueIndex].values[0].price != "0" {
+                if TabManager.sharedInstance.currentTab.lines[parent].additions[trueIndex].values[0].price != "0" {
                         
-                        let modPrice = TabManager.sharedInstance.currentTab.lines[parent].additions[trueIndex].values[0].price
-                        let lineQTY = TabManager.sharedInstance.currentTab.lines[parent].quantity
+                    let modPrice = TabManager.sharedInstance.currentTab.lines[parent].additions[trueIndex].values[0].price
+                    let lineQTY = TabManager.sharedInstance.currentTab.lines[parent].quantity
                         
-                        let modTotalPrice = Int(modPrice)! * Int(lineQTY)
+                    let modTotalPrice = Int(modPrice)! * Int(lineQTY)
                         
-                        lineitemCollectionCell.modPriceLabel?.text = "+ " + "\(modTotalPrice)"
+                    lineitemCollectionCell.modPriceLabel?.text = "+ " + "\(modTotalPrice)"
                         
-                    } else {
+                } else {
                         lineitemCollectionCell.modPriceLabel?.text = ""
-                    }
+                }
                     
                         // ---------
                         // WARNING: value[0] is not dynamic and will error for multi-selections
                         // ---------
                     
-                } else {
-                        // Do some Beer or Wine Stuff
-                }
-                    
-                // Styles
-                lineitemCollectionCell.backgroundColor = UIColor.whiteColor()
-                lineitemCollectionCell.modNameLabel.font = UIFont.scriptFont(18)
-                lineitemCollectionCell.modPriceLabel.font = UIFont.scriptFont(18)
-                    
-                return lineitemCollectionCell
-                    
             } else {
-                let lineitemCollectionCell = collectionView.dequeueReusableCellWithReuseIdentifier("TabLineItemCollectionCell", forIndexPath: indexPath) as! TabLineItemCollectionViewCell
-                    
-                    
-                // Assignments
-                lineitemCollectionCell.modNameLabel.text = TabManager.sharedInstance.currentTab.lines[parent].type.capitalizedString
-                lineitemCollectionCell.modPriceLabel.text = ""
-                    
-                    
-                // Styles
-                lineitemCollectionCell.modNameLabel.font = UIFont.scriptFont(18)
-                lineitemCollectionCell.backgroundColor = UIColor.whiteColor()
-                    
-                    
-                return lineitemCollectionCell
-                    
+                // Do some Beer or Wine Stuff
             }
+                    
+            // Styles
+            lineitemCollectionCell.backgroundColor = UIColor.whiteColor()
+            lineitemCollectionCell.modNameLabel.font = UIFont.scriptFont(18)
+            lineitemCollectionCell.modPriceLabel.font = UIFont.scriptFont(18)
+                    
+            return lineitemCollectionCell
+           
+            
+        // Delivery or Take Away
+        } else {
+            let lineitemCollectionCell = collectionView.dequeueReusableCellWithReuseIdentifier("TabLineItemCollectionCell", forIndexPath: indexPath) as! TabLineItemCollectionViewCell
+                    
+                    
+            // Assignments
+            lineitemCollectionCell.modNameLabel.text = TabManager.sharedInstance.currentTab.lines[parent].type.capitalizedString
+            lineitemCollectionCell.modPriceLabel.text = ""
+                    
+                    
+            // Styles
+            lineitemCollectionCell.modNameLabel.font = UIFont.scriptFont(18)
+            lineitemCollectionCell.backgroundColor = UIColor.whiteColor()
+                    
+                    
+            return lineitemCollectionCell
+                    
         }
     }
     

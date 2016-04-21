@@ -8,6 +8,13 @@
 
 import UIKit
 
+@objc
+protocol TabFloatingTableViewDelegate {
+    func defaultScreen()
+    func getView() -> UIView
+    func getController() -> UIViewController
+}
+
 class TabFloatingTableViewController: UITableViewController, UIPopoverPresentationControllerDelegate {
 
     var TableNumberViewControllerRef: TableNumberViewController?
@@ -15,6 +22,11 @@ class TabFloatingTableViewController: UITableViewController, UIPopoverPresentati
     
     // Price Formatter
     let formatter = PriceFormatManager.priceFormatManager
+    
+    var delegate: TabFloatingTableViewDelegate?
+    
+    var tabView = UIView()
+    var tabController = UIViewController()
     
     // -----
     override func viewWillAppear(animated: Bool) {
@@ -25,7 +37,11 @@ class TabFloatingTableViewController: UITableViewController, UIPopoverPresentati
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        tabView = (delegate?.getView())!
+        tabController = (delegate?.getController())!
+        
+        
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
         self.tableView.tableFooterView?.hidden = true
 
@@ -119,7 +135,7 @@ class TabFloatingTableViewController: UITableViewController, UIPopoverPresentati
     
     @IBAction func placeOrder(sender: AnyObject) {
         
-        AnimationManager.sharedInstance.opaqueWindow(self)
+        AnimationManager.sharedInstance.opaqueWindow(tabController)
         
         // Checkout Options
         if TabManager.sharedInstance.currentTab.checkoutMethod == "" {
@@ -139,8 +155,9 @@ class TabFloatingTableViewController: UITableViewController, UIPopoverPresentati
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         // Get Screen Size
-        let screenWidth = self.view.bounds.size.width
-        let screenHeight = self.view.bounds.size.height
+        let screenWidth = tabView.bounds.size.width
+        let screenHeight = tabView.bounds.size.height
+        
         
         // Enter Table Number Popover
         if segue.identifier == "enterTableNumber" {
@@ -156,8 +173,8 @@ class TabFloatingTableViewController: UITableViewController, UIPopoverPresentati
             
             if controller != nil {
                 
-                controller!.sourceView = self.view
-                controller!.sourceRect = CGRectMake(CGRectGetMidX(self.view.bounds) - 8, CGRectGetMidY(self.view.bounds) - 50, 0, 0)
+                controller!.sourceView = tabView
+                controller!.sourceRect = CGRectMake(CGRectGetMidX(tabView.bounds) - 8, CGRectGetMidY(tabView.bounds) - 50, 0, 0)
                 controller?.delegate = self
                 
             }
@@ -182,8 +199,8 @@ class TabFloatingTableViewController: UITableViewController, UIPopoverPresentati
             
             if controller != nil {
                 
-                controller!.sourceView = self.view
-                controller!.sourceRect = CGRectMake(CGRectGetMidX(self.view.bounds) - 8, CGRectGetMidY(self.view.bounds) - 50, 0, 0)
+                controller!.sourceView = tabView
+                controller!.sourceRect = CGRectMake(CGRectGetMidX(tabView.bounds) - 8, CGRectGetMidY(tabView.bounds) - 50, 0, 0)
                 controller?.delegate = self
             }
             
@@ -200,7 +217,7 @@ class TabFloatingTableViewController: UITableViewController, UIPopoverPresentati
     func popoverPresentationControllerDidDismissPopover(popoverPresentationController: UIPopoverPresentationController) {
         
         // Remove Opaque Window
-        AnimationManager.sharedInstance.opaqueWindow(self.parentViewController!)
+        AnimationManager.sharedInstance.opaqueWindow(tabController)
         
         print("Popover closed.")
         

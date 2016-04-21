@@ -97,11 +97,9 @@ class CardManager: NSObject {
                 CardManager.sharedInstance.currentCustomer.card.last4 = result["last4"] as! String
                 
             }
-        
         }
         
         return result
         
     }
-    
 }

@@ -280,7 +280,7 @@ class TabManager: NSObject {
             
             if let error = error {
                 
-                ActivityManager.sharedInstance.activityStart(view)
+                ActivityManager.sharedInstance.activityStop(view)
                 
                 // Failure 
                 if printFlag {
@@ -292,7 +292,7 @@ class TabManager: NSObject {
                 
             } else {
                 
-                ActivityManager.sharedInstance.activityStart(view)
+                ActivityManager.sharedInstance.activityStop(view)
                 
                 // Success 
                 result = String(response!)

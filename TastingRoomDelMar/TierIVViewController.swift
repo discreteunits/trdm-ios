@@ -241,7 +241,6 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
         
     }
     
-    
     func reloadTable() {
         
         self.TierIVTableViewControllerRef?.tableView.reloadData()

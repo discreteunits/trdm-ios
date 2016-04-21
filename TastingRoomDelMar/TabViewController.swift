@@ -101,6 +101,8 @@ class TabViewController: UIViewController {
             if let TabFloatingTableViewController = segue.destinationViewController as? TabFloatingTableViewController {
                 
                 self.TabFloatingTableViewControllerRef = TabFloatingTableViewController
+                TabFloatingTableViewController.delegate = self
+                
                 
             }
         }
@@ -108,7 +110,7 @@ class TabViewController: UIViewController {
 }
 
 
-extension TabViewController: TabTableViewDelegate {
+extension TabViewController: TabTableViewDelegate, TabFloatingTableViewDelegate {
     
     func defaultScreen() {
         
@@ -167,5 +169,20 @@ extension TabViewController: TabTableViewDelegate {
             //        }
             
         }
+    }
+    
+    func getView() -> UIView {
+        
+        let tabView = self.view
+        
+        return tabView
+        
+    }
+    
+    func getController() -> UIViewController {
+        
+        let tabController = self
+        
+        return tabController
     }
 }
