@@ -20,8 +20,6 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
     
     var selectedGratuity = String()
     
-    var tab = TabManager.sharedInstance.currentTab
-    
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
 
     var delegate: AddGratuityViewDelegate?
@@ -135,7 +133,7 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
         cancelButton.frame.origin.y = 250
         cancelButton.frame.origin.x = 8
         cancelButton.setTitle("Cancel", forState: .Normal)
-        cancelButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        cancelButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         cancelButton.titleLabel?.font = UIFont.scriptFont(18)
         cancelButton.layer.backgroundColor = UIColor(red: 224/255.0, green: 224/255.0, blue: 224/255.0, alpha: 1.0).CGColor
         cancelButton.layer.cornerRadius = 12.0

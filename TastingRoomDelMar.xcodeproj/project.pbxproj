@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BB65EBD50F601E4F26BD8CFC /* Pods_TastingRoomDelMar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 258E486804D393986620D744 /* Pods_TastingRoomDelMar.framework */; };
+		D7086D261CC9650B009F96C7 /* TabFloatingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7086D251CC9650B009F96C7 /* TabFloatingTableViewController.swift */; };
 		D719A6301C3F26D500987525 /* TierNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D719A62F1C3F26D500987525 /* TierNavigationController.swift */; };
 		D729AB831C471FF90021A66E /* TierIVCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D729AB821C471FF90021A66E /* TierIVCollectionViewCell.swift */; };
 		D729AB851C4736570021A66E /* TierIVTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D729AB841C4736570021A66E /* TierIVTableViewController.swift */; };
@@ -121,6 +122,7 @@
 		04B86A7B2DE721FB50D137DB /* Pods-TastingRoomDelMar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TastingRoomDelMar.release.xcconfig"; path = "Pods/Target Support Files/Pods-TastingRoomDelMar/Pods-TastingRoomDelMar.release.xcconfig"; sourceTree = "<group>"; };
 		258E486804D393986620D744 /* Pods_TastingRoomDelMar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TastingRoomDelMar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D53F1940B0ECFC354F949DF6 /* Pods-TastingRoomDelMar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TastingRoomDelMar.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TastingRoomDelMar/Pods-TastingRoomDelMar.debug.xcconfig"; sourceTree = "<group>"; };
+		D7086D251CC9650B009F96C7 /* TabFloatingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabFloatingTableViewController.swift; sourceTree = "<group>"; };
 		D719A62F1C3F26D500987525 /* TierNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierNavigationController.swift; sourceTree = "<group>"; };
 		D729AB821C471FF90021A66E /* TierIVCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierIVCollectionViewCell.swift; sourceTree = "<group>"; };
 		D729AB841C4736570021A66E /* TierIVTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierIVTableViewController.swift; sourceTree = "<group>"; };
@@ -403,6 +405,7 @@
 				D7FC44B61C7EA162003482B9 /* TabStoryboard.storyboard */,
 				D7B616831C62D7C3002CF1DE /* TabViewController.swift */,
 				D7B616851C62D7DB002CF1DE /* TabTableViewController.swift */,
+				D7086D251CC9650B009F96C7 /* TabFloatingTableViewController.swift */,
 				D7C448C21C641C0400CD12F8 /* TabHeaderTableViewCell.swift */,
 				D7B616871C62DCE0002CF1DE /* TabLineItemTableViewCell.swift */,
 				D73620411C651BE800DD7F71 /* TabLineItemServingCollectionViewCell.swift */,
@@ -729,6 +732,7 @@
 				D78594941C7BF141000972FB /* SignupSceneOneViewController.swift in Sources */,
 				D7F981101C44612800200639 /* ENSideMenuControllerViewController.swift in Sources */,
 				D736DADD1C73906800751307 /* TableNumberViewController.swift in Sources */,
+				D7086D261CC9650B009F96C7 /* TabFloatingTableViewController.swift in Sources */,
 				D775CDD91C6D4AAC006A3F29 /* SettingsEditViewController.swift in Sources */,
 				D7E803971C56E152003C12D9 /* PopoverSGTableViewCell.swift in Sources */,
 				D733D4661C69598F00682A84 /* CardManager.swift in Sources */,

@@ -208,7 +208,7 @@ class PopoverViewController: UITableViewController {
                     forIndexPath: indexPath) as! PopoverQuantityTableViewCell
                 qtyCell.contentView.tag = indexPath.row
                 qtyCell.label.text = "quantity"
-                qtyCell.label.font = UIFont.headerFont(18)
+                qtyCell.label.font = UIFont.headerFont(24)
                 
                 return qtyCell
                 

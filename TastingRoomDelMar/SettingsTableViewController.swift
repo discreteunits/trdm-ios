@@ -200,7 +200,7 @@ class SettingsTableViewController: UITableViewController {
                 
                 notificationCell.settingLabel.text = "push notifications"
                 
-                if PFUser.currentUser()!["pushAllowed"] as! Bool {
+                if let _ = PFUser.currentUser()!["pushAllowed"] as? Bool {
                     notificationCell.settingSwitch.setOn(true, animated: true)
                 } else {
                     notificationCell.settingSwitch.setOn(false, animated: true)
@@ -214,7 +214,7 @@ class SettingsTableViewController: UITableViewController {
                 notificationCell.settingLabel.text = "Newsletter"
                 
                 
-                if PFUser.currentUser()!["marketingAllowed"] as! Bool {
+                if let _ = PFUser.currentUser()!["marketingAllowed"] as? Bool {
                     notificationCell.settingSwitch.setOn(true, animated: true)
                 } else {
                     notificationCell.settingSwitch.setOn(false, animated: true)

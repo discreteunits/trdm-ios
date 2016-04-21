@@ -63,6 +63,8 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.tableFooterView = UIView()
+        
         self.tableView.reloadData()
         
     }
@@ -254,33 +256,6 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             }
 
         } // ----- END
-        
-
-        // ASYNC: Get Varietal / Beer Style
-        // --------------------- BEGIN
-        dispatch_async(dispatch_get_main_queue()) {
-            
-            if let productCategories = self.tierIVTableArray[indexPath.row]["categories"] as? [PFObject] {
-
-                for categoryObject in productCategories {
-                    
-                    if self.tierIVCollectionArray.contains(categoryObject) {
-
-                        cell.varietalLabel?.text = categoryObject["name"] as? String
-                        cell.varietalLabel?.font = UIFont.basicFont(16)
-                        
-                        self.productVarietal = categoryObject as PFObject!
-
-                    }
-                }
-            }
-        }
-        // ----------------------- END
-        
-        // Guard Against Not Finding A Varietal
-        if cell.varietalLabel.text == "Varietal" {
-            cell.varietalLabel.text = ""
-        }
         
         return cell
         

@@ -21,7 +21,7 @@ class TableNumberViewController: UIViewController, UITextFieldDelegate {
     var tab = TabManager.sharedInstance.currentTab
     
     var delegate: TableNumberViewDelegate?
-    var TabTableViewControllerRef: TabTableViewController?
+    var TabFloatingTableViewControllerRef: TabTableViewController?
     
 // -------------------
     override func viewDidLoad() {
@@ -76,7 +76,7 @@ class TableNumberViewController: UIViewController, UITextFieldDelegate {
         placeOrderButton.frame.origin.y = 160
         placeOrderButton.frame.origin.x = buttonWidth + 16
         placeOrderButton.setTitle("Place Order", forState: .Normal)
-        placeOrderButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        placeOrderButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         placeOrderButton.titleLabel?.font = UIFont.scriptFont(18)
         placeOrderButton.layer.backgroundColor = UIColor.primaryGreenColor().CGColor
         placeOrderButton.layer.cornerRadius = 12.0

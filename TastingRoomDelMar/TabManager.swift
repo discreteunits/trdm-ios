@@ -140,6 +140,8 @@ class TabManager: NSObject {
             print("Tab For CloudCode Order: \(tab)")
             print("-----------------------")
         }
+        
+        ActivityManager.sharedInstance.activityStart(view)
 
         // Separate Delivery and Take Away orders
         var deliveryOrders = [[String:AnyObject]]()
@@ -278,6 +280,8 @@ class TabManager: NSObject {
             
             if let error = error {
                 
+                ActivityManager.sharedInstance.activityStart(view)
+                
                 // Failure 
                 if printFlag {
                     print("Error: \(error)")
@@ -287,6 +291,8 @@ class TabManager: NSObject {
                 
                 
             } else {
+                
+                ActivityManager.sharedInstance.activityStart(view)
                 
                 // Success 
                 result = String(response!)

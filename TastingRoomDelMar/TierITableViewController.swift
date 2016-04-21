@@ -51,6 +51,9 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+
+        
         // Unit Test
         tableView.accessibilityIdentifier = "Tier One Table"
         
