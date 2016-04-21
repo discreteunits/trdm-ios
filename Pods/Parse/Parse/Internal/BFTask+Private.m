@@ -37,14 +37,6 @@
     return [self continueWithExecutor:[BFExecutor defaultPriorityBackgroundExecutor] withSuccessBlock:block];
 }
 
-- (BFTask *)continueImmediatelyWithBlock:(BFContinuationBlock)block {
-    return [self continueWithExecutor:[BFExecutor immediateExecutor] withBlock:block];
-}
-
-- (BFTask *)continueImmediatelyWithSuccessBlock:(BFContinuationBlock)block {
-    return [self continueWithExecutor:[BFExecutor immediateExecutor] withSuccessBlock:block];
-}
-
 - (instancetype)continueWithResult:(id)result {
     return [self continueWithBlock:^id(BFTask *task) {
         return result;

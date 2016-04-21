@@ -32,27 +32,27 @@
 /// @name Track Event
 ///--------------------------------------
 
-/**
- Tracks this application being launched. If this happened as the result of the
+/*!
+ @abstract Tracks this application being launched. If this happened as the result of the
  user opening a push notification, this method sends along information to
  correlate this open with that push.
 
  @param payload      The Remote Notification payload.
  @param sessionToken Current user session token.
 
- @return `BFTask` with result set to `@YES`.
+ @returns `BFTask` with result set to `@YES`.
  */
 - (BFTask *)trackAppOpenedEventAsyncWithRemoteNotificationPayload:(NSDictionary *)payload
                                                      sessionToken:(NSString *)sessionToken;
 
-/**
- Tracks the occurrence of a custom event with additional dimensions.
+/*!
+ @abstract Tracks the occurrence of a custom event with additional dimensions.
 
  @param name         Event name.
  @param dimensions   `NSDictionary` of information by which to segment this event.
  @param sessionToken Current user session token.
 
- @return `BFTask` with result set to `@YES`.
+ @returns `BFTask` with result set to `@YES`.
  */
 - (BFTask *)trackEventAsyncWithName:(NSString *)name
                          dimensions:(NSDictionary *)dimensions

@@ -24,7 +24,7 @@
             [components addObject:key];
 
             // alert[@"loc-args"] can be an NSArray
-            id value = dict[key];
+            id value = [dict objectForKey:key];
             if ([value isKindOfClass:[NSArray class]]) {
                 value = [value componentsJoinedByString:@""];
             }

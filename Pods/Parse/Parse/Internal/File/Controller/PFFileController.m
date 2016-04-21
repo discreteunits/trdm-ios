@@ -13,7 +13,6 @@
 #import <Bolts/BFTaskCompletionSource.h>
 
 #import "BFTask+Private.h"
-#import "PFFileDataStream.h"
 #import "PFAssert.h"
 #import "PFCommandResult.h"
 #import "PFCommandRunning.h"
@@ -23,7 +22,6 @@
 #import "PFHash.h"
 #import "PFMacros.h"
 #import "PFRESTFileCommand.h"
-#import "PFErrorUtilities.h"
 
 static NSString *const PFFileControllerCacheDirectoryName_ = @"PFFileCache";
 
@@ -91,11 +89,6 @@ static NSString *const PFFileControllerCacheDirectoryName_ = @"PFFileCache";
     if (cancellationToken.cancellationRequested) {
         return [BFTask cancelledTask];
     }
-    if (!fileState.secureURLString) {
-        NSError *error = [PFErrorUtilities errorWithCode:kPFErrorUnsavedFile
-                                                 message:@"Can't download a file that doesn't exist on the server or locally."];
-        return [BFTask taskWithError:error];
-    }
 
     @weakify(self);
     return [BFTask taskFromExecutor:[BFExecutor defaultPriorityBackgroundExecutor] withBlock:^id{
@@ -142,8 +135,8 @@ static NSString *const PFFileControllerCacheDirectoryName_ = @"PFFileCache";
     return [BFTask taskFromExecutor:[BFExecutor defaultPriorityBackgroundExecutor] withBlock:^id{
         BFTaskCompletionSource *taskCompletionSource = [BFTaskCompletionSource taskCompletionSource];
         NSString *filePath = [self _temporaryFileDownloadPathForFileState:fileState];
-        PFFileDataStream *stream = [[PFFileDataStream alloc] initWithFileAtPath:filePath];
-        [[self downloadFileAsyncWithState:fileState
+        NSInputStream *stream = [NSInputStream inputStreamWithFileAtPath:filePath];
+        [self downloadFileAsyncWithState:fileState
                        cancellationToken:cancellationToken
                            progressBlock:^(int percentDone) {
                                [taskCompletionSource trySetResult:stream];
@@ -151,9 +144,6 @@ static NSString *const PFFileControllerCacheDirectoryName_ = @"PFFileCache";
                                if (progressBlock) {
                                    progressBlock(percentDone);
                                }
-                           }] continueWithBlock:^id(BFTask *task) {
-                               [stream stopBlocking];
-                               return task;
                            }];
         return taskCompletionSource.task;
     }];
@@ -214,17 +204,13 @@ static NSString *const PFFileControllerCacheDirectoryName_ = @"PFFileCache";
                         sessionToken:(NSString *)sessionToken
                    cancellationToken:(BFCancellationToken *)cancellationToken
                        progressBlock:(PFProgressBlock)progressBlock {
+    PFRESTFileCommand *command = [PFRESTFileCommand uploadCommandForFileWithName:fileState.name
+                                                                    sessionToken:sessionToken];
+
+    @weakify(self);
     if (cancellationToken.cancellationRequested) {
         return [BFTask cancelledTask];
     }
-    if (!sourceFilePath) {
-        NSError *error = [PFErrorUtilities errorWithCode:kPFErrorUnsavedFile
-                                                 message:@"Can't upload a file that doesn't exist locally."];
-        return [BFTask taskWithError:error];
-    }
-
-    PFRESTFileCommand *command = [PFRESTFileCommand uploadCommandForFileWithName:fileState.name sessionToken:sessionToken];
-    @weakify(self);
     return [[[self.dataSource.commandRunner runFileUploadCommandAsync:command
                                                       withContentType:fileState.mimeType
                                                 contentSourceFilePath:sourceFilePath

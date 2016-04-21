@@ -27,20 +27,20 @@
 ///--------------------------------------
 
 - (void)updateObject:(PFObject *)object fromDictionary:(NSDictionary *)dictionary usingDecoder:(PFDecoder *)decoder {
-    object._state = [object._state copyByMutatingWithBlock:^(PFMutableObjectState *state) {
-        NSString *newObjectId = dictionary[@"id"];
-        if (newObjectId) {
-            state.objectId = newObjectId;
-        }
-        NSString *createdAtString = dictionary[@"created_at"];
-        if (createdAtString) {
-            [state setCreatedAtFromString:createdAtString];
-        }
-        NSString *updatedAtString = dictionary[@"updated_at"];
-        if (updatedAtString) {
-            [state setUpdatedAtFromString:updatedAtString];
-        }
-    }];
+    PFMutableObjectState *state = [object._state mutableCopy];
+    NSString *newObjectId = dictionary[@"id"];
+    if (newObjectId) {
+        state.objectId = newObjectId;
+    }
+    NSString *createdAtString = dictionary[@"created_at"];
+    if (createdAtString) {
+        [state setCreatedAtFromString:createdAtString];
+    }
+    NSString *updatedAtString = dictionary[@"updated_at"];
+    if (updatedAtString) {
+        [state setUpdatedAtFromString:updatedAtString];
+    }
+    object._state = state;
 
     NSDictionary *newPointers = dictionary[@"pointers"];
     NSMutableDictionary *pointersDictionary = [NSMutableDictionary dictionaryWithCapacity:newPointers.count];

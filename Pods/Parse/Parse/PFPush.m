@@ -34,7 +34,7 @@ static Class _pushInternalUtilClass = nil;
 @interface PFPush ()
 
 @property (nonatomic, strong) PFMutablePushState *state;
-@property (nonatomic, strong) PFQuery PF_GENERIC(PFInstallation *)*query;
+@property (nonatomic, strong) PFQuery *query;
 
 @end
 
@@ -114,14 +114,6 @@ static Class _pushInternalUtilClass = nil;
     self.state.expirationTimeInterval = nil;
 }
 
-- (void)setPushDate:(NSDate *)pushDate {
-    self.state.pushDate = pushDate;
-}
-
-- (NSDate *)pushDate {
-    return self.state.pushDate;
-}
-
 - (void)setData:(NSDictionary *)data {
     self.state.payload = data;
 }
@@ -184,7 +176,7 @@ static Class _pushInternalUtilClass = nil;
 ///--------------------------------------
 
 - (NSUInteger)hash {
-    return PFIntegerPairHash(self.query.hash, self.state.hash);
+    return PFIntegerPairHash([self.query hash], [self.state hash]);
 }
 
 - (BOOL)isEqual:(id)object {
@@ -210,7 +202,7 @@ static Class _pushInternalUtilClass = nil;
 
 + (BOOL)sendPushMessageToChannel:(NSString *)channel
                      withMessage:(NSString *)message
-                           error:(NSError **)error {
+                           error:(NSError **)error  {
     return [[[self sendPushMessageToChannelInBackground:channel withMessage:message] waitForResult:error] boolValue];
 }
 
@@ -238,7 +230,7 @@ static Class _pushInternalUtilClass = nil;
 
 + (BOOL)sendPushDataToChannel:(NSString *)channel
                      withData:(NSDictionary *)data
-                        error:(NSError **)error {
+                        error:(NSError **)error  {
     return [[[PFPush sendPushDataToChannelInBackground:channel withData:data] waitForResult:error] boolValue];
 }
 
@@ -268,7 +260,7 @@ static Class _pushInternalUtilClass = nil;
 
 + (BOOL)sendPushMessageToQuery:(PFQuery *)query
                    withMessage:(NSString *)message
-                         error:(NSError **)error {
+                         error:(NSError **)error  {
     PFPush *push = [PFPush push];
     push.query = query;
     push.message = message;
@@ -280,7 +272,7 @@ static Class _pushInternalUtilClass = nil;
     PFPush *push = [PFPush push];
     push.query = query;
     push.message = message;
-    return [push sendPushInBackground];
+    return  [push sendPushInBackground];
 }
 
 + (void)sendPushMessageToQueryInBackground:(PFQuery *)query
@@ -292,9 +284,10 @@ static Class _pushInternalUtilClass = nil;
     [push sendPushInBackgroundWithBlock:block];
 }
 
+
 + (BOOL)sendPushDataToQuery:(PFQuery *)query
                    withData:(NSDictionary *)data
-                      error:(NSError **)error {
+                      error:(NSError **)error  {
     PFPush *push = [PFPush push];
     push.query = query;
     push.data = data;
@@ -324,11 +317,11 @@ static Class _pushInternalUtilClass = nil;
 
 #pragma mark Get
 
-+ (NSSet PF_GENERIC(NSString *)*)getSubscribedChannels:(NSError **)error {
++ (NSSet *)getSubscribedChannels:(NSError **)error {
     return [[self getSubscribedChannelsInBackground] waitForResult:error];
 }
 
-+ (BFTask PF_GENERIC(NSSet<NSString *> *)*)getSubscribedChannelsInBackground {
++ (BFTask *)getSubscribedChannelsInBackground {
     return [[self channelsController] getSubscribedChannelsAsync];
 }
 
@@ -389,7 +382,7 @@ static Class _pushInternalUtilClass = nil;
 #if PARSE_IOS_ONLY
 + (void)handlePush:(NSDictionary *)userInfo {
     UIApplication *application = [UIApplication sharedApplication];
-    if (application.applicationState != UIApplicationStateActive) {
+    if ([application applicationState] != UIApplicationStateActive) {
         return;
     }
 
@@ -417,7 +410,7 @@ static Class _pushInternalUtilClass = nil;
     NSNumber *badgeNumber = aps[@"badge"];
     if (badgeNumber) {
         NSInteger number = [aps[@"badge"] integerValue];
-        application.applicationIconBadgeNumber = number;
+        [application setApplicationIconBadgeNumber:number];
     }
 
     NSString *soundName = aps[@"sound"];

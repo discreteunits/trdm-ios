@@ -10,9 +10,6 @@
 #import <Foundation/Foundation.h>
 
 @class PFEncoder;
-@class PFMutableObjectState;
-
-typedef void(^PFObjectStateMutationBlock)(PFMutableObjectState *state);
 
 @interface PFObjectState : NSObject <NSCopying, NSMutableCopying>
 
@@ -34,7 +31,6 @@ typedef void(^PFObjectStateMutationBlock)(PFMutableObjectState *state);
 - (instancetype)init NS_DESIGNATED_INITIALIZER;
 
 - (instancetype)initWithState:(PFObjectState *)state NS_REQUIRES_SUPER;
-- (instancetype)initWithState:(PFObjectState *)state mutatingBlock:(PFObjectStateMutationBlock)block;
 - (instancetype)initWithParseClassName:(NSString *)parseClassName;
 - (instancetype)initWithParseClassName:(NSString *)parseClassName
                               objectId:(NSString *)objectId
@@ -50,21 +46,15 @@ typedef void(^PFObjectStateMutationBlock)(PFMutableObjectState *state);
 /// @name Coding
 ///--------------------------------------
 
-/**
+/*!
  Encodes all fields in `serverData`, `objectId`, `createdAt` and `updatedAt` into objects suitable for JSON/Persistence.
 
  @note `parseClassName` isn't automatically added to the dictionary.
 
  @param objectEncoder Encoder to use to encode custom objects.
 
- @return `NSDictionary` instance representing object state.
+ @returns `NSDictionary` instance representing object state.
  */
 - (NSDictionary *)dictionaryRepresentationWithObjectEncoder:(PFEncoder *)objectEncoder NS_REQUIRES_SUPER;
-
-///--------------------------------------
-/// @name Mutating
-///--------------------------------------
-
-- (PFObjectState *)copyByMutatingWithBlock:(PFObjectStateMutationBlock)block;
 
 @end

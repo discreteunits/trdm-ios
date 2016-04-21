@@ -15,7 +15,11 @@ class ViewController: UIViewController , ValidationDelegate, UITextFieldDelegate
     // TextFields
     @IBOutlet weak var fullNameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var fbLoginButton: UIButton!
+    @IBOutlet weak var registeredText: UILabel!
     @IBOutlet weak var phoneNumberTextField: UITextField!
+    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var guestButton: UIButton!
     @IBOutlet weak var zipcodeTextField: UITextField!
     @IBOutlet weak var emailConfirmTextField: UITextField!
     

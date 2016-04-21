@@ -10,35 +10,35 @@
 #import <Foundation/Foundation.h>
 
 #import <Parse/PFConstants.h>
-#import "PFDataProvider.h"
 
 @class BFTask PF_GENERIC(__covariant BFGenericType);
+@protocol PFCommandRunning;
 
 @interface PFCloudCodeController : NSObject
 
-@property (nonatomic, strong, readonly) id<PFCommandRunnerProvider> dataSource;
+@property (nonatomic, strong, readonly) id<PFCommandRunning> commandRunner;
 
 ///--------------------------------------
 /// @name Init
 ///--------------------------------------
 
 - (instancetype)init NS_UNAVAILABLE;
-- (instancetype)initWithDataSource:(id<PFCommandRunnerProvider>)dataSource NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithCommandRunner:(id<PFCommandRunning>)commandRunner NS_DESIGNATED_INITIALIZER;
 
-+ (instancetype)controllerWithDataSource:(id<PFCommandRunnerProvider>)dataSource;
++ (instancetype)controllerWithCommandRunner:(id<PFCommandRunning>)commandRunner;
 
 ///--------------------------------------
 /// @name Cloud Functions
 ///--------------------------------------
 
-/**
+/*!
  Calls a Cloud Code function and returns a result of it's execution.
 
  @param functionName Function name to call.
  @param parameters   Parameters to pass. (can't be nil).
  @param sessionToken Session token to use.
 
- @return `BFTask` with a result set to a result of Cloud Function.
+ @returns `BFTask` with a result set to a result of Cloud Function.
  */
 - (BFTask *)callCloudCodeFunctionAsync:(NSString *)functionName
                         withParameters:(NSDictionary *)parameters

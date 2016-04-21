@@ -26,30 +26,21 @@
 #import <Parse/PFSubclassing.h>
 #import <Parse/PFUser.h>
 #import <Parse/PFUserAuthenticationDelegate.h>
-
-#if TARGET_OS_IOS
-
 #import <Parse/PFInstallation.h>
+#import <Parse/PFNullability.h>
+#import <Parse/PFPush.h>
+
+#if TARGET_OS_IPHONE
+
 #import <Parse/PFNetworkActivityIndicatorManager.h>
-#import <Parse/PFPush.h>
-#import <Parse/PFProduct.h>
-#import <Parse/PFPurchase.h>
-
-#elif PF_TARGET_OS_OSX
-
-#import <Parse/PFInstallation.h>
-#import <Parse/PFPush.h>
-
-#elif TARGET_OS_TV
-
 #import <Parse/PFProduct.h>
 #import <Parse/PFPurchase.h>
 
 #endif
 
-NS_ASSUME_NONNULL_BEGIN
+PF_ASSUME_NONNULL_BEGIN
 
-/**
+/*!
  The `Parse` class contains static functions that handle global configuration for the Parse framework.
  */
 @interface Parse : NSObject
@@ -58,21 +49,21 @@ NS_ASSUME_NONNULL_BEGIN
 /// @name Connecting to Parse
 ///--------------------------------------
 
-/**
- Sets the applicationId and clientKey of your application.
+/*!
+ @abstract Sets the applicationId and clientKey of your application.
 
  @param applicationId The application id of your Parse application.
  @param clientKey The client key of your Parse application.
  */
 + (void)setApplicationId:(NSString *)applicationId clientKey:(NSString *)clientKey;
 
-/**
- The current application id that was used to configure Parse framework.
+/*!
+ @abstract The current application id that was used to configure Parse framework.
  */
 + (NSString *)getApplicationId;
 
-/**
- The current client key that was used to configure Parse framework.
+/*!
+ @abstract The current client key that was used to configure Parse framework.
  */
 + (NSString *)getClientKey;
 
@@ -80,63 +71,63 @@ NS_ASSUME_NONNULL_BEGIN
 /// @name Enabling Local Datastore
 ///--------------------------------------
 
-/**
- Enable pinning in your application. This must be called before your application can use
- pinning. The recommended way is to call this method before `+setApplicationId:clientKey:`.
+/*!
+ @abstract Enable pinning in your application. This must be called before your application can use
+ pinning. The recommended way is to call this method before `setApplicationId:clientKey:`.
  */
-+ (void)enableLocalDatastore PF_TV_UNAVAILABLE;
++ (void)enableLocalDatastore;
 
-/**
- Flag that indicates whether Local Datastore is enabled.
+/*!
+ @abstract Flag that indicates whether Local Datastore is enabled.
 
- @return `YES` if Local Datastore is enabled, otherwise `NO`.
+ @returns `YES` if Local Datastore is enabled, otherwise `NO`.
  */
-+ (BOOL)isLocalDatastoreEnabled PF_TV_UNAVAILABLE;
++ (BOOL)isLocalDatastoreEnabled;
 
 ///--------------------------------------
 /// @name Enabling Extensions Data Sharing
 ///--------------------------------------
 
-/**
- Enables data sharing with an application group identifier.
+/*!
+ @abstract Enables data sharing with an application group identifier.
 
- After enabling - Local Datastore, `PFUser.+currentUser`, `PFInstallation.+currentInstallation` and all eventually commands
+ @discussion After enabling - Local Datastore, `currentUser`, `currentInstallation` and all eventually commands
  are going to be available to every application/extension in a group that have the same Parse applicationId.
 
- @warning This method is required to be called before `+setApplicationId:clientKey:`.
+ @warning This method is required to be called before <setApplicationId:clientKey:>.
 
  @param groupIdentifier Application Group Identifier to share data with.
  */
-+ (void)enableDataSharingWithApplicationGroupIdentifier:(NSString *)groupIdentifier PF_EXTENSION_UNAVAILABLE("Use `enableDataSharingWithApplicationGroupIdentifier:containingApplication:`.") PF_WATCH_UNAVAILABLE PF_TV_UNAVAILABLE;
++ (void)enableDataSharingWithApplicationGroupIdentifier:(NSString *)groupIdentifier PF_EXTENSION_UNAVAILABLE("Use `enableDataSharingWithApplicationGroupIdentifier:containingApplication:`.");
 
-/**
- Enables data sharing with an application group identifier.
+/*!
+ @abstract Enables data sharing with an application group identifier.
 
- After enabling - Local Datastore, `PFUser.+currentUser`, `PFInstallation.+currentInstallation` and all eventually commands
+ @discussion After enabling - Local Datastore, `currentUser`, `currentInstallation` and all eventually commands
  are going to be available to every application/extension in a group that have the same Parse applicationId.
 
- @warning This method is required to be called before `+setApplicationId:clientKey:`.
+ @warning This method is required to be called before <setApplicationId:clientKey:>.
  This method can only be used by application extensions.
 
  @param groupIdentifier Application Group Identifier to share data with.
  @param bundleIdentifier Bundle identifier of the containing application.
  */
 + (void)enableDataSharingWithApplicationGroupIdentifier:(NSString *)groupIdentifier
-                                  containingApplication:(NSString *)bundleIdentifier PF_WATCH_UNAVAILABLE PF_TV_UNAVAILABLE;
+                                  containingApplication:(NSString *)bundleIdentifier;
 
-/**
- Application Group Identifier for Data Sharing.
+/*!
+ @abstract Application Group Identifier for Data Sharing
 
- @return `NSString` value if data sharing is enabled, otherwise `nil`.
+ @returns `NSString` value if data sharing is enabled, otherwise `nil`.
  */
-+ (NSString *)applicationGroupIdentifierForDataSharing PF_WATCH_UNAVAILABLE PF_TV_UNAVAILABLE;
++ (NSString *)applicationGroupIdentifierForDataSharing;
 
-/**
- Containing application bundle identifier for Data Sharing.
+/*!
+ @abstract Containing application bundle identifier.
 
- @return `NSString` value if data sharing is enabled, otherwise `nil`.
+ @returns `NSString` value if data sharing is enabled, otherwise `nil`.
  */
-+ (NSString *)containingApplicationBundleIdentifierForDataSharing PF_WATCH_UNAVAILABLE PF_TV_UNAVAILABLE;
++ (NSString *)containingApplicationBundleIdentifierForDataSharing;
 
 #if PARSE_IOS_ONLY
 
@@ -144,8 +135,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// @name Configuring UI Settings
 ///--------------------------------------
 
-/**
- Set whether to show offline messages when using a Parse view or view controller related classes.
+/*!
+ @abstract Set whether to show offline messages when using a Parse view or view controller related classes.
 
  @param enabled Whether a `UIAlertView` should be shown when the device is offline
  and network access is required from a view or view controller.
@@ -154,8 +145,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (void)offlineMessagesEnabled:(BOOL)enabled PARSE_DEPRECATED("This method is deprecated and has no effect.");
 
-/**
- Set whether to show an error message when using a Parse view or view controller related classes
+/*!
+ @abstract Set whether to show an error message when using a Parse view or view controller related classes
  and a Parse error was generated via a query.
 
  @param enabled Whether a `UIAlertView` should be shown when an error occurs.
@@ -170,31 +161,30 @@ NS_ASSUME_NONNULL_BEGIN
 /// @name Logging
 ///--------------------------------------
 
-/**
- Sets the level of logging to display.
+/*!
+ @abstract Sets the level of logging to display.
 
- By default:
- - If running inside an app that was downloaded from iOS App Store - it is set to `PFLogLevelNone`
- - All other cases - it is set to `PFLogLevelWarning`
+ @discussion By default:
+ - If running inside an app that was downloaded from iOS App Store - it is set to <PFLogLevelNone>
+ - All other cases - it is set to <PFLogLevelWarning>
 
  @param logLevel Log level to set.
  @see PFLogLevel
  */
 + (void)setLogLevel:(PFLogLevel)logLevel;
 
-/**
- Log level that will be displayed.
+/*!
+ @abstract Log level that will be displayed.
 
- By default:
+ @discussion By default:
+ - If running inside an app that was downloaded from iOS App Store - it is set to <PFLogLevelNone>
+ - All other cases - it is set to <PFLogLevelWarning>
 
- - If running inside an app that was downloaded from iOS App Store - it is set to `PFLogLevelNone`
- - All other cases - it is set to `PFLogLevelWarning`
-
- @return A `PFLogLevel` value.
+ @returns A <PFLogLevel> value.
  @see PFLogLevel
  */
 + (PFLogLevel)logLevel;
 
 @end
 
-NS_ASSUME_NONNULL_END
+PF_ASSUME_NONNULL_END

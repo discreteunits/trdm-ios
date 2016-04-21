@@ -35,7 +35,7 @@ typedef void (^PFACLStateMutationBlock)(PFMutableACLState *);
 /// @name Mutating
 ///--------------------------------------
 
-- (PFACLState *)copyByMutatingWithBlock:(PFACLStateMutationBlock)mutatingBlock;
+- (instancetype)copyByMutatingWithBlock:(PFACLStateMutationBlock)mutatingBlock NS_RETURNS_RETAINED;
 
 @end
 

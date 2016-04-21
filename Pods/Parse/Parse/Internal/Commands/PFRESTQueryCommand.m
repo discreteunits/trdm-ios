@@ -106,15 +106,11 @@
     if ([order length]) {
         parameters[@"order"] = order;
     }
-    if (selectedKeys) {
-        NSArray *sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:YES selector:@selector(compare:)] ];
-        NSArray *keysArray = [selectedKeys sortedArrayUsingDescriptors:sortDescriptors];
-        parameters[@"keys"] = [keysArray componentsJoinedByString:@","];
+    if (selectedKeys != nil) {
+        parameters[@"keys"] = [[selectedKeys allObjects] componentsJoinedByString:@","];
     }
     if ([includedKeys count] > 0) {
-        NSArray *sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:YES selector:@selector(compare:)] ];
-        NSArray *keysArray = [includedKeys sortedArrayUsingDescriptors:sortDescriptors];
-        parameters[@"include"] = [keysArray componentsJoinedByString:@","];
+        parameters[@"include"] = [[includedKeys allObjects] componentsJoinedByString:@","];
     }
     if (limit >= 0) {
         parameters[@"limit"] = [NSString stringWithFormat:@"%d", (int)limit];
@@ -157,7 +153,7 @@
                     if ([queryDict count] > 0) {
                         [newArray addObject:queryDict];
                     } else {
-                        [newArray addObject:@{}];
+                        [newArray addObject:[NSDictionary dictionary]];
                     }
                 }
                 whereData[key] = newArray;
