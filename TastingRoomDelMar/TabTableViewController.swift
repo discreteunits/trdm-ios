@@ -14,21 +14,15 @@ import ParseUI
 @objc
 protocol TabTableViewDelegate {
     func defaultScreen()
+    func getView() -> UIView
 }
 
 class TabTableViewController: UITableViewController, NSFetchedResultsControllerDelegate, UIPopoverPresentationControllerDelegate {
 
-    // Table Cell Row Indicators
-    var rows: Int!
-    var totalRow: Int!
-    var actionRow: Int!
-
-    var tab = TabManager.sharedInstance.currentTab
-
+    var rows = Int()
+    
     @IBOutlet var tabTableView: UITableView!
     
-    var TableNumberViewControllerRef: TableNumberViewController?
-    var AddGratuityViewControllerRef: AddGratuityViewController?
     var AlertManagerRef: AlertManager?
     
     var delegate: TabTableViewDelegate?
@@ -36,12 +30,9 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
     // Price Formatter
     let formatter = PriceFormatManager.priceFormatManager
 
-    
+    var numberOfItems: Int!
+
 // --------------------
-    override func viewWillAppear(animated: Bool) {
-        TabManager.sharedInstance.totalCellCalculator()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -50,8 +41,8 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
         
         // Scroll to bottom of table
         dispatch_async(dispatch_get_main_queue()) {
-            let indexPath = NSIndexPath(forRow: self.actionRow, inSection: 0)
-            self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Middle, animated: false)
+            let indexPath = NSIndexPath(forRow: TabManager.sharedInstance.currentTab.lines.count - 1, inSection: 0)
+            self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Middle, animated: true)
         }
 
     }
@@ -82,29 +73,14 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        rows = calculateRows()
+        rows = TabManager.sharedInstance.currentTab.lines.count
         
         return rows
         
     }
-    
-    func calculateRows() -> Int {
-        let numberOfRows = TabManager.sharedInstance.currentTab.lines.count + 2
-        totalRow = numberOfRows - 2
-        actionRow = numberOfRows - 1
-        
-        return numberOfRows
-        
-    }
-
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        let cell = UITableViewCell()
-        
-        // Line Item Table Row
-        if indexPath.row < totalRow {
-            
+
             var lineitemCell: TabLineItemTableViewCell
             lineitemCell = tableView.dequeueReusableCellWithIdentifier("TabLineItemTableCell", forIndexPath: indexPath) as! TabLineItemTableViewCell
   
@@ -112,173 +88,55 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
             lineitemCell.contentView.tag = indexPath.row
             
             // Assignments
-            lineitemCell.itemNameLabel?.text = "\(tab.lines[indexPath.row].name)"
-            
+            lineitemCell.itemNameLabel?.text = "\(TabManager.sharedInstance.currentTab.lines[indexPath.row].name)"
             
             // Styles
             lineitemCell.itemNameLabel.font = UIFont.headerFont(24)
-
             
             return lineitemCell
 
-            
-        // Total Table Row
-        } else if indexPath.row == totalRow {
-            
-            var totalCell: TabTotalTableViewCell
-            totalCell = tableView.dequeueReusableCellWithIdentifier("TabTotalTableCell", forIndexPath: indexPath) as! TabTotalTableViewCell
-            
-            // Connect Specific Table Cell With Specific Colleciton View
-            totalCell.contentView.tag = indexPath.row
-            
-            // Assignments
-            
-//            totalCell.subtotalValueLabel?.text = "\(TabManager.sharedInstance.currentTab.subtotal)"
-            let subTotal = TabManager.sharedInstance.currentTab.subtotal
-            let convertedSubtotal = formatter.formatPrice(subTotal)
-            totalCell.subtotalValueLabel?.text = convertedSubtotal
-            
-            
-//            totalCell.taxValueLabel?.text = "\(TabManager.sharedInstance.currentTab.totalTax)"
-            let totalTax = TabManager.sharedInstance.currentTab.totalTax
-            let convertedTotalTax = formatter.formatPrice(totalTax)
-            totalCell.taxValueLabel?.text = convertedTotalTax
-
-            
-//            totalCell.totalValueLabel?.text = "\(TabManager.sharedInstance.currentTab.grandTotal)"
-            let grandTotal = TabManager.sharedInstance.currentTab.grandTotal
-            let convertedGrandTotal = formatter.formatPrice(grandTotal)
-            totalCell.totalValueLabel?.text = convertedGrandTotal
-            
-            
-            // Styles
-            totalCell.subtotalLabel.font = UIFont.headerFont(18)
-            totalCell.taxLabel.font = UIFont.headerFont(18)
-            totalCell.totalLabel.font = UIFont.headerFont(18)
-            
-            totalCell.subtotalValueLabel.font = UIFont.scriptFont(18)
-            totalCell.taxValueLabel.font = UIFont.scriptFont(18)
-            totalCell.totalValueLabel.font = UIFont.scriptFont(18)
-            
-            
-            return totalCell
-
-            
-        // Action Table Row
-        } else if indexPath.row == actionRow {
-            
-            var actionCell: TabActionTableViewCell
-            
-            actionCell = tableView.dequeueReusableCellWithIdentifier("TabActionTableCell", forIndexPath: indexPath) as! TabActionTableViewCell
-
-            // Connect Specific Table Cell With Specific Colleciton View
-            actionCell.contentView.tag = indexPath.row
-            
-            // Styles
-            actionCell.placeOrderButton.layer.backgroundColor = UIColor(red: 9/255.0, green: 178/255.0, blue: 126/255.0, alpha: 1.0).CGColor
-            actionCell.placeOrderButton.titleLabel?.font = UIFont.scriptFont(28)
-            actionCell.placeOrderButton.layer.cornerRadius = 6.0
-            actionCell.placeOrderButton.clipsToBounds = true
-            actionCell.placeOrderButton.titleLabel?.textColor = UIColor.whiteColor()
-            
-            
-            return actionCell
-            
-        }
-        
-        
-        return cell
-        
-        
     }
     
     override func tableView(tableView: UITableView,
         willDisplayCell cell: UITableViewCell,
         forRowAtIndexPath indexPath: NSIndexPath) {
-            
-            let tableViewCell = UITableViewCell()
-            
-            // Lineitem Table Row
-            if indexPath.row < totalRow {
-                
-                guard let tableViewCell = cell as? TabLineItemTableViewCell else { return }
-                tableViewCell.setCollectionViewDataSourceDelegate(self, forRow: indexPath.row)
-                
-            // Total Table Row
-            } else if indexPath.row == totalRow {
-                
-                guard let tableViewCell = cell as? TabTotalTableViewCell else { return }
-                
-            // Action Table Row
-            } else if indexPath.row == actionRow {
-                
-                guard let tableViewCell = cell as? TabActionTableViewCell else { return }
-                
-            }
-            
+        
+        guard let tableViewCell = cell as? TabLineItemTableViewCell else { return }
+        tableViewCell.setCollectionViewDataSourceDelegate(self, forRow: indexPath.row)
+      
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
         let cellSize = CGFloat()
 
-        if indexPath.row < totalRow {
+        // ----- HARVEST BEGIN ------
+        if TabManager.sharedInstance.currentTab.lines[indexPath.row].path == "Eat" {
+                
+            let lineMods = TabManager.sharedInstance.currentTab.lines[indexPath.row].additions.count
+            let lineModsWithServing = lineMods + 1
+            let lineSize = (lineModsWithServing * 25) + 75
             
+            return CGFloat(lineSize)
             
-            
-            // ----- HARVEST BEGIN ------
-            if tab.lines[indexPath.row].path == "Eat" {
-                
-                let lineMods = tab.lines[indexPath.row].additions.count
-                let lineModsWithServing = lineMods + 1
-                let lineSize = (lineModsWithServing * 25) + 50
-                
-                
-                return CGFloat(lineSize)
-                
-                
-            } else {
+        } else {
                
-                if tab.lines.count > 0 {
+            if TabManager.sharedInstance.currentTab.lines.count > 0 {
                     
-                    let lineSize = 120
-                    return CGFloat(lineSize)
+                let lineSize = 80
+                return CGFloat(lineSize)
                     
-                }
-                
             }
-            // ----- END -----
-
-            return 0
-            
-        } else if indexPath.row == totalRow {
-            
-            return 100
-            
-        } else if indexPath.row == actionRow {
-
-            return 100
-            
         }
-        
+        // ----- END -----
+
         return cellSize
 
     }
 
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-
-        // LineItem Row
-        if indexPath.row < totalRow {
-            return true
-        // Total Row
-        } else if indexPath.row == totalRow {
-            return false
-        // Action Row
-        } else if indexPath.row == actionRow {
-            return false
-        }
         
-        return false
+        return true
         
     }
 
@@ -307,112 +165,18 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
         
         self.tableView.endUpdates()
 
-        
-        rows = calculateRows()
         TabManager.sharedInstance.totalCellCalculator()
         
         self.tableView.reloadData()
 
-
-
     }
-    
-
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        // Get Screen Size
-        let screenWidth = self.view.bounds.size.width
-        let screenHeight = self.view.bounds.size.height
-        
-        // Enter Table Number Popover
-        if segue.identifier == "enterTableNumber" {
-            
-            let vc = segue.destinationViewController as! TableNumberViewController
-            // Size Popover Window
-            vc.preferredContentSize = CGSizeMake(screenWidth, screenHeight*0.38)
-            
-            // Set Controller
-            let controller = vc.popoverPresentationController
-            controller!.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
-            
-            
-            if controller != nil {
-                
-                controller!.sourceView = self.view
-                controller!.sourceRect = CGRectMake(CGRectGetMidX(self.view.bounds) - 8, CGRectGetMidY(self.view.bounds) - 50, 0, 0)
-                controller?.delegate = self
-                
-            }
-            
-            // Protocol or GratuitySegue
-            self.TableNumberViewControllerRef = vc
-            vc.delegate = self
-            
-        }
-        
-        // Add Gratuity Popover
-        if segue.identifier == "addGratuity" {
-            let vc = segue.destinationViewController as! AddGratuityViewController
-           
-            // Size Popover Window
-            vc.preferredContentSize = CGSizeMake(screenWidth, screenHeight * 0.53)
-            
-            // Set Controller
-            let controller = vc.popoverPresentationController
-            controller!.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
-
-            
-            if controller != nil {
-                
-                controller!.sourceView = self.view
-                controller!.sourceRect = CGRectMake(CGRectGetMidX(self.view.bounds) - 8, CGRectGetMidY(self.view.bounds) - 50, 0, 0)
-                controller?.delegate = self
-            }
-            
-            // Protocol or GratuitySegue
-            self.AddGratuityViewControllerRef = vc
-            vc.delegate = self
-            
-            AlertManager.sharedInstance.delegate = self
-            
-        }
-
+        // This Controller Does Not Segue
         
     }
-
-    // PRESENTATION CONTROLLER DATA SOURCE
-    func popoverPresentationControllerDidDismissPopover(popoverPresentationController: UIPopoverPresentationController) {
-        
-        // Remove Opaque Window
-        AnimationManager.sharedInstance.opaqueWindow(self.parentViewController!)
-        
-        print("Popover closed.")
-        
-    }
-    
-    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
-        
-        return .None
-        
-    }
-
 }
-
-
-// Extension for protocol in Table Number Popover
-extension TabTableViewController: TableNumberViewDelegate, AddGratuityViewDelegate, AlertManagerDelegate {
-    
-    func gratuitySegue() {
-        performSegueWithIdentifier("addGratuity", sender: self)
-    }
-    
-    func removeOpaque() {
-        AnimationManager.sharedInstance.opaqueWindow(self)
-    }
-    
-}
-
 
 // Mark: Collection Data Source
 extension TabTableViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -420,27 +184,21 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         let parent = collectionView.superview!.tag
-        var numberOfItems: Int!
 
-        if parent < totalRow {
-            
-            
-            // ----- HARVEST BEGIN ------
-            if TabManager.sharedInstance.currentTab.lines[parent].path == "Eat" {
+        // ----- HARVEST BEGIN ------
+        if TabManager.sharedInstance.currentTab.lines[parent].path == "Eat" {
                 
-                let modChoices = TabManager.sharedInstance.currentTab.lines[parent].additions.count
-                numberOfItems = modChoices + 2
+            let modChoices = TabManager.sharedInstance.currentTab.lines[parent].additions.count
+            numberOfItems = modChoices + 2
                 
-            } else {
+        } else {
                 
-                let modChoices = 2
-                numberOfItems = modChoices
+            let modChoices = 2
+            numberOfItems = modChoices
                 
-            }
-            // ----- END -----
-            
-            
         }
+        // ----- END -----
+
         
         return numberOfItems
         
@@ -448,186 +206,143 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
-        let cell = UICollectionViewCell()
         let parent = collectionView.superview!.tag
         
-        if parent < totalRow {
+        
+        // Serving Cell Defaulted To Top
+        if indexPath.row == 0 {
             
-            // DEFAULT: Serving Row
-            if indexPath.row == 0 {
-                
-                let lineitemServingCollectionCell = collectionView.dequeueReusableCellWithReuseIdentifier("TabLineItemServingCollectionCell", forIndexPath: indexPath) as! TabLineItemServingCollectionViewCell
-                
+            let lineitemServingCollectionCell = collectionView.dequeueReusableCellWithReuseIdentifier("TabLineItemServingCollectionCell", forIndexPath: indexPath) as! TabLineItemServingCollectionViewCell
+            
+            var servingPrice = String()
+            var orderMod = String()
 
-                // IF HARVEST
-                // ---------
-                var servingPrice = String()
-                var orderMod = String()
-
-                if TabManager.sharedInstance.currentTab.lines[parent].path == "Merch" {
+            if TabManager.sharedInstance.currentTab.lines[parent].path == "Merch" {
                     
-                    orderMod = ""
-                    servingPrice = ""
+                orderMod = ""
+                servingPrice = ""
                     
-                } else if TabManager.sharedInstance.currentTab.lines[parent].path == "Event" {
+            } else if TabManager.sharedInstance.currentTab.lines[parent].path == "Event" {
                     
-                    orderMod = ""
-                    servingPrice = ""
+                orderMod = ""
+                servingPrice = ""
                     
-                } else if TabManager.sharedInstance.currentTab.lines[parent].path == "Eat" {
+            } else if TabManager.sharedInstance.currentTab.lines[parent].path == "Eat" {
                 
-                    orderMod = TabManager.sharedInstance.currentTab.lines[parent].name
-                    servingPrice = "\(Int(TabManager.sharedInstance.currentTab.lines[parent].product.price))"
+                orderMod = TabManager.sharedInstance.currentTab.lines[parent].name
+                servingPrice = "\(Int(TabManager.sharedInstance.currentTab.lines[parent].product.price))"
                     
-                } else if TabManager.sharedInstance.currentTab.lines[parent].path == "More" {
+            } else if TabManager.sharedInstance.currentTab.lines[parent].path == "More" {
                     
-                    orderMod = ""
-                    servingPrice = ""
+                orderMod = ""
+                servingPrice = ""
                    
-                } else if TabManager.sharedInstance.currentTab.lines[parent].path == "Flights" {
+            } else if TabManager.sharedInstance.currentTab.lines[parent].path == "Flights" {
 
-                    orderMod = ""
-                    servingPrice = ""
+                orderMod = ""
+                servingPrice = ""
                     
-                } else {
-                
-                    orderMod = TabManager.sharedInstance.currentTab.lines[parent].subproduct.info
-                    servingPrice = "\(Int(TabManager.sharedInstance.currentTab.lines[parent].subproduct.price))"
-                    
-                }
-                
-
-                let orderAndServing = orderMod + "   " + servingPrice
-                lineitemServingCollectionCell.servingSizeLabel?.text = "\(orderAndServing)"
-                
-                lineitemServingCollectionCell.qtyLabel?.text = "\(Int(TabManager.sharedInstance.currentTab.lines[parent].quantity))"
-                
-                lineitemServingCollectionCell.priceLabel?.text = "\(Int(TabManager.sharedInstance.currentTab.lines[parent].price))"
-
-                
-                // Styles
-                lineitemServingCollectionCell.backgroundColor = UIColor.whiteColor()
-                lineitemServingCollectionCell.servingSizeLabel.font = UIFont.scriptFont(18)
-                lineitemServingCollectionCell.qtyLabel.font = UIFont.scriptFont(18)
-                lineitemServingCollectionCell.priceLabel.font = UIFont.scriptFont(18)
-                
-                
-                return lineitemServingCollectionCell
-                
-            // ----- IF HARVEST -----
             } else {
                 
-                if TabManager.sharedInstance.currentTab.lines.count < TabManager.sharedInstance.currentTab.lines.count {
+                orderMod = TabManager.sharedInstance.currentTab.lines[parent].subproduct.info
+                servingPrice = "\(Int(TabManager.sharedInstance.currentTab.lines[parent].subproduct.price))"
                     
-                    let lineitemCollectionCell = collectionView.dequeueReusableCellWithReuseIdentifier("TabLineItemCollectionCell", forIndexPath: indexPath) as! TabLineItemCollectionViewCell
-                    
-                    // ----- IF HARVEST -----
-                    if TabManager.sharedInstance.currentTab.lines[parent].path == "Eat" {
+            }
                 
-                        let trueIndex = indexPath.row - 1
+
+            let orderAndServing = orderMod + "   " + servingPrice
+            lineitemServingCollectionCell.servingSizeLabel?.text = "\(orderAndServing)"
+                
+            lineitemServingCollectionCell.qtyLabel?.text = "\(Int(TabManager.sharedInstance.currentTab.lines[parent].quantity))"
+                
+            lineitemServingCollectionCell.priceLabel?.text = "\(Int(TabManager.sharedInstance.currentTab.lines[parent].price))"
+
+                
+            // Styles
+            lineitemServingCollectionCell.backgroundColor = UIColor.whiteColor()
+            lineitemServingCollectionCell.servingSizeLabel.font = UIFont.scriptFont(18)
+            lineitemServingCollectionCell.qtyLabel.font = UIFont.scriptFont(18)
+            lineitemServingCollectionCell.priceLabel.font = UIFont.scriptFont(18)
+                
+                
+            return lineitemServingCollectionCell
+            
+            
+        // Modifier Cells
+        } else if indexPath.row < (numberOfItems - 1) {
+        
+            
+            let lineitemCollectionCell = collectionView.dequeueReusableCellWithReuseIdentifier("TabLineItemCollectionCell", forIndexPath: indexPath) as! TabLineItemCollectionViewCell
                     
-                        lineitemCollectionCell.modNameLabel?.text = "\(TabManager.sharedInstance.currentTab.lines[parent].additions[trueIndex].values[0].name)"
+            // ----- IF HARVEST -----
+            if TabManager.sharedInstance.currentTab.lines[parent].path == "Eat" {
+                
+                let trueIndex = indexPath.row - 1
                     
-                        if TabManager.sharedInstance.currentTab.lines[parent].additions[trueIndex].values[0].price != "0" {
+                lineitemCollectionCell.modNameLabel?.text = "\(TabManager.sharedInstance.currentTab.lines[parent].additions[trueIndex].values[0].name)"
+                    
+                if TabManager.sharedInstance.currentTab.lines[parent].additions[trueIndex].values[0].price != "0" {
                         
-                            let modPrice = TabManager.sharedInstance.currentTab.lines[parent].additions[trueIndex].values[0].price
-                            let lineQTY = TabManager.sharedInstance.currentTab.lines[parent].quantity
+                    let modPrice = TabManager.sharedInstance.currentTab.lines[parent].additions[trueIndex].values[0].price
+                    let lineQTY = TabManager.sharedInstance.currentTab.lines[parent].quantity
                         
-                            let modTotalPrice = Int(modPrice)! * Int(lineQTY)
+                    let modTotalPrice = Int(modPrice)! * Int(lineQTY)
                         
-                            lineitemCollectionCell.modPriceLabel?.text = "+ " + "\(modTotalPrice)"
+                    lineitemCollectionCell.modPriceLabel?.text = "+ " + "\(modTotalPrice)"
                         
-                        } else {
-                            lineitemCollectionCell.modPriceLabel?.text = ""
-                        }
+                } else {
+                        lineitemCollectionCell.modPriceLabel?.text = ""
+                }
+                    
                         // ---------
                         // WARNING: value[0] is not dynamic and will error for multi-selections
                         // ---------
-                    } else {
-                        // Do some Beer or Wine Stuff
-                    }
                     
-                    // Styles
-                    lineitemCollectionCell.backgroundColor = UIColor.whiteColor()
-                    lineitemCollectionCell.modNameLabel.font = UIFont.scriptFont(18)
-                    lineitemCollectionCell.modPriceLabel.font = UIFont.scriptFont(18)
-                    
-                    return lineitemCollectionCell
-                    
-                } else {
-                    let lineitemCollectionCell = collectionView.dequeueReusableCellWithReuseIdentifier("TabLineItemCollectionCell", forIndexPath: indexPath) as! TabLineItemCollectionViewCell
-                    
-                    
-                    // Assignments
-                    lineitemCollectionCell.modNameLabel.text = TabManager.sharedInstance.currentTab.lines[parent].type.capitalizedString
-                    lineitemCollectionCell.modPriceLabel.text = ""
-                    
-                    
-                    // Styles
-                    lineitemCollectionCell.modNameLabel.font = UIFont.scriptFont(18)
-                    lineitemCollectionCell.backgroundColor = UIColor.whiteColor()
-                    
-                    
-                    return lineitemCollectionCell
-                    
-                }
-                // ----- END -----
+            } else {
+                // Do some Beer or Wine Stuff
             }
+                    
+            // Styles
+            lineitemCollectionCell.backgroundColor = UIColor.whiteColor()
+            lineitemCollectionCell.modNameLabel.font = UIFont.scriptFont(18)
+            lineitemCollectionCell.modPriceLabel.font = UIFont.scriptFont(18)
+                    
+            return lineitemCollectionCell
+           
+            
+        // Delivery or Take Away
+        } else {
+            let lineitemCollectionCell = collectionView.dequeueReusableCellWithReuseIdentifier("TabLineItemCollectionCell", forIndexPath: indexPath) as! TabLineItemCollectionViewCell
+                    
+                    
+            // Assignments
+            lineitemCollectionCell.modNameLabel.text = TabManager.sharedInstance.currentTab.lines[parent].type.capitalizedString
+            lineitemCollectionCell.modPriceLabel.text = ""
+                    
+                    
+            // Styles
+            lineitemCollectionCell.modNameLabel.font = UIFont.scriptFont(18)
+            lineitemCollectionCell.backgroundColor = UIColor.whiteColor()
+                    
+                    
+            return lineitemCollectionCell
+                    
         }
-        return cell
     }
     
     
     // Size Collection Cells
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        
-        let cellSize =  CGSize()
-        let parent = collectionView.superview!.tag
-        
-        if parent < totalRow {
 
-            var collectionLineSize: CGSize!
+        var collectionLineSize: CGSize!
             
-            let cellWidth = collectionView.bounds.size.width - 10
-            let cellHeight = CGFloat(20)
+        let cellWidth = collectionView.bounds.size.width - 10
+        let cellHeight = CGFloat(20)
             
-            collectionLineSize = CGSize(width: cellWidth, height: cellHeight)
+        collectionLineSize = CGSize(width: cellWidth, height: cellHeight)
             
-            return collectionLineSize
+        return collectionLineSize
             
-        } else if parent == totalRow {
-            
-            // Do nothing
-            
-        } else if parent == actionRow {
-            
-            // Do nothing
-            
-        }
-        
-        return cellSize
-        
     }
-    
-    
-    
-    // CLOUDCODE PLACEORDER
-    @IBAction func placeOrder(sender: AnyObject) {
-        
-        AnimationManager.sharedInstance.opaqueWindow(self)
-        
-        // Checkout Options
-        if TabManager.sharedInstance.currentTab.checkoutMethod == "" {
-        
-            AlertManager.sharedInstance.checkoutOptions(self, title: "Checkout Options", message: "Please select your desired checkout method below.")
-            
-        // If User already selected checkout option of stripe
-        } else if TabManager.sharedInstance.currentTab.checkoutMethod == "stripe" {
-            
-            AlertManager.sharedInstance.checkout(self)
-            
-        }
-
-    }
-    
 }
+

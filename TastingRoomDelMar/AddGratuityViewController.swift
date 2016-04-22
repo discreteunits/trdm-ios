@@ -20,8 +20,6 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
     
     var selectedGratuity = String()
     
-    var tab = TabManager.sharedInstance.currentTab
-    
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
 
     var delegate: AddGratuityViewDelegate?
@@ -146,7 +144,7 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
         placeOrderButton.frame.origin.y = 250
         placeOrderButton.frame.origin.x = buttonWidth + 16
         placeOrderButton.setTitle("Place Order", forState: .Normal)
-        placeOrderButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        placeOrderButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         placeOrderButton.titleLabel?.font = UIFont.scriptFont(18)
         placeOrderButton.layer.backgroundColor = UIColor.primaryGreenColor().CGColor
         placeOrderButton.layer.cornerRadius = 12.0

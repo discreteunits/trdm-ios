@@ -18,6 +18,7 @@ class TabViewController: UIViewController {
     @IBOutlet weak var navigationTitle: UINavigationItem!
 
     var TabTableViewControllerRef: TabTableViewController?
+    var TabFloatingTableViewControllerRef: TabFloatingTableViewController?
     
     var tab = TabManager.sharedInstance.currentTab
     var orders = CardManager.sharedInstance.currentCustomer
@@ -79,7 +80,6 @@ class TabViewController: UIViewController {
         self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
         
         
-        
         // Add Indicator
         TabManager.sharedInstance.addItemsIndicator()
         
@@ -95,11 +95,22 @@ class TabViewController: UIViewController {
                 
             } 
         }
+        
+        if segue.identifier == "tabFloatingEmbeded" {
+            
+            if let TabFloatingTableViewController = segue.destinationViewController as? TabFloatingTableViewController {
+                
+                self.TabFloatingTableViewControllerRef = TabFloatingTableViewController
+                TabFloatingTableViewController.delegate = self
+                
+                
+            }
+        }
     }
 }
 
 
-extension TabViewController: TabTableViewDelegate {
+extension TabViewController: TabTableViewDelegate, TabFloatingTableViewDelegate {
     
     func defaultScreen() {
         
@@ -158,5 +169,20 @@ extension TabViewController: TabTableViewDelegate {
             //        }
             
         }
+    }
+    
+    func getView() -> UIView {
+        
+        let tabView = self.view
+        
+        return tabView
+        
+    }
+    
+    func getController() -> UIViewController {
+        
+        let tabController = self
+        
+        return tabController
     }
 }

@@ -241,7 +241,6 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
         
     }
     
-    
     func reloadTable() {
         
         self.TierIVTableViewControllerRef?.tableView.reloadData()
@@ -328,7 +327,23 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
                 print("TierIV table query retrieved: \(objects!.count) objects.")
                 
                 for object in objects! as [PFObject] {
-                    if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Hops" {
+                    if RouteManager.sharedInstance.TierOne!["name"] as! String == "Events" {
+                        
+                        if !self.TierIVTableViewControllerRef!.tierIVTableArray.contains(object) {
+                            self.TierIVTableViewControllerRef?.tierIVTableArray.append(object)
+                        } else {
+                            print("This selection is already being shown.")
+                        }
+                        
+                    } else if RouteManager.sharedInstance.TierOne!["name"] as! String == "Merch" {
+                    
+                        if !self.TierIVTableViewControllerRef!.tierIVTableArray.contains(object) {
+                            self.TierIVTableViewControllerRef?.tierIVTableArray.append(object)
+                        } else {
+                            print("This selection is already being shown.")
+                        }
+                        
+                    } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Hops" {
                         
                         if object["productType"] as! String == "CHOICE" {
                             if !self.TierIVTableViewControllerRef!.tierIVTableArray.contains(object) {

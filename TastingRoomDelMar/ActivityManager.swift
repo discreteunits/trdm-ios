@@ -15,6 +15,7 @@ class ActivityManager: NSObject {
     // ----------
 
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
+    
 
     override init() {
         super.init()
@@ -27,11 +28,14 @@ class ActivityManager: NSObject {
     func activityStart(view: UIViewController) {
         
         activityIndicator.hidden = false
-        activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 50, 50))
+        activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 100, 100))
         activityIndicator.center = view.view.center
         activityIndicator.hidesWhenStopped = true
         activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
         activityIndicator.startAnimating()
+        activityIndicator.backgroundColor = UIColor(white: 0.0, alpha: 0.6)
+        activityIndicator.layer.cornerRadius = 8.0
+        activityIndicator.clipsToBounds = true
         activityIndicator.tag = 901
         
         UIApplication.sharedApplication().beginIgnoringInteractionEvents()
