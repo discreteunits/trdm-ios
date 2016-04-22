@@ -435,8 +435,6 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             
             } else {
                 
-                
-                
                 popoverDynamicHeight = 1
                 popoverHeightCalculation = ((popoverDynamicHeight + 3) * 100)
                 let subproductsArray = subproductQuery(product)

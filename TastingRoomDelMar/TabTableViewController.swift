@@ -15,6 +15,7 @@ import ParseUI
 protocol TabTableViewDelegate {
     func defaultScreen()
     func getView() -> UIView
+    func recalculateTotals() 
 }
 
 class TabTableViewController: UITableViewController, NSFetchedResultsControllerDelegate, UIPopoverPresentationControllerDelegate {
@@ -39,10 +40,12 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
         self.tableView.tableFooterView?.hidden = true
         
-        // Scroll to bottom of table
-        dispatch_async(dispatch_get_main_queue()) {
-            let indexPath = NSIndexPath(forRow: TabManager.sharedInstance.currentTab.lines.count - 1, inSection: 0)
-            self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Middle, animated: true)
+        if TabManager.sharedInstance.currentTab.lines.count > 0 {
+            // Scroll to bottom of table
+            dispatch_async(dispatch_get_main_queue()) {
+                let indexPath = NSIndexPath(forRow: TabManager.sharedInstance.currentTab.lines.count - 1, inSection: 0)
+                self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Middle, animated: false)
+            }
         }
 
     }
@@ -156,6 +159,7 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
             // Remove Row From Table
             self.tableView.deleteRowsAtIndexPaths(NSArray(object: NSIndexPath(forRow: indexPath.row, inSection: 0)) as! [NSIndexPath], withRowAnimation: UITableViewRowAnimation.Left)
             
+            
             if TabManager.sharedInstance.currentTab.lines.count == 0 {
                 self.dismissViewControllerAnimated(false, completion: nil)
             }
@@ -163,10 +167,14 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
 
         }
         
+        // Trigger Function in Floating Table File To Reload
+        delegate?.recalculateTotals()
+        
+        
         self.tableView.endUpdates()
 
         TabManager.sharedInstance.totalCellCalculator()
-        
+
         self.tableView.reloadData()
 
     }
@@ -316,7 +324,14 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
                     
                     
             // Assignments
-            lineitemCollectionCell.modNameLabel.text = TabManager.sharedInstance.currentTab.lines[parent].type.capitalizedString
+            if TabManager.sharedInstance.currentTab.lines[parent].type == "delivery" {
+                lineitemCollectionCell.modNameLabel.text = "Dine In"
+            } else if TabManager.sharedInstance.currentTab.lines[parent].type == "takeaway" {
+                lineitemCollectionCell.modNameLabel.text = "Take Away"
+            } else {
+                lineitemCollectionCell.modNameLabel.text = ""
+            }
+            
             lineitemCollectionCell.modPriceLabel.text = ""
                     
                     

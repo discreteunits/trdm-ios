@@ -103,7 +103,6 @@ class TabViewController: UIViewController {
                 self.TabFloatingTableViewControllerRef = TabFloatingTableViewController
                 TabFloatingTableViewController.delegate = self
                 
-                
             }
         }
     }
@@ -185,4 +184,12 @@ extension TabViewController: TabTableViewDelegate, TabFloatingTableViewDelegate 
         
         return tabController
     }
+    
+    func recalculateTotals() {
+        
+        self.TabFloatingTableViewControllerRef?.recalculate()
+        
+    }
+    
+
 }

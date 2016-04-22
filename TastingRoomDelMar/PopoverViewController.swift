@@ -579,7 +579,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                             
                             // LineItem Parent Product
                             var newProduct = Product()
-                            newProduct.objectId = popoverItem.objectId!                 // Parse Obj ID
+                            newProduct.objectId = productChoice.objectId                 // Parse Obj ID of Subproduct
                             newProduct.productId = String(popoverItem["lightspeedId"])      // Lightspeed ID
                             newProduct.name = popoverItem["name"] as! String
                             newProduct.price = popoverItem["price"] as! Double

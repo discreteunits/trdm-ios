@@ -12,6 +12,7 @@ import UIKit
 protocol TableNumberViewDelegate {
     func gratuitySegue()
     func removeOpaque()
+    func passTabController() -> UIViewController
 }
 
 class TableNumberViewController: UIViewController, UITextFieldDelegate {
@@ -23,10 +24,18 @@ class TableNumberViewController: UIViewController, UITextFieldDelegate {
     var delegate: TableNumberViewDelegate?
     var TabFloatingTableViewControllerRef: TabTableViewController?
     
+    var heightConstraint = CGFloat()
+    
 // -------------------
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
+        let tabController = delegate?.passTabController()
+        heightConstraint = tabController!.view.bounds.height
+        let dynamicFontSize = CGFloat(heightConstraint / 8)
+
+        
         let popoverView = self.view
             popoverView.layer.backgroundColor = UIColor(red: 246/255.0, green: 246/255.0, blue: 246/255.0, alpha: 1.0).CGColor
         
@@ -43,11 +52,11 @@ class TableNumberViewController: UIViewController, UITextFieldDelegate {
         enterTableNumberLabel.textColor = UIColor.blackColor()
         enterTableNumberLabel.textAlignment = .Center
         // Create Text Field
-        tableNumberTextField = UITextField(frame: CGRectMake(0, 0, screenWidth * 0.3, 100))
+        tableNumberTextField = UITextField(frame: CGRectMake(0, 0, screenWidth * 0.3, dynamicFontSize + 16))
         tableNumberTextField.frame.origin.y = 54
         tableNumberTextField.frame.origin.x = screenWidth * 0.36
         tableNumberTextField.placeholder = "23"
-        tableNumberTextField.font = UIFont.basicFont(72)
+        tableNumberTextField.font = UIFont.basicFont(dynamicFontSize)
         tableNumberTextField.autocorrectionType = .No
         tableNumberTextField.keyboardType = .NumberPad
         tableNumberTextField.returnKeyType = .Done
@@ -61,8 +70,8 @@ class TableNumberViewController: UIViewController, UITextFieldDelegate {
         // Create Cancel Button
         let buttonWidth = (screenWidth - 24) / 2
         
-        let cancelButton = UIButton(frame: CGRectMake(0, 0, buttonWidth, 60))
-        cancelButton.frame.origin.y = 160
+        let cancelButton = UIButton(frame: CGRectMake(0, 0, buttonWidth, heightConstraint / 10))
+        cancelButton.frame.origin.y = dynamicFontSize * 2.3
         cancelButton.frame.origin.x = 8
         cancelButton.setTitle("Cancel", forState: .Normal)
         cancelButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
@@ -72,8 +81,8 @@ class TableNumberViewController: UIViewController, UITextFieldDelegate {
         cancelButton.clipsToBounds = true
         cancelButton.addTarget(self, action: #selector(TableNumberViewController.cancelPopover), forControlEvents: UIControlEvents.TouchUpInside)
         // Create Place Order Button
-        let placeOrderButton = UIButton(frame: CGRectMake(0, 0, buttonWidth, 60))
-        placeOrderButton.frame.origin.y = 160
+        let placeOrderButton = UIButton(frame: CGRectMake(0, 0, buttonWidth, heightConstraint / 10))
+        placeOrderButton.frame.origin.y = dynamicFontSize * 2.3
         placeOrderButton.frame.origin.x = buttonWidth + 16
         placeOrderButton.setTitle("Place Order", forState: .Normal)
         placeOrderButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)

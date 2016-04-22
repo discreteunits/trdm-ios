@@ -12,6 +12,7 @@ import UIKit
 protocol AddGratuityViewDelegate {
     func gratuitySegue()
     func removeOpaque()
+    func passTabController() -> UIViewController
 }
 
 class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
@@ -23,10 +24,20 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
 
     var delegate: AddGratuityViewDelegate?
+    
+    var heightConstraint = CGFloat()
+
 
 // -------------------------
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let tabController = delegate?.passTabController()
+        heightConstraint = tabController!.view.bounds.height
+        let dynamicLocator = CGFloat(heightConstraint / 8)
+
+
+        
 
         let popoverView = self.view
         popoverView.layer.backgroundColor = UIColor(red: 246/255.0, green: 246/255.0, blue: 246/255.0, alpha: 1.0).CGColor
@@ -56,56 +67,56 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
         
         // Labels & Values
         let subTotalLabel = UILabel(frame: CGRectMake(0, 0, screenWidth * 0.3, 20))
-        subTotalLabel.frame.origin.y = 88
+        subTotalLabel.frame.origin.y = dynamicLocator*1.8
         subTotalLabel.frame.origin.x = 8
         subTotalLabel.textAlignment = .Left
         subTotalLabel.text = "subtotal"
         subTotalLabel.font = UIFont.headerFont(18)
 
         let taxLabel = UILabel(frame: CGRectMake(0, 0, screenWidth * 0.3, 20))
-        taxLabel.frame.origin.y = 108
+        taxLabel.frame.origin.y = (dynamicLocator*1.8)+20
         taxLabel.frame.origin.x = 8
         taxLabel.textAlignment = .Left
         taxLabel.text = "tax"
         taxLabel.font = UIFont.headerFont(18)
 
         let gratuityLabel = UILabel(frame: CGRectMake(0, 0, screenWidth * 0.3, 20))
-        gratuityLabel.frame.origin.y = 128
+        gratuityLabel.frame.origin.y = (dynamicLocator*1.8)+40
         gratuityLabel.frame.origin.x = 8
         gratuityLabel.textAlignment = .Left
         gratuityLabel.text = "Gratuity"
         gratuityLabel.font = UIFont.headerFont(18)
 
         let totalLabel = UILabel(frame: CGRectMake(0, 0, screenWidth * 0.3, 20))
-        totalLabel.frame.origin.y = 148
+        totalLabel.frame.origin.y = (dynamicLocator*1.8)+60
         totalLabel.frame.origin.x = 8
         totalLabel.textAlignment = .Left
         totalLabel.text = "total"
         totalLabel.font = UIFont.headerFont(18)
         
         let subTotalValueLabel = UILabel(frame: CGRectMake(0, 0, screenWidth * 0.3, 20))
-        subTotalValueLabel.frame.origin.y = 88
+        subTotalValueLabel.frame.origin.y = dynamicLocator*1.8
         subTotalValueLabel.frame.origin.x = screenWidth * 0.65
         subTotalValueLabel.textAlignment = .Right
         subTotalValueLabel.text = String(TabManager.sharedInstance.currentTab.subtotal)
         subTotalValueLabel.font = UIFont.headerFont(18)
 
         let taxValueLabel = UILabel(frame: CGRectMake(0, 0, screenWidth * 0.3, 20))
-        taxValueLabel.frame.origin.y = 108
+        taxValueLabel.frame.origin.y = (dynamicLocator*1.8)+20
         taxValueLabel.frame.origin.x = screenWidth * 0.65
         taxValueLabel.textAlignment = .Right
         taxValueLabel.text = String(TabManager.sharedInstance.currentTab.totalTax)
         taxValueLabel.font = UIFont.headerFont(18)
 
         let gratuityValueLabel = UILabel(frame: CGRectMake(0, 0, screenWidth * 0.3, 20))
-        gratuityValueLabel.frame.origin.y = 128
+        gratuityValueLabel.frame.origin.y = (dynamicLocator*1.8)+40
         gratuityValueLabel.frame.origin.x = screenWidth * 0.65
         gratuityValueLabel.textAlignment = .Right
         gratuityValueLabel.text = String(TabManager.sharedInstance.currentTab.gratuity)
         gratuityValueLabel.font = UIFont.headerFont(18)
         
         let totalValueLabel = UILabel(frame: CGRectMake(0, 0, screenWidth * 0.3, 20))
-        totalValueLabel.frame.origin.y = 148
+        totalValueLabel.frame.origin.y = (dynamicLocator*1.8)+60
         totalValueLabel.frame.origin.x = screenWidth * 0.65
         totalValueLabel.textAlignment = .Right
         totalValueLabel.text = String(TabManager.sharedInstance.currentTab.grandTotal)
@@ -119,7 +130,7 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
         layout.itemSize = CGSize(width: itemWidth, height: 50)
         
         gratuityCollectionView = UICollectionView(frame: CGRectMake(0, 0, screenWidth, 66), collectionViewLayout: layout)
-        gratuityCollectionView.frame.origin.y = 170
+        gratuityCollectionView.frame.origin.y = (dynamicLocator*1.8)+80
         gratuityCollectionView.frame.origin.x = 0
         gratuityCollectionView.backgroundColor = UIColor.clearColor()
         gratuityCollectionView.dataSource = self
@@ -130,7 +141,7 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
         let buttonWidth = (screenWidth - 24) / 2
         
         let cancelButton = UIButton(frame: CGRectMake(0, 0, buttonWidth, 60))
-        cancelButton.frame.origin.y = 250
+        cancelButton.frame.origin.y = (dynamicLocator*1.8)+150
         cancelButton.frame.origin.x = 8
         cancelButton.setTitle("Cancel", forState: .Normal)
         cancelButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
@@ -141,7 +152,7 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
         cancelButton.addTarget(self, action: #selector(AddGratuityViewController.cancelPopover), forControlEvents: UIControlEvents.TouchUpInside)
         // Create Place Order Button
         let placeOrderButton = UIButton(frame: CGRectMake(0, 0, buttonWidth, 60))
-        placeOrderButton.frame.origin.y = 250
+        placeOrderButton.frame.origin.y = (dynamicLocator*1.8)+150
         placeOrderButton.frame.origin.x = buttonWidth + 16
         placeOrderButton.setTitle("Place Order", forState: .Normal)
         placeOrderButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)

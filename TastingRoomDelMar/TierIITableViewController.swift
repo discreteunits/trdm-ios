@@ -104,6 +104,7 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
         
         let query:PFQuery = PFQuery(className:"Tier2")
         query.includeKey("category")
+        query.orderByAscending("sortOrder")
         query.whereKey("parentTiers", equalTo: RouteManager.sharedInstance.TierOne!)
         query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
             

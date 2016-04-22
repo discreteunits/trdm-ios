@@ -286,6 +286,7 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         
         let query:PFQuery = PFQuery(className:"Tier1")
         query.includeKey("category")
+        query.orderByAscending("sortOrder")
         query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
             
             if error == nil {
@@ -310,7 +311,6 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
                     print("TierI Array: \(i["name"])")
                 }
                 print("-----------------------")
-                
                 
                 AnimationManager.sharedInstance.animateTable(self.tableView)
                 

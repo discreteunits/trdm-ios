@@ -29,6 +29,10 @@ class TabFloatingTableViewController: UITableViewController, UIPopoverPresentati
     var tabController = UIViewController()
     
     // -----
+    func recalculate() {
+        self.tableView.reloadData()
+    }
+    
     override func viewWillAppear(animated: Bool) {
         
         TabManager.sharedInstance.totalCellCalculator()
@@ -104,6 +108,8 @@ class TabFloatingTableViewController: UITableViewController, UIPopoverPresentati
             totalCell.taxValueLabel?.font = UIFont.scriptFont(18)
             totalCell.totalValueLabel?.font = UIFont.scriptFont(18)
             
+            totalCell.selectionStyle = UITableViewCellSelectionStyle.None
+
             
             return totalCell
             
@@ -124,6 +130,8 @@ class TabFloatingTableViewController: UITableViewController, UIPopoverPresentati
             actionCell.placeOrderButton.clipsToBounds = true
             actionCell.placeOrderButton.titleLabel?.textColor = UIColor.whiteColor()
             
+            actionCell.selectionStyle = UITableViewCellSelectionStyle.None
+
             
             return actionCell
             
@@ -163,8 +171,9 @@ class TabFloatingTableViewController: UITableViewController, UIPopoverPresentati
         if segue.identifier == "enterTableNumber" {
             
             let vc = segue.destinationViewController as! TableNumberViewController
+            
             // Size Popover Window
-            vc.preferredContentSize = CGSizeMake(screenWidth, screenHeight*0.38)
+            vc.preferredContentSize = CGSizeMake(screenWidth, screenHeight*0.40)
             
             // Set Controller
             let controller = vc.popoverPresentationController
@@ -174,7 +183,7 @@ class TabFloatingTableViewController: UITableViewController, UIPopoverPresentati
             if controller != nil {
                 
                 controller!.sourceView = tabView
-                controller!.sourceRect = CGRectMake(CGRectGetMidX(tabView.bounds) - 8, CGRectGetMidY(tabView.bounds) - 50, 0, 0)
+                controller!.sourceRect = CGRectMake(CGRectGetMidX(tabView.bounds) - 8, CGRectGetMidY(tabView.bounds) - 100, 0, 0)
                 controller?.delegate = self
                 
             }
@@ -190,7 +199,7 @@ class TabFloatingTableViewController: UITableViewController, UIPopoverPresentati
             let vc = segue.destinationViewController as! AddGratuityViewController
             
             // Size Popover Window
-            vc.preferredContentSize = CGSizeMake(screenWidth, screenHeight * 0.53)
+            vc.preferredContentSize = CGSizeMake(screenWidth, screenHeight*0.66)
             
             // Set Controller
             let controller = vc.popoverPresentationController
@@ -200,7 +209,7 @@ class TabFloatingTableViewController: UITableViewController, UIPopoverPresentati
             if controller != nil {
                 
                 controller!.sourceView = tabView
-                controller!.sourceRect = CGRectMake(CGRectGetMidX(tabView.bounds) - 8, CGRectGetMidY(tabView.bounds) - 50, 0, 0)
+                controller!.sourceRect = CGRectMake(CGRectGetMidX(tabView.bounds) - 8, CGRectGetMidY(tabView.bounds) - 100, 0, 0)
                 controller?.delegate = self
             }
             
@@ -238,7 +247,11 @@ extension TabFloatingTableViewController: TableNumberViewDelegate, AddGratuityVi
     }
     
     func removeOpaque() {
-        AnimationManager.sharedInstance.opaqueWindow(self)
+        AnimationManager.sharedInstance.opaqueWindow(tabController)
+    }
+    
+    func passTabController() -> UIViewController {
+        return tabController
     }
     
 }
