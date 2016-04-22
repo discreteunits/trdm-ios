@@ -84,6 +84,8 @@ class AnimationManager: NSObject {
     // Fly Up Table Cells Animation
     func animateTable(tableView: UITableView) {
         
+        tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+
         tableView.reloadData()
         
         let cells = tableView.visibleCells
@@ -111,11 +113,12 @@ class AnimationManager: NSObject {
             index = index + 1
             
         }
-        
+
     }
     
     // Fade In/Out TableView
     func fade(tableView: UITableView, alpha: CGFloat) {
+
         UIView.animateWithDuration(0.2, delay: 0.2, options: .CurveEaseInOut, animations: { () -> Void in
             tableView.alpha = alpha
             }, completion: nil)

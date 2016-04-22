@@ -12,7 +12,6 @@ import Parse
 import ParseFacebookUtilsV4
 import ParseCrashReporting
 
-
 class TierITableViewController: UITableViewController, ENSideMenuDelegate {
 
     var tierIArray = [PFObject]()
@@ -30,29 +29,33 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
     var TRDMImage = UIImage()
     var TRDMImageView = UIImageView()
     
-    
 // ------------------------------
     override func viewWillDisappear(animated: Bool) {
+        
         // Stop Activity Indicator
         ActivityManager.sharedInstance.activityStop(self)
+        
+        tableView.reloadData()
+        
+        AnimationManager.sharedInstance.fade(self.tableView, alpha: 0.0)
+        
     }
 
     override func viewWillAppear(animated: Bool) {
-
-        AnimationManager.sharedInstance.fade(self.tableView, alpha: 1.0)
         
+        AnimationManager.sharedInstance.fade(self.tableView, alpha: 1.0)
+
         self.tierIArray.removeAll()
         
         // TIER 1 QUERY
         self.tierIQuery()
-  
+
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
-
         
         // Unit Test
         tableView.accessibilityIdentifier = "Tier One Table"
@@ -121,6 +124,60 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    // MARK: - Table view data source
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        
+        return 1
+    }
+    
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
+        return tierIArray.count
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
+        
+        cell.textLabel?.text = tierIArray[indexPath.row]["name"] as? String
+        cell.textLabel?.textAlignment = NSTextAlignment.Center
+        cell.textLabel?.font = UIFont.scriptFont(38)
+        
+        return cell
+        
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        
+        let tableHeight = (tableView.bounds.size.height)
+        let numberOfCells: Int = tierIArray.count
+        let numberOfCellsFloat = CGFloat(numberOfCells)
+        let cellHeight = tableHeight / numberOfCellsFloat
+        
+        return cellHeight
+        
+    }
+    
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        // Start Activity Indicator
+        ActivityManager.sharedInstance.activityStart(self)
+        
+        // ROUTE MANAGER
+        RouteManager.sharedInstance.TierOne = tierIArray[indexPath.row]
+        RouteManager.sharedInstance.printRoute()
+        
+        // Next Tier
+        if tierIArray[indexPath.row]["skipToTier4"] as! Bool {
+            self.performSegueWithIdentifier("tierOneToFour", sender: self)
+        } else {
+            self.performSegueWithIdentifier("tierII", sender: self)
+        }
+    }
+    
     
     // Location Flyout Menu
     func locationFlyout(sender: UIBarButtonItem) {
@@ -418,59 +475,7 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
 //                        }
 //                    }
 //                }
-                
-                
             }
         })
-    }
-    
-    // MARK: - Table view data source
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
-    
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return tierIArray.count
-    }
-    
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
-        
-        cell.textLabel?.text = tierIArray[indexPath.row]["name"] as? String
-        cell.textLabel?.textAlignment = NSTextAlignment.Center
-        cell.textLabel?.font = UIFont.scriptFont(38)
-        return cell
-        
-    }
-    
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        
-        let tableHeight = (tableView.bounds.size.height)
-        let numberOfCells: Int = tierIArray.count
-        let numberOfCellsFloat = CGFloat(numberOfCells)
-        let cellHeight = tableHeight / numberOfCellsFloat
-        
-        return cellHeight
-        
-    }
-    
-    
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        // Start Activity Indicator
-        ActivityManager.sharedInstance.activityStart(self)
-        
-        // ROUTE MANAGER
-        RouteManager.sharedInstance.TierOne = tierIArray[indexPath.row]
-        RouteManager.sharedInstance.printRoute()
-
-        // Next Tier
-        if tierIArray[indexPath.row]["skipToTier4"] as! Bool {
-            self.performSegueWithIdentifier("tierOneToFour", sender: self)
-        } else {
-            self.performSegueWithIdentifier("tierII", sender: self)
-        }
     }
 }

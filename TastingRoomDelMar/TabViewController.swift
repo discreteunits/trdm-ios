@@ -92,8 +92,9 @@ class TabViewController: UIViewController {
             if let TabTableViewController = segue.destinationViewController as? TabTableViewController {
                 
                 self.TabTableViewControllerRef = TabTableViewController
-                
-            } 
+                TabTableViewController.delegate = self
+
+            }
         }
         
         if segue.identifier == "tabFloatingEmbeded" {
@@ -187,9 +188,7 @@ extension TabViewController: TabTableViewDelegate, TabFloatingTableViewDelegate 
     
     func recalculateTotals() {
         
-        self.TabFloatingTableViewControllerRef?.recalculate()
+        self.TabFloatingTableViewControllerRef?.tableView.reloadData()
         
     }
-    
-
 }

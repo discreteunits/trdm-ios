@@ -37,6 +37,8 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+        
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
         self.tableView.tableFooterView?.hidden = true
         
@@ -118,7 +120,7 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
                 
             let lineMods = TabManager.sharedInstance.currentTab.lines[indexPath.row].additions.count
             let lineModsWithServing = lineMods + 1
-            let lineSize = (lineModsWithServing * 25) + 75
+            let lineSize = (lineModsWithServing * 25) + 90
             
             return CGFloat(lineSize)
             
@@ -126,7 +128,7 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
                
             if TabManager.sharedInstance.currentTab.lines.count > 0 {
                     
-                let lineSize = 80
+                let lineSize = 90
                 return CGFloat(lineSize)
                     
             }

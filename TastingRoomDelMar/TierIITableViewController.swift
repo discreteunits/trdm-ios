@@ -42,9 +42,8 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Stop Activity Indicator 
-//        ActivityManager.sharedInstance.activityStop(self)
-        
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+
         // Items Indicator
         TabManager.sharedInstance.addItemsIndicator()
         

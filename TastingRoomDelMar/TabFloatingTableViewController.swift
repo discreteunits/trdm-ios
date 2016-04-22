@@ -29,10 +29,6 @@ class TabFloatingTableViewController: UITableViewController, UIPopoverPresentati
     var tabController = UIViewController()
     
     // -----
-    func recalculate() {
-        self.tableView.reloadData()
-    }
-    
     override func viewWillAppear(animated: Bool) {
         
         TabManager.sharedInstance.totalCellCalculator()
@@ -41,6 +37,9 @@ class TabFloatingTableViewController: UITableViewController, UIPopoverPresentati
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+
         
         tabView = (delegate?.getView())!
         tabController = (delegate?.getController())!
@@ -148,7 +147,7 @@ class TabFloatingTableViewController: UITableViewController, UIPopoverPresentati
         // Checkout Options
         if TabManager.sharedInstance.currentTab.checkoutMethod == "" {
             
-            AlertManager.sharedInstance.checkoutOptions(self, title: "Checkout Options", message: "Please select your desired checkout method below.")
+            AlertManager.sharedInstance.checkoutOptions(self, controller: tabController, title: "Checkout Options", message: "Please select your desired checkout method below.")
             
             // If User already selected checkout option of stripe
         } else if TabManager.sharedInstance.currentTab.checkoutMethod == "stripe" {

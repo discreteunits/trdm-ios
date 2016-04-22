@@ -85,7 +85,7 @@ class AlertManager: UIViewController {
     }
     
     // Checkout Options Alert
-    func checkoutOptions(view: UIViewController, title: String, message: String) {
+    func checkoutOptions(view: UIViewController, controller: UIViewController, title: String, message: String) {
         
         // Create Controller
         let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
@@ -93,6 +93,7 @@ class AlertManager: UIViewController {
         
         // Create Actions
         let loginAction = UIAlertAction(title: "Closeout now ", style: .Default, handler: { (action) -> Void in
+            
             TabManager.sharedInstance.currentTab.checkoutMethod = "stripe"
             
             // Continue Place Order
@@ -104,6 +105,7 @@ class AlertManager: UIViewController {
             
         })
         let createAccountAction = UIAlertAction(title: "Closeout later with your Server", style: .Default , handler: { (action) -> Void in
+                        
             TabManager.sharedInstance.currentTab.checkoutMethod = "server"
             
             // Continue Place Order
@@ -115,6 +117,8 @@ class AlertManager: UIViewController {
         
         })
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action) -> Void in
+            
+            AnimationManager.sharedInstance.opaqueWindow(controller)
             
             if printFlag {
                 print("Cancel Selected")
@@ -344,6 +348,9 @@ class AlertManager: UIViewController {
         let goToTab = UIAlertAction(title: "Tab", style: .Default, handler: { (action) -> Void in
             
             TabManager.sharedInstance.tierIVToTab = true
+            
+            TabManager.sharedInstance.removeItemsIndicator()
+
             
             self.confirm(view)
             
