@@ -19,8 +19,8 @@ class TierNavigationController: ENSideMenuNavigationController, ENSideMenuDelega
 //        super.viewDidLoad()
         // FLYOUT MENU
         sideMenu = ENSideMenu(sourceView: self.view, menuViewController: MenuTableViewController(), menuPosition:.Right)
-        //sideMenu?.delegate = self //optional
-        sideMenu?.menuWidth = 260.0 // optional, default is 160
+        sideMenu?.delegate = self //optional
+        sideMenu?.menuWidth = 200.0 // optional, default is 160
         //sideMenu?.bouncingEnabled = true
         //sideMenu?.allowPanGesture = false
         // make navigation bar showing over side menu

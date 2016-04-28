@@ -187,7 +187,7 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
                     
         let windowWidth = self.view.bounds.size.width - 20
         let windowHeight = self.view.bounds.size.height
-        self.windowView = UIView(frame: CGRectMake(0, 0, windowWidth * 0.78, windowHeight))
+        self.windowView = UIView(frame: CGRectMake(0, 0, windowWidth * 0.60, windowHeight))
         self.windowView.backgroundColor = UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 1.0)
         self.windowView.layer.zPosition = 99999
         self.windowView.transform = CGAffineTransformMakeTranslation(-windowWidth, 0)
@@ -231,8 +231,8 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         self.TRDMLogo = "secondary-logomark-white_rgb_600_600.png"
         self.TRDMImage = UIImage(named: self.TRDMLogo)!
         self.TRDMImageView = UIImageView(image: self.TRDMImage)
-        self.TRDMImageView.frame = CGRectMake(0, 0,screenWidth / 2, screenWidth / 2)
-        self.TRDMImageView.frame.origin.y = (screenHeight / 1.6 )
+        self.TRDMImageView.frame = CGRectMake(0, 0,screenWidth * 0.40, screenWidth * 0.40)
+        self.TRDMImageView.frame.origin.y = (screenHeight / 1.48)
         self.TRDMImageView.frame.origin.x = 16
         self.TRDMImageView.alpha = 0.5
         self.TRDMImageView.layer.zPosition = 999999

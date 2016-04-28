@@ -187,7 +187,7 @@ class PopoverViewController: UITableViewController {
                 let trueIndex = indexPath.row - 1
                 
                 sgCell.servingLabel.layer.zPosition = 100
-                sgCell.servingLabel.font = UIFont.headerFont(18)
+                sgCell.servingLabel.font = UIFont.headerFont(24)
 
                 
                 // IF HARVEST

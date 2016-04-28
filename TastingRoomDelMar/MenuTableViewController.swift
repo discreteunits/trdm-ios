@@ -39,9 +39,9 @@ class MenuTableViewController: UITableViewController {
         let TRDMLogo = "secondary-logomark-white_rgb_600_600.png"
         let image = UIImage(named: TRDMLogo)
         let imageView = UIImageView(image: image!)
-        imageView.frame = CGRectMake(0, 0,screenWidth, screenWidth)
-        imageView.frame.origin.y = (screenHeight * 1.20)
-        imageView.frame.origin.x = (screenWidth / 3)
+        imageView.frame = CGRectMake(0, 0,screenWidth * 0.80, screenWidth * 0.80)
+        imageView.frame.origin.y = (screenHeight * 1.35)
+        imageView.frame.origin.x = (screenWidth * 0.23)
         imageView.alpha = 0.5
         imageView.transform = CGAffineTransformMakeRotation(CGFloat(M_PI + M_PI_2 + M_PI_4))
         

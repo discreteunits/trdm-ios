@@ -51,6 +51,8 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     // IF HARVEST
     var additions = [AnyObject]()
 
+    var tagsArray = [PFObject]()
+
 
 // ---------------------
     
@@ -62,6 +64,13 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+            self.tagsArrayCreation()
+            
+            print("tagsArrayCreation Completed")
+            
+        }
         
         tableView.tableFooterView = UIView()
         
@@ -490,6 +499,21 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         return .None
     }
     
+    // TAGS ARRAY CREATION
+    func tagsArrayCreation() {
+        
+        // Clean Up
+        self.tagsArray.removeAll()
+        
+        // Set
+        for object in RouteManager.sharedInstance.Route! as! [PFObject] {
+            
+            let tag = object["category"] as! PFObject
+            
+            self.tagsArray.append(tag)
+            
+        }
+    }
     
     // SUBPRODUCT QUERY
     func subproductQuery(parent: PFObject) -> [Product] {
@@ -499,6 +523,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         
         let query:PFQuery = PFQuery(className: "Product")
         query.whereKey("productType", equalTo: parentId)
+        query.whereKey("categories", containsAllObjectsInArray: tagsArray)
         
         // Synchronously Return Subproducts
         do {
