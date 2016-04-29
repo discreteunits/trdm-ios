@@ -51,7 +51,7 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         self.tierIQuery()
         
         // FLYOUT MENU
-        self.sideMenuController()?.sideMenu?.delegate = self
+        self.sideMenuController()!.sideMenu?.delegate = self
 
     }
     

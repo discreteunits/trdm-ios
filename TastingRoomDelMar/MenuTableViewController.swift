@@ -10,11 +10,12 @@ import UIKit
 import Parse
 import ParseUI
 
-class MenuTableViewController: UITableViewController {
+class MenuTableViewController: UITableViewController, ENSideMenuDelegate {
     var selectedMenuItem : Int = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.sideMenuController()?.sideMenu?.delegate = self
         
         // Customize apperance of table view
         tableView.contentInset = UIEdgeInsetsMake(64.0, 0, 0, 0) //

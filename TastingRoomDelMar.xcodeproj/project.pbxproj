@@ -88,6 +88,7 @@
 		D7E803971C56E152003C12D9 /* PopoverSGTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E803961C56E152003C12D9 /* PopoverSGTableViewCell.swift */; };
 		D7E803991C56E169003C12D9 /* PopoverQuantityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E803981C56E169003C12D9 /* PopoverQuantityTableViewCell.swift */; };
 		D7E8039B1C56E17B003C12D9 /* PopoverActionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E8039A1C56E17B003C12D9 /* PopoverActionTableViewCell.swift */; };
+		D7F174751CD3C813002BA588 /* SliderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F174741CD3C813002BA588 /* SliderViewController.swift */; };
 		D7F981101C44612800200639 /* ENSideMenuControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F9810F1C44612800200639 /* ENSideMenuControllerViewController.swift */; };
 		D7F981121C4461A300200639 /* ENSideMenuNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F981111C4461A300200639 /* ENSideMenuNavigationController.swift */; };
 		D7F981141C4461FD00200639 /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F981131C4461FD00200639 /* MenuTableViewController.swift */; };
@@ -204,6 +205,7 @@
 		D7E803961C56E152003C12D9 /* PopoverSGTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverSGTableViewCell.swift; sourceTree = "<group>"; };
 		D7E803981C56E169003C12D9 /* PopoverQuantityTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverQuantityTableViewCell.swift; sourceTree = "<group>"; };
 		D7E8039A1C56E17B003C12D9 /* PopoverActionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverActionTableViewCell.swift; sourceTree = "<group>"; };
+		D7F174741CD3C813002BA588 /* SliderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderViewController.swift; sourceTree = "<group>"; };
 		D7F9810F1C44612800200639 /* ENSideMenuControllerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ENSideMenuControllerViewController.swift; sourceTree = "<group>"; };
 		D7F981111C4461A300200639 /* ENSideMenuNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ENSideMenuNavigationController.swift; sourceTree = "<group>"; };
 		D7F981131C4461FD00200639 /* MenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
@@ -462,6 +464,7 @@
 				D7FFF7B71C3AFB0600020D9A /* Assets.xcassets */,
 				D7FFF7B91C3AFB0600020D9A /* LaunchScreen.storyboard */,
 				D7FFF7BC1C3AFB0600020D9A /* Info.plist */,
+				D7F174741CD3C813002BA588 /* SliderViewController.swift */,
 			);
 			path = TastingRoomDelMar;
 			sourceTree = "<group>";
@@ -767,6 +770,7 @@
 				D7B616841C62D7C3002CF1DE /* TabViewController.swift in Sources */,
 				D7498AB21C7F1A8C0086B7BD /* AnimationManager.swift in Sources */,
 				D7B6168C1C62DCFA002CF1DE /* TabActionTableViewCell.swift in Sources */,
+				D7F174751CD3C813002BA588 /* SliderViewController.swift in Sources */,
 				D7FACCFB1C46F1EF0006F6BE /* TierIVCollectionViewController.swift in Sources */,
 				D786D1C21C7D580D0034EA81 /* SignupSceneTwoTableViewController.swift in Sources */,
 				D7683B1D1CB33EFA00F79678 /* HistoryDetailTableViewCell.swift in Sources */,
