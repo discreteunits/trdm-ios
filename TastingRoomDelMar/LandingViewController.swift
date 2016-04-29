@@ -22,6 +22,7 @@ class LandingViewController: UIViewController {
     var signupActive = true
     
     var signupOrLogin = String()
+    
 
     // ------------
     override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
@@ -48,6 +49,7 @@ class LandingViewController: UIViewController {
         trdmLogo()
         buttons()
         
+
     }
     
     override func viewDidLoad() {
@@ -93,7 +95,7 @@ class LandingViewController: UIViewController {
         self.view.addSubview(skipButton)
         
         // Signup Button
-        let signupButton = UIButton(frame: CGRectMake(0, 0, screenWidth * 0.4, 40))
+        let signupButton = UIButton(frame: CGRectMake(0, 0, screenWidth * 0.4, screenHeight * 0.06))
         signupButton.frame.origin.x = screenWidth * 0.075
         signupButton.frame.origin.y = screenHeight * 0.8
         signupButton.setTitle("Sign Up", forState: .Normal)
@@ -109,7 +111,7 @@ class LandingViewController: UIViewController {
         self.view.addSubview(signupButton)
         
         // Login Button
-        let loginButton = UIButton(frame: CGRectMake(0, 0, screenWidth * 0.4, 40))
+        let loginButton = UIButton(frame: CGRectMake(0, 0, screenWidth * 0.4, screenHeight * 0.06))
         loginButton.frame.origin.x = screenWidth * 0.525
         loginButton.frame.origin.y = screenHeight * 0.8
         loginButton.setTitle("Log In", forState: .Normal)
@@ -125,7 +127,7 @@ class LandingViewController: UIViewController {
         self.view.addSubview(loginButton)
         
         // Facebook Button
-        let facebookButton = UIButton(frame: CGRectMake(0, 0, screenWidth * 0.85, 40))
+        let facebookButton = UIButton(frame: CGRectMake(0, 0, screenWidth * 0.85, screenHeight * 0.06))
         facebookButton.frame.origin.x = screenWidth * 0.075
         facebookButton.frame.origin.y = screenHeight * 0.875
         facebookButton.setTitle("Log in with Facebook", forState: .Normal)

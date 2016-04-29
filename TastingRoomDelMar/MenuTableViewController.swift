@@ -10,12 +10,11 @@ import UIKit
 import Parse
 import ParseUI
 
-
-
 class MenuTableViewController: UITableViewController {
     var selectedMenuItem : Int = 0
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         // Customize apperance of table view
         tableView.contentInset = UIEdgeInsetsMake(64.0, 0, 0, 0) //
@@ -40,7 +39,7 @@ class MenuTableViewController: UITableViewController {
         let image = UIImage(named: TRDMLogo)
         let imageView = UIImageView(image: image!)
         imageView.frame = CGRectMake(0, 0,screenWidth * 0.80, screenWidth * 0.80)
-        imageView.frame.origin.y = (screenHeight * 1.35)
+        imageView.frame.origin.y = (screenHeight * 1.32)
         imageView.frame.origin.x = (screenWidth * 0.23)
         imageView.alpha = 0.5
         imageView.transform = CGAffineTransformMakeRotation(CGFloat(M_PI + M_PI_2 + M_PI_4))
@@ -73,7 +72,7 @@ class MenuTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
+
         var cell = tableView.dequeueReusableCellWithIdentifier("CELL")
         var menuArray = [String]()
         

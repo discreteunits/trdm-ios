@@ -64,6 +64,7 @@ class TableNumberViewController: UIViewController, UITextFieldDelegate {
         tableNumberTextField.contentVerticalAlignment = .Center
         tableNumberTextField.textAlignment = .Center
         tableNumberTextField.backgroundColor = UIColor.whiteColor()
+        tableNumberTextField.keyboardAppearance = UIKeyboardAppearance.Dark
         tableNumberTextField.becomeFirstResponder()
         tableNumberTextField.delegate = self
         

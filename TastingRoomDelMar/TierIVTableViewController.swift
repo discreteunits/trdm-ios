@@ -169,7 +169,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         // If User Is Logged in
         if TabManager.sharedInstance.currentTab.userId == "" {
             cell.addToOrderButton.hidden = false
-            cell.addToOrderButton.backgroundColor = UIColor.lightGrayColor()
+            cell.addToOrderButton.backgroundColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.2)
             cell.addToOrderButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
             cell.addToOrderButton.layer.cornerRadius = 6.0
             cell.addToOrderButton.clipsToBounds = true

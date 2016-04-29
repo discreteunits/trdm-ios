@@ -172,7 +172,7 @@ class TabFloatingTableViewController: UITableViewController, UIPopoverPresentati
             let vc = segue.destinationViewController as! TableNumberViewController
             
             // Size Popover Window
-            vc.preferredContentSize = CGSizeMake(screenWidth, screenHeight*0.40)
+            vc.preferredContentSize = CGSizeMake(screenWidth, screenHeight*0.405)
             
             // Set Controller
             let controller = vc.popoverPresentationController
@@ -198,7 +198,7 @@ class TabFloatingTableViewController: UITableViewController, UIPopoverPresentati
             let vc = segue.destinationViewController as! AddGratuityViewController
             
             // Size Popover Window
-            vc.preferredContentSize = CGSizeMake(screenWidth, screenHeight*0.66)
+            vc.preferredContentSize = CGSizeMake(screenWidth, screenHeight*0.58)
             
             // Set Controller
             let controller = vc.popoverPresentationController

@@ -10,6 +10,10 @@ import UIKit
 
 class TierNavigationController: ENSideMenuNavigationController, ENSideMenuDelegate {
     
+    var screenSize = CGRect()
+    var screenWidth = CGFloat()
+    var screenHeight = CGFloat()
+    
     override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
         return UIInterfaceOrientationMask.Portrait
     }
@@ -17,10 +21,16 @@ class TierNavigationController: ENSideMenuNavigationController, ENSideMenuDelega
     
     override func viewDidLoad() {
 //        super.viewDidLoad()
+        
+        screenSize = UIScreen.mainScreen().bounds
+        screenWidth = screenSize.width
+        screenHeight = screenSize.height
+        
         // FLYOUT MENU
+        sideMenuController()
         sideMenu = ENSideMenu(sourceView: self.view, menuViewController: MenuTableViewController(), menuPosition:.Right)
         sideMenu?.delegate = self //optional
-        sideMenu?.menuWidth = 200.0 // optional, default is 160
+        sideMenu?.menuWidth = screenWidth * 0.58 // optional, default is 160
         //sideMenu?.bouncingEnabled = true
         //sideMenu?.allowPanGesture = false
         // make navigation bar showing over side menu

@@ -27,6 +27,8 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
     
     var heightConstraint = CGFloat()
 
+    // Price Formatter
+    let formatter = PriceFormatManager.priceFormatManager
 
 // -------------------------
     override func viewDidLoad() {
@@ -48,7 +50,7 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
         
         // Create Add Gratuity Label
         let addGratuityLabel = UILabel(frame: CGRectMake(0, 0, screenWidth, 30))
-        addGratuityLabel.frame.origin.y = 20
+        addGratuityLabel.frame.origin.y = (dynamicLocator*0.15)
         addGratuityLabel.frame.origin.x = 0
         addGratuityLabel.text = "Add Gratuity"
         addGratuityLabel.font = UIFont.headerFont(24)
@@ -56,70 +58,78 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
         addGratuityLabel.textAlignment = .Center
         // Create Text View
         let tableNumberTextView = UITextView(frame: CGRectMake(0, 0, screenWidth * 0.8, 80))
-        tableNumberTextView.frame.origin.y = 36
+        tableNumberTextView.frame.origin.y = (dynamicLocator*0.4)
         tableNumberTextView.frame.origin.x = screenWidth * 0.1
         tableNumberTextView.backgroundColor = UIColor.clearColor()
         tableNumberTextView.text = "We hope you enjoyed your experience at Tasting Room Del Mar! Come back soon!"
         tableNumberTextView.textColor = UIColor.blackColor()
-        tableNumberTextView.font = UIFont.basicFont(14)
+        tableNumberTextView.font = UIFont.basicFont(13)
         tableNumberTextView.textAlignment = .Center
         tableNumberTextView.userInteractionEnabled = false
         
         // Labels & Values
         let subTotalLabel = UILabel(frame: CGRectMake(0, 0, screenWidth * 0.3, 20))
-        subTotalLabel.frame.origin.y = dynamicLocator*1.8
+        subTotalLabel.frame.origin.y = dynamicLocator*1.4
         subTotalLabel.frame.origin.x = 8
         subTotalLabel.textAlignment = .Left
         subTotalLabel.text = "subtotal"
         subTotalLabel.font = UIFont.headerFont(18)
 
         let taxLabel = UILabel(frame: CGRectMake(0, 0, screenWidth * 0.3, 20))
-        taxLabel.frame.origin.y = (dynamicLocator*1.8)+20
+        taxLabel.frame.origin.y = (dynamicLocator*1.7)
         taxLabel.frame.origin.x = 8
         taxLabel.textAlignment = .Left
         taxLabel.text = "tax"
         taxLabel.font = UIFont.headerFont(18)
 
         let gratuityLabel = UILabel(frame: CGRectMake(0, 0, screenWidth * 0.3, 20))
-        gratuityLabel.frame.origin.y = (dynamicLocator*1.8)+40
+        gratuityLabel.frame.origin.y = (dynamicLocator*2.0)
         gratuityLabel.frame.origin.x = 8
         gratuityLabel.textAlignment = .Left
         gratuityLabel.text = "Gratuity"
         gratuityLabel.font = UIFont.headerFont(18)
 
         let totalLabel = UILabel(frame: CGRectMake(0, 0, screenWidth * 0.3, 20))
-        totalLabel.frame.origin.y = (dynamicLocator*1.8)+60
+        totalLabel.frame.origin.y = (dynamicLocator*2.3)
         totalLabel.frame.origin.x = 8
         totalLabel.textAlignment = .Left
         totalLabel.text = "total"
         totalLabel.font = UIFont.headerFont(18)
         
         let subTotalValueLabel = UILabel(frame: CGRectMake(0, 0, screenWidth * 0.3, 20))
-        subTotalValueLabel.frame.origin.y = dynamicLocator*1.8
+        subTotalValueLabel.frame.origin.y = dynamicLocator*1.4
         subTotalValueLabel.frame.origin.x = screenWidth * 0.65
         subTotalValueLabel.textAlignment = .Right
-        subTotalValueLabel.text = String(TabManager.sharedInstance.currentTab.subtotal)
+        let subTotalValue = TabManager.sharedInstance.currentTab.subtotal
+        let convertedSubTotalValue = formatter.formatPrice(subTotalValue)
+        subTotalValueLabel.text = String(convertedSubTotalValue)
         subTotalValueLabel.font = UIFont.headerFont(18)
 
         let taxValueLabel = UILabel(frame: CGRectMake(0, 0, screenWidth * 0.3, 20))
-        taxValueLabel.frame.origin.y = (dynamicLocator*1.8)+20
+        taxValueLabel.frame.origin.y = (dynamicLocator*1.7)
         taxValueLabel.frame.origin.x = screenWidth * 0.65
         taxValueLabel.textAlignment = .Right
-        taxValueLabel.text = String(TabManager.sharedInstance.currentTab.totalTax)
+        let taxValue = TabManager.sharedInstance.currentTab.totalTax
+        let convertedTaxValue = formatter.formatPrice(taxValue)
+        taxValueLabel.text = String(convertedTaxValue)
         taxValueLabel.font = UIFont.headerFont(18)
 
         let gratuityValueLabel = UILabel(frame: CGRectMake(0, 0, screenWidth * 0.3, 20))
-        gratuityValueLabel.frame.origin.y = (dynamicLocator*1.8)+40
+        gratuityValueLabel.frame.origin.y = (dynamicLocator*2.0)
         gratuityValueLabel.frame.origin.x = screenWidth * 0.65
         gratuityValueLabel.textAlignment = .Right
-        gratuityValueLabel.text = String(TabManager.sharedInstance.currentTab.gratuity)
+        let gratuityValue = TabManager.sharedInstance.currentTab.gratuity
+        let convertedGratuityValue = formatter.formatPrice(gratuityValue)
+        gratuityValueLabel.text = String(convertedGratuityValue)
         gratuityValueLabel.font = UIFont.headerFont(18)
         
         let totalValueLabel = UILabel(frame: CGRectMake(0, 0, screenWidth * 0.3, 20))
-        totalValueLabel.frame.origin.y = (dynamicLocator*1.8)+60
+        totalValueLabel.frame.origin.y = (dynamicLocator*2.3)
         totalValueLabel.frame.origin.x = screenWidth * 0.65
         totalValueLabel.textAlignment = .Right
-        totalValueLabel.text = String(TabManager.sharedInstance.currentTab.grandTotal)
+        let totalValue = TabManager.sharedInstance.currentTab.grandTotal
+        let convertedTotalValue = formatter.formatPrice(totalValue)
+        totalValueLabel.text = String(convertedTotalValue)
         totalValueLabel.font = UIFont.headerFont(18)
 
         // Collection View
@@ -130,7 +140,7 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
         layout.itemSize = CGSize(width: itemWidth, height: 50)
         
         gratuityCollectionView = UICollectionView(frame: CGRectMake(0, 0, screenWidth, 66), collectionViewLayout: layout)
-        gratuityCollectionView.frame.origin.y = (dynamicLocator*1.8)+80
+        gratuityCollectionView.frame.origin.y = (dynamicLocator*2.65)
         gratuityCollectionView.frame.origin.x = 0
         gratuityCollectionView.backgroundColor = UIColor.clearColor()
         gratuityCollectionView.dataSource = self
@@ -140,8 +150,8 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
         // Create Cancel Button
         let buttonWidth = (screenWidth - 24) / 2
         
-        let cancelButton = UIButton(frame: CGRectMake(0, 0, buttonWidth, 60))
-        cancelButton.frame.origin.y = (dynamicLocator*1.8)+150
+        let cancelButton = UIButton(frame: CGRectMake(0, 0, buttonWidth, dynamicLocator*0.75))
+        cancelButton.frame.origin.y = (dynamicLocator*3.75)
         cancelButton.frame.origin.x = 8
         cancelButton.setTitle("Cancel", forState: .Normal)
         cancelButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
@@ -151,8 +161,8 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
         cancelButton.clipsToBounds = true
         cancelButton.addTarget(self, action: #selector(AddGratuityViewController.cancelPopover), forControlEvents: UIControlEvents.TouchUpInside)
         // Create Place Order Button
-        let placeOrderButton = UIButton(frame: CGRectMake(0, 0, buttonWidth, 60))
-        placeOrderButton.frame.origin.y = (dynamicLocator*1.8)+150
+        let placeOrderButton = UIButton(frame: CGRectMake(0, 0, buttonWidth, dynamicLocator*0.75))
+        placeOrderButton.frame.origin.y = (dynamicLocator*3.75)
         placeOrderButton.frame.origin.x = buttonWidth + 16
         placeOrderButton.setTitle("Place Order", forState: .Normal)
         placeOrderButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
@@ -260,25 +270,28 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
         if indexPath.row == 0 {
 
             cell.label.text = "Cash"
-            cell.label.textColor = UIColor.blackColor()
+            cell.percentSignLabel.text = ""
             return cell
             
         // 15% Option
         } else if indexPath.row == 1 {
 
             cell.label.text = "15"
+            cell.percentSignLabel.text = "%"
             return cell
             
         // 20% Option
         } else if indexPath.row == 2 {
 
             cell.label.text = "20"
+            cell.percentSignLabel.text = "%"
             return cell
             
         // 25% Option
         } else if indexPath.row == 3 {
 
             cell.label.text = "25"
+            cell.percentSignLabel.text = "%"
             return cell
             
         }
@@ -294,7 +307,9 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
         let selectedCell = collectionView.cellForItemAtIndexPath(indexPath)! as! AddGratuityCollectionViewCell
         
         selectedCell.label.backgroundColor = UIColor.blackColor()
+        selectedCell.percentSignLabel.backgroundColor = UIColor.clearColor()
         selectedCell.label.textColor = UIColor.whiteColor()
+        selectedCell.percentSignLabel.textColor = UIColor.whiteColor()
         
         // Cash
         if indexPath.row == 0 {
@@ -344,7 +359,9 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
         let selectedCell = collectionView.cellForItemAtIndexPath(indexPath)! as! AddGratuityCollectionViewCell
         
         selectedCell.label.backgroundColor = UIColor.clearColor()
+        selectedCell.percentSignLabel.backgroundColor = UIColor.clearColor()
         selectedCell.label.textColor = UIColor.blackColor()
+        selectedCell.percentSignLabel.textColor = UIColor.blackColor()
         
     }
     
