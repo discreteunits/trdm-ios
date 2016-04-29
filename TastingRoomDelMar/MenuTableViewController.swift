@@ -141,13 +141,25 @@ class MenuTableViewController: UITableViewController, ENSideMenuDelegate {
             if PFUser.currentUser()!.username != nil {
                 
                 let tabStoryboard: UIStoryboard = UIStoryboard(name: "TabStoryboard", bundle: nil)
-                
+
                 destViewController = tabStoryboard.instantiateViewControllerWithIdentifier("Tab")
                 destViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
                 destViewController.modalPresentationStyle = .CurrentContext
                 
-                let rootVC = sideMenuController() as! UIViewController
-                rootVC.presentViewController(destViewController, animated: true, completion: nil)
+                
+                if let rootVC = sideMenuController() as? UIViewController {
+                    
+//                let rootVC = sideMenuController() as! UIViewController
+                    rootVC.presentViewController(destViewController, animated: true, completion: nil)
+                    
+                } else {
+                    
+                    let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                    let vc = mainStoryboard.instantiateViewControllerWithIdentifier("Menu")
+                    vc.presentViewController(destViewController, animated: true, completion: nil)
+                    
+                }
+                
                 
                 // Remove Items Indicator
                 TabManager.sharedInstance.removeItemsIndicator()

@@ -13,7 +13,7 @@ import ParseFacebookUtilsV4
 import ReachabilitySwift
 
 
-class LandingViewController: UIViewController {
+class LandingViewController: UIViewController, ENSideMenuDelegate {
     
     var screenSize = CGRect()
     var screenWidth = CGFloat()

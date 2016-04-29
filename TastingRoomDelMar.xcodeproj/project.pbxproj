@@ -89,6 +89,7 @@
 		D7E803991C56E169003C12D9 /* PopoverQuantityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E803981C56E169003C12D9 /* PopoverQuantityTableViewCell.swift */; };
 		D7E8039B1C56E17B003C12D9 /* PopoverActionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E8039A1C56E17B003C12D9 /* PopoverActionTableViewCell.swift */; };
 		D7F174751CD3C813002BA588 /* SliderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F174741CD3C813002BA588 /* SliderViewController.swift */; };
+		D7F174771CD42850002BA588 /* SignupNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F174761CD42850002BA588 /* SignupNavigationController.swift */; };
 		D7F981101C44612800200639 /* ENSideMenuControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F9810F1C44612800200639 /* ENSideMenuControllerViewController.swift */; };
 		D7F981121C4461A300200639 /* ENSideMenuNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F981111C4461A300200639 /* ENSideMenuNavigationController.swift */; };
 		D7F981141C4461FD00200639 /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F981131C4461FD00200639 /* MenuTableViewController.swift */; };
@@ -206,6 +207,7 @@
 		D7E803981C56E169003C12D9 /* PopoverQuantityTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverQuantityTableViewCell.swift; sourceTree = "<group>"; };
 		D7E8039A1C56E17B003C12D9 /* PopoverActionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverActionTableViewCell.swift; sourceTree = "<group>"; };
 		D7F174741CD3C813002BA588 /* SliderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderViewController.swift; sourceTree = "<group>"; };
+		D7F174761CD42850002BA588 /* SignupNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupNavigationController.swift; sourceTree = "<group>"; };
 		D7F9810F1C44612800200639 /* ENSideMenuControllerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ENSideMenuControllerViewController.swift; sourceTree = "<group>"; };
 		D7F981111C4461A300200639 /* ENSideMenuNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ENSideMenuNavigationController.swift; sourceTree = "<group>"; };
 		D7F981131C4461FD00200639 /* MenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
@@ -328,6 +330,7 @@
 			children = (
 				D7D8099D1C7BCFBA00A3F5E6 /* AccountManager.swift */,
 				D7D809941C7BCE1D00A3F5E6 /* SignupStoryboard.storyboard */,
+				D7F174761CD42850002BA588 /* SignupNavigationController.swift */,
 				D7D809961C7BCE5000A3F5E6 /* LandingViewController.swift */,
 				D78594931C7BF141000972FB /* SignupSceneOneViewController.swift */,
 				D78594951C7BF164000972FB /* SignupSceneOneTableViewController.swift */,
@@ -773,6 +776,7 @@
 				D7F174751CD3C813002BA588 /* SliderViewController.swift in Sources */,
 				D7FACCFB1C46F1EF0006F6BE /* TierIVCollectionViewController.swift in Sources */,
 				D786D1C21C7D580D0034EA81 /* SignupSceneTwoTableViewController.swift in Sources */,
+				D7F174771CD42850002BA588 /* SignupNavigationController.swift in Sources */,
 				D7683B1D1CB33EFA00F79678 /* HistoryDetailTableViewCell.swift in Sources */,
 				D7E8039B1C56E17B003C12D9 /* PopoverActionTableViewCell.swift in Sources */,
 				D733D4681C69746C00682A84 /* PaymentAddViewController.swift in Sources */,

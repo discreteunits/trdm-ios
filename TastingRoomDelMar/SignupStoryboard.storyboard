@@ -29,10 +29,10 @@
             </objects>
             <point key="canvasLocation" x="424" y="402"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Signup Navigation Controller-->
         <scene sceneID="qSO-nJ-3IJ">
             <objects>
-                <navigationController storyboardIdentifier="createAccount" id="ogt-9X-mba" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="createAccount" id="ogt-9X-mba" customClass="SignupNavigationController" customModule="TastingRoomDelMar" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="ke5-P4-Q72">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
