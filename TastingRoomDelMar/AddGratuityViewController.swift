@@ -15,9 +15,16 @@ protocol AddGratuityViewDelegate {
     func passTabController() -> UIViewController
 }
 
-class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+class GSlider : UISlider {
+    
+    override func trackRectForBounds(bounds: CGRect) -> CGRect {
+        var newBounds = super.trackRectForBounds(bounds)
+        newBounds.size.height = 24
+        return newBounds
+    }
+}
 
-    var gratuityCollectionView: UICollectionView!
+class AddGratuityViewController: UIViewController {
     
     var selectedGratuity = String()
     
@@ -29,17 +36,30 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
 
     // Price Formatter
     let formatter = PriceFormatManager.priceFormatManager
+    
+    var gratuityValue = String()
+    var screenSizeSlider = CGRect()
+    var screenWidthSlider = CGFloat()
+    var screenHeightSlider = CGFloat()
+    
+    var gratuitySlider = GSlider()
+    var gratuityValueLabel = UILabel()
+    
+    var subTotalValueLabel = UILabel()
+    var taxValueLabel = UILabel()
+    var totalValueLabel = UILabel()
+
 
 // -------------------------
     override func viewDidLoad() {
         super.viewDidLoad()
         
+
+        
         let tabController = delegate?.passTabController()
         heightConstraint = tabController!.view.bounds.height
         let dynamicLocator = CGFloat(heightConstraint / 8)
 
-
-        
 
         let popoverView = self.view
         popoverView.layer.backgroundColor = UIColor(red: 246/255.0, green: 246/255.0, blue: 246/255.0, alpha: 1.0).CGColor
@@ -96,7 +116,7 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
         totalLabel.text = "total"
         totalLabel.font = UIFont.headerFont(18)
         
-        let subTotalValueLabel = UILabel(frame: CGRectMake(0, 0, screenWidth * 0.3, 20))
+        subTotalValueLabel = UILabel(frame: CGRectMake(0, 0, screenWidth * 0.3, 20))
         subTotalValueLabel.frame.origin.y = dynamicLocator*1.4
         subTotalValueLabel.frame.origin.x = screenWidth * 0.65
         subTotalValueLabel.textAlignment = .Right
@@ -105,7 +125,7 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
         subTotalValueLabel.text = String(convertedSubTotalValue)
         subTotalValueLabel.font = UIFont.headerFont(18)
 
-        let taxValueLabel = UILabel(frame: CGRectMake(0, 0, screenWidth * 0.3, 20))
+        taxValueLabel = UILabel(frame: CGRectMake(0, 0, screenWidth * 0.3, 20))
         taxValueLabel.frame.origin.y = (dynamicLocator*1.7)
         taxValueLabel.frame.origin.x = screenWidth * 0.65
         taxValueLabel.textAlignment = .Right
@@ -114,16 +134,16 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
         taxValueLabel.text = String(convertedTaxValue)
         taxValueLabel.font = UIFont.headerFont(18)
 
-        let gratuityValueLabel = UILabel(frame: CGRectMake(0, 0, screenWidth * 0.3, 20))
+        gratuityValueLabel = UILabel(frame: CGRectMake(0, 0, screenWidth * 0.3, 20))
         gratuityValueLabel.frame.origin.y = (dynamicLocator*2.0)
         gratuityValueLabel.frame.origin.x = screenWidth * 0.65
         gratuityValueLabel.textAlignment = .Right
         let gratuityValue = TabManager.sharedInstance.currentTab.gratuity
         let convertedGratuityValue = formatter.formatPrice(gratuityValue)
-        gratuityValueLabel.text = String(convertedGratuityValue)
+        gratuityValueLabel.text = "18%"
         gratuityValueLabel.font = UIFont.headerFont(18)
         
-        let totalValueLabel = UILabel(frame: CGRectMake(0, 0, screenWidth * 0.3, 20))
+        totalValueLabel = UILabel(frame: CGRectMake(0, 0, screenWidth * 0.3, 20))
         totalValueLabel.frame.origin.y = (dynamicLocator*2.3)
         totalValueLabel.frame.origin.x = screenWidth * 0.65
         totalValueLabel.textAlignment = .Right
@@ -132,20 +152,21 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
         totalValueLabel.text = String(convertedTotalValue)
         totalValueLabel.font = UIFont.headerFont(18)
 
-        // Collection View
-        let itemWidth = (screenWidth/5)
+
+        // Gratuity Slider
+        screenSizeSlider = UIScreen.mainScreen().bounds
+        screenWidthSlider = screenSizeSlider.width
+        screenHeightSlider = screenSizeSlider.height
         
-        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
-        layout.itemSize = CGSize(width: itemWidth, height: 50)
-        
-        gratuityCollectionView = UICollectionView(frame: CGRectMake(0, 0, screenWidth, 66), collectionViewLayout: layout)
-        gratuityCollectionView.frame.origin.y = (dynamicLocator*2.65)
-        gratuityCollectionView.frame.origin.x = 0
-        gratuityCollectionView.backgroundColor = UIColor.clearColor()
-        gratuityCollectionView.dataSource = self
-        gratuityCollectionView.delegate = self
-        gratuityCollectionView.registerClass(AddGratuityCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
+        gratuitySlider = GSlider(frame:CGRectMake(0, 0, screenWidth*0.98, 66))
+        gratuitySlider.frame.origin.y = (dynamicLocator*2.65)
+        gratuitySlider.frame.origin.x = screenWidth*0.01
+        gratuitySlider.minimumValue = 0
+        gratuitySlider.maximumValue = 100
+        gratuitySlider.continuous = true
+        gratuitySlider.tintColor = UIColor.primaryGreenColor()
+        gratuitySlider.value = 18
+        gratuitySlider.addTarget(self, action: "sliderValueDidChange:", forControlEvents: .ValueChanged)
         
         // Create Cancel Button
         let buttonWidth = (screenWidth - 24) / 2
@@ -188,7 +209,34 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
         popoverView.addSubview(gratuityValueLabel)
         popoverView.addSubview(totalValueLabel)
     
-        popoverView.addSubview(gratuityCollectionView)
+        popoverView.addSubview(gratuitySlider)
+
+    }
+    
+    func sliderValueDidChange(sender:UISlider!) {
+        
+        let output = Int(sender.value)
+        gratuitySlider.value = Float(output)
+        
+        print("Gratuity Value: \(sender.value)")
+        gratuityValueLabel.text = String(output) + "%"
+        
+        selectedGratuity = String(output)
+        
+        TabManager.sharedInstance.totalCellCalculator()
+        TabManager.sharedInstance.gratuityCalculator(String(output))
+        
+        let subTotalValue = TabManager.sharedInstance.currentTab.subtotal
+        let convertedSubTotalValue = formatter.formatPrice(subTotalValue)
+        subTotalValueLabel.text = String(convertedSubTotalValue)
+     
+        let taxValue = TabManager.sharedInstance.currentTab.totalTax
+        let convertedTaxValue = formatter.formatPrice(taxValue)
+        taxValueLabel.text = String(convertedTaxValue)
+        
+        let totalValue = TabManager.sharedInstance.currentTab.grandTotal
+        let convertedTotalValue = formatter.formatPrice(totalValue)
+        totalValueLabel.text = String(convertedTotalValue)
         
     }
     
@@ -215,7 +263,6 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
                     if printFlag {
                         print("Place Order, CloudCode Function Returned: \(result)")
                     }
-                    
                 }
             
 //            AlertManager.sharedInstance.greatSuccessPreConfirm(self, title: "Great Success!", message: "Your order has been received. We'll notify you once it's been confirmed.")
@@ -234,7 +281,6 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
             AlertManager.sharedInstance.addGratuityAlert(self, title: "Whoops", message: "Please select a gratuity option")
 
         }
-        
     }
     
     func cancelPopover() {
@@ -248,123 +294,6 @@ class AddGratuityViewController: UIViewController, UICollectionViewDelegateFlowL
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    
-    // Collection Data Source
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        return 4
-        
-    }
-    
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        
-        let cell = gratuityCollectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! AddGratuityCollectionViewCell
-        
-        cell.layer.borderWidth = 2
-        cell.layer.borderColor = UIColor(red: 224/255.0, green: 224/255.0, blue: 224/255.0, alpha: 1.0).CGColor
-        cell.layer.cornerRadius = 10.0
-        cell.clipsToBounds = true
-        
-        // Cash Option
-        if indexPath.row == 0 {
-
-            cell.label.text = "Cash"
-            cell.percentSignLabel.text = ""
-            return cell
-            
-        // 15% Option
-        } else if indexPath.row == 1 {
-
-            cell.label.text = "15"
-            cell.percentSignLabel.text = "%"
-            return cell
-            
-        // 20% Option
-        } else if indexPath.row == 2 {
-
-            cell.label.text = "20"
-            cell.percentSignLabel.text = "%"
-            return cell
-            
-        // 25% Option
-        } else if indexPath.row == 3 {
-
-            cell.label.text = "25"
-            cell.percentSignLabel.text = "%"
-            return cell
-            
-        }
-        
-        
-        return cell
-        
-        
-    }
-    
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        
-        let selectedCell = collectionView.cellForItemAtIndexPath(indexPath)! as! AddGratuityCollectionViewCell
-        
-        selectedCell.label.backgroundColor = UIColor.blackColor()
-        selectedCell.percentSignLabel.backgroundColor = UIColor.clearColor()
-        selectedCell.label.textColor = UIColor.whiteColor()
-        selectedCell.percentSignLabel.textColor = UIColor.whiteColor()
-        
-        // Cash
-        if indexPath.row == 0 {
-            
-            // Set
-            selectedGratuity = selectedCell.label.text!
-            
-            if printFlag {
-                print("User chose a gratuity of: \(selectedGratuity).")
-            }
-            
-        // 15%
-        } else if indexPath.row == 1 {
-            
-            // Set
-            selectedGratuity = selectedCell.label.text!
-            
-            if printFlag {
-                print("User chose a gratuity of: \(selectedGratuity) precent.")
-            }
-            
-        // 20%
-        } else if indexPath.row == 2 {
-            
-            // Set
-            selectedGratuity = selectedCell.label.text!
-            
-            if printFlag {
-                print("User chose a gratuity of: \(selectedGratuity) precent.")
-            }
-            
-        // 25%
-        } else if indexPath.row == 3 {
-            
-            // Set
-            selectedGratuity = selectedCell.label.text!
-            
-            if printFlag {
-                print("User chose a gratuity of: \(selectedGratuity) precent.")
-            }
-            
-        }
-        
-    }
-    
-    func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
-        let selectedCell = collectionView.cellForItemAtIndexPath(indexPath)! as! AddGratuityCollectionViewCell
-        
-        selectedCell.label.backgroundColor = UIColor.clearColor()
-        selectedCell.percentSignLabel.backgroundColor = UIColor.clearColor()
-        selectedCell.label.textColor = UIColor.blackColor()
-        selectedCell.percentSignLabel.textColor = UIColor.blackColor()
-        
-    }
-    
 }
 
 extension Double {
@@ -372,3 +301,5 @@ extension Double {
         return Double(self)
     }
 }
+
+
