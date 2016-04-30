@@ -10,13 +10,22 @@ import UIKit
 import Parse
 import ParseUI
 
+<<<<<<< HEAD
 class MenuTableViewController: UITableViewController, ENSideMenuDelegate {
+=======
+
+
+class MenuTableViewController: UITableViewController {
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
     var selectedMenuItem : Int = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         
+<<<<<<< HEAD
         self.sideMenuController()?.sideMenu?.delegate = self
         
+=======
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
         // Customize apperance of table view
         tableView.contentInset = UIEdgeInsetsMake(64.0, 0, 0, 0) //
         tableView.separatorStyle = .None
@@ -39,9 +48,15 @@ class MenuTableViewController: UITableViewController, ENSideMenuDelegate {
         let TRDMLogo = "secondary-logomark-white_rgb_600_600.png"
         let image = UIImage(named: TRDMLogo)
         let imageView = UIImageView(image: image!)
+<<<<<<< HEAD
         imageView.frame = CGRectMake(0, 0,screenWidth * 0.80, screenWidth * 0.80)
         imageView.frame.origin.y = (screenHeight * 1.32)
         imageView.frame.origin.x = (screenWidth * 0.23)
+=======
+        imageView.frame = CGRectMake(0, 0,screenWidth, screenWidth)
+        imageView.frame.origin.y = (screenHeight * 1.20)
+        imageView.frame.origin.x = (screenWidth / 3)
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
         imageView.alpha = 0.5
         imageView.transform = CGAffineTransformMakeRotation(CGFloat(M_PI + M_PI_2 + M_PI_4))
         
@@ -73,7 +88,11 @@ class MenuTableViewController: UITableViewController, ENSideMenuDelegate {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
         var cell = tableView.dequeueReusableCellWithIdentifier("CELL")
         var menuArray = [String]()
         
@@ -141,11 +160,16 @@ class MenuTableViewController: UITableViewController, ENSideMenuDelegate {
             if PFUser.currentUser()!.username != nil {
                 
                 let tabStoryboard: UIStoryboard = UIStoryboard(name: "TabStoryboard", bundle: nil)
+<<<<<<< HEAD
 
+=======
+                
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
                 destViewController = tabStoryboard.instantiateViewControllerWithIdentifier("Tab")
                 destViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
                 destViewController.modalPresentationStyle = .CurrentContext
                 
+<<<<<<< HEAD
                 
                 if let rootVC = sideMenuController() as? UIViewController {
                     
@@ -160,6 +184,10 @@ class MenuTableViewController: UITableViewController, ENSideMenuDelegate {
                     
                 }
                 
+=======
+                let rootVC = sideMenuController() as! UIViewController
+                rootVC.presentViewController(destViewController, animated: true, completion: nil)
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
                 
                 // Remove Items Indicator
                 TabManager.sharedInstance.removeItemsIndicator()

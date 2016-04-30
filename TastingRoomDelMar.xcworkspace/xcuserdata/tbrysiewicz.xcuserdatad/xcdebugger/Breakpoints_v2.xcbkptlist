@@ -42,11 +42,19 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TastingRoomDelMar/TierIVTableViewController.swift"
+<<<<<<< HEAD
             timestampString = "483566936.682726"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "267"
             endingLineNumber = "267"
+=======
+            timestampString = "482959438.9151"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "258"
+            endingLineNumber = "258"
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
             landmarkName = "tableView(_:cellForRowAtIndexPath:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -58,11 +66,19 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TastingRoomDelMar/TierIVTableViewController.swift"
+<<<<<<< HEAD
             timestampString = "483566936.682726"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "342"
             endingLineNumber = "342"
+=======
+            timestampString = "482959438.9151"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "333"
+            endingLineNumber = "333"
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
             landmarkName = "TierIVTableViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -74,15 +90,24 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TastingRoomDelMar/LandingViewController.swift"
+<<<<<<< HEAD
             timestampString = "483666164.842842"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "166"
             endingLineNumber = "166"
+=======
+            timestampString = "482515563.352651"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
             landmarkName = "buttons()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
+<<<<<<< HEAD
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
@@ -161,5 +186,7 @@
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
+=======
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
    </Breakpoints>
 </Bucket>

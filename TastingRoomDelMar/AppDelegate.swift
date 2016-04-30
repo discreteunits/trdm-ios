@@ -27,11 +27,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+<<<<<<< HEAD
+=======
+        BuddyBuildSDK.setup()
+        
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
         
         // Remove Auto Layout Constraint Errors From Log
         NSUserDefaults.standardUserDefaults().setValue(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
 
         
+<<<<<<< HEAD
+=======
+        
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
         Parse.enableLocalDatastore()
         
         Parse.setApplicationId(AppConfiguration.sharedInstance.databaseAppId,

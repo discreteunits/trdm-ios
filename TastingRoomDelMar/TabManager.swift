@@ -186,10 +186,17 @@ class TabManager: NSObject {
             var lineObjectId: String
             if lineitem.path == "Eat" {
                 lineProductId = lineitem.subproduct.productId
+<<<<<<< HEAD
                 lineObjectId = lineitem.objectId
             } else if lineitem.path == "Drink" {
                 lineProductId = lineitem.productId
                 lineObjectId = lineitem.subproduct.objectId
+=======
+                lineObjectId = lineitem.subproduct.objectId
+            } else if lineitem.path == "Drink" {
+                lineProductId = lineitem.productId
+                lineObjectId = lineitem.objectId
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
             } else {
                 lineProductId = lineitem.productId
                 lineObjectId = lineitem.objectId
@@ -202,6 +209,7 @@ class TabManager: NSObject {
                 "modifiers": modifiers,
             ]
             
+<<<<<<< HEAD
             // Lightspeed needs choice on same level as product being ordered
             let paramLineItemParent : [String:AnyObject] = [
                 "objectId": lineitem.objectId,
@@ -214,6 +222,12 @@ class TabManager: NSObject {
                 deliveryOrders.append(paramLineItem)
             } else if lineitem.type == "takeaway" {
                 takeawayOrders.append(paramLineItemParent)
+=======
+            // Build Delivery and Take Away Arrays
+            if lineitem.type == "delivery" {
+                deliveryOrders.append(paramLineItem)
+            } else if lineitem.type == "takeaway" {
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
                 takeawayOrders.append(paramLineItem)
             }
         }

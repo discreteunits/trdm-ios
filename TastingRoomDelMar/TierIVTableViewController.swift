@@ -51,8 +51,11 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     // IF HARVEST
     var additions = [AnyObject]()
 
+<<<<<<< HEAD
     var tagsArray = [PFObject]()
 
+=======
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
 
 // ---------------------
     
@@ -65,6 +68,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     override func viewDidLoad() {
         super.viewDidLoad()
         
+<<<<<<< HEAD
         dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
             self.tagsArrayCreation()
             
@@ -72,6 +76,8 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             
         }
         
+=======
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
         tableView.tableFooterView = UIView()
         
         self.tableView.reloadData()
@@ -169,7 +175,11 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         // If User Is Logged in
         if TabManager.sharedInstance.currentTab.userId == "" {
             cell.addToOrderButton.hidden = false
+<<<<<<< HEAD
             cell.addToOrderButton.backgroundColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.2)
+=======
+            cell.addToOrderButton.backgroundColor = UIColor.lightGrayColor()
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
             cell.addToOrderButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
             cell.addToOrderButton.layer.cornerRadius = 6.0
             cell.addToOrderButton.clipsToBounds = true
@@ -444,6 +454,11 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             
             } else {
                 
+<<<<<<< HEAD
+=======
+                
+                
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
                 popoverDynamicHeight = 1
                 popoverHeightCalculation = ((popoverDynamicHeight + 3) * 100)
                 let subproductsArray = subproductQuery(product)
@@ -499,6 +514,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         return .None
     }
     
+<<<<<<< HEAD
     // TAGS ARRAY CREATION
     func tagsArrayCreation() {
         
@@ -514,6 +530,8 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             
         }
     }
+=======
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
     
     // SUBPRODUCT QUERY
     func subproductQuery(parent: PFObject) -> [Product] {
@@ -523,7 +541,10 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         
         let query:PFQuery = PFQuery(className: "Product")
         query.whereKey("productType", equalTo: parentId)
+<<<<<<< HEAD
         query.whereKey("categories", containsAllObjectsInArray: tagsArray)
+=======
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
         
         // Synchronously Return Subproducts
         do {

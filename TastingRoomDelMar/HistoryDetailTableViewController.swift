@@ -115,7 +115,11 @@ class HistoryDetailTableViewController: UITableViewController {
             
             // Styles
             cell.qtyLabel.font = UIFont.headerFont(18)
+<<<<<<< HEAD
             cell.itemLabel.font = UIFont.headerFont(24)
+=======
+            cell.itemLabel.font = UIFont.headerFont(28)
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
             cell.priceLabel.font = UIFont.headerFont(18)
             
             // Functionality

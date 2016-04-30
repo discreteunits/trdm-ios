@@ -12,7 +12,10 @@ import UIKit
 protocol TableNumberViewDelegate {
     func gratuitySegue()
     func removeOpaque()
+<<<<<<< HEAD
     func passTabController() -> UIViewController
+=======
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
 }
 
 class TableNumberViewController: UIViewController, UITextFieldDelegate {
@@ -24,18 +27,24 @@ class TableNumberViewController: UIViewController, UITextFieldDelegate {
     var delegate: TableNumberViewDelegate?
     var TabFloatingTableViewControllerRef: TabTableViewController?
     
+<<<<<<< HEAD
     var heightConstraint = CGFloat()
     
+=======
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
 // -------------------
     override func viewDidLoad() {
         super.viewDidLoad()
 
+<<<<<<< HEAD
         
         let tabController = delegate?.passTabController()
         heightConstraint = tabController!.view.bounds.height
         let dynamicFontSize = CGFloat(heightConstraint / 8)
 
         
+=======
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
         let popoverView = self.view
             popoverView.layer.backgroundColor = UIColor(red: 246/255.0, green: 246/255.0, blue: 246/255.0, alpha: 1.0).CGColor
         
@@ -52,11 +61,19 @@ class TableNumberViewController: UIViewController, UITextFieldDelegate {
         enterTableNumberLabel.textColor = UIColor.blackColor()
         enterTableNumberLabel.textAlignment = .Center
         // Create Text Field
+<<<<<<< HEAD
         tableNumberTextField = UITextField(frame: CGRectMake(0, 0, screenWidth * 0.3, dynamicFontSize + 16))
         tableNumberTextField.frame.origin.y = 54
         tableNumberTextField.frame.origin.x = screenWidth * 0.36
         tableNumberTextField.placeholder = "23"
         tableNumberTextField.font = UIFont.basicFont(dynamicFontSize)
+=======
+        tableNumberTextField = UITextField(frame: CGRectMake(0, 0, screenWidth * 0.3, 100))
+        tableNumberTextField.frame.origin.y = 54
+        tableNumberTextField.frame.origin.x = screenWidth * 0.36
+        tableNumberTextField.placeholder = "23"
+        tableNumberTextField.font = UIFont.basicFont(72)
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
         tableNumberTextField.autocorrectionType = .No
         tableNumberTextField.keyboardType = .NumberPad
         tableNumberTextField.returnKeyType = .Done
@@ -64,15 +81,23 @@ class TableNumberViewController: UIViewController, UITextFieldDelegate {
         tableNumberTextField.contentVerticalAlignment = .Center
         tableNumberTextField.textAlignment = .Center
         tableNumberTextField.backgroundColor = UIColor.whiteColor()
+<<<<<<< HEAD
         tableNumberTextField.keyboardAppearance = UIKeyboardAppearance.Dark
+=======
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
         tableNumberTextField.becomeFirstResponder()
         tableNumberTextField.delegate = self
         
         // Create Cancel Button
         let buttonWidth = (screenWidth - 24) / 2
         
+<<<<<<< HEAD
         let cancelButton = UIButton(frame: CGRectMake(0, 0, buttonWidth, heightConstraint / 10))
         cancelButton.frame.origin.y = dynamicFontSize * 2.3
+=======
+        let cancelButton = UIButton(frame: CGRectMake(0, 0, buttonWidth, 60))
+        cancelButton.frame.origin.y = 160
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
         cancelButton.frame.origin.x = 8
         cancelButton.setTitle("Cancel", forState: .Normal)
         cancelButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
@@ -82,8 +107,13 @@ class TableNumberViewController: UIViewController, UITextFieldDelegate {
         cancelButton.clipsToBounds = true
         cancelButton.addTarget(self, action: #selector(TableNumberViewController.cancelPopover), forControlEvents: UIControlEvents.TouchUpInside)
         // Create Place Order Button
+<<<<<<< HEAD
         let placeOrderButton = UIButton(frame: CGRectMake(0, 0, buttonWidth, heightConstraint / 10))
         placeOrderButton.frame.origin.y = dynamicFontSize * 2.3
+=======
+        let placeOrderButton = UIButton(frame: CGRectMake(0, 0, buttonWidth, 60))
+        placeOrderButton.frame.origin.y = 160
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
         placeOrderButton.frame.origin.x = buttonWidth + 16
         placeOrderButton.setTitle("Place Order", forState: .Normal)
         placeOrderButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)

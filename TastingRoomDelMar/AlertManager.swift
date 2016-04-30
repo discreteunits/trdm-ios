@@ -85,7 +85,11 @@ class AlertManager: UIViewController {
     }
     
     // Checkout Options Alert
+<<<<<<< HEAD
     func checkoutOptions(view: UIViewController, controller: UIViewController, title: String, message: String) {
+=======
+    func checkoutOptions(view: UIViewController, title: String, message: String) {
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
         
         // Create Controller
         let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
@@ -93,7 +97,10 @@ class AlertManager: UIViewController {
         
         // Create Actions
         let loginAction = UIAlertAction(title: "Closeout now ", style: .Default, handler: { (action) -> Void in
+<<<<<<< HEAD
             
+=======
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
             TabManager.sharedInstance.currentTab.checkoutMethod = "stripe"
             
             // Continue Place Order
@@ -105,7 +112,10 @@ class AlertManager: UIViewController {
             
         })
         let createAccountAction = UIAlertAction(title: "Closeout later with your Server", style: .Default , handler: { (action) -> Void in
+<<<<<<< HEAD
                         
+=======
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
             TabManager.sharedInstance.currentTab.checkoutMethod = "server"
             
             // Continue Place Order
@@ -118,8 +128,11 @@ class AlertManager: UIViewController {
         })
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action) -> Void in
             
+<<<<<<< HEAD
             AnimationManager.sharedInstance.opaqueWindow(controller)
             
+=======
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
             if printFlag {
                 print("Cancel Selected")
             }
@@ -349,9 +362,12 @@ class AlertManager: UIViewController {
             
             TabManager.sharedInstance.tierIVToTab = true
             
+<<<<<<< HEAD
             TabManager.sharedInstance.removeItemsIndicator()
 
             
+=======
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
             self.confirm(view)
             
             if printFlag {

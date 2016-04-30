@@ -17,8 +17,11 @@ class HistoryTableViewController: UITableViewController {
     var closedOrders = [PFObject]()
     var openOrders = [PFObject]()
     var unregisteredOrders = [PFObject]()
+<<<<<<< HEAD
     var ascClosedOrders = [PFObject]()
 
+=======
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
     
     var rows: Int!
     
@@ -88,7 +91,11 @@ class HistoryTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("HistoryTableCell", forIndexPath: indexPath) as! HistoryTableViewCell
 
+<<<<<<< HEAD
         let order = ascClosedOrders[indexPath.row]
+=======
+        let order = closedOrders[indexPath.row]
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
         
     
         let dateUpdated = order.createdAt
@@ -123,7 +130,11 @@ class HistoryTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
+<<<<<<< HEAD
         orderToPass = ascClosedOrders[indexPath.row]
+=======
+        orderToPass = closedOrders[indexPath.row]
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
         
         
         self.performSegueWithIdentifier("historyDetail", sender: self)
@@ -182,8 +193,11 @@ class HistoryTableViewController: UITableViewController {
                         
                     }
                     
+<<<<<<< HEAD
                     self.ascClosedOrders = self.closedOrders.reverse()
                     
+=======
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
                 }
                 
                 if printFlag {
@@ -201,7 +215,17 @@ class HistoryTableViewController: UITableViewController {
                 if printFlag {
                     print("Error: \(error!) \(error!.userInfo)")
                 }
+<<<<<<< HEAD
             }
         }
     }
+=======
+                
+            }
+            
+        }
+        
+    }
+
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
 }

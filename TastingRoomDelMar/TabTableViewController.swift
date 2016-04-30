@@ -15,7 +15,10 @@ import ParseUI
 protocol TabTableViewDelegate {
     func defaultScreen()
     func getView() -> UIView
+<<<<<<< HEAD
     func recalculateTotals() 
+=======
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
 }
 
 class TabTableViewController: UITableViewController, NSFetchedResultsControllerDelegate, UIPopoverPresentationControllerDelegate {
@@ -37,6 +40,7 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
     override func viewDidLoad() {
         super.viewDidLoad()
         
+<<<<<<< HEAD
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
@@ -48,6 +52,15 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
                 let indexPath = NSIndexPath(forRow: TabManager.sharedInstance.currentTab.lines.count - 1, inSection: 0)
                 self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Middle, animated: false)
             }
+=======
+        self.tableView.tableFooterView = UIView(frame: CGRectZero)
+        self.tableView.tableFooterView?.hidden = true
+        
+        // Scroll to bottom of table
+        dispatch_async(dispatch_get_main_queue()) {
+            let indexPath = NSIndexPath(forRow: TabManager.sharedInstance.currentTab.lines.count - 1, inSection: 0)
+            self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Middle, animated: true)
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
         }
 
     }
@@ -120,7 +133,11 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
                 
             let lineMods = TabManager.sharedInstance.currentTab.lines[indexPath.row].additions.count
             let lineModsWithServing = lineMods + 1
+<<<<<<< HEAD
             let lineSize = (lineModsWithServing * 25) + 90
+=======
+            let lineSize = (lineModsWithServing * 25) + 75
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
             
             return CGFloat(lineSize)
             
@@ -128,7 +145,11 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
                
             if TabManager.sharedInstance.currentTab.lines.count > 0 {
                     
+<<<<<<< HEAD
                 let lineSize = 90
+=======
+                let lineSize = 80
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
                 return CGFloat(lineSize)
                     
             }
@@ -161,7 +182,10 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
             // Remove Row From Table
             self.tableView.deleteRowsAtIndexPaths(NSArray(object: NSIndexPath(forRow: indexPath.row, inSection: 0)) as! [NSIndexPath], withRowAnimation: UITableViewRowAnimation.Left)
             
+<<<<<<< HEAD
             
+=======
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
             if TabManager.sharedInstance.currentTab.lines.count == 0 {
                 self.dismissViewControllerAnimated(false, completion: nil)
             }
@@ -169,6 +193,7 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
 
         }
         
+<<<<<<< HEAD
         // Trigger Function in Floating Table File To Reload
         delegate?.recalculateTotals()
         
@@ -177,6 +202,12 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
 
         TabManager.sharedInstance.totalCellCalculator()
 
+=======
+        self.tableView.endUpdates()
+
+        TabManager.sharedInstance.totalCellCalculator()
+        
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
         self.tableView.reloadData()
 
     }
@@ -326,6 +357,7 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
                     
                     
             // Assignments
+<<<<<<< HEAD
             if TabManager.sharedInstance.currentTab.lines[parent].type == "delivery" {
                 lineitemCollectionCell.modNameLabel.text = "Dine In"
             } else if TabManager.sharedInstance.currentTab.lines[parent].type == "takeaway" {
@@ -334,6 +366,9 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
                 lineitemCollectionCell.modNameLabel.text = ""
             }
             
+=======
+            lineitemCollectionCell.modNameLabel.text = TabManager.sharedInstance.currentTab.lines[parent].type.capitalizedString
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
             lineitemCollectionCell.modPriceLabel.text = ""
                     
                     

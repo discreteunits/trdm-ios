@@ -38,9 +38,12 @@ class TabFloatingTableViewController: UITableViewController, UIPopoverPresentati
     override func viewDidLoad() {
         super.viewDidLoad()
         
+<<<<<<< HEAD
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
 
         
+=======
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
         tabView = (delegate?.getView())!
         tabController = (delegate?.getController())!
         
@@ -107,8 +110,11 @@ class TabFloatingTableViewController: UITableViewController, UIPopoverPresentati
             totalCell.taxValueLabel?.font = UIFont.scriptFont(18)
             totalCell.totalValueLabel?.font = UIFont.scriptFont(18)
             
+<<<<<<< HEAD
             totalCell.selectionStyle = UITableViewCellSelectionStyle.None
 
+=======
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
             
             return totalCell
             
@@ -129,8 +135,11 @@ class TabFloatingTableViewController: UITableViewController, UIPopoverPresentati
             actionCell.placeOrderButton.clipsToBounds = true
             actionCell.placeOrderButton.titleLabel?.textColor = UIColor.whiteColor()
             
+<<<<<<< HEAD
             actionCell.selectionStyle = UITableViewCellSelectionStyle.None
 
+=======
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
             
             return actionCell
             
@@ -147,7 +156,11 @@ class TabFloatingTableViewController: UITableViewController, UIPopoverPresentati
         // Checkout Options
         if TabManager.sharedInstance.currentTab.checkoutMethod == "" {
             
+<<<<<<< HEAD
             AlertManager.sharedInstance.checkoutOptions(self, controller: tabController, title: "Checkout Options", message: "Please select your desired checkout method below.")
+=======
+            AlertManager.sharedInstance.checkoutOptions(self, title: "Checkout Options", message: "Please select your desired checkout method below.")
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
             
             // If User already selected checkout option of stripe
         } else if TabManager.sharedInstance.currentTab.checkoutMethod == "stripe" {
@@ -170,9 +183,14 @@ class TabFloatingTableViewController: UITableViewController, UIPopoverPresentati
         if segue.identifier == "enterTableNumber" {
             
             let vc = segue.destinationViewController as! TableNumberViewController
+<<<<<<< HEAD
             
             // Size Popover Window
             vc.preferredContentSize = CGSizeMake(screenWidth, screenHeight*0.405)
+=======
+            // Size Popover Window
+            vc.preferredContentSize = CGSizeMake(screenWidth, screenHeight*0.38)
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
             
             // Set Controller
             let controller = vc.popoverPresentationController
@@ -182,7 +200,11 @@ class TabFloatingTableViewController: UITableViewController, UIPopoverPresentati
             if controller != nil {
                 
                 controller!.sourceView = tabView
+<<<<<<< HEAD
                 controller!.sourceRect = CGRectMake(CGRectGetMidX(tabView.bounds) - 8, CGRectGetMidY(tabView.bounds) - 100, 0, 0)
+=======
+                controller!.sourceRect = CGRectMake(CGRectGetMidX(tabView.bounds) - 8, CGRectGetMidY(tabView.bounds) - 50, 0, 0)
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
                 controller?.delegate = self
                 
             }
@@ -198,7 +220,11 @@ class TabFloatingTableViewController: UITableViewController, UIPopoverPresentati
             let vc = segue.destinationViewController as! AddGratuityViewController
             
             // Size Popover Window
+<<<<<<< HEAD
             vc.preferredContentSize = CGSizeMake(screenWidth, screenHeight*0.58)
+=======
+            vc.preferredContentSize = CGSizeMake(screenWidth, screenHeight * 0.53)
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
             
             // Set Controller
             let controller = vc.popoverPresentationController
@@ -208,7 +234,11 @@ class TabFloatingTableViewController: UITableViewController, UIPopoverPresentati
             if controller != nil {
                 
                 controller!.sourceView = tabView
+<<<<<<< HEAD
                 controller!.sourceRect = CGRectMake(CGRectGetMidX(tabView.bounds) - 8, CGRectGetMidY(tabView.bounds) - 100, 0, 0)
+=======
+                controller!.sourceRect = CGRectMake(CGRectGetMidX(tabView.bounds) - 8, CGRectGetMidY(tabView.bounds) - 50, 0, 0)
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
                 controller?.delegate = self
             }
             
@@ -246,11 +276,15 @@ extension TabFloatingTableViewController: TableNumberViewDelegate, AddGratuityVi
     }
     
     func removeOpaque() {
+<<<<<<< HEAD
         AnimationManager.sharedInstance.opaqueWindow(tabController)
     }
     
     func passTabController() -> UIViewController {
         return tabController
+=======
+        AnimationManager.sharedInstance.opaqueWindow(self)
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
     }
     
 }

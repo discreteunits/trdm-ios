@@ -11,7 +11,11 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
+<<<<<<< HEAD
 	<string>Tasting Room</string>
+=======
+	<string>$(PRODUCT_NAME)</string>
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>

@@ -270,7 +270,10 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
             
         let collectionQuery:PFQuery = PFQuery(className: "Tier4")
         collectionQuery.includeKey("category")
+<<<<<<< HEAD
         collectionQuery.orderByAscending("name")
+=======
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
         collectionQuery.includeKey("parentTiers")
         collectionQuery.whereKey("parentTiers", containedIn: RouteManager.sharedInstance.Route!)
         collectionQuery.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
@@ -316,7 +319,13 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
         
         let tableQuery:PFQuery = PFQuery(className:"Product")
         tableQuery.includeKey("category")
+<<<<<<< HEAD
         tableQuery.orderByAscending("name")
+=======
+//        tableQuery.whereKey("productType", equalTo: notHarvest)
+//        tableQuery.whereKeyExists("productType")
+//        tableQuery.whereKey("categories", containsAllObjectsInArray: RouteManager.sharedInstance.Route!)
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
         tableQuery.whereKey("categories", containsAllObjectsInArray: tagsArray)
         tableQuery.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
             

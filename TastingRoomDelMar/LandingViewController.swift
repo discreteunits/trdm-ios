@@ -13,7 +13,11 @@ import ParseFacebookUtilsV4
 import ReachabilitySwift
 
 
+<<<<<<< HEAD
 class LandingViewController: UIViewController, ENSideMenuDelegate {
+=======
+class LandingViewController: UIViewController {
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
     
     var screenSize = CGRect()
     var screenWidth = CGFloat()
@@ -22,7 +26,10 @@ class LandingViewController: UIViewController, ENSideMenuDelegate {
     var signupActive = true
     
     var signupOrLogin = String()
+<<<<<<< HEAD
     
+=======
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
 
     // ------------
     override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
@@ -49,7 +56,10 @@ class LandingViewController: UIViewController, ENSideMenuDelegate {
         trdmLogo()
         buttons()
         
+<<<<<<< HEAD
 
+=======
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
     }
     
     override func viewDidLoad() {
@@ -95,7 +105,11 @@ class LandingViewController: UIViewController, ENSideMenuDelegate {
         self.view.addSubview(skipButton)
         
         // Signup Button
+<<<<<<< HEAD
         let signupButton = UIButton(frame: CGRectMake(0, 0, screenWidth * 0.4, screenHeight * 0.06))
+=======
+        let signupButton = UIButton(frame: CGRectMake(0, 0, screenWidth * 0.4, 40))
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
         signupButton.frame.origin.x = screenWidth * 0.075
         signupButton.frame.origin.y = screenHeight * 0.8
         signupButton.setTitle("Sign Up", forState: .Normal)
@@ -111,7 +125,11 @@ class LandingViewController: UIViewController, ENSideMenuDelegate {
         self.view.addSubview(signupButton)
         
         // Login Button
+<<<<<<< HEAD
         let loginButton = UIButton(frame: CGRectMake(0, 0, screenWidth * 0.4, screenHeight * 0.06))
+=======
+        let loginButton = UIButton(frame: CGRectMake(0, 0, screenWidth * 0.4, 40))
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
         loginButton.frame.origin.x = screenWidth * 0.525
         loginButton.frame.origin.y = screenHeight * 0.8
         loginButton.setTitle("Log In", forState: .Normal)
@@ -127,7 +145,11 @@ class LandingViewController: UIViewController, ENSideMenuDelegate {
         self.view.addSubview(loginButton)
         
         // Facebook Button
+<<<<<<< HEAD
         let facebookButton = UIButton(frame: CGRectMake(0, 0, screenWidth * 0.85, screenHeight * 0.06))
+=======
+        let facebookButton = UIButton(frame: CGRectMake(0, 0, screenWidth * 0.85, 40))
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
         facebookButton.frame.origin.x = screenWidth * 0.075
         facebookButton.frame.origin.y = screenHeight * 0.875
         facebookButton.setTitle("Log in with Facebook", forState: .Normal)

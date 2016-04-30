@@ -11,7 +11,10 @@ import UIKit
 class AddGratuityCollectionViewCell: UICollectionViewCell {
     
     var label: UILabel!
+<<<<<<< HEAD
     var percentSignLabel: UILabel!
+=======
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -28,6 +31,7 @@ class AddGratuityCollectionViewCell: UICollectionViewCell {
         label.text = "Cash"
         label.font = UIFont.scriptFont(18)
         
+<<<<<<< HEAD
         percentSignLabel = UILabel(frame: CGRectMake(0,0, screenWidth * 0.78, screenHeight))
         percentSignLabel.frame.origin.y = 0
         percentSignLabel.frame.origin.x = 0
@@ -39,6 +43,8 @@ class AddGratuityCollectionViewCell: UICollectionViewCell {
         percentSignLabel.layer.zPosition = 99999
         
         contentView.addSubview(percentSignLabel)
+=======
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
         contentView.addSubview(label)
         
     }

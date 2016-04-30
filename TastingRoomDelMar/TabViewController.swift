@@ -92,9 +92,14 @@ class TabViewController: UIViewController {
             if let TabTableViewController = segue.destinationViewController as? TabTableViewController {
                 
                 self.TabTableViewControllerRef = TabTableViewController
+<<<<<<< HEAD
                 TabTableViewController.delegate = self
 
             }
+=======
+                
+            } 
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
         }
         
         if segue.identifier == "tabFloatingEmbeded" {
@@ -104,6 +109,10 @@ class TabViewController: UIViewController {
                 self.TabFloatingTableViewControllerRef = TabFloatingTableViewController
                 TabFloatingTableViewController.delegate = self
                 
+<<<<<<< HEAD
+=======
+                
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
             }
         }
     }
@@ -185,10 +194,13 @@ extension TabViewController: TabTableViewDelegate, TabFloatingTableViewDelegate 
         
         return tabController
     }
+<<<<<<< HEAD
     
     func recalculateTotals() {
         
         self.TabFloatingTableViewControllerRef?.tableView.reloadData()
         
     }
+=======
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
 }

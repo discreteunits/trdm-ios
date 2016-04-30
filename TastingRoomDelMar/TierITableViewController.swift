@@ -12,6 +12,10 @@ import Parse
 import ParseFacebookUtilsV4
 import ParseCrashReporting
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
 class TierITableViewController: UITableViewController, ENSideMenuDelegate {
 
     var tierIArray = [PFObject]()
@@ -29,6 +33,7 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
     var TRDMImage = UIImage()
     var TRDMImageView = UIImageView()
     
+<<<<<<< HEAD
 // ------------------------------
     override func viewWillDisappear(animated: Bool) {
         
@@ -45,20 +50,43 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         
         AnimationManager.sharedInstance.fade(self.tableView, alpha: 1.0)
 
+=======
+    
+// ------------------------------
+    override func viewWillDisappear(animated: Bool) {
+        // Stop Activity Indicator
+        ActivityManager.sharedInstance.activityStop(self)
+    }
+
+    override func viewWillAppear(animated: Bool) {
+
+        AnimationManager.sharedInstance.fade(self.tableView, alpha: 1.0)
+        
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
         self.tierIArray.removeAll()
         
         // TIER 1 QUERY
         self.tierIQuery()
+<<<<<<< HEAD
         
         // FLYOUT MENU
         self.sideMenuController()!.sideMenu?.delegate = self
 
+=======
+  
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+<<<<<<< HEAD
         
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+=======
+
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
         
         // Unit Test
         tableView.accessibilityIdentifier = "Tier One Table"
@@ -82,7 +110,12 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         // Sync Tab - Create or Find
         TabManager.sharedInstance.syncTab(TabManager.sharedInstance.currentTab.id)
         
+<<<<<<< HEAD
 
+=======
+        // FLYOUT MENU
+        self.sideMenuController()?.sideMenu?.delegate = self
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
 
         // NAV BAR STYLES
         if let navBar = navigationController?.navigationBar {
@@ -127,6 +160,7 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+<<<<<<< HEAD
     
     // MARK: - Table view data source
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -181,6 +215,8 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
     }
     
     
+=======
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
     // Location Flyout Menu
     func locationFlyout(sender: UIBarButtonItem) {
         
@@ -189,7 +225,11 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
                     
         let windowWidth = self.view.bounds.size.width - 20
         let windowHeight = self.view.bounds.size.height
+<<<<<<< HEAD
         self.windowView = UIView(frame: CGRectMake(0, 0, windowWidth * 0.50, windowHeight))
+=======
+        self.windowView = UIView(frame: CGRectMake(0, 0, windowWidth * 0.78, windowHeight))
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
         self.windowView.backgroundColor = UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 1.0)
         self.windowView.layer.zPosition = 99999
         self.windowView.transform = CGAffineTransformMakeTranslation(-windowWidth, 0)
@@ -233,8 +273,13 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         self.TRDMLogo = "secondary-logomark-white_rgb_600_600.png"
         self.TRDMImage = UIImage(named: self.TRDMLogo)!
         self.TRDMImageView = UIImageView(image: self.TRDMImage)
+<<<<<<< HEAD
         self.TRDMImageView.frame = CGRectMake(0, 0,screenWidth * 0.40, screenWidth * 0.40)
         self.TRDMImageView.frame.origin.y = (screenHeight * 0.66)
+=======
+        self.TRDMImageView.frame = CGRectMake(0, 0,screenWidth / 2, screenWidth / 2)
+        self.TRDMImageView.frame.origin.y = (screenHeight / 1.6 )
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
         self.TRDMImageView.frame.origin.x = 16
         self.TRDMImageView.alpha = 0.5
         self.TRDMImageView.layer.zPosition = 999999
@@ -345,7 +390,10 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         
         let query:PFQuery = PFQuery(className:"Tier1")
         query.includeKey("category")
+<<<<<<< HEAD
         query.orderByAscending("sortOrder")
+=======
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
         query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
             
             if error == nil {
@@ -371,6 +419,10 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
                 }
                 print("-----------------------")
                 
+<<<<<<< HEAD
+=======
+                
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
                 AnimationManager.sharedInstance.animateTable(self.tableView)
                 
             } else {
@@ -477,7 +529,65 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
 //                        }
 //                    }
 //                }
+<<<<<<< HEAD
             }
         })
     }
+=======
+                
+                
+            }
+        })
+    }
+    
+    // MARK: - Table view data source
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 1
+    }
+    
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
+        return tierIArray.count
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
+        
+        cell.textLabel?.text = tierIArray[indexPath.row]["name"] as? String
+        cell.textLabel?.textAlignment = NSTextAlignment.Center
+        cell.textLabel?.font = UIFont.scriptFont(38)
+        return cell
+        
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        
+        let tableHeight = (tableView.bounds.size.height)
+        let numberOfCells: Int = tierIArray.count
+        let numberOfCellsFloat = CGFloat(numberOfCells)
+        let cellHeight = tableHeight / numberOfCellsFloat
+        
+        return cellHeight
+        
+    }
+    
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        // Start Activity Indicator
+        ActivityManager.sharedInstance.activityStart(self)
+        
+        // ROUTE MANAGER
+        RouteManager.sharedInstance.TierOne = tierIArray[indexPath.row]
+        RouteManager.sharedInstance.printRoute()
+
+        // Next Tier
+        if tierIArray[indexPath.row]["skipToTier4"] as! Bool {
+            self.performSegueWithIdentifier("tierOneToFour", sender: self)
+        } else {
+            self.performSegueWithIdentifier("tierII", sender: self)
+        }
+    }
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
 }

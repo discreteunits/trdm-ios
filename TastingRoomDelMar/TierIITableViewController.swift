@@ -42,8 +42,14 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+<<<<<<< HEAD
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
 
+=======
+        // Stop Activity Indicator 
+//        ActivityManager.sharedInstance.activityStop(self)
+        
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
         // Items Indicator
         TabManager.sharedInstance.addItemsIndicator()
         
@@ -103,7 +109,10 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
         
         let query:PFQuery = PFQuery(className:"Tier2")
         query.includeKey("category")
+<<<<<<< HEAD
         query.orderByAscending("sortOrder")
+=======
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
         query.whereKey("parentTiers", equalTo: RouteManager.sharedInstance.TierOne!)
         query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
             

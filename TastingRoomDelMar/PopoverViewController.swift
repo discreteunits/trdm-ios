@@ -187,7 +187,11 @@ class PopoverViewController: UITableViewController {
                 let trueIndex = indexPath.row - 1
                 
                 sgCell.servingLabel.layer.zPosition = 100
+<<<<<<< HEAD
                 sgCell.servingLabel.font = UIFont.headerFont(24)
+=======
+                sgCell.servingLabel.font = UIFont.headerFont(18)
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
 
                 
                 // IF HARVEST
@@ -579,7 +583,11 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                             
                             // LineItem Parent Product
                             var newProduct = Product()
+<<<<<<< HEAD
                             newProduct.objectId = productChoice.objectId                 // Parse Obj ID of Subproduct
+=======
+                            newProduct.objectId = popoverItem.objectId!                 // Parse Obj ID
+>>>>>>> 048885ae56876e3021d217331ae28a8c125881bd
                             newProduct.productId = String(popoverItem["lightspeedId"])      // Lightspeed ID
                             newProduct.name = popoverItem["name"] as! String
                             newProduct.price = popoverItem["price"] as! Double
