@@ -51,6 +51,8 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     // IF HARVEST
     var additions = [AnyObject]()
 
+    var tagsArray = [PFObject]()
+
 
 // ---------------------
     
@@ -62,6 +64,15 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+            self.tagsArrayCreation()
+            
+            print("tagsArrayCreation Completed")
+            
+        }
+        
+        tableView.tableFooterView = UIView()
         
         self.tableView.reloadData()
         
@@ -158,7 +169,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         // If User Is Logged in
         if TabManager.sharedInstance.currentTab.userId == "" {
             cell.addToOrderButton.hidden = false
-            cell.addToOrderButton.backgroundColor = UIColor.lightGrayColor()
+            cell.addToOrderButton.backgroundColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.2)
             cell.addToOrderButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
             cell.addToOrderButton.layer.cornerRadius = 6.0
             cell.addToOrderButton.clipsToBounds = true
@@ -254,33 +265,6 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             }
 
         } // ----- END
-        
-
-        // ASYNC: Get Varietal / Beer Style
-        // --------------------- BEGIN
-        dispatch_async(dispatch_get_main_queue()) {
-            
-            if let productCategories = self.tierIVTableArray[indexPath.row]["categories"] as? [PFObject] {
-
-                for categoryObject in productCategories {
-                    
-                    if self.tierIVCollectionArray.contains(categoryObject) {
-
-                        cell.varietalLabel?.text = categoryObject["name"] as? String
-                        cell.varietalLabel?.font = UIFont.basicFont(16)
-                        
-                        self.productVarietal = categoryObject as PFObject!
-
-                    }
-                }
-            }
-        }
-        // ----------------------- END
-        
-        // Guard Against Not Finding A Varietal
-        if cell.varietalLabel.text == "Varietal" {
-            cell.varietalLabel.text = ""
-        }
         
         return cell
         
@@ -460,8 +444,6 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             
             } else {
                 
-                
-                
                 popoverDynamicHeight = 1
                 popoverHeightCalculation = ((popoverDynamicHeight + 3) * 100)
                 let subproductsArray = subproductQuery(product)
@@ -517,6 +499,21 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         return .None
     }
     
+    // TAGS ARRAY CREATION
+    func tagsArrayCreation() {
+        
+        // Clean Up
+        self.tagsArray.removeAll()
+        
+        // Set
+        for object in RouteManager.sharedInstance.Route! as! [PFObject] {
+            
+            let tag = object["category"] as! PFObject
+            
+            self.tagsArray.append(tag)
+            
+        }
+    }
     
     // SUBPRODUCT QUERY
     func subproductQuery(parent: PFObject) -> [Product] {
@@ -526,6 +523,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         
         let query:PFQuery = PFQuery(className: "Product")
         query.whereKey("productType", equalTo: parentId)
+        query.whereKey("categories", containsAllObjectsInArray: tagsArray)
         
         // Synchronously Return Subproducts
         do {

@@ -9,10 +9,8 @@
 import UIKit
 import ParseUI
 import Parse
-import Bond
 import ParseFacebookUtilsV4
 import ParseCrashReporting
-
 
 class TierITableViewController: UITableViewController, ENSideMenuDelegate {
 
@@ -31,27 +29,37 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
     var TRDMImage = UIImage()
     var TRDMImageView = UIImageView()
     
-    
 // ------------------------------
     override func viewWillDisappear(animated: Bool) {
+        
         // Stop Activity Indicator
         ActivityManager.sharedInstance.activityStop(self)
+        
+        tableView.reloadData()
+        
+        AnimationManager.sharedInstance.fade(self.tableView, alpha: 0.0)
+        
     }
 
     override func viewWillAppear(animated: Bool) {
-
-        AnimationManager.sharedInstance.fade(self.tableView, alpha: 1.0)
         
+        AnimationManager.sharedInstance.fade(self.tableView, alpha: 1.0)
+
         self.tierIArray.removeAll()
         
         // TIER 1 QUERY
         self.tierIQuery()
-  
+        
+        // FLYOUT MENU
+        self.sideMenuController()!.sideMenu?.delegate = self
+
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+        
         // Unit Test
         tableView.accessibilityIdentifier = "Tier One Table"
         
@@ -74,8 +82,7 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         // Sync Tab - Create or Find
         TabManager.sharedInstance.syncTab(TabManager.sharedInstance.currentTab.id)
         
-        // FLYOUT MENU
-        self.sideMenuController()?.sideMenu?.delegate = self
+
 
         // NAV BAR STYLES
         if let navBar = navigationController?.navigationBar {
@@ -120,6 +127,60 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    // MARK: - Table view data source
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        
+        return 1
+    }
+    
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
+        return tierIArray.count
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
+        
+        cell.textLabel?.text = tierIArray[indexPath.row]["name"] as? String
+        cell.textLabel?.textAlignment = NSTextAlignment.Center
+        cell.textLabel?.font = UIFont.scriptFont(38)
+        
+        return cell
+        
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        
+        let tableHeight = (tableView.bounds.size.height)
+        let numberOfCells: Int = tierIArray.count
+        let numberOfCellsFloat = CGFloat(numberOfCells)
+        let cellHeight = tableHeight / numberOfCellsFloat
+        
+        return cellHeight
+        
+    }
+    
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        // Start Activity Indicator
+        ActivityManager.sharedInstance.activityStart(self)
+        
+        // ROUTE MANAGER
+        RouteManager.sharedInstance.TierOne = tierIArray[indexPath.row]
+        RouteManager.sharedInstance.printRoute()
+        
+        // Next Tier
+        if tierIArray[indexPath.row]["skipToTier4"] as! Bool {
+            self.performSegueWithIdentifier("tierOneToFour", sender: self)
+        } else {
+            self.performSegueWithIdentifier("tierII", sender: self)
+        }
+    }
+    
+    
     // Location Flyout Menu
     func locationFlyout(sender: UIBarButtonItem) {
         
@@ -128,7 +189,7 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
                     
         let windowWidth = self.view.bounds.size.width - 20
         let windowHeight = self.view.bounds.size.height
-        self.windowView = UIView(frame: CGRectMake(0, 0, windowWidth * 0.78, windowHeight))
+        self.windowView = UIView(frame: CGRectMake(0, 0, windowWidth * 0.50, windowHeight))
         self.windowView.backgroundColor = UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 1.0)
         self.windowView.layer.zPosition = 99999
         self.windowView.transform = CGAffineTransformMakeTranslation(-windowWidth, 0)
@@ -172,8 +233,8 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         self.TRDMLogo = "secondary-logomark-white_rgb_600_600.png"
         self.TRDMImage = UIImage(named: self.TRDMLogo)!
         self.TRDMImageView = UIImageView(image: self.TRDMImage)
-        self.TRDMImageView.frame = CGRectMake(0, 0,screenWidth / 2, screenWidth / 2)
-        self.TRDMImageView.frame.origin.y = (screenHeight / 1.6 )
+        self.TRDMImageView.frame = CGRectMake(0, 0,screenWidth * 0.40, screenWidth * 0.40)
+        self.TRDMImageView.frame.origin.y = (screenHeight * 0.66)
         self.TRDMImageView.frame.origin.x = 16
         self.TRDMImageView.alpha = 0.5
         self.TRDMImageView.layer.zPosition = 999999
@@ -284,6 +345,7 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         
         let query:PFQuery = PFQuery(className:"Tier1")
         query.includeKey("category")
+        query.orderByAscending("sortOrder")
         query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
             
             if error == nil {
@@ -308,7 +370,6 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
                     print("TierI Array: \(i["name"])")
                 }
                 print("-----------------------")
-                
                 
                 AnimationManager.sharedInstance.animateTable(self.tableView)
                 
@@ -386,83 +447,37 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
                     print("Last Name: \(result["last_name"]! as! String)")
                 }
                 
+                
 //                PFUser.currentUser()?["name"] = result["name"]
 //                PFUser.currentUser()?["gender"] = result["gender"]
 //                PFUser.currentUser()?["birthday"] = result["birthday"]
 
                 PFUser.currentUser()?.saveInBackground()
                 
-                // Get and Save FB Profile Picture To Parse
-                let userId = result["id"]! as! String
-                let facebookProfilePictureUrl = "https://graph.facebook.com/" + userId + "/picture?type=large"
                 
-                if let fbPicUrl = NSURL(string: facebookProfilePictureUrl) {
-                    
-                    if let data = NSData(contentsOfURL: fbPicUrl) {
-                        
-                        // Show FB Profile Pic
-//                        self.userImage.image = UIImage(data: data)
-                        
-                        let imageFile: PFFile = PFFile(data: data)
-                        PFUser.currentUser()?["image"] = imageFile
-                        PFUser.currentUser()?.saveInBackground()
-                        
-                        if printFlag {
-                            print("----------------")
-                        }
-                    }
-                }
+                
+                
+//                // Get and Save FB Profile Picture To Parse
+//                let userId = result["id"]! as! String
+//                let facebookProfilePictureUrl = "https://graph.facebook.com/" + userId + "/picture?type=large"
+//                
+//                if let fbPicUrl = NSURL(string: facebookProfilePictureUrl) {
+//                    
+//                    if let data = NSData(contentsOfURL: fbPicUrl) {
+//                        
+//                        // Show FB Profile Pic
+////                        self.userImage.image = UIImage(data: data)
+//                        
+//                        let imageFile: PFFile = PFFile(data: data)
+//                        PFUser.currentUser()?["image"] = imageFile
+//                        PFUser.currentUser()?.saveInBackground()
+//                        
+//                        if printFlag {
+//                            print("----------------")
+//                        }
+//                    }
+//                }
             }
         })
-    }
-    
-    // MARK: - Table view data source
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
-    
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return tierIArray.count
-    }
-    
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
-        
-        cell.textLabel?.text = tierIArray[indexPath.row]["name"] as? String
-        cell.textLabel?.textAlignment = NSTextAlignment.Center
-        cell.textLabel?.font = UIFont.scriptFont(38)
-        return cell
-        
-    }
-    
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        
-        let tableHeight = (tableView.bounds.size.height)
-        let numberOfCells: Int = tierIArray.count
-        let numberOfCellsFloat = CGFloat(numberOfCells)
-        let cellHeight = tableHeight / numberOfCellsFloat
-        
-        return cellHeight
-        
-    }
-    
-    
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        // Start Activity Indicator
-        ActivityManager.sharedInstance.activityStart(self)
-        
-        // ROUTE MANAGER
-        RouteManager.sharedInstance.TierOne = tierIArray[indexPath.row]
-        RouteManager.sharedInstance.printRoute()
-
-        // Next Tier
-        if tierIArray[indexPath.row]["skipToTier4"] as! Bool {
-            self.performSegueWithIdentifier("tierOneToFour", sender: self)
-        } else {
-            self.performSegueWithIdentifier("tierII", sender: self)
-        }
     }
 }

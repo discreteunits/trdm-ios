@@ -9,6 +9,7 @@
 import UIKit
 import Parse
 import ParseUI
+import ParseFacebookUtilsV4
 
 class SettingsTableViewController: UITableViewController {
 
@@ -174,8 +175,13 @@ class SettingsTableViewController: UITableViewController {
             // Password Row
             } else if indexPath.row == 4 {
                 
-                myAccountCell.settingLabel.text = "password"
-                myAccountCell.settingValueLabel.text = ""
+                if PFFacebookUtils.isLinkedWithUser(PFUser.currentUser()!) {
+                    myAccountCell.settingLabel.text = ""
+                    myAccountCell.settingValueLabel.text = ""
+                } else {
+                    myAccountCell.settingLabel.text = "password"
+                    myAccountCell.settingValueLabel.text = ""
+                }
                 
                 return myAccountCell
                 
@@ -194,12 +200,25 @@ class SettingsTableViewController: UITableViewController {
                 
                 notificationCell.settingLabel.text = "push notifications"
                 
+                if let _ = PFUser.currentUser()!["pushAllowed"] as? Bool {
+                    notificationCell.settingSwitch.setOn(true, animated: true)
+                } else {
+                    notificationCell.settingSwitch.setOn(false, animated: true)
+                }
+                
                 return notificationCell
             
             // Newsletter Row
             } else if indexPath.row == 1 {
                 
                 notificationCell.settingLabel.text = "Newsletter"
+                
+                
+                if let _ = PFUser.currentUser()!["marketingAllowed"] as? Bool {
+                    notificationCell.settingSwitch.setOn(true, animated: true)
+                } else {
+                    notificationCell.settingSwitch.setOn(false, animated: true)
+                }
                 
                 return notificationCell
                 
@@ -314,6 +333,8 @@ class SettingsTableViewController: UITableViewController {
         
         // Notifications Section
         } else if indexPath.section == 1 {
+            
+
         
         // More Information Section
         } else if indexPath.section == 2 {

@@ -1,27 +1,23 @@
 //
-//  TierNavigationController.swift
+//  SignupNavigationController.swift
 //  TastingRoomDelMar
 //
-//  Created by Tobias Robert Brysiewicz on 1/7/16.
+//  Created by Tobias Robert Brysiewicz on 4/29/16.
 //  Copyright © 2016 Taylor 5, LLC. All rights reserved.
 //
 
 import UIKit
 
-class TierNavigationController: ENSideMenuNavigationController, ENSideMenuDelegate {
-    
+class SignupNavigationController: ENSideMenuNavigationController, ENSideMenuDelegate {
+
     var screenSize = CGRect()
     var screenWidth = CGFloat()
     var screenHeight = CGFloat()
     
-    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-        return UIInterfaceOrientationMask.Portrait
-    }
-    
-    
+    // -----
     override func viewDidLoad() {
-//        super.viewDidLoad()
-        
+        super.viewDidLoad()
+
         screenSize = UIScreen.mainScreen().bounds
         screenWidth = screenSize.width
         screenHeight = screenSize.height
@@ -36,9 +32,21 @@ class TierNavigationController: ENSideMenuNavigationController, ENSideMenuDelega
         // make navigation bar showing over side menu
         view.bringSubviewToFront(navigationBar)
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
 }

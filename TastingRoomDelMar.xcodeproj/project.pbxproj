@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BB65EBD50F601E4F26BD8CFC /* Pods_TastingRoomDelMar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 258E486804D393986620D744 /* Pods_TastingRoomDelMar.framework */; };
+		D7086D261CC9650B009F96C7 /* TabFloatingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7086D251CC9650B009F96C7 /* TabFloatingTableViewController.swift */; };
 		D719A6301C3F26D500987525 /* TierNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D719A62F1C3F26D500987525 /* TierNavigationController.swift */; };
 		D729AB831C471FF90021A66E /* TierIVCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D729AB821C471FF90021A66E /* TierIVCollectionViewCell.swift */; };
 		D729AB851C4736570021A66E /* TierIVTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D729AB841C4736570021A66E /* TierIVTableViewController.swift */; };
@@ -74,6 +75,7 @@
 		D7C1E0411C5AB86800143C48 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D7C1E03F1C5AB75100143C48 /* OpenSans-Regular.ttf */; };
 		D7C1E0421C5AB86E00143C48 /* BebasNeue Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = D7C1E0401C5AB76E00143C48 /* BebasNeue Regular.otf */; };
 		D7C1E0441C5AE3F000143C48 /* TabManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C1E0431C5AE3F000143C48 /* TabManager.swift */; };
+		D7C2A2251CD692EF00B6FB24 /* fbloginbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = D7C2A2241CD692EF00B6FB24 /* fbloginbutton.png */; };
 		D7C448C31C641C0400CD12F8 /* TabHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C448C21C641C0400CD12F8 /* TabHeaderTableViewCell.swift */; };
 		D7C463FB1CBC330C00449EF3 /* RouteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C463FA1CBC330C00449EF3 /* RouteManager.swift */; };
 		D7CDA53E1CA46CF200388A30 /* PlaygroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CDA53D1CA46CF200388A30 /* PlaygroundViewController.swift */; };
@@ -87,6 +89,8 @@
 		D7E803971C56E152003C12D9 /* PopoverSGTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E803961C56E152003C12D9 /* PopoverSGTableViewCell.swift */; };
 		D7E803991C56E169003C12D9 /* PopoverQuantityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E803981C56E169003C12D9 /* PopoverQuantityTableViewCell.swift */; };
 		D7E8039B1C56E17B003C12D9 /* PopoverActionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E8039A1C56E17B003C12D9 /* PopoverActionTableViewCell.swift */; };
+		D7F174751CD3C813002BA588 /* SliderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F174741CD3C813002BA588 /* SliderViewController.swift */; };
+		D7F174771CD42850002BA588 /* SignupNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F174761CD42850002BA588 /* SignupNavigationController.swift */; };
 		D7F981101C44612800200639 /* ENSideMenuControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F9810F1C44612800200639 /* ENSideMenuControllerViewController.swift */; };
 		D7F981121C4461A300200639 /* ENSideMenuNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F981111C4461A300200639 /* ENSideMenuNavigationController.swift */; };
 		D7F981141C4461FD00200639 /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F981131C4461FD00200639 /* MenuTableViewController.swift */; };
@@ -121,6 +125,7 @@
 		04B86A7B2DE721FB50D137DB /* Pods-TastingRoomDelMar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TastingRoomDelMar.release.xcconfig"; path = "Pods/Target Support Files/Pods-TastingRoomDelMar/Pods-TastingRoomDelMar.release.xcconfig"; sourceTree = "<group>"; };
 		258E486804D393986620D744 /* Pods_TastingRoomDelMar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TastingRoomDelMar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D53F1940B0ECFC354F949DF6 /* Pods-TastingRoomDelMar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TastingRoomDelMar.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TastingRoomDelMar/Pods-TastingRoomDelMar.debug.xcconfig"; sourceTree = "<group>"; };
+		D7086D251CC9650B009F96C7 /* TabFloatingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabFloatingTableViewController.swift; sourceTree = "<group>"; };
 		D719A62F1C3F26D500987525 /* TierNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierNavigationController.swift; sourceTree = "<group>"; };
 		D729AB821C471FF90021A66E /* TierIVCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierIVCollectionViewCell.swift; sourceTree = "<group>"; };
 		D729AB841C4736570021A66E /* TierIVTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierIVTableViewController.swift; sourceTree = "<group>"; };
@@ -189,6 +194,7 @@
 		D7C1E03F1C5AB75100143C48 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		D7C1E0401C5AB76E00143C48 /* BebasNeue Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BebasNeue Regular.otf"; sourceTree = "<group>"; };
 		D7C1E0431C5AE3F000143C48 /* TabManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabManager.swift; sourceTree = "<group>"; };
+		D7C2A2241CD692EF00B6FB24 /* fbloginbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fbloginbutton.png; sourceTree = "<group>"; };
 		D7C448C21C641C0400CD12F8 /* TabHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		D7C463FA1CBC330C00449EF3 /* RouteManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteManager.swift; sourceTree = "<group>"; };
 		D7CDA53D1CA46CF200388A30 /* PlaygroundViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlaygroundViewController.swift; path = ../PlaygroundViewController.swift; sourceTree = "<group>"; };
@@ -202,6 +208,8 @@
 		D7E803961C56E152003C12D9 /* PopoverSGTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverSGTableViewCell.swift; sourceTree = "<group>"; };
 		D7E803981C56E169003C12D9 /* PopoverQuantityTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverQuantityTableViewCell.swift; sourceTree = "<group>"; };
 		D7E8039A1C56E17B003C12D9 /* PopoverActionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverActionTableViewCell.swift; sourceTree = "<group>"; };
+		D7F174741CD3C813002BA588 /* SliderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderViewController.swift; sourceTree = "<group>"; };
+		D7F174761CD42850002BA588 /* SignupNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupNavigationController.swift; sourceTree = "<group>"; };
 		D7F9810F1C44612800200639 /* ENSideMenuControllerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ENSideMenuControllerViewController.swift; sourceTree = "<group>"; };
 		D7F981111C4461A300200639 /* ENSideMenuNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ENSideMenuNavigationController.swift; sourceTree = "<group>"; };
 		D7F981131C4461FD00200639 /* MenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
@@ -309,6 +317,7 @@
 				D7C1E03F1C5AB75100143C48 /* OpenSans-Regular.ttf */,
 				D7C1E0401C5AB76E00143C48 /* BebasNeue Regular.otf */,
 				D7C1E0351C5A951300143C48 /* primary-logomark-02_rgb_600_600.png */,
+				D7C2A2241CD692EF00B6FB24 /* fbloginbutton.png */,
 				D736DADB1C72D70C00751307 /* secondary-logomark-03_rgb.eps */,
 				D7C1E0361C5A951300143C48 /* primary-logomark-front-04_rgb_600_600.png */,
 				D7C1E0391C5A952000143C48 /* primary-logotype-05_rgb_600_600.png */,
@@ -324,6 +333,7 @@
 			children = (
 				D7D8099D1C7BCFBA00A3F5E6 /* AccountManager.swift */,
 				D7D809941C7BCE1D00A3F5E6 /* SignupStoryboard.storyboard */,
+				D7F174761CD42850002BA588 /* SignupNavigationController.swift */,
 				D7D809961C7BCE5000A3F5E6 /* LandingViewController.swift */,
 				D78594931C7BF141000972FB /* SignupSceneOneViewController.swift */,
 				D78594951C7BF164000972FB /* SignupSceneOneTableViewController.swift */,
@@ -403,6 +413,7 @@
 				D7FC44B61C7EA162003482B9 /* TabStoryboard.storyboard */,
 				D7B616831C62D7C3002CF1DE /* TabViewController.swift */,
 				D7B616851C62D7DB002CF1DE /* TabTableViewController.swift */,
+				D7086D251CC9650B009F96C7 /* TabFloatingTableViewController.swift */,
 				D7C448C21C641C0400CD12F8 /* TabHeaderTableViewCell.swift */,
 				D7B616871C62DCE0002CF1DE /* TabLineItemTableViewCell.swift */,
 				D73620411C651BE800DD7F71 /* TabLineItemServingCollectionViewCell.swift */,
@@ -459,6 +470,7 @@
 				D7FFF7B71C3AFB0600020D9A /* Assets.xcassets */,
 				D7FFF7B91C3AFB0600020D9A /* LaunchScreen.storyboard */,
 				D7FFF7BC1C3AFB0600020D9A /* Info.plist */,
+				D7F174741CD3C813002BA588 /* SliderViewController.swift */,
 			);
 			path = TastingRoomDelMar;
 			sourceTree = "<group>";
@@ -616,6 +628,7 @@
 				D7C1E0321C5A92B300143C48 /* Fontfabric - Nexa Rust Script L 00.otf in Resources */,
 				D7C1E0411C5AB86800143C48 /* OpenSans-Regular.ttf in Resources */,
 				D7C1E0421C5AB86E00143C48 /* BebasNeue Regular.otf in Resources */,
+				D7C2A2251CD692EF00B6FB24 /* fbloginbutton.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -729,6 +742,7 @@
 				D78594941C7BF141000972FB /* SignupSceneOneViewController.swift in Sources */,
 				D7F981101C44612800200639 /* ENSideMenuControllerViewController.swift in Sources */,
 				D736DADD1C73906800751307 /* TableNumberViewController.swift in Sources */,
+				D7086D261CC9650B009F96C7 /* TabFloatingTableViewController.swift in Sources */,
 				D775CDD91C6D4AAC006A3F29 /* SettingsEditViewController.swift in Sources */,
 				D7E803971C56E152003C12D9 /* PopoverSGTableViewCell.swift in Sources */,
 				D733D4661C69598F00682A84 /* CardManager.swift in Sources */,
@@ -763,8 +777,10 @@
 				D7B616841C62D7C3002CF1DE /* TabViewController.swift in Sources */,
 				D7498AB21C7F1A8C0086B7BD /* AnimationManager.swift in Sources */,
 				D7B6168C1C62DCFA002CF1DE /* TabActionTableViewCell.swift in Sources */,
+				D7F174751CD3C813002BA588 /* SliderViewController.swift in Sources */,
 				D7FACCFB1C46F1EF0006F6BE /* TierIVCollectionViewController.swift in Sources */,
 				D786D1C21C7D580D0034EA81 /* SignupSceneTwoTableViewController.swift in Sources */,
+				D7F174771CD42850002BA588 /* SignupNavigationController.swift in Sources */,
 				D7683B1D1CB33EFA00F79678 /* HistoryDetailTableViewCell.swift in Sources */,
 				D7E8039B1C56E17B003C12D9 /* PopoverActionTableViewCell.swift in Sources */,
 				D733D4681C69746C00682A84 /* PaymentAddViewController.swift in Sources */,
@@ -915,12 +931,12 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = TastingRoomDelMar/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tastingroomdelmar.TastingRoomDelMar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -932,12 +948,12 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = TastingRoomDelMar/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tastingroomdelmar.TastingRoomDelMar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

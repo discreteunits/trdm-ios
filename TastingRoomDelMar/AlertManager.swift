@@ -70,7 +70,6 @@ class AlertManager: UIViewController {
         let okAction = UIAlertAction(title: "Okay", style: .Default, handler: {
             (action) -> Void in
             
-            print("DELEGATE: \(self.delegate)")
             self.delegate?.removeOpaque()
             view.dismissViewControllerAnimated(false, completion: nil)
             print("User selected okay.")
@@ -86,7 +85,7 @@ class AlertManager: UIViewController {
     }
     
     // Checkout Options Alert
-    func checkoutOptions(view: UIViewController, title: String, message: String) {
+    func checkoutOptions(view: UIViewController, controller: UIViewController, title: String, message: String) {
         
         // Create Controller
         let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
@@ -94,6 +93,7 @@ class AlertManager: UIViewController {
         
         // Create Actions
         let loginAction = UIAlertAction(title: "Closeout now ", style: .Default, handler: { (action) -> Void in
+            
             TabManager.sharedInstance.currentTab.checkoutMethod = "stripe"
             
             // Continue Place Order
@@ -105,6 +105,7 @@ class AlertManager: UIViewController {
             
         })
         let createAccountAction = UIAlertAction(title: "Closeout later with your Server", style: .Default , handler: { (action) -> Void in
+                        
             TabManager.sharedInstance.currentTab.checkoutMethod = "server"
             
             // Continue Place Order
@@ -116,6 +117,8 @@ class AlertManager: UIViewController {
         
         })
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action) -> Void in
+            
+            AnimationManager.sharedInstance.opaqueWindow(controller)
             
             if printFlag {
                 print("Cancel Selected")
@@ -346,6 +349,9 @@ class AlertManager: UIViewController {
             
             TabManager.sharedInstance.tierIVToTab = true
             
+            TabManager.sharedInstance.removeItemsIndicator()
+
+            
             self.confirm(view)
             
             if printFlag {
@@ -454,8 +460,10 @@ class AlertManager: UIViewController {
         }
         
         // Whoops Credit Card
-        if CardManager.sharedInstance.currentCustomer.card.brand == "" {
-            whoopsCreditCardAlert(view, title: "Whoops", message: "Looks like you don't have a credit card on file. Please add a card or checkout with your servers.")
+        if TabManager.sharedInstance.currentTab.checkoutMethod == "stripe" {
+            if CardManager.sharedInstance.currentCustomer.card.brand == "" {
+                whoopsCreditCardAlert(view, title: "Whoops", message: "Looks like you don't have a credit card on file. Please add a card or checkout with your servers.")
+            }
         }
         
         // Enter Table Number
@@ -464,10 +472,12 @@ class AlertManager: UIViewController {
         }
         
         // Add Gratuity
-        if (TabManager.sharedInstance.currentTab.gratuity.doubleValue != nil) {
-            view.performSegueWithIdentifier("addGratuity", sender: view)
+        if TabManager.sharedInstance.currentTab.checkoutMethod == "stripe" {
+            if (TabManager.sharedInstance.currentTab.gratuity.doubleValue != nil) {
+                view.performSegueWithIdentifier("addGratuity", sender: view)
+            }
         }
-        
+            
     }
     
     // Go To Sign Up

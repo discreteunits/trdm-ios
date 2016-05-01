@@ -12,6 +12,7 @@ import UIKit
 protocol TableNumberViewDelegate {
     func gratuitySegue()
     func removeOpaque()
+    func passTabController() -> UIViewController
 }
 
 class TableNumberViewController: UIViewController, UITextFieldDelegate {
@@ -21,12 +22,20 @@ class TableNumberViewController: UIViewController, UITextFieldDelegate {
     var tab = TabManager.sharedInstance.currentTab
     
     var delegate: TableNumberViewDelegate?
-    var TabTableViewControllerRef: TabTableViewController?
+    var TabFloatingTableViewControllerRef: TabTableViewController?
+    
+    var heightConstraint = CGFloat()
     
 // -------------------
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
+        let tabController = delegate?.passTabController()
+        heightConstraint = tabController!.view.bounds.height
+        let dynamicFontSize = CGFloat(heightConstraint / 8)
+
+        
         let popoverView = self.view
             popoverView.layer.backgroundColor = UIColor(red: 246/255.0, green: 246/255.0, blue: 246/255.0, alpha: 1.0).CGColor
         
@@ -43,11 +52,11 @@ class TableNumberViewController: UIViewController, UITextFieldDelegate {
         enterTableNumberLabel.textColor = UIColor.blackColor()
         enterTableNumberLabel.textAlignment = .Center
         // Create Text Field
-        tableNumberTextField = UITextField(frame: CGRectMake(0, 0, screenWidth * 0.3, 100))
+        tableNumberTextField = UITextField(frame: CGRectMake(0, 0, screenWidth * 0.3, dynamicFontSize + 16))
         tableNumberTextField.frame.origin.y = 54
         tableNumberTextField.frame.origin.x = screenWidth * 0.36
         tableNumberTextField.placeholder = "23"
-        tableNumberTextField.font = UIFont.basicFont(72)
+        tableNumberTextField.font = UIFont.basicFont(dynamicFontSize)
         tableNumberTextField.autocorrectionType = .No
         tableNumberTextField.keyboardType = .NumberPad
         tableNumberTextField.returnKeyType = .Done
@@ -55,14 +64,15 @@ class TableNumberViewController: UIViewController, UITextFieldDelegate {
         tableNumberTextField.contentVerticalAlignment = .Center
         tableNumberTextField.textAlignment = .Center
         tableNumberTextField.backgroundColor = UIColor.whiteColor()
+        tableNumberTextField.keyboardAppearance = UIKeyboardAppearance.Dark
         tableNumberTextField.becomeFirstResponder()
         tableNumberTextField.delegate = self
         
         // Create Cancel Button
         let buttonWidth = (screenWidth - 24) / 2
         
-        let cancelButton = UIButton(frame: CGRectMake(0, 0, buttonWidth, 60))
-        cancelButton.frame.origin.y = 160
+        let cancelButton = UIButton(frame: CGRectMake(0, 0, buttonWidth, heightConstraint / 10))
+        cancelButton.frame.origin.y = dynamicFontSize * 2.3
         cancelButton.frame.origin.x = 8
         cancelButton.setTitle("Cancel", forState: .Normal)
         cancelButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
@@ -72,11 +82,11 @@ class TableNumberViewController: UIViewController, UITextFieldDelegate {
         cancelButton.clipsToBounds = true
         cancelButton.addTarget(self, action: #selector(TableNumberViewController.cancelPopover), forControlEvents: UIControlEvents.TouchUpInside)
         // Create Place Order Button
-        let placeOrderButton = UIButton(frame: CGRectMake(0, 0, buttonWidth, 60))
-        placeOrderButton.frame.origin.y = 160
+        let placeOrderButton = UIButton(frame: CGRectMake(0, 0, buttonWidth, heightConstraint / 10))
+        placeOrderButton.frame.origin.y = dynamicFontSize * 2.3
         placeOrderButton.frame.origin.x = buttonWidth + 16
         placeOrderButton.setTitle("Place Order", forState: .Normal)
-        placeOrderButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        placeOrderButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         placeOrderButton.titleLabel?.font = UIFont.scriptFont(18)
         placeOrderButton.layer.backgroundColor = UIColor.primaryGreenColor().CGColor
         placeOrderButton.layer.cornerRadius = 12.0
@@ -123,33 +133,49 @@ class TableNumberViewController: UIViewController, UITextFieldDelegate {
             // If table number was set
             if TabManager.sharedInstance.currentTab.table != "" {
                 
-                // If gratuity is still empty, go to addGratuity
-                if (TabManager.sharedInstance.currentTab.gratuity.doubleValue != nil) {
+                // IF CHECKING OUT NOW
+                if TabManager.sharedInstance.currentTab.checkoutMethod == "stripe" {
+                
+                    // If gratuity is still empty, go to addGratuity
+                    if (TabManager.sharedInstance.currentTab.gratuity.doubleValue != nil) {
                     
-                    self.presentingViewController!.dismissViewControllerAnimated(true, completion: nil)
+                        self.presentingViewController!.dismissViewControllerAnimated(true, completion: nil)
                     
-                    dispatch_async(dispatch_get_main_queue()) {
-                        self.delegate?.gratuitySegue()
+                        dispatch_async(dispatch_get_main_queue()) {
+                            self.delegate?.gratuitySegue()
+                        }
+                
+                    // If Gratuity is NOT empty, continue placing order
+                    } else {
+                    
+                        let result = TabManager.sharedInstance.placeOrder(self, tab: TabManager.sharedInstance.currentTab)
+                    
+                        if printFlag {
+                            print("Continuing to place order from TableNumberViewController: \(result)")
+                        }
+                    
+                        self.presentingViewController!.dismissViewControllerAnimated(true, completion: nil)
+                    
                     }
                 
-                // If Gratuity is NOT empty, continue placing order
+                // IF CHECKING OUT WITH SERVER - PLACE ORDER NOW WITHOUT GRATUITY
                 } else {
                     
-                    let result = TabManager.sharedInstance.placeOrder(self, tab: TabManager.sharedInstance.currentTab)
-                    
-                    if printFlag {
-                        print("Continuing to place order from TableNumberViewController: \(result)")
+                    dispatch_async(dispatch_get_main_queue()) {
+                        let result = TabManager.sharedInstance.placeOrder(self, tab: TabManager.sharedInstance.currentTab)
+                        
+                        if printFlag {
+                            print("Place Order, CloudCode Function Returned: \(result)")
+                        }
                     }
                     
-                    self.presentingViewController!.dismissViewControllerAnimated(true, completion: nil)
-                    
                 }
-                
+               
             // If table number was NOT set
             } else {
                 
                 AlertManager.sharedInstance.addTableNumberAlert(self, title: "Whoops", message: "Please enter your table number.")
-                
+
             }
         
         // If text field was empty

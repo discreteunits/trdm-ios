@@ -1,12 +1,10 @@
 PODS:
-  - Alamofire (3.1.1)
   - Bolts (1.7.0):
     - Bolts/AppLinks (= 1.7.0)
     - Bolts/Tasks (= 1.7.0)
   - Bolts/AppLinks (1.7.0):
     - Bolts/Tasks
   - Bolts/Tasks (1.7.0)
-  - Bond (4.3.1)
   - Crashlytics (3.7.0):
     - Fabric (~> 1.6.3)
   - ENSwiftSideMenu (0.1.1)
@@ -30,23 +28,13 @@ PODS:
   - ParseUI (1.1.6):
     - Bolts/Tasks (~> 1.2)
     - Parse (~> 1.8)
-  - PureLayout (3.0.1)
   - ReachabilitySwift (2.3.3)
-  - RxBlocking (2.3.1):
-    - RxSwift (~> 2.3.1)
-  - RxCocoa (2.3.1):
-    - RxSwift (~> 2.3.1)
-  - RxSwift (2.3.1)
   - Stripe (6.2.0):
     - Stripe/Core (= 6.2.0)
   - Stripe/Core (6.2.0)
   - SwiftValidator (3.0.1)
-  - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
-  - Alamofire (= 3.1.1)
-  - Bolts
-  - Bond (~> 4.0)
   - Crashlytics
   - ENSwiftSideMenu (~> 0.1)
   - Fabric
@@ -57,33 +45,21 @@ DEPENDENCIES:
   - ParseCrashReporting
   - ParseFacebookUtilsV4 (~> 1.8.5)
   - ParseUI
-  - PureLayout
   - ReachabilitySwift (from `https://github.com/ashleymills/Reachability.swift`)
-  - RxBlocking (~> 2.0)
-  - RxCocoa (~> 2.0)
-  - RxSwift (~> 2.0)
   - Stripe
   - SwiftValidator (= 3.0.1)
-  - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
 
 EXTERNAL SOURCES:
   ReachabilitySwift:
     :git: https://github.com/ashleymills/Reachability.swift
-  SwiftyJSON:
-    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 CHECKOUT OPTIONS:
   ReachabilitySwift:
     :commit: fa90df50c04f5743fbdf643cbe8d10562d75673d
     :git: https://github.com/ashleymills/Reachability.swift
-  SwiftyJSON:
-    :commit: 2a5b70f06001316d4fb54501edc70b4084705da0
-    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 SPEC CHECKSUMS:
-  Alamofire: 9b0a7188b961a03914a99304488bd226b0e46c0e
   Bolts: a0058fa3b331c5a1e4402d534f2dae36dbff31e4
-  Bond: 55903fc67f09e8e49791a657163cabba1d6fb29d
   Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
   ENSwiftSideMenu: a934caefbe811e4925f172009349da4a49901307
   Fabric: caf7580c725e64db144f610ac65cd60956911dc7
@@ -94,13 +70,8 @@ SPEC CHECKSUMS:
   ParseCrashReporting: d912cb10b7997ef79ac475db30997e64d48c2c98
   ParseFacebookUtilsV4: cc51857cf984c6fc743e7f17c2ddebdb6f02f963
   ParseUI: 8a22e448c03f825203d8c379c80523517f68baa3
-  PureLayout: f35f5384c9c4e4479df041dbe33ad7577b71ddfb
   ReachabilitySwift: e0f6b6f280effb47731acfaaa2d5ffe223703793
-  RxBlocking: 84fd81865a641a3843b33bae7b8315e78ddbd383
-  RxCocoa: a2baaf3462b989559a51dce59d78fbebb8fe0afa
-  RxSwift: 829b2843e9eddc77a02cb3f5117f0d55f8f646f1
   Stripe: 275524137e6c4cc1058f6d32ece248adf30a21f9
   SwiftValidator: c59223144754045d7691febdc3b3ecc2e73b609c
-  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
 COCOAPODS: 0.39.0

@@ -21,7 +21,6 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
     // --------------------
     override func viewWillDisappear(animated: Bool) {
         
-        
         // Stop Activity Indicator
         ActivityManager.sharedInstance.activityStop(self)
         
@@ -35,14 +34,16 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
         
         AnimationManager.sharedInstance.fade(self.tableView, alpha: 1.0)
         
-        tierIIIArray.removeAll()
+        self.tierIIIArray.removeAll()
         
-        tierIIIQuery()
+        self.tierIIIQuery()
         
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         
         // Items Indicator
         TabManager.sharedInstance.addItemsIndicator()
@@ -105,6 +106,7 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
         
         let query:PFQuery = PFQuery(className:"Tier3")
         query.includeKey("category")
+        query.orderByAscending("sortOrder")
         query.whereKey("parentTiers", equalTo: RouteManager.sharedInstance.TierTwo!)
         query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
             

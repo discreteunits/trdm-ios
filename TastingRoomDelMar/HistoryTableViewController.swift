@@ -17,6 +17,8 @@ class HistoryTableViewController: UITableViewController {
     var closedOrders = [PFObject]()
     var openOrders = [PFObject]()
     var unregisteredOrders = [PFObject]()
+    var ascClosedOrders = [PFObject]()
+
     
     var rows: Int!
     
@@ -86,7 +88,7 @@ class HistoryTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("HistoryTableCell", forIndexPath: indexPath) as! HistoryTableViewCell
 
-        let order = closedOrders[indexPath.row]
+        let order = ascClosedOrders[indexPath.row]
         
     
         let dateUpdated = order.createdAt
@@ -121,7 +123,7 @@ class HistoryTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        orderToPass = closedOrders[indexPath.row]
+        orderToPass = ascClosedOrders[indexPath.row]
         
         
         self.performSegueWithIdentifier("historyDetail", sender: self)
@@ -180,6 +182,8 @@ class HistoryTableViewController: UITableViewController {
                         
                     }
                     
+                    self.ascClosedOrders = self.closedOrders.reverse()
+                    
                 }
                 
                 if printFlag {
@@ -197,11 +201,7 @@ class HistoryTableViewController: UITableViewController {
                 if printFlag {
                     print("Error: \(error!) \(error!.userInfo)")
                 }
-                
             }
-            
         }
-        
     }
-
 }

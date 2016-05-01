@@ -18,6 +18,7 @@ class TabViewController: UIViewController {
     @IBOutlet weak var navigationTitle: UINavigationItem!
 
     var TabTableViewControllerRef: TabTableViewController?
+    var TabFloatingTableViewControllerRef: TabFloatingTableViewController?
     
     var tab = TabManager.sharedInstance.currentTab
     var orders = CardManager.sharedInstance.currentCustomer
@@ -79,7 +80,6 @@ class TabViewController: UIViewController {
         self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
         
         
-        
         // Add Indicator
         TabManager.sharedInstance.addItemsIndicator()
         
@@ -92,14 +92,25 @@ class TabViewController: UIViewController {
             if let TabTableViewController = segue.destinationViewController as? TabTableViewController {
                 
                 self.TabTableViewControllerRef = TabTableViewController
+                TabTableViewController.delegate = self
+
+            }
+        }
+        
+        if segue.identifier == "tabFloatingEmbeded" {
+            
+            if let TabFloatingTableViewController = segue.destinationViewController as? TabFloatingTableViewController {
                 
-            } 
+                self.TabFloatingTableViewControllerRef = TabFloatingTableViewController
+                TabFloatingTableViewController.delegate = self
+                
+            }
         }
     }
 }
 
 
-extension TabViewController: TabTableViewDelegate {
+extension TabViewController: TabTableViewDelegate, TabFloatingTableViewDelegate {
     
     func defaultScreen() {
         
@@ -132,6 +143,7 @@ extension TabViewController: TabTableViewDelegate {
             messageTextView.text = "Looks like you don't have any items on your tab."
             messageTextView.font = UIFont.basicFont(16)
             messageTextView.textColor = UIColor.grayColor()
+            messageTextView.backgroundColor = UIColor.clearColor()
             messageTextView.userInteractionEnabled = false
             messageTextView.textAlignment = .Center
             messageTextView.layer.zPosition = 99
@@ -158,5 +170,26 @@ extension TabViewController: TabTableViewDelegate {
             //        }
             
         }
+    }
+    
+    func getView() -> UIView {
+        
+        let tabView = self.view
+        
+        return tabView
+        
+    }
+    
+    func getController() -> UIViewController {
+        
+        let tabController = self
+        
+        return tabController
+    }
+    
+    func recalculateTotals() {
+        
+        self.TabFloatingTableViewControllerRef?.tableView.reloadData()
+        
     }
 }

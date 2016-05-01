@@ -11,7 +11,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>$(PRODUCT_NAME)</string>
+	<string>Tasting Room</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -35,15 +35,15 @@
 		<string>52fa462b37fc0c005e5599806fd96b167f34f913</string>
 		<key>Kits</key>
 		<array>
-            <dict>
-                <key>KitInfo</key>
-                <dict>
-                    <key>publishable</key>
-                    <string>pk_test_Ks6cqeQtnXJN0MQIkEOyAmKn</string>
-                </dict>
-                <key>KitName</key>
-                <string>STPAPIClient</string>
-            </dict>
+			<dict>
+				<key>KitInfo</key>
+				<dict>
+					<key>publishable</key>
+					<string>pk_test_Ks6cqeQtnXJN0MQIkEOyAmKn</string>
+				</dict>
+				<key>KitName</key>
+				<string>STPAPIClient</string>
+			</dict>
 			<dict>
 				<key>KitInfo</key>
 				<dict/>
@@ -113,8 +113,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 </dict>
 </plist>

@@ -9,7 +9,6 @@
 import UIKit
 import ParseUI
 import Parse
-import SwiftyJSON
 
 class PopoverViewController: UITableViewController {
     
@@ -166,9 +165,13 @@ class PopoverViewController: UITableViewController {
                 } else if RouteManager.sharedInstance.TierThree!["name"] as! String == "Flights" {
                     detailsCell.varietalLabel?.text = ""
                 } else {
-                    if let varietalName = popoverItemVarietal["name"] as? String {
-                        detailsCell.varietalLabel?.text = varietalName
-                    }
+                    
+                    detailsCell.varietalLabel?.text = ""
+
+                    
+//                    if let varietalName = popoverItemVarietal["name"] as? String {
+//                        detailsCell.varietalLabel?.text = varietalName
+//                    }
                 }
                 
                 return detailsCell
@@ -184,7 +187,7 @@ class PopoverViewController: UITableViewController {
                 let trueIndex = indexPath.row - 1
                 
                 sgCell.servingLabel.layer.zPosition = 100
-                sgCell.servingLabel.font = UIFont.headerFont(18)
+                sgCell.servingLabel.font = UIFont.headerFont(24)
 
                 
                 // IF HARVEST
@@ -209,7 +212,7 @@ class PopoverViewController: UITableViewController {
                     forIndexPath: indexPath) as! PopoverQuantityTableViewCell
                 qtyCell.contentView.tag = indexPath.row
                 qtyCell.label.text = "quantity"
-                qtyCell.label.font = UIFont.headerFont(18)
+                qtyCell.label.font = UIFont.headerFont(24)
                 
                 return qtyCell
                 
@@ -576,7 +579,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                             
                             // LineItem Parent Product
                             var newProduct = Product()
-                            newProduct.objectId = popoverItem.objectId!                 // Parse Obj ID
+                            newProduct.objectId = productChoice.objectId                 // Parse Obj ID of Subproduct
                             newProduct.productId = String(popoverItem["lightspeedId"])      // Lightspeed ID
                             newProduct.name = popoverItem["name"] as! String
                             newProduct.price = popoverItem["price"] as! Double
@@ -631,7 +634,10 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                                 newLineItem.varietal = ""
                                 newLineItem.path = "Flights"
                             } else {
-                                newLineItem.varietal = popoverItemVarietal["name"] as! String
+                                
+                                newLineItem.varietal = ""
+
+//                                newLineItem.varietal = popoverItemVarietal["name"] as! String
                                 newLineItem.path = "Drink"
                             }
                             // ----- END -----

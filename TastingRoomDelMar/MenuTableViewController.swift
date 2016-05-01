@@ -10,12 +10,12 @@ import UIKit
 import Parse
 import ParseUI
 
-
-
-class MenuTableViewController: UITableViewController {
+class MenuTableViewController: UITableViewController, ENSideMenuDelegate {
     var selectedMenuItem : Int = 0
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.sideMenuController()?.sideMenu?.delegate = self
         
         // Customize apperance of table view
         tableView.contentInset = UIEdgeInsetsMake(64.0, 0, 0, 0) //
@@ -39,9 +39,9 @@ class MenuTableViewController: UITableViewController {
         let TRDMLogo = "secondary-logomark-white_rgb_600_600.png"
         let image = UIImage(named: TRDMLogo)
         let imageView = UIImageView(image: image!)
-        imageView.frame = CGRectMake(0, 0,screenWidth, screenWidth)
-        imageView.frame.origin.y = (screenHeight * 1.20)
-        imageView.frame.origin.x = (screenWidth / 3)
+        imageView.frame = CGRectMake(0, 0,screenWidth * 0.80, screenWidth * 0.80)
+        imageView.frame.origin.y = (screenHeight * 1.32)
+        imageView.frame.origin.x = (screenWidth * 0.23)
         imageView.alpha = 0.5
         imageView.transform = CGAffineTransformMakeRotation(CGFloat(M_PI + M_PI_2 + M_PI_4))
         
@@ -73,7 +73,7 @@ class MenuTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
+
         var cell = tableView.dequeueReusableCellWithIdentifier("CELL")
         var menuArray = [String]()
         
@@ -141,13 +141,25 @@ class MenuTableViewController: UITableViewController {
             if PFUser.currentUser()!.username != nil {
                 
                 let tabStoryboard: UIStoryboard = UIStoryboard(name: "TabStoryboard", bundle: nil)
-                
+
                 destViewController = tabStoryboard.instantiateViewControllerWithIdentifier("Tab")
                 destViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
                 destViewController.modalPresentationStyle = .CurrentContext
                 
-                let rootVC = sideMenuController() as! UIViewController
-                rootVC.presentViewController(destViewController, animated: true, completion: nil)
+                
+                if let rootVC = sideMenuController() as? UIViewController {
+                    
+//                let rootVC = sideMenuController() as! UIViewController
+                    rootVC.presentViewController(destViewController, animated: true, completion: nil)
+                    
+                } else {
+                    
+                    let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                    let vc = mainStoryboard.instantiateViewControllerWithIdentifier("Menu")
+                    vc.presentViewController(destViewController, animated: true, completion: nil)
+                    
+                }
+                
                 
                 // Remove Items Indicator
                 TabManager.sharedInstance.removeItemsIndicator()

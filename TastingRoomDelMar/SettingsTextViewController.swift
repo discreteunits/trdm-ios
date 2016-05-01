@@ -12,12 +12,9 @@ class SettingsTextViewController: UIViewController {
 
     @IBOutlet weak var titleLabel: UILabel!
     
-    
-    @IBOutlet weak var urlLabel: UILabel!
-    
-    
     @IBOutlet weak var navigationTitle: UINavigationItem!
     
+    @IBOutlet weak var webviewInstance: UIWebView!
     
     var passedTrigger: String!
     var nav: UINavigationBar?
@@ -37,22 +34,17 @@ class SettingsTextViewController: UIViewController {
             
         }
         
-        
         titleLabel.text = passedTrigger
         titleLabel.textAlignment = .Center
-        urlLabel.textAlignment = .Center
         titleLabel.font = UIFont.headerFont(28)
-        urlLabel.font = UIFont.basicFont(14)
-        
         
         if passedTrigger == "Privacy Policy" {
             
-            urlLabel.text = "http://www.tastingroomdelmar.com/privacy"
+            webviewInstance.loadRequest(NSURLRequest(URL: NSURL(string:"https://www.tastingroomdelmar.com/privacy")!))
             
         } else if passedTrigger == "Terms of Use" {
             
-            urlLabel.text = "http://www.tastingroomdelmar.com/terms"
-            
+            webviewInstance.loadRequest(NSURLRequest(URL: NSURL(string:"https://www.tastingroomdelmar.com/terms")!))
         }
     }
 

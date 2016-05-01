@@ -13,7 +13,7 @@ import ParseFacebookUtilsV4
 import ReachabilitySwift
 
 
-class LandingViewController: UIViewController {
+class LandingViewController: UIViewController, ENSideMenuDelegate {
     
     var screenSize = CGRect()
     var screenWidth = CGFloat()
@@ -22,6 +22,7 @@ class LandingViewController: UIViewController {
     var signupActive = true
     
     var signupOrLogin = String()
+    
 
     // ------------
     override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
@@ -48,6 +49,7 @@ class LandingViewController: UIViewController {
         trdmLogo()
         buttons()
         
+
     }
     
     override func viewDidLoad() {
@@ -67,7 +69,7 @@ class LandingViewController: UIViewController {
         let image = UIImage(named: TRDMLogo)
         let imageView = UIImageView(image: image!)
         imageView.frame = CGRectMake(0,0,screenWidth - 50, screenWidth - 50)
-        imageView.frame.origin.y = screenHeight / 4
+        imageView.frame.origin.y = screenHeight * 0.2
         imageView.frame.origin.x = 25
         
         self.view.addSubview(imageView)
@@ -93,7 +95,7 @@ class LandingViewController: UIViewController {
         self.view.addSubview(skipButton)
         
         // Signup Button
-        let signupButton = UIButton(frame: CGRectMake(0, 0, screenWidth * 0.4, 40))
+        let signupButton = UIButton(frame: CGRectMake(0, 0, screenWidth * 0.4, screenHeight * 0.06))
         signupButton.frame.origin.x = screenWidth * 0.075
         signupButton.frame.origin.y = screenHeight * 0.8
         signupButton.setTitle("Sign Up", forState: .Normal)
@@ -109,7 +111,7 @@ class LandingViewController: UIViewController {
         self.view.addSubview(signupButton)
         
         // Login Button
-        let loginButton = UIButton(frame: CGRectMake(0, 0, screenWidth * 0.4, 40))
+        let loginButton = UIButton(frame: CGRectMake(0, 0, screenWidth * 0.4, screenHeight * 0.06))
         loginButton.frame.origin.x = screenWidth * 0.525
         loginButton.frame.origin.y = screenHeight * 0.8
         loginButton.setTitle("Log In", forState: .Normal)
@@ -125,7 +127,12 @@ class LandingViewController: UIViewController {
         self.view.addSubview(loginButton)
         
         // Facebook Button
-        let facebookButton = UIButton(frame: CGRectMake(0, 0, screenWidth * 0.85, 40))
+        // TRDM Logo
+        let fbLoginButton = "fbloginbutton.png"
+        let image = UIImage(named: fbLoginButton)
+
+
+        let facebookButton = UIButton(frame: CGRectMake(0, 0, screenWidth * 0.85, screenHeight * 0.07))
         facebookButton.frame.origin.x = screenWidth * 0.075
         facebookButton.frame.origin.y = screenHeight * 0.875
         facebookButton.setTitle("Log in with Facebook", forState: .Normal)
@@ -136,6 +143,7 @@ class LandingViewController: UIViewController {
         facebookButton.clipsToBounds = true
         facebookButton.addTarget(self, action: #selector(LandingViewController.facebook), forControlEvents: UIControlEvents.TouchUpInside)
         facebookButton.hidden = true
+        facebookButton.setImage(image, forState: .Normal)
         facebookButton.tag = 80
         
         self.view.addSubview(facebookButton)

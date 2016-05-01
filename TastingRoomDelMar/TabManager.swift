@@ -140,6 +140,8 @@ class TabManager: NSObject {
             print("Tab For CloudCode Order: \(tab)")
             print("-----------------------")
         }
+        
+        ActivityManager.sharedInstance.activityStart(view)
 
         // Separate Delivery and Take Away orders
         var deliveryOrders = [[String:AnyObject]]()
@@ -184,10 +186,10 @@ class TabManager: NSObject {
             var lineObjectId: String
             if lineitem.path == "Eat" {
                 lineProductId = lineitem.subproduct.productId
-                lineObjectId = lineitem.subproduct.objectId
+                lineObjectId = lineitem.objectId
             } else if lineitem.path == "Drink" {
                 lineProductId = lineitem.productId
-                lineObjectId = lineitem.objectId
+                lineObjectId = lineitem.subproduct.objectId
             } else {
                 lineProductId = lineitem.productId
                 lineObjectId = lineitem.objectId
@@ -200,10 +202,18 @@ class TabManager: NSObject {
                 "modifiers": modifiers,
             ]
             
+            // Lightspeed needs choice on same level as product being ordered
+            let paramLineItemParent : [String:AnyObject] = [
+                "objectId": lineitem.objectId,
+                "amount": 1
+            ]
+            
             // Build Delivery and Take Away Arrays
             if lineitem.type == "delivery" {
+                deliveryOrders.append(paramLineItemParent)
                 deliveryOrders.append(paramLineItem)
             } else if lineitem.type == "takeaway" {
+                takeawayOrders.append(paramLineItemParent)
                 takeawayOrders.append(paramLineItem)
             }
         }
@@ -238,7 +248,6 @@ class TabManager: NSObject {
         ]
         // Build Take Away Param
         let takeawayParam : [String:AnyObject] = [
-            "userId": tab.userId,
             "checkoutMethod": tab.checkoutMethod,
             "table": tab.table,
             "tipPercent": tab.gratuityPercent,
@@ -249,12 +258,18 @@ class TabManager: NSObject {
         
         // Create All Orders Object (Delivery and Take Away)
         var allOrders = [[String:AnyObject]]()
-        allOrders.append(deliveryParam)
-        allOrders.append(takeawayParam)
+        
+        if deliveryOrders.count > 0 {
+            allOrders.append(deliveryParam)
+        }
+        if takeawayOrders.count > 0 {
+            allOrders.append(takeawayParam)
+        }
         
         
         // Create Order For CloudCode Function
         let order : [String:AnyObject] = [
+            "userId": tab.userId,
             "orders": allOrders
         ]
         if printFlag {
@@ -273,6 +288,8 @@ class TabManager: NSObject {
             
             if let error = error {
                 
+                ActivityManager.sharedInstance.activityStop(view)
+                
                 // Failure 
                 if printFlag {
                     print("Error: \(error)")
@@ -282,6 +299,8 @@ class TabManager: NSObject {
                 
                 
             } else {
+                
+                ActivityManager.sharedInstance.activityStop(view)
                 
                 // Success 
                 result = String(response!)

@@ -32,7 +32,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NSUserDefaults.standardUserDefaults().setValue(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
 
         
-        
         Parse.enableLocalDatastore()
         
         Parse.setApplicationId(AppConfiguration.sharedInstance.databaseAppId,

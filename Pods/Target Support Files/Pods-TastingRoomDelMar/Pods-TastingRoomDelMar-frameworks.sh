@@ -84,9 +84,7 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "Pods-TastingRoomDelMar/Alamofire.framework"
   install_framework "Pods-TastingRoomDelMar/Bolts.framework"
-  install_framework "Pods-TastingRoomDelMar/Bond.framework"
   install_framework "Pods-TastingRoomDelMar/ENSwiftSideMenu.framework"
   install_framework "Pods-TastingRoomDelMar/FBSDKCoreKit.framework"
   install_framework "Pods-TastingRoomDelMar/FBSDKLoginKit.framework"
@@ -95,19 +93,12 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-TastingRoomDelMar/ParseCrashReporting.framework"
   install_framework "Pods-TastingRoomDelMar/ParseFacebookUtilsV4.framework"
   install_framework "Pods-TastingRoomDelMar/ParseUI.framework"
-  install_framework "Pods-TastingRoomDelMar/PureLayout.framework"
   install_framework "Pods-TastingRoomDelMar/ReachabilitySwift.framework"
-  install_framework "Pods-TastingRoomDelMar/RxBlocking.framework"
-  install_framework "Pods-TastingRoomDelMar/RxCocoa.framework"
-  install_framework "Pods-TastingRoomDelMar/RxSwift.framework"
   install_framework "Pods-TastingRoomDelMar/Stripe.framework"
   install_framework "Pods-TastingRoomDelMar/SwiftValidator.framework"
-  install_framework "Pods-TastingRoomDelMar/SwiftyJSON.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "Pods-TastingRoomDelMar/Alamofire.framework"
   install_framework "Pods-TastingRoomDelMar/Bolts.framework"
-  install_framework "Pods-TastingRoomDelMar/Bond.framework"
   install_framework "Pods-TastingRoomDelMar/ENSwiftSideMenu.framework"
   install_framework "Pods-TastingRoomDelMar/FBSDKCoreKit.framework"
   install_framework "Pods-TastingRoomDelMar/FBSDKLoginKit.framework"
@@ -116,12 +107,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-TastingRoomDelMar/ParseCrashReporting.framework"
   install_framework "Pods-TastingRoomDelMar/ParseFacebookUtilsV4.framework"
   install_framework "Pods-TastingRoomDelMar/ParseUI.framework"
-  install_framework "Pods-TastingRoomDelMar/PureLayout.framework"
   install_framework "Pods-TastingRoomDelMar/ReachabilitySwift.framework"
-  install_framework "Pods-TastingRoomDelMar/RxBlocking.framework"
-  install_framework "Pods-TastingRoomDelMar/RxCocoa.framework"
-  install_framework "Pods-TastingRoomDelMar/RxSwift.framework"
   install_framework "Pods-TastingRoomDelMar/Stripe.framework"
   install_framework "Pods-TastingRoomDelMar/SwiftValidator.framework"
-  install_framework "Pods-TastingRoomDelMar/SwiftyJSON.framework"
 fi
