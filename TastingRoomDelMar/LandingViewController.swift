@@ -69,7 +69,7 @@ class LandingViewController: UIViewController, ENSideMenuDelegate {
         let image = UIImage(named: TRDMLogo)
         let imageView = UIImageView(image: image!)
         imageView.frame = CGRectMake(0,0,screenWidth - 50, screenWidth - 50)
-        imageView.frame.origin.y = screenHeight / 4
+        imageView.frame.origin.y = screenHeight * 0.2
         imageView.frame.origin.x = 25
         
         self.view.addSubview(imageView)

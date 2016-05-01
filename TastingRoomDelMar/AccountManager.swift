@@ -36,6 +36,9 @@ class AccountManager: NSObject {
             
             // Failure
             if error != nil {
+                
+                ActivityManager.sharedInstance.activityStop(view)
+
                 AlertManager.sharedInstance.singleAlert(view, title: "Error", message: (error?.localizedDescription)!)
                 return
                 

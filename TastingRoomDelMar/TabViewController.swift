@@ -143,6 +143,7 @@ extension TabViewController: TabTableViewDelegate, TabFloatingTableViewDelegate 
             messageTextView.text = "Looks like you don't have any items on your tab."
             messageTextView.font = UIFont.basicFont(16)
             messageTextView.textColor = UIColor.grayColor()
+            messageTextView.backgroundColor = UIColor.clearColor()
             messageTextView.userInteractionEnabled = false
             messageTextView.textAlignment = .Center
             messageTextView.layer.zPosition = 99
