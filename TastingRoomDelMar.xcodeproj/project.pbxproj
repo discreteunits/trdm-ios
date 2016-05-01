@@ -75,6 +75,7 @@
 		D7C1E0411C5AB86800143C48 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D7C1E03F1C5AB75100143C48 /* OpenSans-Regular.ttf */; };
 		D7C1E0421C5AB86E00143C48 /* BebasNeue Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = D7C1E0401C5AB76E00143C48 /* BebasNeue Regular.otf */; };
 		D7C1E0441C5AE3F000143C48 /* TabManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C1E0431C5AE3F000143C48 /* TabManager.swift */; };
+		D7C2A2251CD692EF00B6FB24 /* fbloginbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = D7C2A2241CD692EF00B6FB24 /* fbloginbutton.png */; };
 		D7C448C31C641C0400CD12F8 /* TabHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C448C21C641C0400CD12F8 /* TabHeaderTableViewCell.swift */; };
 		D7C463FB1CBC330C00449EF3 /* RouteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C463FA1CBC330C00449EF3 /* RouteManager.swift */; };
 		D7CDA53E1CA46CF200388A30 /* PlaygroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CDA53D1CA46CF200388A30 /* PlaygroundViewController.swift */; };
@@ -193,6 +194,7 @@
 		D7C1E03F1C5AB75100143C48 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		D7C1E0401C5AB76E00143C48 /* BebasNeue Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BebasNeue Regular.otf"; sourceTree = "<group>"; };
 		D7C1E0431C5AE3F000143C48 /* TabManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabManager.swift; sourceTree = "<group>"; };
+		D7C2A2241CD692EF00B6FB24 /* fbloginbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fbloginbutton.png; sourceTree = "<group>"; };
 		D7C448C21C641C0400CD12F8 /* TabHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		D7C463FA1CBC330C00449EF3 /* RouteManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteManager.swift; sourceTree = "<group>"; };
 		D7CDA53D1CA46CF200388A30 /* PlaygroundViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlaygroundViewController.swift; path = ../PlaygroundViewController.swift; sourceTree = "<group>"; };
@@ -315,6 +317,7 @@
 				D7C1E03F1C5AB75100143C48 /* OpenSans-Regular.ttf */,
 				D7C1E0401C5AB76E00143C48 /* BebasNeue Regular.otf */,
 				D7C1E0351C5A951300143C48 /* primary-logomark-02_rgb_600_600.png */,
+				D7C2A2241CD692EF00B6FB24 /* fbloginbutton.png */,
 				D736DADB1C72D70C00751307 /* secondary-logomark-03_rgb.eps */,
 				D7C1E0361C5A951300143C48 /* primary-logomark-front-04_rgb_600_600.png */,
 				D7C1E0391C5A952000143C48 /* primary-logotype-05_rgb_600_600.png */,
@@ -625,6 +628,7 @@
 				D7C1E0321C5A92B300143C48 /* Fontfabric - Nexa Rust Script L 00.otf in Resources */,
 				D7C1E0411C5AB86800143C48 /* OpenSans-Regular.ttf in Resources */,
 				D7C1E0421C5AB86E00143C48 /* BebasNeue Regular.otf in Resources */,
+				D7C2A2251CD692EF00B6FB24 /* fbloginbutton.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

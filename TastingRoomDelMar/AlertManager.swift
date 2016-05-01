@@ -460,8 +460,10 @@ class AlertManager: UIViewController {
         }
         
         // Whoops Credit Card
-        if CardManager.sharedInstance.currentCustomer.card.brand == "" {
-            whoopsCreditCardAlert(view, title: "Whoops", message: "Looks like you don't have a credit card on file. Please add a card or checkout with your servers.")
+        if TabManager.sharedInstance.currentTab.checkoutMethod == "stripe" {
+            if CardManager.sharedInstance.currentCustomer.card.brand == "" {
+                whoopsCreditCardAlert(view, title: "Whoops", message: "Looks like you don't have a credit card on file. Please add a card or checkout with your servers.")
+            }
         }
         
         // Enter Table Number
@@ -470,10 +472,12 @@ class AlertManager: UIViewController {
         }
         
         // Add Gratuity
-        if (TabManager.sharedInstance.currentTab.gratuity.doubleValue != nil) {
-            view.performSegueWithIdentifier("addGratuity", sender: view)
+        if TabManager.sharedInstance.currentTab.checkoutMethod == "stripe" {
+            if (TabManager.sharedInstance.currentTab.gratuity.doubleValue != nil) {
+                view.performSegueWithIdentifier("addGratuity", sender: view)
+            }
         }
-        
+            
     }
     
     // Go To Sign Up

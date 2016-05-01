@@ -127,7 +127,12 @@ class LandingViewController: UIViewController, ENSideMenuDelegate {
         self.view.addSubview(loginButton)
         
         // Facebook Button
-        let facebookButton = UIButton(frame: CGRectMake(0, 0, screenWidth * 0.85, screenHeight * 0.06))
+        // TRDM Logo
+        let fbLoginButton = "fbloginbutton.png"
+        let image = UIImage(named: fbLoginButton)
+
+
+        let facebookButton = UIButton(frame: CGRectMake(0, 0, screenWidth * 0.85, screenHeight * 0.07))
         facebookButton.frame.origin.x = screenWidth * 0.075
         facebookButton.frame.origin.y = screenHeight * 0.875
         facebookButton.setTitle("Log in with Facebook", forState: .Normal)
@@ -138,6 +143,7 @@ class LandingViewController: UIViewController, ENSideMenuDelegate {
         facebookButton.clipsToBounds = true
         facebookButton.addTarget(self, action: #selector(LandingViewController.facebook), forControlEvents: UIControlEvents.TouchUpInside)
         facebookButton.hidden = true
+        facebookButton.setImage(image, forState: .Normal)
         facebookButton.tag = 80
         
         self.view.addSubview(facebookButton)

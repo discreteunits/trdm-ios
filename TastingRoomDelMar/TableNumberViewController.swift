@@ -133,33 +133,49 @@ class TableNumberViewController: UIViewController, UITextFieldDelegate {
             // If table number was set
             if TabManager.sharedInstance.currentTab.table != "" {
                 
-                // If gratuity is still empty, go to addGratuity
-                if (TabManager.sharedInstance.currentTab.gratuity.doubleValue != nil) {
+                // IF CHECKING OUT NOW
+                if TabManager.sharedInstance.currentTab.checkoutMethod == "stripe" {
+                
+                    // If gratuity is still empty, go to addGratuity
+                    if (TabManager.sharedInstance.currentTab.gratuity.doubleValue != nil) {
                     
-                    self.presentingViewController!.dismissViewControllerAnimated(true, completion: nil)
+                        self.presentingViewController!.dismissViewControllerAnimated(true, completion: nil)
                     
-                    dispatch_async(dispatch_get_main_queue()) {
-                        self.delegate?.gratuitySegue()
+                        dispatch_async(dispatch_get_main_queue()) {
+                            self.delegate?.gratuitySegue()
+                        }
+                
+                    // If Gratuity is NOT empty, continue placing order
+                    } else {
+                    
+                        let result = TabManager.sharedInstance.placeOrder(self, tab: TabManager.sharedInstance.currentTab)
+                    
+                        if printFlag {
+                            print("Continuing to place order from TableNumberViewController: \(result)")
+                        }
+                    
+                        self.presentingViewController!.dismissViewControllerAnimated(true, completion: nil)
+                    
                     }
                 
-                // If Gratuity is NOT empty, continue placing order
+                // IF CHECKING OUT WITH SERVER - PLACE ORDER NOW WITHOUT GRATUITY
                 } else {
                     
-                    let result = TabManager.sharedInstance.placeOrder(self, tab: TabManager.sharedInstance.currentTab)
-                    
-                    if printFlag {
-                        print("Continuing to place order from TableNumberViewController: \(result)")
+                    dispatch_async(dispatch_get_main_queue()) {
+                        let result = TabManager.sharedInstance.placeOrder(self, tab: TabManager.sharedInstance.currentTab)
+                        
+                        if printFlag {
+                            print("Place Order, CloudCode Function Returned: \(result)")
+                        }
                     }
                     
-                    self.presentingViewController!.dismissViewControllerAnimated(true, completion: nil)
-                    
                 }
-                
+               
             // If table number was NOT set
             } else {
                 
                 AlertManager.sharedInstance.addTableNumberAlert(self, title: "Whoops", message: "Please enter your table number.")
-                
+
             }
         
         // If text field was empty
