@@ -1,0 +1,59 @@
+{
+  "companyId": 0,
+  "creationDate": "string",
+  "customerId": 0,
+  "deliveryDate": "string",
+  "description": "string",
+  "id": 0,
+  "links": [
+    {
+      "href": "string",
+      "rel": "string"
+    }
+  ],
+  "note": "string",
+  "orderItems": [
+    {
+      "amount": 0,
+      "id": 0,
+      "modifiers": [
+        {
+          "description": "string",
+          "id": 0,
+          "modifierId": 0,
+          "modifierName": "string",
+          "modifierValueId": 0,
+          "price": 0,
+          "priceWithoutVat": 0
+        }
+      ],
+      "productId": 0,
+      "productPlu": "string",
+      "subitems": [
+        {}
+      ],
+      "totalPrice": 0,
+      "totalPriceWithoutVat": 0,
+      "unitPrice": 0,
+      "unitPriceWithoutVat": 0
+    }
+  ],
+  "orderPayment": {
+    "amount": 0,
+    "id": 0,
+    "paymentTypeId": 0,
+    "paymentTypeTypeId": 0
+  },
+  "orderTaxInfo": [
+    {
+      "id": 0,
+      "tax": 0,
+      "taxRate": 0,
+      "totalWithTax": 0,
+      "totalWithoutTax": 0
+    }
+  ],
+  "receiptId": 0,
+  "status": "string",
+  "type": "string"
+}
