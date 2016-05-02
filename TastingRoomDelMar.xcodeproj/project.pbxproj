@@ -78,6 +78,8 @@
 		D7C2A2251CD692EF00B6FB24 /* fbloginbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = D7C2A2241CD692EF00B6FB24 /* fbloginbutton.png */; };
 		D7C448C31C641C0400CD12F8 /* TabHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C448C21C641C0400CD12F8 /* TabHeaderTableViewCell.swift */; };
 		D7C463FB1CBC330C00449EF3 /* RouteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C463FA1CBC330C00449EF3 /* RouteManager.swift */; };
+		D7C6B2381CD7CAC8003594FA /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D7C6B2371CD7CAC8003594FA /* libsqlite3.dylib */; };
+		D7C6B23A1CD7CAEE003594FA /* libz.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D7C6B2391CD7CAEE003594FA /* libz.1.dylib */; };
 		D7CDA53E1CA46CF200388A30 /* PlaygroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CDA53D1CA46CF200388A30 /* PlaygroundViewController.swift */; };
 		D7CDA5401CA47F8A00388A30 /* PlaygroundTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CDA53F1CA47F8A00388A30 /* PlaygroundTwoViewController.swift */; };
 		D7D809951C7BCE1D00A3F5E6 /* SignupStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7D809941C7BCE1D00A3F5E6 /* SignupStoryboard.storyboard */; };
@@ -197,6 +199,8 @@
 		D7C2A2241CD692EF00B6FB24 /* fbloginbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fbloginbutton.png; sourceTree = "<group>"; };
 		D7C448C21C641C0400CD12F8 /* TabHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		D7C463FA1CBC330C00449EF3 /* RouteManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteManager.swift; sourceTree = "<group>"; };
+		D7C6B2371CD7CAC8003594FA /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = ../../../../../../../usr/lib/libsqlite3.dylib; sourceTree = "<group>"; };
+		D7C6B2391CD7CAEE003594FA /* libz.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.dylib; path = ../../../../../../../usr/lib/libz.1.dylib; sourceTree = "<group>"; };
 		D7CDA53D1CA46CF200388A30 /* PlaygroundViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlaygroundViewController.swift; path = ../PlaygroundViewController.swift; sourceTree = "<group>"; };
 		D7CDA53F1CA47F8A00388A30 /* PlaygroundTwoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaygroundTwoViewController.swift; sourceTree = "<group>"; };
 		D7D809941C7BCE1D00A3F5E6 /* SignupStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignupStoryboard.storyboard; sourceTree = "<group>"; };
@@ -234,6 +238,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7C6B23A1CD7CAEE003594FA /* libz.1.dylib in Frameworks */,
+				D7C6B2381CD7CAC8003594FA /* libsqlite3.dylib in Frameworks */,
 				BB65EBD50F601E4F26BD8CFC /* Pods_TastingRoomDelMar.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -258,6 +264,8 @@
 		33F0AF0FDEDF0E0B9CE77BF8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D7C6B2391CD7CAEE003594FA /* libz.1.dylib */,
+				D7C6B2371CD7CAC8003594FA /* libsqlite3.dylib */,
 				258E486804D393986620D744 /* Pods_TastingRoomDelMar.framework */,
 			);
 			name = Frameworks;

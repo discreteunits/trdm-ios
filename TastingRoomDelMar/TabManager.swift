@@ -215,6 +215,10 @@ class TabManager: NSObject {
             } else if lineitem.type == "takeaway" {
                 takeawayOrders.append(paramLineItemParent)
                 takeawayOrders.append(paramLineItem)
+            } else {
+                // Merch & Events Defaulted to Dine In (Delivery)
+                deliveryOrders.append(paramLineItemParent)
+                deliveryOrders.append(paramLineItem)
             }
         }
         

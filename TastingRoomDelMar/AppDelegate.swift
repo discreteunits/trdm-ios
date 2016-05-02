@@ -16,6 +16,7 @@ import Crashlytics
 
 
 var printFlag = true
+var offlineFlag = false
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
