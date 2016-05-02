@@ -128,7 +128,7 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
                
             if TabManager.sharedInstance.currentTab.lines.count > 0 {
                     
-                let lineSize = 90
+                let lineSize = 120
                 return CGFloat(lineSize)
                     
             }
@@ -262,7 +262,7 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
 
             let orderAndServing = orderMod + "   " + servingPrice
             lineitemServingCollectionCell.servingSizeLabel?.text = "\(orderAndServing)"
-                
+            
             lineitemServingCollectionCell.qtyLabel?.text = "\(Int(TabManager.sharedInstance.currentTab.lines[parent].quantity))"
                 
             lineitemServingCollectionCell.priceLabel?.text = "\(Int(TabManager.sharedInstance.currentTab.lines[parent].price))"

@@ -27,8 +27,8 @@ class SignupNavigationController: ENSideMenuNavigationController, ENSideMenuDele
         sideMenu = ENSideMenu(sourceView: self.view, menuViewController: MenuTableViewController(), menuPosition:.Right)
         sideMenu?.delegate = self //optional
         sideMenu?.menuWidth = screenWidth * 0.58 // optional, default is 160
-        //sideMenu?.bouncingEnabled = true
-        //sideMenu?.allowPanGesture = false
+        sideMenu?.bouncingEnabled = false
+        sideMenu?.allowPanGesture = false
         // make navigation bar showing over side menu
         view.bringSubviewToFront(navigationBar)
     }

@@ -113,6 +113,10 @@ class TableNumberViewController: UIViewController, UITextFieldDelegate {
     
     func cancelPopover() {
         
+        // Clean Up
+        TabManager.sharedInstance.currentTab.table = ""
+        TabManager.sharedInstance.currentTab.checkoutMethod = ""
+        
         delegate?.removeOpaque()
         self.presentingViewController!.dismissViewControllerAnimated(false, completion: nil)
         

@@ -38,6 +38,9 @@ class TabFloatingTableViewController: UITableViewController, UIPopoverPresentati
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.tableView.alwaysBounceVertical = false
+        self.tableView.scrollEnabled = false 
+        
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
 
         
