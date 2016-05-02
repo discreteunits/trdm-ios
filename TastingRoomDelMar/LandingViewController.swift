@@ -149,8 +149,8 @@ class LandingViewController: UIViewController, ENSideMenuDelegate {
         self.view.addSubview(facebookButton)
         
         // Not Connected Message
-        let disconnectedMessage = UITextView(frame: CGRectMake(0, 0, screenWidth * 0.875, 80))
-        disconnectedMessage.frame.origin.x = screenWidth * 0.125
+        let disconnectedMessage = UITextView(frame: CGRectMake(0, 0, screenWidth * 0.7, 80))
+        disconnectedMessage.frame.origin.x = screenWidth * 0.15
         disconnectedMessage.frame.origin.y = screenHeight * 0.78
         disconnectedMessage.text = "You must be connected to the internet to use this app."
         disconnectedMessage.textAlignment = .Center
@@ -210,9 +210,13 @@ class LandingViewController: UIViewController, ENSideMenuDelegate {
         let reachability: Reachability
         do {
             reachability = try Reachability.reachabilityForInternetConnection()
-            print("Device can be Reached.")
+            offlineFlag = false
+            print("Device can be Reached. Offline = \(offlineFlag)")
+
         } catch {
-            print("Device can not be Reached.")
+            offlineFlag = true
+            print("Device can not be Reached. Offline = \(offlineFlag)")
+
             return
         }
         
@@ -251,6 +255,9 @@ class LandingViewController: UIViewController, ENSideMenuDelegate {
                 facebook.hidden = true
                 
                 disconnected.hidden = false
+                
+                offlineFlag = true
+                print("Device can not be Reached. Offline = \(offlineFlag)")
                 
                 print("No internet connection... removing app access points.")
             }

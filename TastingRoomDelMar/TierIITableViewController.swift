@@ -105,6 +105,11 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
         query.includeKey("category")
         query.orderByAscending("sortOrder")
         query.whereKey("parentTiers", equalTo: RouteManager.sharedInstance.TierOne!)
+        
+        if offlineFlag == true {
+            query.fromLocalDatastore()
+        }
+        
         query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
             
             if error == nil {
@@ -117,6 +122,15 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
                         if product["state"] as! String == "active" {
                         
                             self.tierIIArray.append(object)
+                            
+                            var tierIIObject = PFObject(className: "TierII")
+                            tierIIObject = object
+                            
+                            print("TierII Object Pinned Locally: \(tierIIObject["name"])")
+                            
+                            tierIIObject.pinInBackground()
+                            
+
                         
                         }
                     }

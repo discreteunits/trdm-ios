@@ -83,7 +83,6 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         TabManager.sharedInstance.syncTab(TabManager.sharedInstance.currentTab.id)
         
 
-
         // NAV BAR STYLES
         if let navBar = navigationController?.navigationBar {
             
@@ -339,6 +338,67 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         
     }
     
+    // TIER 1 OFFLINE QUERY 
+    func tierIOfflineQuery() {
+        
+        //        let query = PFQuery(className:"Tier1")
+        //        query.fromLocalDatastore()
+        //        query.get
+        //        query.getObjectInBackgroundWithId("xWMyZ4YEGZ").continueWithBlock({
+        //            (task: BFTask!) -> AnyObject! in
+        //            if task.error != nil {
+        //                // There was an error.
+        //                return task
+        //            }
+        //
+        //            // task.result will be your game score
+        //            return task
+        //        })
+        
+        let query:PFQuery = PFQuery(className:"Tier1")
+        query.fromLocalDatastore()
+//        query.includeKey("category")
+//        query.orderByAscending("sortOrder")
+        query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
+            
+            
+            print("++++++ OFFLINE QUERY ++++++")
+            
+            if error == nil {
+                
+                // The find succeeded.
+                print("TierI retrieved \(objects!.count) objects.")
+                
+                // Do something with the found objects
+                for object in objects! as [PFObject]! {
+                    
+                    if let product = object["category"] as? PFObject {
+                        
+                        if product["state"] as! String == "active" {
+                            
+                            self.tierIArray.append(object)
+                            
+                        }
+                    }
+                }
+                
+                for i in self.tierIArray {
+                    print("TierI Array: \(i["name"])")
+                }
+                print("-----------------------")
+                
+                AnimationManager.sharedInstance.animateTable(self.tableView)
+                
+            } else {
+                
+                // Log details of the failure
+                print("Error: \(error!) \(error!.userInfo)")
+                
+            }
+        }
+        
+    }
+    
     
     // TIER 1 QUERY
     func tierIQuery() {
@@ -346,6 +406,11 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         let query:PFQuery = PFQuery(className:"Tier1")
         query.includeKey("category")
         query.orderByAscending("sortOrder")
+        
+        if offlineFlag == true {
+            query.fromLocalDatastore()
+        }
+
         query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
             
             if error == nil {
@@ -361,6 +426,21 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
                         if product["state"] as! String == "active" {
                         
                             self.tierIArray.append(object)
+                            
+//                            let tierIObject = PFObject(className: "TierI")
+//                            tierIObject["objectId"] = object.objectId
+//                            tierIObject["name"] = object["name"]
+//                            tierIObject["category"] = object["cateogry"]
+//                            tierIObject["sortOrder"] = object["sortOrder"]
+//                            tierIObject["skipToTier4"] = object["skipToTier4"]
+                            
+//                            var tierIObject = PFObject(className: "TierI")
+//                            tierIObject = object
+                            
+                            print("TierI Object Pinned Locally: \(object["name"])")
+                                
+                            object.pinInBackground()
+                            
                         
                         }
                     }
@@ -380,6 +460,8 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
                 
             }
         }
+        
+        
     }
     
     // FLYOUT TRIGGER
