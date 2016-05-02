@@ -54,7 +54,7 @@ class AddGratuityViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
+        selectedGratuity = "18"
         
         let tabController = delegate?.passTabController()
         heightConstraint = tabController!.view.bounds.height
