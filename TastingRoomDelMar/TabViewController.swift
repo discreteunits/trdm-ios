@@ -105,7 +105,6 @@ class TabViewController: UIViewController {
                 
                 self.TabTableViewControllerRef = TabTableViewController
                 TabTableViewController.delegate = self
-                AlertManager.sharedInstance.reloadDelegate = self
 
 
             }
@@ -117,16 +116,11 @@ class TabViewController: UIViewController {
                 
                 self.TabFloatingTableViewControllerRef = TabFloatingTableViewController
                 TabFloatingTableViewController.delegate = self
-                AlertManager.sharedInstance.reloadDelegate = self
 
                 
             }
         }
     }
-    
-    
-    
-
 }
 
 

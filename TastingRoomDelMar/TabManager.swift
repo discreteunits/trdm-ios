@@ -299,6 +299,10 @@ class TabManager: NSObject {
                     print("Error: \(error)")
                 }
                 
+                // Clean Up So Popover's Re-prompt 
+                TabManager.sharedInstance.currentTab.checkoutMethod = ""
+                TabManager.sharedInstance.currentTab.table = ""
+                
                 AlertManager.sharedInstance.placeOrderFailure(view, title: "Failure", message: "Sorry, please try again later.")
                 
                 

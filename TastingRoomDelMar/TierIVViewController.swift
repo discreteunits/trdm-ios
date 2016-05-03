@@ -326,6 +326,9 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
                 print("TierIV table query retrieved: \(objects!.count) objects.")
                 
                 for object in objects! as [PFObject] {
+                    
+                    if object["stockAmount"] as! Int > 0 {
+                    
                     if RouteManager.sharedInstance.TierOne!["name"] as! String == "Events" {
                         
                         if !self.TierIVTableViewControllerRef!.tierIVTableArray.contains(object) {
@@ -376,7 +379,7 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
                 AnimationManager.sharedInstance.animateTable((self.TierIVTableViewControllerRef!.tableView)!)
                 
                 print("TierIV table query completed with:  \(self.TierIVTableViewControllerRef!.tierIVTableArray.count) objects.")
-                
+                }
             } else {
                 
                 // Log details of the failure
