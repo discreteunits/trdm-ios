@@ -13,6 +13,7 @@ protocol TabFloatingTableViewDelegate {
     func defaultScreen()
     func getView() -> UIView
     func getController() -> UIViewController
+    func recalculateLineItems()
 }
 
 class TabFloatingTableViewController: UITableViewController, UIPopoverPresentationControllerDelegate {
@@ -30,6 +31,8 @@ class TabFloatingTableViewController: UITableViewController, UIPopoverPresentati
     
     // -----
     override func viewWillAppear(animated: Bool) {
+        
+        self.tableView.reloadData()
         
         TabManager.sharedInstance.totalCellCalculator()
         

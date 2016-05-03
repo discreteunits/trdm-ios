@@ -34,6 +34,12 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
     var numberOfItems: Int!
 
 // --------------------
+    override func viewWillAppear(animated: Bool) {
+
+        self.tableView.reloadData()
+
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

@@ -16,11 +16,22 @@ protocol AlertManagerDelegate {
     func removeOpaque()
 }
 
+@objc
+protocol TabReloadDelegate {
+    func defaultScreen()
+    func getView() -> UIView
+    func getController() -> UIViewController
+    func recalculateLineItems()
+    func recalculateTotals()
+}
+
 class AlertManager: UIViewController {
     
     static let sharedInstance = AlertManager()
 
     var delegate: AlertManagerDelegate?
+    var reloadDelegate: TabReloadDelegate?
+    
 
     // ---------
     override func viewDidLoad() {
@@ -197,12 +208,7 @@ class AlertManager: UIViewController {
         })
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action) -> Void in
             
-            
-// REMOVE OPAQUE VIEW
-            
-//            AnimationManager.sharedInstance.opaqueWindow(view.parentViewController!)
-            
-            
+
             if printFlag {
                 print("Cancel Selected")
             }
@@ -275,6 +281,20 @@ class AlertManager: UIViewController {
             
             self.delegate?.removeOpaque()
             
+//            self.reloadDelegate?.recalculateLineItems()
+//            self.reloadDelegate?.recalculateTotals()
+            
+            print("$$$$$$$$$$$$$$$ \(self.reloadDelegate) $$$$$$$$$$$$$$$")
+            
+            self.reloadDelegate?.defaultScreen()
+            
+//            view.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+//            view.navigationController?.dismissViewControllerAnimated(true, completion: nil)
+
+
+            view.presentingViewController!.dismissViewControllerAnimated(true, completion: nil)
+            
+            
             if printFlag {
                 print("Cancel Selected")
             }
@@ -308,8 +328,6 @@ class AlertManager: UIViewController {
         let goToTabAction = UIAlertAction(title: "Go To Tab", style: .Default, handler: { (action) -> Void in
             
 //            self.confirm(view)
-            
-            
             
             self.goToTab(view)
 

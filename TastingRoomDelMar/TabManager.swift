@@ -323,9 +323,13 @@ class TabManager: NSObject {
                 AlertManager.sharedInstance.greatSuccessPreConfirm(view, title: "Great Success!", message: "Your order has been received. We'll notify you once it's been confirmed.")
 
                 
+                
+                
                 // Reset Segue Push Stack
-                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-                appDelegate.resetToMenu()
+//                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                //                appDelegate.resetToMenu()
+                
+
                 
             }
             

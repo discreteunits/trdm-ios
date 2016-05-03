@@ -28,7 +28,7 @@ class TabViewController: UIViewController {
     override func isViewLoaded() -> Bool {
         
         // Guard against items indicator ever showing
-        TabManager.sharedInstance.removeItemsIndicator()
+//        TabManager.sharedInstance.removeItemsIndicator()
         return true
         
     }
@@ -96,12 +96,17 @@ class TabViewController: UIViewController {
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 
+        AlertManager.sharedInstance.reloadDelegate = self
+
+        
         if segue.identifier == "tabTableEmbeded" {
             
             if let TabTableViewController = segue.destinationViewController as? TabTableViewController {
                 
                 self.TabTableViewControllerRef = TabTableViewController
                 TabTableViewController.delegate = self
+                AlertManager.sharedInstance.reloadDelegate = self
+
 
             }
         }
@@ -112,14 +117,22 @@ class TabViewController: UIViewController {
                 
                 self.TabFloatingTableViewControllerRef = TabFloatingTableViewController
                 TabFloatingTableViewController.delegate = self
+                AlertManager.sharedInstance.reloadDelegate = self
+
                 
             }
         }
     }
+    
+    
+    
+
 }
 
 
-extension TabViewController: TabTableViewDelegate, TabFloatingTableViewDelegate {
+extension TabViewController: TabTableViewDelegate, TabFloatingTableViewDelegate, TabReloadDelegate {
+    
+    
     
     func defaultScreen() {
         
@@ -199,6 +212,12 @@ extension TabViewController: TabTableViewDelegate, TabFloatingTableViewDelegate 
     func recalculateTotals() {
         
         self.TabFloatingTableViewControllerRef?.tableView.reloadData()
+        
+    }
+    
+    func recalculateLineItems() {
+        
+        self.TabTableViewControllerRef?.tableView.reloadData()
         
     }
 }
