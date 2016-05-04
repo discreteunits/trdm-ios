@@ -133,7 +133,7 @@ class TabManager: NSObject {
     
     
     // Place Order To CLOUDCODE
-    func placeOrder(view: UIViewController, tab: Tab) -> AnyObject {
+    func placeOrder(view: UIViewController, tabController: UIViewController, tab: Tab) -> AnyObject {
         
         if printFlag {
             print("-----------------------")
@@ -304,7 +304,7 @@ class TabManager: NSObject {
                 TabManager.sharedInstance.currentTab.checkoutMethod = ""
                 TabManager.sharedInstance.currentTab.table = ""
                 
-                AlertManager.sharedInstance.placeOrderFailure(view, title: "Failure", message: "Sorry, please try again later.")
+                AlertManager.sharedInstance.placeOrderFailure(view, controller: tabController, title: "Whoops!", message: "Unable to place this order at this time. Please try again later.")
                 
                 
             } else {

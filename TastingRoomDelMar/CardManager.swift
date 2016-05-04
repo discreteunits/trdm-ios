@@ -40,16 +40,18 @@ class CardManager: NSObject {
         PFCloud.callFunctionInBackground("addOrChangePaymentMethod", withParameters: ["userId": userId, "stripeToken": token] ) {
             (response: AnyObject?, error: NSError?) -> Void in
             
+            ActivityManager.sharedInstance.activityStop(view)
+            
+            // Failure
             if let error = error {
                 
-                // Failure
                 if printFlag {
                     print("\(error)")
                 }
-                
+
+            // Success
             } else {
                 
-                // Success
                 result = String(response!)
                 
                 if printFlag {
@@ -65,9 +67,7 @@ class CardManager: NSObject {
                 
                 self.getCards()
                 
-                ActivityManager.sharedInstance.activityStop(view)
 
-                
             }
             
         }

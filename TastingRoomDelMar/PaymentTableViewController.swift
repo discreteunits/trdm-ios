@@ -21,12 +21,9 @@ class PaymentTableViewController: UITableViewController {
     // -----------
     override func viewWillAppear(animated: Bool) {
         
-        self.tableView.reloadData()
+        CardManager.sharedInstance.getCards()
         
-        dispatch_async(dispatch_get_main_queue()) {
-
-            self.tableView.reloadData()
-        }
+        self.tableView.reloadData()
         
     }
     

@@ -30,15 +30,11 @@ class AccountManager: NSObject {
     @available(iOS 8.0, *)
     func loginWithFacebook(view: UIViewController) {
         
-        ActivityManager.sharedInstance.activityStart(view)
-        
         PFFacebookUtils.logInInBackgroundWithReadPermissions(["public_profile", "email"], block: { (user: PFUser?, error: NSError?) -> Void in
             
             // Failure
             if error != nil {
                 
-                ActivityManager.sharedInstance.activityStop(view)
-
                 AlertManager.sharedInstance.singleAlert(view, title: "Error", message: (error?.localizedDescription)!)
                 return
                 
@@ -63,17 +59,10 @@ class AccountManager: NSObject {
                             view.performSegueWithIdentifier("fblogin", sender: view)
                             
                         }
-                        
                     }
-                    
                 }
-                
-                ActivityManager.sharedInstance.activityStop(view)
-                
             }
-            
         })
-        
     }
     
     // Save Parse User
@@ -105,7 +94,6 @@ class AccountManager: NSObject {
                         
                         if user.isNew {
                             
-
                             AlertManager.sharedInstance.pushNotificationsAlert()
                             
                         }

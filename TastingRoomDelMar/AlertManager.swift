@@ -103,7 +103,7 @@ class AlertManager: UIViewController {
         
     }
     
-    func placeOrderFailure(view: UIViewController, title: String, message: String) {
+    func placeOrderFailure(view: UIViewController, controller: UIViewController, title: String, message: String) {
         
         // Create Controller
         let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
@@ -113,7 +113,10 @@ class AlertManager: UIViewController {
         let okAction = UIAlertAction(title: "Okay", style: .Default, handler: {
             (action) -> Void in
             
-            self.delegate?.removeOpaque()
+            AnimationManager.sharedInstance.opaqueWindow(controller)
+
+            
+//            self.delegate?.removeOpaque()
             view.dismissViewControllerAnimated(false, completion: nil)
             print("User selected okay.")
             
@@ -482,6 +485,8 @@ class AlertManager: UIViewController {
         
         // Create Actions
         let successAction = UIAlertAction(title: "Done", style: .Default, handler: { (action) -> Void in
+            
+            CardManager.sharedInstance.getCards()
             
             view.navigationController?.dismissViewControllerAnimated(true, completion: nil)
             

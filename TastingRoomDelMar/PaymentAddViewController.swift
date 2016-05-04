@@ -32,7 +32,6 @@ class PaymentAddViewController: UIViewController, STPPaymentCardTextFieldDelegat
     
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
-    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     
 // ----------------------
     override func viewDidLoad() {
@@ -85,27 +84,6 @@ class PaymentAddViewController: UIViewController, STPPaymentCardTextFieldDelegat
         
         alert.addAction(okAction)
         self.presentViewController(alert, animated: true, completion: nil)
-    }
-    
-    // ACTIVITY START FUNCTION
-    func activityStart() {
-        
-        activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 50, 50))
-        activityIndicator.center = self.view.center
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
-        view.addSubview(activityIndicator)
-        activityIndicator.startAnimating()
-        UIApplication.sharedApplication().beginIgnoringInteractionEvents()
-        
-    }
-    
-    // ACTIVITY STOP FUNCTION
-    func activityStop() {
-        
-        self.activityIndicator.stopAnimating()
-        UIApplication.sharedApplication().endIgnoringInteractionEvents()
-        
     }
     
     // Check if text fields have been edited
@@ -167,30 +145,27 @@ class PaymentAddViewController: UIViewController, STPPaymentCardTextFieldDelegat
     func performStripeOperation() {
         STPAPIClient.sharedClient().createTokenWithCard(stripeCard) { ( token, error) -> Void in
         
-            self.activityStart()
-            
+            // Failure
             if let error = error {
-                
-                // Failure
-                self.activityStop()
                 
                 if printFlag {
                     print("\(error)")
                 }
                 
-                self.displayAlert("Failed", message: "Please try again later.")
+                self.displayAlert("Whoops!", message: "Please try again later.")
                 
+            // Success
             } else {
                 
-                // Success 
-                self.activityStop()
                 
                 if printFlag {
                     print("Token Created: \(token!.tokenId)")
                 }
                 
-                // Alert
-                AlertManager.sharedInstance.greatSuccessAddedCard(self, title: "Great Success!", message: "Card successfully added.")
+                
+//                // Alert
+//                AlertManager.sharedInstance.greatSuccessAddedCard(self, title: "Great Success!", message: "Card successfully added.")
+
                 
                 // Set User Card CLOUDCODE
                 let user = PFUser.currentUser()?.objectId
@@ -203,7 +178,6 @@ class PaymentAddViewController: UIViewController, STPPaymentCardTextFieldDelegat
                     print("----------------")
                 }
 
-                // Dismiss View
                 
                 AlertManager.sharedInstance.greatSuccessAddedCard(self, title: "Great Success!", message: "Your card has been added to your account.")
                 

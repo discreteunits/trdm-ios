@@ -49,6 +49,7 @@ class AddGratuityViewController: UIViewController {
     var taxValueLabel = UILabel()
     var totalValueLabel = UILabel()
 
+    var tabController = UIViewController()
 
 // -------------------------
     override func viewDidLoad() {
@@ -56,8 +57,8 @@ class AddGratuityViewController: UIViewController {
         
         selectedGratuity = "18"
         
-        let tabController = delegate?.passTabController()
-        heightConstraint = tabController!.view.bounds.height
+        tabController = (delegate?.passTabController())!
+        heightConstraint = tabController.view.bounds.height
         let dynamicLocator = CGFloat(heightConstraint / 8)
 
 
@@ -258,7 +259,7 @@ class AddGratuityViewController: UIViewController {
             if (TabManager.sharedInstance.currentTab.gratuity.doubleValue != nil) {
                 
                 dispatch_async(dispatch_get_main_queue()) {
-                    let result = TabManager.sharedInstance.placeOrder(self, tab: TabManager.sharedInstance.currentTab)
+                    let result = TabManager.sharedInstance.placeOrder(self, tabController: self.tabController, tab: TabManager.sharedInstance.currentTab)
                     
                     if printFlag {
                         print("Place Order, CloudCode Function Returned: \(result)")

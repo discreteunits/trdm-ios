@@ -233,6 +233,10 @@ class TabFloatingTableViewController: UITableViewController, UIPopoverPresentati
         // Remove Opaque Window
         AnimationManager.sharedInstance.opaqueWindow(tabController)
         
+        // Reset User Checkout Choices
+        TabManager.sharedInstance.currentTab.checkoutMethod = ""
+        TabManager.sharedInstance.currentTab.table = "" 
+        
         print("Popover closed.")
         
     }

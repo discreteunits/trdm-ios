@@ -26,13 +26,15 @@ class TableNumberViewController: UIViewController, UITextFieldDelegate {
     
     var heightConstraint = CGFloat()
     
+    var tabController = UIViewController()
+    
 // -------------------
     override func viewDidLoad() {
         super.viewDidLoad()
 
         
-        let tabController = delegate?.passTabController()
-        heightConstraint = tabController!.view.bounds.height
+        tabController = (delegate?.passTabController())!
+        heightConstraint = tabController.view.bounds.height
         let dynamicFontSize = CGFloat(heightConstraint / 8)
 
         
@@ -152,7 +154,7 @@ class TableNumberViewController: UIViewController, UITextFieldDelegate {
                     // If Gratuity is NOT empty, continue placing order
                     } else {
                     
-                        let result = TabManager.sharedInstance.placeOrder(self, tab: TabManager.sharedInstance.currentTab)
+                        let result = TabManager.sharedInstance.placeOrder(self, tabController: self.tabController, tab: TabManager.sharedInstance.currentTab)
                     
                         if printFlag {
                             print("Continuing to place order from TableNumberViewController: \(result)")
@@ -166,7 +168,7 @@ class TableNumberViewController: UIViewController, UITextFieldDelegate {
                 } else {
                     
                     dispatch_async(dispatch_get_main_queue()) {
-                        let result = TabManager.sharedInstance.placeOrder(self, tab: TabManager.sharedInstance.currentTab)
+                        let result = TabManager.sharedInstance.placeOrder(self, tabController: self.tabController, tab: TabManager.sharedInstance.currentTab)
                         
                         if printFlag {
                             print("Place Order, CloudCode Function Returned: \(result)")

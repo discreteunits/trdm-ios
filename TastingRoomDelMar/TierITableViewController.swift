@@ -400,8 +400,6 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
                 
             }
         }
-        
-        
     }
     
     // FLYOUT TRIGGER

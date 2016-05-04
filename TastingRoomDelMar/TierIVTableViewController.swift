@@ -131,8 +131,6 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         
         let textViewHeight = cell.altNameTextView.contentSize.height
 
-
-        
         
 //        cell.altNameTextView.contentSize.height = textViewHeight
 
