@@ -171,8 +171,6 @@ class TableNumberViewController: UIViewController, UITextFieldDelegate {
                         if printFlag {
                             print("Place Order, CloudCode Function Returned: \(result)")
                         }
-                        
-                        self.presentingViewController!.dismissViewControllerAnimated(true, completion: nil)
 
                     }
                     
