@@ -22,6 +22,17 @@ class TierIVTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        self.selectionStyle = UITableViewCellSelectionStyle.None
+        
+        let border = CALayer()
+        let width = CGFloat(2.0)
+        border.borderColor = UIColor.darkGrayColor().colorWithAlphaComponent(0.1).CGColor
+        border.frame = CGRect(x: 0, y: contentView.frame.size.height - 1, width:  contentView.frame.size.width, height: 1)
+        
+        border.borderWidth = width
+        self.layer.addSublayer(border)
+        self.layer.masksToBounds = true
+        
 //        altNameTextView.scrollEnabled = false
 //        altNameTextView.textContainer.lineBreakMode = NSLineBreakMode.ByCharWrapping
 //        altNameTextView.contentInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)

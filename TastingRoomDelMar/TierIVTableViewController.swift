@@ -95,9 +95,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("itemCell", forIndexPath: indexPath) as! TierIVTableViewCell
-
-        cell.selectionStyle = UITableViewCellSelectionStyle.None
-
+        
         // If User Is Logged in
         if TabManager.sharedInstance.currentTab.userId == "" {
             cell.addToOrderButton.hidden = false
@@ -193,6 +191,8 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             }
 
         } // ----- END
+        
+
         
         return cell
         

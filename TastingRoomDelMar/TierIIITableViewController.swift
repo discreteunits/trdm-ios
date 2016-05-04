@@ -166,6 +166,15 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
         cell.textLabel?.textAlignment = NSTextAlignment.Center
         cell.textLabel?.font = UIFont.scriptFont(38)
         
+        let border = CALayer()
+        let width = CGFloat(2.0)
+        border.borderColor = UIColor.darkGrayColor().colorWithAlphaComponent(0.1).CGColor
+        border.frame = CGRect(x: 0, y: cell.frame.size.height - 1, width:  tableView.frame.size.width, height: 1)
+        
+        border.borderWidth = width
+        cell.layer.addSublayer(border)
+        cell.layer.masksToBounds = true
+        
         return cell
         
     }

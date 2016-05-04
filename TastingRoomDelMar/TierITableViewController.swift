@@ -40,6 +40,10 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         AnimationManager.sharedInstance.fade(self.tableView, alpha: 0.0)
         
     }
+    
+    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        cell.backgroundColor = UIColor.clearColor()
+    }
 
     override func viewWillAppear(animated: Bool) {
         
@@ -58,18 +62,11 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
-        
         // Unit Test
         tableView.accessibilityIdentifier = "Tier One Table"
         
         // Items Indicator
         TabManager.sharedInstance.addItemsIndicator()
-
-//        // Fetch Credit Cards
-//        if PFUser.currentUser()!.objectId != "" {
-//            getCards()
-//        }
         
         // Check if user is signed in with Facebook
         if FBSDKAccessToken.currentAccessToken() != nil {
@@ -145,6 +142,15 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         cell.textLabel?.text = tierIArray[indexPath.row]["name"] as? String
         cell.textLabel?.textAlignment = NSTextAlignment.Center
         cell.textLabel?.font = UIFont.scriptFont(38)
+        
+        let border = CALayer()
+        let width = CGFloat(2.0)
+        border.borderColor = UIColor.darkGrayColor().colorWithAlphaComponent(0.1).CGColor
+        border.frame = CGRect(x: 0, y: cell.frame.size.height - 1, width:  tableView.frame.size.width, height: 1)
+        
+        border.borderWidth = width
+        cell.layer.addSublayer(border)
+        cell.layer.masksToBounds = true
         
         return cell
         
@@ -338,8 +344,7 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         
     }
     
-    
-    
+
     // TIER 1 QUERY
     func tierIQuery() {
         
@@ -366,6 +371,9 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
                         if product["state"] as! String == "active" {
                         
                             self.tierIArray.append(object)
+                            
+                            
+                            // Beginning of Implementation of Local Data Storage
                             
 //                            let tierIObject = PFObject(className: "TierI")
 //                            tierIObject["objectId"] = object.objectId
@@ -420,18 +428,6 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         }
     }
     
-    
-//    // Get Card CLOUDCODE FUNCTION CALL FETCH
-//    func getCards() {
-//        
-//        dispatch_async(dispatch_get_main_queue()){
-//            
-//            // Get User Card via User Object ID
-//            let card = CardManager.sharedInstance.fetchCards(TabManager.sharedInstance.currentTab.userId)
-//            CardManager.sharedInstance.currentCustomer.orderId.append(String(card))
-//        
-//        }
-//    }
     
     // Facebook Graph Requests
     func getFBUserData() {

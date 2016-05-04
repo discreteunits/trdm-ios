@@ -29,6 +29,10 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
         
     }
     
+    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        cell.backgroundColor = UIColor.clearColor()
+    }
+    
     override func viewWillAppear(animated: Bool) {
         
         AnimationManager.sharedInstance.fade(self.tableView, alpha: 1.0)
@@ -42,8 +46,6 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
-
         // Items Indicator
         TabManager.sharedInstance.addItemsIndicator()
         
@@ -129,8 +131,6 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
                             print("TierII Object Pinned Locally: \(tierIIObject["name"])")
                             
                             tierIIObject.pinInBackground()
-                            
-
                         
                         }
                     }
@@ -174,6 +174,14 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
         cell.textLabel?.textAlignment = NSTextAlignment.Center
         cell.textLabel?.font = UIFont.scriptFont(38)
         
+        let border = CALayer()
+        let width = CGFloat(2.0)
+        border.borderColor = UIColor.darkGrayColor().colorWithAlphaComponent(0.1).CGColor
+        border.frame = CGRect(x: 0, y: cell.frame.size.height - 1, width:  tableView.frame.size.width, height: 1)
+        
+        border.borderWidth = width
+        cell.layer.addSublayer(border)
+        cell.layer.masksToBounds = true
         return cell
     }
     

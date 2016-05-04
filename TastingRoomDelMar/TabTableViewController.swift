@@ -92,19 +92,28 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
-            var lineitemCell: TabLineItemTableViewCell
-            lineitemCell = tableView.dequeueReusableCellWithIdentifier("TabLineItemTableCell", forIndexPath: indexPath) as! TabLineItemTableViewCell
+        var lineitemCell: TabLineItemTableViewCell
+        lineitemCell = tableView.dequeueReusableCellWithIdentifier("TabLineItemTableCell", forIndexPath: indexPath) as! TabLineItemTableViewCell
   
-            // Connect Specific Table Cell With Specific Colleciton View
-            lineitemCell.contentView.tag = indexPath.row
+        // Connect Specific Table Cell With Specific Colleciton View
+        lineitemCell.contentView.tag = indexPath.row
             
-            // Assignments
-            lineitemCell.itemNameLabel?.text = "\(TabManager.sharedInstance.currentTab.lines[indexPath.row].name)"
+        // Assignments
+        lineitemCell.itemNameLabel?.text = "\(TabManager.sharedInstance.currentTab.lines[indexPath.row].name)"
             
-            // Styles
-            lineitemCell.itemNameLabel.font = UIFont.headerFont(24)
-            
-            return lineitemCell
+        // Styles
+        lineitemCell.itemNameLabel.font = UIFont.headerFont(24)
+        
+        let border = CALayer()
+        let width = CGFloat(2.0)
+        border.borderColor = UIColor.darkGrayColor().colorWithAlphaComponent(0.1).CGColor
+        border.frame = CGRect(x: 0, y: lineitemCell.frame.size.height - 1, width:  tableView.frame.size.width, height: 1)
+        
+        border.borderWidth = width
+        lineitemCell.layer.addSublayer(border)
+        lineitemCell.layer.masksToBounds = true
+        
+        return lineitemCell
 
     }
     

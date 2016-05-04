@@ -84,8 +84,6 @@ class AnimationManager: NSObject {
     // Fly Up Table Cells Animation
     func animateTable(tableView: UITableView) {
         
-        tableView.separatorStyle = UITableViewCellSeparatorStyle.None
-
         tableView.reloadData()
         
         let cells = tableView.visibleCells
