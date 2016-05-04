@@ -264,7 +264,7 @@ class SettingsTableViewController: UITableViewController {
                     accountActionCell.settingLabel.font = UIFont.headerFont(18)
                     accountActionCell.settingValueLabel.text = ""
                     
-                    accountActionCell.settingLabel.text = "log out"
+                    accountActionCell.settingLabel.text = "Log Out"
                     
                 // If NOT Logged In
                 } else {
@@ -356,14 +356,20 @@ class SettingsTableViewController: UITableViewController {
             
             if indexPath.row == 0 {
                 
+                // Log Current User Out
                 if TabManager.sharedInstance.currentTab.userId != "" {
                     
                     PFUser.logOut()
+                    
+                    
+                    self.navigationController!.viewControllers.removeAll()
+
                     
                     // Reset Segue Push Stack
                     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
                     appDelegate.resetAppToFirstController()
                     
+                // Take Anonymous User To Log In
                 } else {
                     
                     goToLogIn()
@@ -372,6 +378,7 @@ class SettingsTableViewController: UITableViewController {
                 
                 TabManager.sharedInstance.removeItemsIndicator()
                 
+            // Take Anonymous User Home
             } else if indexPath.row == 1 {
                 
                 goToHome()

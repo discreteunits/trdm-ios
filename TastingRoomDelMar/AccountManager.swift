@@ -84,7 +84,7 @@ class AccountManager: NSObject {
         // Empty Strings
         if username == "" || password == "" {
             print("Did not trigger sign up")
-            AlertManager.sharedInstance.singleAlert(view, title: "Failure", message: "Please enter an email and password.")
+            AlertManager.sharedInstance.singleAlert(view, title: "Whoops!", message: "Please enter an email and password.")
         
         // Continue
         } else {
@@ -122,7 +122,7 @@ class AccountManager: NSObject {
                 
                     ActivityManager.sharedInstance.activityStop(view)
                     print("Failed to save user.")
-                    AlertManager.sharedInstance.singleAlert(view, title: "Failure", message: "This account already exists, try logging in.")
+                    AlertManager.sharedInstance.singleAlert(view, title: "Whoops!", message: "This account already exists, try logging in.")
                 
                 }
                 
@@ -149,7 +149,7 @@ class AccountManager: NSObject {
             } else {
                 
                 print("Login Failure")
-                AlertManager.sharedInstance.singleAlert(view, title: "Failure", message: "Email and/or password is incorrect.")
+                AlertManager.sharedInstance.singleAlert(view, title: "Whoops!", message: "Email and/or password is incorrect.")
                 
             }
             
@@ -188,7 +188,7 @@ class AccountManager: NSObject {
             } else {
                 
                 print("Failed to update user")
-                AlertManager.sharedInstance.singleAlert(view, title: "Failure", message: "Please try again later.")
+                AlertManager.sharedInstance.singleAlert(view, title: "Whoops!", message: "Please try again later.")
                 
             }
             
