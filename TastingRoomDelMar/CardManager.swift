@@ -50,8 +50,8 @@ class CardManager: NSObject {
                 result = String(response!)
                 
                 if printFlag {
-                    print("Response: \(response!)")
-                    print("Result: \(result)")
+                    print("Set Card Response: \(response!)")
+                    print("Set Card Result: \(result)")
                 }
                 
                 self.currentCustomer.objectId = String(response!)
@@ -59,6 +59,8 @@ class CardManager: NSObject {
                 if printFlag {
                     print("Current Customer ID Set: \(self.currentCustomer.objectId)")
                 }
+                
+                self.getCards()
                 
             }
             
@@ -68,8 +70,22 @@ class CardManager: NSObject {
         
     }
     
+    // Get Card CLOUDCODE FUNCTION CALL FETCH
+    func getCards() {
+        
+        dispatch_async(dispatch_get_main_queue()){
+            
+            // Get User Card via User Object ID
+            let card = CardManager.sharedInstance.fetchCards(TabManager.sharedInstance.currentTab.userId)
+            CardManager.sharedInstance.currentCustomer.orderId.append(String(card))
+            
+        }
+    }
+    
     // Fetch User Cards CLOUDCODE
     func fetchCards(userId: String) -> AnyObject {
+        
+        print("Attempting to fetch user card information...")
         
         var result = NSMutableDictionary()
         

@@ -94,22 +94,35 @@ class AccountManager: NSObject {
             user.username = username
             user.email = email
             user.password = password
+            
         
             user.signUpInBackgroundWithBlock({ (success, error) -> Void in
             
                 // Success
                 if  error == nil {
                 
-                    ActivityManager.sharedInstance.activityStop(view)
-                    print("Successfully saved user.")
-                    view.performSegueWithIdentifier("signupContinue", sender: view)
+                    if let user = PFUser.currentUser()  {
+                        
+                        if user.isNew {
+                            
+
+                            AlertManager.sharedInstance.pushNotificationsAlert()
+                            
+                        }
+                        
+                        ActivityManager.sharedInstance.activityStop(view)
+                        print("Successfully saved user.")
+                        view.performSegueWithIdentifier("signupContinue", sender: view)
+                        
+                    }
+                    
                 
                 // Failure
                 } else {
                 
                     ActivityManager.sharedInstance.activityStop(view)
                     print("Failed to save user.")
-                    AlertManager.sharedInstance.singleAlert(view, title: "Failure", message: "Please try again later.")
+                    AlertManager.sharedInstance.singleAlert(view, title: "Failure", message: "This account already exists, try logging in.")
                 
                 }
                 
@@ -136,7 +149,7 @@ class AccountManager: NSObject {
             } else {
                 
                 print("Login Failure")
-                AlertManager.sharedInstance.singleAlert(view, title: "Failure", message: "Please Try Again")
+                AlertManager.sharedInstance.singleAlert(view, title: "Failure", message: "Email and/or password is incorrect.")
                 
             }
             
@@ -175,7 +188,7 @@ class AccountManager: NSObject {
             } else {
                 
                 print("Failed to update user")
-                AlertManager.sharedInstance.singleAlert(view, title: "Failure", message: "Please Try Again")
+                AlertManager.sharedInstance.singleAlert(view, title: "Failure", message: "Please try again later.")
                 
             }
             

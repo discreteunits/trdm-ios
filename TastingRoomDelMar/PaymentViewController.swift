@@ -32,6 +32,8 @@ class PaymentViewController: UIViewController {
             
         }
         
+        getCards()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -45,6 +47,18 @@ class PaymentViewController: UIViewController {
         
         TabManager.sharedInstance.addItemsIndicator()
         
+    }
+    
+    // Get Card CLOUDCODE FUNCTION CALL FETCH
+    func getCards() {
+        
+        dispatch_async(dispatch_get_main_queue()){
+            
+            // Get User Card via User Object ID
+            let card = CardManager.sharedInstance.fetchCards(TabManager.sharedInstance.currentTab.userId)
+            CardManager.sharedInstance.currentCustomer.orderId.append(String(card))
+            
+        }
     }
 
 }

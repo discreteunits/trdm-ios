@@ -107,6 +107,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         installation.saveInBackground()
         
+        // Set Flag On Parse User
+        PFUser.currentUser()?["pushAllowed"] = true
+        PFUser.currentUser()?.saveInBackground()
+        
     }
     
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
