@@ -196,7 +196,7 @@ class PaymentAddViewController: UIViewController, STPPaymentCardTextFieldDelegat
                 let user = PFUser.currentUser()?.objectId
                 var confirmedUserCard: AnyObject!
 
-                confirmedUserCard = CardManager.sharedInstance.setCard(user!, token: token!.tokenId)
+                confirmedUserCard = CardManager.sharedInstance.setCard(user!, token: token!.tokenId, view: self)
                 
                 if printFlag {
                     print("Confirmed User Card Created: \(confirmedUserCard)")

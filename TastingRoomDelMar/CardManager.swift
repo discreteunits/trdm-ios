@@ -30,7 +30,10 @@ class CardManager: NSObject {
     
     
     // Set User Cards CLOUDCODE
-    func setCard(userId: String, token: String) -> AnyObject {
+    func setCard(userId: String, token: String, view: UIViewController) -> AnyObject {
+        
+        ActivityManager.sharedInstance.activityStart(view)
+
         
         var result = String()
 
@@ -62,6 +65,9 @@ class CardManager: NSObject {
                 
                 self.getCards()
                 
+                ActivityManager.sharedInstance.activityStop(view)
+
+                
             }
             
         }
@@ -73,13 +79,16 @@ class CardManager: NSObject {
     // Get Card CLOUDCODE FUNCTION CALL FETCH
     func getCards() {
         
-        dispatch_async(dispatch_get_main_queue()){
-            
+        
+//        dispatch_async(dispatch_get_main_queue()){
+        
             // Get User Card via User Object ID
             let card = CardManager.sharedInstance.fetchCards(TabManager.sharedInstance.currentTab.userId)
             CardManager.sharedInstance.currentCustomer.orderId.append(String(card))
             
-        }
+//        }
+        
+        
     }
     
     // Fetch User Cards CLOUDCODE

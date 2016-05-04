@@ -32,7 +32,7 @@ class PaymentViewController: UIViewController {
             
         }
         
-        getCards()
+//        getCards()
         
     }
 
@@ -49,16 +49,16 @@ class PaymentViewController: UIViewController {
         
     }
     
-    // Get Card CLOUDCODE FUNCTION CALL FETCH
-    func getCards() {
-        
-        dispatch_async(dispatch_get_main_queue()){
-            
-            // Get User Card via User Object ID
-            let card = CardManager.sharedInstance.fetchCards(TabManager.sharedInstance.currentTab.userId)
-            CardManager.sharedInstance.currentCustomer.orderId.append(String(card))
-            
-        }
-    }
+//    // Get Card CLOUDCODE FUNCTION CALL FETCH
+//    func getCards() {
+//        
+//        dispatch_async(dispatch_get_main_queue()){
+//            
+//            // Get User Card via User Object ID
+//            let card = CardManager.sharedInstance.fetchCards(TabManager.sharedInstance.currentTab.userId)
+//            CardManager.sharedInstance.currentCustomer.orderId.append(String(card))
+//            
+//        }
+//    }
 
 }

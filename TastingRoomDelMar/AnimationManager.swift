@@ -103,7 +103,7 @@ class AnimationManager: NSObject {
         
         for a in cells {
             let cell: UITableViewCell = a as UITableViewCell
-            UIView.animateWithDuration(0.4, delay: 0.05 * Double(index), usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: UIViewAnimationOptions.CurveEaseInOut , animations: {
+            UIView.animateWithDuration(0.4, delay: 0.06 * Double(index), usingSpringWithDamping: 1.2, initialSpringVelocity: 0, options: UIViewAnimationOptions.CurveEaseInOut , animations: {
                 
                 cell.transform = CGAffineTransformMakeTranslation(0, 0);
                 

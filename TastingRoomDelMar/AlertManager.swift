@@ -71,6 +71,38 @@ class AlertManager: UIViewController {
         
     }
     
+    @available(iOS 8.0, *)
+    func anonymousMenuAlert(view: UIViewController, title: String, message: String) {
+        
+        // Create Controller
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        alert.view.tintColor = UIColor.primaryGreenColor()
+        
+        // Create Actions
+        let okAction = UIAlertAction(title: "Okay", style: .Default, handler: { (action) -> Void in
+            if printFlag {
+                print("Okay Selected")
+            }
+        })
+        
+        let loginAction = UIAlertAction(title: "Login", style: .Default, handler: { (action) -> Void in
+            self.goToLogIn(view)
+            
+            if printFlag {
+                print("Login Selected")
+            }
+            
+        })
+        
+        // Add Actions To Alert
+        alert.addAction(okAction)
+        alert.addAction(loginAction)
+        
+        // Present Alert
+        view.presentViewController(alert, animated: true, completion: nil)
+        
+    }
+    
     func placeOrderFailure(view: UIViewController, title: String, message: String) {
         
         // Create Controller

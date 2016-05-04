@@ -66,10 +66,10 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         // Items Indicator
         TabManager.sharedInstance.addItemsIndicator()
 
-        // Fetch Credit Cards
-        if PFUser.currentUser()!.objectId != "" {
-            getCards()
-        }
+//        // Fetch Credit Cards
+//        if PFUser.currentUser()!.objectId != "" {
+//            getCards()
+//        }
         
         // Check if user is signed in with Facebook
         if FBSDKAccessToken.currentAccessToken() != nil {
@@ -423,17 +423,17 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
     }
     
     
-    // Get Card CLOUDCODE FUNCTION CALL FETCH
-    func getCards() {
-        
-        dispatch_async(dispatch_get_main_queue()){
-            
-            // Get User Card via User Object ID
-            let card = CardManager.sharedInstance.fetchCards(TabManager.sharedInstance.currentTab.userId)
-            CardManager.sharedInstance.currentCustomer.orderId.append(String(card))
-        
-        }
-    }
+//    // Get Card CLOUDCODE FUNCTION CALL FETCH
+//    func getCards() {
+//        
+//        dispatch_async(dispatch_get_main_queue()){
+//            
+//            // Get User Card via User Object ID
+//            let card = CardManager.sharedInstance.fetchCards(TabManager.sharedInstance.currentTab.userId)
+//            CardManager.sharedInstance.currentCustomer.orderId.append(String(card))
+//        
+//        }
+//    }
     
     // Facebook Graph Requests
     func getFBUserData() {

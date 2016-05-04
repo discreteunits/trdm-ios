@@ -94,70 +94,70 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     }
 
     
-    func addTableRowContents(view: UITableViewCell, indexPath: NSIndexPath) {
-        
-
-        // addToOrderButton
-        var addToOrderButton8 = UIButton(type: UIButtonType.System) as UIButton
-        addToOrderButton8.frame = CGRectMake(0, 0, 0, 0)
-        addToOrderButton8.backgroundColor = UIColor.blackColor()
-        addToOrderButton8.setTitle("Add To Order", forState: UIControlState.Normal)
-        addToOrderButton8.addTarget(self, action: "openPopover:", forControlEvents: UIControlEvents.TouchUpInside)      // ACTION HERE VIA FUNCTION ie: segue
-        addToOrderButton8.layer.cornerRadius = 6.0
-        addToOrderButton8.clipsToBounds = true
-        addToOrderButton8.titleLabel!.font = UIFont.scriptFont(18)
-        
-        
-        // itemNameLabel
-        var itemNameLabel8 = UILabel(frame: CGRectMake(0, 0, 80, 20))
-        itemNameLabel8.text = self.tierIVTableArray[indexPath.row]["name"] as! String?
-        itemNameLabel8.font = UIFont.headerFont(24)
-
-
-        // altNameTextView
-        var altNameTextView8 = UITextView(frame: CGRectMake(0, 0, 300, 300))
-        altNameTextView8.font = UIFont.basicFont(14)
-        altNameTextView8.text = self.tierIVTableArray[indexPath.row]["info"] as! String?
-        altNameTextView8.backgroundColor = UIColor.clearColor()
-        altNameTextView8.frame.size.width = (UIScreen.mainScreen().bounds.width - 80)
-        altNameTextView8.scrollEnabled = false
-        altNameTextView8.textContainer.lineBreakMode = NSLineBreakMode.ByCharWrapping
-        altNameTextView8.contentInset = UIEdgeInsets(top: 8,left: 8, bottom: 8,right: 8)
-        altNameTextView8.textContainer.maximumNumberOfLines = 0
-        altNameTextView8.sizeToFit()
-        
-        let textViewHeight = altNameTextView8.contentSize.height
-        
-        
-        
-        
-        
-        // priceLabel
-        let priceLabel8 = UILabel(frame: CGRectMake(0, 0, 300, 20))
-        priceLabel8.font = UIFont.basicFont(12)
-        priceLabel8.text = self.tierIVTableArray[indexPath.row]["prices"] as? String
-        
-        
-        // stackView
-        let contentsArray = [UIView]()
-        
-        let tableStackView8 = UIStackView(arrangedSubviews: contentsArray)
-        tableStackView8.frame = CGRectMake(0, 0, 300, 500)
-        tableStackView8.distribution = .FillEqually
-        tableStackView8.alignment = .Fill
-        tableStackView8.spacing = 5
-        tableStackView8.translatesAutoresizingMaskIntoConstraints = false
-        // Align with parent view centerY
-        
-        
-//        controller!.sourceView = self.view
-//        controller!.sourceRect = CGRectMake(CGRectGetMidX(self.view.bounds) - 8, CGRectGetMidY(self.view.bounds) - 50, 0, 0)
-//        controller?.delegate = self
+//    func addTableRowContents(view: UITableViewCell, indexPath: NSIndexPath) {
 //        
-        
-        view.addSubview(tableStackView8)
-        
-    }
+//
+//        // addToOrderButton
+//        var addToOrderButton8 = UIButton(type: UIButtonType.System) as UIButton
+//        addToOrderButton8.frame = CGRectMake(0, 0, 0, 0)
+//        addToOrderButton8.backgroundColor = UIColor.blackColor()
+//        addToOrderButton8.setTitle("Add To Order", forState: UIControlState.Normal)
+//        addToOrderButton8.addTarget(self, action: "openPopover:", forControlEvents: UIControlEvents.TouchUpInside)      // ACTION HERE VIA FUNCTION ie: segue
+//        addToOrderButton8.layer.cornerRadius = 6.0
+//        addToOrderButton8.clipsToBounds = true
+//        addToOrderButton8.titleLabel!.font = UIFont.scriptFont(18)
+//        
+//        
+//        // itemNameLabel
+//        var itemNameLabel8 = UILabel(frame: CGRectMake(0, 0, 80, 20))
+//        itemNameLabel8.text = self.tierIVTableArray[indexPath.row]["name"] as! String?
+//        itemNameLabel8.font = UIFont.headerFont(24)
+//
+//
+//        // altNameTextView
+//        var altNameTextView8 = UITextView(frame: CGRectMake(0, 0, 300, 300))
+//        altNameTextView8.font = UIFont.basicFont(14)
+//        altNameTextView8.text = self.tierIVTableArray[indexPath.row]["info"] as! String?
+//        altNameTextView8.backgroundColor = UIColor.clearColor()
+//        altNameTextView8.frame.size.width = (UIScreen.mainScreen().bounds.width - 80)
+//        altNameTextView8.scrollEnabled = false
+//        altNameTextView8.textContainer.lineBreakMode = NSLineBreakMode.ByCharWrapping
+//        altNameTextView8.contentInset = UIEdgeInsets(top: 8,left: 8, bottom: 8,right: 8)
+//        altNameTextView8.textContainer.maximumNumberOfLines = 0
+//        altNameTextView8.sizeToFit()
+//        
+//        let textViewHeight = altNameTextView8.contentSize.height
+//        
+//        
+//        
+//        
+//        
+//        // priceLabel
+//        let priceLabel8 = UILabel(frame: CGRectMake(0, 0, 300, 20))
+//        priceLabel8.font = UIFont.basicFont(12)
+//        priceLabel8.text = self.tierIVTableArray[indexPath.row]["prices"] as? String
+//        
+//        
+//        // stackView
+//        let contentsArray = [UIView]()
+//        
+//        let tableStackView8 = UIStackView(arrangedSubviews: contentsArray)
+//        tableStackView8.frame = CGRectMake(0, 0, 300, 500)
+//        tableStackView8.distribution = .FillEqually
+//        tableStackView8.alignment = .Fill
+//        tableStackView8.spacing = 5
+//        tableStackView8.translatesAutoresizingMaskIntoConstraints = false
+//        // Align with parent view centerY
+//        
+//        
+////        controller!.sourceView = self.view
+////        controller!.sourceRect = CGRectMake(CGRectGetMidX(self.view.bounds) - 8, CGRectGetMidY(self.view.bounds) - 50, 0, 0)
+////        controller?.delegate = self
+////        
+//        
+//        view.addSubview(tableStackView8)
+//        
+//    }
     
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -283,14 +283,15 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         
-        
-        // If User Is Logged in
+        // If User Is NOT Logged in
         if TabManager.sharedInstance.currentTab.userId == "" {
             
             // Do Nothing
             let cell = tableView.dequeueReusableCellWithIdentifier("itemCell", forIndexPath: indexPath) as! TierIVTableViewCell
             cell.selectionStyle = UITableViewCellSelectionStyle.None
             cell.userInteractionEnabled = false
+            
+            AlertManager.sharedInstance.anonymousMenuAlert(self, title: "Whoops!", message: "You need to have an account to add items to your tab.")
 
             
         } else {
