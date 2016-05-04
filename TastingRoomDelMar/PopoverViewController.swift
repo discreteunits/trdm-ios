@@ -555,13 +555,39 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                             } else if RouteManager.sharedInstance.TierOne!["name"] as! String == "Events" {
                                 totalChoicesPrice = popoverItem["price"] as! Double
                             } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
-                                totalChoicesPrice = popoverItem["price"] as! Double
+                                
+                                if RouteManager.sharedInstance.TierOne!["name"] as! String == "Dine In" {
+                                    totalChoicesPrice = popoverItem["deliveryPriceWithoutVat"] as! Double
+                                } else if RouteManager.sharedInstance.TierOne!["name"] as! String == "Take Away" {
+                                    totalChoicesPrice = popoverItem["takeawayPriceWithoutVat"] as! Double
+                                } else {
+                                    totalChoicesPrice = popoverItem["deliveryPriceWithoutVat"] as! Double
+                                }
+                                
                             } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "More" {
-                                totalChoicesPrice = popoverItem["price"] as! Double
+                                
+                                if RouteManager.sharedInstance.TierOne!["name"] as! String == "Dine In" {
+                                    totalChoicesPrice = popoverItem["deliveryPriceWithoutVat"] as! Double
+                                } else if RouteManager.sharedInstance.TierOne!["name"] as! String == "Take Away" {
+                                    totalChoicesPrice = popoverItem["takeawayPriceWithoutVat"] as! Double
+                                } else {
+                                    totalChoicesPrice = popoverItem["deliveryPriceWithoutVat"] as! Double
+                                }
+                                
                             } else if RouteManager.sharedInstance.TierThree!["name"] as! String == "Flights" {
-                                totalChoicesPrice = popoverItem["price"] as! Double
+
+                                if RouteManager.sharedInstance.TierOne!["name"] as! String == "Dine In" {
+                                    totalChoicesPrice = popoverItem["deliveryPriceWithoutVat"] as! Double
+                                } else if RouteManager.sharedInstance.TierOne!["name"] as! String == "Take Away" {
+                                    totalChoicesPrice = popoverItem["takeawayPriceWithoutVat"] as! Double
+                                } else {
+                                    totalChoicesPrice = popoverItem["deliveryPriceWithoutVat"] as! Double
+                                }
+                                
                             } else {
+                                
                                 totalChoicesPrice = productChoice.price
+                                
                             }
                             
                             // Tax and Total for LineItem

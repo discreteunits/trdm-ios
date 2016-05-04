@@ -74,7 +74,7 @@ class TierIVCollectionViewController: UICollectionViewController {
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("tierIVCollectionCell", forIndexPath: indexPath) as! TierIVCollectionViewCell
-
+        
         cell.titleLabel?.font = UIFont.scriptFont(14)
         cell.layer.borderWidth = 2
         cell.layer.borderColor = UIColor(red: 242/255.0, green: 242/255.0, blue: 242/255.0, alpha: 1.0).CGColor
@@ -97,12 +97,17 @@ class TierIVCollectionViewController: UICollectionViewController {
         return cell
     }
     
+    
+    
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         
-        let itemsPerRow:CGFloat = 4
+        
+        
+        let itemsPerRow:CGFloat = 3
         let hardCodedPadding:CGFloat = 3
-        let itemWidth = (collectionView.bounds.width / itemsPerRow) - hardCodedPadding
+        let itemWidth = (collectionView.bounds.width - 32) / itemsPerRow
         let itemHeight = collectionView.bounds.height - (4 * hardCodedPadding)
+        
         
         return CGSize(width: itemWidth, height: itemHeight)
     }

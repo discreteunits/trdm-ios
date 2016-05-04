@@ -240,6 +240,9 @@ class AlertManager: UIViewController {
         })
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action) -> Void in
             
+            // Reset Selections
+            TabManager.sharedInstance.currentTab.checkoutMethod = ""
+            TabManager.sharedInstance.currentTab.table = ""
 
             if printFlag {
                 print("Cancel Selected")

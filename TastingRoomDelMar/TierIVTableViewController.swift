@@ -92,80 +92,12 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         // #warning Incomplete implementation, return the number of rows
         return tierIVTableArray.count
     }
-
-    
-//    func addTableRowContents(view: UITableViewCell, indexPath: NSIndexPath) {
-//        
-//
-//        // addToOrderButton
-//        var addToOrderButton8 = UIButton(type: UIButtonType.System) as UIButton
-//        addToOrderButton8.frame = CGRectMake(0, 0, 0, 0)
-//        addToOrderButton8.backgroundColor = UIColor.blackColor()
-//        addToOrderButton8.setTitle("Add To Order", forState: UIControlState.Normal)
-//        addToOrderButton8.addTarget(self, action: "openPopover:", forControlEvents: UIControlEvents.TouchUpInside)      // ACTION HERE VIA FUNCTION ie: segue
-//        addToOrderButton8.layer.cornerRadius = 6.0
-//        addToOrderButton8.clipsToBounds = true
-//        addToOrderButton8.titleLabel!.font = UIFont.scriptFont(18)
-//        
-//        
-//        // itemNameLabel
-//        var itemNameLabel8 = UILabel(frame: CGRectMake(0, 0, 80, 20))
-//        itemNameLabel8.text = self.tierIVTableArray[indexPath.row]["name"] as! String?
-//        itemNameLabel8.font = UIFont.headerFont(24)
-//
-//
-//        // altNameTextView
-//        var altNameTextView8 = UITextView(frame: CGRectMake(0, 0, 300, 300))
-//        altNameTextView8.font = UIFont.basicFont(14)
-//        altNameTextView8.text = self.tierIVTableArray[indexPath.row]["info"] as! String?
-//        altNameTextView8.backgroundColor = UIColor.clearColor()
-//        altNameTextView8.frame.size.width = (UIScreen.mainScreen().bounds.width - 80)
-//        altNameTextView8.scrollEnabled = false
-//        altNameTextView8.textContainer.lineBreakMode = NSLineBreakMode.ByCharWrapping
-//        altNameTextView8.contentInset = UIEdgeInsets(top: 8,left: 8, bottom: 8,right: 8)
-//        altNameTextView8.textContainer.maximumNumberOfLines = 0
-//        altNameTextView8.sizeToFit()
-//        
-//        let textViewHeight = altNameTextView8.contentSize.height
-//        
-//        
-//        
-//        
-//        
-//        // priceLabel
-//        let priceLabel8 = UILabel(frame: CGRectMake(0, 0, 300, 20))
-//        priceLabel8.font = UIFont.basicFont(12)
-//        priceLabel8.text = self.tierIVTableArray[indexPath.row]["prices"] as? String
-//        
-//        
-//        // stackView
-//        let contentsArray = [UIView]()
-//        
-//        let tableStackView8 = UIStackView(arrangedSubviews: contentsArray)
-//        tableStackView8.frame = CGRectMake(0, 0, 300, 500)
-//        tableStackView8.distribution = .FillEqually
-//        tableStackView8.alignment = .Fill
-//        tableStackView8.spacing = 5
-//        tableStackView8.translatesAutoresizingMaskIntoConstraints = false
-//        // Align with parent view centerY
-//        
-//        
-////        controller!.sourceView = self.view
-////        controller!.sourceRect = CGRectMake(CGRectGetMidX(self.view.bounds) - 8, CGRectGetMidY(self.view.bounds) - 50, 0, 0)
-////        controller?.delegate = self
-////        
-//        
-//        view.addSubview(tableStackView8)
-//        
-//    }
-    
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("itemCell", forIndexPath: indexPath) as! TierIVTableViewCell
 
         cell.selectionStyle = UITableViewCellSelectionStyle.None
 
-        
         // If User Is Logged in
         if TabManager.sharedInstance.currentTab.userId == "" {
             cell.addToOrderButton.hidden = false
@@ -178,8 +110,6 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             cell.addToOrderButton.layer.cornerRadius = 6.0
             cell.addToOrderButton.clipsToBounds = true
         }
-
-        
         
         
         cell.itemNameLabel?.text = self.tierIVTableArray[indexPath.row]["name"] as! String?
@@ -188,11 +118,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         cell.altNameTextView?.font = UIFont.basicFont(14)
         cell.pricingLabel?.font = UIFont.basicFont(12)
 
-        
-        
-        
-        
-        
+
         // Adjustment For Text View Text Wrapping
         // ------------------------- BEGIN
         cell.altNameTextView.backgroundColor = UIColor.clearColor()
@@ -205,11 +131,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         
         let textViewHeight = cell.altNameTextView.contentSize.height
 
-        
-        
-        
-        
-        
+
         
         
 //        cell.altNameTextView.contentSize.height = textViewHeight
@@ -239,19 +161,27 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         // ----- IF HARVEST -----
         if RouteManager.sharedInstance.TierOne!["name"] as! String == "Merch" {
             
-            cell.pricingLabel?.text = "\(self.tierIVTableArray[indexPath.row]["price"])"
+            cell.pricingLabel?.text = "\(self.tierIVTableArray[indexPath.row]["priceWithoutVat"])"
             
         } else if RouteManager.sharedInstance.TierOne!["name"] as! String == "Events" {
             
-            cell.pricingLabel?.text = "\(self.tierIVTableArray[indexPath.row]["price"])"
+            cell.pricingLabel?.text = "\(self.tierIVTableArray[indexPath.row]["priceWithoutVat"])"
             
         } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
             
-            cell.pricingLabel?.text = "\(self.tierIVTableArray[indexPath.row]["price"])"
+            if RouteManager.sharedInstance.TierOne!["name"] as! String == "Dine In" {
+                cell.pricingLabel?.text = "\(self.tierIVTableArray[indexPath.row]["deliveryPriceWithoutVat"])"
+            } else if RouteManager.sharedInstance.TierOne!["name"] as! String == "Take Away" {
+                cell.pricingLabel?.text = "\(self.tierIVTableArray[indexPath.row]["takeawayPriceWithoutVat"])"
+            } else {
+                cell.pricingLabel?.text = "\(self.tierIVTableArray[indexPath.row]["deliveryPriceWithoutVat"])"
+            }
+            
+//            cell.pricingLabel?.text = "\(self.tierIVTableArray[indexPath.row]["price"])"
             
         } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "More" {
             
-            cell.pricingLabel?.text = "\(self.tierIVTableArray[indexPath.row]["price"])"
+            cell.pricingLabel?.text = "\(self.tierIVTableArray[indexPath.row]["priceWithoutVat"])"
             
         } else {
             
@@ -546,8 +476,16 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             newSubproduct.objectId = subproduct.objectId!
             newSubproduct.productId = String(subproduct["lightspeedId"])
             newSubproduct.name = subproduct["name"] as! String
-            newSubproduct.price = subproduct["price"] as! Double
-                
+            
+            if RouteManager.sharedInstance.TierOne!["name"] as! String == "Dine In" {
+                newSubproduct.price = subproduct["deliveryPriceWithoutVat"] as! Double
+            } else if RouteManager.sharedInstance.TierOne!["name"] as! String == "Take Away" {
+                newSubproduct.price = subproduct["takeawayPriceWithoutVat"] as! Double
+            } else {
+                newSubproduct.price = subproduct["deliveryPriceWithoutVat"] as! Double
+            }
+            
+            
             if subproduct["info"] != nil {
                 newSubproduct.info = subproduct["info"] as! String
             }

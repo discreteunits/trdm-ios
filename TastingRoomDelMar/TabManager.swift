@@ -290,9 +290,10 @@ class TabManager: NSObject {
         PFCloud.callFunctionInBackground("placeOrders", withParameters: order ) {
             (response: AnyObject?, error: NSError?) -> Void in
             
+            ActivityManager.sharedInstance.activityStop(view)
+
+            
             if let error = error {
-                
-                ActivityManager.sharedInstance.activityStop(view)
                 
                 // Failure 
                 if printFlag {
@@ -308,9 +309,7 @@ class TabManager: NSObject {
                 
             } else {
                 
-                ActivityManager.sharedInstance.activityStop(view)
-                
-                // Success 
+                // Success
                 result = String(response!)
                 
                 if printFlag {
@@ -327,13 +326,9 @@ class TabManager: NSObject {
                 AlertManager.sharedInstance.greatSuccessPreConfirm(view, title: "Great Success!", message: "Your order has been received. We'll notify you once it's been confirmed.")
 
                 
-                
-                
                 // Reset Segue Push Stack
 //                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
                 //                appDelegate.resetToMenu()
-                
-
                 
             }
             
