@@ -87,18 +87,21 @@ class TierIVCollectionViewController: UICollectionViewController {
         cell.layer.cornerRadius = 10.0
         cell.clipsToBounds = true
         
-        collectionCellWidth = cell.titleLabel.frame.size.width + 16
         
         // Show All Cell
         if indexPath.row == 0 {
             
             cell.titleLabel?.text = "Show All"
+            collectionCellWidth = 88
+
             
         // Every Other Collection Cell
         } else {
         
             let trueIndex = indexPath.row - 1
             cell.titleLabel?.text = self.tierIVCollectionArray[trueIndex]["name"] as? String
+            collectionCellWidth = cell.titleLabel.frame.size.width + 16
+
             
         }
         
