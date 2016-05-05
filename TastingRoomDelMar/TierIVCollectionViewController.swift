@@ -61,6 +61,8 @@ class TierIVCollectionViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+
 
     }
 

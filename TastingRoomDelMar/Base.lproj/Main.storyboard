@@ -175,7 +175,7 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="70"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="70" id="3dV-dj-5Yg"/>
+                                    <constraint firstAttribute="height" constant="80" id="3dV-dj-5Yg"/>
                                 </constraints>
                                 <connections>
                                     <segue destination="AnT-wJ-z90" kind="embed" identifier="TierIVCollectionEmbeded" id="ec5-db-Ns7"/>
@@ -196,7 +196,7 @@
                             <constraint firstItem="bYN-wV-cuD" firstAttribute="top" secondItem="5O7-1q-isy" secondAttribute="bottom" id="duQ-dD-jhq"/>
                             <constraint firstItem="0We-af-mRV" firstAttribute="leading" secondItem="bYN-wV-cuD" secondAttribute="leading" id="h89-Ze-Smy"/>
                             <constraint firstAttribute="trailing" secondItem="0We-af-mRV" secondAttribute="trailing" id="r2X-Jj-yGh"/>
-                            <constraint firstItem="0We-af-mRV" firstAttribute="top" secondItem="5O7-1q-isy" secondAttribute="bottom" constant="66" id="vMB-sd-2Dz"/>
+                            <constraint firstItem="0We-af-mRV" firstAttribute="top" secondItem="5O7-1q-isy" secondAttribute="bottom" constant="80" id="vMB-sd-2Dz"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="6Uc-Tr-5rb">
@@ -216,6 +216,7 @@
                     <connections>
                         <outlet property="navigationTitle" destination="6Uc-Tr-5rb" id="eOT-R7-fkg"/>
                         <outlet property="tierIVCollectionContainer" destination="bYN-wV-cuD" id="HO0-lI-MS4"/>
+                        <outlet property="tierIVCollectionView" destination="bYN-wV-cuD" id="OVk-3H-zDM"/>
                         <outlet property="tierIVTableContainer" destination="0We-af-mRV" id="kSW-gA-iYT"/>
                     </connections>
                 </viewController>
@@ -349,7 +350,7 @@
                                     <constraints>
                                         <constraint firstItem="XEU-be-Wjo" firstAttribute="trailing" secondItem="3Ko-V1-4Ep" secondAttribute="trailingMargin" id="6Sg-r8-Q93"/>
                                         <constraint firstItem="ZaA-uY-PYe" firstAttribute="leading" secondItem="3Ko-V1-4Ep" secondAttribute="leadingMargin" id="8DP-Ie-4fT"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="ZaA-uY-PYe" secondAttribute="bottom" constant="16" id="8kn-bY-EZ1"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="ZaA-uY-PYe" secondAttribute="bottom" constant="32" id="8kn-bY-EZ1"/>
                                         <constraint firstItem="ZaA-uY-PYe" firstAttribute="top" secondItem="3Ko-V1-4Ep" secondAttribute="topMargin" constant="16" id="Qp1-cZ-7dC"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="XEU-be-Wjo" secondAttribute="bottom" constant="8" id="XP5-ln-wbI"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="ZaA-uY-PYe" secondAttribute="trailing" constant="80" id="xEQ-4P-SMl"/>

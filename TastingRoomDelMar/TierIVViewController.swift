@@ -32,6 +32,10 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
     var bounds: CGRect!
     
     var notHarvest: String = String()
+    
+    
+    @IBOutlet weak var tierIVCollectionView: UIView!
+    
 
 // ---------------
     override func isViewLoaded() -> Bool {
@@ -75,6 +79,27 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
     
     override func viewWillAppear(animated: Bool) {
         
+        
+        let width = CGFloat(2.0)
+        let border = CALayer()
+        
+        let frame = self.tierIVCollectionView.frame
+        let collectionWidth = frame.size.width
+        let collectionHeight = frame.size.height
+        
+        print("++++++++ Collection width: \(collectionWidth)")
+        print("++++++++ Collection height: \(collectionHeight)")
+        
+        border.borderColor = UIColor(red: 215/255.0, green: 215/255.0, blue: 215/255.0, alpha: 0.3).CGColor
+        border.frame = CGRect(x: 0, y:  collectionHeight + 8, width:  collectionWidth, height: 1)
+        
+        
+        border.borderWidth = width
+        self.tierIVCollectionView.layer.addSublayer(border)
+        self.tierIVCollectionView.layer.masksToBounds = true
+        
+        
+        
         productTypeToQuery()
         
         
@@ -117,6 +142,7 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         productTypeToQuery()
         
