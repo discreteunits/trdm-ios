@@ -140,6 +140,11 @@ class HistoryTableViewController: UITableViewController {
             
             let vc = segue.destinationViewController as! HistoryDetailTableViewController
             
+            
+            print("+++++++++++++++")
+            print("\(orderToPass)")
+            print("+++++++++++++++")
+            
             vc.order = orderToPass
             
         }

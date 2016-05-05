@@ -20,11 +20,8 @@ class HistoryDetailTableViewController: UITableViewController {
     var lineItemNames = [String]()
     
     var nav: UINavigationBar?
-    
 
     @IBOutlet weak var navigationTitle: UINavigationItem!
-
-
 
     let formatter = PriceFormatManager.priceFormatManager
     
@@ -34,10 +31,15 @@ class HistoryDetailTableViewController: UITableViewController {
         orderLineItemQuery(order)
         print("Line Item Names: \(lineItemNames)")
         
+        print("+++++++++++++++")
+        print("\(lineItemNames)")
+        print("+++++++++++++++")
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         tableView.tableFooterView = UIView()
         
@@ -90,8 +92,13 @@ class HistoryDetailTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        rows = order["lineItems"].count + 1
+        
+//        rows = order["lineItems"].count + 1
+        
+        rows = lineItemNames.count + 1
         totalRow = rows - 1
+        
+
         
         return rows
         
@@ -106,12 +113,21 @@ class HistoryDetailTableViewController: UITableViewController {
             
         let cell = tableView.dequeueReusableCellWithIdentifier("HistoryDetailTableCell", forIndexPath: indexPath) as! HistoryDetailTableViewCell
             
+//            dispatch_async(dispatch_get_main_queue()) {
+            
             // Assignments
             cell.qtyLabel.text = String(order["orderItems"][indexPath.row]["amount"]! as! Int)
+            
+            
+            
             cell.itemLabel.text = lineItemNames[indexPath.row]
+            
+            
 
             let priceString = order["orderItems"][indexPath.row]["totalPrice"]! as! Double
             cell.priceLabel.text = formatter.formatPrice(priceString)
+            
+//            }
             
             // Styles
             cell.qtyLabel.font = UIFont.headerFont(18)
@@ -164,6 +180,7 @@ class HistoryDetailTableViewController: UITableViewController {
         
         let query:PFQuery = PFQuery(className:"Product")
         //        query.includeKey("lightspeedId")
+        query.whereKey("productType", notEqualTo: "CHOICE")
         query.whereKey("lightspeedId", containedIn: orderItemObjectIds)
         
         do {

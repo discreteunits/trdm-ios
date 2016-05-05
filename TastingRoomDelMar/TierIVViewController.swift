@@ -316,7 +316,17 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
         
         let tableQuery:PFQuery = PFQuery(className:"Product")
         tableQuery.includeKey("category")
-        tableQuery.orderByAscending("name")
+        
+        if RouteManager.sharedInstance.TierOne!["name"] as! String == "Merch" {
+            tableQuery.orderByAscending("name")
+        } else if RouteManager.sharedInstance.TierOne!["name"] as! String == "Events" {
+            tableQuery.orderByAscending("name")
+        } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
+            tableQuery.orderByAscending("sortOrder")
+        } else {
+            tableQuery.orderByAscending("name")
+        }
+        
         tableQuery.whereKey("categories", containsAllObjectsInArray: tagsArray)
         tableQuery.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
             
