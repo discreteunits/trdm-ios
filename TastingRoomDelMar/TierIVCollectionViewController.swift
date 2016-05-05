@@ -22,6 +22,8 @@ protocol TierIVCollectionViewDelegate {
 
 class TierIVCollectionViewController: UICollectionViewController {
     
+    var collectionCellWidth = CGFloat()
+    
     var TierIVViewControllerRef: TierIVViewController?
     
     var delegate: TierIVCollectionViewDelegate?
@@ -85,6 +87,8 @@ class TierIVCollectionViewController: UICollectionViewController {
         cell.layer.cornerRadius = 10.0
         cell.clipsToBounds = true
         
+        collectionCellWidth = cell.titleLabel.frame.size.width + 16
+        
         // Show All Cell
         if indexPath.row == 0 {
             
@@ -114,7 +118,7 @@ class TierIVCollectionViewController: UICollectionViewController {
         
         
         
-        return CGSize(width: itemWidth, height: itemHeight)
+        return CGSize(width: collectionCellWidth, height: itemHeight)
     }
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
