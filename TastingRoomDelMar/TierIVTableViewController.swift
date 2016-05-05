@@ -53,6 +53,9 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
 
     var tagsArray = [PFObject]()
 
+    var cellHeight = CGFloat()
+    
+    var dynaBool = true
 
 // ---------------------
     
@@ -62,8 +65,10 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         
     }
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
             self.tagsArrayCreation()
@@ -120,7 +125,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         // Adjustment For Text View Text Wrapping
         // ------------------------- BEGIN
         cell.altNameTextView.backgroundColor = UIColor.clearColor()
-        cell.altNameTextView.frame.size.width = (UIScreen.mainScreen().bounds.width - 80)
+        cell.altNameTextView.frame.size.width = self.view.frame.size.width - 80
         cell.altNameTextView.scrollEnabled = false
         cell.altNameTextView.textContainer.lineBreakMode = NSLineBreakMode.ByCharWrapping
         cell.altNameTextView.contentInset = UIEdgeInsets(top: -10,left: -5,bottom: -10,right: 0)
@@ -140,13 +145,16 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
 //        cell.tableStackView.frame = CGRectMake(CGRectGetMidX(cell.contentView.bounds), CGRectGetMidY(cell.contentView.bounds), 0, textViewHeight)
 //        cell.tableStackView.sizeToFit()
 
-//        cell.setNeedsLayout()
-//        cell.layoutIfNeeded()
         
         
         // Get Largest Cell Size After Wrapping
         heights.append(textViewHeight)
         largestHeight = heights.maxElement()!
+        cellHeight = 90 + largestHeight
+        
+//        cell.setNeedsLayout()
+//        cell.layoutIfNeeded()
+
         
         // ------------------------ END
 
@@ -210,13 +218,19 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     }
 
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func configureTableView() {
         
-        let cellHeight = 90 + largestHeight
-
-        return cellHeight
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 200.0
         
     }
+    
+//    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+//        
+//
+//        return cellHeight
+//        
+//    }
     
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

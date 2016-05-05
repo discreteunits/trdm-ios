@@ -180,7 +180,7 @@ class HistoryDetailTableViewController: UITableViewController {
         
         let query:PFQuery = PFQuery(className:"Product")
         //        query.includeKey("lightspeedId")
-        query.whereKey("productType", notEqualTo: "CHOICE")
+        query.whereKey("productType", notEqualTo    : "CHOICE")
         query.whereKey("lightspeedId", containedIn: orderItemObjectIds)
         
         do {
