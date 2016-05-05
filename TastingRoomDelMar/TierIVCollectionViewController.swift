@@ -110,7 +110,7 @@ class TierIVCollectionViewController: UICollectionViewController {
         let itemsPerRow:CGFloat = 3
         let hardCodedPadding:CGFloat = 3
         let itemWidth = (collectionView.bounds.width - 32) / itemsPerRow
-        let itemHeight = collectionView.bounds.height - (4 * hardCodedPadding)
+        let itemHeight = collectionView.bounds.height - 16
         
         
         
