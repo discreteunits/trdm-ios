@@ -60,6 +60,7 @@ class TierIVCollectionViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -100,13 +101,14 @@ class TierIVCollectionViewController: UICollectionViewController {
     
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        
-        
+
+        collectionView.sizeToFit()
         
         let itemsPerRow:CGFloat = 3
         let hardCodedPadding:CGFloat = 3
         let itemWidth = (collectionView.bounds.width - 32) / itemsPerRow
         let itemHeight = collectionView.bounds.height - (4 * hardCodedPadding)
+        
         
         
         return CGSize(width: itemWidth, height: itemHeight)

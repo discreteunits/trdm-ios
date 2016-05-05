@@ -12,4 +12,6 @@ class TierIVCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var titleLabel: UILabel!
     
+    
+    
 }

@@ -164,6 +164,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             cell.pricingLabel?.text = "\(self.tierIVTableArray[indexPath.row]["priceWithoutVat"])"
             
         } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
+
             
             if RouteManager.sharedInstance.TierOne!["name"] as! String == "Dine In" {
                 cell.pricingLabel?.text = "\(self.tierIVTableArray[indexPath.row]["deliveryPriceWithoutVat"])"
@@ -192,7 +193,17 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
 
         } // ----- END
         
-
+        dispatch_async(dispatch_get_main_queue()) {
+            let border = CALayer()
+            let width = CGFloat(2.0)
+            
+            border.borderColor = UIColor(red: 235/255.0, green: 235/255.0, blue: 235/255.0, alpha: 0.1).CGColor
+            border.frame = CGRect(x: 0, y: cell.frame.size.height - 1, width:  tableView.frame.size.width, height: 1)
+        
+            border.borderWidth = width
+            cell.layer.addSublayer(border)
+            cell.layer.masksToBounds = true
+        }
         
         return cell
         
