@@ -17,6 +17,7 @@ protocol TierIVCollectionViewDelegate {
     func tierIVCollectionQuery()
     func tierIVTableQuery()
     func reloadTable()
+//    func removeTableCellLines()
 }
 
 class TierIVCollectionViewController: UICollectionViewController {
@@ -121,6 +122,8 @@ class TierIVCollectionViewController: UICollectionViewController {
         selectedCell.clipsToBounds = true
         selectedCell.contentView.backgroundColor = UIColor.blackColor()
         selectedCell.titleLabel?.textColor = UIColor.whiteColor()
+        
+//        delegate?.removeTableCellLines()
         
         // Show All 
         if indexPath.row == 0 {

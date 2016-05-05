@@ -163,7 +163,7 @@ class AddGratuityViewController: UIViewController {
         gratuitySlider.frame.origin.y = (dynamicLocator*2.65)
         gratuitySlider.frame.origin.x = screenWidth*0.01
         gratuitySlider.minimumValue = 0
-        gratuitySlider.maximumValue = 100
+        gratuitySlider.maximumValue = 200
         gratuitySlider.continuous = true
         gratuitySlider.tintColor = UIColor.primaryGreenColor()
         gratuitySlider.value = 18

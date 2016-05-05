@@ -233,6 +233,12 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
 
 extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDelegate {
     
+//    func removeTableCellLines() {
+//        
+//        self.TierIVTableViewControllerRef?.removeSubLayers()
+//        
+//    }
+    
     func getViewBounds()  -> CGRect {
         
         bounds = UIScreen.mainScreen().bounds

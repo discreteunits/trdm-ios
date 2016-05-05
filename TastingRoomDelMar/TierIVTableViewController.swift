@@ -56,7 +56,10 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     var cellHeight = CGFloat()
     
     var dynaBool = true
-
+    
+    var textViewHeight = CGFloat()
+    
+    
 // ---------------------
     
     override func viewWillAppear(animated: Bool) {
@@ -69,7 +72,6 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
             self.tagsArrayCreation()
             
@@ -79,7 +81,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         
         tableView.tableFooterView = UIView()
         
-        self.tableView.reloadData()
+//        self.tableView.reloadData()
         
     }
 
@@ -117,7 +119,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         
         cell.itemNameLabel?.text = self.tierIVTableArray[indexPath.row]["name"] as! String?
         cell.itemNameLabel?.font = UIFont.headerFont(24)
-        cell.altNameTextView?.text = self.tierIVTableArray[indexPath.row]["info"] as! String?
+        cell.altNameTextView?.text = self.tierIVTableArray[indexPath.row]["info"] as! String? ?? "[No Info]"
         cell.altNameTextView?.font = UIFont.basicFont(14)
         cell.pricingLabel?.font = UIFont.basicFont(12)
 
@@ -132,8 +134,9 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         cell.altNameTextView.textContainer.maximumNumberOfLines = 0
         cell.altNameTextView?.sizeToFit()
         
-        let textViewHeight = cell.altNameTextView.contentSize.height
-
+        textViewHeight = cell.altNameTextView.contentSize.height
+        
+        textViewHeight = textViewHeight + 100
         
 //        cell.altNameTextView.contentSize.height = textViewHeight
 
@@ -148,9 +151,11 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         
         
         // Get Largest Cell Size After Wrapping
-        heights.append(textViewHeight)
-        largestHeight = heights.maxElement()!
-        cellHeight = 90 + largestHeight
+//        heights.append(textViewHeight)
+//        largestHeight = heights.maxElement()!
+//        cellHeight = 90 + largestHeight
+
+//        cellHeight = largestHeight
         
 //        cell.setNeedsLayout()
 //        cell.layoutIfNeeded()
@@ -182,7 +187,6 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
                 cell.pricingLabel?.text = "\(self.tierIVTableArray[indexPath.row]["deliveryPriceWithoutVat"])"
             }
             
-//            cell.pricingLabel?.text = "\(self.tierIVTableArray[indexPath.row]["price"])"
             
         } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "More" {
             
@@ -201,36 +205,48 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
 
         } // ----- END
         
+        
+        
         dispatch_async(dispatch_get_main_queue()) {
-            let border = CALayer()
-            let width = CGFloat(2.0)
             
+            let width = CGFloat(2.0)
+            let border = CALayer()
+
             border.borderColor = UIColor(red: 235/255.0, green: 235/255.0, blue: 235/255.0, alpha: 0.1).CGColor
             border.frame = CGRect(x: 0, y: cell.frame.size.height - 1, width:  tableView.frame.size.width, height: 1)
+            
         
             border.borderWidth = width
             cell.layer.addSublayer(border)
             cell.layer.masksToBounds = true
+            
+            
         }
         
         return cell
         
-    }
-
-    
-    func configureTableView() {
-        
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 200.0
         
     }
     
-//    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    
+//    func removeSubLayers() {
 //        
-//
-//        return cellHeight
+//        self.border.removeFromSuperlayer()
 //        
 //    }
+    
+
+    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
+
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        
+        return textViewHeight
+        
+    }
     
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
