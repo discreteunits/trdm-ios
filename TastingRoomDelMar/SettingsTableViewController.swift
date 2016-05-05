@@ -154,7 +154,7 @@ class SettingsTableViewController: UITableViewController {
             // Mobile Number Row
             } else if indexPath.row == 2 {
                 
-                myAccountCell.settingLabel.text = "mobile number"
+                myAccountCell.settingLabel.text = "Mobile Number"
                 
                 if PFUser.currentUser()!["mobileNumber"] as? String != "" {
                     myAccountCell.settingValueLabel.text = PFUser.currentUser()!["mobileNumber"] as? String
@@ -319,7 +319,7 @@ class SettingsTableViewController: UITableViewController {
                 selectedValue = "Last name"
 
             } else if indexPath.row == 2 {
-                selectedValue = "mobile number"
+                selectedValue = "Mobile Number"
 
             } else if indexPath.row == 3 {
                 selectedValue = "email"

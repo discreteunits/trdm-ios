@@ -58,6 +58,13 @@ class SettingsEditTableViewController: UITableViewController {
         editValueTextField.placeholder = passedPlaceholder
         editValueTextField.textAlignment = .Left
         editValueTextField.font = UIFont.basicFont(20)
+        
+        if passedEditType == "Mobile Number" {
+            editValueTextField.keyboardType = .NumberPad
+        } else {
+            editValueTextField.keyboardType = .Default
+        }
+        
         editValueTextField.becomeFirstResponder()
         
         tableView.tableFooterView = UIView(frame: CGRectZero)
@@ -91,7 +98,7 @@ class SettingsEditTableViewController: UITableViewController {
             PFUser.currentUser()?["lastName"] = fieldValue
             print("User changed their last name to: \(fieldValue)")
             
-        } else if passedEditType == "mobile number" {
+        } else if passedEditType == "Mobile Number" {
             
             fieldValue = editValueTextField.text
             PFUser.currentUser()?["mobileNumber"] = fieldValue

@@ -100,7 +100,7 @@ class SettingsEditViewController: UIViewController {
             message = "This is how you'll appear in notifications and emails from Tasting Room."
             placeholder = PFUser.currentUser()!["lastName"] as! String
             
-        } else if passedTrigger == "mobile number" {
+        } else if passedTrigger == "Mobile Number" {
             message = "This is how you'll receive notifications and emails from Tasting Room."
             
             if let placeholderValue = PFUser.currentUser()?["mobileNumber"] as? String {
