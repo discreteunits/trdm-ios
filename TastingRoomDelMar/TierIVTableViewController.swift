@@ -207,21 +207,21 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         
         
         
-        dispatch_async(dispatch_get_main_queue()) {
-            
-            let width = CGFloat(2.0)
-            let border = CALayer()
-
-            border.borderColor = UIColor(red: 235/255.0, green: 235/255.0, blue: 235/255.0, alpha: 0.1).CGColor
-            border.frame = CGRect(x: 0, y: cell.frame.size.height - 1, width:  tableView.frame.size.width, height: 1)
-            
-        
-            border.borderWidth = width
-            cell.layer.addSublayer(border)
-            cell.layer.masksToBounds = true
-            
-            
-        }
+//        dispatch_async(dispatch_get_main_queue()) {
+//            
+//            let width = CGFloat(2.0)
+//            let border = CALayer()
+//
+//            border.borderColor = UIColor(red: 235/255.0, green: 235/255.0, blue: 235/255.0, alpha: 0.1).CGColor
+//            border.frame = CGRect(x: 0, y: cell.frame.size.height - 1, width:  tableView.frame.size.width, height: 1)
+//            
+//        
+//            border.borderWidth = width
+//            cell.layer.addSublayer(border)
+//            cell.layer.masksToBounds = true
+//            
+//            
+//        }
         
         return cell
         

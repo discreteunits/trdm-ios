@@ -346,15 +346,31 @@
                                                 </label>
                                             </subviews>
                                         </stackView>
+                                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bs0-ds-Jr9">
+                                            <rect key="frame" x="0.0" y="122" width="600" height="32"/>
+                                            <color key="backgroundColor" red="0.89964094065656564" green="0.89964094065656564" blue="0.89964094065656564" alpha="0.50839315878378377" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="1" id="LpD-m3-fcR"/>
+                                            </constraints>
+                                        </view>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstAttribute="bottomMargin" secondItem="bs0-ds-Jr9" secondAttribute="bottom" constant="-8" id="2NG-b3-VbF"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="bs0-ds-Jr9" secondAttribute="trailing" constant="-8" id="3MI-Cf-ypy"/>
+                                        <constraint firstItem="bs0-ds-Jr9" firstAttribute="top" secondItem="ZaA-uY-PYe" secondAttribute="bottom" constant="1" id="4sQ-a2-yYj"/>
                                         <constraint firstItem="XEU-be-Wjo" firstAttribute="trailing" secondItem="3Ko-V1-4Ep" secondAttribute="trailingMargin" id="6Sg-r8-Q93"/>
                                         <constraint firstItem="ZaA-uY-PYe" firstAttribute="leading" secondItem="3Ko-V1-4Ep" secondAttribute="leadingMargin" id="8DP-Ie-4fT"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="ZaA-uY-PYe" secondAttribute="bottom" constant="32" id="8kn-bY-EZ1"/>
                                         <constraint firstItem="ZaA-uY-PYe" firstAttribute="top" secondItem="3Ko-V1-4Ep" secondAttribute="topMargin" constant="16" id="Qp1-cZ-7dC"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="XEU-be-Wjo" secondAttribute="bottom" constant="8" id="XP5-ln-wbI"/>
+                                        <constraint firstItem="bs0-ds-Jr9" firstAttribute="leading" secondItem="3Ko-V1-4Ep" secondAttribute="leadingMargin" constant="-8" id="plo-MP-jcB"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="ZaA-uY-PYe" secondAttribute="trailing" constant="80" id="xEQ-4P-SMl"/>
                                     </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="4sQ-a2-yYj"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="addToOrderButton" destination="XEU-be-Wjo" id="xvy-Z7-PVI"/>
