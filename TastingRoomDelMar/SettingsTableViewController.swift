@@ -173,7 +173,7 @@ class SettingsTableViewController: UITableViewController {
             // Email Row
             } else if indexPath.row == 3 {
                 
-                myAccountCell.settingLabel.text = "email"
+                myAccountCell.settingLabel.text = "Email"
                 myAccountCell.settingValueLabel.text = PFUser.currentUser()!["email"] as? String
                 
                 return myAccountCell
@@ -185,7 +185,7 @@ class SettingsTableViewController: UITableViewController {
                     myAccountCell.settingLabel.text = ""
                     myAccountCell.settingValueLabel.text = ""
                 } else {
-                    myAccountCell.settingLabel.text = "password"
+                    myAccountCell.settingLabel.text = "Password"
                     myAccountCell.settingValueLabel.text = ""
                 }
                 
@@ -328,10 +328,10 @@ class SettingsTableViewController: UITableViewController {
                 selectedValue = "Mobile Number"
 
             } else if indexPath.row == 3 {
-                selectedValue = "email"
+                selectedValue = "Email"
 
             } else if indexPath.row == 4 {
-                selectedValue = "password"
+                selectedValue = "Password"
                 
             }
             

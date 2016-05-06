@@ -50,7 +50,20 @@ class SettingsEditViewController: UIViewController {
             nav?.tintColor = UIColor.whiteColor()
             nav?.titleTextAttributes = [ NSFontAttributeName: UIFont.scriptFont(24)]
             
+//            // SET NAV BACK BUTTON TO REMOVE LAST ITEM FROM ROUTE
+            self.navigationItem.hidesBackButton = true
+            let newBackButton = UIBarButtonItem(title: "< Settings", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(SettingsEditViewController.back(_:)))
+            self.navigationItem.leftBarButtonItem = newBackButton
+            self.navigationItem.leftBarButtonItem!.setTitleTextAttributes( [NSFontAttributeName: UIFont.scriptFont(20)], forState: UIControlState.Normal)
+            
         }
+        
+    }
+    
+    // NAV BACK BUTTON ACTION
+    func back(sender: UIBarButtonItem) {
+        
+        self.navigationController?.popViewControllerAnimated(true)
         
     }
 
@@ -109,11 +122,11 @@ class SettingsEditViewController: UIViewController {
                 placeholder = ""    
             }
             
-        } else if passedTrigger == "email" {
+        } else if passedTrigger == "Email" {
             message = "This is how you'll receive notifications and emails from Tasting Room."
             placeholder = PFUser.currentUser()!["email"] as! String
             
-        } else if passedTrigger == "password" {
+        } else if passedTrigger == "Password" {
             message = "This is how you'll log into the Tasting Room app."
             placeholder = "password"
             

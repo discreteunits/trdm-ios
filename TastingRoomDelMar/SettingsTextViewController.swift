@@ -32,6 +32,13 @@ class SettingsTextViewController: UIViewController {
             nav?.tintColor = UIColor.whiteColor()
             nav?.titleTextAttributes = [ NSFontAttributeName: UIFont.scriptFont(24)]
             
+            //            // SET NAV BACK BUTTON TO REMOVE LAST ITEM FROM ROUTE
+            self.navigationItem.hidesBackButton = true
+            let newBackButton = UIBarButtonItem(title: "< Settings", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(SettingsEditViewController.back(_:)))
+            self.navigationItem.leftBarButtonItem = newBackButton
+            self.navigationItem.leftBarButtonItem!.setTitleTextAttributes( [NSFontAttributeName: UIFont.scriptFont(20)], forState: UIControlState.Normal)
+            
+            
         }
         
         titleLabel.text = passedTrigger
@@ -46,6 +53,13 @@ class SettingsTextViewController: UIViewController {
             
             webviewInstance.loadRequest(NSURLRequest(URL: NSURL(string:"https://www.tastingroomdelmar.com/terms")!))
         }
+    }
+    
+    // NAV BACK BUTTON ACTION
+    func back(sender: UIBarButtonItem) {
+        
+        self.navigationController?.popViewControllerAnimated(true)
+        
     }
 
     override func didReceiveMemoryWarning() {

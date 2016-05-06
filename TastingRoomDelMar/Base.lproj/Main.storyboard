@@ -40,7 +40,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="Wjc-Mk-XeL">
                         <rightBarButtonItems>
-                            <barButtonItem image="ham" id="Yay-A6-BHG">
+                            <barButtonItem image="hamburger_20x15" id="Yay-A6-BHG">
                                 <connections>
                                     <action selector="toggleSideMenu:" destination="Egm-Ky-q2Z" id="rzd-VV-mLH"/>
                                 </connections>
@@ -89,7 +89,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Title" id="gKt-jc-NcM">
                         <rightBarButtonItems>
-                            <barButtonItem image="ham" id="8LO-HY-faS">
+                            <barButtonItem image="hamburger_20x15" id="8LO-HY-faS">
                                 <connections>
                                     <action selector="toggleSideMenu:" destination="EVh-kB-hCB" id="N7s-xf-8LS"/>
                                 </connections>
@@ -138,7 +138,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Title" id="YWC-Xt-HdC">
                         <rightBarButtonItems>
-                            <barButtonItem image="ham" id="UGM-xM-5BT">
+                            <barButtonItem image="hamburger_20x15" id="UGM-xM-5BT">
                                 <connections>
                                     <action selector="toggleSideMenu:" destination="qcR-Yl-ZfG" id="u0H-a5-rTd"/>
                                 </connections>
@@ -201,7 +201,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="6Uc-Tr-5rb">
                         <rightBarButtonItems>
-                            <barButtonItem image="ham" id="Mfm-TR-IzX">
+                            <barButtonItem image="hamburger_20x15" id="Mfm-TR-IzX">
                                 <connections>
                                     <action selector="toggleSideMenu:" destination="Tcs-V0-8z7" id="bMw-oh-tlf"/>
                                 </connections>
@@ -693,10 +693,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ham" width="25" height="25"/>
+        <image name="hamburger_20x15" width="20" height="15"/>
         <image name="tIcon" width="19" height="14"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="kVe-Dk-vVX"/>
+        <segue reference="rgt-K5-YdO"/>
     </inferredMetricsTieBreakers>
 </document>
