@@ -90,7 +90,7 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
         print("++++++++ Collection width: \(collectionWidth)")
         print("++++++++ Collection height: \(collectionHeight)")
         
-        border.borderColor = UIColor(red: 215/255.0, green: 215/255.0, blue: 215/255.0, alpha: 0.3).CGColor
+        border.borderColor = UIColor(red: 205/255.0, green: 205/255.0, blue: 205/255.0, alpha: 0.4).CGColor
         border.frame = CGRect(x: 0, y:  collectionHeight + 8, width:  collectionWidth, height: 1)
         
         

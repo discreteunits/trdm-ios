@@ -83,7 +83,7 @@ class TierIVCollectionViewController: UICollectionViewController {
         
         cell.titleLabel?.font = UIFont.scriptFont(14)
         cell.layer.borderWidth = 2
-        cell.layer.borderColor = UIColor(red: 242/255.0, green: 242/255.0, blue: 242/255.0, alpha: 1.0).CGColor
+        cell.layer.borderColor = UIColor(red: 205/255.0, green: 205/255.0, blue: 205/255.0, alpha: 0.4).CGColor
         cell.layer.cornerRadius = 10.0
         cell.clipsToBounds = true
         

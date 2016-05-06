@@ -64,13 +64,15 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     
     override func viewWillAppear(animated: Bool) {
         
-        AnimationManager.sharedInstance.animateTable(self.tableView)
         
     }
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        AnimationManager.sharedInstance.animateTable(self.tableView)
+
         
         dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
             self.tagsArrayCreation()
@@ -80,9 +82,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         }
         
         tableView.tableFooterView = UIView()
-        
-//        self.tableView.reloadData()
-        
+                
     }
 
     override func didReceiveMemoryWarning() {
@@ -137,7 +137,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         cell.altNameTextView.frame.size.width = self.view.frame.size.width - 80
         cell.altNameTextView.scrollEnabled = false
         cell.altNameTextView.textContainer.lineBreakMode = NSLineBreakMode.ByCharWrapping
-        cell.altNameTextView.contentInset = UIEdgeInsets(top: 0,left: 0,bottom: 0,right: 0)
+        cell.altNameTextView.contentInset = UIEdgeInsets(top: 0,left: -6,bottom: 0,right: 0)
         cell.altNameTextView.textContainer.maximumNumberOfLines = 0
         cell.altNameTextView?.sizeToFit()
         
