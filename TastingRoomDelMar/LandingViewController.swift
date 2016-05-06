@@ -128,25 +128,28 @@ class LandingViewController: UIViewController, ENSideMenuDelegate {
         
         // Facebook Button
         // TRDM Logo
-        let fbLoginButton = "fbloginbutton.png"
+        let fbLoginButton = "trdm-facebookLogin"
         let image = UIImage(named: fbLoginButton)
 
 
-        let facebookButton = UIButton(frame: CGRectMake(0, 0, screenWidth * 0.85, screenHeight * 0.07))
+        let facebookButton = UIButton(frame: CGRectMake(0, 0, screenWidth * 0.85, screenHeight * 0.06))
         facebookButton.frame.origin.x = screenWidth * 0.075
         facebookButton.frame.origin.y = screenHeight * 0.875
         facebookButton.setTitle("Log in with Facebook", forState: .Normal)
-        facebookButton.titleLabel?.font = UIFont.basicFont(18)
+        facebookButton.titleLabel?.font = UIFont.scriptFont(18)
         facebookButton.titleLabel?.textColor = UIColor.whiteColor()
         facebookButton.layer.backgroundColor = UIColor(red: 59/255.0, green: 89/255.0, blue: 152/255.0, alpha: 1.0).CGColor
         facebookButton.layer.cornerRadius = 4.0
         facebookButton.clipsToBounds = true
         facebookButton.addTarget(self, action: #selector(LandingViewController.facebook), forControlEvents: UIControlEvents.TouchUpInside)
         facebookButton.hidden = true
-        facebookButton.setImage(image, forState: .Normal)
+//        facebookButton.setImage(image, forState: .Normal)
         facebookButton.tag = 80
         
         self.view.addSubview(facebookButton)
+        
+        
+        print("FRAME FRAME FRAME: \(facebookButton.frame)")
         
         // Not Connected Message
         let disconnectedMessage = UITextView(frame: CGRectMake(0, 0, screenWidth * 0.7, 80))

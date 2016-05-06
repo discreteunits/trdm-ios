@@ -26,6 +26,7 @@
 		D736DADD1C73906800751307 /* TableNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D736DADC1C73906800751307 /* TableNumberViewController.swift */; };
 		D736DADF1C73907A00751307 /* AddGratuityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D736DADE1C73907A00751307 /* AddGratuityViewController.swift */; };
 		D736DAE11C73DACE00751307 /* AddGratuityCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D736DAE01C73DACE00751307 /* AddGratuityCollectionViewCell.swift */; };
+		D73709021CDD21BE003DD093 /* trdm-facebookLogin.png in Resources */ = {isa = PBXBuildFile; fileRef = D73709011CDD21BE003DD093 /* trdm-facebookLogin.png */; };
 		D7498AB21C7F1A8C0086B7BD /* AnimationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7498AB11C7F1A8C0086B7BD /* AnimationManager.swift */; };
 		D74B1C4A1C583260008F5A36 /* PopoverSGCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74B1C491C583260008F5A36 /* PopoverSGCollectionViewCell.swift */; };
 		D74B1C4C1C5832E6008F5A36 /* PopoverQuantityCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74B1C4B1C5832E6008F5A36 /* PopoverQuantityCollectionViewCell.swift */; };
@@ -148,6 +149,7 @@
 		D736DADC1C73906800751307 /* TableNumberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableNumberViewController.swift; sourceTree = "<group>"; };
 		D736DADE1C73907A00751307 /* AddGratuityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddGratuityViewController.swift; sourceTree = "<group>"; };
 		D736DAE01C73DACE00751307 /* AddGratuityCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddGratuityCollectionViewCell.swift; sourceTree = "<group>"; };
+		D73709011CDD21BE003DD093 /* trdm-facebookLogin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trdm-facebookLogin.png"; sourceTree = "<group>"; };
 		D7498AB11C7F1A8C0086B7BD /* AnimationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationManager.swift; sourceTree = "<group>"; };
 		D74B1C491C583260008F5A36 /* PopoverSGCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverSGCollectionViewCell.swift; sourceTree = "<group>"; };
 		D74B1C4B1C5832E6008F5A36 /* PopoverQuantityCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverQuantityCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -330,6 +332,7 @@
 				D7C2A2241CD692EF00B6FB24 /* fbloginbutton.png */,
 				D736DADB1C72D70C00751307 /* secondary-logomark-03_rgb.eps */,
 				D7C1E0361C5A951300143C48 /* primary-logomark-front-04_rgb_600_600.png */,
+				D73709011CDD21BE003DD093 /* trdm-facebookLogin.png */,
 				D7C1E0391C5A952000143C48 /* primary-logotype-05_rgb_600_600.png */,
 				D717FE9A1CDBE58F0031E60D /* hamburger-sm.png */,
 				D7C1E0331C5A950000143C48 /* secondary-logomark-03_rgb_600_600.png */,
@@ -630,6 +633,7 @@
 				D7C1E03C1C5A958100143C48 /* Typographic-deconstructed_rgb_600_120.png in Resources */,
 				D7C1E0341C5A950000143C48 /* secondary-logomark-03_rgb_600_600.png in Resources */,
 				D7B6168F1C62E340002CF1DE /* Main.storyboard in Resources */,
+				D73709021CDD21BE003DD093 /* trdm-facebookLogin.png in Resources */,
 				D7C1E0381C5A951300143C48 /* primary-logomark-front-04_rgb_600_600.png in Resources */,
 				D7D809951C7BCE1D00A3F5E6 /* SignupStoryboard.storyboard in Resources */,
 				D7C1E03E1C5A960600143C48 /* secondary-logomark-white_rgb_600_600.png in Resources */,
