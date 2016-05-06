@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		BB65EBD50F601E4F26BD8CFC /* Pods_TastingRoomDelMar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 258E486804D393986620D744 /* Pods_TastingRoomDelMar.framework */; };
 		D7086D261CC9650B009F96C7 /* TabFloatingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7086D251CC9650B009F96C7 /* TabFloatingTableViewController.swift */; };
+		D717FE9B1CDBE58F0031E60D /* hamburger-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = D717FE9A1CDBE58F0031E60D /* hamburger-sm.png */; };
 		D719A6301C3F26D500987525 /* TierNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D719A62F1C3F26D500987525 /* TierNavigationController.swift */; };
 		D729AB831C471FF90021A66E /* TierIVCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D729AB821C471FF90021A66E /* TierIVCollectionViewCell.swift */; };
 		D729AB851C4736570021A66E /* TierIVTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D729AB841C4736570021A66E /* TierIVTableViewController.swift */; };
@@ -128,6 +129,7 @@
 		258E486804D393986620D744 /* Pods_TastingRoomDelMar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TastingRoomDelMar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D53F1940B0ECFC354F949DF6 /* Pods-TastingRoomDelMar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TastingRoomDelMar.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TastingRoomDelMar/Pods-TastingRoomDelMar.debug.xcconfig"; sourceTree = "<group>"; };
 		D7086D251CC9650B009F96C7 /* TabFloatingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabFloatingTableViewController.swift; sourceTree = "<group>"; };
+		D717FE9A1CDBE58F0031E60D /* hamburger-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hamburger-sm.png"; sourceTree = "<group>"; };
 		D719A62F1C3F26D500987525 /* TierNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierNavigationController.swift; sourceTree = "<group>"; };
 		D729AB821C471FF90021A66E /* TierIVCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierIVCollectionViewCell.swift; sourceTree = "<group>"; };
 		D729AB841C4736570021A66E /* TierIVTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierIVTableViewController.swift; sourceTree = "<group>"; };
@@ -329,6 +331,7 @@
 				D736DADB1C72D70C00751307 /* secondary-logomark-03_rgb.eps */,
 				D7C1E0361C5A951300143C48 /* primary-logomark-front-04_rgb_600_600.png */,
 				D7C1E0391C5A952000143C48 /* primary-logotype-05_rgb_600_600.png */,
+				D717FE9A1CDBE58F0031E60D /* hamburger-sm.png */,
 				D7C1E0331C5A950000143C48 /* secondary-logomark-03_rgb_600_600.png */,
 				D7C1E03D1C5A960600143C48 /* secondary-logomark-white_rgb_600_600.png */,
 				D7C1E03B1C5A958100143C48 /* Typographic-deconstructed_rgb_600_120.png */,
@@ -620,6 +623,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D765FD381C7E60F400F68389 /* SettingsStoryboard.storyboard in Resources */,
+				D717FE9B1CDBE58F0031E60D /* hamburger-sm.png in Resources */,
 				D7FC44B71C7EA162003482B9 /* TabStoryboard.storyboard in Resources */,
 				D7683B0F1CB3086900F79678 /* HistoryStoryboard.storyboard in Resources */,
 				D7C1E03A1C5A952000143C48 /* primary-logotype-05_rgb_600_600.png in Resources */,

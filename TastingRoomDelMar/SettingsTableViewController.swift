@@ -110,7 +110,13 @@ class SettingsTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if section == 0 {
-            return 5
+            
+            if FBSDKAccessToken.currentAccessToken() != nil {
+                return 4
+            } else {
+                return 5
+            }
+            
         } else if section == 1 {
             return 2
         } else if section == 2 {

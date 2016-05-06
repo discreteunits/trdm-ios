@@ -514,13 +514,13 @@ class AlertManager: UIViewController {
         
         // Whoops Logged In
         if TabManager.sharedInstance.currentTab.userId == "" {
-            whoopsLoggedInAlert(view, title: "Whoops", message: "Looks like you're not logged in or don't have an account. Login or create an account to place an order.")
+            whoopsLoggedInAlert(view, title: "Whoops!", message: "Looks like you're not logged in or don't have an account. Login or create an account to place an order.")
         }
         
         // Whoops Credit Card
         if TabManager.sharedInstance.currentTab.checkoutMethod == "stripe" {
             if CardManager.sharedInstance.currentCustomer.card.brand == "" {
-                whoopsCreditCardAlert(view, title: "Whoops", message: "Looks like you don't have a credit card on file. Please add a card or checkout with your servers.")
+                whoopsCreditCardAlert(view, title: "Whoops!", message: "Looks like you don't have a credit card on file. Please add a card or checkout with your servers.")
             }
         }
         

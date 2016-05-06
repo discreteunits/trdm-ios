@@ -119,7 +119,14 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         
         cell.itemNameLabel?.text = self.tierIVTableArray[indexPath.row]["name"] as! String?
         cell.itemNameLabel?.font = UIFont.headerFont(24)
-        cell.altNameTextView?.text = self.tierIVTableArray[indexPath.row]["info"] as! String? ?? "[No Info]"
+        
+        
+        // This Line Is My Bitch
+        dispatch_async(dispatch_get_main_queue()) {
+            cell.altNameTextView?.text = self.tierIVTableArray[indexPath.row]["info"] as! String? // ?? "[No Info]"
+        }
+        
+        
         cell.altNameTextView?.font = UIFont.basicFont(14)
         cell.pricingLabel?.font = UIFont.basicFont(12)
 
@@ -130,7 +137,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         cell.altNameTextView.frame.size.width = self.view.frame.size.width - 80
         cell.altNameTextView.scrollEnabled = false
         cell.altNameTextView.textContainer.lineBreakMode = NSLineBreakMode.ByCharWrapping
-        cell.altNameTextView.contentInset = UIEdgeInsets(top: -10,left: -5,bottom: -10,right: 0)
+        cell.altNameTextView.contentInset = UIEdgeInsets(top: 0,left: 0,bottom: 0,right: 0)
         cell.altNameTextView.textContainer.maximumNumberOfLines = 0
         cell.altNameTextView?.sizeToFit()
         

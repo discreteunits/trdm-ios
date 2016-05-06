@@ -691,7 +691,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                             
             
                             // Confirm
-                            AlertManager.sharedInstance.addedSuccess(self, title: "Added Successfully", message: "Item has been added to your order!")
+                            AlertManager.sharedInstance.addedSuccess(self, title: "Added Successfully!", message: "Item has been added to your order!")
 
                             print("*****************************************")
                             print("Product added to tab: \(newLineItem)")
@@ -699,11 +699,11 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                             
                             
                         } else {
-                            AlertManager.sharedInstance.whoopsSelectModifiers(self, title: "Whoops", message: "Please select a serving and quantity.")
+                            AlertManager.sharedInstance.whoopsSelectModifiers(self, title: "Whoops!", message: "Please select a serving and quantity.")
                         }
                         
                     } else {
-                        AlertManager.sharedInstance.whoopsSelectModifiers(self, title: "Whoops", message: "Please select a serving and quantity.")
+                        AlertManager.sharedInstance.whoopsSelectModifiers(self, title: "Whoops!", message: "Please select a serving and quantity.")
                     }
                 }
             }

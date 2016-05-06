@@ -183,14 +183,14 @@ class TableNumberViewController: UIViewController, UITextFieldDelegate {
             // If table number was NOT set
             } else {
                 
-                AlertManager.sharedInstance.addTableNumberAlert(self, title: "Whoops", message: "Please enter your table number.")
+                AlertManager.sharedInstance.addTableNumberAlert(self, title: "Whoops!", message: "Please enter your table number.")
 
             }
         
         // If text field was empty
         } else {
             
-            AlertManager.sharedInstance.addTableNumberAlert(self, title: "Whoops", message: "Please enter your table number.")
+            AlertManager.sharedInstance.addTableNumberAlert(self, title: "Whoops!", message: "Please enter your table number.")
             
         }
 

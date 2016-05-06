@@ -272,14 +272,14 @@ class AddGratuityViewController: UIViewController {
             // Gratuity was NOT set
             } else {
                 
-                AlertManager.sharedInstance.addGratuityAlert(self, title: "Whoops", message: "Please select a gratuity option.")
+                AlertManager.sharedInstance.addGratuityAlert(self, title: "Whoops!", message: "Please select a gratuity option.")
                 
             }
             
         // If User has NOT selected a gratuity option
         } else {
             
-            AlertManager.sharedInstance.addGratuityAlert(self, title: "Whoops", message: "Please select a gratuity option")
+            AlertManager.sharedInstance.addGratuityAlert(self, title: "Whoops!", message: "Please select a gratuity option")
 
         }
     }
