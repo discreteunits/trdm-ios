@@ -347,6 +347,8 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
     // TIER 4 TABLE QUERY
     func tierIVTableQuery() {
         
+        
+        
         self.TierIVTableViewControllerRef?.tierIVTableArray.removeAll()
         
         let tableQuery:PFQuery = PFQuery(className:"Product")
@@ -364,8 +366,13 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
             tableQuery.orderByAscending("name")
         }
         
+        print("TAGS ARRAY: \(tagsArray)")
+        
         tableQuery.whereKey("categories", containsAllObjectsInArray: tagsArray)
         tableQuery.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
+            
+//            print("IIIIIIIIIII \(objects) IIIIIIIIIII")
+
             
             if error == nil {
                 
@@ -394,15 +401,37 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
                         
                     } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Hops" {
                         
-                        if object["productType"] as! String == "CHOICE" {
-                            if !self.TierIVTableViewControllerRef!.tierIVTableArray.contains(object) {
-                                self.TierIVTableViewControllerRef?.tierIVTableArray.append(object)
-                            } else {
-                                print("This selection is already being shown.")
+                        
+                        if RouteManager.sharedInstance.TierThree!["name"] as! String == "Flights" {
+                            
+                        
+                            if object["productType"] as! String == "GROUP" {
+                                
+                                // Product Route
+                                if !self.TierIVTableViewControllerRef!.tierIVTableArray.contains(object) {
+                                    self.TierIVTableViewControllerRef?.tierIVTableArray.append(object)
+                                } else {
+                                    print("This selection is already being shown.")
+                                }
+                            
+                            } else if object["productType"] as! String == "CHOICE" {
+                            
+                                if !self.TierIVTableViewControllerRef!.tierIVTableArray.contains(object) {
+                                    self.TierIVTableViewControllerRef?.tierIVTableArray.append(object)
+                                } else {
+                                    print("This selection is already being shown.")
+                                }
+                        
                             }
+                    
                         }
                         
+                                
+                                
                     } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Vines" {
+                        
+                        
+                        
                         
                         if object["productType"] as! String == "CHOICE" {
                             if !self.TierIVTableViewControllerRef!.tierIVTableArray.contains(object) {
@@ -449,12 +478,6 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
                             
                         }
                         
-                        
-                        
-                        
-                        
-                        
-                        
  
                     } else {
                     // IF NOT HOPS or VINES
@@ -472,7 +495,11 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
                 self.TierIVTableViewControllerRef!.tableView.reloadData()
                 
                 print("TierIV table query completed with:  \(self.TierIVTableViewControllerRef!.tierIVTableArray.count) objects.")
+                
                 }
+                
+            
+            
             } else {
                 
                 // Log details of the failure
@@ -482,4 +509,3 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
         }
     }
 }
-
