@@ -228,7 +228,7 @@
         <scene sceneID="mwL-JH-m3f">
             <objects>
                 <collectionViewController storyboardIdentifier="TierIVCollection" automaticallyAdjustsScrollViewInsets="NO" id="AnT-wJ-z90" customClass="TierIVCollectionViewController" customModule="TastingRoomDelMar" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="2Yu-Zl-7QE">
+                    <collectionView key="view" clipsSubviews="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="2Yu-Zl-7QE">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="70"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>

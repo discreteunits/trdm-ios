@@ -12,6 +12,21 @@ class TierIVCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var titleLabel: UILabel!
     
-    
+//    override func awakeFromNib() {
+//        super.awakeFromNib()
+//        
+//        self.selected = false
+//    }
+//    
+//    override var selected : Bool {
+//        
+//        didSet {
+//            if selected == true {
+//            self.backgroundColor = UIColor.whiteColor()
+//            } else {
+//                self.backgroundColor = UIColor.blackColor()
+//            }
+//        }
+//    }
     
 }

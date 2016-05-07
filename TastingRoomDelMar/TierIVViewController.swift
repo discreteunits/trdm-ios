@@ -348,7 +348,6 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
     func tierIVTableQuery() {
         
         
-        
         self.TierIVTableViewControllerRef?.tierIVTableArray.removeAll()
         
         let tableQuery:PFQuery = PFQuery(className:"Product")
@@ -366,13 +365,10 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
             tableQuery.orderByAscending("name")
         }
         
-//        print("TAGS ARRAY: \(tagsArray)")
         
         tableQuery.whereKey("categories", containsAllObjectsInArray: tagsArray)
         tableQuery.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
             
-//            print("IIIIIIIIIII \(objects) IIIIIIIIIII")
-
             
             if error == nil {
                 
@@ -494,8 +490,6 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
                     
                 self.TierIVTableViewControllerRef!.tableView.reloadData()
                 
-                print("TierIV table query completed with:  \(self.TierIVTableViewControllerRef!.tierIVTableArray.count) objects.")
-                
                 }
                 
             
@@ -506,6 +500,9 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
                 print("Error: \(error!) \(error!.userInfo)")
                 
             }
+            
+            print("TierIV table query completed with:  \(self.TierIVTableViewControllerRef!.tierIVTableArray.count) objects.")
+
         }
     }
 }

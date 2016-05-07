@@ -46,6 +46,10 @@ class TierIVCollectionViewController: UICollectionViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return tierIVCollectionArray.count + 1
     }
@@ -59,7 +63,14 @@ class TierIVCollectionViewController: UICollectionViewController {
         cell.layer.borderColor = UIColor(red: 205/255.0, green: 205/255.0, blue: 205/255.0, alpha: 0.4).CGColor
         cell.layer.cornerRadius = 10.0
         cell.clipsToBounds = true
-
+        
+        if cell.selected == true {
+            cell.backgroundColor = UIColor.blackColor()
+            cell.titleLabel?.textColor = UIColor.whiteColor()
+        } else {
+            cell.backgroundColor = UIColor.whiteColor()
+            cell.titleLabel?.textColor = UIColor.blackColor()
+        }
         
         // Show All Cell
         if indexPath.row == 0 {
@@ -85,10 +96,7 @@ class TierIVCollectionViewController: UICollectionViewController {
     }
     
     
-    
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-
-//        collectionView.sizeToFit()
         
         let itemsPerRow:CGFloat = 3
         let hardCodedPadding:CGFloat = 3
@@ -96,33 +104,40 @@ class TierIVCollectionViewController: UICollectionViewController {
         let itemHeight = collectionView.bounds.height - 16
         
         
-        
         return CGSize(width: collectionCellWidth, height: itemHeight)
+        
     }
+    
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
-        var selectedCell = collectionView.cellForItemAtIndexPath(indexPath) as! TierIVCollectionViewCell
-        
-        
+        if let selectedCell = collectionView.cellForItemAtIndexPath(indexPath)! as? TierIVCollectionViewCell {
         print("+++++++++++++++++++++++++++++")
-        print("SELECTED CELL INDEX PATH: \(indexPath)")
+        print("SELECTED CELL INDEX PATH: \(selectedCell)")
         print("+++++++++++++++++++++++++++++")
+//        selectedCell.layer.cornerRadius = 10.0
+//        selectedCell.clipsToBounds = true
+//        selectedCell.contentView.backgroundColor = UIColor.blackColor()
+//        selectedCell.titleLabel?.textColor = UIColor.whiteColor()
+
+            if selectedCell.selected == true {
+                selectedCell.backgroundColor = UIColor.blackColor()
+                selectedCell.titleLabel?.textColor = UIColor.whiteColor()
+            } else {
+                selectedCell.backgroundColor = UIColor.whiteColor()
+                selectedCell.titleLabel?.textColor = UIColor.blackColor()
+            }
         
-        
-        selectedCell.layer.cornerRadius = 10.0
-        selectedCell.clipsToBounds = true
-        selectedCell.contentView.backgroundColor = UIColor.blackColor()
-        selectedCell.titleLabel?.textColor = UIColor.whiteColor()
-        
-//        delegate?.removeTableCellLines()
-        
-        // Show All 
+        }
+
+        // Show All
         if indexPath.row == 0 {
             
             // Clean Up
             if RouteManager.sharedInstance.Route!.count == 4 {
                 RouteManager.sharedInstance.TierFour = nil
+            } else {
+                print("This selection is already being shown.")
             }
             
             delegate?.tagsArrayCreation()
@@ -155,7 +170,7 @@ class TierIVCollectionViewController: UICollectionViewController {
                 print("This selection is already being shown.")
             }
         
-
+//            collectionView.reloadData()
 //            delegate?.reloadTable()
         }
         
@@ -163,14 +178,29 @@ class TierIVCollectionViewController: UICollectionViewController {
     
     override func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
         
-        let deselectedCell = collectionView.cellForItemAtIndexPath(indexPath)! as! TierIVCollectionViewCell
-        deselectedCell.contentView.backgroundColor = UIColor.whiteColor()
-        deselectedCell.titleLabel?.textColor = UIColor.blackColor()
+        if let deselectedCell = collectionView.cellForItemAtIndexPath(indexPath) as? TierIVCollectionViewCell {
+            
+            deselectedCell.selected = false
+            
+            if deselectedCell.selected == true {
+                deselectedCell.backgroundColor = UIColor.blackColor()
+                deselectedCell.titleLabel?.textColor = UIColor.whiteColor()
+            } else {
+                deselectedCell.backgroundColor = UIColor.whiteColor()
+                deselectedCell.titleLabel?.textColor = UIColor.blackColor()
+            }
+            
+            
+        }
         
         
+        // Remove Selection Upon Deselection
         if RouteManager.sharedInstance.Route!.count == 4 {
             RouteManager.sharedInstance.TierFour = nil
         }
+            
+        
+
         
 //        delegate?.tagsArrayCreation()
 
