@@ -36,36 +36,9 @@ class TierIVCollectionViewController: UICollectionViewController {
     }
     
 // ------------------
-    override func viewWillAppear(animated: Bool) {
-        
-        // Animate Collection Cells
-//        // IF NOT HARVEST
-//        if route[1]["name"] as! String != "Harvest" {
-//        
-//        self.collectionView!.frame.origin.y = -self.collectionView!.bounds.size.height
-//
-//        showCollection()
-//        
-//        }
-        
-    }
-    
-    func showCollection() {
-        
-        UIView.animateWithDuration(1.5, delay: 0.05, usingSpringWithDamping: 1.0, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: {
-            
-            self.collectionView!.transform = CGAffineTransformMakeTranslation(0, self.collectionView!.bounds.size.height)
-            self.collectionView!.alpha = 1
-                
-        }, completion: nil)
-        
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -86,37 +59,40 @@ class TierIVCollectionViewController: UICollectionViewController {
         cell.layer.borderColor = UIColor(red: 205/255.0, green: 205/255.0, blue: 205/255.0, alpha: 0.4).CGColor
         cell.layer.cornerRadius = 10.0
         cell.clipsToBounds = true
-        
+
         
         // Show All Cell
         if indexPath.row == 0 {
             
             cell.titleLabel?.text = "Show All"
-            collectionCellWidth = 88
-
+            collectionCellWidth = 88 // cell.titleLabel.frame.size.width + 32
+            
+            return cell
+            
             
         // Every Other Collection Cell
         } else {
         
             let trueIndex = indexPath.row - 1
             cell.titleLabel?.text = self.tierIVCollectionArray[trueIndex]["name"] as? String
-            collectionCellWidth = cell.titleLabel.frame.size.width + 16
+            collectionCellWidth = cell.titleLabel.frame.size.width + 24
+            
+            return cell
 
             
         }
         
-        return cell
     }
     
     
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
 
-        collectionView.sizeToFit()
+//        collectionView.sizeToFit()
         
         let itemsPerRow:CGFloat = 3
         let hardCodedPadding:CGFloat = 3
-        let itemWidth = (collectionView.bounds.width - 32) / itemsPerRow
+        let itemWidth = (collectionView.bounds.width / itemsPerRow)
         let itemHeight = collectionView.bounds.height - 16
         
         
@@ -126,7 +102,14 @@ class TierIVCollectionViewController: UICollectionViewController {
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
-        let selectedCell = collectionView.cellForItemAtIndexPath(indexPath)! as! TierIVCollectionViewCell
+        var selectedCell = collectionView.cellForItemAtIndexPath(indexPath) as! TierIVCollectionViewCell
+        
+        
+        print("+++++++++++++++++++++++++++++")
+        print("SELECTED CELL INDEX PATH: \(indexPath)")
+        print("+++++++++++++++++++++++++++++")
+        
+        
         selectedCell.layer.cornerRadius = 10.0
         selectedCell.clipsToBounds = true
         selectedCell.contentView.backgroundColor = UIColor.blackColor()
@@ -144,7 +127,7 @@ class TierIVCollectionViewController: UICollectionViewController {
             
             delegate?.tagsArrayCreation()
             delegate?.tierIVTableQuery()
-            delegate?.reloadTable()
+//            delegate?.reloadTable()
             
         // Filter By Selection
         } else {
@@ -161,13 +144,15 @@ class TierIVCollectionViewController: UICollectionViewController {
                 
                 RouteManager.sharedInstance.printRoute()
                 
+                delegate?.tagsArrayCreation()
+                delegate?.tierIVTableQuery()
+                
             } else {
                 print("This selection is already being shown.")
             }
         
-            delegate?.tagsArrayCreation()
-            delegate?.tierIVTableQuery()
-            delegate?.reloadTable()
+
+//            delegate?.reloadTable()
         }
         
     }
@@ -183,7 +168,7 @@ class TierIVCollectionViewController: UICollectionViewController {
             RouteManager.sharedInstance.TierFour = nil
         }
         
-        delegate?.tagsArrayCreation()
+//        delegate?.tagsArrayCreation()
 
     }
 }

@@ -77,6 +77,7 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
         }
     }
     
+    
     override func viewWillAppear(animated: Bool) {
         
         
@@ -232,6 +233,8 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
                 
                 TierIVCollectionViewController.collectionArray = tierIVCollectionArray
                 
+                
+                
                 TierIVCollectionViewControllerRef?.collectionView?.reloadData()
                 
             } else {
@@ -349,6 +352,8 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
         let tableQuery:PFQuery = PFQuery(className:"Product")
         tableQuery.includeKey("category")
         
+        
+        // Sort Order
         if RouteManager.sharedInstance.TierOne!["name"] as! String == "Merch" {
             tableQuery.orderByAscending("name")
         } else if RouteManager.sharedInstance.TierOne!["name"] as! String == "Events" {
@@ -406,6 +411,50 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
                                 print("This selection is already being shown.")
                             }
                         }
+                        
+                        
+                        
+                        
+                        
+                    } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "More" {
+                        
+//                        print("OBJECT EQUALS: \(object)")
+                        
+                        // Parent Product Route
+                        if object["productType"] as! String == "CHOICE" {
+                            
+                            // Parent Product Route
+                            if !self.TierIVTableViewControllerRef!.tierIVTableArray.contains(object) {
+                                self.TierIVTableViewControllerRef?.tierIVTableArray.append(object)
+                            } else {
+                                print("This selection is already being shown.")
+                            }
+                            
+                        // Subproduct Route
+                        } else if object["productType"] as! String != "" {
+                            
+                            // Don't Show Subproducts
+                            print("Subproduct Found: \(object["name"])")
+                            
+                            
+                        // Produt Route
+                        } else {
+                            
+                            // Product Route
+                            if !self.TierIVTableViewControllerRef!.tierIVTableArray.contains(object) {
+                                self.TierIVTableViewControllerRef?.tierIVTableArray.append(object)
+                            } else {
+                                print("This selection is already being shown.")
+                            }
+                            
+                        }
+                        
+                        
+                        
+                        
+                        
+                        
+                        
  
                     } else {
                     // IF NOT HOPS or VINES
@@ -418,7 +467,9 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
                     }
                 }
                 
-                AnimationManager.sharedInstance.animateTable((self.TierIVTableViewControllerRef!.tableView)!)
+//                AnimationManager.sharedInstance.animateTable((self.TierIVTableViewControllerRef!.tableView)!)
+                    
+                self.TierIVTableViewControllerRef!.tableView.reloadData()
                 
                 print("TierIV table query completed with:  \(self.TierIVTableViewControllerRef!.tierIVTableArray.count) objects.")
                 }

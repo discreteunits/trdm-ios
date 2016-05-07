@@ -399,7 +399,9 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
                 }
                 print("-----------------------")
                 
-                AnimationManager.sharedInstance.animateTable(self.tableView)
+//                AnimationManager.sharedInstance.animateTable(self.tableView)
+                
+                self.tableView.reloadData()
                 
             } else {
                 

@@ -119,7 +119,13 @@ class PopoverViewController: UITableViewController {
         } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
             rows = additions.count + 3
         } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "More" {
-            rows = 3
+            
+            if subproducts.count > 0 {
+                rows = 4
+            } else {
+                rows = 3
+            }
+            
         } else if RouteManager.sharedInstance.TierThree!["name"] as! String == "Flights" {
             rows = 3
         } else {

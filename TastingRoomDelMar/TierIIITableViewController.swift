@@ -30,6 +30,10 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
         
     }
     
+    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        cell.backgroundColor = UIColor.clearColor()
+    }
+    
     override func viewWillAppear(animated: Bool) {
         
         AnimationManager.sharedInstance.fade(self.tableView, alpha: 1.0)
@@ -43,7 +47,6 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         
         // Items Indicator
         TabManager.sharedInstance.addItemsIndicator()
@@ -131,8 +134,10 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
                 print("-----------------------")
                 
                 
-                AnimationManager.sharedInstance.animateTable(self.tableView)
-                
+//                AnimationManager.sharedInstance.animateTable(self.tableView)
+
+                self.tableView.reloadData()
+
             } else {
                 
                 // Log details of the failure

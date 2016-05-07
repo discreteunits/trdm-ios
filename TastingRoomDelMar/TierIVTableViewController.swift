@@ -122,9 +122,9 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         
         
         // This Line Is My Bitch
-        dispatch_async(dispatch_get_main_queue()) {
+//        dispatch_async(dispatch_get_main_queue()) {
             cell.altNameTextView?.text = self.tierIVTableArray[indexPath.row]["info"] as! String? // ?? "[No Info]"
-        }
+//        }
         
         
         cell.altNameTextView?.font = UIFont.basicFont(14)
@@ -134,7 +134,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         // Adjustment For Text View Text Wrapping
         // ------------------------- BEGIN
         cell.altNameTextView.backgroundColor = UIColor.clearColor()
-        cell.altNameTextView.frame.size.width = self.view.frame.size.width - 80
+//        cell.altNameTextView.frame.size.width = self.view.frame.size.width - 80
         cell.altNameTextView.scrollEnabled = false
         cell.altNameTextView.textContainer.lineBreakMode = NSLineBreakMode.ByCharWrapping
         cell.altNameTextView.contentInset = UIEdgeInsets(top: 0,left: -6,bottom: 0,right: 0)
@@ -411,8 +411,24 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
 
             } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "More" {
                 
-                popoverDynamicHeight = 1
-                popoverHeightCalculation = ((popoverDynamicHeight + 2) * 100)
+                
+                // Parent Product Route
+                if product["productType"] as! String == "CHOICE" {
+                    popoverDynamicHeight = 1
+                    popoverHeightCalculation = ((popoverDynamicHeight + 3) * 100)
+                    let subproductsArray = subproductQuery(product)
+                    vc.subproducts = subproductsArray
+                // Subproduct Route
+                } else if product["productType"] as! String != "" {
+                    popoverDynamicHeight = 1
+                    popoverHeightCalculation = ((popoverDynamicHeight + 2) * 100)
+                // Product Route
+                } else {
+                    popoverDynamicHeight = 1
+                    popoverHeightCalculation = ((popoverDynamicHeight + 2) * 100)
+                }
+                
+
 
             } else if RouteManager.sharedInstance.TierThree!["name"] as! String == "Flights" {
                 
