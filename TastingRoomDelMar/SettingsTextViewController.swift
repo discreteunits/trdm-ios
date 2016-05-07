@@ -51,7 +51,10 @@ class SettingsTextViewController: UIViewController {
             
         } else if passedTrigger == "Terms of Use" {
             
-            webviewInstance.loadRequest(NSURLRequest(URL: NSURL(string:"https://www.tastingroomdelmar.com/terms")!))
+//            webviewInstance.loadRequest(NSURLRequest(URL: NSURL(string:"https://www.google.com")!))
+            
+            webviewInstance.loadRequest(NSURLRequest(URL: NSURL(string:"http://www.tastingroomdelmar.com/terms")!))
+            
         }
     }
     

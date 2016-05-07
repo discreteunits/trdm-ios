@@ -120,7 +120,7 @@ class SettingsTableViewController: UITableViewController {
         } else if section == 1 {
             return 2
         } else if section == 2 {
-            return 2
+            return 1
         } else if section == 3 {
             return 3
         }
@@ -241,19 +241,10 @@ class SettingsTableViewController: UITableViewController {
             // Privacy Policy Row
             if indexPath.row == 0 {
                 
-                moreInfoCell.settingLabel.text = "privacy policy"
-                moreInfoCell.settingValueLabel.text = ""
-                
-                return moreInfoCell
-                
-            // Terms Of Use Row
-            } else if indexPath.row == 1 {
-                
                 moreInfoCell.settingLabel.text = "terms of use"
                 moreInfoCell.settingValueLabel.text = ""
                 
                 return moreInfoCell
-                
             }
             
         // Account Actions Section
@@ -347,15 +338,10 @@ class SettingsTableViewController: UITableViewController {
             
             if indexPath.row == 0 {
                 
-                selectedValue = "Privacy Policy"
+                selectedValue = "Terms of Use"
                 performSegueWithIdentifier("textView", sender: self)
                 
-            } else if indexPath.row == 1 {
-                
-                selectedValue = "Terms of Use" 
-                performSegueWithIdentifier("textView", sender: self)
-                
-            }
+            } 
         
         // Account Actions Section
         } else if indexPath.section == 3 {

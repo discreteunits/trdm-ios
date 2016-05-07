@@ -366,7 +366,7 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
             tableQuery.orderByAscending("name")
         }
         
-        print("TAGS ARRAY: \(tagsArray)")
+//        print("TAGS ARRAY: \(tagsArray)")
         
         tableQuery.whereKey("categories", containsAllObjectsInArray: tagsArray)
         tableQuery.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in

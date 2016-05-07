@@ -134,6 +134,10 @@ class TierIVCollectionViewController: UICollectionViewController {
         
             let trueIndex = indexPath.row - 1
             
+            print("+++++++++++++++++++++++++++++")
+            print("TRUE INDEX PATH: \(trueIndex)")
+            print("+++++++++++++++++++++++++++++")
+            
             if !RouteManager.sharedInstance.Route!.contains(tierIVCollectionArray[trueIndex]) {
                 
                 if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
