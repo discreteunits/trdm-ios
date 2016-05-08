@@ -55,9 +55,8 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
 
     var cellHeight = CGFloat()
     
-    var dynaBool = true
     
-    var altNameTextViewHeight = CGFloat()
+    var dynamicCellHeight = CGFloat()
     
     
 // ---------------------
@@ -71,8 +70,18 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        AnimationManager.sharedInstance.animateTable(self.tableView)
+        
+        // need this?
+        self.tableView.estimatedRowHeight = 100
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        
+//        self.tableView.setNeedsLayout()
+//        self.tableView.layoutIfNeeded()
+        // ---
+        
+//        AnimationManager.sharedInstance.animateTable(self.tableView)
 
+        tableView.reloadData()
         
         dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
             self.tagsArrayCreation()
@@ -116,10 +125,8 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             cell.addToOrderButton.clipsToBounds = true
         }
         
-        
         cell.titleTextView?.text = self.tierIVTableArray[indexPath.row]["name"] as! String?
         cell.altNameTextView?.text = self.tierIVTableArray[indexPath.row]["info"] as! String? ?? "[No Info]"
-
         
         cell.titleTextView?.font = UIFont.headerFont(24)
         cell.altNameTextView?.font = UIFont.basicFont(14)
@@ -128,33 +135,31 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
 
         // Adjustment For Text View Text Wrapping
         // ------------------------- BEGIN
-        cell.altNameTextView.backgroundColor = UIColor.clearColor()
-        cell.altNameTextView.scrollEnabled = false
-        cell.altNameTextView.textContainer.lineBreakMode = NSLineBreakMode.ByCharWrapping
-        cell.altNameTextView.contentInset = UIEdgeInsets(top: 0,left: -6, bottom: 0,right: 0)
-        cell.altNameTextView.textContainer.maximumNumberOfLines = 0
-        cell.altNameTextView?.sizeToFit()
-        
         cell.titleTextView.backgroundColor = UIColor.clearColor()
         cell.titleTextView.scrollEnabled = false
         cell.titleTextView.textContainer.lineBreakMode = NSLineBreakMode.ByCharWrapping
         cell.titleTextView.contentInset = UIEdgeInsets(top: 0, left: -6, bottom: 0, right: 0)
         cell.titleTextView.textContainer.maximumNumberOfLines = 0
-        cell.titleTextView?.sizeToFit()
+        cell.titleTextView.sizeToFit()
+        
+        let titleTextViewHeight = cell.titleTextView.contentSize.height
+        print("titleTextViewHeight: \(titleTextViewHeight)")
+        
+        cell.altNameTextView.backgroundColor = UIColor.clearColor()
+        cell.altNameTextView.scrollEnabled = false
+        cell.altNameTextView.textContainer.lineBreakMode = NSLineBreakMode.ByCharWrapping
+        cell.altNameTextView.contentInset = UIEdgeInsets(top: 0,left: -6, bottom: 0,right: 0)
+        cell.altNameTextView.textContainer.maximumNumberOfLines = 0
+        cell.altNameTextView.sizeToFit()
+        
+        let altNameTextViewHeight = cell.altNameTextView.contentSize.height
+        print("altNameTextViewHeight: \(altNameTextViewHeight)")
         
         
-        
-        altNameTextViewHeight = cell.altNameTextView.contentSize.height
-        altNameTextViewHeight = altNameTextViewHeight + 60
-        
-        // Add Title Wrapping Text View To Cell Height Decider
-        var titleTextViewHeight = cell.titleTextView.contentSize.height
-        altNameTextViewHeight = altNameTextViewHeight + titleTextViewHeight
-        
-        
+        dynamicCellHeight = altNameTextViewHeight + titleTextViewHeight
+        dynamicCellHeight = dynamicCellHeight + 60
         // ------------------------ END
 
-        
         
         // Prices From Product Table
         // ------------------------- BEGIN
@@ -207,10 +212,75 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     }
     
 
+
+    
+    func calculateHeight(titleText:String, infoText:String) -> CGFloat {
+        
+        print("88888888888888888888888888888888888")
+
+        
+        // get number of lines in decimal form
+        // multiply by font size
+        // increase by 1 in prep for removing decimals
+        // remove any decimals
+        
+        print("titleText: \(titleText)")
+        print("title character count: \(titleText.characters.count)")
+
+        let titleTextCount = Double(titleText.characters.count)
+        let titleHeightAprox = titleTextCount / 39.0
+        print("titleHeightAprox: \(titleHeightAprox)")
+        let titleHeight = titleHeightAprox * 24
+        print("titleHeight: \(titleHeight)")
+        let titleIncreased = titleHeight + 1
+        print("titleIncreased: \(titleIncreased)")
+        let titleTotalHeight = Int(titleIncreased - (titleIncreased % 1))
+        
+        print("Title Wrapped Height: \(titleTotalHeight)")
+        
+        
+        let infoTextCount = Double(infoText.characters.count)
+        let infoHeightAprox = infoTextCount / 45
+        let infoHeight = infoHeightAprox * 14
+        let infoIncreased = infoHeight + 1
+        let infoTotalHeight = Int(infoIncreased - (infoIncreased % 1))
+        
+        print("Info Wrapped Height: \(infoTotalHeight)")
+        
+        
+        let cellHeightTotal = (titleTotalHeight + infoTotalHeight) + 60
+        
+        print("cellHeightTotal: \(cellHeightTotal)")
+        
+        
+        print("88888888888888888888888888888888888")
+
+        
+        return CGFloat(cellHeightTotal)
+    }
+    
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
-        return altNameTextViewHeight
+        // Taylor Option
+//        let titleText:String = tierIVTableArray[indexPath.row]["name"] as! String
+//        let infoText:String = tierIVTableArray[indexPath.row]["info"] as! String
+//        
+//        let size = self.calculateHeight(titleText, infoText: infoText)
+        // ----
+        
+        
+        print("Cell \(indexPath.row) height is: \(dynamicCellHeight)")
+
+        
+        
+        
+        
+        return UITableViewAutomaticDimension
+        
+//        return dynamicCellHeight
+        
+//        return size
         
     }
     

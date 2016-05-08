@@ -77,8 +77,6 @@ class PopoverViewController: UITableViewController {
         // Create Additions with Values
         for i in 0 ..< popoverAdditions.count {
             
-            
-            
             let additionValues = popoverAdditions[i]["values"]!
             
             var convertedAdditionValues: [Value] = [Value]()

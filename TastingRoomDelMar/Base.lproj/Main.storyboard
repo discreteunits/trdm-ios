@@ -345,6 +345,14 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="T3Y-ip-WLf" firstAttribute="top" secondItem="GXU-B7-VYg" secondAttribute="bottom" id="PJo-0q-BM3"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="PJo-0q-BM3"/>
+                                                </mask>
+                                            </variation>
                                         </stackView>
                                         <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bs0-ds-Jr9">
                                             <rect key="frame" x="0.0" y="122" width="600" height="32"/>
