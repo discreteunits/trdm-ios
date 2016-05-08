@@ -62,6 +62,8 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        getCards()
+        
         // Unit Test
         tableView.accessibilityIdentifier = "Tier One Table"
         
@@ -429,6 +431,19 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
             
         }
     }
+    
+    // Get Card CLOUDCODE FUNCTION CALL FETCH
+    func getCards() {
+        
+        dispatch_async(dispatch_get_main_queue()){
+            
+            // Get User Card via User Object ID
+            let card = CardManager.sharedInstance.fetchCards(TabManager.sharedInstance.currentTab.userId)
+            CardManager.sharedInstance.currentCustomer.orderId.append(String(card))
+            
+        }
+    }
+
     
     
     // Facebook Graph Requests

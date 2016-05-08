@@ -19,7 +19,7 @@ class GSlider : UISlider {
     
     override func trackRectForBounds(bounds: CGRect) -> CGRect {
         var newBounds = super.trackRectForBounds(bounds)
-        newBounds.size.height = 24
+        newBounds.size.height = 12
         return newBounds
     }
 }
@@ -170,27 +170,27 @@ class AddGratuityViewController: UIViewController {
         gratuitySlider.addTarget(self, action: "sliderValueDidChange:", forControlEvents: .ValueChanged)
         
         // Create Cancel Button
-        let buttonWidth = (screenWidth - 24) / 2
+        let buttonWidth = (screenWidth - 36) / 2
         
         let cancelButton = UIButton(frame: CGRectMake(0, 0, buttonWidth, dynamicLocator*0.75))
         cancelButton.frame.origin.y = (dynamicLocator*3.75)
-        cancelButton.frame.origin.x = 8
+        cancelButton.frame.origin.x = 12
         cancelButton.setTitle("Cancel", forState: .Normal)
         cancelButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
         cancelButton.titleLabel?.font = UIFont.scriptFont(18)
         cancelButton.layer.backgroundColor = UIColor(red: 224/255.0, green: 224/255.0, blue: 224/255.0, alpha: 1.0).CGColor
-        cancelButton.layer.cornerRadius = 12.0
+        cancelButton.layer.cornerRadius = 8.0
         cancelButton.clipsToBounds = true
         cancelButton.addTarget(self, action: #selector(AddGratuityViewController.cancelPopover), forControlEvents: UIControlEvents.TouchUpInside)
         // Create Place Order Button
         let placeOrderButton = UIButton(frame: CGRectMake(0, 0, buttonWidth, dynamicLocator*0.75))
         placeOrderButton.frame.origin.y = (dynamicLocator*3.75)
-        placeOrderButton.frame.origin.x = buttonWidth + 16
+        placeOrderButton.frame.origin.x = buttonWidth + 24
         placeOrderButton.setTitle("Place Order", forState: .Normal)
         placeOrderButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         placeOrderButton.titleLabel?.font = UIFont.scriptFont(18)
         placeOrderButton.layer.backgroundColor = UIColor.primaryGreenColor().CGColor
-        placeOrderButton.layer.cornerRadius = 12.0
+        placeOrderButton.layer.cornerRadius = 8.0
         placeOrderButton.clipsToBounds = true
         placeOrderButton.addTarget(self, action: #selector(AddGratuityViewController.placeOrderWithGratuity), forControlEvents: UIControlEvents.TouchUpInside)
         

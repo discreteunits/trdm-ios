@@ -218,7 +218,9 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
                     
                     for i in 0 ..< additionsRaw.count {
                         if additionsRaw[i]["name"]! as! String != "Table Number" {
-                            additions.append(additionsRaw[i])
+                            if additionsRaw[i]["name"]! as! String != "Custom modifier" {
+                                additions.append(additionsRaw[i])
+                            }
                         }
                     }
                     
@@ -273,7 +275,9 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
                             
                             for i in 0 ..< additionsRaw.count {
                                 if additionsRaw[i]["name"]! as! String != "Table Number" {
-                                    additions.append(additionsRaw[i])
+                                    if additionsRaw[i]["name"]! as! String != "Custom modifier" {
+                                        additions.append(additionsRaw[i])
+                                    }
                                 }
                             }
                             
@@ -306,6 +310,18 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         }
     }
     
+    func getLines(text:String) -> Int {
+        
+        let textCount = text.characters.count
+        let textLineDecimal = textCount / 36
+        let textAproxIncreased = textLineDecimal + 1
+        let textLines = textAproxIncreased - (textAproxIncreased % 1)
+        
+        print("Selected Popover's Name Label Will Be: \(textLines) lines.")
+        
+        return textLines
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == "showItemConfig" {
@@ -324,18 +340,27 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             var popoverHeightCalculation: Int!
             if RouteManager.sharedInstance.TierOne!["name"] as! String == "Merch" {
                 
+                let numberOfLines = getLines(product["name"] as! String)
+                let nameHeight = (numberOfLines * 24) + 2 // 2 is padding
+                
                 popoverDynamicHeight = 1
-                popoverHeightCalculation = ((popoverDynamicHeight + 1) * 100) + 78
+                popoverHeightCalculation = ((popoverDynamicHeight + 1) * 100) + nameHeight
 
             } else if RouteManager.sharedInstance.TierOne!["name"] as! String == "Events" {
                 
+                let numberOfLines = getLines(product["name"] as! String)
+                let nameHeight = (numberOfLines * 24) + 2 // 2 is padding
+                
                 popoverDynamicHeight = 1
-                popoverHeightCalculation = ((popoverDynamicHeight + 1) * 100) + 78
+                popoverHeightCalculation = ((popoverDynamicHeight + 1) * 100) + nameHeight
 
             } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
                 
-                popoverDynamicHeight = additions.count - 1
-                popoverHeightCalculation = ((popoverDynamicHeight + 2) * 100) + 78
+                let numberOfLines = getLines(product["name"] as! String)
+                let nameHeight = (numberOfLines * 24) + 2 // 2 is padding
+                
+                popoverDynamicHeight = additions.count
+                popoverHeightCalculation = ((popoverDynamicHeight + 2) * 100) + nameHeight
                 vc.popoverAdditions = additions
 
             } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "More" {
@@ -343,31 +368,51 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
                 
                 // Parent Product Route
                 if product["productType"] as! String == "CHOICE" {
+                    
+                    let numberOfLines = getLines(product["name"] as! String)
+                    let nameHeight = (numberOfLines * 24) + 2 // 2 is padding
+                    
                     popoverDynamicHeight = 1
-                    popoverHeightCalculation = ((popoverDynamicHeight + 2) * 100) + 78
+                    popoverHeightCalculation = ((popoverDynamicHeight + 2) * 100) + nameHeight
                     let subproductsArray = subproductQuery(product)
                     vc.subproducts = subproductsArray
                 // Subproduct Route
                 } else if product["productType"] as! String != "" {
+                    
+                    let numberOfLines = getLines(product["name"] as! String)
+                    let nameHeight = (numberOfLines * 24) + 2 // 2 is padding
+                    
                     popoverDynamicHeight = 1
-                    popoverHeightCalculation = ((popoverDynamicHeight + 1) * 100) + 78
+                    popoverHeightCalculation = ((popoverDynamicHeight + 1) * 100) + nameHeight
                 // Product Route
                 } else {
+                    
+                    let numberOfLines = getLines(product["name"] as! String)
+                    let nameHeight = (numberOfLines * 24) + 2 // 2 is padding
+                    
                     popoverDynamicHeight = 1
-                    popoverHeightCalculation = ((popoverDynamicHeight + 1) * 100) + 78
+                    popoverHeightCalculation = ((popoverDynamicHeight + 1) * 100) + nameHeight
                 }
                 
 
 
             } else if RouteManager.sharedInstance.TierThree!["name"] as! String == "Flights" {
                 
-                popoverDynamicHeight = 1
-                popoverHeightCalculation = ((popoverDynamicHeight + 1) * 100) + 78
-            
-            } else {
+                let numberOfLines = getLines(product["name"] as! String)
+                let nameHeight = (numberOfLines * 24) + 2 // 2 is padding
                 
                 popoverDynamicHeight = 1
-                popoverHeightCalculation = ((popoverDynamicHeight + 2) * 100) + 52
+                popoverHeightCalculation = ((popoverDynamicHeight + 1) * 100) + nameHeight
+            
+                
+                
+            } else {
+                
+                let numberOfLines = getLines(product["name"] as! String)
+                let nameHeight = (numberOfLines * 24) + 2 // 2 is padding
+                
+                popoverDynamicHeight = 1
+                popoverHeightCalculation = ((popoverDynamicHeight + 2) * 100) + nameHeight
                 let subproductsArray = subproductQuery(product)
                 vc.subproducts = subproductsArray
 

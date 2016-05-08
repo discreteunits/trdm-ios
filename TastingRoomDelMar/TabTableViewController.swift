@@ -81,6 +81,10 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
         return headerCell
         
     }
+    
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 42.0
+    }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
@@ -104,14 +108,14 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
         // Styles
         lineitemCell.itemNameLabel.font = UIFont.headerFont(24)
         
-        let border = CALayer()
-        let width = CGFloat(2.0)
-        border.borderColor = UIColor(red: 225/255.0, green: 225/255.0, blue: 225/255.0, alpha: 0.1).CGColor
-        border.frame = CGRect(x: 0, y: lineitemCell.frame.size.height - 1, width:  tableView.frame.size.width, height: 1)
-        
-        border.borderWidth = width
-        lineitemCell.layer.addSublayer(border)
-        lineitemCell.layer.masksToBounds = true
+//        let border = CALayer()
+//        let width = CGFloat(2.0)
+//        border.borderColor = UIColor(red: 225/255.0, green: 225/255.0, blue: 225/255.0, alpha: 0.1).CGColor
+//        border.frame = CGRect(x: 0, y: lineitemCell.frame.size.height - 1, width:  tableView.frame.size.width, height: 1)
+//        
+//        border.borderWidth = width
+//        lineitemCell.layer.addSublayer(border)
+//        lineitemCell.layer.masksToBounds = true
         
         return lineitemCell
 

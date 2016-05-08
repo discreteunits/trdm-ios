@@ -97,7 +97,7 @@ class PopoverViewController: UITableViewController {
             let additionRaw = popoverAdditions[i]
             
             // Only Create Additions that are not "CUSTOM MODIFIER"
-            if additionRaw["displayName"]! as! String == "Custom modifier" {
+//            if additionRaw["displayName"]! as! String != "Custom modifier" {
 
                 var newAddition = Addition()
                 newAddition.displayName = additionRaw["displayName"]! as! String
@@ -108,7 +108,7 @@ class PopoverViewController: UITableViewController {
                 newAddition.values = convertedAdditionValues
             
                 self.additions.append(newAddition)
-            }
+//            }
         }
     }
     

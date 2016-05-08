@@ -144,6 +144,14 @@ class TabFloatingTableViewController: UITableViewController, UIPopoverPresentati
         
         return cell
     }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath.row == 0 {
+            return 108
+        } else {
+            return 100
+        }
+    }
  
     
     @IBAction func placeOrder(sender: AnyObject) {

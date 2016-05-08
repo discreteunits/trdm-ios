@@ -71,27 +71,27 @@ class TableNumberViewController: UIViewController, UITextFieldDelegate {
         tableNumberTextField.delegate = self
         
         // Create Cancel Button
-        let buttonWidth = (screenWidth - 24) / 2
+        let buttonWidth = (screenWidth - 36) / 2
         
         let cancelButton = UIButton(frame: CGRectMake(0, 0, buttonWidth, heightConstraint / 10))
         cancelButton.frame.origin.y = dynamicFontSize * 2.3
-        cancelButton.frame.origin.x = 8
+        cancelButton.frame.origin.x = 12
         cancelButton.setTitle("Cancel", forState: .Normal)
         cancelButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
-        cancelButton.titleLabel?.font = UIFont.scriptFont(18)
+        cancelButton.titleLabel?.font = UIFont.scriptFont(24)
         cancelButton.layer.backgroundColor = UIColor(red: 224/255.0, green: 224/255.0, blue: 224/255.0, alpha: 1.0).CGColor
-        cancelButton.layer.cornerRadius = 12.0
+        cancelButton.layer.cornerRadius = 8.0
         cancelButton.clipsToBounds = true
         cancelButton.addTarget(self, action: #selector(TableNumberViewController.cancelPopover), forControlEvents: UIControlEvents.TouchUpInside)
         // Create Place Order Button
         let placeOrderButton = UIButton(frame: CGRectMake(0, 0, buttonWidth, heightConstraint / 10))
         placeOrderButton.frame.origin.y = dynamicFontSize * 2.3
-        placeOrderButton.frame.origin.x = buttonWidth + 16
+        placeOrderButton.frame.origin.x = buttonWidth + 24
         placeOrderButton.setTitle("Place Order", forState: .Normal)
         placeOrderButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        placeOrderButton.titleLabel?.font = UIFont.scriptFont(18)
+        placeOrderButton.titleLabel?.font = UIFont.scriptFont(24)
         placeOrderButton.layer.backgroundColor = UIColor.primaryGreenColor().CGColor
-        placeOrderButton.layer.cornerRadius = 12.0
+        placeOrderButton.layer.cornerRadius = 8.0
         placeOrderButton.clipsToBounds = true
         placeOrderButton.addTarget(self, action: #selector(TableNumberViewController.placeOrderSelected), forControlEvents: UIControlEvents.TouchUpInside)
         

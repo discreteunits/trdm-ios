@@ -25,6 +25,8 @@ protocol TabReloadDelegate {
     func recalculateTotals()
 }
 
+
+
 class AlertManager: UIViewController {
     
     static let sharedInstance = AlertManager()
@@ -100,6 +102,7 @@ class AlertManager: UIViewController {
         
         // Present Alert
         view.presentViewController(alert, animated: true, completion: nil)
+        alert.view.tintColor = UIColor.whiteColor()
         
     }
     
@@ -178,7 +181,7 @@ class AlertManager: UIViewController {
         alert.addAction(cancelAction)
         
         view.presentViewController(alert, animated: true, completion: nil)
-        
+
     }
 
     //// WhoopsLoggedIn
