@@ -111,7 +111,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         let pricesAttributes = [NSFontAttributeName: UIFont.basicFont(12)]
         
         let nameString = NSMutableAttributedString(string: "\(name)\n", attributes: nameAttributes)
-        let infoString = NSAttributedString(string: "\(info)\n", attributes: infoAttributes)
+        let infoString = NSAttributedString(string: "\(info)\n\n", attributes: infoAttributes)
         let pricesString = NSAttributedString(string: prices, attributes: pricesAttributes)
         
         nameString.appendAttributedString(infoString)
@@ -176,10 +176,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
-    
 
-
-    
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
