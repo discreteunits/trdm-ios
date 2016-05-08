@@ -70,14 +70,8 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        // need this?
         self.tableView.estimatedRowHeight = 100
         self.tableView.rowHeight = UITableViewAutomaticDimension
-        
-//        self.tableView.setNeedsLayout()
-//        self.tableView.layoutIfNeeded()
-        // ---
         
 //        AnimationManager.sharedInstance.animateTable(self.tableView)
 
@@ -109,6 +103,25 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         return tierIVTableArray.count
     }
     
+    
+    func makeAttributedString(name:String, info:String, prices:String) -> NSAttributedString {
+        
+        let nameAttributes = [NSFontAttributeName: UIFont.headerFont(24), NSForegroundColorAttributeName: UIColor.blackColor()]
+        let infoAttributes = [NSFontAttributeName: UIFont.basicFont(16)]
+        let pricesAttributes = [NSFontAttributeName: UIFont.basicFont(12)]
+        
+        let nameString = NSMutableAttributedString(string: "\(name)\n", attributes: nameAttributes)
+        let infoString = NSAttributedString(string: "\(info)\n", attributes: infoAttributes)
+        let pricesString = NSAttributedString(string: prices, attributes: pricesAttributes)
+        
+        nameString.appendAttributedString(infoString)
+        nameString.appendAttributedString(pricesString)
+        
+        return nameString
+        
+        
+    }
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("itemCell", forIndexPath: indexPath) as! TierIVTableViewCell
         
@@ -125,88 +138,41 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             cell.addToOrderButton.clipsToBounds = true
         }
         
-        cell.titleTextView?.text = self.tierIVTableArray[indexPath.row]["name"] as! String?
-        cell.altNameTextView?.text = self.tierIVTableArray[indexPath.row]["info"] as! String? ?? "[No Info]"
-        
-        cell.titleTextView?.font = UIFont.headerFont(24)
-        cell.altNameTextView?.font = UIFont.basicFont(14)
-        cell.pricingLabel?.font = UIFont.basicFont(12)
-
-
-        // Adjustment For Text View Text Wrapping
-        // ------------------------- BEGIN
-        cell.titleTextView.backgroundColor = UIColor.clearColor()
-        cell.titleTextView.scrollEnabled = false
-        cell.titleTextView.textContainer.lineBreakMode = NSLineBreakMode.ByCharWrapping
-        cell.titleTextView.contentInset = UIEdgeInsets(top: 0, left: -6, bottom: 0, right: 0)
-        cell.titleTextView.textContainer.maximumNumberOfLines = 0
-        cell.titleTextView.sizeToFit()
-        
-        let titleTextViewHeight = cell.titleTextView.contentSize.height
-        print("titleTextViewHeight: \(titleTextViewHeight)")
-        
-        cell.altNameTextView.backgroundColor = UIColor.clearColor()
-        cell.altNameTextView.scrollEnabled = false
-        cell.altNameTextView.textContainer.lineBreakMode = NSLineBreakMode.ByCharWrapping
-        cell.altNameTextView.contentInset = UIEdgeInsets(top: 0,left: -6, bottom: 0,right: 0)
-        cell.altNameTextView.textContainer.maximumNumberOfLines = 0
-        cell.altNameTextView.sizeToFit()
-        
-        let altNameTextViewHeight = cell.altNameTextView.contentSize.height
-        print("altNameTextViewHeight: \(altNameTextViewHeight)")
         
         
-        dynamicCellHeight = altNameTextViewHeight + titleTextViewHeight
-        dynamicCellHeight = dynamicCellHeight + 60
-        // ------------------------ END
-
+        let product = tierIVTableArray[indexPath.row]
         
-        // Prices From Product Table
-        // ------------------------- BEGIN
-        // ----- IF HARVEST -----
-        if RouteManager.sharedInstance.TierOne!["name"] as! String == "Merch" {
-            
-            cell.pricingLabel?.text = "\(self.tierIVTableArray[indexPath.row]["priceWithoutVat"])"
-            
-        } else if RouteManager.sharedInstance.TierOne!["name"] as! String == "Events" {
-            
-            cell.pricingLabel?.text = "\(self.tierIVTableArray[indexPath.row]["priceWithoutVat"])"
-            
+        
+        // MERCH AND EVENTS
+        if RouteManager.sharedInstance.TierOne!["name"] as! String == "Events" || RouteManager.sharedInstance.TierOne!["name"] as! String == "Merch" {
+            cell.tierIVTableDataLabel?.attributedText = makeAttributedString(product["name"] as! String, info: product["info"] as! String, prices: String(product["priceWithoutVat"]))
+        
+        // BEER AND WINE
+        } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Vines" || RouteManager.sharedInstance.TierTwo!["name"] as! String == "Hops" {
+            cell.tierIVTableDataLabel?.attributedText = makeAttributedString(product["name"] as! String, info: product["info"] as! String, prices: product["prices"] as! String)
+        
+        // FOOD
         } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
-
             
             if RouteManager.sharedInstance.TierOne!["name"] as! String == "Dine In" {
-                cell.pricingLabel?.text = "\(self.tierIVTableArray[indexPath.row]["deliveryPriceWithoutVat"])"
+                cell.tierIVTableDataLabel?.attributedText = makeAttributedString(product["name"] as! String, info: product["info"] as! String, prices: String(product["deliveryPriceWithoutVat"]))
             } else if RouteManager.sharedInstance.TierOne!["name"] as! String == "Take Away" {
-                cell.pricingLabel?.text = "\(self.tierIVTableArray[indexPath.row]["takeawayPriceWithoutVat"])"
+                cell.tierIVTableDataLabel?.attributedText = makeAttributedString(product["name"] as! String, info: product["info"] as! String, prices: String(product["takeawayPriceWithoutVat"]))
             } else {
-                cell.pricingLabel?.text = "\(self.tierIVTableArray[indexPath.row]["deliveryPriceWithoutVat"])"
+                cell.tierIVTableDataLabel?.attributedText = makeAttributedString(product["name"] as! String, info: product["info"] as! String, prices: String(product["deliveryPriceWithoutVat"]))
             }
-            
-            
-        } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "More" {
-            
-            cell.pricingLabel?.text = "\(self.tierIVTableArray[indexPath.row]["priceWithoutVat"])"
-            
+        
+        // DEFAULT
         } else {
-            
-            if let productPrice = self.tierIVTableArray[indexPath.row]["prices"] {
-                cell.pricingLabel?.text = self.tierIVTableArray[indexPath.row]["prices"] as? String
-                cell.pricingLabel?.font = UIFont.basicFont(12)
-                
-            // Prices NOT Found in Item Table
-            } else {
-                cell.pricingLabel?.text = ""
-            }
-
-        } // ----- END
+            cell.tierIVTableDataLabel?.attributedText = makeAttributedString(product["name"] as! String, info: product["info"] as! String, prices: String(product["priceWithoutVat"]))
+        }
+        
         
         return cell
           
     }
 
     
-
     override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
@@ -214,73 +180,10 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
 
 
     
-    func calculateHeight(titleText:String, infoText:String) -> CGFloat {
-        
-        print("88888888888888888888888888888888888")
-
-        
-        // get number of lines in decimal form
-        // multiply by font size
-        // increase by 1 in prep for removing decimals
-        // remove any decimals
-        
-        print("titleText: \(titleText)")
-        print("title character count: \(titleText.characters.count)")
-
-        let titleTextCount = Double(titleText.characters.count)
-        let titleHeightAprox = titleTextCount / 39.0
-        print("titleHeightAprox: \(titleHeightAprox)")
-        let titleHeight = titleHeightAprox * 24
-        print("titleHeight: \(titleHeight)")
-        let titleIncreased = titleHeight + 1
-        print("titleIncreased: \(titleIncreased)")
-        let titleTotalHeight = Int(titleIncreased - (titleIncreased % 1))
-        
-        print("Title Wrapped Height: \(titleTotalHeight)")
-        
-        
-        let infoTextCount = Double(infoText.characters.count)
-        let infoHeightAprox = infoTextCount / 45
-        let infoHeight = infoHeightAprox * 14
-        let infoIncreased = infoHeight + 1
-        let infoTotalHeight = Int(infoIncreased - (infoIncreased % 1))
-        
-        print("Info Wrapped Height: \(infoTotalHeight)")
-        
-        
-        let cellHeightTotal = (titleTotalHeight + infoTotalHeight) + 60
-        
-        print("cellHeightTotal: \(cellHeightTotal)")
-        
-        
-        print("88888888888888888888888888888888888")
-
-        
-        return CGFloat(cellHeightTotal)
-    }
-    
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
-        // Taylor Option
-//        let titleText:String = tierIVTableArray[indexPath.row]["name"] as! String
-//        let infoText:String = tierIVTableArray[indexPath.row]["info"] as! String
-//        
-//        let size = self.calculateHeight(titleText, infoText: infoText)
-        // ----
-        
-        
-        print("Cell \(indexPath.row) height is: \(dynamicCellHeight)")
-
-        
-        
-        
-        
         return UITableViewAutomaticDimension
-        
-//        return dynamicCellHeight
-        
-//        return size
         
     }
     

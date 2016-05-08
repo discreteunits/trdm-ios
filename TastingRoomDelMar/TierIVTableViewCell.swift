@@ -10,15 +10,11 @@ import UIKit
 
 class TierIVTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var altNameTextView: UITextView!
-    @IBOutlet weak var pricingLabel: UILabel!
     @IBOutlet weak var addToOrderButton: UIButton!
     
-    @IBOutlet weak var titleTextView: UITextView!
-    
-    @IBOutlet weak var tableStackView: UIStackView!
-    
-    
+    @IBOutlet weak var tierIVTableDataLabel: UILabel!
+
+
     override func awakeFromNib() {
         super.awakeFromNib()
         

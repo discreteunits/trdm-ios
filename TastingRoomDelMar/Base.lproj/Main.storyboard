@@ -313,47 +313,6 @@
                                                 <action selector="addToOrder:" destination="WTZ-qJ-zbB" eventType="touchUpInside" id="Ndl-D9-QVh"/>
                                             </connections>
                                         </button>
-                                        <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ZaA-uY-PYe">
-                                            <rect key="frame" x="8" y="27" width="576" height="84"/>
-                                            <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="titleTextView" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GXU-B7-VYg">
-                                                    <rect key="frame" x="0.0" y="0.0" width="576" height="28"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="28" id="85b-Z0-RW1"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                </textView>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T3Y-ip-WLf">
-                                                    <rect key="frame" x="0.0" y="28" width="576" height="40"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="40" id="2TF-qN-ynA"/>
-                                                    </constraints>
-                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim </string>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                </textView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pricing" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YME-Rb-W7z">
-                                                    <rect key="frame" x="0.0" y="68" width="576" height="16"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="16" id="3gH-pe-skg"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="T3Y-ip-WLf" firstAttribute="top" secondItem="GXU-B7-VYg" secondAttribute="bottom" id="PJo-0q-BM3"/>
-                                            </constraints>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="PJo-0q-BM3"/>
-                                                </mask>
-                                            </variation>
-                                        </stackView>
                                         <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bs0-ds-Jr9">
                                             <rect key="frame" x="0.0" y="122" width="600" height="32"/>
                                             <color key="backgroundColor" red="0.78253235479797978" green="0.78253235479797978" blue="0.78253235479797978" alpha="0.50839315878378377" colorSpace="calibratedRGB"/>
@@ -361,31 +320,28 @@
                                                 <constraint firstAttribute="height" constant="1" id="LpD-m3-fcR"/>
                                             </constraints>
                                         </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="tierIVTableDataLabel" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uJ2-T9-Cac">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="106"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="bottomMargin" secondItem="bs0-ds-Jr9" secondAttribute="bottom" constant="-8" id="2NG-b3-VbF"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="bs0-ds-Jr9" secondAttribute="trailing" constant="-8" id="3MI-Cf-ypy"/>
-                                        <constraint firstItem="bs0-ds-Jr9" firstAttribute="top" secondItem="ZaA-uY-PYe" secondAttribute="bottom" constant="1" id="4sQ-a2-yYj"/>
+                                        <constraint firstItem="bs0-ds-Jr9" firstAttribute="top" secondItem="uJ2-T9-Cac" secondAttribute="bottom" constant="32" id="5kx-ro-hhT"/>
                                         <constraint firstItem="XEU-be-Wjo" firstAttribute="trailing" secondItem="3Ko-V1-4Ep" secondAttribute="trailingMargin" id="6Sg-r8-Q93"/>
-                                        <constraint firstItem="ZaA-uY-PYe" firstAttribute="leading" secondItem="3Ko-V1-4Ep" secondAttribute="leadingMargin" id="8DP-Ie-4fT"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="ZaA-uY-PYe" secondAttribute="bottom" constant="24" id="8kn-bY-EZ1"/>
-                                        <constraint firstItem="ZaA-uY-PYe" firstAttribute="top" secondItem="3Ko-V1-4Ep" secondAttribute="topMargin" constant="16" id="Qp1-cZ-7dC"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="XEU-be-Wjo" secondAttribute="bottom" constant="8" id="XP5-ln-wbI"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="uJ2-T9-Cac" secondAttribute="trailing" constant="8" id="dHT-ow-I38"/>
                                         <constraint firstItem="bs0-ds-Jr9" firstAttribute="leading" secondItem="3Ko-V1-4Ep" secondAttribute="leadingMargin" constant="-8" id="plo-MP-jcB"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="ZaA-uY-PYe" secondAttribute="trailing" constant="8" id="xEQ-4P-SMl"/>
+                                        <constraint firstItem="uJ2-T9-Cac" firstAttribute="top" secondItem="3Ko-V1-4Ep" secondAttribute="topMargin" constant="8" id="vJd-qO-qRF"/>
+                                        <constraint firstItem="uJ2-T9-Cac" firstAttribute="leading" secondItem="3Ko-V1-4Ep" secondAttribute="leadingMargin" constant="8" id="yyg-UP-BnV"/>
                                     </constraints>
-                                    <variation key="default">
-                                        <mask key="constraints">
-                                            <exclude reference="4sQ-a2-yYj"/>
-                                        </mask>
-                                    </variation>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="addToOrderButton" destination="XEU-be-Wjo" id="xvy-Z7-PVI"/>
-                                    <outlet property="altNameTextView" destination="T3Y-ip-WLf" id="mIw-7f-xna"/>
-                                    <outlet property="pricingLabel" destination="YME-Rb-W7z" id="xz1-Fp-yQJ"/>
-                                    <outlet property="tableStackView" destination="ZaA-uY-PYe" id="5Ky-3x-blD"/>
-                                    <outlet property="titleTextView" destination="GXU-B7-VYg" id="61A-Yg-knu"/>
+                                    <outlet property="tierIVTableDataLabel" destination="uJ2-T9-Cac" id="XmJ-Sq-YXn"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
