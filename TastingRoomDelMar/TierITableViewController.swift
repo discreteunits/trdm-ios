@@ -368,7 +368,7 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
                     
                     if let product = object["category"] as? PFObject {
                        
-                        if product["state"] as! String == "active" {
+                        if product["state"] as? String == "active" {
                         
                             self.tierIArray.append(object)
                             

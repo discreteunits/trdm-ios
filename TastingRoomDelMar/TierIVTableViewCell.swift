@@ -10,11 +10,11 @@ import UIKit
 
 class TierIVTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var itemNameLabel: UILabel!
     @IBOutlet weak var altNameTextView: UITextView!
     @IBOutlet weak var pricingLabel: UILabel!
     @IBOutlet weak var addToOrderButton: UIButton!
     
+    @IBOutlet weak var titleTextView: UITextView!
     
     @IBOutlet weak var tableStackView: UIStackView!
     

@@ -57,7 +57,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     
     var dynaBool = true
     
-    var textViewHeight = CGFloat()
+    var altNameTextViewHeight = CGFloat()
     
     
 // ---------------------
@@ -117,16 +117,11 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         }
         
         
-        cell.itemNameLabel?.text = self.tierIVTableArray[indexPath.row]["name"] as! String?
-        cell.itemNameLabel?.font = UIFont.headerFont(24)
+        cell.titleTextView?.text = self.tierIVTableArray[indexPath.row]["name"] as! String?
+        cell.altNameTextView?.text = self.tierIVTableArray[indexPath.row]["info"] as! String? ?? "[No Info]"
+
         
-        
-        // This Line Is My Bitch
-//        dispatch_async(dispatch_get_main_queue()) {
-            cell.altNameTextView?.text = self.tierIVTableArray[indexPath.row]["info"] as! String? // ?? "[No Info]"
-//        }
-        
-        
+        cell.titleTextView?.font = UIFont.headerFont(24)
         cell.altNameTextView?.font = UIFont.basicFont(14)
         cell.pricingLabel?.font = UIFont.basicFont(12)
 
@@ -134,39 +129,28 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         // Adjustment For Text View Text Wrapping
         // ------------------------- BEGIN
         cell.altNameTextView.backgroundColor = UIColor.clearColor()
-//        cell.altNameTextView.frame.size.width = self.view.frame.size.width - 80
         cell.altNameTextView.scrollEnabled = false
         cell.altNameTextView.textContainer.lineBreakMode = NSLineBreakMode.ByCharWrapping
-        cell.altNameTextView.contentInset = UIEdgeInsets(top: 0,left: -6,bottom: 0,right: 0)
+        cell.altNameTextView.contentInset = UIEdgeInsets(top: 0,left: -6, bottom: 0,right: 0)
         cell.altNameTextView.textContainer.maximumNumberOfLines = 0
         cell.altNameTextView?.sizeToFit()
         
-        textViewHeight = cell.altNameTextView.contentSize.height
-        
-        textViewHeight = textViewHeight + 100
-        
-//        cell.altNameTextView.contentSize.height = textViewHeight
-
-//        cell.altNameTextView.frame = CGRect(x: 0, y: 0, width: 200, height: textViewHeight)
-        
-//        cell.altNameTextView.frame.size.height = textViewHeight
+        cell.titleTextView.backgroundColor = UIColor.clearColor()
+        cell.titleTextView.scrollEnabled = false
+        cell.titleTextView.textContainer.lineBreakMode = NSLineBreakMode.ByCharWrapping
+        cell.titleTextView.contentInset = UIEdgeInsets(top: 0, left: -6, bottom: 0, right: 0)
+        cell.titleTextView.textContainer.maximumNumberOfLines = 0
+        cell.titleTextView?.sizeToFit()
         
         
-//        cell.tableStackView.frame = CGRectMake(CGRectGetMidX(cell.contentView.bounds), CGRectGetMidY(cell.contentView.bounds), 0, textViewHeight)
-//        cell.tableStackView.sizeToFit()
-
         
+        altNameTextViewHeight = cell.altNameTextView.contentSize.height
+        altNameTextViewHeight = altNameTextViewHeight + 60
         
-        // Get Largest Cell Size After Wrapping
-//        heights.append(textViewHeight)
-//        largestHeight = heights.maxElement()!
-//        cellHeight = 90 + largestHeight
-
-//        cellHeight = largestHeight
+        // Add Title Wrapping Text View To Cell Height Decider
+        var titleTextViewHeight = cell.titleTextView.contentSize.height
+        altNameTextViewHeight = altNameTextViewHeight + titleTextViewHeight
         
-//        cell.setNeedsLayout()
-//        cell.layoutIfNeeded()
-
         
         // ------------------------ END
 
@@ -212,35 +196,10 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
 
         } // ----- END
         
-        
-        
-//        dispatch_async(dispatch_get_main_queue()) {
-//            
-//            let width = CGFloat(2.0)
-//            let border = CALayer()
-//
-//            border.borderColor = UIColor(red: 235/255.0, green: 235/255.0, blue: 235/255.0, alpha: 0.1).CGColor
-//            border.frame = CGRect(x: 0, y: cell.frame.size.height - 1, width:  tableView.frame.size.width, height: 1)
-//            
-//        
-//            border.borderWidth = width
-//            cell.layer.addSublayer(border)
-//            cell.layer.masksToBounds = true
-//            
-//            
-//        }
-        
         return cell
-        
-        
+          
     }
-    
-    
-//    func removeSubLayers() {
-//        
-//        self.border.removeFromSuperlayer()
-//        
-//    }
+
     
 
     override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -251,7 +210,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
-        return textViewHeight
+        return altNameTextViewHeight
         
     }
     
@@ -405,7 +364,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
 
             } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
                 
-                popoverDynamicHeight = additions.count
+                popoverDynamicHeight = additions.count - 1
                 popoverHeightCalculation = ((popoverDynamicHeight + 3) * 100)
                 vc.popoverAdditions = additions
 

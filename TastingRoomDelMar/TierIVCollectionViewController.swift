@@ -112,13 +112,6 @@ class TierIVCollectionViewController: UICollectionViewController {
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
         if let selectedCell = collectionView.cellForItemAtIndexPath(indexPath)! as? TierIVCollectionViewCell {
-        print("+++++++++++++++++++++++++++++")
-        print("SELECTED CELL INDEX PATH: \(selectedCell)")
-        print("+++++++++++++++++++++++++++++")
-//        selectedCell.layer.cornerRadius = 10.0
-//        selectedCell.clipsToBounds = true
-//        selectedCell.contentView.backgroundColor = UIColor.blackColor()
-//        selectedCell.titleLabel?.textColor = UIColor.whiteColor()
 
             if selectedCell.selected == true {
                 selectedCell.backgroundColor = UIColor.blackColor()
@@ -149,10 +142,6 @@ class TierIVCollectionViewController: UICollectionViewController {
         
             let trueIndex = indexPath.row - 1
             
-            print("+++++++++++++++++++++++++++++")
-            print("TRUE INDEX PATH: \(trueIndex)")
-            print("+++++++++++++++++++++++++++++")
-            
             if !RouteManager.sharedInstance.Route!.contains(tierIVCollectionArray[trueIndex]) {
                 
                 if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
@@ -169,11 +158,7 @@ class TierIVCollectionViewController: UICollectionViewController {
             } else {
                 print("This selection is already being shown.")
             }
-        
-//            collectionView.reloadData()
-//            delegate?.reloadTable()
         }
-        
     }
     
     override func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
@@ -190,19 +175,11 @@ class TierIVCollectionViewController: UICollectionViewController {
                 deselectedCell.titleLabel?.textColor = UIColor.blackColor()
             }
             
-            
         }
-        
         
         // Remove Selection Upon Deselection
         if RouteManager.sharedInstance.Route!.count == 4 {
             RouteManager.sharedInstance.TierFour = nil
         }
-            
-        
-
-        
-//        delegate?.tagsArrayCreation()
-
     }
 }

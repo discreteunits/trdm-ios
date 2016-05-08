@@ -77,6 +77,8 @@ class PopoverViewController: UITableViewController {
         // Create Additions with Values
         for i in 0 ..< popoverAdditions.count {
             
+            
+            
             let additionValues = popoverAdditions[i]["values"]!
             
             var convertedAdditionValues: [Value] = [Value]()
@@ -96,16 +98,19 @@ class PopoverViewController: UITableViewController {
             
             let additionRaw = popoverAdditions[i]
             
-            var newAddition = Addition()
-            newAddition.displayName = additionRaw["displayName"]! as! String
-            newAddition.modifierValueId = String(additionRaw["id"]!)
-            newAddition.maxSelectedAmount = String(additionRaw["maxSelectedAmount"]!)
-            newAddition.minSelectedAmount = String(additionRaw["minSelectedAmount"]!)
-            newAddition.name = additionRaw["name"]! as! String
-            newAddition.values = convertedAdditionValues
+            // Only Create Additions that are not "CUSTOM MODIFIER"
+            if additionRaw["displayName"]! as! String == "Custom modifier" {
+
+                var newAddition = Addition()
+                newAddition.displayName = additionRaw["displayName"]! as! String
+                newAddition.modifierValueId = String(additionRaw["id"]!)
+                newAddition.maxSelectedAmount = String(additionRaw["maxSelectedAmount"]!)
+                newAddition.minSelectedAmount = String(additionRaw["minSelectedAmount"]!)
+                newAddition.name = additionRaw["name"]! as! String
+                newAddition.values = convertedAdditionValues
             
-            self.additions.append(newAddition)
-            
+                self.additions.append(newAddition)
+            }
         }
     }
     
