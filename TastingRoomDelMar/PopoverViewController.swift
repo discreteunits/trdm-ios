@@ -52,7 +52,7 @@ class PopoverViewController: UITableViewController {
         super.viewDidLoad()
         
         delay(0.1) { () -> () in
-            self.preferredContentSize = CGSize(width: self.width, height: self.height - 28)
+            self.preferredContentSize = CGSize(width: self.width, height: self.height)
             self.tableView.reloadData()
         }
         
@@ -142,6 +142,20 @@ class PopoverViewController: UITableViewController {
             
     }
 
+    
+    func makeAttributedString(name:String) -> NSAttributedString {
+        
+        let nameAttributes = [NSFontAttributeName: UIFont.headerFont(24), NSForegroundColorAttributeName: UIColor.blackColor()]
+        
+        let nameString = NSMutableAttributedString(string: "\(name)", attributes: nameAttributes)
+        
+        
+        return nameString
+        
+        
+    }
+    
+    
     override func tableView(tableView: UITableView,
         cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
             
@@ -157,31 +171,10 @@ class PopoverViewController: UITableViewController {
                 detailsCell.contentView.tag = indexPath.row
                 detailsCell.selectionStyle = UITableViewCellSelectionStyle.None
 
-                detailsCell.titleLabel?.text = popoverItem["name"] as! String!
-                detailsCell.titleLabel.font = UIFont.headerFont(24)
                 
-                
-                detailsCell.varietalLabel.font = UIFont.basicFont(16)
-                // IF HARVEST
-                if RouteManager.sharedInstance.TierOne!["name"] as! String == "Merch" {
-                    detailsCell.varietalLabel?.text = ""
-                } else if RouteManager.sharedInstance.TierOne!["name"] as! String == "Events" {
-                    detailsCell.varietalLabel?.text = ""
-                } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
-                    detailsCell.varietalLabel?.text = ""
-                } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "More" {
-                    detailsCell.varietalLabel?.text = ""
-                } else if RouteManager.sharedInstance.TierThree!["name"] as! String == "Flights" {
-                    detailsCell.varietalLabel?.text = ""
-                } else {
-                    
-                    detailsCell.varietalLabel?.text = ""
+                detailsCell.titleDataLabel?.attributedText = makeAttributedString(popoverItem["name"] as! String)
 
-                    
-//                    if let varietalName = popoverItemVarietal["name"] as? String {
-//                        detailsCell.varietalLabel?.text = varietalName
-//                    }
-                }
+  
                 
                 return detailsCell
                 
@@ -196,7 +189,7 @@ class PopoverViewController: UITableViewController {
                 let trueIndex = indexPath.row - 1
                 
                 sgCell.servingLabel.layer.zPosition = 100
-                sgCell.servingLabel.font = UIFont.headerFont(24)
+                sgCell.servingLabel.font = UIFont.headerFont(20)
 
                 
                 // IF HARVEST
@@ -221,7 +214,7 @@ class PopoverViewController: UITableViewController {
                     forIndexPath: indexPath) as! PopoverQuantityTableViewCell
                 qtyCell.contentView.tag = indexPath.row
                 qtyCell.label.text = "quantity"
-                qtyCell.label.font = UIFont.headerFont(24)
+                qtyCell.label.font = UIFont.headerFont(20)
                 
                 return qtyCell
                 
@@ -271,15 +264,22 @@ class PopoverViewController: UITableViewController {
             }
     }
     
+    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
         var cellHeight: CGFloat = CGFloat(100)
         
         if indexPath.row == 0 {
-            cellHeight = 80
+            return UITableViewAutomaticDimension
+        } else if indexPath.row == actionRow {
+            return 60
         }
         
         return cellHeight
+        
         
     }
 }
@@ -839,7 +839,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
         } else if parent == actionRow {
             
             var actionCellSize: CGSize!
-            let cellHeight = collectionView.bounds.size.height - 40
+            let cellHeight = collectionView.bounds.size.height
             let cellWidth = (collectionView.bounds.size.width / 2) - 15
             
             actionCellSize = CGSize(width: cellWidth, height: cellHeight)

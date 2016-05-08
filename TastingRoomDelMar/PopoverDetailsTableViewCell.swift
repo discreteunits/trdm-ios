@@ -10,10 +10,8 @@ import UIKit
 
 class PopoverDetailsTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var titleLabel: UILabel!
-        
-    @IBOutlet weak var varietalLabel: UILabel!
-    
+    @IBOutlet weak var titleDataLabel: UILabel!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

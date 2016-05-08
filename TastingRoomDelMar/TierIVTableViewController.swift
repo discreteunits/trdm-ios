@@ -325,17 +325,17 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             if RouteManager.sharedInstance.TierOne!["name"] as! String == "Merch" {
                 
                 popoverDynamicHeight = 1
-                popoverHeightCalculation = ((popoverDynamicHeight + 2) * 100)
+                popoverHeightCalculation = ((popoverDynamicHeight + 1) * 100) + 78
 
             } else if RouteManager.sharedInstance.TierOne!["name"] as! String == "Events" {
                 
                 popoverDynamicHeight = 1
-                popoverHeightCalculation = ((popoverDynamicHeight + 2) * 100)
+                popoverHeightCalculation = ((popoverDynamicHeight + 1) * 100) + 78
 
             } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
                 
                 popoverDynamicHeight = additions.count - 1
-                popoverHeightCalculation = ((popoverDynamicHeight + 3) * 100)
+                popoverHeightCalculation = ((popoverDynamicHeight + 2) * 100) + 78
                 vc.popoverAdditions = additions
 
             } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "More" {
@@ -344,17 +344,17 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
                 // Parent Product Route
                 if product["productType"] as! String == "CHOICE" {
                     popoverDynamicHeight = 1
-                    popoverHeightCalculation = ((popoverDynamicHeight + 3) * 100)
+                    popoverHeightCalculation = ((popoverDynamicHeight + 2) * 100) + 78
                     let subproductsArray = subproductQuery(product)
                     vc.subproducts = subproductsArray
                 // Subproduct Route
                 } else if product["productType"] as! String != "" {
                     popoverDynamicHeight = 1
-                    popoverHeightCalculation = ((popoverDynamicHeight + 2) * 100)
+                    popoverHeightCalculation = ((popoverDynamicHeight + 1) * 100) + 78
                 // Product Route
                 } else {
                     popoverDynamicHeight = 1
-                    popoverHeightCalculation = ((popoverDynamicHeight + 2) * 100)
+                    popoverHeightCalculation = ((popoverDynamicHeight + 1) * 100) + 78
                 }
                 
 
@@ -362,12 +362,12 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             } else if RouteManager.sharedInstance.TierThree!["name"] as! String == "Flights" {
                 
                 popoverDynamicHeight = 1
-                popoverHeightCalculation = ((popoverDynamicHeight + 2) * 100)
+                popoverHeightCalculation = ((popoverDynamicHeight + 1) * 100) + 78
             
             } else {
                 
                 popoverDynamicHeight = 1
-                popoverHeightCalculation = ((popoverDynamicHeight + 3) * 100)
+                popoverHeightCalculation = ((popoverDynamicHeight + 2) * 100) + 52
                 let subproductsArray = subproductQuery(product)
                 vc.subproducts = subproductsArray
 

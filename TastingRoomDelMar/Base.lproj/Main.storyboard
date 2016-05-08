@@ -397,46 +397,22 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="FST-Q5-6ze">
-                                            <rect key="frame" x="8" y="12" width="104" height="76"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="titleLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hBb-FX-Kdo">
-                                                    <rect key="frame" x="10" y="7" width="86" height="24"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="24" id="igC-Y9-90w"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="varietalLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u57-hT-U50">
-                                                    <rect key="frame" x="10" y="31" width="86" height="45"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="12" id="eGl-yX-JO6"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <variation key="default">
-                                                        <mask key="constraints">
-                                                            <exclude reference="eGl-yX-JO6"/>
-                                                        </mask>
-                                                    </variation>
-                                                </label>
-                                            </subviews>
-                                            <edgeInsets key="layoutMargins" top="7" left="10" bottom="0.0" right="8"/>
-                                        </stackView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="titleDataLabel" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sbW-F3-MBy">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="FST-Q5-6ze" firstAttribute="centerY" secondItem="jrF-Ct-uJe" secondAttribute="centerY" id="AAa-tc-w4G"/>
-                                        <constraint firstItem="FST-Q5-6ze" firstAttribute="centerY" secondItem="jrF-Ct-uJe" secondAttribute="centerY" id="BRb-BA-TT8"/>
-                                        <constraint firstItem="FST-Q5-6ze" firstAttribute="leading" secondItem="jrF-Ct-uJe" secondAttribute="leading" constant="8" id="VPr-C1-kg4"/>
-                                        <constraint firstItem="FST-Q5-6ze" firstAttribute="top" secondItem="jrF-Ct-uJe" secondAttribute="topMargin" constant="4" id="uo2-jv-lKn"/>
+                                        <constraint firstItem="sbW-F3-MBy" firstAttribute="leading" secondItem="jrF-Ct-uJe" secondAttribute="leadingMargin" constant="8" id="5al-r7-ptQ"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="sbW-F3-MBy" secondAttribute="bottom" constant="8" id="6qB-X3-m72"/>
+                                        <constraint firstItem="sbW-F3-MBy" firstAttribute="top" secondItem="jrF-Ct-uJe" secondAttribute="topMargin" constant="8" id="YAH-F7-LG9"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="sbW-F3-MBy" secondAttribute="trailing" constant="8" id="hIZ-IT-3Sq"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="titleLabel" destination="hBb-FX-Kdo" id="Zat-9u-5Wj"/>
-                                    <outlet property="varietalLabel" destination="u57-hT-U50" id="GgH-os-MYr"/>
+                                    <outlet property="titleDataLabel" destination="sbW-F3-MBy" id="foT-B4-wO0"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PopoverSGTableCell" id="Adi-DK-RIZ" userLabel="PopoverSGTableViewCell" customClass="PopoverSGTableViewCell" customModule="TastingRoomDelMar" customModuleProvider="target">
