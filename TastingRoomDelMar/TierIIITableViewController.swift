@@ -26,7 +26,7 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
         
         tableView.reloadData()
         
-        AnimationManager.sharedInstance.fade(self.tableView, alpha: 0.0)
+//        AnimationManager.sharedInstance.fade(self.tableView, alpha: 0.0)
         
     }
     
@@ -36,7 +36,7 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
     
     override func viewWillAppear(animated: Bool) {
         
-        AnimationManager.sharedInstance.fade(self.tableView, alpha: 1.0)
+//        AnimationManager.sharedInstance.fade(self.tableView, alpha: 1.0)
         
         self.tierIIIArray.removeAll()
         

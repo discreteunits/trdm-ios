@@ -147,17 +147,11 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
         
         lineitemCell.quantityLabel.text = "\(TabManager.sharedInstance.currentTab.lines[indexPath.row].quantity)"
         lineitemCell.contentDataLabel?.attributedText = makeAttributedString(TabManager.sharedInstance.currentTab, index: indexPath.row)
-        lineitemCell.priceLabel.text = "\(TabManager.sharedInstance.currentTab.lines[indexPath.row].price)"
         
-        
-//        let border = CALayer()
-//        let width = CGFloat(2.0)
-//        border.borderColor = UIColor(red: 225/255.0, green: 225/255.0, blue: 225/255.0, alpha: 0.1).CGColor
-//        border.frame = CGRect(x: 0, y: lineitemCell.frame.size.height - 1, width:  tableView.frame.size.width, height: 1)
-//        
-//        border.borderWidth = width
-//        lineitemCell.layer.addSublayer(border)
-//        lineitemCell.layer.masksToBounds = true
+        let price = TabManager.sharedInstance.currentTab.lines[indexPath.row].price
+        let convertedPrice = formatter.formatPrice(price)
+        lineitemCell.priceLabel.text = convertedPrice
+
         
         return lineitemCell
 
@@ -170,33 +164,8 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        
-//        let cellSize = CGFloat()
-//
-//        // ----- HARVEST BEGIN ------
-//        if TabManager.sharedInstance.currentTab.lines[indexPath.row].path == "Eat" {
-//                
-//            let lineMods = TabManager.sharedInstance.currentTab.lines[indexPath.row].additions.count
-//            let lineModsWithServing = lineMods + 1
-//            let lineSize = (lineModsWithServing * 25) + 90
-//            
-//            return CGFloat(lineSize)
-//            
-//        } else {
-//               
-//            if TabManager.sharedInstance.currentTab.lines.count > 0 {
-//                    
-//                let lineSize = 120
-//                return CGFloat(lineSize)
-//                    
-//            }
-//        }
-//        // ----- END -----
-//
-//        return cellSize
 
         return UITableViewAutomaticDimension
-
         
     }
 
@@ -248,187 +217,3 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
         
     }
 }
-
-
-
-
-
-
-
-
-//// Mark: Collection Data Source
-//extension TabTableViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-//    
-//    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        
-//        let parent = collectionView.superview!.tag
-//
-//        // ----- HARVEST BEGIN ------
-//        if TabManager.sharedInstance.currentTab.lines[parent].path == "Eat" {
-//                
-//            let modChoices = TabManager.sharedInstance.currentTab.lines[parent].additions.count
-//            numberOfItems = modChoices + 2
-//                
-//        } else {
-//                
-//            let modChoices = 2
-//            numberOfItems = modChoices
-//                
-//        }
-//        // ----- END -----
-//
-//        
-//        return numberOfItems
-//        
-//    }
-//    
-//    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-//        
-//        let parent = collectionView.superview!.tag
-//        
-//        
-//        // Serving Cell Defaulted To Top
-//        if indexPath.row == 0 {
-//            
-//            let lineitemServingCollectionCell = collectionView.dequeueReusableCellWithReuseIdentifier("TabLineItemServingCollectionCell", forIndexPath: indexPath) as! TabLineItemServingCollectionViewCell
-//            
-//            var servingPrice = String()
-//            var orderMod = String()
-//
-//            if TabManager.sharedInstance.currentTab.lines[parent].path == "Merch" {
-//                    
-//                orderMod = ""
-//                servingPrice = ""
-//                    
-//            } else if TabManager.sharedInstance.currentTab.lines[parent].path == "Event" {
-//                    
-//                orderMod = ""
-//                servingPrice = ""
-//                    
-//            } else if TabManager.sharedInstance.currentTab.lines[parent].path == "Eat" {
-//                
-//                orderMod = TabManager.sharedInstance.currentTab.lines[parent].name
-//                servingPrice = "\(Int(TabManager.sharedInstance.currentTab.lines[parent].product.price))"
-//                    
-//            } else if TabManager.sharedInstance.currentTab.lines[parent].path == "More" {
-//                    
-//                orderMod = ""
-//                servingPrice = ""
-//                   
-//            } else if TabManager.sharedInstance.currentTab.lines[parent].path == "Flights" {
-//
-//                orderMod = ""
-//                servingPrice = ""
-//                    
-//            } else {
-//                
-//                orderMod = TabManager.sharedInstance.currentTab.lines[parent].subproduct.info
-//                servingPrice = "\(Int(TabManager.sharedInstance.currentTab.lines[parent].subproduct.price))"
-//                    
-//            }
-//                
-//
-//            let orderAndServing = orderMod + "   " + servingPrice
-//            lineitemServingCollectionCell.servingSizeLabel?.text = "\(orderAndServing)"
-//            
-//            lineitemServingCollectionCell.qtyLabel?.text = "\(Int(TabManager.sharedInstance.currentTab.lines[parent].quantity))"
-//                
-//            lineitemServingCollectionCell.priceLabel?.text = "\(Int(TabManager.sharedInstance.currentTab.lines[parent].price))"
-//
-//                
-//            // Styles
-//            lineitemServingCollectionCell.backgroundColor = UIColor.whiteColor()
-//            lineitemServingCollectionCell.servingSizeLabel.font = UIFont.scriptFont(18)
-//            lineitemServingCollectionCell.qtyLabel.font = UIFont.scriptFont(18)
-//            lineitemServingCollectionCell.priceLabel.font = UIFont.scriptFont(18)
-//                
-//                
-//            return lineitemServingCollectionCell
-//            
-//            
-//        // Modifier Cells
-//        } else if indexPath.row < (numberOfItems - 1) {
-//        
-//            
-//            let lineitemCollectionCell = collectionView.dequeueReusableCellWithReuseIdentifier("TabLineItemCollectionCell", forIndexPath: indexPath) as! TabLineItemCollectionViewCell
-//                    
-//            // ----- IF HARVEST -----
-//            if TabManager.sharedInstance.currentTab.lines[parent].path == "Eat" {
-//                
-//                let trueIndex = indexPath.row - 1
-//                    
-//                lineitemCollectionCell.modNameLabel?.text = "\(TabManager.sharedInstance.currentTab.lines[parent].additions[trueIndex].values[0].name)"
-//                    
-//                if TabManager.sharedInstance.currentTab.lines[parent].additions[trueIndex].values[0].price != "0" {
-//                        
-//                    let modPrice = TabManager.sharedInstance.currentTab.lines[parent].additions[trueIndex].values[0].price
-//                    let lineQTY = TabManager.sharedInstance.currentTab.lines[parent].quantity
-//                        
-//                    let modTotalPrice = Int(modPrice)! * Int(lineQTY)
-//                        
-//                    lineitemCollectionCell.modPriceLabel?.text = "+ " + "\(modTotalPrice)"
-//                        
-//                } else {
-//                        lineitemCollectionCell.modPriceLabel?.text = ""
-//                }
-//                    
-//                        // ---------
-//                        // WARNING: value[0] is not dynamic and will error for multi-selections
-//                        // ---------
-//                    
-//            } else {
-//                // Do some Beer or Wine Stuff
-//            }
-//                    
-//            // Styles
-//            lineitemCollectionCell.backgroundColor = UIColor.whiteColor()
-//            lineitemCollectionCell.modNameLabel.font = UIFont.scriptFont(18)
-//            lineitemCollectionCell.modPriceLabel.font = UIFont.scriptFont(18)
-//                    
-//            return lineitemCollectionCell
-//           
-//            
-//        // Delivery or Take Away
-//        } else {
-//            let lineitemCollectionCell = collectionView.dequeueReusableCellWithReuseIdentifier("TabLineItemCollectionCell", forIndexPath: indexPath) as! TabLineItemCollectionViewCell
-//                    
-//                    
-//            // Assignments
-//            if TabManager.sharedInstance.currentTab.lines[parent].type == "delivery" {
-//                lineitemCollectionCell.modNameLabel.text = "Dine In"
-//            } else if TabManager.sharedInstance.currentTab.lines[parent].type == "takeaway" {
-//                lineitemCollectionCell.modNameLabel.text = "Take Away"
-//            } else {
-//                lineitemCollectionCell.modNameLabel.text = ""
-//            }
-//            
-//            lineitemCollectionCell.modPriceLabel.text = ""
-//                    
-//                    
-//            // Styles
-//            lineitemCollectionCell.modNameLabel.font = UIFont.scriptFont(18)
-//            lineitemCollectionCell.backgroundColor = UIColor.whiteColor()
-//                    
-//                    
-//            return lineitemCollectionCell
-//                    
-//        }
-//    }
-//    
-//    
-//    
-//    // Size Collection Cells
-//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-//
-//        var collectionLineSize: CGSize!
-//            
-//        let cellWidth = collectionView.bounds.size.width - 10
-//        let cellHeight = CGFloat(20)
-//            
-//        collectionLineSize = CGSize(width: cellWidth, height: cellHeight)
-//            
-//        return collectionLineSize
-//        
-//    }
-//}
-

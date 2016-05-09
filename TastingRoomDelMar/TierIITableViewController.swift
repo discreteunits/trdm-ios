@@ -25,7 +25,7 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
         ActivityManager.sharedInstance.activityStop(self)
 
         
-        AnimationManager.sharedInstance.fade(self.tableView, alpha: 0.0)
+//        AnimationManager.sharedInstance.fade(self.tableView, alpha: 0.0)
         
     }
     
@@ -35,7 +35,7 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
     
     override func viewWillAppear(animated: Bool) {
         
-        AnimationManager.sharedInstance.fade(self.tableView, alpha: 1.0)
+//        AnimationManager.sharedInstance.fade(self.tableView, alpha: 1.0)
         
         self.tierIIArray.removeAll()
         

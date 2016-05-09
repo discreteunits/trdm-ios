@@ -222,7 +222,7 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="a3M-cC-Gsq" firstAttribute="leading" secondItem="IqJ-ll-w9n" secondAttribute="leadingMargin" constant="60" id="0Q0-58-MFJ"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="a3M-cC-Gsq" secondAttribute="trailing" constant="140" id="7aZ-dF-vsf"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="a3M-cC-Gsq" secondAttribute="trailing" constant="72" id="7aZ-dF-vsf"/>
                                         <constraint firstItem="Oz1-iX-5zB" firstAttribute="top" secondItem="a3M-cC-Gsq" secondAttribute="bottom" constant="8" id="Cxl-95-F0U"/>
                                         <constraint firstItem="7oZ-nw-xu9" firstAttribute="top" secondItem="IqJ-ll-w9n" secondAttribute="topMargin" id="JSc-pE-ZJX"/>
                                         <constraint firstItem="EAL-ve-fwx" firstAttribute="leading" secondItem="IqJ-ll-w9n" secondAttribute="leadingMargin" constant="20" id="Nqk-Gp-uG3"/>

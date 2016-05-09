@@ -70,7 +70,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableView.estimatedRowHeight = 100
+        self.tableView.estimatedRowHeight = 60
         self.tableView.rowHeight = UITableViewAutomaticDimension
         
 //        AnimationManager.sharedInstance.animateTable(self.tableView)
@@ -108,17 +108,35 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         
         let nameAttributes = [NSFontAttributeName: UIFont.headerFont(24), NSForegroundColorAttributeName: UIColor.blackColor()]
         let infoAttributes = [NSFontAttributeName: UIFont.basicFont(16)]
+        let paddingAttributes = [NSFontAttributeName: UIFont.basicFont(12)]
         let pricesAttributes = [NSFontAttributeName: UIFont.basicFont(12)]
         
-        let nameString = NSMutableAttributedString(string: "\(name)\n", attributes: nameAttributes)
-        let infoString = NSAttributedString(string: "\(info)\n\n", attributes: infoAttributes)
-        let pricesString = NSAttributedString(string: prices, attributes: pricesAttributes)
-        
-        nameString.appendAttributedString(infoString)
-        nameString.appendAttributedString(pricesString)
-        
-        return nameString
-        
+        if RouteManager.sharedInstance.TierOne!["name"] as! String == "Merch" || RouteManager.sharedInstance.TierOne!["name"] as! String == "Events" {
+            
+            let nameString = NSMutableAttributedString(string: "\(name)\n", attributes: nameAttributes)
+            let paddingString = NSAttributedString(string: "\n", attributes: paddingAttributes)
+            let pricesString = NSAttributedString(string: prices, attributes: pricesAttributes)
+            
+            nameString.appendAttributedString(paddingString)
+            nameString.appendAttributedString(pricesString)
+            
+            return nameString
+
+            
+        } else {
+            
+            let nameString = NSMutableAttributedString(string: "\(name)\n", attributes: nameAttributes)
+            let infoString = NSAttributedString(string: "\(info)\n", attributes: infoAttributes)
+            let paddingString = NSAttributedString(string: "\n", attributes: paddingAttributes)
+            let pricesString = NSAttributedString(string: prices, attributes: pricesAttributes)
+            
+            nameString.appendAttributedString(infoString)
+            nameString.appendAttributedString(paddingString)
+            nameString.appendAttributedString(pricesString)
+            
+            return nameString
+            
+        }
         
     }
     
@@ -149,7 +167,12 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         
         // BEER AND WINE
         } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Vines" || RouteManager.sharedInstance.TierTwo!["name"] as! String == "Hops" {
-            cell.tierIVTableDataLabel?.attributedText = makeAttributedString(product["name"] as! String, info: product["info"] as! String, prices: product["prices"] as! String)
+            
+            if RouteManager.sharedInstance.TierThree!["name"] as! String == "Flights" {
+                cell.tierIVTableDataLabel?.attributedText = makeAttributedString(product["name"] as! String, info: product["info"] as! String, prices: "\(product["priceWithoutVat"])")
+            } else {
+                cell.tierIVTableDataLabel?.attributedText = makeAttributedString(product["name"] as! String, info: product["info"] as! String, prices: product["prices"] as! String)
+            }
         
         // FOOD
         } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {

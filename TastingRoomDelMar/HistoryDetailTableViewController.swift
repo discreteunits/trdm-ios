@@ -104,6 +104,18 @@ class HistoryDetailTableViewController: UITableViewController {
         
     }
 
+    func makeAttributedString(text:String) -> NSAttributedString {
+        
+        let textAttributes = [NSFontAttributeName: UIFont.headerFont(18)]
+        
+        let textString = NSMutableAttributedString(string: "\(text)", attributes: textAttributes)
+        
+        
+        return textString
+        
+        
+    }
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         
@@ -113,25 +125,16 @@ class HistoryDetailTableViewController: UITableViewController {
             
         let cell = tableView.dequeueReusableCellWithIdentifier("HistoryDetailTableCell", forIndexPath: indexPath) as! HistoryDetailTableViewCell
             
-//            dispatch_async(dispatch_get_main_queue()) {
-            
-            // Assignments
-            cell.qtyLabel.text = String(order["orderItems"][indexPath.row]["amount"]! as! Int)
-            
-            
-            
-            cell.itemLabel.text = lineItemNames[indexPath.row]
-            
-            
 
+            cell.qtyLabel.text = String(order["orderItems"][indexPath.row]["amount"]! as! Int)
+            cell.itemLabel?.attributedText = makeAttributedString(lineItemNames[indexPath.row])
+            // Format Price
             let priceString = order["orderItems"][indexPath.row]["totalPrice"]! as! Double
             cell.priceLabel.text = formatter.formatPrice(priceString)
             
-//            }
             
             // Styles
             cell.qtyLabel.font = UIFont.headerFont(18)
-            cell.itemLabel.font = UIFont.headerFont(24)
             cell.priceLabel.font = UIFont.headerFont(18)
             
             // Functionality
@@ -162,6 +165,14 @@ class HistoryDetailTableViewController: UITableViewController {
         
     }
 
+
+    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+            return UITableViewAutomaticDimension
+    }
     
     
     // Order Query

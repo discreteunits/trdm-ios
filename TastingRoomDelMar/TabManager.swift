@@ -401,7 +401,7 @@ class TabManager: NSObject {
             // Tab Quantity Indicator
             let itemsIndicator = UILabel(frame: CGRectMake(0, 0, 16, 16))
             itemsIndicator.frame.origin.y = 22
-            itemsIndicator.frame.origin.x = windowWidth - 82
+            itemsIndicator.frame.origin.x = windowWidth - 74
             itemsIndicator.text = "\(itemsInTab)"
             itemsIndicator.font = UIFont(name: "OpenSans", size: 10)
             itemsIndicator.layer.zPosition = 0

@@ -88,8 +88,6 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
         let collectionWidth = frame.size.width
         let collectionHeight = frame.size.height
         
-        print("++++++++ Collection width: \(collectionWidth)")
-        print("++++++++ Collection height: \(collectionHeight)")
         
         border.borderColor = UIColor(red: 205/255.0, green: 205/255.0, blue: 205/255.0, alpha: 0.4).CGColor
         border.frame = CGRect(x: 0, y:  collectionHeight + 8, width:  collectionWidth, height: 1)
@@ -232,8 +230,6 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
                 TierIVCollectionViewController.delegate = self
                 
                 TierIVCollectionViewController.collectionArray = tierIVCollectionArray
-                
-                
                 
                 TierIVCollectionViewControllerRef?.collectionView?.reloadData()
                 
@@ -420,13 +416,19 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
                         
                             }
                     
+                        } else {
+                            if object["productType"] as! String == "CHOICE" {
+                                if !self.TierIVTableViewControllerRef!.tierIVTableArray.contains(object) {
+                                    self.TierIVTableViewControllerRef?.tierIVTableArray.append(object)
+                                } else {
+                                    print("This selection is already being shown.")
+                                }
+                            }
                         }
                         
                                 
                                 
                     } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Vines" {
-                        
-                        
                         
                         
                         if object["productType"] as! String == "CHOICE" {
@@ -436,7 +438,6 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
                                 print("This selection is already being shown.")
                             }
                         }
-                        
                         
                         
                         

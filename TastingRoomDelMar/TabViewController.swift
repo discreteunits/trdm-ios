@@ -78,6 +78,17 @@ class TabViewController: UIViewController {
         
     }
     
+    // Go To Add Payment
+    func goToHistory() {
+        
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "HistoryStoryboard", bundle: nil)
+        
+        let vc = mainStoryboard.instantiateViewControllerWithIdentifier("History")
+        
+        self.presentViewController(vc, animated: true, completion: nil)
+        
+    }
+    
     @IBAction func menu(sender: AnyObject) {
         
 //        if let parentVC = self.parentViewController {
@@ -164,9 +175,9 @@ extension TabViewController: TabTableViewDelegate, TabFloatingTableViewDelegate,
             messageTextView.textAlignment = .Center
             messageTextView.layer.zPosition = 99
             // Create Back To Menu Button
-            let menuButton = UIButton(frame: CGRectMake(0, 0, windowWidth * 0.8, windowHeight / 10))
+            let menuButton = UIButton(frame: CGRectMake(0, 0, windowWidth * 0.45, windowHeight / 10))
             menuButton.frame.origin.y = windowHeight * 0.75
-            menuButton.frame.origin.x = windowWidth * 0.1
+            menuButton.frame.origin.x = windowWidth * 0.05
             menuButton.setTitle("Back to Menu", forState: .Normal)
             menuButton.layer.backgroundColor = UIColor(red: 242/255.0, green: 242/255.0, blue: 242/255.0, alpha: 1.0).CGColor
             menuButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
@@ -175,6 +186,18 @@ extension TabViewController: TabTableViewDelegate, TabFloatingTableViewDelegate,
             menuButton.clipsToBounds = true
             menuButton.addTarget(self, action: #selector(TabViewController.backToMenu), forControlEvents: UIControlEvents.TouchUpInside)
             menuButton.layer.zPosition = 99
+            // Create Order History Button
+            let historyButton = UIButton(frame: CGRectMake(0, 0, windowWidth * 0.4, windowHeight / 10))
+            historyButton.frame.origin.y = windowHeight * 0.75
+            historyButton.frame.origin.x = (windowWidth * 0.1) + (windowWidth * 0.45)
+            historyButton.setTitle("Order History", forState: .Normal)
+            historyButton.layer.backgroundColor = UIColor(red: 242/255.0, green: 242/255.0, blue: 242/255.0, alpha: 1.0).CGColor
+            historyButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+            historyButton.titleLabel?.font = UIFont.scriptFont(24)
+            historyButton.layer.cornerRadius = 12.0
+            historyButton.clipsToBounds = true
+            historyButton.addTarget(self, action: #selector(TabViewController.goToHistory), forControlEvents: UIControlEvents.TouchUpInside)
+            historyButton.layer.zPosition = 99
             
             
             // Add Created Views
@@ -182,6 +205,7 @@ extension TabViewController: TabTableViewDelegate, TabFloatingTableViewDelegate,
             tabView.addSubview(TRDMImageView)
             tabView.addSubview(messageTextView)
             tabView.addSubview(menuButton)
+            tabView.addSubview(historyButton)
             
             //        }
             
