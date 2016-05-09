@@ -150,7 +150,7 @@
                                         </label>
                                         <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bln-Qu-x4j">
                                             <rect key="frame" x="0.0" y="58" width="600" height="15"/>
-                                            <color key="backgroundColor" red="0.8380287247474747" green="0.8380287247474747" blue="0.8380287247474747" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="0.81960784313725488" green="0.81960784313725488" blue="0.81960784313725488" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="1" id="TgD-wA-cmx"/>
                                             </constraints>
@@ -218,7 +218,7 @@
                                         </label>
                                         <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Oz1-iX-5zB">
                                             <rect key="frame" x="0.0" y="122" width="600" height="21"/>
-                                            <color key="backgroundColor" red="0.84544665404040409" green="0.84544665404040409" blue="0.84544665404040409" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="0.84313725490196079" green="0.84313725490196079" blue="0.84313725490196079" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="1" id="1gh-Nb-Tla"/>
                                             </constraints>
@@ -461,7 +461,7 @@
                                         </stackView>
                                         <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G9Q-Mr-2O7">
                                             <rect key="frame" x="0.0" y="87" width="600" height="12"/>
-                                            <color key="backgroundColor" red="0.85426530934343436" green="0.85426530934343436" blue="0.85426530934343436" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="0.84313725490196079" green="0.84313725490196079" blue="0.84313725490196079" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="1" id="gr2-Pd-FcO"/>
                                             </constraints>

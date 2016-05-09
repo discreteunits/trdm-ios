@@ -367,6 +367,7 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     
+    
     // Size Collection Cells
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
 
@@ -378,7 +379,7 @@ extension TabTableViewController: UICollectionViewDelegate, UICollectionViewData
         collectionLineSize = CGSize(width: cellWidth, height: cellHeight)
             
         return collectionLineSize
-            
+        
     }
 }
 

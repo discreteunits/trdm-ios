@@ -355,7 +355,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                 sgCollectionCell.layer.borderColor = UIColor(red: 242/255.0, green: 242/255.0, blue: 242/255.0, alpha: 1.0).CGColor
                 sgCollectionCell.layer.cornerRadius = 10.0
                 sgCollectionCell.clipsToBounds = true
-                sgCollectionCell.label.font = UIFont.scriptFont(14)
+                sgCollectionCell.label.font = UIFont.scriptFont(16)
                 
                 let trueIndex = parent - 1
 
@@ -391,7 +391,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                 
                 let trueIndex = String(indexPath.row + 1)
                 quantityCollectionCell.label.text = trueIndex
-                quantityCollectionCell.label.font = UIFont.scriptFont(14)
+                quantityCollectionCell.label.font = UIFont.scriptFont(16)
                 
                 quantityCollectionCell.layer.borderWidth = 2
                 quantityCollectionCell.layer.borderColor = UIColor(red: 242/255.0, green: 242/255.0, blue: 242/255.0, alpha: 1.0).CGColor

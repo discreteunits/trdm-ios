@@ -313,7 +313,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     func getLines(text:String) -> Int {
         
         let textCount = text.characters.count
-        let textLineDecimal = textCount / 50
+        let textLineDecimal = textCount / 41
         let textAproxIncreased = textLineDecimal + 1
         let textLines = textAproxIncreased - (textAproxIncreased % 1)
         
