@@ -127,7 +127,14 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
         }
         
         // Get Delivery or Take Away Text
-        let typeString = NSAttributedString(string: "\(lineItem.type)", attributes: typeAttributes)
+        var logistics = String()
+        if lineItem.type == "takeaway" {
+            logistics = "Take Away"
+        } else if lineItem.type == "delivery" {
+            logistics = "Dine In"
+        }
+        
+        let typeString = NSAttributedString(string: "\(logistics)", attributes: typeAttributes)
         nameString.appendAttributedString(typeString)
         
         
@@ -146,11 +153,14 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
         lineitemCell.contentView.tag = indexPath.row
         
         lineitemCell.quantityLabel.text = "\(TabManager.sharedInstance.currentTab.lines[indexPath.row].quantity)"
+        lineitemCell.quantityLabel.font = UIFont.scriptFont(18)
+        
         lineitemCell.contentDataLabel?.attributedText = makeAttributedString(TabManager.sharedInstance.currentTab, index: indexPath.row)
         
         let price = TabManager.sharedInstance.currentTab.lines[indexPath.row].price
         let convertedPrice = formatter.formatPrice(price)
         lineitemCell.priceLabel.text = convertedPrice
+        lineitemCell.priceLabel.font = UIFont.scriptFont(18)
 
         
         return lineitemCell

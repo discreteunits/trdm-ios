@@ -57,10 +57,16 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         // FLYOUT MENU
         self.sideMenuController()!.sideMenu?.delegate = self
 
+        // Start Activity Indicator
+//        ActivityManager.sharedInstance.activityStart(self)
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Stop Activity Indicator
+//        ActivityManager.sharedInstance.activityStop(self)
         
         getCards()
         
@@ -395,6 +401,7 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
                         }
                     }
                 }
+                
                 
                 for i in self.tierIArray {
                     print("TierI Array: \(i["name"])")

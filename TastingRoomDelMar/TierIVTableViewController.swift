@@ -108,8 +108,8 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         
         let nameAttributes = [NSFontAttributeName: UIFont.headerFont(24), NSForegroundColorAttributeName: UIColor.blackColor()]
         let infoAttributes = [NSFontAttributeName: UIFont.basicFont(16)]
-        let paddingAttributes = [NSFontAttributeName: UIFont.basicFont(12)]
-        let pricesAttributes = [NSFontAttributeName: UIFont.basicFont(12)]
+        let paddingAttributes = [NSFontAttributeName: UIFont.basicFont(16)]
+        let pricesAttributes = [NSFontAttributeName: UIFont.scriptFont(18)]
         
         if RouteManager.sharedInstance.TierOne!["name"] as! String == "Merch" || RouteManager.sharedInstance.TierOne!["name"] as! String == "Events" {
             

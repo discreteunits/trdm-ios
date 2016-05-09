@@ -147,7 +147,7 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
 
                 
             } else {
-                
+                                
                 // Log details of the failure
                 print("Error: \(error!) \(error!.userInfo)")
             }
