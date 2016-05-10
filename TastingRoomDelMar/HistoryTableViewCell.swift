@@ -15,6 +15,8 @@ class HistoryTableViewCell: UITableViewCell {
     @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var totalLabel: UILabel!
     @IBOutlet weak var methodLabel: UILabel!
+    @IBOutlet weak var openCloseOrderLabel: UILabel!
+    
     
     // ----------
     override func awakeFromNib() {

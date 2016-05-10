@@ -74,6 +74,10 @@ class PaymentTableViewController: UITableViewController {
             cardCell.providerLabel.text = CardManager.sharedInstance.currentCustomer.card.brand
             cardCell.lastFourLabel.text = CardManager.sharedInstance.currentCustomer.card.last4
             
+            cardCell.providerLabel.font = UIFont.headerFont(22)
+            cardCell.lastFourLabel.font = UIFont.headerFont(22)
+            
+            
             // Styles
             cardCell.layer.backgroundColor = UIColor(red: 242/255.0, green: 242/255.0, blue: 242/255.0, alpha: 1.0).CGColor
             cardCell.layer.borderWidth = 1.0
@@ -83,7 +87,16 @@ class PaymentTableViewController: UITableViewController {
             
         // Add Payment Row
         } else if indexPath.row == addPaymentRow {
-            let addCell = tableView.dequeueReusableCellWithIdentifier("PaymentAddCardTableCell", forIndexPath: indexPath)
+            let addCell = tableView.dequeueReusableCellWithIdentifier("PaymentAddCardTableCell", forIndexPath: indexPath) as! PaymentAddCardTableViewCell
+            
+            if CardManager.sharedInstance.currentCustomer.card.brand != "" {
+                addCell.addPaymentLabel.text = "+  Change Payment"
+            } else {
+                addCell.addPaymentLabel.text = "+  Add Payment"
+            }
+            
+            addCell.addPaymentLabel.font = UIFont.headerFont(18)
+
             
             addCell.layer.backgroundColor = UIColor(red: 242/255.0, green: 242/255.0, blue: 242/255.0, alpha: 1.0).CGColor
             addCell.layer.borderWidth = 1.0

@@ -34,7 +34,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="totalLabel" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="inL-oq-uUY">
-                                            <rect key="frame" x="387" y="8" width="205" height="52"/>
+                                            <rect key="frame" x="387" y="8" width="205" height="28"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="205" id="DBj-va-sLe"/>
                                             </constraints>
@@ -57,6 +57,15 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="openCloseOrderLabel" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wtu-Gd-BF5">
+                                            <rect key="frame" x="387" y="39" width="205" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="205" id="OFz-lx-4o1"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="VH0-F0-iuh" firstAttribute="leading" secondItem="c9g-VQ-uvf" secondAttribute="leadingMargin" constant="8" id="7Im-4H-X3l"/>
@@ -66,9 +75,11 @@
                                         <constraint firstItem="inL-oq-uUY" firstAttribute="trailing" secondItem="c9g-VQ-uvf" secondAttribute="trailingMargin" constant="-8" id="SIY-fw-3Y7"/>
                                         <constraint firstItem="inL-oq-uUY" firstAttribute="top" secondItem="c9g-VQ-uvf" secondAttribute="topMargin" constant="8" id="V9x-ES-Z7Y"/>
                                         <constraint firstItem="KR1-RU-n6O" firstAttribute="top" secondItem="inL-oq-uUY" secondAttribute="bottom" constant="8" id="clh-32-96n"/>
+                                        <constraint firstItem="wtu-Gd-BF5" firstAttribute="trailing" secondItem="c9g-VQ-uvf" secondAttribute="trailingMargin" constant="-8" id="hcE-Ia-Nic"/>
                                         <constraint firstItem="qYd-OR-RHI" firstAttribute="leading" secondItem="c9g-VQ-uvf" secondAttribute="leadingMargin" constant="8" id="j4Y-Is-UJV"/>
                                         <constraint firstItem="Rsu-Oh-cz3" firstAttribute="top" secondItem="c9g-VQ-uvf" secondAttribute="topMargin" constant="8" id="mAA-h0-mHv"/>
                                         <constraint firstItem="Rsu-Oh-cz3" firstAttribute="leading" secondItem="c9g-VQ-uvf" secondAttribute="leadingMargin" constant="8" id="mzp-D8-BWz"/>
+                                        <constraint firstItem="wtu-Gd-BF5" firstAttribute="top" secondItem="inL-oq-uUY" secondAttribute="bottom" constant="8" id="neO-mc-XTd"/>
                                         <constraint firstItem="qYd-OR-RHI" firstAttribute="top" secondItem="Rsu-Oh-cz3" secondAttribute="bottom" constant="8" id="qtF-ia-cp1"/>
                                     </constraints>
                                     <variation key="default">
@@ -80,6 +91,7 @@
                                 <connections>
                                     <outlet property="dateLabel" destination="qYd-OR-RHI" id="ITo-AL-jxv"/>
                                     <outlet property="methodLabel" destination="KR1-RU-n6O" id="Q3M-pc-6gm"/>
+                                    <outlet property="openCloseOrderLabel" destination="wtu-Gd-BF5" id="kRW-qn-crC"/>
                                     <outlet property="orderNumberLabel" destination="Rsu-Oh-cz3" id="Ved-VJ-O6u"/>
                                     <outlet property="totalLabel" destination="inL-oq-uUY" id="hPq-LH-C6l"/>
                                     <outlet property="typeLabel" destination="VH0-F0-iuh" id="37o-W4-5bU"/>

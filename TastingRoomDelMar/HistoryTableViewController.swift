@@ -14,6 +14,7 @@ class HistoryTableViewController: UITableViewController {
 
     var nav: UINavigationBar?
 
+    var allOrders = [PFObject]()
     var closedOrders = [PFObject]()
     var openOrders = [PFObject]()
     var unregisteredOrders = [PFObject]()
@@ -32,10 +33,8 @@ class HistoryTableViewController: UITableViewController {
     // ----------------------
     func defaultScreen() {
         
-        // Default Empty Tab View
-        if TabManager.sharedInstance.currentTab.lines.count < 1 {
-            
-            
+        // Default Empty History View
+        
             let tabView = self.view
             // Screen Bounds
             let windowWidth = self.view.bounds.size.width
@@ -77,16 +76,13 @@ class HistoryTableViewController: UITableViewController {
             menuButton.addTarget(self, action: #selector(TabViewController.backToMenu), forControlEvents: UIControlEvents.TouchUpInside)
             menuButton.layer.zPosition = 99
 
-            
-            
+        
             // Add Created Views
             tabView.addSubview(windowView)
             tabView.addSubview(TRDMImageView)
             tabView.addSubview(messageTextView)
             tabView.addSubview(menuButton)
-            
-            
-        }
+        
     }
     
     func backToMenu() {
@@ -98,20 +94,23 @@ class HistoryTableViewController: UITableViewController {
         
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        if ascClosedOrders.count == 0 {
-            defaultScreen()
-        }
-        
-        tableView.tableFooterView = UIView()
-        
+    override func viewWillAppear(animated: Bool) {
         self.closedOrders.removeAll()
         self.openOrders.removeAll()
         self.unregisteredOrders.removeAll()
         
         self.orderQuery()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+
+
+        
+        tableView.tableFooterView = UIView()
+        
+        
 
         // NAV BAR STYLES
         if let navBar = navigationController?.navigationBar {
@@ -160,7 +159,7 @@ class HistoryTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("HistoryTableCell", forIndexPath: indexPath) as! HistoryTableViewCell
 
-        let order = ascClosedOrders[indexPath.row]
+        let order = allOrders[indexPath.row]
         
     
         let dateUpdated = order.createdAt
@@ -171,13 +170,54 @@ class HistoryTableViewController: UITableViewController {
         // Assigments
         cell.orderNumberLabel.text = "Order #" + String(order["lightspeedId"])
         cell.dateLabel.text = NSString(format: "%@", dateFormat.stringFromDate(dateUpdated!)) as String
-        cell.typeLabel.text = order["type"] as? String
         
-        let orderPrice = order["orderTaxInfo"][0]["totalWithTax"]! as! Double
-        let totalString = formatter.formatPrice(orderPrice)
-        cell.totalLabel.text = "Total: " + totalString
         
-        cell.methodLabel.text = order["checkoutMethod"] as? String
+        
+        // Check Out Method Text Override
+        if order["type"] as? String == "delivery" {
+            cell.typeLabel.text = "Dine In"
+        } else if order["type"] as? String == "takeaway" {
+            cell.typeLabel.text = "Take Away"
+        } else {
+            cell.typeLabel.text = ""
+        }
+        
+        
+        
+//        if (order["orderTaxInfo"][0]) != nil {
+//            if let orderPrice = ["totalWithTax"] as? Double {
+//                let totalString = formatter.formatPrice(orderPrice)
+//                cell.totalLabel.text = "Total: " + totalString
+//            } else {
+//                cell.totalLabel.text = " "
+//            }
+//        }
+        
+        
+        
+        if let orderPrice = order["orderTaxInfo"][0]["totalWithTax"]! as? Double {
+            let totalString = formatter.formatPrice(orderPrice)
+            cell.totalLabel.text = "Total: " + totalString
+        }
+        
+
+        
+        
+        if order["closed"] as? Bool == true {
+            cell.openCloseOrderLabel.text = "Closed"
+        } else {
+            cell.openCloseOrderLabel.text = "Open"
+        }
+        
+        // Check Out Method Text Override
+        if order["checkoutMethod"] as? String == "stripe" {
+            cell.methodLabel.text = "Mobile App"
+        } else if order["checkoutMethod"] as? String == "server" {
+            cell.methodLabel.text = "Server"
+        } else {
+            cell.methodLabel.text = ""
+        }
+        
         
         // Styles
         cell.orderNumberLabel.font = UIFont.headerFont(24)
@@ -185,7 +225,8 @@ class HistoryTableViewController: UITableViewController {
         cell.typeLabel.font = UIFont.headerFont(14)
         
         cell.totalLabel.font = UIFont.headerFont(28)
-        cell.methodLabel.font = UIFont.headerFont(16)
+        cell.openCloseOrderLabel.font = UIFont.headerFont(16)
+        cell.methodLabel.font = UIFont.headerFont(14)
         
         
         
@@ -245,6 +286,8 @@ class HistoryTableViewController: UITableViewController {
                 // Do something with the found objects
                 for object in objects! as [PFObject]! {
                     
+                    self.allOrders.append(object)
+                    
                     if object["closed"] as? Bool == true {
                         
                         self.closedOrders.append(object)
@@ -268,6 +311,10 @@ class HistoryTableViewController: UITableViewController {
                     print("\(self.openOrders.count) orders are open.")
                     print("\(self.unregisteredOrders.count) orders are unregistered.")
                     print("-----------------------")
+                }
+                
+                if self.closedOrders.count == 0 {
+                    self.defaultScreen()
                 }
                 
                 AnimationManager.sharedInstance.animateTable(self.tableView)
