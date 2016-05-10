@@ -87,6 +87,9 @@ class AccountManager: NSObject {
         
             user.signUpInBackgroundWithBlock({ (success, error) -> Void in
             
+                ActivityManager.sharedInstance.activityStop(view)
+
+                
                 // Success
                 if  error == nil {
                 
@@ -98,7 +101,6 @@ class AccountManager: NSObject {
                             
                         }
                         
-                        ActivityManager.sharedInstance.activityStop(view)
                         print("Successfully saved user.")
                         view.performSegueWithIdentifier("signupContinue", sender: view)
                         
@@ -108,7 +110,6 @@ class AccountManager: NSObject {
                 // Failure
                 } else {
                 
-                    ActivityManager.sharedInstance.activityStop(view)
                     print("Failed to save user.")
                     AlertManager.sharedInstance.singleAlert(view, title: "Whoops!", message: "This account already exists, try logging in.")
                 

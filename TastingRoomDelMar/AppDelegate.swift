@@ -74,20 +74,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // -------------------------------
     // MARK: USER AUTO LOG IN
     // -------------------------------
-//        if PFUser.currentUser() != nil {
-//            
-//            self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-//            
-//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//            
-//            let initialViewController = storyboard.instantiateViewControllerWithIdentifier("LoggedIn") as UIViewController
-//            
-//            self.window?.rootViewController = initialViewController
-//            self.window?.makeKeyAndVisible()
-//            
-//            let rootView: TierINavigationController = TierINavigationController()
-//            
-//        }
+        if PFUser.currentUser() != nil {
+            
+            self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            
+            let initialViewController = storyboard.instantiateViewControllerWithIdentifier("Menu") as! TierNavigationController
+            
+            self.window?.rootViewController = initialViewController
+            self.window?.makeKeyAndVisible()
+            
+            
+        }
         
         return true
     }
