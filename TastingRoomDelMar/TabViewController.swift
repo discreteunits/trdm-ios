@@ -36,6 +36,13 @@ class TabViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Remove Indicator
+        let currentWindow: UIWindow = UIApplication.sharedApplication().keyWindow!
+        
+        if let viewWithTag = currentWindow.viewWithTag(31) {
+            viewWithTag.removeFromSuperview()
+        }
+        
         
         if printFlag {
             print("@@@@@@@@@@@@@@@@@@@@@@@@@@@")

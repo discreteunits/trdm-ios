@@ -231,7 +231,7 @@
                                         <constraint firstItem="a3M-cC-Gsq" firstAttribute="top" secondItem="IqJ-ll-w9n" secondAttribute="topMargin" constant="4" id="mqj-s3-CGC"/>
                                         <constraint firstItem="Oz1-iX-5zB" firstAttribute="leading" secondItem="IqJ-ll-w9n" secondAttribute="leadingMargin" constant="-24" id="uaU-nB-glW"/>
                                         <constraint firstItem="EAL-ve-fwx" firstAttribute="top" secondItem="IqJ-ll-w9n" secondAttribute="topMargin" id="vqw-bU-tYg"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="Oz1-iX-5zB" secondAttribute="trailing" constant="-16" id="xkn-S6-TOj"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Oz1-iX-5zB" secondAttribute="trailing" constant="-8" id="xkn-S6-TOj"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>

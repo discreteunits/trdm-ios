@@ -58,7 +58,7 @@ class TierIVCollectionViewController: UICollectionViewController {
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("tierIVCollectionCell", forIndexPath: indexPath) as! TierIVCollectionViewCell
         
-        cell.titleLabel?.font = UIFont.scriptFont(18)
+        cell.titleLabel?.font = UIFont.scriptFont(14)
         cell.layer.borderWidth = 2
         cell.layer.borderColor = UIColor(red: 205/255.0, green: 205/255.0, blue: 205/255.0, alpha: 0.4).CGColor
         cell.layer.cornerRadius = 10.0
