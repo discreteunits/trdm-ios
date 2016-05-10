@@ -54,10 +54,10 @@ class TableNumberViewController: UIViewController, UITextFieldDelegate {
         enterTableNumberLabel.textColor = UIColor.blackColor()
         enterTableNumberLabel.textAlignment = .Center
         // Create Text Field
-        tableNumberTextField = UITextField(frame: CGRectMake(0, 0, screenWidth * 0.3, dynamicFontSize + 16))
+        tableNumberTextField = UITextField(frame: CGRectMake(0, 0, screenWidth * 0.4, dynamicFontSize + 16))
         tableNumberTextField.frame.origin.y = 54
         tableNumberTextField.frame.origin.x = screenWidth * 0.36
-        tableNumberTextField.placeholder = "23"
+        tableNumberTextField.placeholder = "123"
         tableNumberTextField.font = UIFont.basicFont(dynamicFontSize)
         tableNumberTextField.autocorrectionType = .No
         tableNumberTextField.keyboardType = .NumberPad
@@ -106,7 +106,7 @@ class TableNumberViewController: UIViewController, UITextFieldDelegate {
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange,
         replacementString string: String) -> Bool
     {
-        let maxLength = 2
+        let maxLength = 3
         let currentString: NSString = textField.text!
         let newString: NSString =
         currentString.stringByReplacingCharactersInRange(range, withString: string)
