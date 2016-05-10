@@ -119,13 +119,38 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
                 print("TierIII retrieved \(objects!.count) objects.")
                 
                 for object in objects! as [PFObject]! {
-                    if let product = object["category"] as? PFObject {
-                        if product["state"] as! String == "active" {
+                    
+                    if RouteManager.sharedInstance.TierOne!["name"] as! String == "Take Away" {
                         
-                            self.tierIIIArray.append(object)
-                            
+                        if object["name"] as! String == "Flights" || object["name"] as! String == "Draft" {
+                            print("Not showing Flights or Drafts due to Take Away")
+                        } else {
+                            if let product = object["category"] as? PFObject {
+                                if product["state"] as! String == "active" {
+                                    
+                                    self.tierIIIArray.append(object)
+                                    
+                                }
+                            }
                         }
+                        
+                    } else {
+                        
+                        if let product = object["category"] as? PFObject {
+                            if product["state"] as! String == "active" {
+                                
+                                self.tierIIIArray.append(object)
+                                
+                            }
+                        }
+                        
                     }
+                    
+                    
+
+                    
+                    
+                    
                 }
                                 
                 for i in self.tierIIIArray {
