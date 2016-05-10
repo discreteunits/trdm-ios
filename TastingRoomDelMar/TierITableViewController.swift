@@ -364,7 +364,11 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
             query.fromLocalDatastore()
         }
 
+        ActivityManager.sharedInstance.activityStart(self)
+        
         query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
+           
+            ActivityManager.sharedInstance.activityStop(self)
             
             if error == nil {
                 

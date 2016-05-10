@@ -111,7 +111,12 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
         query.includeKey("category")
         query.orderByAscending("sortOrder")
         query.whereKey("parentTiers", equalTo: RouteManager.sharedInstance.TierTwo!)
+        
+        ActivityManager.sharedInstance.activityStart(self)
+        
         query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
+            
+            ActivityManager.sharedInstance.activityStop(self)
             
             if error == nil {
    

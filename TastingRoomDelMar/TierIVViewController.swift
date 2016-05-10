@@ -304,6 +304,7 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
         collectionQuery.orderByAscending("name")
         collectionQuery.includeKey("parentTiers")
         collectionQuery.whereKey("parentTiers", containedIn: RouteManager.sharedInstance.Route!)
+                
         collectionQuery.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
             
             if error == nil {
@@ -363,8 +364,12 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
         
         
         tableQuery.whereKey("categories", containsAllObjectsInArray: tagsArray)
+        
+        ActivityManager.sharedInstance.activityStart(self)
+        
         tableQuery.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
             
+            ActivityManager.sharedInstance.activityStop(self)
             
             if error == nil {
                 

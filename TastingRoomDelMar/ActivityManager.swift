@@ -33,7 +33,7 @@ class ActivityManager: NSObject {
         activityIndicator.hidesWhenStopped = true
         activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
         activityIndicator.startAnimating()
-        activityIndicator.backgroundColor = UIColor(white: 0.0, alpha: 0.6)
+        activityIndicator.backgroundColor = UIColor(white: 0.0, alpha: 0.0)
         activityIndicator.layer.cornerRadius = 8.0
         activityIndicator.clipsToBounds = true
         activityIndicator.tag = 901
@@ -43,6 +43,7 @@ class ActivityManager: NSObject {
         view.view.addSubview(activityIndicator)
         
     }
+    
     
     // Stop Activity
     func activityStop(view: UIViewController) {
@@ -55,5 +56,28 @@ class ActivityManager: NSObject {
             viewWithTag.removeFromSuperview()
         }
     }
+    
+    
+    // 1. i need to disable user interaction
+    // 2. i need to present a popover view
+    // 3. i need to cycle through an array of images
+    // 4. i need to dismiss the popover view
+    // 5. i need to enable user interaction
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 }

@@ -39,6 +39,9 @@ class PopoverViewController: UITableViewController {
     var height = CGFloat()
     var width = CGFloat()
 
+    // Price Formatter
+    let formatter = PriceFormatManager.priceFormatManager
+    
 // --------------------
     override func viewWillAppear(animated: Bool) {
         
@@ -368,12 +371,21 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                     
                     let subproduct = subproducts[indexPath.row]
                     
-                    let subproductPrice = subproduct.price 
-                    let subproductDollar = (Int(subproductPrice))
-                    let subproductDollarString = String(subproductDollar)
+
                     
-                    let orderAndServing = subproduct.info + "   " + subproductDollarString
+                    let subproductPrice = subproduct.price
+                    let convertedOrderAndServing = formatter.formatPrice(subproductPrice)
+                    let orderAndServing = subproduct.info + "   " + convertedOrderAndServing
                     sgCollectionCell.label.text = orderAndServing
+                    
+                    
+                    
+                    
+                    
+                    
+                    print("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+                    print("\(subproduct.price)")
+                    print("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
                     
                 }
                 // ----- END -----
