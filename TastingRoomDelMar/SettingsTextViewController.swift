@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingsTextViewController: UIViewController {
+class SettingsTextViewController: UIViewController, UIWebViewDelegate {
     
     @IBOutlet weak var navigationTitle: UINavigationItem!
     
@@ -18,6 +18,18 @@ class SettingsTextViewController: UIViewController {
     var nav: UINavigationBar?
 
     // -----
+    func webViewDidStartLoad(webView: UIWebView) {
+        ActivityManager.sharedInstance.activityStart(self)
+    }
+    
+    func webViewDidFinishLoad(webView: UIWebView) {
+        ActivityManager.sharedInstance.activityStop(self)
+    }
+    
+    func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
+        webviewInstance.hidden = true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
                 
