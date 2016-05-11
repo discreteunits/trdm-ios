@@ -9,8 +9,6 @@
 import UIKit
 
 class SettingsTextViewController: UIViewController {
-
-    @IBOutlet weak var titleLabel: UILabel!
     
     @IBOutlet weak var navigationTitle: UINavigationItem!
     
@@ -22,7 +20,7 @@ class SettingsTextViewController: UIViewController {
     // -----
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         if let navBar = navigationController?.navigationBar {
             
             nav = navBar
@@ -41,9 +39,7 @@ class SettingsTextViewController: UIViewController {
             
         }
         
-        titleLabel.text = passedTrigger
-        titleLabel.textAlignment = .Center
-        titleLabel.font = UIFont.headerFont(28)
+
         
         if passedTrigger == "Privacy Policy" {
             
