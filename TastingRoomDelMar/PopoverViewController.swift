@@ -380,9 +380,6 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                     
                     
                     
-                    
-                    
-                    
                     print("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
                     print("\(subproduct.price)")
                     print("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
@@ -588,11 +585,11 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                             } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "More" {
                                 
                                 if RouteManager.sharedInstance.TierOne!["name"] as! String == "Dine In" {
-                                    totalChoicesPrice = popoverItem["deliveryPriceWithoutVat"] as! Double
+                                    totalChoicesPrice = popoverItem["priceWithoutVat"] as! Double
                                 } else if RouteManager.sharedInstance.TierOne!["name"] as! String == "Take Away" {
-                                    totalChoicesPrice = popoverItem["takeawayPriceWithoutVat"] as! Double
+                                    totalChoicesPrice = popoverItem["priceWithoutVat"] as! Double
                                 } else {
-                                    totalChoicesPrice = popoverItem["deliveryPriceWithoutVat"] as! Double
+                                    totalChoicesPrice = popoverItem["priceWithoutVat"] as! Double
                                 }
                                 
                             } else if RouteManager.sharedInstance.TierThree!["name"] as! String == "Flights" {
