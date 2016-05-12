@@ -152,14 +152,14 @@ class LandingViewController: UIViewController, ENSideMenuDelegate {
         print("FRAME FRAME FRAME: \(facebookButton.frame)")
         
         // Not Connected Message
-        let disconnectedMessage = UITextView(frame: CGRectMake(0, 0, screenWidth * 0.7, 80))
-        disconnectedMessage.frame.origin.x = screenWidth * 0.15
+        let disconnectedMessage = UITextView(frame: CGRectMake(0, 0, screenWidth * 0.8, 80))
+        disconnectedMessage.frame.origin.x = screenWidth * 0.12
         disconnectedMessage.frame.origin.y = screenHeight * 0.78
         disconnectedMessage.text = "You must be connected to the internet to use this app."
         disconnectedMessage.textAlignment = .Center
         disconnectedMessage.font = UIFont.headerFont(28)
         disconnectedMessage.textColor = UIColor.whiteColor()
-        disconnectedMessage.backgroundColor = UIColor.lightGrayColor()
+        disconnectedMessage.backgroundColor = UIColor.blackColor()
         disconnectedMessage.layer.cornerRadius = 4.0
         disconnectedMessage.clipsToBounds = true
         disconnectedMessage.hidden = true

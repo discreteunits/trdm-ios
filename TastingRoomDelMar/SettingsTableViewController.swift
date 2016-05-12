@@ -120,7 +120,7 @@ class SettingsTableViewController: UITableViewController {
         } else if section == 1 {
             return 2
         } else if section == 2 {
-            return 1
+            return 2
         } else if section == 3 {
             return 3
         }
@@ -245,6 +245,14 @@ class SettingsTableViewController: UITableViewController {
                 moreInfoCell.settingValueLabel.text = ""
                 
                 return moreInfoCell
+                
+            } else if indexPath.row == 1 {
+                
+                moreInfoCell.settingLabel.text = "privacy policy"
+                moreInfoCell.settingValueLabel.text = ""
+                
+                return moreInfoCell
+                
             }
             
         // Account Actions Section
@@ -341,7 +349,12 @@ class SettingsTableViewController: UITableViewController {
                 selectedValue = "Terms of Use"
                 performSegueWithIdentifier("textView", sender: self)
                 
-            } 
+            } else if indexPath.row == 1 {
+                
+                selectedValue = "Privacy Policy"
+                performSegueWithIdentifier("textView", sender: self)
+                
+            }
         
         // Account Actions Section
         } else if indexPath.section == 3 {

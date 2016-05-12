@@ -11,6 +11,8 @@ import ParseUI
 import Parse
 import ParseFacebookUtilsV4
 import ParseCrashReporting
+import ReachabilitySwift
+
 
 class TierITableViewController: UITableViewController, ENSideMenuDelegate {
 
@@ -29,15 +31,12 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
     var TRDMImage = UIImage()
     var TRDMImageView = UIImageView()
     
+    var messageTextView = UITextView()
+    
 // ------------------------------
     override func viewWillDisappear(animated: Bool) {
         
-        // Stop Activity Indicator
-        ActivityManager.sharedInstance.activityStop(self)
-        
         tableView.reloadData()
-        
-//        AnimationManager.sharedInstance.fade(self.tableView, alpha: 0.0)
         
     }
     
@@ -47,28 +46,24 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
 
     override func viewWillAppear(animated: Bool) {
         
-//        AnimationManager.sharedInstance.fade(self.tableView, alpha: 1.0)
-
         self.tierIArray.removeAll()
         
-        // TIER 1 QUERY
-        self.tierIQuery()
+        checkConnectivity(messageTextView)
+        
+//        // TIER 1 QUERY
+//        self.tierIQuery()
         
         // FLYOUT MENU
         self.sideMenuController()!.sideMenu?.delegate = self
 
-        // Start Activity Indicator
-//        ActivityManager.sharedInstance.activityStart(self)
         
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Stop Activity Indicator
-//        ActivityManager.sharedInstance.activityStop(self)
-        
-        getCards()
+//        // Get User Stripe Cards
+//        getCards()
         
         // Unit Test
         tableView.accessibilityIdentifier = "Tier One Table"
@@ -76,13 +71,13 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         // Items Indicator
         TabManager.sharedInstance.addItemsIndicator()
         
-        // Check if user is signed in with Facebook
-        if FBSDKAccessToken.currentAccessToken() != nil {
-            
-            getFBUserData()
-            print("User signed in with Facebook.")
-            
-        }
+//        // Check if user is signed in with Facebook
+//        if FBSDKAccessToken.currentAccessToken() != nil {
+//            
+//            getFBUserData()
+//            print("User signed in with Facebook.")
+//            
+//        }
         
         // Sync Tab - Create or Find
         TabManager.sharedInstance.syncTab(TabManager.sharedInstance.currentTab.id)
@@ -177,9 +172,6 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
     
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        // Start Activity Indicator
-        ActivityManager.sharedInstance.activityStart(self)
         
         // ROUTE MANAGER
         RouteManager.sharedInstance.TierOne = tierIArray[indexPath.row]
@@ -524,4 +516,126 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
             }
         })
     }
+    
+    
+    // Begin Reachability 
+    
+    func checkConnectivity(disconnected: UITextView) {
+        
+        // CONNECTIVITY CONTROL
+        let reachability: Reachability
+        do {
+            reachability = try Reachability.reachabilityForInternetConnection()
+            print("Device can be Reached.")
+            
+//            // TIER 1 QUERY
+//            self.tierIQuery()
+            
+        } catch {
+            
+            self.defaultScreen()
+            print("Device can not be Reached.")
+            
+            return
+        }
+        
+        reachability.whenReachable = { reachability in
+            dispatch_async(dispatch_get_main_queue()) {
+                if reachability.isReachableViaWiFi() {
+
+                    print("Reachable via WiFi")
+                    
+                    // TIER 1 QUERY
+                    self.tierIQuery()
+                    
+                    // Get User Stripe Cards
+                    self.getCards()
+                    
+                    // Check if user is signed in with Facebook
+                    if FBSDKAccessToken.currentAccessToken() != nil {
+                        
+                        self.getFBUserData()
+                        print("User signed in with Facebook.")
+                        
+                    }
+                    
+                } else {
+                    
+                    print("Reachable via Cellular")
+                    
+                    // TIER 1 QUERY
+                    self.tierIQuery()
+                    
+                    // Get User Stripe Cards
+                    self.getCards()
+                    
+                    // Check if user is signed in with Facebook
+                    if FBSDKAccessToken.currentAccessToken() != nil {
+                        
+                        self.getFBUserData()
+                        print("User signed in with Facebook.")
+                        
+                    }
+                }
+            }
+        }
+        
+        reachability.whenUnreachable = { reachability in
+            dispatch_async(dispatch_get_main_queue()) {
+                
+                self.defaultScreen()
+                
+                print("Device can not be Reached.")
+                
+                print("No internet connection... removing app access points.")
+            }
+        }
+        
+        do {
+            try reachability.startNotifier()
+        } catch {
+            print("Unable to start notifier")
+        }
+    }
+
+    
+    func defaultScreen() {
+        
+            let tabView = self.view
+            // Screen Bounds
+            let windowWidth = self.view.bounds.size.width
+            let windowHeight = self.view.bounds.size.height
+            // Create View
+            let windowView = UIView(frame: CGRectMake(0, 0, windowWidth, windowHeight))
+            windowView.backgroundColor = UIColor.whiteColor()
+            windowView.layer.zPosition = 98
+            // Create TRDM Logo
+            let TRDMLogo = "secondary-logomark-03_rgb_600_600"
+            let TRDMImage = UIImage(named: TRDMLogo)
+            let TRDMImageView = UIImageView(image: TRDMImage)
+            TRDMImageView.frame = CGRectMake(0, 0, windowWidth * 0.8, windowWidth * 0.8)
+            TRDMImageView.frame.origin.y = windowHeight / 6
+            TRDMImageView.frame.origin.x = windowWidth * 0.1
+            TRDMImageView.alpha = 0.1
+            TRDMImageView.layer.zPosition = 99
+            // Create Message Text View
+            messageTextView = UITextView(frame: CGRectMake(0, 0, windowWidth * 0.7, windowWidth / 2))
+            messageTextView.frame.origin.y = windowHeight * 0.65
+            messageTextView.frame.origin.x = windowWidth * 0.15
+            messageTextView.text = "Looks like you don't have internet connection."
+            messageTextView.font = UIFont.basicFont(16)
+            messageTextView.textColor = UIColor.grayColor()
+            messageTextView.backgroundColor = UIColor.clearColor()
+            messageTextView.userInteractionEnabled = false
+            messageTextView.textAlignment = .Center
+            messageTextView.layer.zPosition = 99
+        
+            
+            // Add Created Views
+            tabView.addSubview(windowView)
+            tabView.addSubview(TRDMImageView)
+            tabView.addSubview(messageTextView)
+
+            
+        }
 }

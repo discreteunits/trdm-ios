@@ -18,17 +18,17 @@ class SettingsTextViewController: UIViewController, UIWebViewDelegate {
     var nav: UINavigationBar?
 
     // -----
-    func webViewDidStartLoad(webView: UIWebView) {
-        ActivityManager.sharedInstance.activityStart(self)
-    }
-    
-    func webViewDidFinishLoad(webView: UIWebView) {
-        ActivityManager.sharedInstance.activityStop(self)
-    }
-    
-    func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
-        webviewInstance.hidden = true
-    }
+//    func webViewDidStartLoad(webView: UIWebView) {
+//        ActivityManager.sharedInstance.activityStart(self)
+//    }
+//    
+//    func webViewDidFinishLoad(webView: UIWebView) {
+//        ActivityManager.sharedInstance.activityStop(self)
+//    }
+//    
+//    func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
+//        webviewInstance.hidden = true
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,11 +55,9 @@ class SettingsTextViewController: UIViewController, UIWebViewDelegate {
         
         if passedTrigger == "Privacy Policy" {
             
-            webviewInstance.loadRequest(NSURLRequest(URL: NSURL(string:"https://www.tastingroomdelmar.com/privacy")!))
+            webviewInstance.loadRequest(NSURLRequest(URL: NSURL(string:"http://www.tastingroomdelmar.com/privacy")!))
             
         } else if passedTrigger == "Terms of Use" {
-            
-//            webviewInstance.loadRequest(NSURLRequest(URL: NSURL(string:"https://www.google.com")!))
             
             webviewInstance.loadRequest(NSURLRequest(URL: NSURL(string:"http://www.tastingroomdelmar.com/terms")!))
             

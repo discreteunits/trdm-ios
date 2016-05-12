@@ -105,11 +105,8 @@ class HistoryTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
-
         
         tableView.tableFooterView = UIView()
-        
         
 
         // NAV BAR STYLES
