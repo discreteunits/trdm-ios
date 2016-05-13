@@ -325,7 +325,6 @@ class AlertManager: UIViewController {
 //            self.reloadDelegate?.recalculateLineItems()
 //            self.reloadDelegate?.recalculateTotals()
             
-            print("$$$$$$$$$$$$$$$ \(self.reloadDelegate) $$$$$$$$$$$$$$$")
             
             self.reloadDelegate?.defaultScreen()
             

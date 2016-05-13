@@ -127,16 +127,27 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
                     
                     if RouteManager.sharedInstance.TierOne!["name"] as! String == "Take Away" {
                         
-                        if object["name"] as! String == "Flights" || object["name"] as! String == "Draft" {
-                            print("Not showing Flights or Drafts due to Take Away")
+                        if RouteManager.sharedInstance.TierTwo!["name"] as! String == "More" {
+                            
+                            if object["name"] as! String == "Water" {
+                                self.tierIIIArray.append(object)
+                            }
+                            
                         } else {
-                            if let product = object["category"] as? PFObject {
-                                if product["state"] as! String == "active" {
+                        
+                            if object["name"] as! String == "Flights" || object["name"] as! String == "Draft" {
+                                print("Not showing Flights or Drafts due to Take Away")
+                            } else {
+                                
+                                if let product = object["category"] as? PFObject {
                                     
-                                    self.tierIIIArray.append(object)
+                                    if product["state"] as! String == "active" {
+                                        self.tierIIIArray.append(object)
+                                    }
                                     
                                 }
                             }
+                            
                         }
                         
                     } else {
