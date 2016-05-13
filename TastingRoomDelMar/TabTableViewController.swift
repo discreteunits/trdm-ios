@@ -115,7 +115,7 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
         
         if lineItem.path == "Drink" {
             // Get Subproduct Name
-            let subNameString = NSAttributedString(string: "\(lineItem.subproduct.name)\n", attributes: subNameAttributes)
+            let subNameString = NSAttributedString(string: "\(lineItem.subproduct.info)\n", attributes: subNameAttributes)
             nameString.appendAttributedString(subNameString)
 
         } else if lineItem.path == "Eat" {
