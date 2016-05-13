@@ -210,18 +210,35 @@ class TabManager: NSObject {
                 "amount": 1
             ]
             
-            // Build Delivery and Take Away Arrays
+            
+            
+            // Build And Layer Delivery and Take Away Arrays
             if lineitem.type == "delivery" {
-                deliveryOrders.append(paramLineItemParent)
-                deliveryOrders.append(paramLineItem)
+                
+                if lineitem.path == "Eat" {
+                    deliveryOrders.append(paramLineItem)
+                } else {
+                    deliveryOrders.append(paramLineItemParent)
+                    deliveryOrders.append(paramLineItem)
+                }
+                
             } else if lineitem.type == "takeaway" {
-                takeawayOrders.append(paramLineItemParent)
-                takeawayOrders.append(paramLineItem)
+                
+                if lineitem.path == "Eat" {
+                    takeawayOrders.append(paramLineItem)
+                } else {
+                    takeawayOrders.append(paramLineItemParent)
+                    takeawayOrders.append(paramLineItem)
+                }
+                
             } else {
+                
                 // Merch & Events Defaulted to Dine In (Delivery)
-                deliveryOrders.append(paramLineItemParent)
                 deliveryOrders.append(paramLineItem)
+            
             }
+            
+            
         }
         
 //        // Guard Against Event's Type
