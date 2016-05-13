@@ -133,6 +133,33 @@ class AlertManager: UIViewController {
         
     }
     
+    func tableNumberFailure(view: UIViewController, controller: UIViewController, title: String, message: String) {
+        
+        // Create Controller
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        alert.view.tintColor = UIColor.primaryGreenColor()
+        
+        // Create Actions
+        let okAction = UIAlertAction(title: "Okay", style: .Default, handler: {
+            (action) -> Void in
+            
+//            AnimationManager.sharedInstance.opaqueWindow(controller)
+            
+            
+            //            self.delegate?.removeOpaque()
+            view.dismissViewControllerAnimated(false, completion: nil)
+            print("User selected okay.")
+            
+        })
+        
+        // Add Actions To Alert
+        alert.addAction(okAction)
+        
+        // Present Alert
+        view.presentViewController(alert, animated: true, completion: nil)
+        
+    }
+    
     // Checkout Options Alert
     func checkoutOptions(view: UIViewController, controller: UIViewController, title: String, message: String) {
         

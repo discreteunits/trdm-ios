@@ -18,6 +18,8 @@ class TabManager: NSObject {
     
     var tierIVToTab = false
     
+    var validTableNumbers = [String]()
+    
 // -------------------
     override init() {
         super.init()
@@ -431,4 +433,41 @@ class TabManager: NSObject {
             viewWithTag.removeFromSuperview()
         }
     }
+    
+    
+    
+    func getValidTableNumbers() {
+        
+        print("Collecting all valid table numbers... .. .")
+        
+        let tableNumberQuery:PFQuery = PFQuery(className: "Table")
+        tableNumberQuery.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
+            
+            if error == nil {
+                
+                // The find succeeded.
+                print("Table Number query has found \(objects!.count) valid table numbers.")
+                print("---------------------")
+                
+                // Do something with the found objects.
+                for object in objects! {
+                    
+                    self.validTableNumbers.append(object["name"] as! String)
+//                    print("Table Number: \(object["name"] as! String) has been found valid.")
+                    
+                }
+                
+            } else {
+                
+                // Log details of the failure
+                print("Error: \(error!) \(error!.userInfo)")
+                
+            }
+        }
+        
+        
+    }
+    
+    
+    
 }

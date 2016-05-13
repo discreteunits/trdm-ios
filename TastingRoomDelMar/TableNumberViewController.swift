@@ -129,12 +129,27 @@ class TableNumberViewController: UIViewController, UITextFieldDelegate {
         // Check if text field is empty
         if tableNumberTextField.text! != "" {
             
-            // Set Table Number
-                TabManager.sharedInstance.currentTab.table = String(self.tableNumberTextField.text!)
             
+            // Check If Table Number Entered By User is Valid 
+            if TabManager.sharedInstance.validTableNumbers.contains(String(self.tableNumberTextField.text!)) {
+                
+                // Set Table Number
+                TabManager.sharedInstance.currentTab.table = String(self.tableNumberTextField.text!)
+                
+            } else {
+            
+                AlertManager.sharedInstance.tableNumberFailure(self, controller: self, title: "Not A Valid Table Number", message: "The table number you entered is not valid. Please enter a valid table number.")
+            
+                delegate?.removeOpaque()
+
+
+            }
+
             if printFlag {
                 print("User entered table number: \(TabManager.sharedInstance.currentTab.table)")
             }
+            
+            
             
             // If table number was set
             if TabManager.sharedInstance.currentTab.table != "" {

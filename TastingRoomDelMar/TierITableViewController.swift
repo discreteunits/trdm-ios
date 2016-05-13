@@ -62,6 +62,9 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Begin Collecting All Valid Table Numbers
+        TabManager.sharedInstance.getValidTableNumbers()
+        
 //        // Get User Stripe Cards
 //        getCards()
         
