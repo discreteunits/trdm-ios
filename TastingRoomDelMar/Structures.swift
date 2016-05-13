@@ -96,6 +96,11 @@ struct LineItem {
     var product = Product()
     var subproduct = Product()
     var additions = [Addition]()
+    
+    // CRV 
+    var volume = Double()
+    var crv = PFObject()
+    
 }
 
 struct Tab {

@@ -626,6 +626,51 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                             print("+++++++++++++++++++++++++++++++++++")
                             
                             
+                            
+                            // ONLY IF TAKE AWAY
+                            // ONLY IF BEER BOTTLES 
+                            if RouteManager.sharedInstance.TierOne!["name"] as! String == "Take Away" {
+                                if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Hops" {
+                                    if RouteManager.sharedInstance.TierThree!["name"] as! String == "Bottles" {
+                                       
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        print("Product Choice Info to be split for volume and crv struct values: \(productChoice.info)")
+                                        
+                                        // strip at ----- "ml"     OR    "oz" -------
+                                        
+                                        
+                                        // calculate oz from ml
+                                        
+                                        
+                                        
+                                        // apply crv value to line item based on ----- "oz" 
+                                        
+                                        
+                                    }
+                                }
+                            }
+                            
+                            // Strip subproduct info
+                            
+                            
+                            // Get Volume
+                            // Calculate Fluid Ounces
+                            // Set volume struct value
+                            
+                            
+                            // Get CRV
+                            // Set CRV PFObject value on struct based on Strip
+                            
+                            
+                            
+                            
+                            
+                            
+                            
                             // LineItem Parent Product
                             var newProduct = Product()
                             newProduct.objectId = productChoice.objectId                 // Parse Obj ID of Subproduct

@@ -62,6 +62,9 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Begin Collecting CRV Parse Objects For Later Use
+        TabManager.sharedInstance.getCRVObjects()
+        
         // Begin Collecting All Valid Table Numbers
         TabManager.sharedInstance.getValidTableNumbers()
         

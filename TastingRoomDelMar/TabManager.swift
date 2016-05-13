@@ -20,6 +20,8 @@ class TabManager: NSObject {
     
     var validTableNumbers = [String]()
     
+    var crvObjects = [PFObject]()
+    
 // -------------------
     override init() {
         super.init()
@@ -486,5 +488,35 @@ class TabManager: NSObject {
     }
     
     
-    
+    func getCRVObjects() {
+        
+        print("Collecting CRV Objects...")
+        
+        let crvQuery:PFQuery = PFQuery(className: "Product")
+        crvQuery.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
+            
+            if error == nil {
+            // The find succeeded.
+
+                
+                // Do something with the found objects.
+                for object in objects! {
+                    
+                    if object["info"] as! String == "CRV" {
+                        self.crvObjects.append(object)
+                    }
+                    
+                }
+                
+                print("CRV query has found \(self.crvObjects.count) objects.")
+                print("---------------------")
+                
+            } else {
+                
+                // Log details of the failure
+                print("Error: \(error!) \(error!.userInfo)")
+                
+            }
+        }
+    }
 }
