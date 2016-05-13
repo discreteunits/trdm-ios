@@ -132,6 +132,8 @@ class PopoverViewController: UITableViewController {
                 rows = 3
             }
             
+        } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Surrender Series" {
+            rows = 3
         } else if RouteManager.sharedInstance.TierThree!["name"] as! String == "Flights" {
             rows = 3
         } else {
@@ -535,7 +537,11 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                 } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "More" {
                     
                     completedChoices = 0
+                
+                } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Surrender Series" {
                     
+                    completedChoices = 0
+                
                 } else if RouteManager.sharedInstance.TierThree!["name"] as! String == "Flights" {
                     
                     completedChoices = 0
@@ -587,6 +593,10 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                                     totalChoicesPrice = popoverItem["priceWithoutVat"] as! Double
                                 }
                                 
+                            } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Surrender Series" {
+                                
+                                totalChoicesPrice = popoverItem["priceWithoutVat"] as! Double
+                            
                             } else if RouteManager.sharedInstance.TierThree!["name"] as! String == "Flights" {
 
                                 if RouteManager.sharedInstance.TierOne!["name"] as! String == "Dine In" {
@@ -669,14 +679,16 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                             } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "More" {
                                 newLineItem.varietal = ""
                                 newLineItem.path = "More"
+                            } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Surrender Series" {
+                                newLineItem.varietal = ""
+                                newLineItem.path = "Surrender Series"
                             } else if RouteManager.sharedInstance.TierThree!["name"] as! String == "Flights" {
                                 newLineItem.varietal = ""
                                 newLineItem.path = "Flights"
                             } else {
-                                
-                                newLineItem.varietal = ""
-
 //                                newLineItem.varietal = popoverItemVarietal["name"] as! String
+
+                                newLineItem.varietal = ""
                                 newLineItem.path = "Drink"
                             }
                             // ----- END -----

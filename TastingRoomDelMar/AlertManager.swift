@@ -147,7 +147,7 @@ class AlertManager: UIViewController {
             
             
             //            self.delegate?.removeOpaque()
-            view.dismissViewControllerAnimated(false, completion: nil)
+//            view.dismissViewControllerAnimated(false, completion: nil)
             print("User selected okay.")
             
         })
