@@ -90,7 +90,7 @@ class AddGratuityViewController: UIViewController {
         tableNumberTextView.textAlignment = .Center
         tableNumberTextView.userInteractionEnabled = false
         
-        // Labels & Values
+        // Labels
         let subTotalLabel = UILabel(frame: CGRectMake(0, 0, screenWidth * 0.3, 20))
         subTotalLabel.frame.origin.y = dynamicLocator*1.4
         subTotalLabel.frame.origin.x = 8
@@ -98,6 +98,7 @@ class AddGratuityViewController: UIViewController {
         subTotalLabel.text = "subtotal"
         subTotalLabel.font = UIFont.headerFont(18)
 
+        
         let taxLabel = UILabel(frame: CGRectMake(0, 0, screenWidth * 0.3, 20))
         taxLabel.frame.origin.y = (dynamicLocator*1.7)
         taxLabel.frame.origin.x = 8
@@ -105,14 +106,16 @@ class AddGratuityViewController: UIViewController {
         taxLabel.text = "tax"
         taxLabel.font = UIFont.headerFont(18)
 
+        
         gratuityLabel = UILabel(frame: CGRectMake(0, 0, screenWidth * 0.4, 20))
         gratuityLabel.frame.origin.y = (dynamicLocator*2.0)
         gratuityLabel.frame.origin.x = 8
         gratuityLabel.textAlignment = .Left
+        gratuityLabel.font = UIFont.headerFont(18)
+        TabManager.sharedInstance.currentTab.gratuityPercent = 18
+        gratuityLabel.text = "Gratuity " + "(\(TabManager.sharedInstance.currentTab.gratuityPercent)%)"
+
         
-
-        gratuityLabel.text = "Gratuity " + "(18%)"
-
         let totalLabel = UILabel(frame: CGRectMake(0, 0, screenWidth * 0.3, 20))
         totalLabel.frame.origin.y = (dynamicLocator*2.3)
         totalLabel.frame.origin.x = 8
@@ -120,6 +123,8 @@ class AddGratuityViewController: UIViewController {
         totalLabel.text = "total"
         totalLabel.font = UIFont.headerFont(18)
         
+        
+        // Value Labels
         subTotalValueLabel = UILabel(frame: CGRectMake(0, 0, screenWidth * 0.3, 20))
         subTotalValueLabel.frame.origin.y = dynamicLocator*1.4
         subTotalValueLabel.frame.origin.x = screenWidth * 0.65
@@ -129,6 +134,7 @@ class AddGratuityViewController: UIViewController {
         subTotalValueLabel.text = String(convertedSubTotalValue)
         subTotalValueLabel.font = UIFont.headerFont(18)
 
+        
         taxValueLabel = UILabel(frame: CGRectMake(0, 0, screenWidth * 0.3, 20))
         taxValueLabel.frame.origin.y = (dynamicLocator*1.7)
         taxValueLabel.frame.origin.x = screenWidth * 0.65
@@ -138,19 +144,18 @@ class AddGratuityViewController: UIViewController {
         taxValueLabel.text = String(convertedTaxValue)
         taxValueLabel.font = UIFont.headerFont(18)
 
+        
         gratuityValueLabel = UILabel(frame: CGRectMake(0, 0, screenWidth * 0.3, 20))
         gratuityValueLabel.frame.origin.y = (dynamicLocator*2.0)
         gratuityValueLabel.frame.origin.x = screenWidth * 0.65
         gratuityValueLabel.textAlignment = .Right
-        
-        
-        
-        TabManager.sharedInstance.currentTab.gratuityPercent = 18
+        gratuityValueLabel.font = UIFont.headerFont(18)
+
+        TabManager.sharedInstance.gratuityCalculator(String(TabManager.sharedInstance.currentTab.gratuityPercent))
         let preGratuityTotal = TabManager.sharedInstance.currentTab.totalTax + TabManager.sharedInstance.currentTab.subtotal
         let gratuityDollars = (TabManager.sharedInstance.currentTab.grandTotal - preGratuityTotal)
         let convertedGratuityDollars = formatter.formatPrice(gratuityDollars)
         gratuityValueLabel.text = String(convertedGratuityDollars)
-        gratuityValueLabel.font = UIFont.headerFont(18)
         
         
         totalValueLabel = UILabel(frame: CGRectMake(0, 0, screenWidth * 0.3, 20))
@@ -162,7 +167,7 @@ class AddGratuityViewController: UIViewController {
         totalValueLabel.text = String(convertedTotalValue)
         totalValueLabel.font = UIFont.headerFont(18)
 
-
+        
         // Gratuity Slider
         screenSizeSlider = UIScreen.mainScreen().bounds
         screenWidthSlider = screenSizeSlider.width
@@ -180,7 +185,6 @@ class AddGratuityViewController: UIViewController {
         
         // Create Cancel Button
         let buttonWidth = (screenWidth - 36) / 2
-        
         let cancelButton = UIButton(frame: CGRectMake(0, 0, buttonWidth, dynamicLocator*0.75))
         cancelButton.frame.origin.y = (dynamicLocator*3.75)
         cancelButton.frame.origin.x = 12
@@ -191,6 +195,7 @@ class AddGratuityViewController: UIViewController {
         cancelButton.layer.cornerRadius = 8.0
         cancelButton.clipsToBounds = true
         cancelButton.addTarget(self, action: #selector(AddGratuityViewController.cancelPopover), forControlEvents: UIControlEvents.TouchUpInside)
+        
         // Create Place Order Button
         let placeOrderButton = UIButton(frame: CGRectMake(0, 0, buttonWidth, dynamicLocator*0.75))
         placeOrderButton.frame.origin.y = (dynamicLocator*3.75)
@@ -245,9 +250,6 @@ class AddGratuityViewController: UIViewController {
         let taxValue = TabManager.sharedInstance.currentTab.totalTax
         let convertedTaxValue = formatter.formatPrice(taxValue)
         taxValueLabel.text = String(convertedTaxValue)
-        
-        
-        gratuityValueLabel.text = String(TabManager.sharedInstance.currentTab.gratuityPercent)
         
         
         let preGratuityTotal = TabManager.sharedInstance.currentTab.totalTax + TabManager.sharedInstance.currentTab.subtotal

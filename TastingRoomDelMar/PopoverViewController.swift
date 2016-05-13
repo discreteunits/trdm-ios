@@ -379,11 +379,6 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                     sgCollectionCell.label.text = orderAndServing
                     
                     
-                    
-                    print("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
-                    print("\(subproduct.price)")
-                    print("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
-                    
                 }
                 // ----- END -----
                 
