@@ -217,6 +217,17 @@ class TabManager: NSObject {
                 "amount": 1
             ]
             
+            // If Product is Take Away and Hops and Bottles, Layer CRV Product at the end
+            var paramLineItemCRV = [String:AnyObject]()
+            if lineitem.path == "Drink" {
+                if lineitem.type == "takeaway" {
+                    paramLineItemCRV = [
+                        "objectId": lineitem.product.crvId,
+                        "amount": lineitem.quantity
+                    ]
+                }
+            }
+            
             
             
             // Build And Layer Delivery and Take Away Arrays
@@ -234,8 +245,16 @@ class TabManager: NSObject {
                 if lineitem.path == "Eat" {
                     takeawayOrders.append(paramLineItem)
                 } else {
-                    takeawayOrders.append(paramLineItemParent)
-                    takeawayOrders.append(paramLineItem)
+                    
+                    if lineitem.product.crvAmount != 0 {
+                        takeawayOrders.append(paramLineItemParent)
+                        takeawayOrders.append(paramLineItem)
+                        takeawayOrders.append(paramLineItemCRV)
+                    } else {
+                        takeawayOrders.append(paramLineItemParent)
+                        takeawayOrders.append(paramLineItem)
+                    }
+
                 }
                 
             } else {
