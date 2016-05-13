@@ -626,50 +626,62 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                             print("+++++++++++++++++++++++++++++++++++")
                             
                             
-                            
+                            // -------- CRV STUFF ------
+                            var crv = CRV()
+                            var productVolume = Double()
                             // ONLY IF TAKE AWAY
                             // ONLY IF BEER BOTTLES 
                             if RouteManager.sharedInstance.TierOne!["name"] as! String == "Take Away" {
                                 if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Hops" {
                                     if RouteManager.sharedInstance.TierThree!["name"] as! String == "Bottles" {
                                        
-                                        
-                                        
-                                        
-                                        
+
                                         
                                         print("Product Choice Info to be split for volume and crv struct values: \(productChoice.info)")
                                         
-                                        // strip at ----- "ml"     OR    "oz" -------
+                                        let toBeSplit = productChoice.info
+                                        let split = toBeSplit.componentsSeparatedByString(" ")
+                                        print("Split String: \(split)")
+                                        let volumeString = split[0]
+                                        let servingString = split[1]
+                                        print("Volume String: \(volumeString)")
+                                        print("Serving String: \(servingString)")
+                                        if volumeString.rangeOfString("oz") != nil {
+                                            
+                                            let fluidOunces = volumeString.stringByReplacingOccurrencesOfString("oz", withString: "")
+                                            print("Fluid Ounces Found: \(fluidOunces)")
+                                            productVolume = Double(fluidOunces)!
+                                            
+                                        } else if volumeString.rangeOfString("ml") != nil {
+                                            
+                                            let milliliters = volumeString.stringByReplacingOccurrencesOfString("ml", withString: "")
+                                            print("Milliliters Found: \(milliliters)")
+                                            let convertMlToOz = Double(milliliters)! * 0.033814
+                                            productVolume = convertMlToOz
+
+                                        }
                                         
-                                        
-                                        // calculate oz from ml
-                                        
-                                        
-                                        
-                                        // apply crv value to line item based on ----- "oz" 
-                                        
-                                        
+                                        if productVolume < 24 {
+                                            
+                                            for crvObject in TabManager.sharedInstance.crvObjects {
+                                                if crvObject.priceWithoutVat == 0.05 {
+                                                    crv = crvObject
+                                                } 
+                                            }
+                                            
+                                        } else {
+                                            
+                                            for crvObject in TabManager.sharedInstance.crvObjects {
+                                                if crvObject.priceWithoutVat == 0.1 {
+                                                    crv = crvObject
+                                                }
+                                            }
+                                        }
                                     }
                                 }
                             }
-                            
-                            // Strip subproduct info
-                            
-                            
-                            // Get Volume
-                            // Calculate Fluid Ounces
-                            // Set volume struct value
-                            
-                            
-                            // Get CRV
-                            // Set CRV PFObject value on struct based on Strip
-                            
-                            
-                            
-                            
-                            
-                            
+                            print("CRV to be applied: \(crv)")
+
                             
                             // LineItem Parent Product
                             var newProduct = Product()
@@ -677,6 +689,11 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                             newProduct.productId = String(popoverItem["lightspeedId"])      // Lightspeed ID
                             newProduct.name = popoverItem["name"] as! String
                             newProduct.price = popoverItem["price"] as! Double
+                            newProduct.volume = productVolume
+                            newProduct.crvAmount = crv.priceWithoutVat
+                            newProduct.crvId = crv.id
+                            
+                            
                             
                             if let info = popoverItem["info"] as? String {
                                 newProduct.info = info

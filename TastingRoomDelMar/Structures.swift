@@ -73,6 +73,11 @@ struct Product {
     var price = Double()
     var info = String()
     
+    // CRV
+    var volume = Double()
+    var crvAmount = Double()
+    var crvId = Int()
+    
 //    var modifiergroups = [ModifierGroup]()
     
 }
@@ -96,10 +101,6 @@ struct LineItem {
     var product = Product()
     var subproduct = Product()
     var additions = [Addition]()
-    
-    // CRV 
-    var volume = Double()
-    var crv = PFObject()
     
 }
 
@@ -151,6 +152,11 @@ struct Card {
     var brand = String()
     var last4 = String()
     
+}
+
+struct CRV {
+    var id = Int()
+    var priceWithoutVat = Double()
 }
 
 public struct Validator {

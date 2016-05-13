@@ -108,6 +108,7 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
         
         let nameAttributes = [NSFontAttributeName: UIFont.headerFont(24)]
         let subNameAttributes = [NSFontAttributeName: UIFont.basicFont(16)]
+        let crvAttributes = [NSFontAttributeName: UIFont.basicFont(14)]
         let typeAttributes = [NSFontAttributeName: UIFont.basicFont(12)]
         
         
@@ -126,6 +127,12 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
             }
         }
         
+        
+        let lineitemTotalCRV = lineItem.product.crvAmount * Double(lineItem.quantity)
+        let crvString = NSMutableAttributedString(string: "CRV \(lineitemTotalCRV)\n", attributes: crvAttributes)
+        nameString.appendAttributedString(crvString)
+
+        
         // Get Delivery or Take Away Text
         var logistics = String()
         if lineItem.type == "takeaway" {
@@ -135,6 +142,9 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
         }
         
         let typeString = NSAttributedString(string: "\(logistics)", attributes: typeAttributes)
+        
+        
+        
         nameString.appendAttributedString(typeString)
         
         

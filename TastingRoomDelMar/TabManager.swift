@@ -20,7 +20,7 @@ class TabManager: NSObject {
     
     var validTableNumbers = [String]()
     
-    var crvObjects = [PFObject]()
+    var crvObjects = [CRV]()
     
 // -------------------
     override init() {
@@ -67,6 +67,7 @@ class TabManager: NSObject {
         
         // ----- HARVEST BEGIN ------
         let lineitems = currentTab.lines
+        var crvExpenses = Double()
         for lineitem in lineitems {
             
             var values = Double()
@@ -80,6 +81,9 @@ class TabManager: NSObject {
             
             let allAdditionValuePrices = values * Double(lineitem.quantity)
             
+            // Add CRV Amount to Total
+            crvExpenses = lineitem.product.crvAmount * Double(lineitem.quantity)
+            
             // Tax Calculations
             totalTax = totalTax + lineitem.tax // Already in dollars
         
@@ -89,9 +93,10 @@ class TabManager: NSObject {
         }
         // ----- END -----
 
+        print("Total CRV Expenese: \(crvExpenses)")
         
         // Total Calculation
-        let total = totalTax + subtotal
+        let total = totalTax + subtotal + crvExpenses
         
         // Assignments
         currentTab.subtotal = subtotal
@@ -493,7 +498,10 @@ class TabManager: NSObject {
         print("Collecting CRV Objects...")
         
         let crvQuery:PFQuery = PFQuery(className: "Product")
+        crvQuery.whereKey("info", equalTo: "CRV")
         crvQuery.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
+            
+            print("CRV query has found \(objects!.count) CRV Parse objects.")
             
             if error == nil {
             // The find succeeded.
@@ -502,13 +510,15 @@ class TabManager: NSObject {
                 // Do something with the found objects.
                 for object in objects! {
                     
-                    if object["info"] as! String == "CRV" {
-                        self.crvObjects.append(object)
-                    }
+                    var newCRV = CRV()
+                    newCRV.id = object["lightspeedId"] as! Int
+                    newCRV.priceWithoutVat = object["priceWithoutVat"] as! Double
+                        
+                    self.crvObjects.append(newCRV)
                     
                 }
                 
-                print("CRV query has found \(self.crvObjects.count) objects.")
+                print("CRV query has created \(self.crvObjects.count) CRV structures.")
                 print("---------------------")
                 
             } else {
