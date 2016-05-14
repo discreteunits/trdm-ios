@@ -17,19 +17,19 @@
                         <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mjf-RH-7W8">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="379"/>
+                                <connections>
+                                    <segue destination="AdG-c7-Hqc" kind="embed" identifier="tabTableEmbeded" id="oFa-CT-ePK"/>
+                                </connections>
+                            </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lfK-4L-Nar">
-                                <rect key="frame" x="0.0" y="378" width="600" height="201"/>
+                                <rect key="frame" x="0.0" y="378" width="600" height="250"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="wGJ-ii-B1Z"/>
                                 </constraints>
                                 <connections>
                                     <segue destination="v6o-Ch-Pb5" kind="embed" identifier="tabFloatingEmbeded" id="VFX-KJ-cxS"/>
-                                </connections>
-                            </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mjf-RH-7W8">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="379"/>
-                                <connections>
-                                    <segue destination="AdG-c7-Hqc" kind="embed" identifier="tabTableEmbeded" id="oFa-CT-ePK"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -279,7 +279,7 @@
             <objects>
                 <tableViewController id="v6o-Ch-Pb5" customClass="TabFloatingTableViewController" customModule="TastingRoomDelMar" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="85" sectionHeaderHeight="28" sectionFooterHeight="28" id="0eq-Fz-mPi">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="201"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="250"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -298,7 +298,7 @@
                                             </constraints>
                                         </view>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="MKk-aA-Xoj">
-                                            <rect key="frame" x="24" y="17" width="552" height="82"/>
+                                            <rect key="frame" x="24" y="17" width="552" height="72"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="o7R-PD-67t">
                                                     <rect key="frame" x="0.0" y="0.0" width="552" height="24"/>
@@ -350,23 +350,23 @@
                                                     </constraints>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="ckW-ah-iZr">
-                                                    <rect key="frame" x="0.0" y="48" width="552" height="34"/>
+                                                    <rect key="frame" x="0.0" y="48" width="552" height="24"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="total" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kFE-Pb-PpQ">
-                                                            <rect key="frame" x="0.0" y="0.0" width="276" height="34"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="276" height="24"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="totalValue" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qpw-5Y-ejY">
-                                                            <rect key="frame" x="276" y="0.0" width="276" height="34"/>
+                                                            <rect key="frame" x="276" y="0.0" width="276" height="24"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="34" id="WhE-PK-Lfm"/>
+                                                        <constraint firstAttribute="height" constant="24" id="WhE-PK-Lfm"/>
                                                     </constraints>
                                                 </stackView>
                                             </subviews>
@@ -417,7 +417,7 @@
                                         </button>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="bottomMargin" secondItem="rh7-AO-lxs" secondAttribute="bottom" constant="16" id="2oc-wQ-1wv"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="rh7-AO-lxs" secondAttribute="bottom" id="2oc-wQ-1wv"/>
                                         <constraint firstItem="rh7-AO-lxs" firstAttribute="leading" secondItem="tuT-on-gdf" secondAttribute="leadingMargin" constant="8" id="9gS-Yh-yoW"/>
                                         <constraint firstItem="rh7-AO-lxs" firstAttribute="trailing" secondItem="tuT-on-gdf" secondAttribute="trailingMargin" constant="-8" id="TOD-4E-adN"/>
                                         <constraint firstItem="rh7-AO-lxs" firstAttribute="top" secondItem="tuT-on-gdf" secondAttribute="topMargin" id="ozi-XX-uZT"/>

@@ -107,8 +107,8 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
         // additions to products - harvest
         
         let nameAttributes = [NSFontAttributeName: UIFont.headerFont(24)]
-        let subNameAttributes = [NSFontAttributeName: UIFont.basicFont(16)]
-        let crvAttributes = [NSFontAttributeName: UIFont.basicFont(14)]
+        let subNameAttributes = [NSFontAttributeName: UIFont.scriptFont(16)]
+        let crvAttributes = [NSFontAttributeName: UIFont.scriptFont(16)]
         let typeAttributes = [NSFontAttributeName: UIFont.basicFont(12)]
         
         
