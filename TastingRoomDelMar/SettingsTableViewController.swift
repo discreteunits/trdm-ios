@@ -364,6 +364,11 @@ class SettingsTableViewController: UITableViewController {
                 // Log Current User Out
                 if TabManager.sharedInstance.currentTab.userId != "" {
                     
+//                    CardManager.sharedInstance.currentCustomer.card.brand = ""
+//                    CardManager.sharedInstance.currentCustomer.card.last4 = ""
+                    
+                    CardManager.sharedInstance.currentCustomer.card = Card()
+                    
                     PFUser.logOut()
                     
                     

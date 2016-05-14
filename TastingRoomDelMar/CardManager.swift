@@ -34,7 +34,6 @@ class CardManager: NSObject {
         
         ActivityManager.sharedInstance.activityStart(view)
 
-        
         var result = String()
 
         PFCloud.callFunctionInBackground("addOrChangePaymentMethod", withParameters: ["userId": userId, "stripeToken": token] ) {
