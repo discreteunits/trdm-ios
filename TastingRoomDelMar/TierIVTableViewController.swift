@@ -156,6 +156,10 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
 //            cell.addToOrderButton.clipsToBounds = true
 //        }
         
+        cell.addToOrderButton.layer.cornerRadius = 6.0
+        cell.addToOrderButton.clipsToBounds = true
+        
+        
         
         let product = tierIVTableArray[indexPath.row]
         
@@ -210,57 +214,40 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         
-        // If User Is NOT Logged in
-        if TabManager.sharedInstance.currentTab.userId == "" {
-            
-            // Do Nothing
-            let cell = tableView.dequeueReusableCellWithIdentifier("itemCell", forIndexPath: indexPath) as! TierIVTableViewCell
-            cell.selectionStyle = UITableViewCellSelectionStyle.None
-            cell.userInteractionEnabled = false
-            
-            AlertManager.sharedInstance.anonymousMenuAlert(self, title: "Whoops!", message: "You need to have an account to add items to your tab.")
-
-            
-        } else {
         
-            additions.removeAll()
-            product = tierIVTableArray[indexPath.row]
+        additions.removeAll()
+        product = tierIVTableArray[indexPath.row]
 
-            // ----- HARVEST BEGIN ------
-            if RouteManager.sharedInstance.TierOne!["name"] as! String == "Merch" {
+        // ----- CONDITIONAL ROUTING BEGIN ------
+        if RouteManager.sharedInstance.TierOne!["name"] as! String == "Merch" {
             
-            } else if RouteManager.sharedInstance.TierOne!["name"] as! String == "Events" {
+        } else if RouteManager.sharedInstance.TierOne!["name"] as! String == "Events" {
             
-            } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
+        } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
             
-                if tierIVTableArray[indexPath.row]["additions"] != nil {
+            if tierIVTableArray[indexPath.row]["additions"] != nil {
                     print("This item contains: \(tierIVTableArray[indexPath.row]["additions"].count) raw additions.")
                
-                    let additionsRaw = tierIVTableArray[indexPath.row]["additions"]
+                let additionsRaw = tierIVTableArray[indexPath.row]["additions"]
                     
-                    for i in 0 ..< additionsRaw.count {
-                        if additionsRaw[i]["name"]! as! String != "Table Number" {
-                            if additionsRaw[i]["name"]! as! String != "Custom modifier" {
-                                additions.append(additionsRaw[i])
-                            }
+                for i in 0 ..< additionsRaw.count {
+                    if additionsRaw[i]["name"]! as! String != "Table Number" {
+                        if additionsRaw[i]["name"]! as! String != "Custom modifier" {
+                            additions.append(additionsRaw[i])
                         }
                     }
-                    
-                    print("Additions Created: \(additions)")
                 }
+                    
+                print("Additions Created: \(additions)")
             }
-            // ----- END -----
+        }
+        // ----- END -----
 
         
-            
-            // Start Activity Indicator
-            ActivityManager.sharedInstance.activityStart(self)
-            
-            performSegueWithIdentifier("showItemConfig", sender: self)
+        performSegueWithIdentifier("showItemConfig", sender: self)
         
-            print("------------------------")
+        print("------------------------")
         
-        }
     }
     
     // SEGUE TRIGGER AND PREPARATION
@@ -347,10 +334,6 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == "showItemConfig" {
-            
-            
-            // Stop Activity Indicator
-            ActivityManager.sharedInstance.activityStop(self)
             
             var controller = popoverPresentationController
             

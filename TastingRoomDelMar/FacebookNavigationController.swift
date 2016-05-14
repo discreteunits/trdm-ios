@@ -1,29 +1,22 @@
 //
-//  TierNavigationController.swift
+//  FacebookNavigationController.swift
 //  TastingRoomDelMar
 //
-//  Created by Tobias Robert Brysiewicz on 1/7/16.
+//  Created by Tobias Robert Brysiewicz on 5/14/16.
 //  Copyright © 2016 Taylor 5, LLC. All rights reserved.
 //
 
 import UIKit
 
-class TierNavigationController: ENSideMenuNavigationController, ENSideMenuDelegate {
-    
+class FacebookNavigationController: ENSideMenuNavigationController, ENSideMenuDelegate {
+
     var screenSize = CGRect()
     var screenWidth = CGFloat()
     var screenHeight = CGFloat()
     
-
-//    override func viewWillAppear(animated: Bool) {
-//        
-//        self.navigationController!.viewControllers.removeAll()
-//        
-//        
-//    }
-    
+    // -----
     override func viewDidLoad() {
-//        super.viewDidLoad()
+        super.viewDidLoad()
         
         screenSize = UIScreen.mainScreen().bounds
         screenWidth = screenSize.width
@@ -44,4 +37,16 @@ class TierNavigationController: ENSideMenuNavigationController, ENSideMenuDelega
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
 }

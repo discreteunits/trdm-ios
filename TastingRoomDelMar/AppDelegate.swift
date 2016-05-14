@@ -74,8 +74,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // -------------------------------
     // MARK: USER AUTO LOG IN
     // -------------------------------
-        if PFUser.currentUser() != nil {
-            
+//        if PFUser.currentUser() != nil {
+        if PFUser.currentUser()?.objectId != nil {
+        
             self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)

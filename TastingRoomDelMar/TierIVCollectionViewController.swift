@@ -20,6 +20,7 @@ protocol TierIVCollectionViewDelegate {
 //    func removeTableCellLines()
 }
 
+
 class TierIVCollectionViewController: UICollectionViewController {
     
     var collectionCellWidth = CGFloat()
@@ -87,7 +88,6 @@ class TierIVCollectionViewController: UICollectionViewController {
             let trueIndex = indexPath.row - 1
             cell.titleLabel?.text = self.tierIVCollectionArray[trueIndex]["name"] as? String
             collectionCellWidth = cell.titleLabel.frame.size.width + 32
-            print("collectionCellWidth: \(collectionCellWidth)")
             
             return cell
 

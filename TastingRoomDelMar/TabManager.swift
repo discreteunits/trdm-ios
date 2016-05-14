@@ -150,8 +150,6 @@ class TabManager: NSObject {
             print("-----------------------")
         }
         
-        ActivityManager.sharedInstance.activityStart(view)
-
         // Separate Delivery and Take Away orders
         var deliveryOrders = [[String:AnyObject]]()
         var takeawayOrders = [[String:AnyObject]]()
@@ -308,10 +306,10 @@ class TabManager: NSObject {
         }
         
         
-        
-        
         // Begin Placing Order with Order Object
         var result = String()
+    
+        ActivityManager.sharedInstance.activityStart(view)
         
         // Send Order Object To CloudCode
         PFCloud.callFunctionInBackground("placeOrders", withParameters: order ) {

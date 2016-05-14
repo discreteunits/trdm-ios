@@ -15,6 +15,12 @@ class SignupNavigationController: ENSideMenuNavigationController, ENSideMenuDele
     var screenHeight = CGFloat()
     
     // -----
+    override func viewWillAppear(animated: Bool) {
+        
+        
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

@@ -100,6 +100,7 @@
 		D7FC44B41C7E9F06003482B9 /* PaymentStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7FC44B31C7E9F06003482B9 /* PaymentStoryboard.storyboard */; };
 		D7FC44B71C7EA162003482B9 /* TabStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7FC44B61C7EA162003482B9 /* TabStoryboard.storyboard */; };
 		D7FDD8891CE79DF10039E54A /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FDD8881CE79DF10039E54A /* ForgotPasswordViewController.swift */; };
+		D7FDD88B1CE7BA4F0039E54A /* FacebookNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FDD88A1CE7BA4F0039E54A /* FacebookNavigationController.swift */; };
 		D7FFF7B11C3AFB0600020D9A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FFF7B01C3AFB0600020D9A /* AppDelegate.swift */; };
 		D7FFF7B81C3AFB0600020D9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7FFF7B71C3AFB0600020D9A /* Assets.xcassets */; };
 		D7FFF7BB1C3AFB0600020D9A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7FFF7B91C3AFB0600020D9A /* LaunchScreen.storyboard */; };
@@ -222,6 +223,7 @@
 		D7FC44B31C7E9F06003482B9 /* PaymentStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PaymentStoryboard.storyboard; sourceTree = "<group>"; };
 		D7FC44B61C7EA162003482B9 /* TabStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TabStoryboard.storyboard; sourceTree = "<group>"; };
 		D7FDD8881CE79DF10039E54A /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		D7FDD88A1CE7BA4F0039E54A /* FacebookNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookNavigationController.swift; sourceTree = "<group>"; };
 		D7FFF7AD1C3AFB0600020D9A /* TastingRoomDelMar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TastingRoomDelMar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7FFF7B01C3AFB0600020D9A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D7FFF7B71C3AFB0600020D9A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -345,11 +347,12 @@
 			children = (
 				D7D8099D1C7BCFBA00A3F5E6 /* AccountManager.swift */,
 				D7D809941C7BCE1D00A3F5E6 /* SignupStoryboard.storyboard */,
-				D7FDD8881CE79DF10039E54A /* ForgotPasswordViewController.swift */,
 				D7F174761CD42850002BA588 /* SignupNavigationController.swift */,
+				D7FDD88A1CE7BA4F0039E54A /* FacebookNavigationController.swift */,
 				D7D809961C7BCE5000A3F5E6 /* LandingViewController.swift */,
 				D78594931C7BF141000972FB /* SignupSceneOneViewController.swift */,
 				D78594951C7BF164000972FB /* SignupSceneOneTableViewController.swift */,
+				D7FDD8881CE79DF10039E54A /* ForgotPasswordViewController.swift */,
 				D786D1BF1C7D57F70034EA81 /* SignupSceneTwoViewController.swift */,
 				D786D1C11C7D580D0034EA81 /* SignupSceneTwoTableViewController.swift */,
 			);
@@ -730,6 +733,7 @@
 				D74D91531CB5A33100795C29 /* PriceFormatManager.swift in Sources */,
 				D7E803991C56E169003C12D9 /* PopoverQuantityTableViewCell.swift in Sources */,
 				D7734AF71C45D4B3009286DD /* TierIITableViewController.swift in Sources */,
+				D7FDD88B1CE7BA4F0039E54A /* FacebookNavigationController.swift in Sources */,
 				D733D4601C69533A00682A84 /* PaymentCardTableViewCell.swift in Sources */,
 				D74B1C4C1C5832E6008F5A36 /* PopoverQuantityCollectionViewCell.swift in Sources */,
 				D7C463FB1CBC330C00449EF3 /* RouteManager.swift in Sources */,

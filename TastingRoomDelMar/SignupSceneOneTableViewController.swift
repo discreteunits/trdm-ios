@@ -90,7 +90,7 @@ class SignupSceneOneTableViewController: UITableViewController, UITextFieldDeleg
         alternateButton.titleLabel?.font = UIFont.scriptFont(16)
         registeredMessage.font = UIFont.scriptFont(16)
         
-        forgotPasswordButton.titleLabel?.font = UIFont.headerFont(16)
+        forgotPasswordButton.titleLabel?.font = UIFont.basicFont(16)
             
 
     }
@@ -235,7 +235,7 @@ class SignupSceneOneTableViewController: UITableViewController, UITextFieldDeleg
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 3
+        return 4
     }
 
 

@@ -67,7 +67,7 @@ class MenuTableViewController: UITableViewController, ENSideMenuDelegate {
         if PFUser.currentUser()!.username != nil {
             return 5
         } else {
-            return 2
+            return 3
         }
         
     }
@@ -84,7 +84,7 @@ class MenuTableViewController: UITableViewController, ENSideMenuDelegate {
             
         } else {
             
-            menuArray = ["Menu", "Home"]
+            menuArray = ["Menu", "Tab", "Home"]
             
         }
         // ----- END -----
@@ -138,35 +138,56 @@ class MenuTableViewController: UITableViewController, ENSideMenuDelegate {
         case 1:
             
             // ----- Logged In Trigger -----
-            if PFUser.currentUser()!.username != nil {
-                
-                let tabStoryboard: UIStoryboard = UIStoryboard(name: "TabStoryboard", bundle: nil)
+            // TAB
+            let tabStoryboard: UIStoryboard = UIStoryboard(name: "TabStoryboard", bundle: nil)
 
-                destViewController = tabStoryboard.instantiateViewControllerWithIdentifier("Tab")
+            destViewController = tabStoryboard.instantiateViewControllerWithIdentifier("Tab")
+            destViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
+            destViewController.modalPresentationStyle = .CurrentContext
+                
+                
+            if let rootVC = sideMenuController() as? UIViewController {
+                    
+//               let rootVC = sideMenuController() as! UIViewController
+                rootVC.presentViewController(destViewController, animated: true, completion: nil)
+                    
+            } else {
+                    
+                let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let vc = mainStoryboard.instantiateViewControllerWithIdentifier("Menu")
+                vc.presentViewController(destViewController, animated: true, completion: nil)
+                    
+            }
+                
+                
+            // Remove Items Indicator
+            TabManager.sharedInstance.removeItemsIndicator()
+                
+            selectedMenuItem = 0
+            break
+            
+
+        case 2:
+            
+            // HISTORY
+            if PFUser.currentUser()!.username != nil {
+
+                let historyStoryboard: UIStoryboard = UIStoryboard(name: "HistoryStoryboard", bundle: nil)
+            
+                destViewController = historyStoryboard.instantiateViewControllerWithIdentifier("History")
                 destViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
                 destViewController.modalPresentationStyle = .CurrentContext
-                
-                
-                if let rootVC = sideMenuController() as? UIViewController {
-                    
-//                let rootVC = sideMenuController() as! UIViewController
-                    rootVC.presentViewController(destViewController, animated: true, completion: nil)
-                    
-                } else {
-                    
-                    let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                    let vc = mainStoryboard.instantiateViewControllerWithIdentifier("Menu")
-                    vc.presentViewController(destViewController, animated: true, completion: nil)
-                    
-                }
-                
-                
+            
+                let rootVC = sideMenuController() as! UIViewController
+                rootVC.presentViewController(destViewController, animated: true, completion: nil)
+            
                 // Remove Items Indicator
                 TabManager.sharedInstance.removeItemsIndicator()
-                
+            
                 selectedMenuItem = 0
                 break
                 
+            // HOME
             } else {
                 
                 let signupStoryboard: UIStoryboard = UIStoryboard(name: "SignupStoryboard", bundle: nil)
@@ -180,26 +201,9 @@ class MenuTableViewController: UITableViewController, ENSideMenuDelegate {
                 
                 RouteManager.sharedInstance.resetRoute()
                 selectedMenuItem = 0
-            break
+                break
                 
             }
-            // ----- END -----
-
-        case 2:
-            let historyStoryboard: UIStoryboard = UIStoryboard(name: "HistoryStoryboard", bundle: nil)
-            
-            destViewController = historyStoryboard.instantiateViewControllerWithIdentifier("History")
-            destViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
-            destViewController.modalPresentationStyle = .CurrentContext
-            
-            let rootVC = sideMenuController() as! UIViewController
-            rootVC.presentViewController(destViewController, animated: true, completion: nil)
-            
-            // Remove Items Indicator
-            TabManager.sharedInstance.removeItemsIndicator()
-            
-            selectedMenuItem = 0
-            break
         case 3:
             let paymentStoryboard: UIStoryboard = UIStoryboard(name: "PaymentStoryboard", bundle: nil)
 

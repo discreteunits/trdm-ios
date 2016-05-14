@@ -379,8 +379,7 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
                 for object in objects! as [PFObject] {
                     
                     // Check for active state
-                    if let product = object["category"] as? PFObject {
-                        if product["state"] as! String == "active" {
+                        if object["state"] as! String == "active" {
                             if object["stockAmount"] as! Int > 0 {
                     
                                 if RouteManager.sharedInstance.TierOne!["name"] as! String == "Events" {
@@ -493,7 +492,6 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
                 
                         }
                     }
-                }
                 
             
             } else {
