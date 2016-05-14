@@ -43,9 +43,17 @@ class PaymentViewController: UIViewController {
 
     @IBAction func menu(sender: AnyObject) {
         
-        self.dismissViewControllerAnimated(true, completion: nil)
+        // From Flyout
+        if TabManager.sharedInstance.paymentToTab {
+            self.dismissViewControllerAnimated(true, completion: nil)
+            TabManager.sharedInstance.addItemsIndicator()
+        // From Tab Popover
+        } else {
+            TabManager.sharedInstance.paymentToTab = true
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
         
-        TabManager.sharedInstance.addItemsIndicator()
+
         
     }
     

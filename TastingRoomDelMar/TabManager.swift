@@ -22,6 +22,8 @@ class TabManager: NSObject {
     
     var crvObjects = [CRV]()
     
+    var paymentToTab: Bool = true
+    
 // -------------------
     override init() {
         super.init()

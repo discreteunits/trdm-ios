@@ -25,13 +25,11 @@ class TabViewController: UIViewController {
     
 
 // ---------------
-    override func isViewLoaded() -> Bool {
-        
-        // Guard against items indicator ever showing
-        TabManager.sharedInstance.removeItemsIndicator()
-        return true
-        
-    }
+//    override func isViewLoaded() -> Bool {
+//        // Guard against items indicator ever showing
+//        TabManager.sharedInstance.removeItemsIndicator() // Not Fully Functional
+//        return true
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -264,6 +264,8 @@ class AlertManager: UIViewController {
         // Create Actions
         let addCardAction = UIAlertAction(title: "Add Card", style: .Default, handler: { (action) -> Void in
             
+            TabManager.sharedInstance.paymentToTab = false
+            
             self.goToAddPayment(view)
             
             if printFlag {
