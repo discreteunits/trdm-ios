@@ -16,6 +16,7 @@ protocol SignupSceneOneTableViewDelegate {
     func alternateLoginSignupNav()
     func showSignUpButton()
     func hideSignUpButton()
+    func goToForgotPassword()
 }
 
 class SignupSceneOneTableViewController: UITableViewController, UITextFieldDelegate {
@@ -32,6 +33,9 @@ class SignupSceneOneTableViewController: UITableViewController, UITextFieldDeleg
     
     @IBOutlet weak var registeredMessage: UILabel!
     @IBOutlet weak var alternateButton: UIButton!
+    
+    @IBOutlet weak var forgotPasswordButton: UIButton!
+    
     
     var keyboard = CGFloat()
     
@@ -85,6 +89,9 @@ class SignupSceneOneTableViewController: UITableViewController, UITextFieldDeleg
         
         alternateButton.titleLabel?.font = UIFont.scriptFont(16)
         registeredMessage.font = UIFont.scriptFont(16)
+        
+        forgotPasswordButton.titleLabel?.font = UIFont.headerFont(16)
+            
 
     }
 
@@ -210,6 +217,15 @@ class SignupSceneOneTableViewController: UITableViewController, UITextFieldDeleg
         }
         
     }
+    
+    
+    
+    @IBAction func forgotPassword(sender: AnyObject) {
+        
+        delegate?.goToForgotPassword()
+        
+    }
+    
     
     // MARK: - Table view data source
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {

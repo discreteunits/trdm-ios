@@ -29,6 +29,41 @@
             </objects>
             <point key="canvasLocation" x="424" y="402"/>
         </scene>
+        <!--Title-->
+        <scene sceneID="6px-2Y-ddD">
+            <objects>
+                <viewController id="iF4-HT-6Xa" customClass="ForgotPasswordViewController" customModule="TastingRoomDelMar" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="HJD-I0-VRP"/>
+                        <viewControllerLayoutGuide type="bottom" id="Aex-J9-TMD"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ML1-8J-XTw">
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BO6-x9-gBe">
+                                <rect key="frame" x="20" y="20" width="560" height="496"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="BO6-x9-gBe" firstAttribute="trailing" secondItem="ML1-8J-XTw" secondAttribute="trailingMargin" constant="8" id="4yu-Qf-Nbl"/>
+                            <constraint firstItem="BO6-x9-gBe" firstAttribute="leading" secondItem="ML1-8J-XTw" secondAttribute="leadingMargin" constant="8" id="Ow0-9c-8hC"/>
+                            <constraint firstItem="BO6-x9-gBe" firstAttribute="top" secondItem="HJD-I0-VRP" secondAttribute="bottom" constant="8" id="e7L-b0-S9A"/>
+                            <constraint firstItem="Aex-J9-TMD" firstAttribute="top" secondItem="BO6-x9-gBe" secondAttribute="bottom" constant="8" id="mzR-qr-FFa"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="tdx-Nd-c49"/>
+                    <connections>
+                        <outlet property="forgotPasswordWebView" destination="BO6-x9-gBe" id="ya9-BM-XI3"/>
+                        <outlet property="navigationTitle" destination="tdx-Nd-c49" id="gTx-vi-96a"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8gY-ky-PaH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1932" y="-431"/>
+        </scene>
         <!--Signup Navigation Controller-->
         <scene sceneID="qSO-nJ-3IJ">
             <objects>
@@ -80,6 +115,7 @@
                     <connections>
                         <segue destination="ZWh-ZN-Phu" kind="show" identifier="signupContinue" id="6k4-OH-iVe"/>
                         <segue destination="xvW-0L-ls7" kind="show" identifier="login" id="Zz6-jO-S1I"/>
+                        <segue destination="iF4-HT-6Xa" kind="show" identifier="forgotPassword" id="zYx-2J-gqL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hHn-yb-Jge" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -143,7 +179,7 @@
                                             <constraints>
                                                 <constraint firstItem="rmL-8T-jPQ" firstAttribute="trailing" secondItem="QoM-zV-Kgn" secondAttribute="trailingMargin" id="1DO-J4-N8P"/>
                                                 <constraint firstItem="rmL-8T-jPQ" firstAttribute="top" secondItem="QoM-zV-Kgn" secondAttribute="topMargin" constant="-8" id="5Ln-KH-Kgx"/>
-                                                <constraint firstItem="zF7-44-3fG" firstAttribute="leading" secondItem="QoM-zV-Kgn" secondAttribute="leadingMargin" constant="1" id="76I-0w-w3v"/>
+                                                <constraint firstItem="zF7-44-3fG" firstAttribute="leading" secondItem="QoM-zV-Kgn" secondAttribute="leadingMargin" constant="8" id="76I-0w-w3v"/>
                                                 <constraint firstItem="zF7-44-3fG" firstAttribute="centerY" secondItem="QoM-zV-Kgn" secondAttribute="centerY" id="SSK-mh-Mn6"/>
                                                 <constraint firstItem="yUJ-Dy-jI4" firstAttribute="centerY" secondItem="QoM-zV-Kgn" secondAttribute="centerY" id="af9-o9-ogt"/>
                                                 <constraint firstItem="qIu-kf-cA3" firstAttribute="centerY" secondItem="QoM-zV-Kgn" secondAttribute="centerY" id="aiL-SH-WKx"/>
@@ -199,7 +235,7 @@
                                                 <constraint firstItem="82g-W9-nrA" firstAttribute="trailing" secondItem="C5u-Er-nYT" secondAttribute="trailingMargin" id="4bZ-Fg-h5d"/>
                                                 <constraint firstItem="PiB-aU-0bk" firstAttribute="centerY" secondItem="C5u-Er-nYT" secondAttribute="centerY" id="621-F7-nGc"/>
                                                 <constraint firstItem="82g-W9-nrA" firstAttribute="top" secondItem="C5u-Er-nYT" secondAttribute="topMargin" id="Mcn-4I-Uzv"/>
-                                                <constraint firstItem="PiB-aU-0bk" firstAttribute="leading" secondItem="C5u-Er-nYT" secondAttribute="leadingMargin" id="SJy-Px-HGg"/>
+                                                <constraint firstItem="PiB-aU-0bk" firstAttribute="leading" secondItem="C5u-Er-nYT" secondAttribute="leadingMargin" constant="8" id="SJy-Px-HGg"/>
                                                 <constraint firstItem="seq-Mr-eal" firstAttribute="trailing" secondItem="C5u-Er-nYT" secondAttribute="trailingMargin" id="mN4-Se-cV4"/>
                                                 <constraint firstItem="seq-Mr-eal" firstAttribute="centerY" secondItem="C5u-Er-nYT" secondAttribute="centerY" id="qH2-ft-HxZ"/>
                                                 <constraint firstItem="fLc-Iu-ZFN" firstAttribute="centerY" secondItem="C5u-Er-nYT" secondAttribute="centerY" id="zcd-WR-2Z3"/>
@@ -243,6 +279,33 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="kdd-Jv-X8f">
+                                        <rect key="frame" x="0.0" y="150" width="600" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kdd-Jv-X8f" id="iH1-cx-pFb">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="49.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vxf-wZ-SLr">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="49.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <state key="normal" title="Forgot Password?">
+                                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="forgotPassword:" destination="QVs-bx-Hjo" eventType="touchUpInside" id="1zQ-BJ-zyk"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="vxf-wZ-SLr" secondAttribute="trailing" constant="8" id="1fM-TF-h0f"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="vxf-wZ-SLr" secondAttribute="bottom" constant="8" id="Ims-4e-nbN"/>
+                                                <constraint firstItem="vxf-wZ-SLr" firstAttribute="top" secondItem="iH1-cx-pFb" secondAttribute="topMargin" constant="8" id="i2e-nb-yLH"/>
+                                                <constraint firstItem="vxf-wZ-SLr" firstAttribute="leading" secondItem="iH1-cx-pFb" secondAttribute="leadingMargin" constant="8" id="lEY-Te-UpG"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -258,6 +321,7 @@
                         <outlet property="emailErrorMessage" destination="rmL-8T-jPQ" id="m6z-pO-a1s"/>
                         <outlet property="emailLabel" destination="zF7-44-3fG" id="86Q-Mc-Na5"/>
                         <outlet property="emailTextField" destination="qIu-kf-cA3" id="d2j-T1-iX6"/>
+                        <outlet property="forgotPasswordButton" destination="vxf-wZ-SLr" id="XgM-xS-XwD"/>
                         <outlet property="passwordCheckmark" destination="seq-Mr-eal" id="XUY-YK-fd7"/>
                         <outlet property="passwordErrorMessage" destination="82g-W9-nrA" id="Rc5-tn-Pyh"/>
                         <outlet property="passwordLabel" destination="PiB-aU-0bk" id="xy9-Kg-Dtg"/>
@@ -493,6 +557,6 @@
         <image name="checkmark" width="31" height="29"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="8Mv-39-V9A"/>
+        <segue reference="Zz6-jO-S1I"/>
     </inferredMetricsTieBreakers>
 </document>

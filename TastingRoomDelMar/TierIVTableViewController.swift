@@ -143,19 +143,18 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("itemCell", forIndexPath: indexPath) as! TierIVTableViewCell
         
-        // If User Is Logged in
-        if TabManager.sharedInstance.currentTab.userId == "" {
-            cell.addToOrderButton.hidden = false
-            cell.addToOrderButton.backgroundColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.2)
-            cell.addToOrderButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
-            cell.addToOrderButton.layer.cornerRadius = 6.0
-            cell.addToOrderButton.clipsToBounds = true
-            cell.userInteractionEnabled = false
-        } else {
-            cell.addToOrderButton.layer.cornerRadius = 6.0
-            cell.addToOrderButton.clipsToBounds = true
-        }
-        
+//        // Disable Add To Tab buttons if user is not logged in
+//        if TabManager.sharedInstance.currentTab.userId == "" {
+//            cell.addToOrderButton.hidden = false
+//            cell.addToOrderButton.backgroundColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.2)
+//            cell.addToOrderButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+//            cell.addToOrderButton.layer.cornerRadius = 6.0
+//            cell.addToOrderButton.clipsToBounds = true
+//            cell.userInteractionEnabled = false
+//        } else {
+//            cell.addToOrderButton.layer.cornerRadius = 6.0
+//            cell.addToOrderButton.clipsToBounds = true
+//        }
         
         
         let product = tierIVTableArray[indexPath.row]

@@ -99,6 +99,7 @@
 		D7FACCFB1C46F1EF0006F6BE /* TierIVCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FACCFA1C46F1EF0006F6BE /* TierIVCollectionViewController.swift */; };
 		D7FC44B41C7E9F06003482B9 /* PaymentStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7FC44B31C7E9F06003482B9 /* PaymentStoryboard.storyboard */; };
 		D7FC44B71C7EA162003482B9 /* TabStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7FC44B61C7EA162003482B9 /* TabStoryboard.storyboard */; };
+		D7FDD8891CE79DF10039E54A /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FDD8881CE79DF10039E54A /* ForgotPasswordViewController.swift */; };
 		D7FFF7B11C3AFB0600020D9A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FFF7B01C3AFB0600020D9A /* AppDelegate.swift */; };
 		D7FFF7B81C3AFB0600020D9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7FFF7B71C3AFB0600020D9A /* Assets.xcassets */; };
 		D7FFF7BB1C3AFB0600020D9A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7FFF7B91C3AFB0600020D9A /* LaunchScreen.storyboard */; };
@@ -220,6 +221,7 @@
 		D7FACCFA1C46F1EF0006F6BE /* TierIVCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierIVCollectionViewController.swift; sourceTree = "<group>"; };
 		D7FC44B31C7E9F06003482B9 /* PaymentStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PaymentStoryboard.storyboard; sourceTree = "<group>"; };
 		D7FC44B61C7EA162003482B9 /* TabStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TabStoryboard.storyboard; sourceTree = "<group>"; };
+		D7FDD8881CE79DF10039E54A /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		D7FFF7AD1C3AFB0600020D9A /* TastingRoomDelMar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TastingRoomDelMar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7FFF7B01C3AFB0600020D9A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D7FFF7B71C3AFB0600020D9A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -343,6 +345,7 @@
 			children = (
 				D7D8099D1C7BCFBA00A3F5E6 /* AccountManager.swift */,
 				D7D809941C7BCE1D00A3F5E6 /* SignupStoryboard.storyboard */,
+				D7FDD8881CE79DF10039E54A /* ForgotPasswordViewController.swift */,
 				D7F174761CD42850002BA588 /* SignupNavigationController.swift */,
 				D7D809961C7BCE5000A3F5E6 /* LandingViewController.swift */,
 				D78594931C7BF141000972FB /* SignupSceneOneViewController.swift */,
@@ -756,6 +759,7 @@
 				D7E803971C56E152003C12D9 /* PopoverSGTableViewCell.swift in Sources */,
 				D733D4661C69598F00682A84 /* CardManager.swift in Sources */,
 				D7D8099C1C7BCF6300A3F5E6 /* ActivityManager.swift in Sources */,
+				D7FDD8891CE79DF10039E54A /* ForgotPasswordViewController.swift in Sources */,
 				D775CDD71C6D3D00006A3F29 /* SettingsFooterTableViewCell.swift in Sources */,
 				D75ABF1E1C48306A00435CF1 /* TierIVTableViewCell.swift in Sources */,
 				D736DAE11C73DACE00751307 /* AddGratuityCollectionViewCell.swift in Sources */,

@@ -181,5 +181,9 @@ extension SignupSceneOneViewController: SignupSceneOneTableViewDelegate {
     func hideSignUpButton() {
         AnimationManager.sharedInstance.hideButtonVertical(self, button: signupButton)
     }
+    
+    func goToForgotPassword() {
+        performSegueWithIdentifier("forgotPassword", sender: self)
+    }
 
 }

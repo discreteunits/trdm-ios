@@ -378,129 +378,123 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
                 
                 for object in objects! as [PFObject] {
                     
-                    if object["stockAmount"] as! Int > 0 {
+                    // Check for active state
+                    if let product = object["category"] as? PFObject {
+                        if product["state"] as! String == "active" {
+                            if object["stockAmount"] as! Int > 0 {
                     
-                    if RouteManager.sharedInstance.TierOne!["name"] as! String == "Events" {
+                                if RouteManager.sharedInstance.TierOne!["name"] as! String == "Events" {
                         
-                        if !self.TierIVTableViewControllerRef!.tierIVTableArray.contains(object) {
-                            self.TierIVTableViewControllerRef?.tierIVTableArray.append(object)
-                        } else {
-                            print("This selection is already being shown.")
-                        }
+                                    if !self.TierIVTableViewControllerRef!.tierIVTableArray.contains(object) {
+                                        self.TierIVTableViewControllerRef?.tierIVTableArray.append(object)
+                                    } else {
+                                        print("This selection is already being shown.")
+                                    }
                         
-                    } else if RouteManager.sharedInstance.TierOne!["name"] as! String == "Merch" {
+                                } else if RouteManager.sharedInstance.TierOne!["name"] as! String == "Merch" {
                     
-                        if !self.TierIVTableViewControllerRef!.tierIVTableArray.contains(object) {
-                            self.TierIVTableViewControllerRef?.tierIVTableArray.append(object)
-                        } else {
-                            print("This selection is already being shown.")
-                        }
+                                    if !self.TierIVTableViewControllerRef!.tierIVTableArray.contains(object) {
+                                        self.TierIVTableViewControllerRef?.tierIVTableArray.append(object)
+                                    } else {
+                                        print("This selection is already being shown.")
+                                    }
                         
-                    } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Hops" {
+                                } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Hops" {
                         
-                        
-                        if RouteManager.sharedInstance.TierThree!["name"] as! String == "Flights" {
+                                    if RouteManager.sharedInstance.TierThree!["name"] as! String == "Flights" {
                             
-                        
-                            if object["productType"] as! String == "GROUP" {
+                                        if object["productType"] as! String == "GROUP" {
                                 
-                                // Product Route
-                                if !self.TierIVTableViewControllerRef!.tierIVTableArray.contains(object) {
-                                    self.TierIVTableViewControllerRef?.tierIVTableArray.append(object)
-                                } else {
-                                    print("This selection is already being shown.")
-                                }
+                                            // Product Route
+                                            if !self.TierIVTableViewControllerRef!.tierIVTableArray.contains(object) {
+                                                self.TierIVTableViewControllerRef?.tierIVTableArray.append(object)
+                                            } else {
+                                                print("This selection is already being shown.")
+                                            }
                             
-                            } else if object["productType"] as! String == "CHOICE" {
+                                        } else if object["productType"] as! String == "CHOICE" {
                             
-                                if !self.TierIVTableViewControllerRef!.tierIVTableArray.contains(object) {
-                                    self.TierIVTableViewControllerRef?.tierIVTableArray.append(object)
-                                } else {
-                                    print("This selection is already being shown.")
-                                }
+                                            if !self.TierIVTableViewControllerRef!.tierIVTableArray.contains(object) {
+                                                self.TierIVTableViewControllerRef?.tierIVTableArray.append(object)
+                                            } else {
+                                                print("This selection is already being shown.")
+                                            }
                         
-                            }
+                                        }
                     
-                        } else {
-                            if object["productType"] as! String == "CHOICE" {
-                                if !self.TierIVTableViewControllerRef!.tierIVTableArray.contains(object) {
-                                    self.TierIVTableViewControllerRef?.tierIVTableArray.append(object)
+                                    } else {
+                                        
+                                        if object["productType"] as! String == "CHOICE" {
+                                            if !self.TierIVTableViewControllerRef!.tierIVTableArray.contains(object) {
+                                                self.TierIVTableViewControllerRef?.tierIVTableArray.append(object)
+                                            } else {
+                                                print("This selection is already being shown.")
+                                            }
+                                        }
+                                        
+                                    }
+                        
+                                } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Vines" {
+                        
+                        
+                                    if object["productType"] as! String == "CHOICE" {
+                                        if !self.TierIVTableViewControllerRef!.tierIVTableArray.contains(object) {
+                                            self.TierIVTableViewControllerRef?.tierIVTableArray.append(object)
+                                        } else {
+                                            print("This selection is already being shown.")
+                                        }
+                                    }
+                        
+                                } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "More" {
+                            
+                                    // Parent Product Route
+                                    if object["productType"] as! String == "CHOICE" {
+                                
+                                        // Parent Product Route
+                                        if !self.TierIVTableViewControllerRef!.tierIVTableArray.contains(object) {
+                                            self.TierIVTableViewControllerRef?.tierIVTableArray.append(object)
+                                        } else {
+                                            print("This selection is already being shown.")
+                                        }
+                                
+                                    // Subproduct Route
+                                    } else if object["productType"] as! String != "" {
+                                
+                                        // Don't Show Subproducts
+                                        print("Subproduct Found: \(object["name"])")
+                                
+                                    // Produt Route
+                                    } else {
+                                
+                                        // Product Route
+                                        if !self.TierIVTableViewControllerRef!.tierIVTableArray.contains(object) {
+                                            self.TierIVTableViewControllerRef?.tierIVTableArray.append(object)
+                                        } else {
+                                            print("This selection is already being shown.")
+                                        }
+                                    
+                                    }
+                            
                                 } else {
-                                    print("This selection is already being shown.")
+                                    
+                                    // IF NOT HOPS or VINES
+                                    if !self.TierIVTableViewControllerRef!.tierIVTableArray.contains(object) {
+                                        self.TierIVTableViewControllerRef?.tierIVTableArray.append(object)
+                                    } else {
+                                        print("This selection is already being shown.")
+                                    }
+                        
                                 }
                             }
+                
+//                  AnimationManager.sharedInstance.animateTable((self.TierIVTableViewControllerRef!.tableView)!)
+                    
+                            self.TierIVTableViewControllerRef!.tableView.reloadData()
+                
                         }
-                        
-                                
-                                
-                    } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Vines" {
-                        
-                        
-                        if object["productType"] as! String == "CHOICE" {
-                            if !self.TierIVTableViewControllerRef!.tierIVTableArray.contains(object) {
-                                self.TierIVTableViewControllerRef?.tierIVTableArray.append(object)
-                            } else {
-                                print("This selection is already being shown.")
-                            }
-                        }
-                        
-                        
-                        
-                        
-                    } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "More" {
-                        
-
-                            
-                        // Parent Product Route
-                        if object["productType"] as! String == "CHOICE" {
-                                
-                            // Parent Product Route
-                            if !self.TierIVTableViewControllerRef!.tierIVTableArray.contains(object) {
-                                self.TierIVTableViewControllerRef?.tierIVTableArray.append(object)
-                            } else {
-                                print("This selection is already being shown.")
-                            }
-                                
-                        // Subproduct Route
-                        } else if object["productType"] as! String != "" {
-                                
-                            // Don't Show Subproducts
-                            print("Subproduct Found: \(object["name"])")
-                                
-                                
-                        // Produt Route
-                        } else {
-                                
-                            // Product Route
-                            if !self.TierIVTableViewControllerRef!.tierIVTableArray.contains(object) {
-                                self.TierIVTableViewControllerRef?.tierIVTableArray.append(object)
-                            } else {
-                                print("This selection is already being shown.")
-                            }
-                                
-                        }
-                            
-                            
-                        
- 
-                    } else {
-                    // IF NOT HOPS or VINES
-                        if !self.TierIVTableViewControllerRef!.tierIVTableArray.contains(object) {
-                            self.TierIVTableViewControllerRef?.tierIVTableArray.append(object)
-                        } else {
-                            print("This selection is already being shown.")
-                        }
-                        
                     }
                 }
                 
-//                AnimationManager.sharedInstance.animateTable((self.TierIVTableViewControllerRef!.tableView)!)
-                    
-                self.TierIVTableViewControllerRef!.tableView.reloadData()
-                
-                }
-                
-            
             
             } else {
                 
