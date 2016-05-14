@@ -118,6 +118,12 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
             // Get Subproduct Name
             let subNameString = NSAttributedString(string: "\(lineItem.subproduct.info)\n", attributes: subNameAttributes)
             nameString.appendAttributedString(subNameString)
+            
+            if lineItem.product.crvAmount != 0 {
+                let lineitemTotalCRV = lineItem.product.crvAmount * Double(lineItem.quantity)
+                let crvString = NSMutableAttributedString(string: "CRV \(lineitemTotalCRV)\n", attributes: crvAttributes)
+                nameString.appendAttributedString(crvString)
+            }
 
         } else if lineItem.path == "Eat" {
             // Get Each Addition Name
@@ -128,9 +134,7 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
         }
         
         
-        let lineitemTotalCRV = lineItem.product.crvAmount * Double(lineItem.quantity)
-        let crvString = NSMutableAttributedString(string: "CRV \(lineitemTotalCRV)\n", attributes: crvAttributes)
-        nameString.appendAttributedString(crvString)
+
 
         
         // Get Delivery or Take Away Text
