@@ -102,13 +102,15 @@ struct LineItem {
     var subproduct = Product()
     var additions = [Addition]()
     
-    // Discount 
-    var discount = Bool()
-    var discountable = Bool()
+    
     var beerOrWine = String()
-    var savings = Double()
+
+    // Discount
+    var discountable = Bool()
+    var discountName = String()
     var discountAmount = Int()
-    var parentItem = String()
+    var discountSavings = Double()
+
 }
 
 struct Tab {

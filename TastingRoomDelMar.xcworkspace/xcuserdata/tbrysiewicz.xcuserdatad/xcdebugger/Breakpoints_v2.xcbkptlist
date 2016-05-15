@@ -10,12 +10,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TastingRoomDelMar/TabManager.swift"
-            timestampString = "484961948.303328"
+            timestampString = "484998135.957409"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
-            landmarkName = "retailBottleDiscount()"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "calculateDiscount(_:discountAmount:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TastingRoomDelMar/TabManager.swift"
+            timestampString = "484998135.957409"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "calculateDiscount(_:discountAmount:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

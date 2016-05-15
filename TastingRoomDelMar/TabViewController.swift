@@ -32,7 +32,7 @@ class TabViewController: UIViewController {
 //    }
     
     override func viewWillAppear(animated: Bool) {
-        TabManager.sharedInstance.retailBottleDiscount()
+        TabManager.sharedInstance.setDiscountValues()
     }
     
     override func viewDidLoad() {

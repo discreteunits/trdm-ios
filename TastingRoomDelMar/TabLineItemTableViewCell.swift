@@ -16,6 +16,12 @@ class TabLineItemTableViewCell: UITableViewCell {
     
     @IBOutlet weak var priceLabel: UILabel!
     
+    @IBOutlet weak var discountQtyLabel: UILabel!
+    
+    @IBOutlet weak var discountNameLabel: UILabel!
+    
+    @IBOutlet weak var discountSavingsLabel: UILabel!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()

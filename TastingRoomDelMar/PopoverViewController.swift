@@ -25,7 +25,7 @@ class PopoverViewController: UITableViewController {
     var actionRow: Int!
     
     // Maximum Order Quantity
-    var maxQuantity = 10
+    var maxQuantity = 12
     
     // User Choices
     var productChoice = Product() // Beer and Wine
@@ -702,14 +702,12 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                             }
                             
                             
-                            
-                            
                             // Begin Create LineItem
                             var newLineItem = LineItem()
-                            
                             newLineItem.objectId = popoverItem.objectId!
                             newLineItem.productId = "\(popoverItem["lightspeedId"])"
                             newLineItem.quantity = Int(quantityChoice)!
+                            
                             
                             // Set Line Item Type (ie: Delivery, Take Away)
                             if RouteManager.sharedInstance.TierOne!["name"] as! String == "Dine In" {
@@ -726,14 +724,14 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                                 // Mark Item as Discountable, and Increment Tab Bottle Count
                                 if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Vines" {
                                     newLineItem.discountable = true
-                                    newLineItem.beerOrWine = "Wine"
+                                    newLineItem.beerOrWine = "retailWine"
                                     TabManager.sharedInstance.wineBottleCount = newLineItem.quantity + TabManager.sharedInstance.wineBottleCount
                                 } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Hops" {
                                     newLineItem.discountable = true
-                                    newLineItem.beerOrWine = "Beer"
+                                    newLineItem.beerOrWine = "retailBeer"
                                     TabManager.sharedInstance.beerBottleCount = newLineItem.quantity + TabManager.sharedInstance.beerBottleCount
                                 }
-                            
+                             
                                 
                                 
                             } else {

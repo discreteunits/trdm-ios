@@ -43,7 +43,9 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableView.estimatedRowHeight = 100
+        TabManager.sharedInstance.setDiscountValues()
+        
+        self.tableView.estimatedRowHeight = 100 + 32
         self.tableView.rowHeight = UITableViewAutomaticDimension
         
         self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
@@ -58,7 +60,6 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
                 self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Middle, animated: false)
             }
         }
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -111,12 +112,7 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
         let crvAttributes = [NSFontAttributeName: UIFont.scriptFont(16)]
         let typeAttributes = [NSFontAttributeName: UIFont.basicFont(12)]
         
-        var nameString = NSMutableAttributedString()
-        if lineItem.discount {
-            nameString = NSMutableAttributedString(string: "\(lineItem.name)", attributes: nameAttributes)
-        } else {
-            nameString = NSMutableAttributedString(string: "\(lineItem.name)\n", attributes: nameAttributes)
-        }
+        let nameString = NSMutableAttributedString(string: "\(lineItem.name)\n", attributes: nameAttributes)
         
         if lineItem.path == "Drink" {
             // Get Subproduct Name
@@ -138,6 +134,13 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
         }
         
         
+        // if lineitem is discountable, meaning it should be discounted
+        // if lineitem is retail beer
+            // if count is x, y, or z
+            // function: calculate line item discount values(% to discount, lineitem)
+                // assign lineitem discount struct
+        // if lineitem is retail wine
+        
 
 
         
@@ -149,7 +152,7 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
             logistics = "Dine In"
         }
         
-        let typeString = NSAttributedString(string: "\(logistics)", attributes: typeAttributes)
+        let typeString = NSAttributedString(string: "\(logistics)\n\n\n", attributes: typeAttributes)
         
         
         
@@ -175,26 +178,21 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
         
         lineitemCell.contentDataLabel?.attributedText = makeAttributedString(TabManager.sharedInstance.currentTab, index: indexPath.row)
         
+ 
+        let price = TabManager.sharedInstance.currentTab.lines[indexPath.row].price
+        let convertedPrice = formatter.formatPrice(price)
+        lineitemCell.priceLabel.text = convertedPrice
+        lineitemCell.priceLabel.font = UIFont.scriptFont(18)
         
-        if TabManager.sharedInstance.currentTab.lines[indexPath.row].discount {
-            let price = TabManager.sharedInstance.currentTab.lines[indexPath.row].price
-            let convertedPrice = formatter.formatPrice(price)
-            lineitemCell.priceLabel.text = "(\(convertedPrice))"
-            lineitemCell.priceLabel.font = UIFont.scriptFont(18)
-        } else {
-            let price = TabManager.sharedInstance.currentTab.lines[indexPath.row].price
-            let convertedPrice = formatter.formatPrice(price)
-            lineitemCell.priceLabel.text = convertedPrice
-            lineitemCell.priceLabel.font = UIFont.scriptFont(18)
-        }
         
-
-        // Discount
-        if TabManager.sharedInstance.currentTab.lines[indexPath.row].discount {
-            lineitemCell.userInteractionEnabled = false
-        }
-
+        // Discount Section
+        lineitemCell.discountQtyLabel.text = "\(TabManager.sharedInstance.currentTab.lines[indexPath.row].quantity)"
+        lineitemCell.discountNameLabel.text = "\(TabManager.sharedInstance.currentTab.lines[indexPath.row].discountName)"
+        lineitemCell.discountSavingsLabel.text = "(\(TabManager.sharedInstance.currentTab.lines[indexPath.row].discountSavings))"
         
+        lineitemCell.discountQtyLabel.font = UIFont.scriptFont(18)
+        lineitemCell.discountNameLabel.font = UIFont.headerFont(24)
+        lineitemCell.discountSavingsLabel.font = UIFont.scriptFont(18)
         
         
         
@@ -260,7 +258,7 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
             
             
             
-            TabManager.sharedInstance.retailBottleDiscount()
+            TabManager.sharedInstance.setDiscountValues()
             
             if TabManager.sharedInstance.currentTab.lines.count == 0 {
                 self.dismissViewControllerAnimated(false, completion: nil)

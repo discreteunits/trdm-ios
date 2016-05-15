@@ -219,23 +219,68 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="discountQty" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2EU-OF-TcM">
+                                            <rect key="frame" x="22" y="92" width="94" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="discountName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KM8-2W-iUt">
+                                            <rect key="frame" x="150" y="93" width="300" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="discountSavings" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zVp-3K-FsI">
+                                            <rect key="frame" x="466" y="93" width="126" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fK6-rN-4Dd">
+                                            <rect key="frame" x="0.0" y="78" width="600" height="7"/>
+                                            <color key="backgroundColor" red="0.84313725490000002" green="0.84313725490000002" blue="0.84313725490000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="1" id="Uqn-wp-FtN"/>
+                                            </constraints>
+                                        </view>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="a3M-cC-Gsq" firstAttribute="leading" secondItem="IqJ-ll-w9n" secondAttribute="leadingMargin" constant="60" id="0Q0-58-MFJ"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="a3M-cC-Gsq" secondAttribute="trailing" constant="72" id="7aZ-dF-vsf"/>
+                                        <constraint firstItem="zVp-3K-FsI" firstAttribute="leading" secondItem="KM8-2W-iUt" secondAttribute="trailing" constant="72" id="B8T-oO-D4q"/>
+                                        <constraint firstItem="2EU-OF-TcM" firstAttribute="leading" secondItem="IqJ-ll-w9n" secondAttribute="leadingMargin" constant="20" id="BmL-8z-yUY"/>
                                         <constraint firstItem="Oz1-iX-5zB" firstAttribute="top" secondItem="a3M-cC-Gsq" secondAttribute="bottom" constant="8" id="Cxl-95-F0U"/>
+                                        <constraint firstItem="KM8-2W-iUt" firstAttribute="leading" secondItem="2EU-OF-TcM" secondAttribute="trailing" constant="32" id="FRo-iG-BBn"/>
                                         <constraint firstItem="7oZ-nw-xu9" firstAttribute="top" secondItem="IqJ-ll-w9n" secondAttribute="topMargin" id="JSc-pE-ZJX"/>
                                         <constraint firstItem="EAL-ve-fwx" firstAttribute="leading" secondItem="IqJ-ll-w9n" secondAttribute="leadingMargin" constant="20" id="Nqk-Gp-uG3"/>
+                                        <constraint firstItem="2EU-OF-TcM" firstAttribute="top" secondItem="fK6-rN-4Dd" secondAttribute="bottom" constant="16" id="ON5-Zl-Laa"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="fK6-rN-4Dd" secondAttribute="trailing" constant="-8" id="Qrk-oI-wYC"/>
+                                        <constraint firstItem="Oz1-iX-5zB" firstAttribute="top" secondItem="zVp-3K-FsI" secondAttribute="bottom" constant="8" id="RaG-6s-UJL"/>
+                                        <constraint firstItem="Oz1-iX-5zB" firstAttribute="top" secondItem="KM8-2W-iUt" secondAttribute="bottom" constant="8" id="TiH-zt-DWV"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="Oz1-iX-5zB" secondAttribute="bottom" id="VPu-bH-I0t"/>
+                                        <constraint firstItem="zVp-3K-FsI" firstAttribute="trailing" secondItem="IqJ-ll-w9n" secondAttribute="trailingMargin" constant="-20" id="Y5o-Fh-Ovg"/>
+                                        <constraint firstItem="fK6-rN-4Dd" firstAttribute="leading" secondItem="IqJ-ll-w9n" secondAttribute="leadingMargin" constant="-24" id="bRu-7A-Rwe"/>
                                         <constraint firstItem="7oZ-nw-xu9" firstAttribute="trailing" secondItem="IqJ-ll-w9n" secondAttribute="trailingMargin" constant="-20" id="e2r-fN-vBf"/>
+                                        <constraint firstItem="KM8-2W-iUt" firstAttribute="leading" secondItem="2EU-OF-TcM" secondAttribute="trailing" constant="34" id="hov-Pa-VHl"/>
                                         <constraint firstItem="a3M-cC-Gsq" firstAttribute="top" secondItem="IqJ-ll-w9n" secondAttribute="topMargin" constant="4" id="mqj-s3-CGC"/>
+                                        <constraint firstItem="Oz1-iX-5zB" firstAttribute="top" secondItem="2EU-OF-TcM" secondAttribute="bottom" constant="8" id="r2r-g6-5H3"/>
                                         <constraint firstItem="Oz1-iX-5zB" firstAttribute="leading" secondItem="IqJ-ll-w9n" secondAttribute="leadingMargin" constant="-24" id="uaU-nB-glW"/>
                                         <constraint firstItem="EAL-ve-fwx" firstAttribute="top" secondItem="IqJ-ll-w9n" secondAttribute="topMargin" id="vqw-bU-tYg"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="Oz1-iX-5zB" secondAttribute="trailing" constant="-8" id="xkn-S6-TOj"/>
                                     </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="hov-Pa-VHl"/>
+                                            <exclude reference="B8T-oO-D4q"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="contentDataLabel" destination="a3M-cC-Gsq" id="UHQ-QB-UGa"/>
+                                    <outlet property="discountNameLabel" destination="KM8-2W-iUt" id="fJ9-Yd-iXa"/>
+                                    <outlet property="discountQtyLabel" destination="2EU-OF-TcM" id="piL-ON-4B2"/>
+                                    <outlet property="discountSavingsLabel" destination="zVp-3K-FsI" id="MMX-T2-4Ij"/>
                                     <outlet property="priceLabel" destination="7oZ-nw-xu9" id="1Hp-m1-XOl"/>
                                     <outlet property="quantityLabel" destination="EAL-ve-fwx" id="FJf-fe-8N7"/>
                                 </connections>

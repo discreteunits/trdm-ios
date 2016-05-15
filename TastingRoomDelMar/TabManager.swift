@@ -26,10 +26,10 @@ class TabManager: NSObject {
     var paymentToTab: Bool = true
     
     // Retail Bottle Counts for Discounts
-    var discountObjects = [LineItem]()
-    var discount15 = LineItem()
-    var discount20 = LineItem()
-    var discount25 = LineItem()
+    var discountObjects = [Discount]()
+    var discount15 = Discount()
+    var discount20 = Discount()
+    var discount25 = Discount()
     var wineBottleCount: Int = 0
     var beerBottleCount: Int = 0
     
@@ -43,127 +43,197 @@ class TabManager: NSObject {
 
     }
     
-    func retailBottleDiscount() {
+    func calculateDiscount(index: Int, discountAmount: Int) {
         
-        print("------------ Beginning to calculate potential discounts... -------------")
-        print("Wine Bottle Count: \(wineBottleCount)")
-        print("Beer Bottle Count: \(beerBottleCount)")
+        
+        if discountAmount == 15 {
+            TabManager.sharedInstance.currentTab.lines[index].discountName = discount15.name
+            TabManager.sharedInstance.currentTab.lines[index].discountAmount = discount15.discountAmount
+        } else if discountAmount == 20 {
+            TabManager.sharedInstance.currentTab.lines[index].discountName = discount20.name
+            TabManager.sharedInstance.currentTab.lines[index].discountAmount = discount20.discountAmount
+        } else if discountAmount == 25 {
+            TabManager.sharedInstance.currentTab.lines[index].discountName = discount25.name
+            TabManager.sharedInstance.currentTab.lines[index].discountAmount = discount25.discountAmount
+        }
+            
+            // Calculate and Set Savings Based on Already Set Struct Values
+            TabManager.sharedInstance.currentTab.lines[index].discountSavings = TabManager.sharedInstance.currentTab.lines[index].price * (Double(TabManager.sharedInstance.currentTab.lines[index].discountAmount) / 100 )
+            
+
+        
+    }
+    
+    func setDiscountValues() {
+        
+        print("Beginning to calculate potential discounts...")
+        print("Total Retail Wine Bottle Count: \(wineBottleCount)")
+        print("Total Retail Beer Bottle Count: \(beerBottleCount)")
         print("-------------------------")
         
         
-        // Begin Wine Discounting
-        if wineBottleCount > 0 && wineBottleCount < 3 {
-            // 15% Discount
-            print("Applying 15% Wine Discount...")
-            for var i in 0..<TabManager.sharedInstance.currentTab.lines.count {
-                var lineitem = TabManager.sharedInstance.currentTab.lines[i]
-                if lineitem.beerOrWine == "Wine" {
-                    // Calculate LineItem's Total Discount
-                    let lineitemSavings = (lineitem.price) * 0.15
-                    lineitem.savings = lineitemSavings
-                    // Insert Discount Object After Discountable Item
-                    discount15.quantity = lineitem.quantity
-                    discount15.price = lineitem.savings
-                    discount15.parentItem = lineitem.objectId
-                    TabManager.sharedInstance.currentTab.lines.insert(discount15, atIndex: i+1)
+        // for line item in tab lines
+        // if tab is beer || wine 
+        // if beerCount is x, y, z || if wineCount is x, y, z
+        // function: calculateDiscount(lineitem, discount amount)
+        var lineitemCount: Int = 0
+        for lineitem in TabManager.sharedInstance.currentTab.lines {
+            if lineitem.beerOrWine == "retailBeer" || lineitem.beerOrWine == "retailWine" {
+                
+                // Wine Items
+                if TabManager.sharedInstance.wineBottleCount > 0 && TabManager.sharedInstance.wineBottleCount < 3 {
+                    self.calculateDiscount(lineitemCount, discountAmount: 15)
+                } else if TabManager.sharedInstance.wineBottleCount > 2 && TabManager.sharedInstance.wineBottleCount < 12 {
+                    self.calculateDiscount(lineitemCount, discountAmount: 20)
+                } else if TabManager.sharedInstance.wineBottleCount > 12 {
+                    self.calculateDiscount(lineitemCount, discountAmount: 25)
                 }
-            }
+                
+                
+                // Beer Items
+                if TabManager.sharedInstance.beerBottleCount > 0 && TabManager.sharedInstance.beerBottleCount < 3 {
+                    self.calculateDiscount(lineitemCount, discountAmount: 15)
+                } else if TabManager.sharedInstance.beerBottleCount > 0 && TabManager.sharedInstance.beerBottleCount < 12 {
+                    self.calculateDiscount(lineitemCount, discountAmount: 20)
+                } else if TabManager.sharedInstance.beerBottleCount > 12 {
+                    self.calculateDiscount(lineitemCount, discountAmount: 25)
+                }
+                
+                
+                lineitemCount = lineitemCount + 1
 
-            
-        } else if wineBottleCount > 2 && wineBottleCount < 12 {
-            // 20% Discount
-            print("Applying 20% Wine Discount...")
-            for var i in 0..<TabManager.sharedInstance.currentTab.lines.count {
-                var lineitem = TabManager.sharedInstance.currentTab.lines[i]
-                if lineitem.beerOrWine == "Wine" {
-                    // Calculate LineItem's Total Discount
-                    let lineitemSavings = (lineitem.price) * 0.20
-                    lineitem.savings = lineitemSavings
-                    // Insert Discount Object After Discountable Item
-                    discount20.quantity = lineitem.quantity
-                    discount20.price = lineitem.savings
-                    discount20.parentItem = lineitem.objectId
-                    TabManager.sharedInstance.currentTab.lines.insert(discount20, atIndex: i+1)
-                }
+                
             }
-            
-            
-        } else if wineBottleCount > 12 {
-            // 25% Discount
-            print("Applying 25% Wine Discount...")
-            for var i in 0..<TabManager.sharedInstance.currentTab.lines.count {
-                var lineitem = TabManager.sharedInstance.currentTab.lines[i]
-                if lineitem.beerOrWine == "Wine" {
-                    // Calculate LineItem's Total Discount
-                    let lineitemSavings = (lineitem.price) * 0.25
-                    lineitem.savings = lineitemSavings
-                    // Insert Discount Object After Discountable Item
-                    discount25.quantity = lineitem.quantity
-                    discount25.price = lineitem.savings
-                    discount25.parentItem = lineitem.objectId
-                    TabManager.sharedInstance.currentTab.lines.insert(discount25, atIndex: i+1)
-                }
-            }
-            
-            
         }
         
-        // Begin Beer Discounting
-        if beerBottleCount > 0 && beerBottleCount < 3 {
-            // 15% Discount
-            print("Applying 15% Beer Discount...")
-            for var i in 0..<TabManager.sharedInstance.currentTab.lines.count {
-                var lineitem = TabManager.sharedInstance.currentTab.lines[i]
-                if lineitem.beerOrWine == "Beer" {
-                    // Calculate LineItem's Total Discount
-                    let lineitemSavings = (lineitem.price) * 0.15
-                    lineitem.savings = lineitemSavings
-                    // Insert Discount Object After Discountable Item
-                    discount15.quantity = lineitem.quantity
-                    discount15.price = lineitem.savings
-                    discount15.parentItem = lineitem.objectId
-                    TabManager.sharedInstance.currentTab.lines.insert(discount15, atIndex: i+1)
-                }
-            }
-            
-            
-        } else if beerBottleCount > 2 && beerBottleCount < 12 {
-            // 20% Discount
-            print("Applying 20% Beer Discount...")
-            for var i in 0..<TabManager.sharedInstance.currentTab.lines.count {
-                var lineitem = TabManager.sharedInstance.currentTab.lines[i]
-                if lineitem.beerOrWine == "Beer" {
-                    // Calculate LineItem's Total Discount
-                    let lineitemSavings = (lineitem.price) * 0.20
-                    lineitem.savings = lineitemSavings
-                    // Insert Discount Object After Discountable Item
-                    discount20.quantity = lineitem.quantity
-                    discount20.price = lineitem.savings
-                    discount20.parentItem = lineitem.objectId
-                    TabManager.sharedInstance.currentTab.lines.insert(discount20, atIndex: i+1)
-                }
-            }
-            
-            
-        } else if beerBottleCount > 12 {
-            // 25% Discount
-            print("Applying 25% Beer Discount...")
-            for var i in 0..<TabManager.sharedInstance.currentTab.lines.count {
-                var lineitem = TabManager.sharedInstance.currentTab.lines[i]
-                if lineitem.beerOrWine == "Beer" {
-                    // Calculate LineItem's Total Discount
-                    let lineitemSavings = (lineitem.price) * 0.25
-                    lineitem.savings = lineitemSavings
-                    // Insert Discount Object After Discountable Item
-                    discount25.quantity = lineitem.quantity
-                    discount25.price = lineitem.savings
-                    discount25.parentItem = lineitem.objectId
-                    TabManager.sharedInstance.currentTab.lines.insert(discount25, atIndex: i+1)
-                }
-            }
-            
-            
-        }
+        
+//        // Begin Wine Discounting
+//        if wineBottleCount > 0 && wineBottleCount < 3 {
+//            // 15% Discount
+//            print("Applying 15% Wine Discount...")
+//            for var i in 0..<TabManager.sharedInstance.currentTab.lines.count {
+//                var lineitem = TabManager.sharedInstance.currentTab.lines[i]
+//                if lineitem.beerOrWine == "retailWine" {
+//                    if lineitem.parentItem == "" {
+//
+//                    // Calculate LineItem's Total Discount
+//                    let lineitemSavings = (lineitem.price) * 0.15
+//                    lineitem.savings = lineitemSavings
+//                    // Insert Discount Object After Discountable Item
+//                    discount15.quantity = lineitem.quantity
+//                    discount15.price = lineitem.savings
+//                    discount20.parentItem = lineitem.objectId
+//                    TabManager.sharedInstance.currentTab.lines.insert(discount15, atIndex: i+1)
+//                    }
+//                }
+//            }
+//
+//            
+//        } else if wineBottleCount > 2 && wineBottleCount < 12 {
+//            // 20% Discount
+//            print("Applying 20% Wine Discount...")
+//            for var i in 0..<TabManager.sharedInstance.currentTab.lines.count {
+//                var lineitem = TabManager.sharedInstance.currentTab.lines[i]
+//                if lineitem.beerOrWine == "retailWine" {
+//                    if lineitem.parentItem == "" {
+//
+//                    // Calculate LineItem's Total Discount
+//                    let lineitemSavings = (lineitem.price) * 0.20
+//                    lineitem.savings = lineitemSavings
+//                    // Insert Discount Object After Discountable Item
+//                    discount20.quantity = lineitem.quantity
+//                    discount20.price = lineitem.savings
+//                    discount20.parentItem = lineitem.objectId
+//                    TabManager.sharedInstance.currentTab.lines.insert(discount20, atIndex: i+1)
+//                    }
+//                }
+//            }
+//            
+//            
+//        } else if wineBottleCount > 12 {
+//            // 25% Discount
+//            print("Applying 25% Wine Discount...")
+//            for var i in 0..<TabManager.sharedInstance.currentTab.lines.count {
+//                var lineitem = TabManager.sharedInstance.currentTab.lines[i]
+//                if lineitem.beerOrWine == "retailWine" {
+//                    if lineitem.parentItem == "" {
+//
+//                    // Calculate LineItem's Total Discount
+//                    let lineitemSavings = (lineitem.price) * 0.25
+//                    lineitem.savings = lineitemSavings
+//                    // Insert Discount Object After Discountable Item
+//                    discount25.quantity = lineitem.quantity
+//                    discount25.price = lineitem.savings
+//                    discount25.parentItem = lineitem.objectId
+//                    TabManager.sharedInstance.currentTab.lines.insert(discount25, atIndex: i+1)
+//                    }
+//                }
+//            }
+//        }
+//        
+//        // Begin Beer Discounting
+//        if beerBottleCount > 0 && beerBottleCount < 3 {
+//            // 15% Discount
+//            print("Applying 15% Beer Discount...")
+//            for var i in 0..<TabManager.sharedInstance.currentTab.lines.count {
+//                var lineitem = TabManager.sharedInstance.currentTab.lines[i]
+//                if lineitem.beerOrWine == "retailBeer" {
+//                    if lineitem.parentItem == "" {
+//                        
+//                    // Calculate LineItem's Total Discount
+//                    let lineitemSavings = (lineitem.price) * 0.15
+//                    lineitem.savings = lineitemSavings
+//                    // Insert Discount Object After Discountable Item
+//                    discount15.quantity = lineitem.quantity
+//                    discount15.price = lineitem.savings
+//                    discount15.parentItem = lineitem.objectId
+//                    TabManager.sharedInstance.currentTab.lines.insert(discount15, atIndex: i+1)
+//                    }
+//                }
+//            }
+//            
+//            
+//        } else if beerBottleCount > 2 && beerBottleCount < 12 {
+//            // 20% Discount
+//            print("Applying 20% Beer Discount...")
+//            for var i in 0..<TabManager.sharedInstance.currentTab.lines.count {
+//                var lineitem = TabManager.sharedInstance.currentTab.lines[i]
+//                if lineitem.beerOrWine == "retailBeer" {
+//                    if lineitem.parentItem == "" {
+//
+//                    // Calculate LineItem's Total Discount
+//                    let lineitemSavings = (lineitem.price) * 0.20
+//                    lineitem.savings = lineitemSavings
+//                    // Insert Discount Object After Discountable Item
+//                    discount20.quantity = lineitem.quantity
+//                    discount20.price = lineitem.savings
+//                    discount20.parentItem = lineitem.objectId
+//                    TabManager.sharedInstance.currentTab.lines.insert(discount20, atIndex: i+1)
+//                    }
+//                }
+//            }
+//            
+//            
+//        } else if beerBottleCount > 12 {
+//            // 25% Discount
+//            print("Applying 25% Beer Discount...")
+//            for var i in 0..<TabManager.sharedInstance.currentTab.lines.count {
+//                var lineitem = TabManager.sharedInstance.currentTab.lines[i]
+//                if lineitem.beerOrWine == "retailBeer" {
+//                    if lineitem.parentItem == "" {
+//
+//                    // Calculate LineItem's Total Discount
+//                    let lineitemSavings = (lineitem.price) * 0.25
+//                    lineitem.savings = lineitemSavings
+//                    // Insert Discount Object After Discountable Item
+//                    discount25.quantity = lineitem.quantity
+//                    discount25.price = lineitem.savings
+//                    discount25.parentItem = lineitem.objectId
+//                    TabManager.sharedInstance.currentTab.lines.insert(discount25, atIndex: i+1)
+//                    }
+//                }
+//            }
+//        }
     }
     
     func syncTab(tabId: String) {
@@ -681,11 +751,10 @@ class TabManager: NSObject {
                 // Do something with the found objects.
                 for object in objects! {
                     
-                    var newDiscount = LineItem()
+                    var newDiscount = Discount()
                     newDiscount.objectId = object.objectId!
                     newDiscount.discountAmount = object["priceWithoutVat"] as! Int
                     newDiscount.name = object["name"] as! String
-                    newDiscount.discount = true
                     
                     self.discountObjects.append(newDiscount)
                     
