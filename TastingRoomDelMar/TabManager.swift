@@ -64,6 +64,7 @@ class TabManager: NSObject {
                     // Insert Discount Object After Discountable Item
                     discount15.quantity = lineitem.quantity
                     discount15.price = lineitem.savings
+                    discount15.parentItem = lineitem.objectId
                     TabManager.sharedInstance.currentTab.lines.insert(discount15, atIndex: i+1)
                 }
             }
@@ -81,6 +82,7 @@ class TabManager: NSObject {
                     // Insert Discount Object After Discountable Item
                     discount20.quantity = lineitem.quantity
                     discount20.price = lineitem.savings
+                    discount20.parentItem = lineitem.objectId
                     TabManager.sharedInstance.currentTab.lines.insert(discount20, atIndex: i+1)
                 }
             }
@@ -98,6 +100,7 @@ class TabManager: NSObject {
                     // Insert Discount Object After Discountable Item
                     discount25.quantity = lineitem.quantity
                     discount25.price = lineitem.savings
+                    discount25.parentItem = lineitem.objectId
                     TabManager.sharedInstance.currentTab.lines.insert(discount25, atIndex: i+1)
                 }
             }
@@ -118,6 +121,7 @@ class TabManager: NSObject {
                     // Insert Discount Object After Discountable Item
                     discount15.quantity = lineitem.quantity
                     discount15.price = lineitem.savings
+                    discount15.parentItem = lineitem.objectId
                     TabManager.sharedInstance.currentTab.lines.insert(discount15, atIndex: i+1)
                 }
             }
@@ -135,6 +139,7 @@ class TabManager: NSObject {
                     // Insert Discount Object After Discountable Item
                     discount20.quantity = lineitem.quantity
                     discount20.price = lineitem.savings
+                    discount20.parentItem = lineitem.objectId
                     TabManager.sharedInstance.currentTab.lines.insert(discount20, atIndex: i+1)
                 }
             }
@@ -152,6 +157,7 @@ class TabManager: NSObject {
                     // Insert Discount Object After Discountable Item
                     discount25.quantity = lineitem.quantity
                     discount25.price = lineitem.savings
+                    discount25.parentItem = lineitem.objectId
                     TabManager.sharedInstance.currentTab.lines.insert(discount25, atIndex: i+1)
                 }
             }

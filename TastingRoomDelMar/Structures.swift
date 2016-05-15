@@ -108,7 +108,7 @@ struct LineItem {
     var beerOrWine = String()
     var savings = Double()
     var discountAmount = Int()
-    
+    var parentItem = String()
 }
 
 struct Tab {
