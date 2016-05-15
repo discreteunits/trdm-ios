@@ -703,6 +703,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                             
                             
                             
+                            
                             // Begin Create LineItem
                             var newLineItem = LineItem()
                             
@@ -717,7 +718,23 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                                 
                             } else if RouteManager.sharedInstance.TierOne!["name"] as! String == "Take Away" {
                                 
+                                
+                                
                                 newLineItem.type = "takeaway"
+                                
+                                
+                                // Mark Item as Discountable, and Increment Tab Bottle Count
+                                if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Vines" {
+                                    newLineItem.discountable = true
+                                    newLineItem.beerOrWine = "Wine"
+                                    TabManager.sharedInstance.wineBottleCount = newLineItem.quantity + TabManager.sharedInstance.wineBottleCount
+                                } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Hops" {
+                                    newLineItem.discountable = true
+                                    newLineItem.beerOrWine = "Beer"
+                                    TabManager.sharedInstance.beerBottleCount = newLineItem.quantity + TabManager.sharedInstance.beerBottleCount
+                                }
+                            
+                                
                                 
                             } else {
                                 newLineItem.type = ""  // Set Default

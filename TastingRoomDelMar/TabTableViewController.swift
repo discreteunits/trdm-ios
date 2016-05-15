@@ -111,8 +111,12 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
         let crvAttributes = [NSFontAttributeName: UIFont.scriptFont(16)]
         let typeAttributes = [NSFontAttributeName: UIFont.basicFont(12)]
         
-        
-        let nameString = NSMutableAttributedString(string: "\(lineItem.name)\n", attributes: nameAttributes)
+        var nameString = NSMutableAttributedString()
+        if lineItem.discount {
+            nameString = NSMutableAttributedString(string: "\(lineItem.name)", attributes: nameAttributes)
+        } else {
+            nameString = NSMutableAttributedString(string: "\(lineItem.name)\n", attributes: nameAttributes)
+        }
         
         if lineItem.path == "Drink" {
             // Get Subproduct Name
@@ -171,11 +175,28 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
         
         lineitemCell.contentDataLabel?.attributedText = makeAttributedString(TabManager.sharedInstance.currentTab, index: indexPath.row)
         
-        let price = TabManager.sharedInstance.currentTab.lines[indexPath.row].price
-        let convertedPrice = formatter.formatPrice(price)
-        lineitemCell.priceLabel.text = convertedPrice
-        lineitemCell.priceLabel.font = UIFont.scriptFont(18)
+        
+        if TabManager.sharedInstance.currentTab.lines[indexPath.row].discount {
+            let price = TabManager.sharedInstance.currentTab.lines[indexPath.row].price
+            let convertedPrice = formatter.formatPrice(price)
+            lineitemCell.priceLabel.text = "(\(convertedPrice))"
+            lineitemCell.priceLabel.font = UIFont.scriptFont(18)
+        } else {
+            let price = TabManager.sharedInstance.currentTab.lines[indexPath.row].price
+            let convertedPrice = formatter.formatPrice(price)
+            lineitemCell.priceLabel.text = convertedPrice
+            lineitemCell.priceLabel.font = UIFont.scriptFont(18)
+        }
+        
 
+        // Discount
+        if TabManager.sharedInstance.currentTab.lines[indexPath.row].discount {
+            lineitemCell.userInteractionEnabled = false
+        }
+
+        
+        
+        
         
         return lineitemCell
 
@@ -209,12 +230,37 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
             
             self.tableView.beginUpdates()
 
-
-            // Remove Line Item From Tab Struct
-            TabManager.sharedInstance.currentTab.lines.removeAtIndex(indexPath.row)
-            // Remove Row From Table
-            self.tableView.deleteRowsAtIndexPaths(NSArray(object: NSIndexPath(forRow: indexPath.row, inSection: 0)) as! [NSIndexPath], withRowAnimation: UITableViewRowAnimation.Left)
+            // Discount: Decrement Tab Manager Bottle Count 
+            if TabManager.sharedInstance.currentTab.lines[indexPath.row].discountable {
+                if TabManager.sharedInstance.currentTab.lines[indexPath.row].beerOrWine == "Wine" {
+                    TabManager.sharedInstance.wineBottleCount = TabManager.sharedInstance.currentTab.lines[indexPath.row].quantity - TabManager.sharedInstance.wineBottleCount
+                } else if TabManager.sharedInstance.currentTab.lines[indexPath.row].beerOrWine == "Beer" {
+                    TabManager.sharedInstance.beerBottleCount = TabManager.sharedInstance.currentTab.lines[indexPath.row].quantity - TabManager.sharedInstance.beerBottleCount
+                }
+            }
             
+            // Remove LineItem and Related Discount LineItems
+            if TabManager.sharedInstance.currentTab.lines[indexPath.row].discountable {
+                // If Item has a discount, remove both the item and it's discount item
+                TabManager.sharedInstance.currentTab.lines.removeAtIndex(indexPath.row + 1)
+                TabManager.sharedInstance.currentTab.lines.removeAtIndex(indexPath.row)
+                
+                // Remove Row From Table
+                self.tableView.deleteRowsAtIndexPaths(NSArray(object: NSIndexPath(forRow: indexPath.row + 1, inSection: 0)) as! [NSIndexPath], withRowAnimation: UITableViewRowAnimation.Left)
+                // Remove Row From Table
+                self.tableView.deleteRowsAtIndexPaths(NSArray(object: NSIndexPath(forRow: indexPath.row, inSection: 0)) as! [NSIndexPath], withRowAnimation: UITableViewRowAnimation.Left)
+                
+            } else {
+                // Just remove Item
+                TabManager.sharedInstance.currentTab.lines.removeAtIndex(indexPath.row)
+                
+                // Remove Row From Table
+                self.tableView.deleteRowsAtIndexPaths(NSArray(object: NSIndexPath(forRow: indexPath.row, inSection: 0)) as! [NSIndexPath], withRowAnimation: UITableViewRowAnimation.Left)
+            }
+            
+            
+            
+            TabManager.sharedInstance.retailBottleDiscount()
             
             if TabManager.sharedInstance.currentTab.lines.count == 0 {
                 self.dismissViewControllerAnimated(false, completion: nil)

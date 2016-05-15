@@ -112,8 +112,11 @@ class AddGratuityViewController: UIViewController {
         gratuityLabel.frame.origin.x = 8
         gratuityLabel.textAlignment = .Left
         gratuityLabel.font = UIFont.headerFont(18)
-        TabManager.sharedInstance.currentTab.gratuityPercent = 0
-        gratuityLabel.text = "Gratuity " + "(\(TabManager.sharedInstance.currentTab.gratuityPercent)%)"
+        TabManager.sharedInstance.currentTab.gratuityPercent = 18
+        
+        
+        let convertedGratuity = formatter.formatPrice(TabManager.sharedInstance.currentTab.gratuityPercent)
+        gratuityLabel.text = "Gratuity " + "(\(convertedGratuity)%)"
 
         
         let totalLabel = UILabel(frame: CGRectMake(0, 0, screenWidth * 0.3, 20))
@@ -180,7 +183,7 @@ class AddGratuityViewController: UIViewController {
         gratuitySlider.maximumValue = 200
         gratuitySlider.continuous = true
         gratuitySlider.tintColor = UIColor.primaryGreenColor()
-        gratuitySlider.value = 0
+        gratuitySlider.value = 18
         gratuitySlider.addTarget(self, action: "sliderValueDidChange:", forControlEvents: .ValueChanged)
         
         // Create Cancel Button

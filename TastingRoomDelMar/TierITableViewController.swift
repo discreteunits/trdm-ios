@@ -62,6 +62,9 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Begin Collecting Discount Parse Objects For Later Use
+        TabManager.sharedInstance.getDiscountObjects()
+        
         // Begin Collecting CRV Parse Objects For Later Use
         TabManager.sharedInstance.getCRVObjects()
         

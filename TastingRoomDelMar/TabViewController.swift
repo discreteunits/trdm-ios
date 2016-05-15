@@ -31,6 +31,10 @@ class TabViewController: UIViewController {
 //        return true
 //    }
     
+    override func viewWillAppear(animated: Bool) {
+        TabManager.sharedInstance.retailBottleDiscount()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

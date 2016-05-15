@@ -102,6 +102,13 @@ struct LineItem {
     var subproduct = Product()
     var additions = [Addition]()
     
+    // Discount 
+    var discount = Bool()
+    var discountable = Bool()
+    var beerOrWine = String()
+    var savings = Double()
+    var discountAmount = Int()
+    
 }
 
 struct Tab {
@@ -157,6 +164,14 @@ struct Card {
 struct CRV {
     var id = Int()
     var priceWithoutVat = Double()
+}
+
+struct Discount {
+    
+    var objectId = String() // Parse Object ID
+    var discountAmount = Int() // priceWithoutVat
+    var name = String()
+    
 }
 
 public struct Validator {
