@@ -32,11 +32,14 @@ class TabViewController: UIViewController {
 //    }
     
     override func viewWillAppear(animated: Bool) {
-        TabManager.sharedInstance.setDiscountValues()
+
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        TabManager.sharedInstance.setWineDiscountValues()
+        TabManager.sharedInstance.setBeerDiscountValues()
         
         // Remove Indicator
         let currentWindow: UIWindow = UIApplication.sharedApplication().keyWindow!

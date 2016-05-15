@@ -278,6 +278,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="contentDataLabel" destination="a3M-cC-Gsq" id="UHQ-QB-UGa"/>
+                                    <outlet property="discountLine" destination="fK6-rN-4Dd" id="fIW-gj-krb"/>
                                     <outlet property="discountNameLabel" destination="KM8-2W-iUt" id="fJ9-Yd-iXa"/>
                                     <outlet property="discountQtyLabel" destination="2EU-OF-TcM" id="piL-ON-4B2"/>
                                     <outlet property="discountSavingsLabel" destination="zVp-3K-FsI" id="MMX-T2-4Ij"/>

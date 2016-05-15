@@ -132,7 +132,7 @@ class PopoverViewController: UITableViewController {
                 rows = 3
             }
             
-        } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Surrender Series" {
+        } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Surrender" {
             rows = 3
         } else if RouteManager.sharedInstance.TierThree!["name"] as! String == "Flights" {
             rows = 3
@@ -538,7 +538,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                     
                     completedChoices = 0
                 
-                } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Surrender Series" {
+                } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Surrender" {
                     
                     completedChoices = 0
                 
@@ -593,7 +593,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                                     totalChoicesPrice = popoverItem["priceWithoutVat"] as! Double
                                 }
                                 
-                            } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Surrender Series" {
+                            } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Surrender" {
                                 
                                 totalChoicesPrice = popoverItem["priceWithoutVat"] as! Double
                             
@@ -612,6 +612,11 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                                 totalChoicesPrice = productChoice.price
                                 
                             }
+                            
+                            
+                            
+                            
+                            
                             
                             // Tax and Total for LineItem
                             let lineitemPreTax = lineitemQuantity! * (totalChoicesPrice)
@@ -756,9 +761,9 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                             } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "More" {
                                 newLineItem.varietal = ""
                                 newLineItem.path = "More"
-                            } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Surrender Series" {
+                            } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Surrender" {
                                 newLineItem.varietal = ""
-                                newLineItem.path = "Surrender Series"
+                                newLineItem.path = "Surrender"
                             } else if RouteManager.sharedInstance.TierThree!["name"] as! String == "Flights" {
                                 newLineItem.varietal = ""
                                 newLineItem.path = "Flights"

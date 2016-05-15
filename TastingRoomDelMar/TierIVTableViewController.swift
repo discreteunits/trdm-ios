@@ -399,7 +399,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
                     popoverHeightCalculation = ((popoverDynamicHeight + 1) * 100) + nameHeight
                 }
                 
-            } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Surrender Series" {
+            } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Surrender" {
                 
                 
                 

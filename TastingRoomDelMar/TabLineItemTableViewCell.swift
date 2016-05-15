@@ -23,6 +23,10 @@ class TabLineItemTableViewCell: UITableViewCell {
     @IBOutlet weak var discountSavingsLabel: UILabel!
     
     
+    @IBOutlet weak var discountLine: UIView!
+    
+    
+    // -------- 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
