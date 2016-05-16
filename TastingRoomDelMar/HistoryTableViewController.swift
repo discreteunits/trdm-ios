@@ -190,7 +190,10 @@ class HistoryTableViewController: UITableViewController {
 //            }
 //        }
         
-        
+        print("---------------")
+        print("\(order)")
+        print("---------------")
+
         
         if let orderPrice = order["orderTaxInfo"][0]["totalWithTax"]! as? Double {
             let totalString = formatter.formatPrice(orderPrice)

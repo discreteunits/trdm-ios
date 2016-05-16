@@ -188,7 +188,7 @@ extension TabViewController: TabTableViewDelegate, TabFloatingTableViewDelegate,
             messageTextView.layer.zPosition = 99
             // Create Back To Menu Button
             let menuButton = UIButton(frame: CGRectMake(0, 0, windowWidth * 0.4625, windowHeight / 10))
-            menuButton.frame.origin.y = windowHeight * 0.75
+            menuButton.frame.origin.y = windowHeight * 0.78
             menuButton.frame.origin.x = windowWidth * 0.025
             menuButton.setTitle("Back to Menu", forState: .Normal)
             menuButton.layer.backgroundColor = UIColor(red: 242/255.0, green: 242/255.0, blue: 242/255.0, alpha: 1.0).CGColor
@@ -200,7 +200,7 @@ extension TabViewController: TabTableViewDelegate, TabFloatingTableViewDelegate,
             menuButton.layer.zPosition = 99
             // Create Order History Button
             let historyButton = UIButton(frame: CGRectMake(0, 0, windowWidth * 0.4625, windowHeight / 10))
-            historyButton.frame.origin.y = windowHeight * 0.75
+            historyButton.frame.origin.y = windowHeight * 0.78
             historyButton.frame.origin.x = (windowWidth * 0.05) + (windowWidth * 0.4625)
             historyButton.setTitle("Order History", forState: .Normal)
             historyButton.layer.backgroundColor = UIColor(red: 242/255.0, green: 242/255.0, blue: 242/255.0, alpha: 1.0).CGColor

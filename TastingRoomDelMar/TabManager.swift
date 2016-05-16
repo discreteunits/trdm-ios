@@ -102,14 +102,9 @@ class TabManager: NSObject {
             if TabManager.sharedInstance.currentTab.lines[i].beerOrWine == "retailBeer" {
                 
                 // Beer Items
-                if TabManager.sharedInstance.beerBottleCount > 0 && TabManager.sharedInstance.beerBottleCount < 3 {
+                if TabManager.sharedInstance.beerBottleCount > 0  {
                     self.calculateDiscount(i, discountAmount: 15)
-                } else if TabManager.sharedInstance.beerBottleCount > 0 && TabManager.sharedInstance.beerBottleCount < 12 {
-                    self.calculateDiscount(i, discountAmount: 20)
-                } else if TabManager.sharedInstance.beerBottleCount > 12 {
-                    self.calculateDiscount(i, discountAmount: 25)
                 }
-                
             }
         }
     }
@@ -615,10 +610,10 @@ class TabManager: NSObject {
         crvQuery.whereKey("info", equalTo: "CRV")
         crvQuery.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
             
-            print("CRV query has found \(objects!.count) CRV Parse objects.")
             
             if error == nil {
             // The find succeeded.
+                print("CRV query has found \(objects!.count) CRV Parse objects.")
 
                 
                 // Do something with the found objects.
@@ -653,10 +648,11 @@ class TabManager: NSObject {
         crvQuery.whereKey("productType", equalTo: "REDUCTIONONEPERCENTAGE")
         crvQuery.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
             
-            print("Discount query has found \(objects!.count) Discount objects.")
             
             // The find succeeded.
             if error == nil {
+                print("Discount query has found \(objects!.count) Discount objects.")
+
                 
                 // Do something with the found objects.
                 for object in objects! {

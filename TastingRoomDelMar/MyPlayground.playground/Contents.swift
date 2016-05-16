@@ -42,7 +42,12 @@ var str = "Hello, playground"
 //animator.addBehavior(bounce)
 //
 //animator.setValue(true, forKey: "debugEnabled")
+var price = 2.9
+let priceDecimals:Double =  (price % 1)
+if priceDecimals < 0.999999999 && priceDecimals > 0.0999999999 {
+    print("price: \(price)0")
+} else {
+//    print("price: \(price)")
+}
 
-
-
-
+let deci = price - floor(price)

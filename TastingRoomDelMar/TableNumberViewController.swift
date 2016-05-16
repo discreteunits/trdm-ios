@@ -56,7 +56,7 @@ class TableNumberViewController: UIViewController, UITextFieldDelegate {
         // Create Text Field
         tableNumberTextField = UITextField(frame: CGRectMake(0, 0, screenWidth * 0.4, dynamicFontSize + 16))
         tableNumberTextField.frame.origin.y = 54
-        tableNumberTextField.frame.origin.x = screenWidth * 0.36
+        tableNumberTextField.frame.origin.x = screenWidth * 0.3
         tableNumberTextField.placeholder = "123"
         tableNumberTextField.font = UIFont.basicFont(dynamicFontSize)
         tableNumberTextField.autocorrectionType = .No

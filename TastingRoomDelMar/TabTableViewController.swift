@@ -55,13 +55,6 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
         self.tableView.tableFooterView?.hidden = true
         
-//        if TabManager.sharedInstance.currentTab.lines.count > 0 {
-//            // Scroll to bottom of table
-//            dispatch_async(dispatch_get_main_queue()) {
-//                let indexPath = NSIndexPath(forRow: TabManager.sharedInstance.currentTab.lines.count - 1, inSection: 0)
-//                self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Middle, animated: false)
-//            }
-//        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -246,24 +239,12 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
                 }
             }
             
-            // Remove LineItem and Related Discount LineItems
-            if TabManager.sharedInstance.currentTab.lines[indexPath.row].discountable {
-                // If Item has a discount, remove both the item and it's discount item
-                TabManager.sharedInstance.currentTab.lines.removeAtIndex(indexPath.row + 1)
-                TabManager.sharedInstance.currentTab.lines.removeAtIndex(indexPath.row)
-                
-                // Remove Row From Table
-                self.tableView.deleteRowsAtIndexPaths(NSArray(object: NSIndexPath(forRow: indexPath.row + 1, inSection: 0)) as! [NSIndexPath], withRowAnimation: UITableViewRowAnimation.Left)
-                // Remove Row From Table
-                self.tableView.deleteRowsAtIndexPaths(NSArray(object: NSIndexPath(forRow: indexPath.row, inSection: 0)) as! [NSIndexPath], withRowAnimation: UITableViewRowAnimation.Left)
-                
-            } else {
+
                 // Just remove Item
-                TabManager.sharedInstance.currentTab.lines.removeAtIndex(indexPath.row)
+            TabManager.sharedInstance.currentTab.lines.removeAtIndex(indexPath.row)
                 
-                // Remove Row From Table
-                self.tableView.deleteRowsAtIndexPaths(NSArray(object: NSIndexPath(forRow: indexPath.row, inSection: 0)) as! [NSIndexPath], withRowAnimation: UITableViewRowAnimation.Left)
-            }
+            // Remove Row From Table
+            self.tableView.deleteRowsAtIndexPaths(NSArray(object: NSIndexPath(forRow: indexPath.row, inSection: 0)) as! [NSIndexPath], withRowAnimation: UITableViewRowAnimation.Left)
             
             
             

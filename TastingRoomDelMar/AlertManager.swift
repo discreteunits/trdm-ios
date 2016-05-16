@@ -81,7 +81,7 @@ class AlertManager: UIViewController {
         alert.view.tintColor = UIColor.primaryGreenColor()
         
         // Create Actions
-        let okAction = UIAlertAction(title: "Okay", style: .Default, handler: { (action) -> Void in
+        let okAction = UIAlertAction(title: "Cancel", style: .Default, handler: { (action) -> Void in
             if printFlag {
                 print("Okay Selected")
             }
@@ -102,7 +102,6 @@ class AlertManager: UIViewController {
         
         // Present Alert
         view.presentViewController(alert, animated: true, completion: nil)
-        alert.view.tintColor = UIColor.whiteColor()
         
     }
     
@@ -210,6 +209,9 @@ class AlertManager: UIViewController {
         view.presentViewController(alert, animated: true, completion: nil)
 
     }
+    
+    
+    
 
     //// WhoopsLoggedIn
     @available(iOS 8.0, *)
@@ -334,6 +336,30 @@ class AlertManager: UIViewController {
         
         // Add Actions
         alert.addAction(cancelAction)
+        
+        view.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    //// Add Email
+    @available(iOS 8.0, *)
+    func addEmailAlert(view: UIViewController, title: String, message: String) {
+        
+        // Create Controller
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        alert.view.tintColor = UIColor.primaryGreenColor()
+        
+        // Create Actions
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action) -> Void in
+            print("Ok Selected")
+        })
+        let settingsAction = UIAlertAction(title: "Settings", style: .Cancel, handler: { (action) -> Void in
+            print("Settings Selected")
+            self.goToSettings(view)
+        })
+        
+        // Add Actions
+        alert.addAction(cancelAction)
+        alert.addAction(settingsAction)
         
         view.presentViewController(alert, animated: true, completion: nil)
     }
@@ -543,6 +569,11 @@ class AlertManager: UIViewController {
     // Conditional Check For Place Order
     func checkout(view: UIViewController) {
         
+        // Require Email Address
+        if PFUser.currentUser()?["email"] as! String == "" {
+            addEmailAlert(view, title: "Whoops!", message: "Looks like we don't have your email yet. You can add your email in settings.")
+        }
+        
         // Whoops Logged In
         if TabManager.sharedInstance.currentTab.userId == "" {
             whoopsLoggedInAlert(view, title: "Whoops!", message: "Looks like you're not logged in or don't have an account. Login or create an account to place an order.")
@@ -586,6 +617,17 @@ class AlertManager: UIViewController {
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "PaymentStoryboard", bundle: nil)
         
         let vc = mainStoryboard.instantiateViewControllerWithIdentifier("Payment")
+        
+        view.presentViewController(vc, animated: true, completion: nil)
+        
+    }
+
+    // Go To Settings
+    func goToSettings(view: UIViewController) {
+        
+        let settingsStoryboard: UIStoryboard = UIStoryboard(name: "SettingsStoryboard", bundle: nil)
+        
+        let vc = settingsStoryboard.instantiateViewControllerWithIdentifier("Settings")
         
         view.presentViewController(vc, animated: true, completion: nil)
         

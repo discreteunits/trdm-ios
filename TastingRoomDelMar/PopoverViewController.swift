@@ -367,8 +367,10 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                 // ----- HARVEST BEGIN ------
                 if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
                     
-                    sgCollectionCell.label.text = additions[trueIndex].values[indexPath.row].name
-                
+                    dispatch_async(dispatch_get_main_queue()) {
+                        sgCollectionCell.label.text = self.additions[trueIndex].values[indexPath.row].name
+                    }
+                    
                 } else {
                     
                     let subproduct = subproducts[indexPath.row]
@@ -396,8 +398,15 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                 quantityCollectionCell.backgroundColor = UIColor.whiteColor()
                 
                 let trueIndex = String(indexPath.row + 1)
-                quantityCollectionCell.label.text = trueIndex
                 quantityCollectionCell.label.font = UIFont.scriptFont(16)
+
+                
+                
+                dispatch_async(dispatch_get_main_queue()) {
+                    quantityCollectionCell.label.text = trueIndex
+                }
+                
+                
                 
                 quantityCollectionCell.layer.borderWidth = 2
                 quantityCollectionCell.layer.borderColor = UIColor(red: 242/255.0, green: 242/255.0, blue: 242/255.0, alpha: 1.0).CGColor

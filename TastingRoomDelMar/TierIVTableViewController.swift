@@ -108,7 +108,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         
         let nameAttributes = [NSFontAttributeName: UIFont.headerFont(24), NSForegroundColorAttributeName: UIColor.blackColor()]
         let infoAttributes = [NSFontAttributeName: UIFont.basicFont(16)]
-        let paddingAttributes = [NSFontAttributeName: UIFont.basicFont(16)]
+        let paddingAttributes = [NSFontAttributeName: UIFont.basicFont(8)]
         let pricesAttributes = [NSFontAttributeName: UIFont.scriptFont(18)]
         
         if RouteManager.sharedInstance.TierOne!["name"] as! String == "Merch" || RouteManager.sharedInstance.TierOne!["name"] as! String == "Events" {
@@ -127,7 +127,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             
             let nameString = NSMutableAttributedString(string: "\(name)\n", attributes: nameAttributes)
             let infoString = NSAttributedString(string: "\(info)\n", attributes: infoAttributes)
-            let paddingString = NSAttributedString(string: "\n", attributes: paddingAttributes)
+            let paddingString = NSAttributedString(string: " \n", attributes: paddingAttributes)
             let pricesString = NSAttributedString(string: prices, attributes: pricesAttributes)
             
             nameString.appendAttributedString(infoString)
@@ -213,7 +213,12 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        
+        if TabManager.sharedInstance.currentTab.userId == "" {
+            
+            AlertManager.sharedInstance.whoopsLoggedInAlert(self, title: "Whoops!", message: "You must be logged in to add items to your tab.")
+            
+        } else {
+            
         
         additions.removeAll()
         product = tierIVTableArray[indexPath.row]
@@ -248,6 +253,8 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         
         print("------------------------")
         
+        
+    }
     }
     
     // SEGUE TRIGGER AND PREPARATION
@@ -258,6 +265,12 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     }
     
     func addToOrderButton(sender: AnyObject) {
+        
+        if TabManager.sharedInstance.currentTab.userId == "" {
+        
+            AlertManager.sharedInstance.whoopsLoggedInAlert(self, title: "Whoops!", message: "You must be logged in to add items to your tab.")
+            
+        } else {
         
         // ASSIGN ITEM TO OBJECT TO BE PASSED TO POPOVER - To Select Button
         if let button = sender as? UIButton {
@@ -302,6 +315,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         
         print("------------------------")
         
+        }
     }
     
     func getVarietal() {
@@ -322,7 +336,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     func getLines(text:String) -> Int {
         
         let textCount = text.characters.count
-        let textLineDecimal = textCount / 41
+        let textLineDecimal = textCount / 33
         let textAproxIncreased = textLineDecimal + 1
         let textLines = textAproxIncreased - (textAproxIncreased % 1)
         

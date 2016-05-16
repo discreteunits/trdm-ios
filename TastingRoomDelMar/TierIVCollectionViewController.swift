@@ -65,21 +65,14 @@ class TierIVCollectionViewController: UICollectionViewController {
         cell.layer.cornerRadius = 10.0
         cell.clipsToBounds = true
         
-        if cell.selected == true {
-            cell.backgroundColor = UIColor.blackColor()
-            cell.titleLabel?.textColor = UIColor.whiteColor()
-        } else {
-            cell.backgroundColor = UIColor.whiteColor()
-            cell.titleLabel?.textColor = UIColor.blackColor()
-        }
+
         
         // Show All Cell
         if indexPath.row == 0 {
             
             cell.titleLabel?.text = "Show All"
+            cell.selected = true
             collectionCellWidth = 88 // cell.titleLabel.frame.size.width + 32
-            
-            return cell
             
             
         // Every Other Collection Cell
@@ -89,11 +82,21 @@ class TierIVCollectionViewController: UICollectionViewController {
             cell.titleLabel?.text = self.tierIVCollectionArray[trueIndex]["name"] as? String
             collectionCellWidth = cell.titleLabel.frame.size.width + 32
             
-            return cell
 
-            
         }
         
+        
+        if cell.selected == true {
+            cell.backgroundColor = UIColor.blackColor()
+            cell.titleLabel?.textColor = UIColor.whiteColor()
+        } else {
+            cell.backgroundColor = UIColor.whiteColor()
+            cell.titleLabel?.textColor = UIColor.blackColor()
+        }
+        
+        
+        return cell
+
     }
     
     
@@ -113,9 +116,10 @@ class TierIVCollectionViewController: UICollectionViewController {
     
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+
         
         if let selectedCell = collectionView.cellForItemAtIndexPath(indexPath)! as? TierIVCollectionViewCell {
-
+            
             if selectedCell.selected == true {
                 selectedCell.backgroundColor = UIColor.blackColor()
                 selectedCell.titleLabel?.textColor = UIColor.whiteColor()
@@ -142,6 +146,14 @@ class TierIVCollectionViewController: UICollectionViewController {
             
         // Filter By Selection
         } else {
+            
+            let showAllCell = collectionView.cellForItemAtIndexPath(NSIndexPath(forItem: 0, inSection: 0)) as? TierIVCollectionViewCell
+            if showAllCell?.selected == true {
+                showAllCell?.selected = false
+                showAllCell?.backgroundColor = UIColor.whiteColor()
+                showAllCell?.titleLabel?.textColor = UIColor.blackColor()
+            }
+            
         
             let trueIndex = indexPath.row - 1
             
