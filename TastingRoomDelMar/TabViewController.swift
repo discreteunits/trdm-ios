@@ -177,7 +177,15 @@ extension TabViewController: TabTableViewDelegate, TabFloatingTableViewDelegate,
             let messageTextView = UITextView(frame: CGRectMake(0, 0, windowWidth * 0.7, windowWidth / 2))
             messageTextView.frame.origin.y = windowHeight * 0.65
             messageTextView.frame.origin.x = windowWidth * 0.15
-            messageTextView.text = "Looks like you don't have any items on your tab."
+            
+            
+            if PFUser.currentUser()!.username != nil {
+                messageTextView.text = "Looks like you don't have any items on your tab."
+            } else {
+                messageTextView.text = "Looks like you aren't logged in. Please log in to add items to your tab."
+            }
+            
+            
             messageTextView.font = UIFont.basicFont(16)
             messageTextView.textColor = UIColor.grayColor()
             messageTextView.backgroundColor = UIColor.clearColor()

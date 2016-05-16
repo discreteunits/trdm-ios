@@ -133,7 +133,6 @@ class HistoryDetailTableViewController: UITableViewController {
             cell.itemLabel?.attributedText = makeAttributedString(lineItemObjects[indexPath.row]["name"] as! String)
             cell.priceLabel.text = "\(formatter.formatPrice(chargedOrderItems[indexPath.row]["totalPrice"] as! Double))"
             
-
         
             
             // Styles
