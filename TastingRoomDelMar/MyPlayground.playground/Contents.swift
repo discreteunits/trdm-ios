@@ -42,8 +42,10 @@ var str = "Hello, playground"
 //animator.addBehavior(bounce)
 //
 //animator.setValue(true, forKey: "debugEnabled")
-var price = 2.9
+var price = 129.60000000000002
 let priceDecimals:Double =  (price % 1)
+var a = String(format:"%.2f", priceDecimals)
+var b = Double(a)
 if priceDecimals < 0.999999999 && priceDecimals > 0.0999999999 {
     print("price: \(price)0")
 } else {

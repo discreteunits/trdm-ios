@@ -104,8 +104,9 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
         
         let nameAttributes = [NSFontAttributeName: UIFont.headerFont(24)]
         let subNameAttributes = [NSFontAttributeName: UIFont.scriptFont(16)]
+        let additionAttributes = [NSFontAttributeName: UIFont.scriptFont(16)]
         let crvAttributes = [NSFontAttributeName: UIFont.scriptFont(16)]
-        let typeAttributes = [NSFontAttributeName: UIFont.basicFont(12)]
+        let typeAttributes = [NSFontAttributeName: UIFont.scriptFont(12)]
         
         let nameString = NSMutableAttributedString(string: "\(lineItem.name)\n", attributes: nameAttributes)
         
@@ -115,7 +116,8 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
             nameString.appendAttributedString(subNameString)
             
             if lineItem.product.crvAmount != 0 {
-                let lineitemTotalCRV = lineItem.product.crvAmount * Double(lineItem.quantity)
+                let convertedCRV = formatter.formatPrice(lineItem.product.crvAmount)
+                let lineitemTotalCRV = convertedCRV
                 let crvString = NSMutableAttributedString(string: "CRV \(lineitemTotalCRV)\n", attributes: crvAttributes)
                 nameString.appendAttributedString(crvString)
             }
@@ -123,7 +125,7 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
         } else if lineItem.path == "Eat" {
             // Get Each Addition Name
             for addition in lineItem.additions {
-                let additionNameString = NSAttributedString(string: "\(addition.name)\n")
+                let additionNameString = NSAttributedString(string: "\(addition.name) (\(addition.values[0].name))\n", attributes: additionAttributes)
                 nameString.appendAttributedString(additionNameString)
             }
         }

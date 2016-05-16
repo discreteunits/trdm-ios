@@ -579,9 +579,9 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                             // Total All Subproduct Choice Prices
                             var totalChoicesPrice = Double()
                             if RouteManager.sharedInstance.TierOne!["name"] as! String == "Merch" {
-                                totalChoicesPrice = popoverItem["price"] as! Double
+                                totalChoicesPrice = popoverItem["priceWithoutVat"] as! Double
                             } else if RouteManager.sharedInstance.TierOne!["name"] as! String == "Events" {
-                                totalChoicesPrice = popoverItem["price"] as! Double
+                                totalChoicesPrice = popoverItem["priceWithoutVat"] as! Double
                             } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
                                 
                                 if RouteManager.sharedInstance.TierOne!["name"] as! String == "Dine In" {
