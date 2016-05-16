@@ -156,8 +156,6 @@ extension TabViewController: TabTableViewDelegate, TabFloatingTableViewDelegate,
         // Default Empty Tab View
         if TabManager.sharedInstance.currentTab.lines.count < 1 {
             
-            //            if orders.orderId.count < 1 {
-            
             let tabView = self.view
             // Screen Bounds
             let windowWidth = self.view.bounds.size.width
@@ -186,40 +184,67 @@ extension TabViewController: TabTableViewDelegate, TabFloatingTableViewDelegate,
             messageTextView.userInteractionEnabled = false
             messageTextView.textAlignment = .Center
             messageTextView.layer.zPosition = 99
-            // Create Back To Menu Button
-            let menuButton = UIButton(frame: CGRectMake(0, 0, windowWidth * 0.4625, windowHeight / 10))
-            menuButton.frame.origin.y = windowHeight * 0.78
-            menuButton.frame.origin.x = windowWidth * 0.025
-            menuButton.setTitle("Back to Menu", forState: .Normal)
-            menuButton.layer.backgroundColor = UIColor(red: 242/255.0, green: 242/255.0, blue: 242/255.0, alpha: 1.0).CGColor
-            menuButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
-            menuButton.titleLabel?.font = UIFont.scriptFont(20)
-            menuButton.layer.cornerRadius = 12.0
-            menuButton.clipsToBounds = true
-            menuButton.addTarget(self, action: #selector(TabViewController.backToMenu), forControlEvents: UIControlEvents.TouchUpInside)
-            menuButton.layer.zPosition = 99
-            // Create Order History Button
-            let historyButton = UIButton(frame: CGRectMake(0, 0, windowWidth * 0.4625, windowHeight / 10))
-            historyButton.frame.origin.y = windowHeight * 0.78
-            historyButton.frame.origin.x = (windowWidth * 0.05) + (windowWidth * 0.4625)
-            historyButton.setTitle("Order History", forState: .Normal)
-            historyButton.layer.backgroundColor = UIColor(red: 242/255.0, green: 242/255.0, blue: 242/255.0, alpha: 1.0).CGColor
-            historyButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
-            historyButton.titleLabel?.font = UIFont.scriptFont(20)
-            historyButton.layer.cornerRadius = 12.0
-            historyButton.clipsToBounds = true
-            historyButton.addTarget(self, action: #selector(TabViewController.goToHistory), forControlEvents: UIControlEvents.TouchUpInside)
-            historyButton.layer.zPosition = 99
+            
+            
             
             
             // Add Created Views
             tabView.addSubview(windowView)
             tabView.addSubview(TRDMImageView)
             tabView.addSubview(messageTextView)
-            tabView.addSubview(menuButton)
-            tabView.addSubview(historyButton)
+
             
-            //        }
+            if PFUser.currentUser()!.username != nil {
+                // Create Back To Menu Button
+                let menuButton = UIButton(frame: CGRectMake(0, 0, windowWidth * 0.4625, windowHeight / 10))
+                menuButton.frame.origin.y = windowHeight * 0.78
+                menuButton.frame.origin.x = windowWidth * 0.025
+                menuButton.setTitle("Back to Menu", forState: .Normal)
+                menuButton.layer.backgroundColor = UIColor(red: 242/255.0, green: 242/255.0, blue: 242/255.0, alpha: 1.0).CGColor
+                menuButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+                menuButton.titleLabel?.font = UIFont.scriptFont(20)
+                menuButton.layer.cornerRadius = 12.0
+                menuButton.clipsToBounds = true
+                menuButton.addTarget(self, action: #selector(TabViewController.backToMenu), forControlEvents: UIControlEvents.TouchUpInside)
+                menuButton.layer.zPosition = 99
+                // Create Order History Button
+                let historyButton = UIButton(frame: CGRectMake(0, 0, windowWidth * 0.4625, windowHeight / 10))
+                historyButton.frame.origin.y = windowHeight * 0.78
+                historyButton.frame.origin.x = (windowWidth * 0.05) + (windowWidth * 0.4625)
+                historyButton.setTitle("Order History", forState: .Normal)
+                historyButton.layer.backgroundColor = UIColor(red: 242/255.0, green: 242/255.0, blue: 242/255.0, alpha: 1.0).CGColor
+                historyButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+                historyButton.titleLabel?.font = UIFont.scriptFont(20)
+                historyButton.layer.cornerRadius = 12.0
+                historyButton.clipsToBounds = true
+                historyButton.addTarget(self, action: #selector(TabViewController.goToHistory), forControlEvents: UIControlEvents.TouchUpInside)
+                historyButton.layer.zPosition = 99
+                
+                
+                tabView.addSubview(menuButton)
+                tabView.addSubview(historyButton)
+                
+                
+            } else {
+                // Create Back To Menu Button
+                let menuButton = UIButton(frame: CGRectMake(0, 0, windowWidth * 0.95, windowHeight / 10))
+                menuButton.frame.origin.y = windowHeight * 0.78
+                menuButton.frame.origin.x = windowWidth * 0.025
+                menuButton.setTitle("Back to Menu", forState: .Normal)
+                menuButton.layer.backgroundColor = UIColor(red: 242/255.0, green: 242/255.0, blue: 242/255.0, alpha: 1.0).CGColor
+                menuButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+                menuButton.titleLabel?.font = UIFont.scriptFont(20)
+                menuButton.layer.cornerRadius = 12.0
+                menuButton.clipsToBounds = true
+                menuButton.addTarget(self, action: #selector(TabViewController.backToMenu), forControlEvents: UIControlEvents.TouchUpInside)
+                menuButton.layer.zPosition = 99
+                
+                
+                tabView.addSubview(menuButton)
+                
+                
+            }
+            
             
         }
     }

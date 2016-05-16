@@ -28,6 +28,8 @@ class SettingsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.tableFooterView = UIView()
+        
         self.tableView.reloadData()
         
 
@@ -84,7 +86,7 @@ class SettingsTableViewController: UITableViewController {
     // MARK: - Table view data source
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 4
+        return 3
     }
     
     
@@ -95,11 +97,11 @@ class SettingsTableViewController: UITableViewController {
         
         if section == 0 {
             headerCell.headerLabel.text = "MY ACCOUNT"
+//        } else if section == 1 {
+//            headerCell.headerLabel.text = "NOTIFICATIONS"
         } else if section == 1 {
-            headerCell.headerLabel.text = "NOTIFICATIONS"
-        } else if section == 2 {
             headerCell.headerLabel.text = "MORE INFORMATION"
-        } else if section == 3 {
+        } else if section == 2 {
             headerCell.headerLabel.text = "ACCOUNT ACTIONS"
         }
         
@@ -112,20 +114,20 @@ class SettingsTableViewController: UITableViewController {
         if section == 0 {
             
             if FBSDKAccessToken.currentAccessToken() != nil {
-                return 4
+                return 3 // 4 with mobile #
             } else {
-                return 5
+                return 4 // 5 with mobile #
             }
             
+//        } else if section == 1 {
+//            return 0 // 2 with push notifications and newsletter
         } else if section == 1 {
             return 2
         } else if section == 2 {
-            return 2
-        } else if section == 3 {
-            return 3
+            return 2 // 3 = with home
         }
         
-        return 1
+        return 0
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -160,11 +162,11 @@ class SettingsTableViewController: UITableViewController {
             // Mobile Number Row
             } else if indexPath.row == 2 {
                 
-                myAccountCell.settingLabel.text = "Mobile Number"
-                
-                if PFUser.currentUser()!["mobileNumber"] as? String != "" {
-                    myAccountCell.settingValueLabel.text = PFUser.currentUser()!["mobileNumber"] as? String
+                if PFFacebookUtils.isLinkedWithUser(PFUser.currentUser()!) {
+                    myAccountCell.settingLabel.text = ""
+                    myAccountCell.settingValueLabel.text = ""
                 } else {
+                    myAccountCell.settingLabel.text = "Password"
                     myAccountCell.settingValueLabel.text = ""
                 }
                 
@@ -181,11 +183,11 @@ class SettingsTableViewController: UITableViewController {
             // Password Row
             } else if indexPath.row == 4 {
                 
-                if PFFacebookUtils.isLinkedWithUser(PFUser.currentUser()!) {
-                    myAccountCell.settingLabel.text = ""
-                    myAccountCell.settingValueLabel.text = ""
+                myAccountCell.settingLabel.text = "Mobile Number"
+                
+                if PFUser.currentUser()!["mobileNumber"] as? String != "" {
+                    myAccountCell.settingValueLabel.text = PFUser.currentUser()!["mobileNumber"] as? String
                 } else {
-                    myAccountCell.settingLabel.text = "Password"
                     myAccountCell.settingValueLabel.text = ""
                 }
                 
@@ -193,45 +195,45 @@ class SettingsTableViewController: UITableViewController {
                 
             }
         
-        // Notifications Section
-        } else if indexPath.section == 1 {
-            
-            let notificationCell = tableView.dequeueReusableCellWithIdentifier("SettingsSwitchTableCell", forIndexPath: indexPath) as! SettingsSwitchTableViewCell
-            
-            notificationCell.settingLabel.font = UIFont.headerFont(18)
-                notificationCell.selectionStyle = UITableViewCellSelectionStyle.None
-            
-            // Push Notifications Row
-            if indexPath.row == 0 {
-                
-                notificationCell.settingLabel.text = "push notifications"
-                
-                if let _ = PFUser.currentUser()!["pushAllowed"] as? Bool {
-                    notificationCell.settingSwitch.setOn(true, animated: true)
-                } else {
-                    notificationCell.settingSwitch.setOn(false, animated: true)
-                }
-                
-                return notificationCell
-            
-            // Newsletter Row
-            } else if indexPath.row == 1 {
-                
-                notificationCell.settingLabel.text = "Newsletter"
-                
-                
-                if let _ = PFUser.currentUser()!["marketingAllowed"] as? Bool {
-                    notificationCell.settingSwitch.setOn(true, animated: true)
-                } else {
-                    notificationCell.settingSwitch.setOn(false, animated: true)
-                }
-                
-                return notificationCell
-                
-            }
+//        // Notifications Section
+//        } else if indexPath.section == 1 {
+//            
+//            let notificationCell = tableView.dequeueReusableCellWithIdentifier("SettingsSwitchTableCell", forIndexPath: indexPath) as! SettingsSwitchTableViewCell
+//            
+//            notificationCell.settingLabel.font = UIFont.headerFont(18)
+//                notificationCell.selectionStyle = UITableViewCellSelectionStyle.None
+//            
+//            // Push Notifications Row
+//            if indexPath.row == 0 {
+//                
+//                notificationCell.settingLabel.text = "push notifications"
+//                
+//                if let _ = PFUser.currentUser()!["pushAllowed"] as? Bool {
+//                    notificationCell.settingSwitch.setOn(true, animated: true)
+//                } else {
+//                    notificationCell.settingSwitch.setOn(false, animated: true)
+//                }
+//                
+//                return notificationCell
+//            
+//            // Newsletter Row
+//            } else if indexPath.row == 1 {
+//                
+//                notificationCell.settingLabel.text = "Newsletter"
+//                
+//                
+//                if let _ = PFUser.currentUser()!["marketingAllowed"] as? Bool {
+//                    notificationCell.settingSwitch.setOn(true, animated: true)
+//                } else {
+//                    notificationCell.settingSwitch.setOn(false, animated: true)
+//                }
+//                
+//                return notificationCell
+//                
+//            }
         
         // More Information Section
-        } else if indexPath.section == 2 {
+        } else if indexPath.section == 1 {
             
             let moreInfoCell = tableView.dequeueReusableCellWithIdentifier("SettingsLabelTableCell", forIndexPath: indexPath) as! SettingsLabelTableViewCell
             
@@ -256,7 +258,7 @@ class SettingsTableViewController: UITableViewController {
             }
             
         // Account Actions Section
-        } else if indexPath.section == 3 {
+        } else if indexPath.section == 2 {
             
             // Log Out Row
             if indexPath.row == 0 {
@@ -285,15 +287,6 @@ class SettingsTableViewController: UITableViewController {
                 
             } else if indexPath.row == 1 {
                 
-                let accountActionCell = tableView.dequeueReusableCellWithIdentifier("SettingsLabelTableCell", forIndexPath: indexPath) as! SettingsLabelTableViewCell
-
-                accountActionCell.settingLabel.font = UIFont.headerFont(18)
-                accountActionCell.settingValueLabel.text = ""
-                
-                accountActionCell.settingLabel.text = "Home"
-            
-            // Footer
-            } else if indexPath.row == 2 {
                 
                 let footerCell = tableView.dequeueReusableCellWithIdentifier("SettingsFooterTableCell", forIndexPath: indexPath) as! SettingsFooterTableViewCell
                 
@@ -302,6 +295,20 @@ class SettingsTableViewController: UITableViewController {
                 footerCell.selectionStyle = UITableViewCellSelectionStyle.None
                 
                 return footerCell
+                
+                
+            
+            // Footer
+            } else if indexPath.row == 2 {
+                
+                let accountActionCell = tableView.dequeueReusableCellWithIdentifier("SettingsLabelTableCell", forIndexPath: indexPath) as! SettingsLabelTableViewCell
+                
+                accountActionCell.settingLabel.font = UIFont.headerFont(18)
+                accountActionCell.settingValueLabel.text = ""
+                
+                accountActionCell.settingLabel.text = "Home"
+                
+                return accountActionCell
                 
             }
             
@@ -336,13 +343,13 @@ class SettingsTableViewController: UITableViewController {
             
             performSegueWithIdentifier("editView", sender: self)
         
-        // Notifications Section
-        } else if indexPath.section == 1 {
+//        // Notifications Section
+//        } else if indexPath.section == 1 {
             
 
         
         // More Information Section
-        } else if indexPath.section == 2 {
+        } else if indexPath.section == 1 {
             
             if indexPath.row == 0 {
                 
@@ -357,7 +364,7 @@ class SettingsTableViewController: UITableViewController {
             }
         
         // Account Actions Section
-        } else if indexPath.section == 3 {
+        } else if indexPath.section == 2 {
             
             if indexPath.row == 0 {
                 

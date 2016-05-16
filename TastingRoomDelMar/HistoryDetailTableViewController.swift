@@ -18,11 +18,14 @@ class HistoryDetailTableViewController: UITableViewController {
     var totalRow = Int()
     
     var lineItemNames = [String]()
+    var lineItemObjects = [PFObject]()
+    var chargedOrderItems = [[String:AnyObject]]()
     
     var nav: UINavigationBar?
 
     @IBOutlet weak var navigationTitle: UINavigationItem!
 
+    // Price Formatter
     let formatter = PriceFormatManager.priceFormatManager
     
     // ---------
@@ -95,7 +98,7 @@ class HistoryDetailTableViewController: UITableViewController {
         
 //        rows = order["lineItems"].count + 1
         
-        rows = lineItemNames.count + 1
+        rows = chargedOrderItems.count + 1
         totalRow = rows - 1
         
 
@@ -126,12 +129,12 @@ class HistoryDetailTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("HistoryDetailTableCell", forIndexPath: indexPath) as! HistoryDetailTableViewCell
             
 
-            cell.qtyLabel.text = String(order["orderItems"][indexPath.row]["amount"]! as! Int)
-            cell.itemLabel?.attributedText = makeAttributedString(lineItemNames[indexPath.row])
-            // Format Price
-            let priceString = order["orderItems"][indexPath.row]["totalPrice"]! as! Double
-            cell.priceLabel.text = formatter.formatPrice(priceString)
+            cell.qtyLabel.text = String(chargedOrderItems[indexPath.row]["amount"] as! Int)
+            cell.itemLabel?.attributedText = makeAttributedString(lineItemObjects[indexPath.row]["name"] as! String)
+            cell.priceLabel.text = "\(formatter.formatPrice(chargedOrderItems[indexPath.row]["totalPrice"] as! Double))"
             
+
+        
             
             // Styles
             cell.qtyLabel.font = UIFont.headerFont(18)
@@ -148,10 +151,10 @@ class HistoryDetailTableViewController: UITableViewController {
             
             let cell = tableView.dequeueReusableCellWithIdentifier("HistoryDetailTotalTableCell") as! HistoryDetailTotalTableViewCell
             
-            let orderPrice = order["orderTaxInfo"][0]["totalWithTax"]! as! Double
+            let orderPrice = order["orderTaxInfo"][0]["totalWithTax"]! as! String
             
             // Assigments
-            cell.totalLabel.text = formatter.formatPrice(orderPrice)
+            cell.totalLabel.text = orderPrice
             
             // Styles
             cell.total.font = UIFont.headerFont(28)
@@ -194,17 +197,32 @@ class HistoryDetailTableViewController: UITableViewController {
         query.whereKey("productType", notEqualTo    : "CHOICE")
         query.whereKey("lightspeedId", containedIn: orderItemObjectIds)
         
+        ActivityManager.sharedInstance.activityStart(self)
+        
         do {
+            ActivityManager.sharedInstance.activityStop(self)
             products = try query.findObjects() as [PFObject]
         } catch _ {
+            ActivityManager.sharedInstance.activityStop(self)
             products = nil
         }
         
         for product in products! {
             
-            lineItemNames.append(product["name"] as! String)
+            lineItemObjects.append(product)
+            
+            
+            for var i in 0..<order["orderItems"].count {
+                let orderItems = order["orderItems"] as! [[String:AnyObject]]
+                
+                if orderItems[i]["productId"] as! Int == product["lightspeedId"] as! Int {
+                    chargedOrderItems.append(orderItems[i])
+                }
+            }
             
         }
+        
+        
         
         print("Query completed, creating: \(lineItemNames)")
         

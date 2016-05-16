@@ -138,7 +138,7 @@ class TableNumberViewController: UIViewController, UITextFieldDelegate {
                 
             } else {
             
-                AlertManager.sharedInstance.tableNumberFailure(self, controller: self, title: "Not A Valid Table Number", message: "The table number you entered is not valid. Please enter a valid table number.")
+                AlertManager.sharedInstance.tableNumberFailure(self, controller: self, title: "Whoops!", message: "Looks like that table does not exist. Please recheck your table number and try again, or contact your server for further existance.")
             
                 delegate?.removeOpaque()
 

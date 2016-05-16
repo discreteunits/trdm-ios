@@ -29,11 +29,12 @@ class ActivityManager: NSObject {
         
         activityIndicator.hidden = false
         activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 100, 100))
-        activityIndicator.center = view.view.center
+        activityIndicator.center.y = view.view.center.y
+        activityIndicator.center.x = view.view.center.x
         activityIndicator.hidesWhenStopped = true
         activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
         activityIndicator.startAnimating()
-        activityIndicator.backgroundColor = UIColor(white: 0.0, alpha: 0.0)
+        activityIndicator.backgroundColor = UIColor(white: 0.0, alpha: 0.9)
         activityIndicator.layer.cornerRadius = 8.0
         activityIndicator.clipsToBounds = true
         activityIndicator.tag = 901

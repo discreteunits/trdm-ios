@@ -180,25 +180,16 @@ class HistoryTableViewController: UITableViewController {
         }
         
         
-        
-//        if (order["orderTaxInfo"][0]) != nil {
-//            if let orderPrice = ["totalWithTax"] as? Double {
-//                let totalString = formatter.formatPrice(orderPrice)
-//                cell.totalLabel.text = "Total: " + totalString
-//            } else {
-//                cell.totalLabel.text = " "
-//            }
-//        }
+
         
         print("---------------")
         print("\(order)")
         print("---------------")
 
         
-        if let orderPrice = order["orderTaxInfo"][0]["totalWithTax"]! as? Double {
-            let totalString = formatter.formatPrice(orderPrice)
-            cell.totalLabel.text = "Total: " + totalString
-        }
+
+        
+        cell.totalLabel.text = "Total: \(order["orderTaxInfo"][0]["totalWithTax"]!)"
         
 
         
@@ -236,7 +227,7 @@ class HistoryTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        orderToPass = ascClosedOrders[indexPath.row]
+        orderToPass = allOrders[indexPath.row]
         
         
         self.performSegueWithIdentifier("historyDetail", sender: self)
