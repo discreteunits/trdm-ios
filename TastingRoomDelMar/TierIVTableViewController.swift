@@ -335,8 +335,17 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     
     func getLines(text:String) -> Int {
         
+        var characterCountPerLine = Int()
+        let screenWidth = UIScreen.mainScreen().bounds.width
+        if screenWidth < 375 {
+            characterCountPerLine = 33
+        } else {
+            characterCountPerLine = 39
+        }
+        
+        
         let textCount = text.characters.count
-        let textLineDecimal = textCount / 33
+        let textLineDecimal = textCount / characterCountPerLine
         let textAproxIncreased = textLineDecimal + 1
         let textLines = textAproxIncreased - (textAproxIncreased % 1)
         
