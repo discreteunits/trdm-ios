@@ -7,9 +7,9 @@
 //
 
 import UIKit
-import Stripe
 import Parse
-import ParseUI
+import Stripe
+
 
 class PaymentAddViewController: UIViewController, STPPaymentCardTextFieldDelegate {
     

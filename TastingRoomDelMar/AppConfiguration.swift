@@ -8,7 +8,7 @@
 
 import UIKit
 import Parse
-import ParseUI
+
 
 class AppConfiguration: NSObject {
     

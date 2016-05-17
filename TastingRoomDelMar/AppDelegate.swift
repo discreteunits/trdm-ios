@@ -8,11 +8,11 @@
 
 import UIKit
 import Parse
-import ParseCrashReporting
-import ParseFacebookUtilsV4
+//import ParseFacebookUtilsV4
 import Stripe
 import Fabric
 import Crashlytics
+import FBSDKShareKit
 
 
 var printFlag = true
@@ -62,7 +62,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
                 
-        PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)
+//        PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)
         
         PFUser.enableAutomaticUser()
         
@@ -70,7 +70,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // No one has read access to other peoples stuff
 //        defaultACL.publicReadAccess = false
-        defaultACL.getPublicReadAccess()
+//        defaultACL.getPublicReadAccess()
         
         PFACL.setDefaultACL(defaultACL, withAccessForCurrentUser: false)
         

@@ -9,7 +9,8 @@
 import UIKit
 import CoreData
 import Parse
-import ParseUI
+
+
 
 @objc
 protocol TabTableViewDelegate {

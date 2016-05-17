@@ -25,11 +25,20 @@
 		D736DADF1C73907A00751307 /* AddGratuityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D736DADE1C73907A00751307 /* AddGratuityViewController.swift */; };
 		D736DAE11C73DACE00751307 /* AddGratuityCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D736DAE01C73DACE00751307 /* AddGratuityCollectionViewCell.swift */; };
 		D73709021CDD21BE003DD093 /* trdm-facebookLogin.png in Resources */ = {isa = PBXBuildFile; fileRef = D73709011CDD21BE003DD093 /* trdm-facebookLogin.png */; };
+		D742DA891CEB9C5E004E8860 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = D742DA881CEB9C5E004E8860 /* Reachability.swift */; };
+		D742DA901CEB9FA7004E8860 /* FBAudienceNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D742DA8A1CEB9FA7004E8860 /* FBAudienceNetwork.framework */; };
+		D742DA911CEB9FA7004E8860 /* FBNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D742DA8B1CEB9FA7004E8860 /* FBNotifications.framework */; };
+		D742DA921CEB9FA7004E8860 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D742DA8C1CEB9FA7004E8860 /* FBSDKCoreKit.framework */; };
+		D742DA931CEB9FA7004E8860 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D742DA8D1CEB9FA7004E8860 /* FBSDKLoginKit.framework */; };
+		D742DA941CEB9FA7004E8860 /* FBSDKMessengerShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D742DA8E1CEB9FA7004E8860 /* FBSDKMessengerShareKit.framework */; };
+		D742DA951CEB9FA7004E8860 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D742DA8F1CEB9FA7004E8860 /* FBSDKShareKit.framework */; };
+		D742DA971CEB9FB4004E8860 /* AccountKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D742DA961CEB9FB4004E8860 /* AccountKit.framework */; };
 		D7498AB21C7F1A8C0086B7BD /* AnimationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7498AB11C7F1A8C0086B7BD /* AnimationManager.swift */; };
 		D74B1C4A1C583260008F5A36 /* PopoverSGCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74B1C491C583260008F5A36 /* PopoverSGCollectionViewCell.swift */; };
 		D74B1C4C1C5832E6008F5A36 /* PopoverQuantityCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74B1C4B1C5832E6008F5A36 /* PopoverQuantityCollectionViewCell.swift */; };
 		D74B1C4E1C58339E008F5A36 /* PopoverActionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74B1C4D1C58339E008F5A36 /* PopoverActionCollectionViewCell.swift */; };
 		D74D91531CB5A33100795C29 /* PriceFormatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74D91521CB5A33100795C29 /* PriceFormatManager.swift */; };
+		D757C9C61CEB9B2400DD2C4A /* Stripe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D757C9C51CEB9B2400DD2C4A /* Stripe.framework */; };
 		D75AA4281C6062D200D5139B /* Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75AA4271C6062D200D5139B /* Structures.swift */; };
 		D75ABF1E1C48306A00435CF1 /* TierIVTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75ABF1D1C48306A00435CF1 /* TierIVTableViewCell.swift */; };
 		D761C5891CEB93C600D1BB25 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D761C5841CEB93C600D1BB25 /* Parse.framework */; };
@@ -155,11 +164,20 @@
 		D736DADE1C73907A00751307 /* AddGratuityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddGratuityViewController.swift; sourceTree = "<group>"; };
 		D736DAE01C73DACE00751307 /* AddGratuityCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddGratuityCollectionViewCell.swift; sourceTree = "<group>"; };
 		D73709011CDD21BE003DD093 /* trdm-facebookLogin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trdm-facebookLogin.png"; sourceTree = "<group>"; };
+		D742DA881CEB9C5E004E8860 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		D742DA8A1CEB9FA7004E8860 /* FBAudienceNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBAudienceNetwork.framework; sourceTree = "<group>"; };
+		D742DA8B1CEB9FA7004E8860 /* FBNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBNotifications.framework; sourceTree = "<group>"; };
+		D742DA8C1CEB9FA7004E8860 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		D742DA8D1CEB9FA7004E8860 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		D742DA8E1CEB9FA7004E8860 /* FBSDKMessengerShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKMessengerShareKit.framework; sourceTree = "<group>"; };
+		D742DA8F1CEB9FA7004E8860 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		D742DA961CEB9FB4004E8860 /* AccountKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AccountKit.framework; sourceTree = "<group>"; };
 		D7498AB11C7F1A8C0086B7BD /* AnimationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationManager.swift; sourceTree = "<group>"; };
 		D74B1C491C583260008F5A36 /* PopoverSGCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverSGCollectionViewCell.swift; sourceTree = "<group>"; };
 		D74B1C4B1C5832E6008F5A36 /* PopoverQuantityCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverQuantityCollectionViewCell.swift; sourceTree = "<group>"; };
 		D74B1C4D1C58339E008F5A36 /* PopoverActionCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverActionCollectionViewCell.swift; sourceTree = "<group>"; };
 		D74D91521CB5A33100795C29 /* PriceFormatManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriceFormatManager.swift; sourceTree = "<group>"; };
+		D757C9C51CEB9B2400DD2C4A /* Stripe.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Stripe.framework; sourceTree = "<group>"; };
 		D75AA4271C6062D200D5139B /* Structures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Structures.swift; sourceTree = "<group>"; };
 		D75ABF1D1C48306A00435CF1 /* TierIVTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierIVTableViewCell.swift; sourceTree = "<group>"; };
 		D761C5841CEB93C600D1BB25 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
@@ -259,11 +277,19 @@
 				D7C6B23A1CD7CAEE003594FA /* libz.1.dylib in Frameworks */,
 				D7C6B2381CD7CAC8003594FA /* libsqlite3.dylib in Frameworks */,
 				D761C58B1CEB93C600D1BB25 /* ParseFacebookUtilsV4.framework in Frameworks */,
+				D757C9C61CEB9B2400DD2C4A /* Stripe.framework in Frameworks */,
+				D742DA931CEB9FA7004E8860 /* FBSDKLoginKit.framework in Frameworks */,
 				D761C58C1CEB93C600D1BB25 /* ParseTwitterUtils.framework in Frameworks */,
 				D761C5891CEB93C600D1BB25 /* Parse.framework in Frameworks */,
+				D742DA941CEB9FA7004E8860 /* FBSDKMessengerShareKit.framework in Frameworks */,
+				D742DA951CEB9FA7004E8860 /* FBSDKShareKit.framework in Frameworks */,
 				D761C58A1CEB93C600D1BB25 /* ParseFacebookUtils.framework in Frameworks */,
+				D742DA911CEB9FA7004E8860 /* FBNotifications.framework in Frameworks */,
+				D742DA921CEB9FA7004E8860 /* FBSDKCoreKit.framework in Frameworks */,
+				D742DA901CEB9FA7004E8860 /* FBAudienceNetwork.framework in Frameworks */,
 				D761C58F1CEB93CD00D1BB25 /* Bolts.framework in Frameworks */,
 				D761C58D1CEB93C600D1BB25 /* ParseUI.framework in Frameworks */,
+				D742DA971CEB9FB4004E8860 /* AccountKit.framework in Frameworks */,
 				BB65EBD50F601E4F26BD8CFC /* Pods_TastingRoomDelMar.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -288,6 +314,14 @@
 		33F0AF0FDEDF0E0B9CE77BF8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D742DA961CEB9FB4004E8860 /* AccountKit.framework */,
+				D742DA8A1CEB9FA7004E8860 /* FBAudienceNetwork.framework */,
+				D742DA8B1CEB9FA7004E8860 /* FBNotifications.framework */,
+				D742DA8C1CEB9FA7004E8860 /* FBSDKCoreKit.framework */,
+				D742DA8D1CEB9FA7004E8860 /* FBSDKLoginKit.framework */,
+				D742DA8E1CEB9FA7004E8860 /* FBSDKMessengerShareKit.framework */,
+				D742DA8F1CEB9FA7004E8860 /* FBSDKShareKit.framework */,
+				D757C9C51CEB9B2400DD2C4A /* Stripe.framework */,
 				D761C58E1CEB93CD00D1BB25 /* Bolts.framework */,
 				D761C5841CEB93C600D1BB25 /* Parse.framework */,
 				D761C5851CEB93C600D1BB25 /* ParseFacebookUtils.framework */,
@@ -432,6 +466,7 @@
 			children = (
 				D7F9810F1C44612800200639 /* ENSideMenuControllerViewController.swift */,
 				D7F981111C4461A300200639 /* ENSideMenuNavigationController.swift */,
+				D742DA881CEB9C5E004E8860 /* Reachability.swift */,
 			);
 			name = Library;
 			sourceTree = "<group>";
@@ -546,6 +581,7 @@
 				D7FFF7AA1C3AFB0600020D9A /* Frameworks */,
 				D7FFF7AB1C3AFB0600020D9A /* Resources */,
 				D79ACED51CBD59D600D70463 /* ShellScript */,
+				F6574613805138254699969F /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -702,6 +738,21 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Fabric/run\" 52fa462b37fc0c005e5599806fd96b167f34f913 35b7d5c1f47faf8fb09a510c9f2a06ce9f351d05498e0c88f4702aeb013fb4cd";
 		};
+		F6574613805138254699969F /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TastingRoomDelMar/Pods-TastingRoomDelMar-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -732,6 +783,7 @@
 				D729AB831C471FF90021A66E /* TierIVCollectionViewCell.swift in Sources */,
 				D7F981141C4461FD00200639 /* MenuTableViewController.swift in Sources */,
 				D7CDA53E1CA46CF200388A30 /* PlaygroundViewController.swift in Sources */,
+				D742DA891CEB9C5E004E8860 /* Reachability.swift in Sources */,
 				D7D809971C7BCE5000A3F5E6 /* LandingViewController.swift in Sources */,
 				D7734AFD1C45D87F009286DD /* TierIVViewController.swift in Sources */,
 				D78594941C7BF141000972FB /* SignupSceneOneViewController.swift in Sources */,

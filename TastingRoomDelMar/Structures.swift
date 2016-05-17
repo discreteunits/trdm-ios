@@ -8,7 +8,7 @@
 
 import UIKit
 import Parse
-import Stripe
+
 
 // App Configuration
 struct Config {

@@ -8,8 +8,8 @@
 
 import UIKit
 import Parse
-import ParseUI
-import Stripe
+
+
 
 class PaymentViewController: UIViewController {
 

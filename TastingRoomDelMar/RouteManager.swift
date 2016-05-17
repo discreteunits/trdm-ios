@@ -8,7 +8,6 @@
 
 import UIKit
 import Parse
-import ParseUI
 
 class RouteManager: NSObject {
 

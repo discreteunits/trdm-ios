@@ -7,11 +7,8 @@
 //
 
 import UIKit
-import ParseUI
 import Parse
-import ParseFacebookUtilsV4
-import ParseCrashReporting
-import ReachabilitySwift
+
 
 
 class TierITableViewController: UITableViewController, ENSideMenuDelegate {
@@ -460,70 +457,70 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
     
     // Facebook Graph Requests
     func getFBUserData() {
-        let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, gender, email, birthday"])
-        graphRequest.startWithCompletionHandler( { (connection, result, error) -> Void in
-    
-            if error != nil {
-                
-                if printFlag {
-                    print("----------------")
-                    print("Graph Request Returned Error: \(error)")
-                }
-                    
-            } else if let result = result {
-                
-                if printFlag {
-                    print("----------------")
-                    print("Graph Request Returned")
-                }
-                
-                print("CURRENT USER: \(PFUser.currentUser())")
-                
-                // Assign Graph Request Parameters To PFUser Object
-                PFUser.currentUser()?["username"] = result["email"]!
-                PFUser.currentUser()?["email"] = result["email"]!
-                PFUser.currentUser()?["firstName"] = result["first_name"]!
-                PFUser.currentUser()?["lastName"] = result["last_name"]!
-                
-                if printFlag {
-                    print("Username: \(result["email"]! as! String)")
-                    print("Email: \(result["email"]! as! String)")
-                    print("First Name: \(result["first_name"]! as! String)")
-                    print("Last Name: \(result["last_name"]! as! String)")
-                }
-                
-                
-//                PFUser.currentUser()?["name"] = result["name"]
-//                PFUser.currentUser()?["gender"] = result["gender"]
-//                PFUser.currentUser()?["birthday"] = result["birthday"]
-
-                PFUser.currentUser()?.saveInBackground()
-                
-                
-                
-                
-//                // Get and Save FB Profile Picture To Parse
-//                let userId = result["id"]! as! String
-//                let facebookProfilePictureUrl = "https://graph.facebook.com/" + userId + "/picture?type=large"
+//        let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, gender, email, birthday"])
+//        graphRequest.startWithCompletionHandler( { (connection, result, error) -> Void in
+//    
+//            if error != nil {
 //                
-//                if let fbPicUrl = NSURL(string: facebookProfilePictureUrl) {
-//                    
-//                    if let data = NSData(contentsOfURL: fbPicUrl) {
-//                        
-//                        // Show FB Profile Pic
-////                        self.userImage.image = UIImage(data: data)
-//                        
-//                        let imageFile: PFFile = PFFile(data: data)
-//                        PFUser.currentUser()?["image"] = imageFile
-//                        PFUser.currentUser()?.saveInBackground()
-//                        
-//                        if printFlag {
-//                            print("----------------")
-//                        }
-//                    }
+//                if printFlag {
+//                    print("----------------")
+//                    print("Graph Request Returned Error: \(error)")
 //                }
-            }
-        })
+//                    
+//            } else if let result = result {
+//                
+//                if printFlag {
+//                    print("----------------")
+//                    print("Graph Request Returned")
+//                }
+//                
+//                print("CURRENT USER: \(PFUser.currentUser())")
+//                
+//                // Assign Graph Request Parameters To PFUser Object
+//                PFUser.currentUser()?["username"] = result["email"]!
+//                PFUser.currentUser()?["email"] = result["email"]!
+//                PFUser.currentUser()?["firstName"] = result["first_name"]!
+//                PFUser.currentUser()?["lastName"] = result["last_name"]!
+//                
+//                if printFlag {
+//                    print("Username: \(result["email"]! as! String)")
+//                    print("Email: \(result["email"]! as! String)")
+//                    print("First Name: \(result["first_name"]! as! String)")
+//                    print("Last Name: \(result["last_name"]! as! String)")
+//                }
+//                
+//                
+////                PFUser.currentUser()?["name"] = result["name"]
+////                PFUser.currentUser()?["gender"] = result["gender"]
+////                PFUser.currentUser()?["birthday"] = result["birthday"]
+//
+//                PFUser.currentUser()?.saveInBackground()
+//                
+//                
+//                
+//                
+////                // Get and Save FB Profile Picture To Parse
+////                let userId = result["id"]! as! String
+////                let facebookProfilePictureUrl = "https://graph.facebook.com/" + userId + "/picture?type=large"
+////                
+////                if let fbPicUrl = NSURL(string: facebookProfilePictureUrl) {
+////                    
+////                    if let data = NSData(contentsOfURL: fbPicUrl) {
+////                        
+////                        // Show FB Profile Pic
+//////                        self.userImage.image = UIImage(data: data)
+////                        
+////                        let imageFile: PFFile = PFFile(data: data)
+////                        PFUser.currentUser()?["image"] = imageFile
+////                        PFUser.currentUser()?.saveInBackground()
+////                        
+////                        if printFlag {
+////                            print("----------------")
+////                        }
+////                    }
+////                }
+//            }
+//        })
     }
     
     
@@ -549,44 +546,44 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         }
         
         reachability.whenReachable = { reachability in
-            dispatch_async(dispatch_get_main_queue()) {
-                if reachability.isReachableViaWiFi() {
-
-                    print("Reachable via WiFi")
-                    
-                    // TIER 1 QUERY
-                    self.tierIQuery()
-                    
-                    // Get User Stripe Cards
-                    self.getCards()
-                    
-                    // Check if user is signed in with Facebook
-                    if FBSDKAccessToken.currentAccessToken() != nil {
-                        
-                        self.getFBUserData()
-                        print("User signed in with Facebook.")
-                        
-                    }
-                    
-                } else {
-                    
-                    print("Reachable via Cellular")
-                    
-                    // TIER 1 QUERY
-                    self.tierIQuery()
-                    
-                    // Get User Stripe Cards
-                    self.getCards()
-                    
-                    // Check if user is signed in with Facebook
-                    if FBSDKAccessToken.currentAccessToken() != nil {
-                        
-                        self.getFBUserData()
-                        print("User signed in with Facebook.")
-                        
-                    }
-                }
-            }
+//            dispatch_async(dispatch_get_main_queue()) {
+//                if reachability.isReachableViaWiFi() {
+//
+//                    print("Reachable via WiFi")
+//                    
+//                    // TIER 1 QUERY
+//                    self.tierIQuery()
+//                    
+//                    // Get User Stripe Cards
+//                    self.getCards()
+//                    
+//                    // Check if user is signed in with Facebook
+//                    if FBSDKAccessToken.currentAccessToken() != nil {
+//                        
+//                        self.getFBUserData()
+//                        print("User signed in with Facebook.")
+//                        
+//                    }
+//                    
+//                } else {
+//                    
+//                    print("Reachable via Cellular")
+//                    
+//                    // TIER 1 QUERY
+//                    self.tierIQuery()
+//                    
+//                    // Get User Stripe Cards
+//                    self.getCards()
+//                    
+//                    // Check if user is signed in with Facebook
+//                    if FBSDKAccessToken.currentAccessToken() != nil {
+//                        
+//                        self.getFBUserData()
+//                        print("User signed in with Facebook.")
+//                        
+//                    }
+//                }
+//            }
         }
         
         reachability.whenUnreachable = { reachability in

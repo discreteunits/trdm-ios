@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import ParseUI
 import Parse
-import ParseCrashReporting
+
 
 @objc
 protocol TierIVCollectionViewDelegate {

@@ -8,7 +8,7 @@
 
 import UIKit
 import Parse
-import ParseUI
+
 
 class MenuTableViewController: UITableViewController, ENSideMenuDelegate {
     var selectedMenuItem : Int = 0

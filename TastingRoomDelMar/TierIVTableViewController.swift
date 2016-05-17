@@ -7,8 +7,8 @@
 //
 
 import UIKit
-import ParseUI
 import Parse
+
 
 
 @objc

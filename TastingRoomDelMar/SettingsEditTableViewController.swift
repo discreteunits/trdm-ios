@@ -8,7 +8,8 @@
 
 import UIKit
 import Parse
-import ParseUI
+
+
 
 @objc
 protocol SettingsEditTableViewDelegate {

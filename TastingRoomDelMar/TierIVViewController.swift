@@ -7,9 +7,7 @@
 //
 
 import UIKit
-import ParseUI
 import Parse
-import ParseCrashReporting
 
 class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPresentationControllerDelegate {
 

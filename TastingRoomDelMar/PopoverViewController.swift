@@ -7,8 +7,8 @@
 //
 
 import UIKit
-import ParseUI
 import Parse
+
 
 class PopoverViewController: UITableViewController {
     

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Parse
+
 
 class SettingsTextViewController: UIViewController, UIWebViewDelegate {
     

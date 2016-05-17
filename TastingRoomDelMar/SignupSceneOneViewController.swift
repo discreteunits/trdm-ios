@@ -8,8 +8,6 @@
 
 import UIKit
 import Parse
-import ParseCrashReporting
-import ParseFacebookUtilsV4
 
 class SignupSceneOneViewController: UIViewController {
     

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Parse
+
 
 class EmailViewController: UIViewController, UITextFieldDelegate {
 
