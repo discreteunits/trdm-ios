@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D7086D261CC9650B009F96C7 /* TabFloatingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7086D251CC9650B009F96C7 /* TabFloatingTableViewController.swift */; };
+		D715708D1CEBA467002C7B51 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D715708C1CEBA467002C7B51 /* AudioToolbox.framework */; };
 		D717FE9B1CDBE58F0031E60D /* hamburger-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = D717FE9A1CDBE58F0031E60D /* hamburger-sm.png */; };
 		D719A6301C3F26D500987525 /* TierNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D719A62F1C3F26D500987525 /* TierNavigationController.swift */; };
 		D729AB831C471FF90021A66E /* TierIVCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D729AB821C471FF90021A66E /* TierIVCollectionViewCell.swift */; };
@@ -144,6 +145,7 @@
 		04B86A7B2DE721FB50D137DB /* Pods-TastingRoomDelMar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TastingRoomDelMar.release.xcconfig"; path = "Pods/Target Support Files/Pods-TastingRoomDelMar/Pods-TastingRoomDelMar.release.xcconfig"; sourceTree = "<group>"; };
 		D53F1940B0ECFC354F949DF6 /* Pods-TastingRoomDelMar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TastingRoomDelMar.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TastingRoomDelMar/Pods-TastingRoomDelMar.debug.xcconfig"; sourceTree = "<group>"; };
 		D7086D251CC9650B009F96C7 /* TabFloatingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabFloatingTableViewController.swift; sourceTree = "<group>"; };
+		D715708C1CEBA467002C7B51 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		D717FE9A1CDBE58F0031E60D /* hamburger-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hamburger-sm.png"; sourceTree = "<group>"; };
 		D719A62F1C3F26D500987525 /* TierNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierNavigationController.swift; sourceTree = "<group>"; };
 		D729AB821C471FF90021A66E /* TierIVCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierIVCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -272,6 +274,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D715708D1CEBA467002C7B51 /* AudioToolbox.framework in Frameworks */,
 				D7C6B23A1CD7CAEE003594FA /* libz.1.dylib in Frameworks */,
 				D7C6B2381CD7CAC8003594FA /* libsqlite3.dylib in Frameworks */,
 				D761C58B1CEB93C600D1BB25 /* ParseFacebookUtilsV4.framework in Frameworks */,
@@ -311,6 +314,7 @@
 		33F0AF0FDEDF0E0B9CE77BF8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D715708C1CEBA467002C7B51 /* AudioToolbox.framework */,
 				D742DA961CEB9FB4004E8860 /* AccountKit.framework */,
 				D742DA8A1CEB9FA7004E8860 /* FBAudienceNetwork.framework */,
 				D742DA8B1CEB9FA7004E8860 /* FBNotifications.framework */,
@@ -576,7 +580,6 @@
 				D7FFF7A91C3AFB0600020D9A /* Sources */,
 				D7FFF7AA1C3AFB0600020D9A /* Frameworks */,
 				D7FFF7AB1C3AFB0600020D9A /* Resources */,
-				D79ACED51CBD59D600D70463 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -718,22 +721,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		D79ACED51CBD59D600D70463 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\" 52fa462b37fc0c005e5599806fd96b167f34f913 35b7d5c1f47faf8fb09a510c9f2a06ce9f351d05498e0c88f4702aeb013fb4cd";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D7FFF7A91C3AFB0600020D9A /* Sources */ = {

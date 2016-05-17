@@ -8,7 +8,7 @@
 
 import UIKit
 import Parse
-
+import ParseFacebookUtilsV4
 
 
 class SettingsTableViewController: UITableViewController {
@@ -113,11 +113,11 @@ class SettingsTableViewController: UITableViewController {
         
         if section == 0 {
             
-//            if FBSDKAccessToken.currentAccessToken() != nil {
-//                return 3 // 4 with mobile #
-//            } else {
-//                return 4 // 5 with mobile #
-//            }
+            if FBSDKAccessToken.currentAccessToken() != nil {
+                return 3 // 4 with mobile #
+            } else {
+                return 4 // 5 with mobile #
+            }
             
 //        } else if section == 1 {
 //            return 0 // 2 with push notifications and newsletter
@@ -164,13 +164,13 @@ class SettingsTableViewController: UITableViewController {
                 
 
                 
-//                if PFFacebookUtils.isLinkedWithUser(PFUser.currentUser()!) {
-//                    myAccountCell.settingLabel.text = "Email"
-//                    myAccountCell.settingValueLabel.text = PFUser.currentUser()!["email"] as? String
-//                } else {
-//                    myAccountCell.settingLabel.text = "Password"
-//                    myAccountCell.settingValueLabel.text = ""
-//                }
+                if PFFacebookUtils.isLinkedWithUser(PFUser.currentUser()!) {
+                    myAccountCell.settingLabel.text = "Email"
+                    myAccountCell.settingValueLabel.text = PFUser.currentUser()!["email"] as? String
+                } else {
+                    myAccountCell.settingLabel.text = "Password"
+                    myAccountCell.settingValueLabel.text = ""
+                }
                 
                 return myAccountCell
             

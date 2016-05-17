@@ -8,7 +8,7 @@
 
 import UIKit
 import Parse
-//import ParseFacebookUtilsV4
+import ParseFacebookUtilsV4
 import Stripe
 //import Fabric
 //import Crashlytics
@@ -45,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let configuration = ParseClientConfiguration {
             $0.applicationId = "ec321db54f541c125465ddc586b54b08"
-            $0.clientKey = ""
+            $0.clientKey = "BvU3xAcEB37sp3WXZUD9UhbpI4Set8CCUSbCa0OU"
             $0.server = "https://trdm-production-717.nodechef.com/parse"
         }
         Parse.initializeWithConfiguration(configuration)
@@ -63,7 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
                 
-//        PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)
+        PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)
         
         PFUser.enableAutomaticUser()
         
