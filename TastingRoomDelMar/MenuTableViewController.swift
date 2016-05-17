@@ -64,7 +64,7 @@ class MenuTableViewController: UITableViewController, ENSideMenuDelegate {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // Return the number of rows in the section.
         
-        if PFUser.currentUser()!.username != nil {
+        if PFUser.currentUser()?["firstName"] != nil {
             return 5
         } else {
             return 2
@@ -78,7 +78,7 @@ class MenuTableViewController: UITableViewController, ENSideMenuDelegate {
         var menuArray = [String]()
         
         // ----- Logged In Trigger -----
-        if PFUser.currentUser()!.username != nil {
+        if PFUser.currentUser()?["firstName"] != nil {
             
             menuArray = ["Menu", "Tab", "History", "Payment", "Settings"]
             
@@ -139,7 +139,7 @@ class MenuTableViewController: UITableViewController, ENSideMenuDelegate {
             
             // ----- Logged In Trigger -----
             // TAB
-            if PFUser.currentUser()!.username != nil {
+            if PFUser.currentUser()?["firstName"] != nil {
 
                 let tabStoryboard: UIStoryboard = UIStoryboard(name: "TabStoryboard", bundle: nil)
 
@@ -191,9 +191,6 @@ class MenuTableViewController: UITableViewController, ENSideMenuDelegate {
             
 
         case 2:
-            
-//            // HISTORY
-//            if PFUser.currentUser()!.username != nil {
 
                 let historyStoryboard: UIStoryboard = UIStoryboard(name: "HistoryStoryboard", bundle: nil)
             

@@ -65,16 +65,20 @@ class SignupSceneOneTableViewController: UITableViewController, UITextFieldDeleg
         
         tableView.estimatedRowHeight = 50
         
+        forgotPasswordButton.titleLabel?.font = UIFont.scriptFont(16)
+
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         // Get Keyboard Height
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SignupSceneOneTableViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
 
         // Format Elements
-        emailLabel.font = UIFont.headerFont(16)
+        emailLabel.font = UIFont.headerFont(18)
         emailTextField.font = UIFont.headerFont(16)
         emailErrorMessage.hidden = true
         emailCheckmark.hidden = true
@@ -82,14 +86,14 @@ class SignupSceneOneTableViewController: UITableViewController, UITextFieldDeleg
         emailTextField.becomeFirstResponder()
         
         passwordTextField.font = UIFont.headerFont(16)
-        passwordLabel.font = UIFont.headerFont(16)
+        passwordLabel.font = UIFont.headerFont(18)
         passwordErrorMessage.hidden = true
         passwordCheckmark.hidden = true
         
-        alternateButton.titleLabel?.font = UIFont.scriptFont(16)
-        registeredMessage.font = UIFont.scriptFont(16)
+        alternateButton.titleLabel?.font = UIFont.scriptFont(18)
+        registeredMessage.font = UIFont.scriptFont(18)
         
-        forgotPasswordButton.titleLabel?.font = UIFont.basicFont(16)
+        forgotPasswordButton.titleLabel?.font = UIFont.basicFont(18)
             
 
     }

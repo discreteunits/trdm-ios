@@ -67,7 +67,6 @@ class AccountManager: NSObject {
     // Save Parse User
     func saveUser(view: UIViewController, username: String, email: String, password: String) {
         
-        ActivityManager.sharedInstance.activityStart(view)
         
         // Empty Strings
         if username == "" || password == "" {
@@ -83,6 +82,8 @@ class AccountManager: NSObject {
             user.email = email
             user.password = password
             
+            ActivityManager.sharedInstance.activityStart(view)
+
         
             user.signUpInBackgroundWithBlock({ (success, error) -> Void in
             
@@ -148,8 +149,6 @@ class AccountManager: NSObject {
     }
     
     func addUserDetails(view: UIViewController, firstName: String, lastName: String, mobile: String, newsletter: Bool) {
- 
-        ActivityManager.sharedInstance.activityStart(view)
         
         let user = PFUser.currentUser()
         
@@ -163,27 +162,28 @@ class AccountManager: NSObject {
             user!["marketingAllowed"] = false
         }
         
+        ActivityManager.sharedInstance.activityStart(view)
         
         user!.saveInBackgroundWithBlock { (success, error) -> Void in
             
             // Success 
             if error == nil {
              
+                ActivityManager.sharedInstance.activityStop(view)
+
                 print("User has been updated successfully.")
                 self.goToTiers(view)
                 
             // Failure
             } else {
                 
+                ActivityManager.sharedInstance.activityStop(view)
+
                 print("Failed to update user")
                 AlertManager.sharedInstance.singleAlert(view, title: "Whoops!", message: "Please try again later.")
                 
             }
-            
-            ActivityManager.sharedInstance.activityStop(view)
-            
         }
-        
     }
     
     func goToTiers(view: UIViewController) {

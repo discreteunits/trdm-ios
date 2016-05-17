@@ -132,7 +132,6 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
             
         }
         
-        print("------------Queries Completed------------")
         
     }
 
@@ -166,6 +165,9 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
         
         // FLYOUT MENU
         self.sideMenuController()?.sideMenu?.delegate = self
+     
+        print("------------Queries Completed------------")
+
         
     }
     
@@ -296,7 +298,8 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
     func tierIVCollectionQuery() {
         
         self.TierIVCollectionViewControllerRef?.tierIVCollectionArray.removeAll()
-            
+        self.TierIVCollectionViewControllerRef?.tierIVCollectionArray.removeAll()
+        
         let collectionQuery:PFQuery = PFQuery(className: "Tier4")
         collectionQuery.includeKey("category")
         collectionQuery.orderByAscending("name")
@@ -344,6 +347,7 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
         
         
         self.TierIVTableViewControllerRef?.tierIVTableArray.removeAll()
+        self.tierIVTableArray.removeAll()
         
         let tableQuery:PFQuery = PFQuery(className:"Product")
         tableQuery.includeKey("category")
