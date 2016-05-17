@@ -527,10 +527,21 @@
                                                     </view>
                                                     <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="bottomMargin" secondItem="vVA-4y-kLs" secondAttribute="bottom" id="0iU-EW-A0b"/>
+                                                        <constraint firstItem="vVA-4y-kLs" firstAttribute="top" secondItem="QYb-tH-cFj" secondAttribute="topMargin" id="15C-OY-4SQ"/>
                                                         <constraint firstItem="vVA-4y-kLs" firstAttribute="centerY" secondItem="QYb-tH-cFj" secondAttribute="centerY" id="9yG-fm-cct"/>
                                                         <constraint firstItem="vVA-4y-kLs" firstAttribute="top" secondItem="QYb-tH-cFj" secondAttribute="topMargin" constant="16" id="JNX-SY-uFH"/>
+                                                        <constraint firstAttribute="trailingMargin" secondItem="vVA-4y-kLs" secondAttribute="trailing" id="YUF-sz-UvK"/>
+                                                        <constraint firstItem="vVA-4y-kLs" firstAttribute="leading" secondItem="QYb-tH-cFj" secondAttribute="leadingMargin" id="itO-MR-jO4"/>
                                                         <constraint firstItem="vVA-4y-kLs" firstAttribute="centerX" secondItem="QYb-tH-cFj" secondAttribute="centerX" id="lVc-Ho-T7r"/>
                                                     </constraints>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="9yG-fm-cct"/>
+                                                            <exclude reference="JNX-SY-uFH"/>
+                                                            <exclude reference="lVc-Ho-T7r"/>
+                                                        </mask>
+                                                    </variation>
                                                     <connections>
                                                         <outlet property="label" destination="vVA-4y-kLs" id="FXd-03-oMz"/>
                                                     </connections>

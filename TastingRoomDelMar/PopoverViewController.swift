@@ -54,6 +54,7 @@ class PopoverViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         delay(0.1) { () -> () in
             self.preferredContentSize = CGSize(width: self.width, height: self.height)
             self.tableView.reloadData()
@@ -338,6 +339,16 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
             
     }
     
+    func collectionAttributedString(text:String) -> NSAttributedString {
+        
+        let textAttributes = [NSFontAttributeName: UIFont.scriptFont(16), NSForegroundColorAttributeName: UIColor.blackColor()]
+        
+        let textString = NSMutableAttributedString(string: "\(text)", attributes: textAttributes)
+        
+        return textString
+        
+    }
+    
     func collectionView(collectionView: UICollectionView,
         cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
             
@@ -367,9 +378,10 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                 // ----- HARVEST BEGIN ------
                 if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
                     
-                    dispatch_async(dispatch_get_main_queue()) {
-                        sgCollectionCell.label.text = self.additions[trueIndex].values[indexPath.row].name
-                    }
+//                    sgCollectionCell.label.text = self.additions[trueIndex].values[indexPath.row].name
+                    
+                    sgCollectionCell.label.attributedText = collectionAttributedString("\(self.additions[trueIndex].values[indexPath.row].name)")
+                        
                     
                 } else {
                     
@@ -398,13 +410,8 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                 quantityCollectionCell.backgroundColor = UIColor.whiteColor()
                 
                 let trueIndex = String(indexPath.row + 1)
-                quantityCollectionCell.label.font = UIFont.scriptFont(16)
 
-                
-                
-                dispatch_async(dispatch_get_main_queue()) {
-                    quantityCollectionCell.label.text = trueIndex
-                }
+                quantityCollectionCell.label.attributedText = collectionAttributedString("\(trueIndex)")
                 
                 
                 

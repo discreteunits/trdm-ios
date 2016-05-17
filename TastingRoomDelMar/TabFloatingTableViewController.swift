@@ -259,6 +259,10 @@ class TabFloatingTableViewController: UITableViewController, UIPopoverPresentati
 // Extension for protocol in Table Number Popover
 extension TabFloatingTableViewController: TableNumberViewDelegate, AddGratuityViewDelegate, AlertManagerDelegate {
     
+    func tableNumberSegue() {
+        performSegueWithIdentifier("enterTableNumber", sender: self)
+    }
+    
     func gratuitySegue() {
         performSegueWithIdentifier("addGratuity", sender: self)
     }

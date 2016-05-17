@@ -11,16 +11,18 @@
         <scene sceneID="Ejk-Zh-Olx">
             <objects>
                 <tableViewController id="6sp-Fy-ahA" customClass="SettingsTableViewController" customModule="TastingRoomDelMar" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="50" sectionHeaderHeight="30" sectionFooterHeight="28" id="Fnf-pf-ipt">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="50" sectionHeaderHeight="30" sectionFooterHeight="28" id="Fnf-pf-ipt">
                         <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingsHeaderTableCell" id="CoX-O2-O56" customClass="SettingsHeaderTableViewCell" customModule="TastingRoomDelMar" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="30" width="600" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CoX-O2-O56" id="0Jb-1U-fdK">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="49.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="headerLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3a7-YH-Uc3">
@@ -46,9 +48,16 @@
                                 <rect key="frame" x="0.0" y="80" width="600" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yHE-g1-ZdW" id="ZHY-vV-y45">
-                                    <rect key="frame" x="0.0" y="0.0" width="567" height="49.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="567" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
+                                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KFj-nO-Vua">
+                                            <rect key="frame" x="0.0" y="39" width="600" height="11"/>
+                                            <color key="backgroundColor" red="0.94485874368686873" green="0.94485874368686873" blue="0.94485874368686873" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="1" id="TuB-dK-spg"/>
+                                            </constraints>
+                                        </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="settingLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VYt-BR-ZTI">
                                             <rect key="frame" x="15" y="0.0" width="268" height="50"/>
                                             <constraints>
@@ -82,6 +91,7 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="trailingMargin" secondItem="6s8-hI-aNf" secondAttribute="trailing" id="1xX-iJ-qd2"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="KFj-nO-Vua" secondAttribute="trailing" constant="-48" id="3rP-7y-vsi"/>
                                         <constraint firstItem="VYt-BR-ZTI" firstAttribute="leading" secondItem="ZHY-vV-y45" secondAttribute="leadingMargin" constant="7" id="43D-U8-ICL"/>
                                         <constraint firstItem="VYt-BR-ZTI" firstAttribute="leading" secondItem="ZHY-vV-y45" secondAttribute="leadingMargin" constant="7" id="62z-GM-6Hu"/>
                                         <constraint firstAttribute="trailing" secondItem="6s8-hI-aNf" secondAttribute="trailing" id="Ea6-dw-iTf"/>
@@ -89,8 +99,10 @@
                                         <constraint firstItem="6s8-hI-aNf" firstAttribute="centerY" secondItem="ZHY-vV-y45" secondAttribute="centerY" id="JNu-l6-6D1"/>
                                         <constraint firstItem="VYt-BR-ZTI" firstAttribute="centerY" secondItem="ZHY-vV-y45" secondAttribute="centerY" id="JO2-ta-FEC"/>
                                         <constraint firstItem="6s8-hI-aNf" firstAttribute="top" secondItem="ZHY-vV-y45" secondAttribute="top" id="Syr-9h-I54"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="KFj-nO-Vua" secondAttribute="bottom" constant="-8" id="TvW-jy-FjA"/>
                                         <constraint firstItem="6s8-hI-aNf" firstAttribute="centerY" secondItem="ZHY-vV-y45" secondAttribute="centerY" id="bxT-jA-lp2"/>
                                         <constraint firstItem="6s8-hI-aNf" firstAttribute="firstBaseline" secondItem="VYt-BR-ZTI" secondAttribute="firstBaseline" id="fXs-cO-4dQ"/>
+                                        <constraint firstItem="KFj-nO-Vua" firstAttribute="leading" secondItem="ZHY-vV-y45" secondAttribute="leadingMargin" constant="-32" id="hvY-aJ-q11"/>
                                         <constraint firstItem="6s8-hI-aNf" firstAttribute="leading" secondItem="VYt-BR-ZTI" secondAttribute="trailing" id="iPJ-52-Uek"/>
                                         <constraint firstItem="6s8-hI-aNf" firstAttribute="leading" secondItem="VYt-BR-ZTI" secondAttribute="trailing" id="lCf-86-jBx"/>
                                         <constraint firstItem="VYt-BR-ZTI" firstAttribute="centerY" secondItem="ZHY-vV-y45" secondAttribute="centerY" id="mzk-M1-m7y"/>
@@ -128,7 +140,7 @@
                                 <rect key="frame" x="0.0" y="130" width="600" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FkI-RP-HBR" id="Qfi-u5-ATw">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="49.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G6U-Ra-Jdc">
@@ -166,7 +178,7 @@
                                 <rect key="frame" x="0.0" y="180" width="600" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ctQ-pK-U9C" id="ebn-Cn-ue0">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="49.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Tasting Room v0.0.1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jUs-gb-Jah">
