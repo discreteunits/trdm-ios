@@ -15,9 +15,13 @@ class AppConfiguration: NSObject {
     static let sharedInstance = AppConfiguration()
     
     
-    private var _APP_ID = "kK30VZLdLwfWjOqOfzKbneFjniRGNKr3nOEb83kS"
-
-    private var _CLIENT_ID = "BvU3xAcEB37sp3WXZUD9UhbpI4Set8CCUSbCa0OU"
+//    private var _APP_ID = "kK30VZLdLwfWjOqOfzKbneFjniRGNKr3nOEb83kS"
+//
+//    private var _CLIENT_ID = "BvU3xAcEB37sp3WXZUD9UhbpI4Set8CCUSbCa0OU"
+    
+    private var _APP_ID = "ec321db54f541c125465ddc586b54b08"
+    private var _CLIENT_ID = " "
+    private var _SERVER_URL = "https://trdm-production-717.nodechef.com/parse"
     
     private var _STRIPE_ID = "pk_test_Ks6cqeQtnXJN0MQIkEOyAmKn"
     

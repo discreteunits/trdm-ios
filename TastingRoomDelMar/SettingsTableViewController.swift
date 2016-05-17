@@ -162,9 +162,11 @@ class SettingsTableViewController: UITableViewController {
             // Mobile Number Row
             } else if indexPath.row == 2 {
                 
+
+                
                 if PFFacebookUtils.isLinkedWithUser(PFUser.currentUser()!) {
-                    myAccountCell.settingLabel.text = ""
-                    myAccountCell.settingValueLabel.text = ""
+                    myAccountCell.settingLabel.text = "Email"
+                    myAccountCell.settingValueLabel.text = PFUser.currentUser()!["email"] as? String
                 } else {
                     myAccountCell.settingLabel.text = "Password"
                     myAccountCell.settingValueLabel.text = ""
@@ -396,11 +398,12 @@ class SettingsTableViewController: UITableViewController {
                 TabManager.sharedInstance.removeItemsIndicator()
                 
             // Take Anonymous User Home
-            } else if indexPath.row == 1 {
-                
-                goToHome()
-                
             }
+//            else if indexPath.row == 1 {
+//                
+//                goToHome()
+//                
+//            }
             
         }
             

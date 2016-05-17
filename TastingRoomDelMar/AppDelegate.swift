@@ -18,6 +18,8 @@ import Crashlytics
 var printFlag = true
 var offlineFlag = false
 
+
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -35,8 +37,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Parse.enableLocalDatastore()
         
-        Parse.setApplicationId(AppConfiguration.sharedInstance.databaseAppId,
-            clientKey: AppConfiguration.sharedInstance.databaseClientKey)
+        Parse.setApplicationId("ec321db54f541c125465ddc586b54b08",
+            clientKey: "")
+        
+        
+        
+        
+//        let configuration = ParseClientConfiguration {
+//            $0.applicationId = "ec321db54f541c125465ddc586b54b08"
+//            $0.clientKey = ""
+//            $0.server = "https://trdm-production-717.nodechef.com/parse"
+//        }
+//
+        
+//        let parseConfiguration = ParseClientConfiguration(block: { (ParseMutableClientConfiguration) -> Void in
+//            ParseMutableClientConfiguration.applicationId = "APP_ID"
+//            ParseMutableClientConfiguration.clientKey = "CLIENT_KEY"
+//            ParseMutableClientConfiguration.server = "http://your_server.com:1337/parse"
+//        })
+//        
+//        Parse.initializeWithConfiguration(parseConfiguration)
+        
+        
                 
         PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)
         

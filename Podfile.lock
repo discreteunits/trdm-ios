@@ -9,11 +9,11 @@ PODS:
     - Fabric (~> 1.6.3)
   - ENSwiftSideMenu (0.1.1)
   - Fabric (1.6.7)
-  - FBSDKCoreKit (4.10.1):
-    - Bolts (~> 1.5)
-  - FBSDKLoginKit (4.10.1):
+  - FBSDKCoreKit (4.11.0):
+    - Bolts (~> 1.7)
+  - FBSDKLoginKit (4.11.0):
     - FBSDKCoreKit
-  - FBSDKShareKit (4.10.1):
+  - FBSDKShareKit (4.11.0):
     - FBSDKCoreKit
   - Parse (1.8.5):
     - Bolts/Tasks (>= 1.2.2)
@@ -29,9 +29,9 @@ PODS:
     - Bolts/Tasks (~> 1.2)
     - Parse (~> 1.8)
   - ReachabilitySwift (2.3.3)
-  - Stripe (6.2.0):
-    - Stripe/Core (= 6.2.0)
-  - Stripe/Core (6.2.0)
+  - Stripe (7.0.1):
+    - Stripe/Core (= 7.0.1)
+  - Stripe/Core (7.0.1)
   - SwiftValidator (3.0.1)
 
 DEPENDENCIES:
@@ -63,15 +63,15 @@ SPEC CHECKSUMS:
   Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
   ENSwiftSideMenu: a934caefbe811e4925f172009349da4a49901307
   Fabric: caf7580c725e64db144f610ac65cd60956911dc7
-  FBSDKCoreKit: d2aaed5e9ab7d8d6301c533376a1fbff1cf3deb5
-  FBSDKLoginKit: 699ff169080e3072de4b9b0faca90bf23dc36deb
-  FBSDKShareKit: 2fd887cce0056bdda91f99b2021d724a4fed8e88
+  FBSDKCoreKit: 686ac982723a14ec9ddb85e2f81235d7706c891b
+  FBSDKLoginKit: bade9fc78277764149ccc5bfaadbf13c83175c6a
+  FBSDKShareKit: 2d1746144cfc8a9dbbd24997c34ee0471be51b6a
   Parse: 17ad8e0677ed682f7f00503860fcda0f4eb74168
   ParseCrashReporting: d912cb10b7997ef79ac475db30997e64d48c2c98
   ParseFacebookUtilsV4: cc51857cf984c6fc743e7f17c2ddebdb6f02f963
   ParseUI: 8a22e448c03f825203d8c379c80523517f68baa3
   ReachabilitySwift: e0f6b6f280effb47731acfaaa2d5ffe223703793
-  Stripe: 275524137e6c4cc1058f6d32ece248adf30a21f9
+  Stripe: b92298b31cf156fb23a029361b57e2fcb6583d57
   SwiftValidator: c59223144754045d7691febdc3b3ecc2e73b609c
 
 COCOAPODS: 0.39.0
