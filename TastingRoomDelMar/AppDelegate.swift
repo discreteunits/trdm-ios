@@ -38,16 +38,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Parse.enableLocalDatastore()
         
         Parse.setApplicationId("ec321db54f541c125465ddc586b54b08",
-            clientKey: "")
+            clientKey: " ")
         
         
         
         
-//        let configuration = ParseClientConfiguration {
-//            $0.applicationId = "ec321db54f541c125465ddc586b54b08"
-//            $0.clientKey = ""
-//            $0.server = "https://trdm-production-717.nodechef.com/parse"
-//        }
+        let configuration = ParseClientConfiguration {
+            $0.applicationId = "ec321db54f541c125465ddc586b54b08"
+            $0.clientKey = ""
+            $0.server = "https://trdm-production-717.nodechef.com/parse"
+        }
 //
         
 //        let parseConfiguration = ParseClientConfiguration(block: { (ParseMutableClientConfiguration) -> Void in

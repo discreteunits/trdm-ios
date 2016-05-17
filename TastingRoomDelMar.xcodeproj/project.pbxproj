@@ -32,6 +32,12 @@
 		D74D91531CB5A33100795C29 /* PriceFormatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74D91521CB5A33100795C29 /* PriceFormatManager.swift */; };
 		D75AA4281C6062D200D5139B /* Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75AA4271C6062D200D5139B /* Structures.swift */; };
 		D75ABF1E1C48306A00435CF1 /* TierIVTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75ABF1D1C48306A00435CF1 /* TierIVTableViewCell.swift */; };
+		D761C5891CEB93C600D1BB25 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D761C5841CEB93C600D1BB25 /* Parse.framework */; };
+		D761C58A1CEB93C600D1BB25 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D761C5851CEB93C600D1BB25 /* ParseFacebookUtils.framework */; };
+		D761C58B1CEB93C600D1BB25 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D761C5861CEB93C600D1BB25 /* ParseFacebookUtilsV4.framework */; };
+		D761C58C1CEB93C600D1BB25 /* ParseTwitterUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D761C5871CEB93C600D1BB25 /* ParseTwitterUtils.framework */; };
+		D761C58D1CEB93C600D1BB25 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D761C5881CEB93C600D1BB25 /* ParseUI.framework */; };
+		D761C58F1CEB93CD00D1BB25 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D761C58E1CEB93CD00D1BB25 /* Bolts.framework */; };
 		D765FD381C7E60F400F68389 /* SettingsStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D765FD371C7E60F400F68389 /* SettingsStoryboard.storyboard */; };
 		D7683B0F1CB3086900F79678 /* HistoryStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7683B0E1CB3086900F79678 /* HistoryStoryboard.storyboard */; };
 		D7683B111CB308C100F79678 /* HistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7683B101CB308C100F79678 /* HistoryTableViewController.swift */; };
@@ -156,6 +162,12 @@
 		D74D91521CB5A33100795C29 /* PriceFormatManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriceFormatManager.swift; sourceTree = "<group>"; };
 		D75AA4271C6062D200D5139B /* Structures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Structures.swift; sourceTree = "<group>"; };
 		D75ABF1D1C48306A00435CF1 /* TierIVTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierIVTableViewCell.swift; sourceTree = "<group>"; };
+		D761C5841CEB93C600D1BB25 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		D761C5851CEB93C600D1BB25 /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
+		D761C5861CEB93C600D1BB25 /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtilsV4.framework; sourceTree = "<group>"; };
+		D761C5871CEB93C600D1BB25 /* ParseTwitterUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseTwitterUtils.framework; sourceTree = "<group>"; };
+		D761C5881CEB93C600D1BB25 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
+		D761C58E1CEB93CD00D1BB25 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		D765FD371C7E60F400F68389 /* SettingsStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SettingsStoryboard.storyboard; sourceTree = "<group>"; };
 		D7683B0E1CB3086900F79678 /* HistoryStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HistoryStoryboard.storyboard; sourceTree = "<group>"; };
 		D7683B101CB308C100F79678 /* HistoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableViewController.swift; sourceTree = "<group>"; };
@@ -246,6 +258,12 @@
 			files = (
 				D7C6B23A1CD7CAEE003594FA /* libz.1.dylib in Frameworks */,
 				D7C6B2381CD7CAC8003594FA /* libsqlite3.dylib in Frameworks */,
+				D761C58B1CEB93C600D1BB25 /* ParseFacebookUtilsV4.framework in Frameworks */,
+				D761C58C1CEB93C600D1BB25 /* ParseTwitterUtils.framework in Frameworks */,
+				D761C5891CEB93C600D1BB25 /* Parse.framework in Frameworks */,
+				D761C58A1CEB93C600D1BB25 /* ParseFacebookUtils.framework in Frameworks */,
+				D761C58F1CEB93CD00D1BB25 /* Bolts.framework in Frameworks */,
+				D761C58D1CEB93C600D1BB25 /* ParseUI.framework in Frameworks */,
 				BB65EBD50F601E4F26BD8CFC /* Pods_TastingRoomDelMar.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -270,6 +288,12 @@
 		33F0AF0FDEDF0E0B9CE77BF8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D761C58E1CEB93CD00D1BB25 /* Bolts.framework */,
+				D761C5841CEB93C600D1BB25 /* Parse.framework */,
+				D761C5851CEB93C600D1BB25 /* ParseFacebookUtils.framework */,
+				D761C5861CEB93C600D1BB25 /* ParseFacebookUtilsV4.framework */,
+				D761C5871CEB93C600D1BB25 /* ParseTwitterUtils.framework */,
+				D761C5881CEB93C600D1BB25 /* ParseUI.framework */,
 				D7C6B2391CD7CAEE003594FA /* libz.1.dylib */,
 				D7C6B2371CD7CAC8003594FA /* libsqlite3.dylib */,
 				258E486804D393986620D744 /* Pods_TastingRoomDelMar.framework */,
@@ -951,6 +975,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = TastingRoomDelMar/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -969,6 +997,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = TastingRoomDelMar/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
