@@ -37,8 +37,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Parse.enableLocalDatastore()
         
-        Parse.setApplicationId("ec321db54f541c125465ddc586b54b08",
-            clientKey: " ")
+//        Parse.setApplicationId("ec321db54f541c125465ddc586b54b08",
+//            clientKey: " ")
         
         
         
@@ -48,6 +48,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             $0.clientKey = ""
             $0.server = "https://trdm-production-717.nodechef.com/parse"
         }
+        
+        
 //
         
 //        let parseConfiguration = ParseClientConfiguration(block: { (ParseMutableClientConfiguration) -> Void in
