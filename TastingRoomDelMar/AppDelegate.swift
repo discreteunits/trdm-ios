@@ -10,8 +10,8 @@ import UIKit
 import Parse
 //import ParseFacebookUtilsV4
 import Stripe
-import Fabric
-import Crashlytics
+//import Fabric
+//import Crashlytics
 import FBSDKShareKit
 
 
@@ -48,6 +48,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             $0.clientKey = ""
             $0.server = "https://trdm-production-717.nodechef.com/parse"
         }
+        Parse.initializeWithConfiguration(configuration)
+
         
         
 //
@@ -58,7 +60,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            ParseMutableClientConfiguration.server = "http://your_server.com:1337/parse"
 //        })
 //        
-//        Parse.initializeWithConfiguration(parseConfiguration)
         
         
                 
@@ -92,7 +93,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Stripe Integration
         Stripe.setDefaultPublishableKey(AppConfiguration.sharedInstance.paymentPublishableKey)
-        Fabric.with([STPAPIClient.self, Crashlytics.self])
+//        Fabric.with([STPAPIClient.self, Crashlytics.self])
 
         
     // -------------------------------

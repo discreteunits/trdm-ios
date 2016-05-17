@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BB65EBD50F601E4F26BD8CFC /* Pods_TastingRoomDelMar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 258E486804D393986620D744 /* Pods_TastingRoomDelMar.framework */; };
 		D7086D261CC9650B009F96C7 /* TabFloatingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7086D251CC9650B009F96C7 /* TabFloatingTableViewController.swift */; };
 		D717FE9B1CDBE58F0031E60D /* hamburger-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = D717FE9A1CDBE58F0031E60D /* hamburger-sm.png */; };
 		D719A6301C3F26D500987525 /* TierNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D719A62F1C3F26D500987525 /* TierNavigationController.swift */; };
@@ -143,7 +142,6 @@
 
 /* Begin PBXFileReference section */
 		04B86A7B2DE721FB50D137DB /* Pods-TastingRoomDelMar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TastingRoomDelMar.release.xcconfig"; path = "Pods/Target Support Files/Pods-TastingRoomDelMar/Pods-TastingRoomDelMar.release.xcconfig"; sourceTree = "<group>"; };
-		258E486804D393986620D744 /* Pods_TastingRoomDelMar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TastingRoomDelMar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D53F1940B0ECFC354F949DF6 /* Pods-TastingRoomDelMar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TastingRoomDelMar.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TastingRoomDelMar/Pods-TastingRoomDelMar.debug.xcconfig"; sourceTree = "<group>"; };
 		D7086D251CC9650B009F96C7 /* TabFloatingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabFloatingTableViewController.swift; sourceTree = "<group>"; };
 		D717FE9A1CDBE58F0031E60D /* hamburger-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hamburger-sm.png"; sourceTree = "<group>"; };
@@ -290,7 +288,6 @@
 				D761C58F1CEB93CD00D1BB25 /* Bolts.framework in Frameworks */,
 				D761C58D1CEB93C600D1BB25 /* ParseUI.framework in Frameworks */,
 				D742DA971CEB9FB4004E8860 /* AccountKit.framework in Frameworks */,
-				BB65EBD50F601E4F26BD8CFC /* Pods_TastingRoomDelMar.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,7 +327,6 @@
 				D761C5881CEB93C600D1BB25 /* ParseUI.framework */,
 				D7C6B2391CD7CAEE003594FA /* libz.1.dylib */,
 				D7C6B2371CD7CAC8003594FA /* libsqlite3.dylib */,
-				258E486804D393986620D744 /* Pods_TastingRoomDelMar.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -581,7 +577,6 @@
 				D7FFF7AA1C3AFB0600020D9A /* Frameworks */,
 				D7FFF7AB1C3AFB0600020D9A /* Resources */,
 				D79ACED51CBD59D600D70463 /* ShellScript */,
-				F6574613805138254699969F /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -737,21 +732,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Fabric/run\" 52fa462b37fc0c005e5599806fd96b167f34f913 35b7d5c1f47faf8fb09a510c9f2a06ce9f351d05498e0c88f4702aeb013fb4cd";
-		};
-		F6574613805138254699969F /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TastingRoomDelMar/Pods-TastingRoomDelMar-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
