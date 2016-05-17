@@ -31,7 +31,7 @@ class PopoverViewController: UITableViewController {
     var productChoice = Product() // Beer and Wine
     var productAdditionChoices = [Addition]() // Harvest
     
-    var quantityChoice = String()
+    var quantityChoice = Int()
     
     // Collect All Additions For This Item
     var additions:[Addition] = [Addition]()
@@ -221,6 +221,8 @@ class PopoverViewController: UITableViewController {
                 qtyCell.contentView.tag = indexPath.row
                 qtyCell.label.text = "quantity"
                 qtyCell.label.font = UIFont.headerFont(20)
+//                qtyCell.userInteractionEnabled = false
+                
                 
                 return qtyCell
                 
@@ -508,7 +510,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
             selectedCell.label.textColor = UIColor.whiteColor()
             selectedCell.backgroundColor = UIColor.blackColor()
             
-            quantityChoice = "\(indexPath.row)"
+            quantityChoice = indexPath.row
             
             if printFlag {
                 print("User chose a quantity of: \(quantityChoice)")
@@ -571,7 +573,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                 
                 if popoverItem != nil {
                     if productChoice.name != "" || productAdditionChoices.count == completedChoices {
-                        if quantityChoice != "" {
+                        if quantityChoice != 0 {
                             
                             // Begin Monetary Calculations
                             let taxString = popoverItem["taxClass"] as! String
@@ -635,7 +637,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                             
                             
                             // Tax and Total for LineItem
-                            let lineitemPreTax = lineitemQuantity! * (totalChoicesPrice)
+                            let lineitemPreTax = lineitemQuantity * (totalChoicesPrice)
                             let lineitemTax = lineitemPreTax * taxRateDouble
                             let lineitemTotal = lineitemTax + lineitemPreTax
                             
@@ -727,7 +729,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                             var newLineItem = LineItem()
                             newLineItem.objectId = popoverItem.objectId!
                             newLineItem.productId = "\(popoverItem["lightspeedId"])"
-                            newLineItem.quantity = Int(quantityChoice)!
+                            newLineItem.quantity = quantityChoice
                             
                             
                             // Set Line Item Type (ie: Delivery, Take Away)
@@ -835,7 +837,9 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
         
-        let deselectedCell = collectionView.cellForItemAtIndexPath(indexPath)!
+//        let deselectedCell = collectionView.cellForItemAtIndexPath(indexPath) as? PopoverQuantityCollectionViewCell
+        
+        let deselectedCell = UICollectionViewCell()
         
         let parent = collectionView.superview!.tag
         
@@ -845,9 +849,9 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
         // Modifier Group Table Row
         } else if (parent > 0) && (parent < quantityRow ) {
             
-            let deselectedCell = collectionView.cellForItemAtIndexPath(indexPath)! as! PopoverSGCollectionViewCell
-            deselectedCell.label.textColor = UIColor.blackColor()
-            deselectedCell.backgroundColor = UIColor.whiteColor()
+            let deselectedCell = collectionView.cellForItemAtIndexPath(indexPath) as? PopoverSGCollectionViewCell
+            deselectedCell?.label.textColor = UIColor.blackColor()
+            deselectedCell?.backgroundColor = UIColor.whiteColor()
             
             // IF HARVEST
             // ----------
@@ -882,12 +886,19 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
         // Quantity Table Row
         } else if parent == quantityRow {
             
-            let deselectedCell = collectionView.cellForItemAtIndexPath(NSIndexPath(forItem: Int(quantityChoice)!, inSection: 0))
- as! PopoverQuantityCollectionViewCell
-            deselectedCell.label.textColor = UIColor.blackColor()
-            deselectedCell.backgroundColor = UIColor.whiteColor()
             
-            quantityChoice = ""
+//            let deselectedCell = collectionView.cellForItemAtIndexPath(NSIndexPath(forItem: quantityChoice, inSection: 0)) as! PopoverQuantityCollectionViewCell
+            
+            let deselectedCell = collectionView.cellForItemAtIndexPath(indexPath) as? PopoverQuantityCollectionViewCell
+
+            
+            
+            print("INDEX PATH: \(indexPath)")
+            
+            deselectedCell?.label.textColor = UIColor.blackColor()
+            deselectedCell?.backgroundColor = UIColor.whiteColor()
+            
+//            quantityChoice = 0
             print("\(quantityChoice)")
           
         // Action Table Row
