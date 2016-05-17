@@ -84,7 +84,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OB4-8K-hLA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-906" y="-1245"/>
+            <point key="canvasLocation" x="-178" y="-1245"/>
+        </scene>
+        <!--Email View Controller-->
+        <scene sceneID="qbt-Pa-jWS">
+            <objects>
+                <viewController id="1iw-1j-GZc" customClass="EmailViewController" customModule="TastingRoomDelMar" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5no-pj-rZn"/>
+                        <viewControllerLayoutGuide type="bottom" id="6f4-wy-NzB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0MQ-H1-cF9">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oTl-AD-VRK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-866" y="-1245"/>
         </scene>
         <!--Add Gratuity View Controller-->
         <scene sceneID="UZ9-ee-E3h">
@@ -102,7 +120,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VUD-AA-KRh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-232" y="-1245"/>
+            <point key="canvasLocation" x="692" y="-1245"/>
         </scene>
         <!--Tab Table View Controller-->
         <scene sceneID="F0j-T0-NtK">
@@ -487,11 +505,14 @@
                         <segue destination="ng5-vF-pyk" kind="popoverPresentation" identifier="addGratuity" popoverAnchorView="0eq-Fz-mPi" id="8i2-Uh-3XN">
                             <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                         </segue>
+                        <segue destination="1iw-1j-GZc" kind="popoverPresentation" identifier="enterEmail" popoverAnchorView="0eq-Fz-mPi" id="8mB-uT-pwU">
+                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                        </segue>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZMA-Z0-rE6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1602" y="-1024.5"/>
+            <point key="canvasLocation" x="-1602" y="-966"/>
         </scene>
     </scenes>
 </document>

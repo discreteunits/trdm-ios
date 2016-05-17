@@ -40,6 +40,7 @@
 		D7683B171CB30FA000F79678 /* HistoryDetailHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7683B161CB30FA000F79678 /* HistoryDetailHeaderTableViewCell.swift */; };
 		D7683B1B1CB32B6000F79678 /* HistoryDetailTotalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7683B1A1CB32B6000F79678 /* HistoryDetailTotalTableViewCell.swift */; };
 		D7683B1D1CB33EFA00F79678 /* HistoryDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7683B1C1CB33EFA00F79678 /* HistoryDetailTableViewCell.swift */; };
+		D76B308E1CEA97A3004FD82D /* EmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76B308D1CEA97A3004FD82D /* EmailViewController.swift */; };
 		D77013911C6C20C900CEB886 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77013901C6C20C900CEB886 /* SettingsTableViewController.swift */; };
 		D7734AF51C45C1D9009286DD /* TierITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7734AF41C45C1D9009286DD /* TierITableViewController.swift */; };
 		D7734AF71C45D4B3009286DD /* TierIITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7734AF61C45D4B3009286DD /* TierIITableViewController.swift */; };
@@ -163,6 +164,7 @@
 		D7683B161CB30FA000F79678 /* HistoryDetailHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryDetailHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		D7683B1A1CB32B6000F79678 /* HistoryDetailTotalTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryDetailTotalTableViewCell.swift; sourceTree = "<group>"; };
 		D7683B1C1CB33EFA00F79678 /* HistoryDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryDetailTableViewCell.swift; sourceTree = "<group>"; };
+		D76B308D1CEA97A3004FD82D /* EmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailViewController.swift; sourceTree = "<group>"; };
 		D77013901C6C20C900CEB886 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		D7734AF41C45C1D9009286DD /* TierITableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierITableViewController.swift; sourceTree = "<group>"; };
 		D7734AF61C45D4B3009286DD /* TierIITableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TierIITableViewController.swift; sourceTree = "<group>"; };
@@ -434,6 +436,7 @@
 				D7B616871C62DCE0002CF1DE /* TabLineItemTableViewCell.swift */,
 				D7B616891C62DCEF002CF1DE /* TabTotalTableViewCell.swift */,
 				D7B6168B1C62DCFA002CF1DE /* TabActionTableViewCell.swift */,
+				D76B308D1CEA97A3004FD82D /* EmailViewController.swift */,
 				D736DADC1C73906800751307 /* TableNumberViewController.swift */,
 				D736DADE1C73907A00751307 /* AddGratuityViewController.swift */,
 				D736DAE01C73DACE00751307 /* AddGratuityCollectionViewCell.swift */,
@@ -773,6 +776,7 @@
 				D7B6168A1C62DCEF002CF1DE /* TabTotalTableViewCell.swift in Sources */,
 				D733D4641C69555700682A84 /* PaymentTableViewController.swift in Sources */,
 				D7734AF51C45C1D9009286DD /* TierITableViewController.swift in Sources */,
+				D76B308E1CEA97A3004FD82D /* EmailViewController.swift in Sources */,
 				D7A8AC0A1C4DB600008D9A90 /* TierIIITableViewController.swift in Sources */,
 				D72B2A4E1C49728C0090875F /* RawPopoverViewController.swift in Sources */,
 				D786D1C01C7D57F70034EA81 /* SignupSceneTwoViewController.swift in Sources */,

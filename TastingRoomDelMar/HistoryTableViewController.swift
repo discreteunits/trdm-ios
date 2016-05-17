@@ -28,6 +28,8 @@ class HistoryTableViewController: UITableViewController {
     var orderToPass: PFObject!
     
     let formatter = PriceFormatManager.priceFormatManager
+    
+
 
     
     // ----------------------
@@ -104,6 +106,11 @@ class HistoryTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
+
+        
         
         
         tableView.tableFooterView = UIView()
@@ -188,9 +195,12 @@ class HistoryTableViewController: UITableViewController {
 
         
 
-        
-        cell.totalLabel.text = "Total: \(order["orderTaxInfo"][0]["totalWithTax"]!)"
-        
+        if order["orderTaxInfo"] != nil {
+            cell.totalLabel.text = "Total: \(order["orderTaxInfo"][0]["totalWithTax"]!)"
+        } else {
+            cell.totalLabel.text = "Total: [error found]"
+
+        }
 
         
         

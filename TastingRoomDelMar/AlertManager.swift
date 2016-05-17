@@ -352,7 +352,7 @@ class AlertManager: UIViewController {
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action) -> Void in
             print("Ok Selected")
         })
-        let settingsAction = UIAlertAction(title: "Settings", style: .Cancel, handler: { (action) -> Void in
+        let settingsAction = UIAlertAction(title: "Settings", style: .Default, handler: { (action) -> Void in
             print("Settings Selected")
             self.goToSettings(view)
         })
@@ -570,8 +570,13 @@ class AlertManager: UIViewController {
     func checkout(view: UIViewController) {
         
         // Require Email Address
-        if PFUser.currentUser()?["email"] as! String == "" {
+        if PFUser.currentUser()?["email"] == nil || PFUser.currentUser()?["email"] as! String == "" {
             addEmailAlert(view, title: "Whoops!", message: "Looks like we don't have your email yet. You can add your email in settings.")
+        }
+        
+        // Enter Email
+        if PFUser.currentUser()?["email"] == nil || PFUser.currentUser()?["email"] as! String == "" {
+            view.performSegueWithIdentifier("enterEmail", sender: self)
         }
         
         // Whoops Logged In

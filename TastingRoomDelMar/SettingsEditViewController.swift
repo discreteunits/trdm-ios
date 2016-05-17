@@ -124,7 +124,11 @@ class SettingsEditViewController: UIViewController {
             
         } else if passedTrigger == "Email" {
             message = "This is how you'll receive notifications and emails from Tasting Room."
-            placeholder = PFUser.currentUser()!["email"] as! String
+            if let potentialHolder = PFUser.currentUser()?["email"] as? String {
+                placeholder = potentialHolder
+            } else {
+                placeholder = ""
+            }
             
         } else if passedTrigger == "Password" {
             message = "This is how you'll log into the Tasting Room app."
