@@ -508,7 +508,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
             selectedCell.label.textColor = UIColor.whiteColor()
             selectedCell.backgroundColor = UIColor.blackColor()
             
-            quantityChoice = selectedCell.label.text!
+            quantityChoice = "\(indexPath.row)"
             
             if printFlag {
                 print("User chose a quantity of: \(quantityChoice)")
@@ -882,7 +882,8 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
         // Quantity Table Row
         } else if parent == quantityRow {
             
-            let deselectedCell = collectionView.cellForItemAtIndexPath(indexPath)! as! PopoverQuantityCollectionViewCell
+            let deselectedCell = collectionView.cellForItemAtIndexPath(NSIndexPath(forItem: Int(quantityChoice)!, inSection: 0))
+ as! PopoverQuantityCollectionViewCell
             deselectedCell.label.textColor = UIColor.blackColor()
             deselectedCell.backgroundColor = UIColor.whiteColor()
             
