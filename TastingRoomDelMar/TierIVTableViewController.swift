@@ -60,6 +60,11 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     
     
 // ---------------------
+    override func viewWillAppear(animated: Bool) {
+        self.tableView.setContentOffset(CGPointZero, animated:true)
+
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

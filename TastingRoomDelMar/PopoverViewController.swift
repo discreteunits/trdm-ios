@@ -510,7 +510,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
             selectedCell.label.textColor = UIColor.whiteColor()
             selectedCell.backgroundColor = UIColor.blackColor()
             
-            quantityChoice = indexPath.row
+            quantityChoice = indexPath.row + 1
             
             if printFlag {
                 print("User chose a quantity of: \(quantityChoice)")

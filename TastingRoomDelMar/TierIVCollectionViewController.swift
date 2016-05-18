@@ -117,6 +117,7 @@ class TierIVCollectionViewController: UICollectionViewController {
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
 
         
+        
         if let selectedCell = collectionView.cellForItemAtIndexPath(indexPath)! as? TierIVCollectionViewCell {
             
             if selectedCell.selected == true {
