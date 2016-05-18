@@ -425,6 +425,21 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
                     
                                     } else {
                                         
+                                        if let productType = object["productType"] as? String {
+                                            if object["productType"] as! String == "CHOICE" {
+                                                if !self.TierIVTableViewControllerRef!.tierIVTableArray.contains(object) {
+                                                    self.TierIVTableViewControllerRef?.tierIVTableArray.append(object)
+                                                } else {
+                                                    print("This selection is already being shown.")
+                                                }
+                                            }
+                                        }
+                                        
+                                    }
+                        
+                                } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Vines" {
+                    
+                                    if let productType = object["productType"] as? String {
                                         if object["productType"] as! String == "CHOICE" {
                                             if !self.TierIVTableViewControllerRef!.tierIVTableArray.contains(object) {
                                                 self.TierIVTableViewControllerRef?.tierIVTableArray.append(object)
@@ -432,23 +447,12 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
                                                 print("This selection is already being shown.")
                                             }
                                         }
-                                        
-                                    }
-                        
-                                } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Vines" {
-                        
-                        
-                                    if object["productType"] as! String == "CHOICE" {
-                                        if !self.TierIVTableViewControllerRef!.tierIVTableArray.contains(object) {
-                                            self.TierIVTableViewControllerRef?.tierIVTableArray.append(object)
-                                        } else {
-                                            print("This selection is already being shown.")
-                                        }
                                     }
                         
                                 } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "More" {
                             
                                     // Parent Product Route
+                                    if let productType = object["productType"] as? String {
                                     if object["productType"] as! String == "CHOICE" {
                                 
                                         // Parent Product Route
@@ -475,6 +479,7 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
                                         }
                                     
                                     }
+                                }
                             
                                 } else {
                                     
