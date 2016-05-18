@@ -231,7 +231,7 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
                 
                 TierIVCollectionViewController.collectionArray = tierIVCollectionArray
                 
-                TierIVCollectionViewControllerRef?.collectionView?.reloadData()
+//                TierIVCollectionViewControllerRef?.collectionView?.reloadData()
                 
             } else {
                 
@@ -297,8 +297,6 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
     // TIER 4 COLLECTION QUERY
     func tierIVCollectionQuery() {
         
-        self.TierIVCollectionViewControllerRef?.tierIVCollectionArray.removeAll()
-        self.TierIVCollectionViewControllerRef?.tierIVCollectionArray.removeAll()
         
         let collectionQuery:PFQuery = PFQuery(className: "Tier4")
         collectionQuery.includeKey("category")
@@ -309,6 +307,9 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
         collectionQuery.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
             
             if error == nil {
+                
+                self.TierIVCollectionViewControllerRef?.tierIVCollectionArray.removeAll()
+
                 
                 // The find succeeded.
                 print("TierIV collection query retrieved: \(objects!.count) objects.")
@@ -322,7 +323,9 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
                             }
                             
                             if !(self.TierIVTableViewControllerRef?.tierIVTableArray.contains(object))! {
+//                                self.TierIVTableViewControllerRef?.tierIVCollectionArray.append(object["category"] as! PFObject)
                                 self.TierIVTableViewControllerRef?.tierIVCollectionArray.append(object["category"] as! PFObject)
+
                             }
                             
                         }
@@ -346,8 +349,6 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
     func tierIVTableQuery() {
         
         
-        self.TierIVTableViewControllerRef?.tierIVTableArray.removeAll()
-        self.tierIVTableArray.removeAll()
         
         let tableQuery:PFQuery = PFQuery(className:"Product")
         tableQuery.includeKey("category")
@@ -374,6 +375,9 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
             ActivityManager.sharedInstance.activityStop(self)
             
             if error == nil {
+                
+                self.TierIVTableViewControllerRef?.tierIVTableArray.removeAll()
+
                 
                 // The find succeeded.
                 print("TierIV table query retrieved: \(objects!.count) objects.")
@@ -453,33 +457,33 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
                             
                                     // Parent Product Route
                                     if let productType = object["productType"] as? String {
-                                    if object["productType"] as! String == "CHOICE" {
+                                        if object["productType"] as! String == "CHOICE" {
                                 
-                                        // Parent Product Route
-                                        if !self.TierIVTableViewControllerRef!.tierIVTableArray.contains(object) {
-                                            self.TierIVTableViewControllerRef?.tierIVTableArray.append(object)
+                                            // Parent Product Route
+                                            if !self.TierIVTableViewControllerRef!.tierIVTableArray.contains(object) {
+                                                self.TierIVTableViewControllerRef?.tierIVTableArray.append(object)
+                                            } else {
+                                                print("This selection is already being shown.")
+                                            }
+                                
+                                        // Subproduct Route
+                                        } else if object["productType"] as! String != "" {
+                                
+                                            // Don't Show Subproducts
+                                            print("Subproduct Found: \(object["name"])")
+                                
+                                        // Produt Route
                                         } else {
-                                            print("This selection is already being shown.")
-                                        }
                                 
-                                    // Subproduct Route
-                                    } else if object["productType"] as! String != "" {
-                                
-                                        // Don't Show Subproducts
-                                        print("Subproduct Found: \(object["name"])")
-                                
-                                    // Produt Route
-                                    } else {
-                                
-                                        // Product Route
-                                        if !self.TierIVTableViewControllerRef!.tierIVTableArray.contains(object) {
-                                            self.TierIVTableViewControllerRef?.tierIVTableArray.append(object)
-                                        } else {
-                                            print("This selection is already being shown.")
-                                        }
+                                            // Product Route
+                                            if !self.TierIVTableViewControllerRef!.tierIVTableArray.contains(object) {
+                                                self.TierIVTableViewControllerRef?.tierIVTableArray.append(object)
+                                            } else {
+                                                print("This selection is already being shown.")
+                                            }
                                     
+                                        }
                                     }
-                                }
                             
                                 } else {
                                     

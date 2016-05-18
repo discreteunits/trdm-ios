@@ -68,7 +68,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         
 //        AnimationManager.sharedInstance.animateTable(self.tableView)
 
-//        tableView.reloadData()
+        tableView.reloadData()
         
         dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
             self.tagsArrayCreation()
