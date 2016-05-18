@@ -129,6 +129,7 @@ struct Tab {
     var gratuityPercent = Double()
 
     // App Use
+    var discountsTotal = Double()
     var subtotal = Double()
     var totalTax = Double()
     var grandTotal = Double()

@@ -111,6 +111,26 @@ class TabManager: NSObject {
 
     
     // New Monetary Stack ----------
+    func totalDiscounts() {
+        
+        var discountTotal = Double()
+        
+        print("Total discount being calculated...\(TabManager.sharedInstance.currentTab)")
+        
+        for var i in 0..<TabManager.sharedInstance.currentTab.lines.count {
+            
+            
+            discountTotal = discountTotal + TabManager.sharedInstance.currentTab.lines[i].discountSavings
+            
+            
+        }
+        
+        TabManager.sharedInstance.currentTab.discountsTotal = discountTotal
+        
+        
+    }
+    
+    
     func addCRV() {
         
         // count take away beer bottles, add their CRV to the line item's total value

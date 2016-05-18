@@ -93,8 +93,15 @@ class AddGratuityViewController: UIViewController {
         tableNumberTextView.userInteractionEnabled = false
         
         // Labels
+        let discountsLabel = UILabel(frame: CGRectMake(0, 0, screenWidth * 0.3, 20))
+        discountsLabel.frame.origin.y = dynamicLocator*1.4
+        discountsLabel.frame.origin.x = 8
+        discountsLabel.textAlignment = .Left
+        discountsLabel.text = "discounts"
+        discountsLabel.font = UIFont.headerFont(18)
+        
         let subTotalLabel = UILabel(frame: CGRectMake(0, 0, screenWidth * 0.3, 20))
-        subTotalLabel.frame.origin.y = dynamicLocator*1.4
+        subTotalLabel.frame.origin.y = dynamicLocator*1.7
         subTotalLabel.frame.origin.x = 8
         subTotalLabel.textAlignment = .Left
         subTotalLabel.text = "subtotal"
@@ -102,7 +109,7 @@ class AddGratuityViewController: UIViewController {
 
         
         let taxLabel = UILabel(frame: CGRectMake(0, 0, screenWidth * 0.3, 20))
-        taxLabel.frame.origin.y = (dynamicLocator*1.7)
+        taxLabel.frame.origin.y = (dynamicLocator*2.0)
         taxLabel.frame.origin.x = 8
         taxLabel.textAlignment = .Left
         taxLabel.text = "tax"
@@ -110,7 +117,7 @@ class AddGratuityViewController: UIViewController {
 
         
         gratuityLabel = UILabel(frame: CGRectMake(0, 0, screenWidth * 0.4, 20))
-        gratuityLabel.frame.origin.y = (dynamicLocator*2.0)
+        gratuityLabel.frame.origin.y = (dynamicLocator*2.3)
         gratuityLabel.frame.origin.x = 8
         gratuityLabel.textAlignment = .Left
         gratuityLabel.font = UIFont.headerFont(18)
@@ -122,7 +129,7 @@ class AddGratuityViewController: UIViewController {
 
         
         let totalLabel = UILabel(frame: CGRectMake(0, 0, screenWidth * 0.3, 20))
-        totalLabel.frame.origin.y = (dynamicLocator*2.3)
+        totalLabel.frame.origin.y = (dynamicLocator*2.6)
         totalLabel.frame.origin.x = 8
         totalLabel.textAlignment = .Left
         totalLabel.text = "total"
@@ -130,8 +137,17 @@ class AddGratuityViewController: UIViewController {
         
         
         // Value Labels
+        let discountValueLabel = UILabel(frame: CGRectMake(0, 0, screenWidth * 0.3, 20))
+        discountValueLabel.frame.origin.y = dynamicLocator*1.4
+        discountValueLabel.frame.origin.x = screenWidth * 0.65
+        discountValueLabel.textAlignment = .Right
+        let convertedDiscountValue = formatter.formatPrice(TabManager.sharedInstance.currentTab.discountsTotal)
+        discountValueLabel.text = "(\(convertedDiscountValue))"
+        discountValueLabel.font = UIFont.headerFont(18)
+        
+        
         subTotalValueLabel = UILabel(frame: CGRectMake(0, 0, screenWidth * 0.3, 20))
-        subTotalValueLabel.frame.origin.y = dynamicLocator*1.4
+        subTotalValueLabel.frame.origin.y = dynamicLocator*1.7
         subTotalValueLabel.frame.origin.x = screenWidth * 0.65
         subTotalValueLabel.textAlignment = .Right
         let subTotalValue = TabManager.sharedInstance.currentTab.subtotal
@@ -141,7 +157,7 @@ class AddGratuityViewController: UIViewController {
 
         
         taxValueLabel = UILabel(frame: CGRectMake(0, 0, screenWidth * 0.3, 20))
-        taxValueLabel.frame.origin.y = (dynamicLocator*1.7)
+        taxValueLabel.frame.origin.y = (dynamicLocator*2.0)
         taxValueLabel.frame.origin.x = screenWidth * 0.65
         taxValueLabel.textAlignment = .Right
         let taxValue = TabManager.sharedInstance.currentTab.totalTax
@@ -151,7 +167,7 @@ class AddGratuityViewController: UIViewController {
 
         
         gratuityValueLabel = UILabel(frame: CGRectMake(0, 0, screenWidth * 0.3, 20))
-        gratuityValueLabel.frame.origin.y = (dynamicLocator*2.0)
+        gratuityValueLabel.frame.origin.y = (dynamicLocator*2.3)
         gratuityValueLabel.frame.origin.x = screenWidth * 0.65
         gratuityValueLabel.textAlignment = .Right
         gratuityValueLabel.font = UIFont.headerFont(18)
@@ -164,7 +180,7 @@ class AddGratuityViewController: UIViewController {
         
         
         totalValueLabel = UILabel(frame: CGRectMake(0, 0, screenWidth * 0.3, 20))
-        totalValueLabel.frame.origin.y = (dynamicLocator*2.3)
+        totalValueLabel.frame.origin.y = (dynamicLocator*2.6)
         totalValueLabel.frame.origin.x = screenWidth * 0.65
         totalValueLabel.textAlignment = .Right
         let totalValue = TabManager.sharedInstance.currentTab.grandTotal
@@ -179,7 +195,7 @@ class AddGratuityViewController: UIViewController {
         screenHeightSlider = screenSizeSlider.height
         
         gratuitySlider = GSlider(frame:CGRectMake(0, 0, screenWidth*0.98, 66))
-        gratuitySlider.frame.origin.y = (dynamicLocator*2.65)
+        gratuitySlider.frame.origin.y = (dynamicLocator*2.9)
         gratuitySlider.frame.origin.x = screenWidth*0.01
         gratuitySlider.minimumValue = 0
         gratuitySlider.maximumValue = 200
@@ -191,7 +207,7 @@ class AddGratuityViewController: UIViewController {
         // Create Cancel Button
         let buttonWidth = (screenWidth - 36) / 2
         let cancelButton = UIButton(frame: CGRectMake(0, 0, buttonWidth, dynamicLocator*0.75))
-        cancelButton.frame.origin.y = (dynamicLocator*3.75)
+        cancelButton.frame.origin.y = (dynamicLocator*4)
         cancelButton.frame.origin.x = 12
         cancelButton.setTitle("Cancel", forState: .Normal)
         cancelButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
@@ -203,7 +219,7 @@ class AddGratuityViewController: UIViewController {
         
         // Create Place Order Button
         let placeOrderButton = UIButton(frame: CGRectMake(0, 0, buttonWidth, dynamicLocator*0.75))
-        placeOrderButton.frame.origin.y = (dynamicLocator*3.75)
+        placeOrderButton.frame.origin.y = (dynamicLocator*4)
         placeOrderButton.frame.origin.x = buttonWidth + 24
         placeOrderButton.setTitle("Place Order", forState: .Normal)
         placeOrderButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
@@ -218,12 +234,14 @@ class AddGratuityViewController: UIViewController {
         popoverView.addSubview(tableNumberTextView)
         popoverView.addSubview(cancelButton)
         popoverView.addSubview(placeOrderButton)
-        
+
+        popoverView.addSubview(discountsLabel)
         popoverView.addSubview(subTotalLabel)
         popoverView.addSubview(taxLabel)
         popoverView.addSubview(gratuityLabel)
         popoverView.addSubview(totalLabel)
         
+        popoverView.addSubview(discountValueLabel)
         popoverView.addSubview(subTotalValueLabel)
         popoverView.addSubview(taxValueLabel)
         popoverView.addSubview(gratuityValueLabel)

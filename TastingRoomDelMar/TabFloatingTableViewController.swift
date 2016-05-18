@@ -158,6 +158,9 @@ class TabFloatingTableViewController: UITableViewController, UIPopoverPresentati
     
     @IBAction func placeOrder(sender: AnyObject) {
         
+        TabManager.sharedInstance.totalDiscounts()
+
+        
         AnimationManager.sharedInstance.opaqueWindow(tabController)
         
         // Checkout Options
@@ -211,10 +214,12 @@ class TabFloatingTableViewController: UITableViewController, UIPopoverPresentati
         
         // Add Gratuity Popover
         if segue.identifier == "addGratuity" {
+            
+            
             let vc = segue.destinationViewController as! AddGratuityViewController
             
             // Size Popover Window
-            vc.preferredContentSize = CGSizeMake(screenWidth, screenHeight*0.58)
+            vc.preferredContentSize = CGSizeMake(screenWidth, screenHeight*0.61)
             
             // Set Controller
             let controller = vc.popoverPresentationController
