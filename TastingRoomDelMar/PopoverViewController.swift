@@ -123,7 +123,7 @@ class PopoverViewController: UITableViewController {
             rows = 3
         } else if RouteManager.sharedInstance.TierOne!["name"] as! String == "Events" {
             rows = 3
-        } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
+        } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" || RouteManager.sharedInstance.TierTwo!["name"] as! String == "Surrender" {
             rows = additions.count + 3
         } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "More" {
             
@@ -199,7 +199,7 @@ class PopoverViewController: UITableViewController {
 
                 
                 // IF HARVEST
-                if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
+                if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" || RouteManager.sharedInstance.TierTwo!["name"] as! String == "Surrender" {
                     
                     sgCell.servingLabel.text = additions[trueIndex].name
                     
@@ -314,7 +314,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                 let subgroupCollectionCellCount: Int!
                 
                 // ----- HARVEST BEGIN ------
-                if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
+                if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" || RouteManager.sharedInstance.TierTwo!["name"] as! String == "Surrender" {
                     
                     subgroupCollectionCellCount = additions[trueIndex].values.count
                     
@@ -344,10 +344,19 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
     func collectionAttributedString(text:String) -> NSAttributedString {
         
         let textAttributes = [NSFontAttributeName: UIFont.scriptFont(16), NSForegroundColorAttributeName: UIColor.blackColor()]
-        
         let textString = NSMutableAttributedString(string: "\(text)", attributes: textAttributes)
+        return textString
+        
+    }
+
+    func collectionDualAttributedString(name:String, price:String) -> NSAttributedString {
+        
+        let textAttributes = [NSFontAttributeName: UIFont.scriptFont(16), NSForegroundColorAttributeName: UIColor.blackColor()]
+
+        let textString = NSMutableAttributedString(string: "\(name) \(price)", attributes: textAttributes)
         
         return textString
+            
         
     }
     
@@ -384,7 +393,11 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                     
                     sgCollectionCell.label.attributedText = collectionAttributedString("\(self.additions[trueIndex].values[indexPath.row].name)")
                         
+                } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Surrender" {
                     
+                    sgCollectionCell.label.attributedText = collectionDualAttributedString("\(self.additions[trueIndex].values[indexPath.row].name)", price: "\(self.additions[trueIndex].values[indexPath.row].priceWithoutVAT)")
+                    
+                
                 } else {
                     
                     let subproduct = subproducts[indexPath.row]
@@ -477,7 +490,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
             selectedCell.backgroundColor = UIColor.blackColor()
             
             // ----- HARVEST BEGIN ------
-            if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
+            if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" || RouteManager.sharedInstance.TierTwo!["name"] as! String == "Surrender" {
                 
                 let trueIndex = parent - 1
 
@@ -548,7 +561,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                     
                     completedChoices = 0
                     
-                } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
+                } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" || RouteManager.sharedInstance.TierTwo!["name"] as! String == "Surrender" {
                     
                    completedChoices = popoverAdditions.count
                 
@@ -591,7 +604,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                                 totalChoicesPrice = popoverItem["priceWithoutVat"] as! Double
                             } else if RouteManager.sharedInstance.TierOne!["name"] as! String == "Events" {
                                 totalChoicesPrice = popoverItem["priceWithoutVat"] as! Double
-                            } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
+                            } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" || RouteManager.sharedInstance.TierTwo!["name"] as! String == "Surrender" {
                                 
                                 if RouteManager.sharedInstance.TierOne!["name"] as! String == "Dine In" {
                                     totalChoicesPrice = popoverItem["deliveryPriceWithoutVat"] as! Double
@@ -773,7 +786,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
                             } else if RouteManager.sharedInstance.TierOne!["name"] as! String == "Events" {
                                 newLineItem.varietal = ""
                                 newLineItem.path = "Event"
-                            } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
+                            } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" || RouteManager.sharedInstance.TierTwo!["name"] as! String == "Surrender" {
                                 newLineItem.varietal = ""
                                 newLineItem.path = "Eat"
                             } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "More" {
@@ -855,7 +868,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
             
             // IF HARVEST
             // ----------
-            if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
+            if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" || RouteManager.sharedInstance.TierTwo!["name"] as! String == "Surrender" {
                 
                 let trueIndex = parent - 1
                 
@@ -924,7 +937,7 @@ extension PopoverViewController: UICollectionViewDelegate, UICollectionViewDataS
             
             // ----- HARVEST BEGIN ------
             let numberOfModifiers: CGFloat!
-            if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
+            if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" || RouteManager.sharedInstance.TierTwo!["name"] as! String == "Surrender" {
                 
                 let trueIndex = parent - 1
                 let numberOfValues = additions[trueIndex].values.count

@@ -178,8 +178,8 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
                 cell.tierIVTableDataLabel?.attributedText = makeAttributedString(product["name"] as! String, info: product["info"] as! String, prices: product["prices"] as! String)
             }
         
-        // FOOD
-        } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
+        // Harvest & Surrender
+        } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" || RouteManager.sharedInstance.TierTwo!["name"] as! String == "Surrender" {
             
             if RouteManager.sharedInstance.TierOne!["name"] as! String == "Dine In" {
                 cell.tierIVTableDataLabel?.attributedText = makeAttributedString(product["name"] as! String, info: product["info"] as! String, prices: String(product["deliveryPriceWithoutVat"]))
@@ -229,7 +229,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
             
         } else if RouteManager.sharedInstance.TierOne!["name"] as! String == "Events" {
             
-        } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
+        } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" || RouteManager.sharedInstance.TierTwo!["name"] as! String == "Surrender" {
             
             if tierIVTableArray[indexPath.row]["additions"] != nil {
                     print("This item contains: \(tierIVTableArray[indexPath.row]["additions"].count) raw additions.")
@@ -288,7 +288,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
                         
                     } else if RouteManager.sharedInstance.TierOne!["name"] as! String == "Events" {
                         
-                    } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
+                    } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" || RouteManager.sharedInstance.TierTwo!["name"] as! String == "Surrender" {
                         
                         if (tierIVTableArray[indexPath.row]["additions"] != nil) {
                             
@@ -383,7 +383,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
                 popoverDynamicHeight = 1
                 popoverHeightCalculation = ((popoverDynamicHeight + 1) * 100) + nameHeight
 
-            } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" {
+            } else if RouteManager.sharedInstance.TierTwo!["name"] as! String == "Harvest" || RouteManager.sharedInstance.TierTwo!["name"] as! String == "Surrender" {
                 
                 let numberOfLines = getLines(product["name"] as! String)
                 let nameHeight = (numberOfLines * 24) + 2 // 2 is padding
