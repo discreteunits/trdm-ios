@@ -174,40 +174,65 @@
                                     <outlet property="settingSwitch" destination="G6U-Ra-Jdc" id="t1z-Dw-dRO"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingsFooterTableCell" id="ctQ-pK-U9C" customClass="SettingsFooterTableViewCell" customModule="TastingRoomDelMar" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="180" width="600" height="50"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingsFooterTableCell" rowHeight="194" id="ctQ-pK-U9C" customClass="SettingsFooterTableViewCell" customModule="TastingRoomDelMar" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="180" width="600" height="194"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ctQ-pK-U9C" id="ebn-Cn-ue0">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="194"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="MADE IN SAN DIEGO" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q2F-mF-54Q">
+                                            <rect key="frame" x="8" y="137" width="584" height="15"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Tasting Room v1.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jUs-gb-Jah">
-                                            <rect key="frame" x="8" y="0.0" width="584" height="50"/>
+                                            <rect key="frame" x="8" y="72" width="584" height="50"/>
                                             <constraints>
+                                                <constraint firstAttribute="height" constant="60" id="don-Xa-jve"/>
                                                 <constraint firstAttribute="width" constant="274" id="mBK-80-8MP"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="MADE IN SAN DIEGO" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q2F-mF-54Q">
-                                            <rect key="frame" x="8" y="34" width="584" height="15"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <color key="textColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="don-Xa-jve"/>
+                                                </mask>
+                                            </variation>
                                         </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="q2F-mF-54Q" firstAttribute="top" secondItem="jUs-gb-Jah" secondAttribute="bottom" constant="16" id="88y-kc-9vI"/>
+                                        <constraint firstItem="jUs-gb-Jah" firstAttribute="centerY" secondItem="ebn-Cn-ue0" secondAttribute="centerY" id="9SE-gw-QOO"/>
                                         <constraint firstItem="q2F-mF-54Q" firstAttribute="trailing" secondItem="jUs-gb-Jah" secondAttribute="trailing" id="Lx8-2s-yRq"/>
                                         <constraint firstItem="jUs-gb-Jah" firstAttribute="leading" secondItem="ebn-Cn-ue0" secondAttribute="leadingMargin" constant="8" id="Ork-Yc-c0G"/>
+                                        <constraint firstItem="q2F-mF-54Q" firstAttribute="leading" secondItem="ebn-Cn-ue0" secondAttribute="leadingMargin" constant="8" id="WKa-Vc-MpP"/>
+                                        <constraint firstItem="q2F-mF-54Q" firstAttribute="trailing" secondItem="ebn-Cn-ue0" secondAttribute="trailingMargin" constant="8" id="YEk-TO-aiC"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="jUs-gb-Jah" secondAttribute="bottom" constant="-2.5" id="cwv-Im-0SD"/>
                                         <constraint firstItem="jUs-gb-Jah" firstAttribute="centerX" secondItem="ebn-Cn-ue0" secondAttribute="centerX" id="dHz-y6-WU8"/>
                                         <constraint firstItem="jUs-gb-Jah" firstAttribute="top" secondItem="ebn-Cn-ue0" secondAttribute="top" id="dY7-JD-SEf"/>
                                         <constraint firstItem="q2F-mF-54Q" firstAttribute="centerX" secondItem="ebn-Cn-ue0" secondAttribute="centerX" id="gNM-h9-FxQ"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="q2F-mF-54Q" secondAttribute="bottom" constant="-7.5" id="jLa-ci-dES"/>
                                         <constraint firstItem="q2F-mF-54Q" firstAttribute="firstBaseline" secondItem="jUs-gb-Jah" secondAttribute="baseline" id="o1J-9C-PdI"/>
+                                        <constraint firstItem="jUs-gb-Jah" firstAttribute="trailing" secondItem="ebn-Cn-ue0" secondAttribute="trailingMargin" constant="8" id="pmG-53-HFs"/>
                                         <constraint firstItem="q2F-mF-54Q" firstAttribute="leading" secondItem="jUs-gb-Jah" secondAttribute="leading" id="u8K-XT-p7v"/>
+                                        <constraint firstItem="q2F-mF-54Q" firstAttribute="top" secondItem="jUs-gb-Jah" secondAttribute="bottom" constant="8" id="vFP-gy-GF1"/>
+                                        <constraint firstItem="q2F-mF-54Q" firstAttribute="centerY" secondItem="ebn-Cn-ue0" secondAttribute="centerY" id="x8f-bC-q9Q"/>
                                     </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="cwv-Im-0SD"/>
+                                            <exclude reference="dY7-JD-SEf"/>
+                                            <exclude reference="88y-kc-9vI"/>
+                                            <exclude reference="Lx8-2s-yRq"/>
+                                            <exclude reference="jLa-ci-dES"/>
+                                            <exclude reference="o1J-9C-PdI"/>
+                                            <exclude reference="u8K-XT-p7v"/>
+                                            <exclude reference="x8f-bC-q9Q"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
