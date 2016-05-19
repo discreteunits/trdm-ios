@@ -408,6 +408,26 @@ class SettingsTableViewController: UITableViewController {
         }
             
     }
+    
+//    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+//        if indexPath.section == 2 {
+//            if indexPath.row == 1 {
+//                
+//                var takenHeight = CGFloat()
+//                for cell in tableView.visibleCells {
+//                    takenHeight = cell.bounds.size.height + takenHeight
+//                }
+//                
+//                let screenHeight = UIScreen.mainScreen().bounds.size.height
+//                
+//                let leftOverHeight = takenHeight - screenHeight
+//                return leftOverHeight
+//                
+//            }
+//        }
+//        
+//        return UITableViewAutomaticDimension
+//    }
 
 
     // MARK: - Navigation
