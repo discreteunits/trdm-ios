@@ -61,7 +61,7 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
     
 // ---------------------
     override func viewWillAppear(animated: Bool) {
-        self.tableView.setContentOffset(CGPointZero, animated:true)
+//        self.tableView.setContentOffset(CGPointZero, animated:true)
 
     }
     
@@ -159,7 +159,9 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         
         
         
-        let product = tierIVTableArray[indexPath.row]
+        if let product = tierIVTableArray[indexPath.row] as? PFObject {
+            
+
         
         
         // MERCH AND EVENTS
@@ -192,6 +194,8 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         // DEFAULT
         } else {
             cell.tierIVTableDataLabel?.attributedText = makeAttributedString(product["name"] as! String, info: product["info"] as! String, prices: String(product["priceWithoutVat"]))
+        }
+        
         }
         
         
