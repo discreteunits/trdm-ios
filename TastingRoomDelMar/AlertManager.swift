@@ -72,6 +72,34 @@ class AlertManager: UIViewController {
         view.presentViewController(alert, animated: true, completion: nil)
         
     }
+
+    
+    // Password Recoery Success Alert
+    @available(iOS 8.0, *)
+    func passwordRecoveryAlert(view: UIViewController, title: String, message: String) {
+        
+        // Create Controller
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        alert.view.tintColor = UIColor.primaryGreenColor()
+        
+        // Create Actions
+        let okAction = UIAlertAction(title: "Okay", style: .Default, handler: { (action) -> Void in
+            
+            if printFlag {
+                print("User selected okay.")
+            }
+            
+            view.dismissViewControllerAnimated(true, completion: nil)
+            
+        })
+        
+        // Add Actions To Alert
+        alert.addAction(okAction)
+        
+        // Present Alert
+        view.presentViewController(alert, animated: true, completion: nil)
+        
+    }
     
     @available(iOS 8.0, *)
     func anonymousMenuAlert(view: UIViewController, title: String, message: String) {
@@ -349,17 +377,17 @@ class AlertManager: UIViewController {
         alert.view.tintColor = UIColor.primaryGreenColor()
         
         // Create Actions
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action) -> Void in
+        let cancelAction = UIAlertAction(title: "Sounds Good", style: .Cancel, handler: { (action) -> Void in
             print("Ok Selected")
         })
-        let settingsAction = UIAlertAction(title: "Settings", style: .Default, handler: { (action) -> Void in
-            print("Settings Selected")
-            self.goToSettings(view)
-        })
+//        let settingsAction = UIAlertAction(title: "Settings", style: .Default, handler: { (action) -> Void in
+//            print("Settings Selected")
+//            self.goToSettings(view)
+//        })
         
         // Add Actions
         alert.addAction(cancelAction)
-        alert.addAction(settingsAction)
+//        alert.addAction(settingsAction)
         
         view.presentViewController(alert, animated: true, completion: nil)
     }
@@ -569,15 +597,21 @@ class AlertManager: UIViewController {
     // Conditional Check For Place Order
     func checkout(view: UIViewController) {
         
-        // Require Email Address
-        if PFUser.currentUser()?["email"] == nil || PFUser.currentUser()?["email"] as! String == "" {
-            addEmailAlert(view, title: "Whoops!", message: "Looks like we don't have your email yet. You can add your email in settings.")
-        }
+        // Require First and Last Name (needed to create customers and orders) 
+//        if PFUser.currentUser()?["firstName"] == nil || PFUser.currentUser()?["firstName"] as? String == "" ||
+//            PFUser.currentUser()?["lastName"] == nil || PFUser.currentUser()?["lastname"] as? String == "" {
+//            
+//            addEmailAlert(view, title: "Whoops!", message: "Looks like we don't have your first or last name yet. You can add your firt and last name in settings.")
+//        }
         
-        // Enter Email
+        // Require Email: Enter Email Popover
         if PFUser.currentUser()?["email"] == nil || PFUser.currentUser()?["email"] as! String == "" {
             view.performSegueWithIdentifier("enterEmail", sender: self)
         }
+        
+//        if PFUser.currentUser()?["email"] == nil || PFUser.currentUser()?["email"] as! String == "" {
+//            addEmailAlert(view, title: "Whoops!", message: "Looks like we don't have your email yet. You can add your email in settings.")
+//        }
         
         // Whoops Logged In
         if TabManager.sharedInstance.currentTab.userId == "" {

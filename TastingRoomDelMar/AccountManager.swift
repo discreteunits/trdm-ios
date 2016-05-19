@@ -150,38 +150,45 @@ class AccountManager: NSObject {
     
     func addUserDetails(view: UIViewController, firstName: String, lastName: String, mobile: String, newsletter: Bool) {
         
-        let user = PFUser.currentUser()
-        
-        user!["firstName"] = firstName
-        user!["lastName"] = lastName
-        user!["mobileNumber"] = mobile
-        
-        if newsletter == true {
-            user!["marketingAllowed"] = true
-        } else {
-            user!["marketingAllowed"] = false
-        }
-        
-        ActivityManager.sharedInstance.activityStart(view)
-        
-        user!.saveInBackgroundWithBlock { (success, error) -> Void in
+        if firstName == "" || lastName == ""{
+
+            AlertManager.sharedInstance.addEmailAlert(view, title: "Whoops!", message: "Looks like we don't have your first or last name yet.")
             
-            // Success 
-            if error == nil {
-             
-                ActivityManager.sharedInstance.activityStop(view)
-
-                print("User has been updated successfully.")
-                self.goToTiers(view)
-                
-            // Failure
+        } else {
+        
+            let user = PFUser.currentUser()
+        
+            user!["firstName"] = firstName
+            user!["lastName"] = lastName
+            user!["mobileNumber"] = mobile
+        
+            if newsletter == true {
+                user!["marketingAllowed"] = true
             } else {
-                
-                ActivityManager.sharedInstance.activityStop(view)
+                user!["marketingAllowed"] = false
+            }
+        
+            ActivityManager.sharedInstance.activityStart(view)
+        
+            user!.saveInBackgroundWithBlock { (success, error) -> Void in
+            
+                // Success
+                if error == nil {
+             
+                    ActivityManager.sharedInstance.activityStop(view)
 
-                print("Failed to update user")
-                AlertManager.sharedInstance.singleAlert(view, title: "Whoops!", message: "Please try again later.")
+                    print("User has been updated successfully.")
+                    self.goToTiers(view)
                 
+                    // Failure
+                } else {
+                
+                    ActivityManager.sharedInstance.activityStop(view)
+
+                    print("Failed to update user")
+                    AlertManager.sharedInstance.singleAlert(view, title: "Whoops!", message: "Please try again later.")
+                
+                }
             }
         }
     }

@@ -56,7 +56,8 @@ class SettingsEditTableViewController: UITableViewController {
         editMessageTextView.font = UIFont.basicFont(12)
         editMessageTextView.textColor = UIColor.grayColor()
         // Text Field
-        editValueTextField.placeholder = passedPlaceholder
+//        editValueTextField.placeholder = passedPlaceholder
+        editValueTextField.text = passedPlaceholder
         editValueTextField.textAlignment = .Left
         editValueTextField.font = UIFont.basicFont(20)
         

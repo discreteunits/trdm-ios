@@ -89,9 +89,11 @@ class SignupSceneTwoViewController: UIViewController {
     
     func addDetailsAction(sender: UIButton!) {
         // Make action for adding to current PFUser
-        
+
+            
         self.SignupSceneTwoTableViewControllerRef?.addDetailsToUser()
-        
+
+            
 //        performSegueWithIdentifier("signin", sender: self)
         
     }

@@ -10,13 +10,14 @@ import UIKit
 import Parse
 
 class ForgotPasswordViewController: UIViewController {
-
     
     @IBOutlet weak var navigationTitle: UINavigationItem!
     
-    @IBOutlet weak var forgotPasswordWebView: UIWebView!
-    
     var nav: UINavigationBar?
+    
+    @IBOutlet weak var passwordRecoveryMessage: UILabel!
+    
+    @IBOutlet weak var passwordRecoveryTextField: UITextField!
 
     
     // --------
@@ -40,7 +41,7 @@ class ForgotPasswordViewController: UIViewController {
             
         }
         
-        forgotPasswordWebView.loadRequest(NSURLRequest(URL: NSURL(string:"http://www.tastingroomdelmar.com/password-reset")!))
+//        forgotPasswordWebView.loadRequest(NSURLRequest(URL: NSURL(string:"http://www.tastingroomdelmar.com/password-reset")!))
         
     }
     
@@ -57,6 +58,21 @@ class ForgotPasswordViewController: UIViewController {
     }
     
 
+    
+    @IBAction func submitPasswordRecovery(sender: AnyObject) {
+
+        if passwordRecoveryTextField.text != "" {
+            PFUser.requestPasswordResetForEmailInBackground(passwordRecoveryTextField.text!, block: { (success, error) in
+                if error == nil {
+                    AlertManager.sharedInstance.passwordRecoveryAlert(self, title: "Great Success!", message: "We will be sending you a password recovery email shortly!")
+                } else {
+                    AlertManager.sharedInstance.passwordRecoveryAlert(self, title: "Whoops!", message: "Looks like we don't have an account attached to that email. Please try again.")
+                }
+            })
+        }
+    }
+    
+    
     /*
     // MARK: - Navigation
 
