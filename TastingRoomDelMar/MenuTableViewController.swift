@@ -64,7 +64,7 @@ class MenuTableViewController: UITableViewController, ENSideMenuDelegate {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // Return the number of rows in the section.
         
-        if PFUser.currentUser()?["firstName"] != nil {
+        if PFUser.currentUser()?.email != nil {
             return 5
         } else {
             return 2
@@ -78,7 +78,7 @@ class MenuTableViewController: UITableViewController, ENSideMenuDelegate {
         var menuArray = [String]()
         
         // ----- Logged In Trigger -----
-        if PFUser.currentUser()?["firstName"] != nil {
+        if PFUser.currentUser()?.email != nil {
             
             menuArray = ["Menu", "Tab", "History", "Payment", "Settings"]
             

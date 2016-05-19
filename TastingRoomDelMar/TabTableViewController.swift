@@ -126,7 +126,7 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
         } else if lineItem.path == "Eat" {
             // Get Each Addition Name
             for addition in lineItem.additions {
-                let additionNameString = NSAttributedString(string: "\(addition.name) (\(addition.values[0].name))\n", attributes: additionAttributes)
+                let additionNameString = NSAttributedString(string: "\(addition.name) (\(addition.values[0].name) \(addition.values[0].priceWithoutVAT))\n", attributes: additionAttributes)
                 nameString.appendAttributedString(additionNameString)
             }
         }

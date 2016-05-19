@@ -48,6 +48,7 @@ class AddGratuityViewController: UIViewController {
     var gratuityValueLabel = UILabel()
     
     var subTotalValueLabel = UILabel()
+    var discountValueLabel = UILabel()
     var taxValueLabel = UILabel()
     var totalValueLabel = UILabel()
 
@@ -93,19 +94,29 @@ class AddGratuityViewController: UIViewController {
         tableNumberTextView.userInteractionEnabled = false
         
         // Labels
-        let discountsLabel = UILabel(frame: CGRectMake(0, 0, screenWidth * 0.3, 20))
-        discountsLabel.frame.origin.y = dynamicLocator*1.4
-        discountsLabel.frame.origin.x = 8
-        discountsLabel.textAlignment = .Left
-        discountsLabel.text = "discounts"
-        discountsLabel.font = UIFont.headerFont(18)
+        
         
         let subTotalLabel = UILabel(frame: CGRectMake(0, 0, screenWidth * 0.3, 20))
-        subTotalLabel.frame.origin.y = dynamicLocator*1.7
+//        subTotalLabel.frame.origin.y = dynamicLocator*1.4
         subTotalLabel.frame.origin.x = 8
         subTotalLabel.textAlignment = .Left
         subTotalLabel.text = "subtotal"
         subTotalLabel.font = UIFont.headerFont(18)
+        
+        if TabManager.sharedInstance.currentTab.discountsTotal == 0 {
+            subTotalLabel.frame.origin.y = dynamicLocator*1.7
+
+        } else {
+            subTotalLabel.frame.origin.y = dynamicLocator*1.4
+
+        }
+        
+        let discountsLabel = UILabel(frame: CGRectMake(0, 0, screenWidth * 0.3, 20))
+        discountsLabel.frame.origin.y = dynamicLocator*1.7
+        discountsLabel.frame.origin.x = 8
+        discountsLabel.textAlignment = .Left
+        discountsLabel.text = "discounts"
+        discountsLabel.font = UIFont.headerFont(18)
 
         
         let taxLabel = UILabel(frame: CGRectMake(0, 0, screenWidth * 0.3, 20))
@@ -137,24 +148,33 @@ class AddGratuityViewController: UIViewController {
         
         
         // Value Labels
-        let discountValueLabel = UILabel(frame: CGRectMake(0, 0, screenWidth * 0.3, 20))
-        discountValueLabel.frame.origin.y = dynamicLocator*1.4
-        discountValueLabel.frame.origin.x = screenWidth * 0.65
-        discountValueLabel.textAlignment = .Right
-        let convertedDiscountValue = formatter.formatPrice(TabManager.sharedInstance.currentTab.discountsTotal)
-        discountValueLabel.text = "(\(convertedDiscountValue))"
-        discountValueLabel.font = UIFont.headerFont(18)
         
+
         
         subTotalValueLabel = UILabel(frame: CGRectMake(0, 0, screenWidth * 0.3, 20))
-        subTotalValueLabel.frame.origin.y = dynamicLocator*1.7
+//        subTotalValueLabel.frame.origin.y = dynamicLocator*1.4
         subTotalValueLabel.frame.origin.x = screenWidth * 0.65
         subTotalValueLabel.textAlignment = .Right
         let subTotalValue = TabManager.sharedInstance.currentTab.subtotal
         let convertedSubTotalValue = formatter.formatPrice(subTotalValue)
         subTotalValueLabel.text = String(convertedSubTotalValue)
         subTotalValueLabel.font = UIFont.headerFont(18)
-
+        
+        if TabManager.sharedInstance.currentTab.discountsTotal == 0 {
+            subTotalValueLabel.frame.origin.y = dynamicLocator*1.7
+        } else {
+            subTotalValueLabel.frame.origin.y = dynamicLocator*1.4
+            
+        }
+        
+        discountValueLabel = UILabel(frame: CGRectMake(0, 0, screenWidth * 0.3, 20))
+        discountValueLabel.frame.origin.y = dynamicLocator*1.7
+        discountValueLabel.frame.origin.x = screenWidth * 0.65
+        discountValueLabel.textAlignment = .Right
+        let convertedDiscountValue = formatter.formatPrice(TabManager.sharedInstance.currentTab.discountsTotal)
+        discountValueLabel.text = "(\(convertedDiscountValue))"
+        discountValueLabel.font = UIFont.headerFont(18)
+        
         
         taxValueLabel = UILabel(frame: CGRectMake(0, 0, screenWidth * 0.3, 20))
         taxValueLabel.frame.origin.y = (dynamicLocator*2.0)
@@ -235,13 +255,18 @@ class AddGratuityViewController: UIViewController {
         popoverView.addSubview(cancelButton)
         popoverView.addSubview(placeOrderButton)
 
-        popoverView.addSubview(discountsLabel)
         popoverView.addSubview(subTotalLabel)
         popoverView.addSubview(taxLabel)
         popoverView.addSubview(gratuityLabel)
         popoverView.addSubview(totalLabel)
         
-        popoverView.addSubview(discountValueLabel)
+        if TabManager.sharedInstance.currentTab.discountsTotal == 0 {
+            // Do not place discounts labels
+        } else {
+            popoverView.addSubview(discountsLabel)
+            popoverView.addSubview(discountValueLabel)
+        }
+        
         popoverView.addSubview(subTotalValueLabel)
         popoverView.addSubview(taxValueLabel)
         popoverView.addSubview(gratuityValueLabel)
