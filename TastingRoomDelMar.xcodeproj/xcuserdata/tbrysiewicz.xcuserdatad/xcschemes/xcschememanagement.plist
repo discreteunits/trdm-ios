@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>TastingRoomDelMar copy.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>TastingRoomDelMar.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -12,6 +17,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>D78682791CEEA73F004B98A7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>D7FFF7AC1C3AFB0600020D9A</key>
 		<dict>
 			<key>primary</key>
