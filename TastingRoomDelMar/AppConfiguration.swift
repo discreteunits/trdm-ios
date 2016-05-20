@@ -37,6 +37,9 @@ class AppConfiguration: NSObject {
     
     
     
+    
+    
+    
     var paymentPublishableKey: String {
         return _STRIPE_ID
     }
