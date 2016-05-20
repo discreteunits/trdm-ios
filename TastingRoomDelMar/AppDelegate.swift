@@ -88,13 +88,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
   
+        
         // Nuke App Icon Badge Icon
         UIApplication.sharedApplication().applicationIconBadgeNumber = 0
+        
         
         // Stripe Integration
         Stripe.setDefaultPublishableKey(AppConfiguration.sharedInstance.paymentPublishableKey)
 //        Fabric.with([STPAPIClient.self, Crashlytics.self])
 
+        
         
     // -------------------------------
     // MARK: USER AUTO LOG IN
