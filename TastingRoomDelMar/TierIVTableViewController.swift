@@ -166,7 +166,6 @@ class TierIVTableViewController: UITableViewController, UIPopoverPresentationCon
         
         // MERCH AND EVENTS
         
-        print("\(product)")
         if RouteManager.sharedInstance.TierOne!["name"] as! String == "Events" || RouteManager.sharedInstance.TierOne!["name"] as! String == "Merch" {
             
             cell.tierIVTableDataLabel?.attributedText = makeAttributedString(String(product["name"]), info: String(product["info"]), prices: String(product["deliveryPriceWithoutVat"]))

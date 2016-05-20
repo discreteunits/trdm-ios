@@ -27,6 +27,9 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
     @IBOutlet weak var tierIVTableContainer: UIView!
     @IBOutlet weak var tierIVCollectionContainer: UIView!
     
+    
+    @IBOutlet weak var nothingToDisplayLabel: UILabel!
+    
     var bounds: CGRect!
     
     var notHarvest: String = String()
@@ -138,6 +141,7 @@ class TierIVViewController: UIViewController, ENSideMenuDelegate, UIPopoverPrese
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         
         productTypeToQuery()
@@ -375,6 +379,17 @@ extension TierIVViewController: TierIVCollectionViewDelegate, TierIVTableViewDel
             ActivityManager.sharedInstance.activityStop(self)
             
             if error == nil {
+                
+                self.tierIVTableContainer.hidden = false
+                self.nothingToDisplayLabel.hidden = true
+                
+                if objects!.count == 0 {
+                    self.tierIVTableContainer.hidden = true
+                    self.nothingToDisplayLabel.hidden = false
+                    self.nothingToDisplayLabel.font = UIFont.scriptFont(20)
+
+                    
+                }
                 
                 self.TierIVTableViewControllerRef?.tierIVTableArray.removeAll()
 
