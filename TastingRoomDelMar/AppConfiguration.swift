@@ -32,7 +32,11 @@ class AppConfiguration: NSObject {
     var databaseClientKey: String {
         return _CLIENT_ID
     }
-
+ 
+    
+    
+    
+    
     var paymentPublishableKey: String {
         return _STRIPE_ID
     }
