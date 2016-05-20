@@ -23,10 +23,10 @@ class AppConfiguration: NSObject {
     private var _CLIENT_ID = " "
     private var _SERVER_URL = "https://trdm-production-717.nodechef.com/parse"
     
-//    // Sand Box Dev
-//    private var _STRIPE_ID = "pk_test_Ks6cqeQtnXJN0MQIkEOyAmKn"
+    // Sand Box Dev
+    private var _STRIPE_ID = "pk_test_Ks6cqeQtnXJN0MQIkEOyAmKn"
     // Production
-    private var _STRIPE_ID = "pk_live_QXBEAVF6Pl18ZRcXngMr1NAr"
+    // private var _STRIPE_ID = "pk_live_QXBEAVF6Pl18ZRcXngMr1NAr"
     
     
     
