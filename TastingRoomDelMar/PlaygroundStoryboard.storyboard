@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="FvH-v1-ovy">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--Indicator View Controller-->
+        <scene sceneID="NXN-r3-hsn">
+            <objects>
+                <viewController id="FvH-v1-ovy" customClass="IndicatorViewController" customModule="TastingRoomDelMar" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bAH-n5-7tV"/>
+                        <viewControllerLayoutGuide type="bottom" id="GP2-Dg-atV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tEy-dJ-ctx">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p4b-bW-veg">
+                                <rect key="frame" x="277" y="211" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="showIndicator:" destination="FvH-v1-ovy" eventType="touchUpInside" id="ABa-1m-ORM"/>
+                                    <segue destination="hmj-qn-X63" kind="popoverPresentation" identifier="trdmIndicator" popoverAnchorView="p4b-bW-veg" id="YFP-c8-ZLW">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="p4b-bW-veg" firstAttribute="centerX" secondItem="tEy-dJ-ctx" secondAttribute="centerX" id="6h2-GM-P2Z"/>
+                            <constraint firstItem="p4b-bW-veg" firstAttribute="centerY" secondItem="tEy-dJ-ctx" secondAttribute="centerY" id="r4u-yQ-oza"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qo7-H3-AgF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="319" y="288"/>
+        </scene>
+        <!--Indicator Popover View Controller-->
+        <scene sceneID="9aw-r7-4pg">
+            <objects>
+                <viewController id="hmj-qn-X63" customClass="IndicatorPopoverViewController" customModule="TastingRoomDelMar" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="W1W-Ny-Lvv"/>
+                        <viewControllerLayoutGuide type="bottom" id="eiO-fI-oaX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xcv-LX-YgE">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.019383235356891459" green="1" blue="0.88319213383814388" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="n8c-CY-afG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1053" y="288"/>
+        </scene>
+    </scenes>
+</document>

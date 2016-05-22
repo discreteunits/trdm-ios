@@ -210,6 +210,21 @@
 		D7C6B23A1CD7CAEE003594FA /* libz.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D7C6B2391CD7CAEE003594FA /* libz.1.dylib */; };
 		D7CDA53E1CA46CF200388A30 /* PlaygroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CDA53D1CA46CF200388A30 /* PlaygroundViewController.swift */; };
 		D7CDA5401CA47F8A00388A30 /* PlaygroundTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CDA53F1CA47F8A00388A30 /* PlaygroundTwoViewController.swift */; };
+		D7D1A55A1CEFE2D8000C5B11 /* IndicatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D1A5591CEFE2D8000C5B11 /* IndicatorViewController.swift */; };
+		D7D1A55C1CEFE306000C5B11 /* IndicatorPopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D1A55B1CEFE306000C5B11 /* IndicatorPopoverViewController.swift */; };
+		D7D1A55E1CEFE31C000C5B11 /* PlaygroundStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7D1A55D1CEFE31C000C5B11 /* PlaygroundStoryboard.storyboard */; };
+		D7D1A5831CF2455F000C5B11 /* spinner-0.png in Resources */ = {isa = PBXBuildFile; fileRef = D7D1A5771CF2455F000C5B11 /* spinner-0.png */; };
+		D7D1A5841CF2455F000C5B11 /* spinner-1.png in Resources */ = {isa = PBXBuildFile; fileRef = D7D1A5781CF2455F000C5B11 /* spinner-1.png */; };
+		D7D1A5851CF2455F000C5B11 /* spinner-2.png in Resources */ = {isa = PBXBuildFile; fileRef = D7D1A5791CF2455F000C5B11 /* spinner-2.png */; };
+		D7D1A5861CF2455F000C5B11 /* spinner-3.png in Resources */ = {isa = PBXBuildFile; fileRef = D7D1A57A1CF2455F000C5B11 /* spinner-3.png */; };
+		D7D1A5871CF2455F000C5B11 /* spinner-4.png in Resources */ = {isa = PBXBuildFile; fileRef = D7D1A57B1CF2455F000C5B11 /* spinner-4.png */; };
+		D7D1A5881CF2455F000C5B11 /* spinner-5.png in Resources */ = {isa = PBXBuildFile; fileRef = D7D1A57C1CF2455F000C5B11 /* spinner-5.png */; };
+		D7D1A5891CF2455F000C5B11 /* spinner-6.png in Resources */ = {isa = PBXBuildFile; fileRef = D7D1A57D1CF2455F000C5B11 /* spinner-6.png */; };
+		D7D1A58A1CF2455F000C5B11 /* spinner-7.png in Resources */ = {isa = PBXBuildFile; fileRef = D7D1A57E1CF2455F000C5B11 /* spinner-7.png */; };
+		D7D1A58B1CF2455F000C5B11 /* spinner-8.png in Resources */ = {isa = PBXBuildFile; fileRef = D7D1A57F1CF2455F000C5B11 /* spinner-8.png */; };
+		D7D1A58C1CF2455F000C5B11 /* spinner-9.png in Resources */ = {isa = PBXBuildFile; fileRef = D7D1A5801CF2455F000C5B11 /* spinner-9.png */; };
+		D7D1A58D1CF2455F000C5B11 /* spinner-10.png in Resources */ = {isa = PBXBuildFile; fileRef = D7D1A5811CF2455F000C5B11 /* spinner-10.png */; };
+		D7D1A58E1CF2455F000C5B11 /* spinner-11.png in Resources */ = {isa = PBXBuildFile; fileRef = D7D1A5821CF2455F000C5B11 /* spinner-11.png */; };
 		D7D809951C7BCE1D00A3F5E6 /* SignupStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7D809941C7BCE1D00A3F5E6 /* SignupStoryboard.storyboard */; };
 		D7D809971C7BCE5000A3F5E6 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D809961C7BCE5000A3F5E6 /* LandingViewController.swift */; };
 		D7D8099A1C7BCF3F00A3F5E6 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D809991C7BCF3F00A3F5E6 /* AlertManager.swift */; };
@@ -351,6 +366,21 @@
 		D7C6B2391CD7CAEE003594FA /* libz.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.dylib; path = ../../../../../../../usr/lib/libz.1.dylib; sourceTree = "<group>"; };
 		D7CDA53D1CA46CF200388A30 /* PlaygroundViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlaygroundViewController.swift; path = ../PlaygroundViewController.swift; sourceTree = "<group>"; };
 		D7CDA53F1CA47F8A00388A30 /* PlaygroundTwoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaygroundTwoViewController.swift; sourceTree = "<group>"; };
+		D7D1A5591CEFE2D8000C5B11 /* IndicatorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndicatorViewController.swift; sourceTree = "<group>"; };
+		D7D1A55B1CEFE306000C5B11 /* IndicatorPopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndicatorPopoverViewController.swift; sourceTree = "<group>"; };
+		D7D1A55D1CEFE31C000C5B11 /* PlaygroundStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PlaygroundStoryboard.storyboard; sourceTree = "<group>"; };
+		D7D1A5771CF2455F000C5B11 /* spinner-0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "spinner-0.png"; sourceTree = "<group>"; };
+		D7D1A5781CF2455F000C5B11 /* spinner-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "spinner-1.png"; sourceTree = "<group>"; };
+		D7D1A5791CF2455F000C5B11 /* spinner-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "spinner-2.png"; sourceTree = "<group>"; };
+		D7D1A57A1CF2455F000C5B11 /* spinner-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "spinner-3.png"; sourceTree = "<group>"; };
+		D7D1A57B1CF2455F000C5B11 /* spinner-4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "spinner-4.png"; sourceTree = "<group>"; };
+		D7D1A57C1CF2455F000C5B11 /* spinner-5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "spinner-5.png"; sourceTree = "<group>"; };
+		D7D1A57D1CF2455F000C5B11 /* spinner-6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "spinner-6.png"; sourceTree = "<group>"; };
+		D7D1A57E1CF2455F000C5B11 /* spinner-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "spinner-7.png"; sourceTree = "<group>"; };
+		D7D1A57F1CF2455F000C5B11 /* spinner-8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "spinner-8.png"; sourceTree = "<group>"; };
+		D7D1A5801CF2455F000C5B11 /* spinner-9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "spinner-9.png"; sourceTree = "<group>"; };
+		D7D1A5811CF2455F000C5B11 /* spinner-10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "spinner-10.png"; sourceTree = "<group>"; };
+		D7D1A5821CF2455F000C5B11 /* spinner-11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "spinner-11.png"; sourceTree = "<group>"; };
 		D7D809941C7BCE1D00A3F5E6 /* SignupStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignupStoryboard.storyboard; sourceTree = "<group>"; };
 		D7D809961C7BCE5000A3F5E6 /* LandingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
 		D7D809991C7BCF3F00A3F5E6 /* AlertManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
@@ -486,6 +516,9 @@
 			isa = PBXGroup;
 			children = (
 				D73398DD1C8A5F5100CD4B48 /* MyPlayground.playground */,
+				D7D1A5591CEFE2D8000C5B11 /* IndicatorViewController.swift */,
+				D7D1A55B1CEFE306000C5B11 /* IndicatorPopoverViewController.swift */,
+				D7D1A55D1CEFE31C000C5B11 /* PlaygroundStoryboard.storyboard */,
 			);
 			name = Playgrounds;
 			sourceTree = "<group>";
@@ -523,6 +556,18 @@
 		D7C1E0311C5A928F00143C48 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D7D1A5771CF2455F000C5B11 /* spinner-0.png */,
+				D7D1A5781CF2455F000C5B11 /* spinner-1.png */,
+				D7D1A5791CF2455F000C5B11 /* spinner-2.png */,
+				D7D1A57A1CF2455F000C5B11 /* spinner-3.png */,
+				D7D1A57B1CF2455F000C5B11 /* spinner-4.png */,
+				D7D1A57C1CF2455F000C5B11 /* spinner-5.png */,
+				D7D1A57D1CF2455F000C5B11 /* spinner-6.png */,
+				D7D1A57E1CF2455F000C5B11 /* spinner-7.png */,
+				D7D1A57F1CF2455F000C5B11 /* spinner-8.png */,
+				D7D1A5801CF2455F000C5B11 /* spinner-9.png */,
+				D7D1A5811CF2455F000C5B11 /* spinner-10.png */,
+				D7D1A5821CF2455F000C5B11 /* spinner-11.png */,
 				D7C1E0301C5A920E00143C48 /* Fontfabric - Nexa Rust Script L 00.otf */,
 				D7C1E03F1C5AB75100143C48 /* OpenSans-Regular.ttf */,
 				D7C1E0401C5AB76E00143C48 /* BebasNeue Regular.otf */,
@@ -870,24 +915,37 @@
 			files = (
 				D765FD381C7E60F400F68389 /* SettingsStoryboard.storyboard in Resources */,
 				D717FE9B1CDBE58F0031E60D /* hamburger-sm.png in Resources */,
+				D7D1A58A1CF2455F000C5B11 /* spinner-7.png in Resources */,
 				D7FC44B71C7EA162003482B9 /* TabStoryboard.storyboard in Resources */,
 				D7683B0F1CB3086900F79678 /* HistoryStoryboard.storyboard in Resources */,
+				D7D1A58D1CF2455F000C5B11 /* spinner-10.png in Resources */,
 				D7C1E03A1C5A952000143C48 /* primary-logotype-05_rgb_600_600.png in Resources */,
+				D7D1A5861CF2455F000C5B11 /* spinner-3.png in Resources */,
 				D7C1E03C1C5A958100143C48 /* Typographic-deconstructed_rgb_600_120.png in Resources */,
 				D7C1E0341C5A950000143C48 /* secondary-logomark-03_rgb_600_600.png in Resources */,
 				D7B6168F1C62E340002CF1DE /* Main.storyboard in Resources */,
+				D7D1A58E1CF2455F000C5B11 /* spinner-11.png in Resources */,
 				D73709021CDD21BE003DD093 /* trdm-facebookLogin.png in Resources */,
 				D7C1E0381C5A951300143C48 /* primary-logomark-front-04_rgb_600_600.png in Resources */,
+				D7D1A5831CF2455F000C5B11 /* spinner-0.png in Resources */,
+				D7D1A55E1CEFE31C000C5B11 /* PlaygroundStoryboard.storyboard in Resources */,
 				D7D809951C7BCE1D00A3F5E6 /* SignupStoryboard.storyboard in Resources */,
 				D7C1E03E1C5A960600143C48 /* secondary-logomark-white_rgb_600_600.png in Resources */,
 				D7C1E0371C5A951300143C48 /* primary-logomark-02_rgb_600_600.png in Resources */,
 				D7FFF7BB1C3AFB0600020D9A /* LaunchScreen.storyboard in Resources */,
 				D7FC44B41C7E9F06003482B9 /* PaymentStoryboard.storyboard in Resources */,
+				D7D1A5871CF2455F000C5B11 /* spinner-4.png in Resources */,
 				D7FFF7B81C3AFB0600020D9A /* Assets.xcassets in Resources */,
 				D7C1E0321C5A92B300143C48 /* Fontfabric - Nexa Rust Script L 00.otf in Resources */,
 				D7C1E0411C5AB86800143C48 /* OpenSans-Regular.ttf in Resources */,
+				D7D1A5841CF2455F000C5B11 /* spinner-1.png in Resources */,
+				D7D1A5851CF2455F000C5B11 /* spinner-2.png in Resources */,
+				D7D1A5881CF2455F000C5B11 /* spinner-5.png in Resources */,
+				D7D1A5891CF2455F000C5B11 /* spinner-6.png in Resources */,
+				D7D1A58B1CF2455F000C5B11 /* spinner-8.png in Resources */,
 				D7C1E0421C5AB86E00143C48 /* BebasNeue Regular.otf in Resources */,
 				D7C2A2251CD692EF00B6FB24 /* fbloginbutton.png in Resources */,
+				D7D1A58C1CF2455F000C5B11 /* spinner-9.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1021,6 +1079,7 @@
 				D7D809971C7BCE5000A3F5E6 /* LandingViewController.swift in Sources */,
 				D7734AFD1C45D87F009286DD /* TierIVViewController.swift in Sources */,
 				D78594941C7BF141000972FB /* SignupSceneOneViewController.swift in Sources */,
+				D7D1A55C1CEFE306000C5B11 /* IndicatorPopoverViewController.swift in Sources */,
 				D7F981101C44612800200639 /* ENSideMenuControllerViewController.swift in Sources */,
 				D736DADD1C73906800751307 /* TableNumberViewController.swift in Sources */,
 				D7086D261CC9650B009F96C7 /* TabFloatingTableViewController.swift in Sources */,
@@ -1054,6 +1113,7 @@
 				D733D4621C69534400682A84 /* PaymentAddCardTableViewCell.swift in Sources */,
 				D775CDD31C6D0E4D006A3F29 /* SettingsHeaderTableViewCell.swift in Sources */,
 				D77013911C6C20C900CEB886 /* SettingsTableViewController.swift in Sources */,
+				D7D1A55A1CEFE2D8000C5B11 /* IndicatorViewController.swift in Sources */,
 				D7CDA5401CA47F8A00388A30 /* PlaygroundTwoViewController.swift in Sources */,
 				D7A8AC081C4D9626008D9A90 /* PopoverViewController.swift in Sources */,
 				D7B616841C62D7C3002CF1DE /* TabViewController.swift in Sources */,
