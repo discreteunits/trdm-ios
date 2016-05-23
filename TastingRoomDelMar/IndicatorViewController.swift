@@ -44,7 +44,7 @@ class IndicatorViewController: UIViewController, UIPopoverPresentationController
         if segue.identifier == "trdmIndicator" {
             let vc = segue.destinationViewController as! IndicatorPopoverViewController
             
-            vc.preferredContentSize = CGSizeMake(screenWidth*0.60, screenWidth*0.60)
+            vc.preferredContentSize = CGSizeMake(screenWidth*0.40, screenWidth*0.40)
             
             // Set Controller
             let controller = vc.popoverPresentationController
