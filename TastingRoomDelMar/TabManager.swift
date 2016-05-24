@@ -82,7 +82,7 @@ class TabManager: NSObject {
                     self.calculateDiscount(i, discountAmount: 15)
                 } else if TabManager.sharedInstance.wineBottleCount > 2 && TabManager.sharedInstance.wineBottleCount < 12 {
                     self.calculateDiscount(i, discountAmount: 20)
-                } else if TabManager.sharedInstance.wineBottleCount > 12 {
+                } else if TabManager.sharedInstance.wineBottleCount > 11 {
                     self.calculateDiscount(i, discountAmount: 25)
                 }
                 

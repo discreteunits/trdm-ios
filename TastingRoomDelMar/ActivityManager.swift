@@ -71,6 +71,11 @@ class ActivityManager: NSObject {
     // Start Activity
     func activityStart(view: UIViewController) {
         
+        
+        for subview in view.view.subviews {
+            subview.hidden = true
+        }
+        
         view.view.userInteractionEnabled = false
         
         // Get Bounds
@@ -87,25 +92,31 @@ class ActivityManager: NSObject {
 
         
         
-        let trdmGifImage = UIImage.animatedImageNamed("spinner-", duration: 4.0)
+        let trdmGifImage = UIImage.animatedImageNamed("spinner-", duration: 2.0)
         let trdmIndicatorImageView = UIImageView(image: trdmGifImage)
         trdmIndicatorImageView.frame = CGRectMake(0, 0,screenWidth * 0.15, screenWidth * 0.25)
-        trdmIndicatorImageView.frame.origin.y = screenWidth * 0.375
+        trdmIndicatorImageView.frame.origin.y = screenWidth * 0.55
         trdmIndicatorImageView.frame.origin.x = screenWidth * 0.425
         trdmIndicatorImageView.layer.zPosition = 9999999
         trdmIndicatorImageView.tag = 1337
         
         
-        view.view.addSubview(indicatorWindowView)
+//        view.view.addSubview(indicatorWindowView)
         view.view.addSubview(trdmIndicatorImageView)
         
         
 
         
+        
+        
     }
     
     // Stop Activity
     func activityStop(view: UIViewController) {
+        
+        for subview in view.view.subviews {
+            subview.hidden = false
+        }
         
         view.view.userInteractionEnabled = true
         
@@ -120,7 +131,7 @@ class ActivityManager: NSObject {
     }
     
     
-    
+
     
     
     

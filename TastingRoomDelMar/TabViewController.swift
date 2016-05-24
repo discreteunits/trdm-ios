@@ -38,7 +38,9 @@ class TabViewController: UIViewController {
         super.viewDidLoad()
         
         TabManager.sharedInstance.setWineDiscountValues()
+        print("Discount Wine Bottle Count: \(TabManager.sharedInstance.wineBottleCount)")
         TabManager.sharedInstance.setBeerDiscountValues()
+        print("Discount Beer Bottle Count: \(TabManager.sharedInstance.beerBottleCount)")
         
         // Remove Indicator
         let currentWindow: UIWindow = UIApplication.sharedApplication().keyWindow!

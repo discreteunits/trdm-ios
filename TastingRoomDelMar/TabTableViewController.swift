@@ -234,13 +234,26 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
             self.tableView.beginUpdates()
 
             // Discount: Decrement Tab Manager Bottle Count 
+            
+            print("is this product discountable: \(TabManager.sharedInstance.currentTab.lines[indexPath.row].discountable)")
+            
+            print("is this product wine or beer: \(TabManager.sharedInstance.currentTab.lines[indexPath.row].beerOrWine)")
+            
+            print("what is the bottle count before decrementing: \(TabManager.sharedInstance.wineBottleCount)")
+            
+            
             if TabManager.sharedInstance.currentTab.lines[indexPath.row].discountable {
-                if TabManager.sharedInstance.currentTab.lines[indexPath.row].beerOrWine == "Wine" {
-                    TabManager.sharedInstance.wineBottleCount = TabManager.sharedInstance.currentTab.lines[indexPath.row].quantity - TabManager.sharedInstance.wineBottleCount
-                } else if TabManager.sharedInstance.currentTab.lines[indexPath.row].beerOrWine == "Beer" {
+                if TabManager.sharedInstance.currentTab.lines[indexPath.row].beerOrWine == "retailWine" {
+                    
+                    TabManager.sharedInstance.wineBottleCount = TabManager.sharedInstance.wineBottleCount - TabManager.sharedInstance.currentTab.lines[indexPath.row].quantity
+                    
+                    
+                } else if TabManager.sharedInstance.currentTab.lines[indexPath.row].beerOrWine == "retailBeer" {
                     TabManager.sharedInstance.beerBottleCount = TabManager.sharedInstance.currentTab.lines[indexPath.row].quantity - TabManager.sharedInstance.beerBottleCount
                 }
             }
+            
+            print("what is the bottle count after decrementing: \(TabManager.sharedInstance.wineBottleCount)")
             
 
                 // Just remove Item
