@@ -109,7 +109,9 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
         let crvAttributes = [NSFontAttributeName: UIFont.scriptFont(16)]
         let typeAttributes = [NSFontAttributeName: UIFont.scriptFont(12)]
         
-        let nameString = NSMutableAttributedString(string: "\(lineItem.name)\n", attributes: nameAttributes)
+        var nameString = NSMutableAttributedString(string: "\(lineItem.name)\n", attributes: nameAttributes)
+        
+
         
         if lineItem.path == "Drink" {
             // Get Subproduct Name
@@ -129,6 +131,9 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
                 let additionNameString = NSAttributedString(string: "\(addition.name) (\(addition.values[0].name) \(addition.values[0].priceWithoutVAT))\n", attributes: additionAttributes)
                 nameString.appendAttributedString(additionNameString)
             }
+        } else if lineItem.path == "Event" || lineItem.path == "Merch" {
+            nameString = NSMutableAttributedString(string: "\(lineItem.name)", attributes: nameAttributes)
+
         }
         
         
