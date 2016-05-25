@@ -73,7 +73,9 @@ class ActivityManager: NSObject {
         
         
         for subview in view.view.subviews {
-            subview.hidden = true
+            if subview.tag != 98989898 {
+                subview.hidden = true
+            }
         }
         
         view.view.userInteractionEnabled = false
@@ -104,10 +106,7 @@ class ActivityManager: NSObject {
 //        view.view.addSubview(indicatorWindowView)
         view.view.addSubview(trdmIndicatorImageView)
         
-        
 
-        
-        
         
     }
     
@@ -129,15 +128,6 @@ class ActivityManager: NSObject {
         }
         
     }
-    
-    
-
-    
-    
-    
-    
-    
-    
     
     
     
