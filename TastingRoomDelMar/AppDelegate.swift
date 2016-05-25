@@ -14,12 +14,10 @@ import Fabric
 import Crashlytics
 import FBSDKShareKit
 
-
-
+// Print Flag
 var printFlag = true
+// Pin to Background Flag
 var offlineFlag = false
-
-
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -35,10 +33,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Remove Auto Layout Constraint Errors From Log
         NSUserDefaults.standardUserDefaults().setValue(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
 
-        
+        // Pin to Background
         Parse.enableLocalDatastore()
-        
-        
         
         // Integration of NodeChef Server
         let configuration = ParseClientConfiguration {
@@ -80,6 +76,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Stripe Integration
         Stripe.setDefaultPublishableKey(AppConfiguration.sharedInstance.paymentPublishableKey)
+        // Fabric and Crashlytics Integration
         Fabric.with([STPAPIClient.self, Crashlytics.self])
 
         
@@ -109,7 +106,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // -------------------------------
     // MARK: Push Notifcations
     // -------------------------------
-    
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
         
         print("Device Token At AppDelegate: \(deviceToken)")
