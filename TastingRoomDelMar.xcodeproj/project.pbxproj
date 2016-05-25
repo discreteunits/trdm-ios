@@ -25,6 +25,8 @@
 		D736DADF1C73907A00751307 /* AddGratuityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D736DADE1C73907A00751307 /* AddGratuityViewController.swift */; };
 		D736DAE11C73DACE00751307 /* AddGratuityCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D736DAE01C73DACE00751307 /* AddGratuityCollectionViewCell.swift */; };
 		D73709021CDD21BE003DD093 /* trdm-facebookLogin.png in Resources */ = {isa = PBXBuildFile; fileRef = D73709011CDD21BE003DD093 /* trdm-facebookLogin.png */; };
+		D737E9C81CF64A9C003DCA3D /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D737E9C61CF64A9C003DCA3D /* Fabric.framework */; };
+		D737E9C91CF64A9C003DCA3D /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D737E9C71CF64A9C003DCA3D /* Crashlytics.framework */; };
 		D742DA891CEB9C5E004E8860 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = D742DA881CEB9C5E004E8860 /* Reachability.swift */; };
 		D742DA901CEB9FA7004E8860 /* FBAudienceNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D742DA8A1CEB9FA7004E8860 /* FBAudienceNetwork.framework */; };
 		D742DA911CEB9FA7004E8860 /* FBNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D742DA8B1CEB9FA7004E8860 /* FBNotifications.framework */; };
@@ -291,6 +293,8 @@
 		D736DADE1C73907A00751307 /* AddGratuityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddGratuityViewController.swift; sourceTree = "<group>"; };
 		D736DAE01C73DACE00751307 /* AddGratuityCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddGratuityCollectionViewCell.swift; sourceTree = "<group>"; };
 		D73709011CDD21BE003DD093 /* trdm-facebookLogin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trdm-facebookLogin.png"; sourceTree = "<group>"; };
+		D737E9C61CF64A9C003DCA3D /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		D737E9C71CF64A9C003DCA3D /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		D742DA881CEB9C5E004E8860 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		D742DA8A1CEB9FA7004E8860 /* FBAudienceNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBAudienceNetwork.framework; sourceTree = "<group>"; };
 		D742DA8B1CEB9FA7004E8860 /* FBNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBNotifications.framework; sourceTree = "<group>"; };
@@ -444,9 +448,11 @@
 			files = (
 				D715708D1CEBA467002C7B51 /* AudioToolbox.framework in Frameworks */,
 				D7C6B23A1CD7CAEE003594FA /* libz.1.dylib in Frameworks */,
+				D737E9C91CF64A9C003DCA3D /* Crashlytics.framework in Frameworks */,
 				D7C6B2381CD7CAC8003594FA /* libsqlite3.dylib in Frameworks */,
 				D761C58B1CEB93C600D1BB25 /* ParseFacebookUtilsV4.framework in Frameworks */,
 				D757C9C61CEB9B2400DD2C4A /* Stripe.framework in Frameworks */,
+				D737E9C81CF64A9C003DCA3D /* Fabric.framework in Frameworks */,
 				D742DA931CEB9FA7004E8860 /* FBSDKLoginKit.framework in Frameworks */,
 				D761C58C1CEB93C600D1BB25 /* ParseTwitterUtils.framework in Frameworks */,
 				D761C5891CEB93C600D1BB25 /* Parse.framework in Frameworks */,
@@ -482,6 +488,8 @@
 		33F0AF0FDEDF0E0B9CE77BF8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D737E9C61CF64A9C003DCA3D /* Fabric.framework */,
+				D737E9C71CF64A9C003DCA3D /* Crashlytics.framework */,
 				D715708C1CEBA467002C7B51 /* AudioToolbox.framework */,
 				D742DA961CEB9FB4004E8860 /* AccountKit.framework */,
 				D742DA8A1CEB9FA7004E8860 /* FBAudienceNetwork.framework */,
@@ -782,6 +790,7 @@
 				D7FFF7A91C3AFB0600020D9A /* Sources */,
 				D7FFF7AA1C3AFB0600020D9A /* Frameworks */,
 				D7FFF7AB1C3AFB0600020D9A /* Resources */,
+				D737E9C51CF64A81003DCA3D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -964,6 +973,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D737E9C51CF64A81003DCA3D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 52fa462b37fc0c005e5599806fd96b167f34f913 35b7d5c1f47faf8fb09a510c9f2a06ce9f351d05498e0c88f4702aeb013fb4cd";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D786827A1CEEA73F004B98A7 /* Sources */ = {

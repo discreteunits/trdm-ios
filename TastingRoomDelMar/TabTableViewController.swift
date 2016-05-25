@@ -175,7 +175,6 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
         lineitemCell.priceLabel.font = UIFont.scriptFont(18)
         
         
-        
         // Discount Section
         if TabManager.sharedInstance.currentTab.lines[indexPath.row].beerOrWine == "retailBeer" || TabManager.sharedInstance.currentTab.lines[indexPath.row].beerOrWine == "retailWine" {
             
@@ -201,26 +200,18 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
 
             
         }
-        
-
     }
-    
-    
 
     override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-
         return UITableViewAutomaticDimension
-        
     }
 
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        
         return true
-        
     }
 
     override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
@@ -234,34 +225,22 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
             self.tableView.beginUpdates()
 
             // Discount: Decrement Tab Manager Bottle Count 
-            
-            print("is this product discountable: \(TabManager.sharedInstance.currentTab.lines[indexPath.row].discountable)")
-            
-            print("is this product wine or beer: \(TabManager.sharedInstance.currentTab.lines[indexPath.row].beerOrWine)")
-            
-            print("what is the bottle count before decrementing: \(TabManager.sharedInstance.wineBottleCount)")
-            
-            
             if TabManager.sharedInstance.currentTab.lines[indexPath.row].discountable {
                 if TabManager.sharedInstance.currentTab.lines[indexPath.row].beerOrWine == "retailWine" {
                     
                     TabManager.sharedInstance.wineBottleCount = TabManager.sharedInstance.wineBottleCount - TabManager.sharedInstance.currentTab.lines[indexPath.row].quantity
                     
-                    
                 } else if TabManager.sharedInstance.currentTab.lines[indexPath.row].beerOrWine == "retailBeer" {
-                    TabManager.sharedInstance.beerBottleCount = TabManager.sharedInstance.currentTab.lines[indexPath.row].quantity - TabManager.sharedInstance.beerBottleCount
+                    TabManager.sharedInstance.beerBottleCount = TabManager.sharedInstance.beerBottleCount - TabManager.sharedInstance.currentTab.lines[indexPath.row].quantity
                 }
             }
             
-            print("what is the bottle count after decrementing: \(TabManager.sharedInstance.wineBottleCount)")
-            
 
-                // Just remove Item
+            // Just remove Item
             TabManager.sharedInstance.currentTab.lines.removeAtIndex(indexPath.row)
                 
             // Remove Row From Table
             self.tableView.deleteRowsAtIndexPaths(NSArray(object: NSIndexPath(forRow: indexPath.row, inSection: 0)) as! [NSIndexPath], withRowAnimation: UITableViewRowAnimation.Left)
-            
             
             
             TabManager.sharedInstance.setWineDiscountValues()
@@ -270,7 +249,6 @@ class TabTableViewController: UITableViewController, NSFetchedResultsControllerD
             if TabManager.sharedInstance.currentTab.lines.count == 0 {
                 self.dismissViewControllerAnimated(false, completion: nil)
             }
-
 
         }
         

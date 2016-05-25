@@ -10,9 +10,10 @@ import UIKit
 import Parse
 import ParseFacebookUtilsV4
 import Stripe
-//import Fabric
-//import Crashlytics
+import Fabric
+import Crashlytics
 import FBSDKShareKit
+
 
 
 var printFlag = true
@@ -37,10 +38,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Parse.enableLocalDatastore()
         
-
         
         
-        
+        // Integration of NodeChef Server
         let configuration = ParseClientConfiguration {
             $0.applicationId = "ec321db54f541c125465ddc586b54b08"
             $0.clientKey = "BvU3xAcEB37sp3WXZUD9UhbpI4Set8CCUSbCa0OU"
@@ -48,8 +48,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         Parse.initializeWithConfiguration(configuration)
 
-
-        
         
                 
         PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)
@@ -82,7 +80,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Stripe Integration
         Stripe.setDefaultPublishableKey(AppConfiguration.sharedInstance.paymentPublishableKey)
-//        Fabric.with([STPAPIClient.self, Crashlytics.self])
+        Fabric.with([STPAPIClient.self, Crashlytics.self])
 
         
     // -------------------------------
