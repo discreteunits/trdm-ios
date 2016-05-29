@@ -23,7 +23,8 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
     var windowView = UIView()
     var locationLabel = UILabel()
     var delMarLabel = UILabel()
-    var addressTextView = UITextView()
+    var addressTextView = UIButton()
+    var phoneNumberTextView = UIButton()
     var TRDMLogo = String()
     var TRDMImage = UIImage()
     var TRDMImageView = UIImageView()
@@ -226,16 +227,40 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
                     
                     
         // Create Location Address
-        self.addressTextView = UITextView(frame: CGRectMake(8, 60, windowWidth / 3 , 200))
-        self.addressTextView.text = "1435 Camino Del Mar Del Mar, CA 92014 858.232.6545"
-        self.addressTextView.userInteractionEnabled = false
-        self.addressTextView.font = UIFont.headerFont(16)
-        self.addressTextView.textColor = UIColor.whiteColor()
+        let textAttributes = [NSFontAttributeName: UIFont.headerFont(16), NSForegroundColorAttributeName: UIColor.whiteColor()]
+        let addressString = NSMutableAttributedString(string: "1435 Camino Del Mar \nDel Mar, CA 92014", attributes: textAttributes)
+        
+        self.addressTextView = UIButton(frame: CGRectMake(8, 60, windowWidth * 0.4 , 48))
+        self.addressTextView.setAttributedTitle(addressString, forState: UIControlState.Normal)
+        self.addressTextView.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Left
+        
+        self.addressTextView.addTarget(self, action: #selector(TierITableViewController.viewLocation), forControlEvents: UIControlEvents.TouchUpInside)
+        
+        self.addressTextView.titleLabel?.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        self.addressTextView.userInteractionEnabled = true
+        self.addressTextView.titleLabel?.font = UIFont.headerFont(16)
+        self.addressTextView.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         self.addressTextView.backgroundColor = UIColor.blackColor()
         self.addressTextView.layer.zPosition = 999999
         self.addressTextView.transform = CGAffineTransformMakeTranslation(-windowWidth, 0)
         self.addressTextView.tag = 14
-                    
+
+        // Create Location Phone Number
+        self.phoneNumberTextView = UIButton(frame: CGRectMake(8, 100, windowWidth / 3 , 40))
+        self.phoneNumberTextView.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Left
+
+        self.phoneNumberTextView.addTarget(self, action: #selector(TierITableViewController.callLocation), forControlEvents: UIControlEvents.TouchUpInside)
+
+        
+        self.phoneNumberTextView.userInteractionEnabled = true
+        self.phoneNumberTextView.setTitle("858.232.6545", forState: .Normal)
+        self.phoneNumberTextView.titleLabel?.font = UIFont.headerFont(16)
+        self.phoneNumberTextView.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        self.phoneNumberTextView.backgroundColor = UIColor.blackColor()
+        self.phoneNumberTextView.layer.zPosition = 999999
+        self.phoneNumberTextView.transform = CGAffineTransformMakeTranslation(-windowWidth, 0)
+        self.phoneNumberTextView.tag = 16
+        
         // TRDM Logo Position
         let screenSize: CGRect = UIScreen.mainScreen().bounds
         let screenWidth = screenSize.width
@@ -284,6 +309,8 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
                     } else if subview.tag == 15 {
                         // subview.transform = CGAffineTransformMakeRotation(0)
                         subview.transform = CGAffineTransformMakeTranslation(-windowWidth, windowWidth)
+                    } else if subview.tag == 16 {
+                        subview.transform = CGAffineTransformMakeTranslation(-windowWidth, 0)
                     }
                 }
                 
@@ -302,6 +329,8 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
                         subview.removeFromSuperview()
                     } else if subview.tag == 15 {
                         subview.removeFromSuperview()
+                    } else if subview.tag == 16 {
+                        subview.removeFromSuperview()
                     }
                 }
                 
@@ -316,6 +345,7 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
         self.view.addSubview(self.locationLabel)
         self.view.addSubview(self.delMarLabel)
         self.view.addSubview(self.addressTextView)
+        self.view.addSubview(self.phoneNumberTextView)
         self.view.addSubview(self.TRDMImageView)
         
         UIView.animateWithDuration(1.5, delay: 0.05, usingSpringWithDamping: 1.0,
@@ -325,12 +355,22 @@ class TierITableViewController: UITableViewController, ENSideMenuDelegate {
             self.locationLabel.transform = CGAffineTransformMakeTranslation(0, 0);
             self.delMarLabel.transform = CGAffineTransformMakeTranslation(0, 0);
             self.addressTextView.transform = CGAffineTransformMakeTranslation(0, 0);
+            self.phoneNumberTextView.transform = CGAffineTransformMakeTranslation(0, 0);
             self.TRDMImageView.transform = CGAffineTransformMakeTranslation(0, 0);
             self.TRDMImageView.transform = CGAffineTransformMakeRotation(CGFloat(M_PI + M_PI_2 + M_PI_4))
 
             }, completion: nil)
     }
     
+    func callLocation() {
+        UIApplication.sharedApplication().openURL(NSURL(string: "telprompt://8582326545")!)
+
+    }
+    
+    func viewLocation() {
+        UIApplication.sharedApplication().openURL(NSURL(string: "http://maps.apple.com/?address=1435,Camino+Del+Mar,CA,92014")!)
+
+    }
     
     @IBAction func openTab(sender: AnyObject) {
         
