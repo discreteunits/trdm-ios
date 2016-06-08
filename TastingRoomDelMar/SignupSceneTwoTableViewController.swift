@@ -105,9 +105,31 @@ class SignupSceneTwoTableViewController: UITableViewController, UITextFieldDeleg
             print("Editing did change")
         }
         
-        delegate?.showSignUpButton()
         
-        if firstNameTextField.text == "" {
+        if firstNameTextField.text != "" && lastNameTextField.text != "" {
+            delegate?.showSignUpButton()
+        }
+        
+        if firstNameTextField.text == "" || lastNameTextField.text == "" {
+            delegate?.hideSignUpButton()
+        }
+        
+    }
+    
+    
+    
+    @IBAction func lastNameEditingDidChange(sender: AnyObject) {
+        
+        if printFlag {
+            print("Editing did change")
+        }
+        
+        
+        if firstNameTextField.text != "" && lastNameTextField.text != "" {
+            delegate?.showSignUpButton()
+        }
+        
+        if firstNameTextField.text == "" || lastNameTextField.text == "" {
             delegate?.hideSignUpButton()
         }
         
