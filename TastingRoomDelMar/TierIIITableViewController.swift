@@ -110,7 +110,11 @@ class TierIIITableViewController: UITableViewController, ENSideMenuDelegate {
         let query:PFQuery = PFQuery(className:"Tier3")
         query.includeKey("category")
         query.orderByAscending("sortOrder")
-        query.whereKey("parentTiers", equalTo: RouteManager.sharedInstance.TierTwo!)
+        
+        
+//        query.whereKey("parentTiers", equalTo: RouteManager.sharedInstance.TierTwo!)
+        query.whereKey("parentTiers", containedIn: RouteManager.sharedInstance.Route!)
+        
         
         ActivityManager.sharedInstance.activityStart(self)
         

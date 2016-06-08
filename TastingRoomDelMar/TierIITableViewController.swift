@@ -103,10 +103,21 @@ class TierIITableViewController: UITableViewController, ENSideMenuDelegate {
     // TIER 2 QUERY
     func tierIIQuery() {
         
+        print("------------------------------------")
+        print("\(RouteManager.sharedInstance.TierOne!)")
+        print("------------------------------------")
+        
+
         let query:PFQuery = PFQuery(className:"Tier2")
         query.includeKey("category")
         query.orderByAscending("sortOrder")
-        query.whereKey("parentTiers", equalTo: RouteManager.sharedInstance.TierOne!)
+        
+        // iPhone 5 Does Not Support EqualTo Parameters
+//        query.whereKey("parentTiers", equalTo: RouteManager.sharedInstance.TierOne!)
+        
+        // iPhone 5 Does Support ContainsAllobjectsInArray
+        query.whereKey("parentTiers", containedIn: RouteManager.sharedInstance.Route!)
+
         
         if offlineFlag == true {
             query.fromLocalDatastore()
